@@ -18,4 +18,15 @@ class Day3Test {
 
         assertEquals(4361, day3.sumOfParts(path));
     }
+
+    @Test
+    void exampleTwo() throws Exception {
+        URL resource = Day3Test.class.getClassLoader().getResource("com/gotreaux/twentythree/day3.txt");
+
+        Path path = Path.of(resource.toURI());
+
+        Day3 day3 = new Day3();
+
+        assertEquals(467835, day3.sumOfGearRatios(path));
+    }
 }
