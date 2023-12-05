@@ -18,4 +18,15 @@ class Day4Test {
 
         assertEquals(13, day4.scratchcardPoints(path));
     }
+
+    @Test
+    void exampleTwo() throws Exception {
+        URL resource = Day1Test.class.getClassLoader().getResource("com/gotreaux/twentythree/day4.txt");
+
+        Path path = Path.of(resource.toURI());
+
+        Day4 day4 = new Day4();
+
+        assertEquals(30, day4.totalScratchcards(path));
+    }
 }

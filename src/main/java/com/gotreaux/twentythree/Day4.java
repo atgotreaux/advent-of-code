@@ -5,9 +5,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class Day4 {
@@ -22,7 +20,8 @@ public class Day4 {
 
         Day4 day4 = new Day4();
 
-        System.out.println(day4.scratchcardPoints(path));
+        System.out.println("Part 1: " + day4.scratchcardPoints(path));
+        System.out.println("Part 2: " + day4.totalScratchcards(path));
     }
 
     public int scratchcardPoints(Path path) throws IOException {
@@ -46,5 +45,36 @@ public class Day4 {
                 return 0;
             }).sum();
         }
+    }
+
+    public int totalScratchcards(Path path) throws IOException {
+        List<String> lines = Files.readAllLines(path);
+
+        Map<Integer, Integer> totalScratchcards = new HashMap<>();
+
+        for (String line : lines) {
+            String[] cardLine = line.split(": ");
+
+            String lineNumber = cardLine[0];
+            String[] labelAndNumber = lineNumber.split("\\s+");
+            int number = Integer.parseInt(labelAndNumber[1]);
+            totalScratchcards.merge(number, 1, Integer::sum);
+
+            String[] winnersAndNumbers = cardLine[1].split("\\s+\\|\\s+");
+            String winners = winnersAndNumbers[0];
+            String numbers = winnersAndNumbers[1];
+
+            List<String> winnerList = new ArrayList<>(Arrays.asList(winners.split("\\s+")));
+            List<String> numberList = new ArrayList<>(Arrays.asList(numbers.split("\\s+")));
+
+            numberList.retainAll(winnerList);
+            for (int i = 0; i < numberList.size(); i++) {
+                if (number < lines.size()) {
+                    totalScratchcards.merge(number + i + 1, totalScratchcards.get(number), Integer::sum);
+                }
+            }
+        }
+
+        return totalScratchcards.values().stream().reduce(0, Integer::sum);
     }
 }
