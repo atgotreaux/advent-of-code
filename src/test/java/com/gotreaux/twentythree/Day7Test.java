@@ -18,4 +18,15 @@ class Day7Test {
 
         assertEquals(6440, day7.getWinnings());
     }
+
+    @Test
+    void exampleTwo() throws Exception {
+        URL resource = Day7Test.class.getClassLoader().getResource("com/gotreaux/twentythree/day7.txt");
+
+        Path path = Path.of(resource.toURI());
+
+        Day7 day7 = new Day7(path);
+
+        assertEquals(5905, day7.getJokerWinnings());
+    }
 }

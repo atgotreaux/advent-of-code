@@ -12,7 +12,9 @@ import java.util.stream.Stream;
 
 public class Day7 {
     private final List<Hand> hands = new ArrayList<>();
+    private final List<Hand> jokerHands = new ArrayList<>();
     private enum Card {
+        JOKER('J'),
         TWO('2'),
         THREE('3'),
         FOUR('4'),
@@ -31,12 +33,17 @@ public class Day7 {
             this.label = label;
         }
 
-        public static Card fromLabel(char label) {
-            for (Card card : Card.values()) {
+        public static Card fromLabel(char label, Card... cardsToExclude) {
+            List<Card> cards = Arrays.stream(Card.values())
+                    .filter(card -> !Arrays.asList(cardsToExclude).contains(card))
+                    .toList();
+
+            for (Card card : cards) {
                 if (card.label == label) {
                     return card;
                 }
             }
+
             return null;
         }
 
@@ -46,12 +53,13 @@ public class Day7 {
     }
 
     private enum HandType {
-        HIGH_CARD(cards -> cards.size() == cards.stream().distinct().count()),
-        ONE_PAIR(cards -> cards.size() - 1 == cards.stream().distinct().count()),
+        HIGH_CARD(cards -> cards.size() == cards.stream().distinct().count() && !cards.contains(Card.JOKER)),
+        ONE_PAIR(cards -> cards.size() - 1 == cards.stream().distinct().count() || cards.contains(Card.JOKER)),
         TWO_PAIR(cards -> {
             int pairs = 0;
 
             Map<Character, List<Card>> mapping = cards.stream().collect(Collectors.groupingBy(Card::getLabel));
+
             for (Map.Entry<Character, List<Card>> entry : mapping.entrySet()) {
                 List<Card> kind = entry.getValue();
                 if (kind.size() == 2) {
@@ -59,13 +67,25 @@ public class Day7 {
                 }
             }
 
-            return pairs == 2;
+            if (pairs == 2) {
+                return true;
+            }
+
+            int jokerCount = cards.contains(Card.JOKER)
+                    ? mapping.get(Card.JOKER.getLabel()).size()
+                    : 0;
+
+            return pairs == 1 && jokerCount == 1;
         }),
         THREE_OF_A_KIND(cards -> {
             Map<Character, List<Card>> mapping = cards.stream().collect(Collectors.groupingBy(Card::getLabel));
+            int jokerOffset = cards.contains(Card.JOKER)
+                    ? mapping.get(Card.JOKER.getLabel()).size()
+                    : 0;
+
             for (Map.Entry<Character, List<Card>> entry : mapping.entrySet()) {
                 List<Card> kind = entry.getValue();
-                if (kind.size() == 3) {
+                if (kind.getFirst() != Card.JOKER && kind.size() == 3 - jokerOffset) {
                     return true;
                 }
             }
@@ -85,20 +105,34 @@ public class Day7 {
                     foundThreeKind = true;
                 }
             }
+            if (foundThreeKind && foundTwoKind) {
+                return true;
+            }
 
-            return foundThreeKind && foundTwoKind;
+            return mapping.size() == 3 && cards.contains(Card.JOKER);
         }),
         FOUR_OF_A_KIND(cards -> {
             Map<Character, List<Card>> mapping = cards.stream().collect(Collectors.groupingBy(Card::getLabel));
+            int jokerOffset = cards.contains(Card.JOKER)
+                    ? mapping.get(Card.JOKER.getLabel()).size()
+                    : 0;
+
             for (Map.Entry<Character, List<Card>> entry : mapping.entrySet()) {
                 List<Card> kind = entry.getValue();
-                if (kind.size() == 4) {
+                if (kind.getFirst() != Card.JOKER && kind.size() == 4 - jokerOffset) {
                     return true;
                 }
             }
             return false;
         }),
-        FIVE_OF_A_KIND(cards -> cards.stream().distinct().count() == 1);
+        FIVE_OF_A_KIND(cards -> {
+            if (cards.stream().distinct().count() == 1) {
+                return true;
+            }
+
+            Map<Character, List<Card>> mapping = cards.stream().collect(Collectors.groupingBy(Card::getLabel));
+            return mapping.size() == 2 && cards.contains(Card.JOKER);
+        });
 
         private final Predicate<List<Card>> criterion;
 
@@ -159,6 +193,7 @@ public class Day7 {
         Day7 day7 = new Day7(path);
 
         System.out.println(day7.getWinnings());
+        System.out.println(day7.getJokerWinnings());
     }
 
     public Day7(Path path) throws IOException {
@@ -169,23 +204,35 @@ public class Day7 {
                 long bid = Long.parseLong(cardsAndBid[1]);
 
                 List<Card> cards = new ArrayList<>();
+                List<Card> jokerCards = new ArrayList<>();
                 for (Character cardLabel : cardLabels.toCharArray()) {
-                    cards.add(Card.fromLabel(cardLabel));
+                    cards.add(Card.fromLabel(cardLabel, Card.JOKER));
+                    jokerCards.add(Card.fromLabel(cardLabel, Card.JACK));
                 }
 
                 HandType handType = HandType.fromCards(cards);
+                HandType jokerHandType = HandType.fromCards(jokerCards);
 
                 hands.add(new Hand(cards, handType, bid));
+                jokerHands.add(new Hand(jokerCards, jokerHandType, bid));
             });
         }
     }
 
     public long getWinnings() {
+        return calculateWinnings(hands);
+    }
+
+    public long getJokerWinnings() {
+        return calculateWinnings(jokerHands);
+    }
+
+    private long calculateWinnings(List<Hand> processingHands) {
         long winnings = 0;
-        Collections.sort(hands);
+        Collections.sort(processingHands);
 
         long rank = 1;
-        for (Hand hand : hands) {
+        for (Hand hand : processingHands) {
             winnings += rank * hand.bid;
             rank++;
         }
