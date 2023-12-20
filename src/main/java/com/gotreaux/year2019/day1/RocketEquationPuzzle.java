@@ -1,8 +1,8 @@
 package com.gotreaux.year2019.day1;
 
 import com.gotreaux.Puzzle;
+import com.gotreaux.input.InputProvider;
 
-import java.nio.file.Files;
 import java.util.stream.Stream;
 
 public class RocketEquationPuzzle extends Puzzle {
@@ -15,9 +15,17 @@ public class RocketEquationPuzzle extends Puzzle {
     private long sumOfFuelRequirements;
     private long sumOfAdditionalFuelRequirements;
 
+    public RocketEquationPuzzle() {
+        super();
+    }
+
+    public RocketEquationPuzzle(InputProvider inputProvider) {
+        super(inputProvider);
+    }
+
     @Override
     public void prepare() throws Exception {
-        try (Stream<String> lines = Files.lines(getInput())) {
+        try (Stream<String> lines = getInputProvider().getInputStream()) {
             lines.forEach(line -> {
                 long mass = Long.parseLong(line);
 

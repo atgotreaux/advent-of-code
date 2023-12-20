@@ -2,7 +2,6 @@ package com.gotreaux.year2021.day1;
 
 import com.gotreaux.Puzzle;
 
-import java.nio.file.Files;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
@@ -19,7 +18,7 @@ public class SonarSweepPuzzle extends Puzzle {
 
     @Override
     public void prepare() throws Exception {
-        try (Stream<String> lines = Files.lines(getInput())) {
+        try (Stream<String> lines = getInputProvider().getInputStream()) {
             depthMeasurements = lines.map(Long::parseLong).toList();
         }
     }

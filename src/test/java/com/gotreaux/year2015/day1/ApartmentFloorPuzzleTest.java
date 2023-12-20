@@ -1,13 +1,16 @@
 package com.gotreaux.year2015.day1;
 
+import com.gotreaux.input.StringInputProvider;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ApartmentFloorPuzzleTest {
     @Test
     void floorZeroExampleOne() throws Exception {
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle("Floor0Example1.txt");
+        StringInputProvider inputProvider = new StringInputProvider("(())");
+
+        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
         puzzle.prepare();
 
@@ -16,7 +19,9 @@ class ApartmentFloorPuzzleTest {
 
     @Test
     void floorZeroExampleTwo() throws Exception {
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle("Floor0Example2.txt");
+        StringInputProvider inputProvider = new StringInputProvider("()()");
+
+        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
         puzzle.prepare();
 
@@ -25,7 +30,9 @@ class ApartmentFloorPuzzleTest {
 
     @Test
     void floorThreeExampleOne() throws Exception {
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle("Floor3Example1.txt");
+        StringInputProvider inputProvider = new StringInputProvider("(((");
+
+        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
         puzzle.prepare();
 
@@ -34,7 +41,9 @@ class ApartmentFloorPuzzleTest {
 
     @Test
     void floorThreeExampleTwo() throws Exception {
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle("Floor3Example2.txt");
+        StringInputProvider inputProvider = new StringInputProvider("(()(()(");
+
+        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
         puzzle.prepare();
 
@@ -43,7 +52,9 @@ class ApartmentFloorPuzzleTest {
 
     @Test
     void floorThreeExampleThree() throws Exception {
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle("Floor3Example3.txt");
+        StringInputProvider inputProvider = new StringInputProvider("))(((((");
+
+        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
         puzzle.prepare();
 
@@ -52,7 +63,9 @@ class ApartmentFloorPuzzleTest {
 
     @Test
     void basementOneExampleOne() throws Exception {
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle("Basement1Example1.txt");
+        StringInputProvider inputProvider = new StringInputProvider("())");
+
+        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
         puzzle.prepare();
 
@@ -61,7 +74,9 @@ class ApartmentFloorPuzzleTest {
 
     @Test
     void basementOneExampleTwo() throws Exception {
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle("Basement1Example2.txt");
+        StringInputProvider inputProvider = new StringInputProvider("))(");
+
+        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
         puzzle.prepare();
 
@@ -70,7 +85,9 @@ class ApartmentFloorPuzzleTest {
 
     @Test
     void basementThreeExampleOne() throws Exception {
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle("Basement3Example1.txt");
+        StringInputProvider inputProvider = new StringInputProvider(")))");
+
+        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
         puzzle.prepare();
 
@@ -79,7 +96,9 @@ class ApartmentFloorPuzzleTest {
 
     @Test
     void basementThreeExampleTwo() throws Exception {
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle("Basement3Example2.txt");
+        StringInputProvider inputProvider = new StringInputProvider(")())())");
+
+        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
         puzzle.prepare();
 
@@ -88,7 +107,9 @@ class ApartmentFloorPuzzleTest {
 
     @Test
     void basementAtPositionOne() throws Exception {
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle("BasementAtPosition1.txt");
+        StringInputProvider inputProvider = new StringInputProvider(")");
+
+        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
         puzzle.prepare();
 
@@ -97,7 +118,9 @@ class ApartmentFloorPuzzleTest {
 
     @Test
     void basementAtPositionFive() throws Exception {
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle("BasementAtPosition5.txt");
+        StringInputProvider inputProvider = new StringInputProvider("()())");
+
+        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
         puzzle.prepare();
 

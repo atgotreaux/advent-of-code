@@ -2,7 +2,6 @@ package com.gotreaux.year2022.day1;
 
 import com.gotreaux.Puzzle;
 
-import java.nio.file.Files;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +20,7 @@ public class CalorieCountingPuzzle extends Puzzle {
 
     @Override
     public void prepare() throws Exception {
-        try (Stream<String> lines = Files.lines(getInput())) {
+        try (Stream<String> lines = getInputProvider().getInputStream()) {
             AtomicLong currentElfIndex = new AtomicLong();
             lines.forEach(line -> {
                 if (line.isBlank()) {

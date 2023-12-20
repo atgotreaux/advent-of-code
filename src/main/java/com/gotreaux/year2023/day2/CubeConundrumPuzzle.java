@@ -2,7 +2,6 @@ package com.gotreaux.year2023.day2;
 
 import com.gotreaux.Puzzle;
 
-import java.nio.file.Files;
 import java.util.stream.Stream;
 
 public class CubeConundrumPuzzle extends Puzzle {
@@ -17,7 +16,7 @@ public class CubeConundrumPuzzle extends Puzzle {
 
     @Override
     public void prepare() throws Exception {
-        try (Stream<String> lines = Files.lines(getInput())) {
+        try (Stream<String> lines = getInputProvider().getInputStream()) {
             lines.forEach(line -> {
                 long redMax = 0;
                 long greenMax = 0;

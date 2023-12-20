@@ -2,7 +2,6 @@ package com.gotreaux.year2020.day1;
 
 import com.gotreaux.Puzzle;
 
-import java.nio.file.Files;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
@@ -18,7 +17,7 @@ public class ReportRepairPuzzle extends Puzzle {
 
     @Override
     public void prepare() throws Exception {
-        try (Stream<String> lines = Files.lines(getInput())) {
+        try (Stream<String> lines = getInputProvider().getInputStream()) {
             expenses = lines.map(Long::parseLong).toList();
         }
     }

@@ -1,13 +1,16 @@
 package com.gotreaux.year2015.day2;
 
+import com.gotreaux.input.StringInputProvider;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WrappingPaperPuzzleTest {
     @Test
     void twoByThreeByFourWrappingPaper() throws Exception {
-        WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle("TwoByThreeByFour.txt");
+        StringInputProvider inputProvider = new StringInputProvider("2x3x4");
+
+        WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle(inputProvider);
 
         puzzle.prepare();
 
@@ -16,7 +19,9 @@ class WrappingPaperPuzzleTest {
 
     @Test
     void oneByOneByTenWrappingPaper() throws Exception {
-        WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle("OneByOneByTen.txt");
+        StringInputProvider inputProvider = new StringInputProvider("1x1x10");
+
+        WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle(inputProvider);
 
         puzzle.prepare();
 
@@ -25,7 +30,9 @@ class WrappingPaperPuzzleTest {
 
     @Test
     void twoByThreeByFourRibbon() throws Exception {
-        WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle("TwoByThreeByFour.txt");
+        StringInputProvider inputProvider = new StringInputProvider("2x3x4");
+
+        WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle(inputProvider);
 
         puzzle.prepare();
 
@@ -34,7 +41,9 @@ class WrappingPaperPuzzleTest {
 
     @Test
     void oneByOneByTenRibbon() throws Exception {
-        WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle("OneByOneByTen.txt");
+        StringInputProvider inputProvider = new StringInputProvider("1x1x10");
+
+        WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle(inputProvider);
 
         puzzle.prepare();
 

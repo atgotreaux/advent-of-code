@@ -1,28 +1,25 @@
 package com.gotreaux;
 
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
+import com.gotreaux.input.FileInputProvider;
+import com.gotreaux.input.InputProvider;
 
 public abstract class Puzzle {
-    private final String inputPath;
+    private final InputProvider inputProvider;
 
     public Puzzle() {
-        this.inputPath = getClass().getPackage().getName().replaceAll("\\.", "/") + "/input.txt";
+        this.inputProvider = new FileInputProvider(getClass().getPackage().getName().replaceAll("\\.", "/") + "/input.txt");
     }
 
     public Puzzle(String fileName) {
-        this.inputPath = getClass().getPackage().getName().replaceAll("\\.", "/") + "/" + fileName;
+        this.inputProvider = new FileInputProvider(getClass().getPackage().getName().replaceAll("\\.", "/") + "/" + fileName);
     }
 
-    protected Path getInput() throws NoSuchFileException, URISyntaxException {
-        URL resource = getClass().getClassLoader().getResource(this.inputPath);
-        if (resource == null) {
-            throw new NoSuchFileException(inputPath);
-        }
+    public Puzzle(InputProvider inputProvider) {
+        this.inputProvider = inputProvider;
+    }
 
-        return Path.of(resource.toURI());
+    protected InputProvider getInputProvider() {
+        return this.inputProvider;
     }
 
     public abstract void prepare() throws Exception;

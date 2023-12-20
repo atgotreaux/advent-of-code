@@ -2,7 +2,6 @@ package com.gotreaux.year2023.day8;
 
 import com.gotreaux.Puzzle;
 
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -29,7 +28,7 @@ public class HauntedWastelandPuzzle extends Puzzle {
 
     @Override
     public void prepare() throws Exception {
-        try (Stream<String> lines = Files.lines(getInput())) {
+        try (Stream<String> lines = getInputProvider().getInputStream()) {
             lines.forEach(line -> {
                 if (line.matches("^[RL]+$")) {
                     for (char instructionLabel : line.toCharArray()) {

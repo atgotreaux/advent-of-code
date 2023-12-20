@@ -2,7 +2,6 @@ package com.gotreaux.year2023.day7;
 
 import com.gotreaux.Puzzle;
 
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +21,7 @@ public class CamelCardsPuzzle extends Puzzle {
 
     @Override
     public void prepare() throws Exception {
-        try (Stream<String> lines = Files.lines(getInput())) {
+        try (Stream<String> lines = getInputProvider().getInputStream()) {
             lines.forEach(line -> {
                 Scanner scanner = new Scanner(line);
                 String cardLabels = scanner.next();

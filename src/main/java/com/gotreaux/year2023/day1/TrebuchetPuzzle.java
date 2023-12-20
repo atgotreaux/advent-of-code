@@ -2,7 +2,6 @@ package com.gotreaux.year2023.day1;
 
 import com.gotreaux.Puzzle;
 
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +29,7 @@ public class TrebuchetPuzzle extends Puzzle {
     public void prepare() throws Exception {
         List<String> words = Arrays.asList("one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
 
-        try (Stream<String> lines = Files.lines(getInput())) {
+        try (Stream<String> lines = getInputProvider().getInputStream()) {
             lines.forEach(line -> {
                 List<String> calibrationValues = new ArrayList<>();
                 List<String> calibrationValuesWithDigits = new ArrayList<>();

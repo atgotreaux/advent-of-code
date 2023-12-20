@@ -1,9 +1,7 @@
 package com.gotreaux.year2015.day1;
 
 import com.gotreaux.Puzzle;
-
-import java.nio.file.Files;
-import java.util.stream.Stream;
+import com.gotreaux.input.InputProvider;
 
 public class ApartmentFloorPuzzle extends Puzzle {
     public static void main(String[] args) throws Exception {
@@ -19,26 +17,23 @@ public class ApartmentFloorPuzzle extends Puzzle {
         super();
     }
 
-    public ApartmentFloorPuzzle(String filename) {
-        super(filename);
+    public ApartmentFloorPuzzle(InputProvider inputProvider) {
+        super(inputProvider);
     }
 
     @Override
     public void prepare() throws Exception {
-        try (Stream<String> lines = Files.lines(getInput())) {
-            lines.forEach(line -> {
-                for (int i = 0; i < line.length(); i++) {
-                    char instructionLabel = line.charAt(i);
-                    Instruction instruction = Instruction.fromLabel(instructionLabel);
-                    switch (instruction) {
-                        case UP -> currentFloor++;
-                        case DOWN -> currentFloor--;
-                    }
-                    if (currentFloor < 0 && positionOfEnteringBasement < 0) {
-                        positionOfEnteringBasement = i + 1;
-                    }
-                }
-            });
+        String input = getInputProvider().getInputString();
+        for (int i = 0; i < input.length(); i++) {
+            char instructionLabel = input.charAt(i);
+            Instruction instruction = Instruction.fromLabel(instructionLabel);
+            switch (instruction) {
+                case UP -> currentFloor++;
+                case DOWN -> currentFloor--;
+            }
+            if (currentFloor < 0 && positionOfEnteringBasement < 0) {
+                positionOfEnteringBasement = i + 1;
+            }
         }
     }
 

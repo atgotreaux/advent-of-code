@@ -1,8 +1,8 @@
 package com.gotreaux.year2015.day2;
 
 import com.gotreaux.Puzzle;
+import com.gotreaux.input.InputProvider;
 
-import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
@@ -22,13 +22,13 @@ public class WrappingPaperPuzzle extends Puzzle {
         super();
     }
 
-    public WrappingPaperPuzzle(String filename) {
-        super(filename);
+    public WrappingPaperPuzzle(InputProvider inputProvider) {
+        super(inputProvider);
     }
 
     @Override
     public void prepare() throws Exception {
-        try (Stream<String> lines = Files.lines(getInput())) {
+        try (Stream<String> lines = getInputProvider().getInputStream()) {
             lines.forEach(line -> {
                 Scanner scanner = new Scanner(line);
                 scanner.useDelimiter("x");

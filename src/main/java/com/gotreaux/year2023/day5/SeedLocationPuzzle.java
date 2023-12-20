@@ -2,7 +2,6 @@ package com.gotreaux.year2023.day5;
 
 import com.gotreaux.Puzzle;
 
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -31,7 +30,7 @@ public class SeedLocationPuzzle extends Puzzle {
     public void prepare() throws Exception {
         AtomicReference<AlmanacSection> section = new AtomicReference<>();
 
-        try (Stream<String> lines = Files.lines(getInput())) {
+        try (Stream<String> lines = getInputProvider().getInputStream()) {
             lines.forEach(line -> {
                 if (line.startsWith("seeds:")) {
                     Scanner scanner = new Scanner(line.replace("seeds: ", ""));

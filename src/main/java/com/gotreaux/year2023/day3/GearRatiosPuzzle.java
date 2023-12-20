@@ -3,9 +3,8 @@ package com.gotreaux.year2023.day3;
 import com.gotreaux.Puzzle;
 
 import java.awt.*;
-import java.nio.file.Files;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.IntStream;
 
@@ -21,7 +20,7 @@ public class GearRatiosPuzzle extends Puzzle {
 
     @Override
     public void prepare() throws Exception {
-        List<String> lines = Files.readAllLines(getInput());
+        List<String> lines = getInputProvider().getInputList();
         int rowCount = lines.size();
         int columnCount = lines.getFirst().length();
 

@@ -2,7 +2,6 @@ package com.gotreaux.year2023.day4;
 
 import com.gotreaux.Puzzle;
 
-import java.nio.file.Files;
 import java.util.*;
 import java.util.stream.Stream;
 
@@ -19,12 +18,12 @@ public class ScratchcardsPuzzle extends Puzzle {
     @Override
     public void prepare() throws Exception {
         long lineCount;
-        try (Stream<String> lines = Files.lines(getInput())) {
+        try (Stream<String> lines = getInputProvider().getInputStream()) {
             lineCount = lines.count();
         }
         Map<Integer, Integer> totalScratchcardMapping = new HashMap<>();
 
-        try (Stream<String> lines = Files.lines(getInput())) {
+        try (Stream<String> lines = getInputProvider().getInputStream()) {
             lines.forEach(line -> {
                 String[] cardLine = line.split(": ");
                 String lineNumber = cardLine[0];
