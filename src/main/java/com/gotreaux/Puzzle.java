@@ -24,9 +24,9 @@ public abstract class Puzzle {
 
     public abstract void prepare() throws Exception;
 
-    public abstract Object getPartOne();
+    public abstract Object getPartOne() throws Exception;
 
-    public abstract Object getPartTwo();
+    public abstract Object getPartTwo() throws Exception;
 
     public void solve() throws Exception {
         prepare();
