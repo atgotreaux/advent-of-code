@@ -60,4 +60,48 @@ class NiceStringPuzzleTest {
 
         assertEquals(0, puzzle.getPartOne());
     }
+
+    @Test
+    void testQjhvhtzxzqqjkmpb() throws Exception {
+        StringInputProvider inputProvider = new StringInputProvider("qjhvhtzxzqqjkmpb");
+
+        NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
+
+        puzzle.prepare();
+
+        assertEquals(1, puzzle.getPartTwo());
+    }
+
+    @Test
+    void testXxyxx() throws Exception {
+        StringInputProvider inputProvider = new StringInputProvider("xxyxx");
+
+        NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
+
+        puzzle.prepare();
+
+        assertEquals(1, puzzle.getPartTwo());
+    }
+
+    @Test
+    void testUurcxstgmygtbstg() throws Exception {
+        StringInputProvider inputProvider = new StringInputProvider("uurcxstgmygtbstg");
+
+        NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
+
+        puzzle.prepare();
+
+        assertEquals(0, puzzle.getPartTwo());
+    }
+
+    @Test
+    void testIeodomkazucvgmuy() throws Exception {
+        StringInputProvider inputProvider = new StringInputProvider("ieodomkazucvgmuy");
+
+        NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
+
+        puzzle.prepare();
+
+        assertEquals(0, puzzle.getPartTwo());
+    }
 }

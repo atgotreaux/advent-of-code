@@ -3,8 +3,6 @@ package com.gotreaux.year2015.day5;
 import com.gotreaux.Puzzle;
 import com.gotreaux.input.InputProvider;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -16,6 +14,7 @@ public class NiceStringPuzzle extends Puzzle {
     }
 
     private long numberOfNiceStrings;
+    private long numberOfNiceStringsBetterModel;
 
     public NiceStringPuzzle() {
         super();
@@ -27,14 +26,24 @@ public class NiceStringPuzzle extends Puzzle {
 
     @Override
     public void prepare() throws Exception {
-        List<Predicate<String>> niceStringPredicates = new ArrayList<>();
-        niceStringPredicates.add(string -> string.replaceAll("[^aeiou]", "").length() >= 3);
-        niceStringPredicates.add(string -> string.matches("[a-z]*([a-z])\\1+[a-z]*"));
-        niceStringPredicates.add(string -> !string.matches("[a-z]*(ab|cd|pq|xy)[a-z]*"));
+        Predicate<String> threeVowels = string -> string.replaceAll("[^aeiou]", "").length() >= 3;
+        Predicate<String> repeatedCharacter = string -> string.matches("[a-z]*([a-z])\\1[a-z]*");
+        Predicate<String> noForbiddenStrings = string -> !string.matches("[a-z]*(ab|cd|pq|xy)[a-z]*");
+        Predicate<String> niceStringCriteria = threeVowels.and(repeatedCharacter).and(noForbiddenStrings);
+
+        Predicate<String> pairRepeated = string -> string.matches("[a-z]*([a-z][a-z])[a-z]*\\1[a-z]*");
+        Predicate<String> repeatedWithBetweenCharacter = string -> string.matches("[a-z]*([a-z])[a-z]\\1[a-z]*");
+        Predicate<String> niceStringBetterModelCriteria = pairRepeated.and(repeatedWithBetweenCharacter);
 
         try (Stream<String> lines = getInputProvider().getInputStream()) {
-            numberOfNiceStrings = lines.filter(niceStringPredicates.stream().reduce(criterion->true, Predicate::and))
-                    .count();
+            lines.forEach(line -> {
+                if (niceStringCriteria.test(line)) {
+                    numberOfNiceStrings++;
+                }
+                if (niceStringBetterModelCriteria.test(line)) {
+                    numberOfNiceStringsBetterModel++;
+                }
+            });
         }
     }
 
@@ -45,6 +54,6 @@ public class NiceStringPuzzle extends Puzzle {
 
     @Override
     public Long getPartTwo() {
-        return 0L;
+        return numberOfNiceStringsBetterModel;
     }
 }
