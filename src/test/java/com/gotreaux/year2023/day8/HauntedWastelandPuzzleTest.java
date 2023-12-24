@@ -9,26 +9,20 @@ class HauntedWastelandPuzzleTest {
     void noRepeatInstructions() throws Exception {
         HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle("NoRepeats.txt");
 
-        puzzle.prepare();
-
-        assertEquals(2, puzzle.getPartOne());
+        assertEquals(2L, puzzle.getPartOne());
     }
 
     @Test
     void repeatsInstructions() throws Exception {
         HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle("Repeats.txt");
 
-        puzzle.prepare();
-
-        assertEquals(6, puzzle.getPartOne());
+        assertEquals(6L, puzzle.getPartOne());
     }
 
     @Test
     void ghostSteps() throws Exception {
         HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle("Repeats.txt");
 
-        puzzle.prepare();
-
-        assertEquals(6, puzzle.getPartTwo());
+        assertEquals(6L, puzzle.getPartTwo());
     }
 }

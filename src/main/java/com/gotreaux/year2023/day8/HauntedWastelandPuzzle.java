@@ -18,16 +18,19 @@ public class HauntedWastelandPuzzle extends Puzzle {
     private final List<Instruction> instructions = new ArrayList<>();
     private final List<Node> nodes = new ArrayList<>();
 
-    public HauntedWastelandPuzzle() {
+    public HauntedWastelandPuzzle() throws Exception {
         super();
+
+        prepare();
     }
 
-    public HauntedWastelandPuzzle(String fileName) {
+    public HauntedWastelandPuzzle(String fileName) throws Exception {
         super(fileName);
+
+        prepare();
     }
 
-    @Override
-    public void prepare() throws Exception {
+    private void prepare() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             lines.forEach(line -> {
                 if (line.matches("^[RL]+$")) {

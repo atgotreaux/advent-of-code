@@ -10,16 +10,12 @@ class WaitForItPuzzleTest {
     void productOfPossibleWins() throws Exception {
         WaitForItPuzzle puzzle = new WaitForItPuzzle();
 
-        puzzle.prepare();
-
-        assertEquals(288, puzzle.getPartOne());
+        assertEquals(288L, puzzle.getPartOne());
     }
 
     @Test
     void kerningRace() throws Exception {
         WaitForItPuzzle puzzle = new WaitForItPuzzle();
-
-        puzzle.prepare();
 
         assertEquals(71503, puzzle.getPartTwo());
     }

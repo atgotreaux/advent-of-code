@@ -19,8 +19,13 @@ public class CamelCardsPuzzle extends Puzzle {
     private final List<Hand> hands = new ArrayList<>();
     private final List<Hand> jokerHands = new ArrayList<>();
 
-    @Override
-    public void prepare() throws Exception {
+    public CamelCardsPuzzle() throws Exception {
+        super();
+
+        prepare();
+    }
+
+    private void prepare() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             lines.forEach(line -> {
                 Scanner scanner = new Scanner(line);

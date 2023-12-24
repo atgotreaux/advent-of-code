@@ -9,17 +9,13 @@ class ReportRepairPuzzleTest {
     void productOfTargetSumWithTwoNumbers() throws Exception {
         ReportRepairPuzzle puzzle = new ReportRepairPuzzle();
 
-        puzzle.prepare();
-
-        assertEquals(514579, puzzle.getPartOne());
+        assertEquals(514579L, puzzle.getPartOne());
     }
 
     @Test
     void productOfTargetSumWithThreeNumbers() throws Exception {
         ReportRepairPuzzle puzzle = new ReportRepairPuzzle();
 
-        puzzle.prepare();
-
-        assertEquals(241861950, puzzle.getPartTwo());
+        assertEquals(241861950L, puzzle.getPartTwo());
     }
 }

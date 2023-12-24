@@ -9,17 +9,13 @@ class SeedLocationPuzzleTest {
     void lowestLocationNumber() throws Exception {
         SeedLocationPuzzle puzzle = new SeedLocationPuzzle();
 
-        puzzle.prepare();
-
-        assertEquals(35, puzzle.getPartOne());
+        assertEquals(35L, puzzle.getPartOne());
     }
 
     @Test
     void lowestLocationNumberInRange() throws Exception {
         SeedLocationPuzzle puzzle = new SeedLocationPuzzle();
 
-        puzzle.prepare();
-
-        assertEquals(46, puzzle.getPartTwo());
+        assertEquals(46L, puzzle.getPartTwo());
     }
 }

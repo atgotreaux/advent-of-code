@@ -16,10 +16,15 @@ public class CalorieCountingPuzzle extends Puzzle {
         puzzle.solve();
     }
 
+    public CalorieCountingPuzzle() throws Exception {
+        super();
+
+        prepare();
+    }
+
     private final Map<Long, Long> elfCalorieCarriage = new HashMap<>();
 
-    @Override
-    public void prepare() throws Exception {
+    private void prepare() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             AtomicLong currentElfIndex = new AtomicLong();
             lines.forEach(line -> {

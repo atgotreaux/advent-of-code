@@ -14,29 +14,28 @@ public class SonarSweepPuzzle extends Puzzle {
         puzzle.solve();
     }
 
-    private List<Long> depthMeasurements;
-
     @Override
-    public void prepare() throws Exception {
+    public Long getPartOne() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
-            depthMeasurements = lines.map(Long::parseLong).toList();
+            List<Long> depthMeasurements = lines.map(Long::parseLong).toList();
+
+            return getMeasurementIncreaseCount(depthMeasurements);
         }
     }
 
     @Override
-    public Long getPartOne() {
-        return getMeasurementIncreaseCount(depthMeasurements);
-    }
+    public Long getPartTwo() throws Exception {
+        try (Stream<String> lines = getInputProvider().getInputStream()) {
+            List<Long> depthMeasurements = lines.map(Long::parseLong).toList();
 
-    @Override
-    public Long getPartTwo() {
-        List<Long> windows = IntStream.range(0, depthMeasurements.size() - 3 + 1)
-                .mapToObj(windowStart -> depthMeasurements.subList(windowStart, windowStart + 3))
-                .flatMapToLong(longs -> LongStream.of(longs.stream().reduce(0L, Long::sum)))
-                .boxed()
-                .toList();
+            List<Long> windows = IntStream.range(0, depthMeasurements.size() - 3 + 1)
+                    .mapToObj(windowStart -> depthMeasurements.subList(windowStart, windowStart + 3))
+                    .flatMapToLong(longs -> LongStream.of(longs.stream().reduce(0L, Long::sum)))
+                    .boxed()
+                    .toList();
 
-        return getMeasurementIncreaseCount(windows);
+            return getMeasurementIncreaseCount(windows);
+        }
     }
 
     private long getMeasurementIncreaseCount(List<Long> measurements) {

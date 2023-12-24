@@ -18,8 +18,13 @@ public class GearRatiosPuzzle extends Puzzle {
     private int sumOfParts;
     private int sumOfGearRatios;
 
-    @Override
-    public void prepare() throws Exception {
+    public GearRatiosPuzzle() throws Exception {
+        super();
+
+        prepare();
+    }
+
+    private void prepare() throws Exception {
         List<String> lines = getInputProvider().getInputList();
         int rowCount = lines.size();
         int columnCount = lines.getFirst().length();

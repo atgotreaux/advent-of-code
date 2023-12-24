@@ -12,13 +12,10 @@ public class RockPaperScissorsPuzzle extends Puzzle {
         puzzle.solve();
     }
 
-    private long encryptedStrategyScore;
-    private long outcomeStrategyScore;
-
     @Override
-    public void prepare() throws Exception {
+    public Long getPartOne() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
-            lines.forEach(line -> {
+            return lines.mapToLong(line -> {
                 Scanner scanner = new Scanner(line);
                 char opponentLabel = scanner.next().charAt(0);
                 char strategyLabel = scanner.next().charAt(0);
@@ -26,24 +23,30 @@ public class RockPaperScissorsPuzzle extends Puzzle {
 
                 Hand opponentHand = Hand.fromOpponentLabel(opponentLabel);
                 Hand encryptedStrategyHand = Hand.fromEncryptedStrategyLabel(strategyLabel);
-                Hand outcomeStrategyHand = Hand.fromStrategyOutcomeLabel(opponentHand, strategyLabel);
 
                 Round encryptedRound = new Round(opponentHand, encryptedStrategyHand);
-                Round outcomeRound = new Round(opponentHand, outcomeStrategyHand);
 
-                encryptedStrategyScore += encryptedRound.getScore() + encryptedStrategyHand.getWeight();
-                outcomeStrategyScore += outcomeRound.getScore() + outcomeStrategyHand.getWeight();
-            });
+                return encryptedRound.getScore() + encryptedStrategyHand.getWeight();
+            }).sum();
         }
     }
 
     @Override
-    public Long getPartOne() {
-        return encryptedStrategyScore;
-    }
+    public Long getPartTwo() throws Exception {
+        try (Stream<String> lines = getInputProvider().getInputStream()) {
+            return lines.mapToLong(line -> {
+                Scanner scanner = new Scanner(line);
+                char opponentLabel = scanner.next().charAt(0);
+                char strategyLabel = scanner.next().charAt(0);
+                scanner.close();
 
-    @Override
-    public Long getPartTwo() {
-        return outcomeStrategyScore;
+                Hand opponentHand = Hand.fromOpponentLabel(opponentLabel);
+                Hand outcomeStrategyHand = Hand.fromStrategyOutcomeLabel(opponentHand, strategyLabel);
+
+                Round outcomeRound = new Round(opponentHand, outcomeStrategyHand);
+
+                return outcomeRound.getScore() + outcomeStrategyHand.getWeight();
+            }).sum();
+        }
     }
 }

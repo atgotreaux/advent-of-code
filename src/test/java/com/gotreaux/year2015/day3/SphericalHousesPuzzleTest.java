@@ -12,8 +12,6 @@ class SphericalHousesPuzzleTest {
 
         SphericalHousesPuzzle puzzle = new SphericalHousesPuzzle(inputProvider);
 
-        puzzle.prepare();
-
         assertEquals(2, puzzle.getPartOne());
     }
 
@@ -22,8 +20,6 @@ class SphericalHousesPuzzleTest {
         StringInputProvider inputProvider = new StringInputProvider("^>v<");
 
         SphericalHousesPuzzle puzzle = new SphericalHousesPuzzle(inputProvider);
-
-        puzzle.prepare();
 
         assertEquals(4, puzzle.getPartOne());
     }
@@ -34,8 +30,6 @@ class SphericalHousesPuzzleTest {
 
         SphericalHousesPuzzle puzzle = new SphericalHousesPuzzle(inputProvider);
 
-        puzzle.prepare();
-
         assertEquals(2, puzzle.getPartOne());
     }
 
@@ -44,8 +38,6 @@ class SphericalHousesPuzzleTest {
         StringInputProvider inputProvider = new StringInputProvider("^v");
 
         SphericalHousesPuzzle puzzle = new SphericalHousesPuzzle(inputProvider);
-
-        puzzle.prepare();
 
         assertEquals(3, puzzle.getPartTwo());
     }
@@ -56,8 +48,6 @@ class SphericalHousesPuzzleTest {
 
         SphericalHousesPuzzle puzzle = new SphericalHousesPuzzle(inputProvider);
 
-        puzzle.prepare();
-
         assertEquals(3, puzzle.getPartTwo());
     }
 
@@ -66,8 +56,6 @@ class SphericalHousesPuzzleTest {
         StringInputProvider inputProvider = new StringInputProvider("^v^v^v^v^v");
 
         SphericalHousesPuzzle puzzle = new SphericalHousesPuzzle(inputProvider);
-
-        puzzle.prepare();
 
         assertEquals(11, puzzle.getPartTwo());
     }

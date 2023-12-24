@@ -10,9 +10,6 @@ public class ApartmentFloorPuzzle extends Puzzle {
         puzzle.solve();
     }
 
-    private long currentFloor = 0;
-    private long positionOfEnteringBasement = -1;
-
     public ApartmentFloorPuzzle() {
         super();
     }
@@ -22,7 +19,25 @@ public class ApartmentFloorPuzzle extends Puzzle {
     }
 
     @Override
-    public void prepare() throws Exception {
+    public Long getPartOne() throws Exception {
+        long currentFloor = 0L;
+
+        String input = getInputProvider().getInputString();
+        for (char instructionLabel : input.toCharArray()) {
+            Instruction instruction = Instruction.fromLabel(instructionLabel);
+            switch (instruction) {
+                case UP -> currentFloor++;
+                case DOWN -> currentFloor--;
+            }
+        }
+
+        return currentFloor;
+    }
+
+    @Override
+    public Integer getPartTwo() throws Exception {
+        long currentFloor = 0L;
+
         String input = getInputProvider().getInputString();
         for (int i = 0; i < input.length(); i++) {
             char instructionLabel = input.charAt(i);
@@ -31,19 +46,11 @@ public class ApartmentFloorPuzzle extends Puzzle {
                 case UP -> currentFloor++;
                 case DOWN -> currentFloor--;
             }
-            if (currentFloor < 0 && positionOfEnteringBasement < 0) {
-                positionOfEnteringBasement = i + 1;
+            if (currentFloor < 0L) {
+                return i + 1;
             }
         }
-    }
 
-    @Override
-    public Long getPartOne() {
-        return currentFloor;
-    }
-
-    @Override
-    public Long getPartTwo() {
-        return positionOfEnteringBasement;
+        throw new RuntimeException("The basement is never reached!");
     }
 }

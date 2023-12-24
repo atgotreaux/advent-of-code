@@ -12,9 +12,7 @@ class ApartmentFloorPuzzleTest {
 
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(0, puzzle.getPartOne());
+        assertEquals(0L, puzzle.getPartOne());
     }
 
     @Test
@@ -23,9 +21,7 @@ class ApartmentFloorPuzzleTest {
 
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(0, puzzle.getPartOne());
+        assertEquals(0L, puzzle.getPartOne());
     }
 
     @Test
@@ -34,9 +30,7 @@ class ApartmentFloorPuzzleTest {
 
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(3, puzzle.getPartOne());
+        assertEquals(3L, puzzle.getPartOne());
     }
 
     @Test
@@ -45,9 +39,7 @@ class ApartmentFloorPuzzleTest {
 
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(3, puzzle.getPartOne());
+        assertEquals(3L, puzzle.getPartOne());
     }
 
     @Test
@@ -56,9 +48,7 @@ class ApartmentFloorPuzzleTest {
 
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(3, puzzle.getPartOne());
+        assertEquals(3L, puzzle.getPartOne());
     }
 
     @Test
@@ -67,9 +57,7 @@ class ApartmentFloorPuzzleTest {
 
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(-1, puzzle.getPartOne());
+        assertEquals(-1L, puzzle.getPartOne());
     }
 
     @Test
@@ -78,9 +66,7 @@ class ApartmentFloorPuzzleTest {
 
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(-1, puzzle.getPartOne());
+        assertEquals(-1L, puzzle.getPartOne());
     }
 
     @Test
@@ -89,9 +75,7 @@ class ApartmentFloorPuzzleTest {
 
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(-3, puzzle.getPartOne());
+        assertEquals(-3L, puzzle.getPartOne());
     }
 
     @Test
@@ -100,9 +84,7 @@ class ApartmentFloorPuzzleTest {
 
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(-3, puzzle.getPartOne());
+        assertEquals(-3L, puzzle.getPartOne());
     }
 
     @Test
@@ -110,8 +92,6 @@ class ApartmentFloorPuzzleTest {
         StringInputProvider inputProvider = new StringInputProvider(")");
 
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
-
-        puzzle.prepare();
 
         assertEquals(1, puzzle.getPartTwo());
     }
@@ -121,8 +101,6 @@ class ApartmentFloorPuzzleTest {
         StringInputProvider inputProvider = new StringInputProvider("()())");
 
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
-
-        puzzle.prepare();
 
         assertEquals(5, puzzle.getPartTwo());
     }

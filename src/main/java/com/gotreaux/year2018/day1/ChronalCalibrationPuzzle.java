@@ -24,11 +24,6 @@ public class ChronalCalibrationPuzzle extends Puzzle {
     }
 
     @Override
-    public void prepare() throws Exception {
-        // Need proper detection for infinite loops in order to calculate both values at once
-    }
-
-    @Override
     public Long getPartOne() throws Exception {
         DecimalFormat format = new DecimalFormat();
         format.setPositivePrefix("+");

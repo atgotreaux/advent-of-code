@@ -9,17 +9,13 @@ class RockPaperScissorsPuzzleTest {
     void encryptedStrategyScore() throws Exception {
         RockPaperScissorsPuzzle puzzle = new RockPaperScissorsPuzzle();
 
-        puzzle.prepare();
-
-        assertEquals(15, puzzle.getPartOne());
+        assertEquals(15L, puzzle.getPartOne());
     }
 
     @Test
     void outcomeStrategyScore() throws Exception {
         RockPaperScissorsPuzzle puzzle = new RockPaperScissorsPuzzle();
 
-        puzzle.prepare();
-
-        assertEquals(12, puzzle.getPartTwo());
+        assertEquals(12L, puzzle.getPartTwo());
     }
 }

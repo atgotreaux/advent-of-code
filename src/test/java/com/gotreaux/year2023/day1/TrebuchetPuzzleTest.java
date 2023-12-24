@@ -9,17 +9,13 @@ class TrebuchetPuzzleTest {
     void calibrationValue() throws Exception {
         TrebuchetPuzzle puzzle = new TrebuchetPuzzle("CalibrationDocument.txt");
 
-        puzzle.prepare();
-
-        assertEquals(142, puzzle.getPartOne());
+        assertEquals(142L, puzzle.getPartOne());
     }
 
     @Test
     void calibrationValueDigitLetters() throws Exception {
         TrebuchetPuzzle puzzle = new TrebuchetPuzzle("CalibrationDigitsWithLetters.txt");
 
-        puzzle.prepare();
-
-        assertEquals(281, puzzle.getPartTwo());
+        assertEquals(281L, puzzle.getPartTwo());
     }
 }

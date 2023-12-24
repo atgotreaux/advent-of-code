@@ -10,17 +10,13 @@ class ScratchcardsPuzzleTest {
     void scratchcardPoints() throws Exception {
         ScratchcardsPuzzle puzzle = new ScratchcardsPuzzle();
 
-        puzzle.prepare();
-
-        assertEquals(13, puzzle.getPartOne());
+        assertEquals(13L, puzzle.getPartOne());
     }
 
     @Test
     void totalScratchcards() throws Exception {
         ScratchcardsPuzzle puzzle = new ScratchcardsPuzzle();
 
-        puzzle.prepare();
-
-        assertEquals(30, puzzle.getPartTwo());
+        assertEquals(30L, puzzle.getPartTwo());
     }
 }

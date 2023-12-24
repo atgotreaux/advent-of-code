@@ -26,8 +26,13 @@ public class SeedLocationPuzzle extends Puzzle {
     private final List<AlmanacRange> temperatureToHumidity = new ArrayList<>();
     private final List<AlmanacRange> humidityToLocation = new ArrayList<>();
 
-    @Override
-    public void prepare() throws Exception {
+    public SeedLocationPuzzle() throws Exception {
+        super();
+
+        prepare();
+    }
+
+    private void prepare() throws Exception {
         AtomicReference<AlmanacSection> section = new AtomicReference<>();
 
         try (Stream<String> lines = getInputProvider().getInputStream()) {

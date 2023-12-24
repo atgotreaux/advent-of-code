@@ -15,8 +15,13 @@ public class ScratchcardsPuzzle extends Puzzle {
     private long scratchcardPoints;
     private long totalScratchcards;
 
-    @Override
-    public void prepare() throws Exception {
+    public ScratchcardsPuzzle() throws Exception {
+        super();
+
+        prepare();
+    }
+
+    private void prepare() throws Exception {
         long lineCount;
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             lineCount = lines.count();

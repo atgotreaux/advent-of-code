@@ -18,16 +18,19 @@ public class WrappingPaperPuzzle extends Puzzle {
     private long wrappingPaperOrderTotal;
     private long ribbonOrderTotal;
 
-    public WrappingPaperPuzzle() {
+    public WrappingPaperPuzzle() throws Exception {
         super();
+
+        prepare();
     }
 
-    public WrappingPaperPuzzle(InputProvider inputProvider) {
+    public WrappingPaperPuzzle(InputProvider inputProvider) throws Exception {
         super(inputProvider);
+
+        prepare();
     }
 
-    @Override
-    public void prepare() throws Exception {
+    private void prepare() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             lines.forEach(line -> {
                 Scanner scanner = new Scanner(line);

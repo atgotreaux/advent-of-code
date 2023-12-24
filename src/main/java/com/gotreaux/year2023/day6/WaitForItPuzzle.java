@@ -19,8 +19,13 @@ public class WaitForItPuzzle extends Puzzle {
     private final List<Race> races = new ArrayList<>();
     private Race kerningRace;
 
-    @Override
-    public void prepare() throws Exception {
+    public WaitForItPuzzle() throws Exception {
+        super();
+
+        prepare();
+    }
+
+    private void prepare() throws Exception {
         List<Long> times = new ArrayList<>();
         List<Long> recordDistances = new ArrayList<>();
 

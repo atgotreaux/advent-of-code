@@ -9,17 +9,13 @@ class CamelCardsPuzzleTest {
     void jackHands() throws Exception {
         CamelCardsPuzzle puzzle = new CamelCardsPuzzle();
 
-        puzzle.prepare();
-
-        assertEquals(6440, puzzle.getPartOne());
+        assertEquals(6440L, puzzle.getPartOne());
     }
 
     @Test
     void jokerHands() throws Exception {
         CamelCardsPuzzle puzzle = new CamelCardsPuzzle();
 
-        puzzle.prepare();
-
-        assertEquals(5905, puzzle.getPartTwo());
+        assertEquals(5905L, puzzle.getPartTwo());
     }
 }

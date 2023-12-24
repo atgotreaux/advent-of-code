@@ -12,9 +12,6 @@ public class RocketEquationPuzzle extends Puzzle {
         puzzle.solve();
     }
 
-    private long sumOfFuelRequirements;
-    private long sumOfAdditionalFuelRequirements;
-
     public RocketEquationPuzzle() {
         super();
     }
@@ -24,25 +21,17 @@ public class RocketEquationPuzzle extends Puzzle {
     }
 
     @Override
-    public void prepare() throws Exception {
+    public Long getPartOne() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
-            lines.forEach(line -> {
-                long mass = Long.parseLong(line);
-
-                sumOfFuelRequirements += getFuelRequirement(mass);
-                sumOfAdditionalFuelRequirements += getAdditionalFuelRequirement(mass);
-            });
+            return lines.mapToLong(line -> getFuelRequirement(Long.parseLong(line))).sum();
         }
     }
 
     @Override
-    public Long getPartOne() {
-        return sumOfFuelRequirements;
-    }
-
-    @Override
-    public Long getPartTwo() {
-        return sumOfAdditionalFuelRequirements;
+    public Long getPartTwo() throws Exception {
+        try (Stream<String> lines = getInputProvider().getInputStream()) {
+            return lines.mapToLong(line -> getAdditionalFuelRequirement(Long.parseLong(line))).sum();
+        }
     }
 
     private long getFuelRequirement(long mass) {

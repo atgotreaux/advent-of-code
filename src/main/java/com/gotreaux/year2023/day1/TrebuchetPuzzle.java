@@ -2,7 +2,6 @@ package com.gotreaux.year2023.day1;
 
 import com.gotreaux.Puzzle;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -14,9 +13,6 @@ public class TrebuchetPuzzle extends Puzzle {
         puzzle.solve();
     }
 
-    private long calibrationValue;
-    private long calibrationValueWithDigits;
-
     public TrebuchetPuzzle() {
         super();
     }
@@ -26,47 +22,54 @@ public class TrebuchetPuzzle extends Puzzle {
     }
 
     @Override
-    public void prepare() throws Exception {
-        List<String> words = Arrays.asList("one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
-
+    public Long getPartOne() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
-            lines.forEach(line -> {
-                List<String> calibrationValues = new ArrayList<>();
-                List<String> calibrationValuesWithDigits = new ArrayList<>();
-
-                int substringIndex = 0;
+            return lines.mapToLong(line -> {
+                String firstDigit = null;
+                String lastDigit = null;
                 for (Character c : line.toCharArray()) {
-                    String substring = line.substring(substringIndex);
-                    for (String word : words) {
-                        if (substring.startsWith(word)) {
-                            calibrationValuesWithDigits.add(String.valueOf(words.indexOf(word) + 1));
-                            break;
-                        }
-                    }
                     if (Character.isDigit(c)) {
-                        calibrationValues.add(String.valueOf(c));
-                        calibrationValuesWithDigits.add(String.valueOf(c));
+                        if (firstDigit == null) {
+                            firstDigit = String.valueOf(c);
+                        }
+                        lastDigit = String.valueOf(c);
                     }
-                    substringIndex++;
                 }
 
-                if (!calibrationValues.isEmpty()) {
-                    calibrationValue += Integer.parseInt(calibrationValues.getFirst() + calibrationValues.getLast());
-                }
-                if (!calibrationValuesWithDigits.isEmpty()) {
-                    calibrationValueWithDigits += Integer.parseInt(calibrationValuesWithDigits.getFirst() + calibrationValuesWithDigits.getLast());
-                }
-            });
+                return Long.parseLong(firstDigit + lastDigit);
+            }).sum();
         }
     }
 
     @Override
-    public Long getPartOne() {
-        return this.calibrationValue;
-    }
+    public Long getPartTwo() throws Exception {
+        List<String> words = Arrays.asList("one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
 
-    @Override
-    public Long getPartTwo() {
-        return this.calibrationValueWithDigits;
+        try (Stream<String> lines = getInputProvider().getInputStream()) {
+            return lines.mapToLong(line -> {
+                String firstDigit = null;
+                String lastDigit = null;
+                for (int i = 0; i < line.length(); i++) {
+                    Character c = line.charAt(i);
+
+                    String subString = line.substring(i);
+                    for (String word : words) {
+                        if (subString.startsWith(word)) {
+                            c = String.valueOf(words.indexOf(word) + 1).charAt(0);
+                            break;
+                        }
+                    }
+
+                    if (Character.isDigit(c)) {
+                        if (firstDigit == null) {
+                            firstDigit = String.valueOf(c);
+                        }
+                        lastDigit = String.valueOf(c);
+                    }
+                }
+
+                return Long.parseLong(firstDigit + lastDigit);
+            }).sum();
+        }
     }
 }

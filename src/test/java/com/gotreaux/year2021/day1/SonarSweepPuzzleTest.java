@@ -9,17 +9,13 @@ class SonarSweepPuzzleTest {
     void depthMeasurementIncreaseCount() throws Exception {
         SonarSweepPuzzle puzzle = new SonarSweepPuzzle();
 
-        puzzle.prepare();
-
-        assertEquals(7, puzzle.getPartOne());
+        assertEquals(7L, puzzle.getPartOne());
     }
 
     @Test
     void depthMeasurementWindowIncreaseCount() throws Exception {
         SonarSweepPuzzle puzzle = new SonarSweepPuzzle();
 
-        puzzle.prepare();
-
-        assertEquals(5, puzzle.getPartTwo());
+        assertEquals(5L, puzzle.getPartTwo());
     }
 }

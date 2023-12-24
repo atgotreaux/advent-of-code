@@ -12,9 +12,7 @@ class NiceStringPuzzleTest {
 
         NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(1, puzzle.getPartOne());
+        assertEquals(1L, puzzle.getPartOne());
     }
 
     @Test
@@ -23,9 +21,7 @@ class NiceStringPuzzleTest {
 
         NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(1, puzzle.getPartOne());
+        assertEquals(1L, puzzle.getPartOne());
     }
 
     @Test
@@ -34,9 +30,7 @@ class NiceStringPuzzleTest {
 
         NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(0, puzzle.getPartOne());
+        assertEquals(0L, puzzle.getPartOne());
     }
 
     @Test
@@ -45,9 +39,7 @@ class NiceStringPuzzleTest {
 
         NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(0, puzzle.getPartOne());
+        assertEquals(0L, puzzle.getPartOne());
     }
 
     @Test
@@ -56,9 +48,7 @@ class NiceStringPuzzleTest {
 
         NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(0, puzzle.getPartOne());
+        assertEquals(0L, puzzle.getPartOne());
     }
 
     @Test
@@ -67,9 +57,7 @@ class NiceStringPuzzleTest {
 
         NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(1, puzzle.getPartTwo());
+        assertEquals(1L, puzzle.getPartTwo());
     }
 
     @Test
@@ -78,9 +66,7 @@ class NiceStringPuzzleTest {
 
         NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(1, puzzle.getPartTwo());
+        assertEquals(1L, puzzle.getPartTwo());
     }
 
     @Test
@@ -89,9 +75,7 @@ class NiceStringPuzzleTest {
 
         NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(0, puzzle.getPartTwo());
+        assertEquals(0L, puzzle.getPartTwo());
     }
 
     @Test
@@ -100,8 +84,6 @@ class NiceStringPuzzleTest {
 
         NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(0, puzzle.getPartTwo());
+        assertEquals(0L, puzzle.getPartTwo());
     }
 }

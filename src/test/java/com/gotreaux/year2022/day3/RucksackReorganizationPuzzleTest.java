@@ -9,16 +9,12 @@ class RucksackReorganizationPuzzleTest {
     void sumOfCompartmentPriorities() throws Exception {
         RucksackReorganizationPuzzle puzzle = new RucksackReorganizationPuzzle();
 
-        puzzle.prepare();
-
         assertEquals(157L, puzzle.getPartOne());
     }
 
     @Test
     void sumOfGroupPriorities() throws Exception {
         RucksackReorganizationPuzzle puzzle = new RucksackReorganizationPuzzle();
-
-        puzzle.prepare();
 
         assertEquals(70L, puzzle.getPartTwo());
     }

@@ -12,9 +12,7 @@ class AdventCoinMiningPuzzleTest {
 
         AdventCoinMiningPuzzle puzzle = new AdventCoinMiningPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(609043, puzzle.getPartOne());
+        assertEquals(609043L, puzzle.getPartOne());
     }
 
     @Test
@@ -23,8 +21,6 @@ class AdventCoinMiningPuzzleTest {
 
         AdventCoinMiningPuzzle puzzle = new AdventCoinMiningPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(1048970, puzzle.getPartOne());
+        assertEquals(1048970L, puzzle.getPartOne());
     }
 }

@@ -9,62 +9,48 @@ class ChronalCalibrationPuzzleTest {
     void frequencyThree() throws Exception {
         ChronalCalibrationPuzzle puzzle = new ChronalCalibrationPuzzle("ExampleOne.txt");
 
-        puzzle.prepare();
-
-        assertEquals(3, puzzle.getPartOne());
+        assertEquals(3L, puzzle.getPartOne());
     }
 
     @Test
     void frequencyZero() throws Exception {
         ChronalCalibrationPuzzle puzzle = new ChronalCalibrationPuzzle("ExampleTwo.txt");
 
-        puzzle.prepare();
-
-        assertEquals(0, puzzle.getPartOne());
+        assertEquals(0L, puzzle.getPartOne());
     }
 
     @Test
     void frequencyNegativeSix() throws Exception {
         ChronalCalibrationPuzzle puzzle = new ChronalCalibrationPuzzle("ExampleThree.txt");
 
-        puzzle.prepare();
-
-        assertEquals(-6, puzzle.getPartOne());
+        assertEquals(-6L, puzzle.getPartOne());
     }
 
     @Test
     void frequencyReachesDuplicateZero() throws Exception {
         ChronalCalibrationPuzzle puzzle = new ChronalCalibrationPuzzle("ExampleFour.txt");
 
-        puzzle.prepare();
-
-        assertEquals(0, puzzle.getPartTwo());
+        assertEquals(0L, puzzle.getPartTwo());
     }
 
     @Test
     void frequencyReachesDuplicateTen() throws Exception {
         ChronalCalibrationPuzzle puzzle = new ChronalCalibrationPuzzle("ExampleFive.txt");
 
-        puzzle.prepare();
-
-        assertEquals(10, puzzle.getPartTwo());
+        assertEquals(10L, puzzle.getPartTwo());
     }
 
     @Test
     void frequencyReachesDuplicateFive() throws Exception {
         ChronalCalibrationPuzzle puzzle = new ChronalCalibrationPuzzle("ExampleSix.txt");
 
-        puzzle.prepare();
-
-        assertEquals(5, puzzle.getPartTwo());
+        assertEquals(5L, puzzle.getPartTwo());
     }
 
     @Test
     void frequencyReachesDuplicateFourteen() throws Exception {
         ChronalCalibrationPuzzle puzzle = new ChronalCalibrationPuzzle("ExampleSeven.txt");
 
-        puzzle.prepare();
-
-        assertEquals(14, puzzle.getPartTwo());
+        assertEquals(14L, puzzle.getPartTwo());
     }
 }

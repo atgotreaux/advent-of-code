@@ -14,8 +14,13 @@ public class CubeConundrumPuzzle extends Puzzle {
     private long possibleGames;
     private long powerOfFewestCubes;
 
-    @Override
-    public void prepare() throws Exception {
+    public CubeConundrumPuzzle() throws Exception {
+        super();
+
+        prepare();
+    }
+    
+    private void prepare() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             lines.forEach(line -> {
                 long redMax = 0;

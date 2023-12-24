@@ -12,9 +12,7 @@ class RocketEquationPuzzleTest {
 
         RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(2, puzzle.getPartOne());
+        assertEquals(2L, puzzle.getPartOne());
     }
 
     @Test
@@ -23,9 +21,7 @@ class RocketEquationPuzzleTest {
 
         RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(2, puzzle.getPartOne());
+        assertEquals(2L, puzzle.getPartOne());
     }
 
     @Test
@@ -34,9 +30,7 @@ class RocketEquationPuzzleTest {
 
         RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(654, puzzle.getPartOne());
+        assertEquals(654L, puzzle.getPartOne());
     }
 
     @Test
@@ -45,9 +39,7 @@ class RocketEquationPuzzleTest {
 
         RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(33583, puzzle.getPartOne());
+        assertEquals(33583L, puzzle.getPartOne());
     }
 
     @Test
@@ -56,9 +48,7 @@ class RocketEquationPuzzleTest {
 
         RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(2, puzzle.getPartTwo());
+        assertEquals(2L, puzzle.getPartTwo());
     }
 
     @Test
@@ -67,9 +57,7 @@ class RocketEquationPuzzleTest {
 
         RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(2, puzzle.getPartTwo());
+        assertEquals(2L, puzzle.getPartTwo());
     }
 
     @Test
@@ -78,9 +66,7 @@ class RocketEquationPuzzleTest {
 
         RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(966, puzzle.getPartTwo());
+        assertEquals(966L, puzzle.getPartTwo());
     }
 
     @Test
@@ -89,8 +75,6 @@ class RocketEquationPuzzleTest {
 
         RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(50346, puzzle.getPartTwo());
+        assertEquals(50346L, puzzle.getPartTwo());
     }
 }

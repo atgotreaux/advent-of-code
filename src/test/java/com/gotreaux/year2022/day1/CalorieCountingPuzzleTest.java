@@ -9,17 +9,13 @@ class CalorieCountingPuzzleTest {
     void testMostCalories() throws Exception {
         CalorieCountingPuzzle puzzle = new CalorieCountingPuzzle();
 
-        puzzle.prepare();
-
-        assertEquals(24000, puzzle.getPartOne());
+        assertEquals(24000L, puzzle.getPartOne());
     }
 
     @Test
     void testHighestThreeCalories() throws Exception {
         CalorieCountingPuzzle puzzle = new CalorieCountingPuzzle();
 
-        puzzle.prepare();
-
-        assertEquals(45000, puzzle.getPartTwo());
+        assertEquals(45000L, puzzle.getPartTwo());
     }
 }

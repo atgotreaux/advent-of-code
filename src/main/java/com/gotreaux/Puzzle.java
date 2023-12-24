@@ -22,15 +22,11 @@ public abstract class Puzzle {
         return this.inputProvider;
     }
 
-    public abstract void prepare() throws Exception;
-
     public abstract Object getPartOne() throws Exception;
 
     public abstract Object getPartTwo() throws Exception;
 
     public void solve() throws Exception {
-        prepare();
-
         System.out.printf("Part 1: %s%n", getPartOne());
         System.out.printf("Part 2: %s%n", getPartTwo());
     }

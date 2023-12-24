@@ -14,9 +14,6 @@ public class SphericalHousesPuzzle extends Puzzle {
         puzzle.solve();
     }
 
-    private final Set<Point> houseDeliveries = new HashSet<>();
-    private final Set<Point> assistedHouseDeliveries = new HashSet<>();
-
     public SphericalHousesPuzzle() {
         super();
     }
@@ -26,9 +23,26 @@ public class SphericalHousesPuzzle extends Puzzle {
     }
 
     @Override
-    public void prepare() throws Exception {
+    public Integer getPartOne() throws Exception {
+        Set<Point> houseDeliveries = new HashSet<>();
+
         Point currentPosition = new Point();
         houseDeliveries.add(currentPosition);
+
+        String input = getInputProvider().getInputString();
+        for (char directionLabel : input.toCharArray()) {
+            Direction direction = Direction.fromLabel(directionLabel);
+
+            currentPosition = direction.move(currentPosition);
+            houseDeliveries.add(currentPosition);
+        }
+
+        return houseDeliveries.size();
+    }
+
+    @Override
+    public Integer getPartTwo() throws Exception {
+        Set<Point> assistedHouseDeliveries = new HashSet<>();
 
         Point santaPosition = new Point();
         Point roboSantaPosition = new Point();
@@ -39,9 +53,6 @@ public class SphericalHousesPuzzle extends Puzzle {
             char directionLabel = input.charAt(i);
             Direction direction = Direction.fromLabel(directionLabel);
 
-            currentPosition = direction.move(currentPosition);
-            houseDeliveries.add(currentPosition);
-
             if (i % 2 == 0) {
                 santaPosition = direction.move(santaPosition);
                 assistedHouseDeliveries.add(santaPosition);
@@ -50,15 +61,7 @@ public class SphericalHousesPuzzle extends Puzzle {
                 assistedHouseDeliveries.add(roboSantaPosition);
             }
         }
-    }
 
-    @Override
-    public Integer getPartOne() {
-        return houseDeliveries.size();
-    }
-
-    @Override
-    public Integer getPartTwo() {
         return assistedHouseDeliveries.size();
     }
 }

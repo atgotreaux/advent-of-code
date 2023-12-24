@@ -12,9 +12,7 @@ class WrappingPaperPuzzleTest {
 
         WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(58, puzzle.getPartOne());
+        assertEquals(58L, puzzle.getPartOne());
     }
 
     @Test
@@ -23,9 +21,7 @@ class WrappingPaperPuzzleTest {
 
         WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(43, puzzle.getPartOne());
+        assertEquals(43L, puzzle.getPartOne());
     }
 
     @Test
@@ -34,9 +30,7 @@ class WrappingPaperPuzzleTest {
 
         WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(34, puzzle.getPartTwo());
+        assertEquals(34L, puzzle.getPartTwo());
     }
 
     @Test
@@ -45,8 +39,6 @@ class WrappingPaperPuzzleTest {
 
         WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle(inputProvider);
 
-        puzzle.prepare();
-
-        assertEquals(14, puzzle.getPartTwo());
+        assertEquals(14L, puzzle.getPartTwo());
     }
 }

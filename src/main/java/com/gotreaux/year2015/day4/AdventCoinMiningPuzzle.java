@@ -13,9 +13,6 @@ public class AdventCoinMiningPuzzle extends Puzzle {
         puzzle.solve();
     }
 
-    private long lowestNumberOfFiveZeroes;
-    private long lowestNumberOfSixZeroes;
-
     public AdventCoinMiningPuzzle() {
         super();
     }
@@ -25,24 +22,18 @@ public class AdventCoinMiningPuzzle extends Puzzle {
     }
 
     @Override
-    public void prepare() throws Exception {
+    public Long getPartOne() throws Exception {
         String input = getInputProvider().getInputString();
         MessageDigest md = MessageDigest.getInstance("MD5");
 
-        int number = 0;
-        while (lowestNumberOfFiveZeroes == 0 || lowestNumberOfSixZeroes == 0) {
+        long number = 0L;
+        while (true) {
             String secretKey = input + number;
             md.update(secretKey.getBytes());
             String hash = HexFormat.of().formatHex(md.digest());
 
-            if (hash.startsWith("000000")) {
-                if (lowestNumberOfSixZeroes == 0) {
-                    lowestNumberOfSixZeroes = number;
-                }
-            } else if (hash.startsWith("00000")) {
-                if (lowestNumberOfFiveZeroes == 0) {
-                    lowestNumberOfFiveZeroes = number;
-                }
+            if (hash.startsWith("00000")) {
+                return number;
             }
 
             number++;
@@ -50,12 +41,21 @@ public class AdventCoinMiningPuzzle extends Puzzle {
     }
 
     @Override
-    public Long getPartOne() {
-        return lowestNumberOfFiveZeroes;
-    }
+    public Long getPartTwo() throws Exception {
+        String input = getInputProvider().getInputString();
+        MessageDigest md = MessageDigest.getInstance("MD5");
 
-    @Override
-    public Long getPartTwo() {
-        return lowestNumberOfSixZeroes;
+        long number = 0;
+        while (true) {
+            String secretKey = input + number;
+            md.update(secretKey.getBytes());
+            String hash = HexFormat.of().formatHex(md.digest());
+
+            if (hash.startsWith("000000")) {
+                return number;
+            }
+
+            number++;
+        }
     }
 }
