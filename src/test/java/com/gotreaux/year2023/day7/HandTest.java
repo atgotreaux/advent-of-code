@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.random.RandomGenerator;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HandTest {
 

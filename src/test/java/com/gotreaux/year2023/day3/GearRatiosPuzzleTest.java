@@ -2,7 +2,7 @@ package com.gotreaux.year2023.day3;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GearRatiosPuzzleTest {
     @Test

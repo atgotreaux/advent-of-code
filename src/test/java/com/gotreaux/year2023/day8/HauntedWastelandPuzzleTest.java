@@ -2,7 +2,7 @@ package com.gotreaux.year2023.day8;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HauntedWastelandPuzzleTest {
     @Test

@@ -2,7 +2,7 @@ package com.gotreaux.year2022.day4;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CampCleanupPuzzleTest {
     @Test

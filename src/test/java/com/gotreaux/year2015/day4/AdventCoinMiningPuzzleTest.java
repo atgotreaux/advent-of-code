@@ -3,7 +3,7 @@ package com.gotreaux.year2015.day4;
 import com.gotreaux.input.StringInputProvider;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AdventCoinMiningPuzzleTest {
     @Test
