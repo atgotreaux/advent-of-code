@@ -52,19 +52,15 @@ public class ChronalCalibrationPuzzle extends Puzzle {
 
         int currentFrequencyPosition = 0;
         while (true) {
-            try {
-                currentFrequency += format.parse(frequencyChanges.get(currentFrequencyPosition)).longValue();
-                if (reachedFrequencies.contains(currentFrequency)) {
-                    return currentFrequency;
-                }
-                reachedFrequencies.add(currentFrequency);
+            currentFrequency += format.parse(frequencyChanges.get(currentFrequencyPosition)).longValue();
+            if (reachedFrequencies.contains(currentFrequency)) {
+                return currentFrequency;
+            }
+            reachedFrequencies.add(currentFrequency);
 
-                currentFrequencyPosition++;
-                if (currentFrequencyPosition == frequencyChanges.size()) {
-                    currentFrequencyPosition = 0;
-                }
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
+            currentFrequencyPosition++;
+            if (currentFrequencyPosition == frequencyChanges.size()) {
+                currentFrequencyPosition = 0;
             }
         }
     }

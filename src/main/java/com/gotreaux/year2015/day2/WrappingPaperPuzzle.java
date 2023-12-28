@@ -3,8 +3,6 @@ package com.gotreaux.year2015.day2;
 import com.gotreaux.Puzzle;
 import com.gotreaux.input.InputProvider;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
@@ -36,15 +34,13 @@ public class WrappingPaperPuzzle extends Puzzle {
                 Scanner scanner = new Scanner(line);
                 scanner.useDelimiter("x");
 
-                long length = scanner.nextLong();
-                long width = scanner.nextLong();
-                long height = scanner.nextLong();
+                Present present = new Present(scanner.nextLong(), scanner.nextLong(), scanner.nextLong());
 
                 scanner.close();
 
-                wrappingPaperOrderTotal += getSurfaceArea(length, width, height) + getAreaOfSmallestSide(length, width, height);
+                wrappingPaperOrderTotal += present.getSurfaceArea() + present.getAreaOfSmallestSide();
 
-                ribbonOrderTotal += getSmallestPerimeter(length, width, height) + getCubicFeet(length, width, height);
+                ribbonOrderTotal += present.getSmallestPerimeter() + present.getVolume();
             });
         }
     }
@@ -57,21 +53,5 @@ public class WrappingPaperPuzzle extends Puzzle {
     @Override
     public Long getPartTwo() {
         return ribbonOrderTotal;
-    }
-
-    private long getSurfaceArea(long length, long width, long height) {
-        return (2 * length * width) + (2 * width * height) + (2 * height * length);
-    }
-
-    private long getAreaOfSmallestSide(long length, long width, long height) {
-        return Collections.min(Arrays.asList(length * width, width * height, height * length));
-    }
-
-    private long getSmallestPerimeter(long length, long width, long height) {
-        return Collections.min(Arrays.asList(2 * (length + width), 2 * (width + height), 2 * (height + length)));
-    }
-
-    private long getCubicFeet(long length, long width, long height) {
-        return length * width * height;
     }
 }

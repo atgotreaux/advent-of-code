@@ -25,7 +25,7 @@ public class ReportRepairPuzzle extends Puzzle {
             }
         }
 
-        return 0L;
+        throw new RuntimeException("No two numbers sum to 2020!");
     }
 
     @Override
@@ -43,6 +43,6 @@ public class ReportRepairPuzzle extends Puzzle {
             }
         }
 
-        return 0L;
+        throw new RuntimeException("No three numbers sum to 2020!");
     }
 }

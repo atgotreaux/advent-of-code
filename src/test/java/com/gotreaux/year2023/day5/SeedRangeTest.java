@@ -8,6 +8,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SeedRangeTest {
     @Test
+    void throwsIfSeedRangeNonPositive() {
+        RandomGenerator generator = RandomGenerator.getDefault();
+        long seedStart = generator.nextLong();
+        long rangeLength = -generator.nextLong();
+
+        assertThrows(IllegalArgumentException.class, () -> new SeedRange(seedStart, rangeLength));
+    }
+
+    @Test
     void rangeCount() {
         RandomGenerator generator = RandomGenerator.getDefault();
 

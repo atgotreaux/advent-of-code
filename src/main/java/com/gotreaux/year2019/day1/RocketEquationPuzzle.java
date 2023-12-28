@@ -23,26 +23,18 @@ public class RocketEquationPuzzle extends Puzzle {
     @Override
     public Long getPartOne() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
-            return lines.mapToLong(line -> getFuelRequirement(Long.parseLong(line))).sum();
+            return lines.map(line -> new Module(Long.parseLong(line)))
+                    .mapToLong(Module::getFuelRequirement)
+                    .sum();
         }
     }
 
     @Override
     public Long getPartTwo() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
-            return lines.mapToLong(line -> getAdditionalFuelRequirement(Long.parseLong(line))).sum();
+            return lines.map(line -> new Module(Long.parseLong(line)))
+                    .mapToLong(Module::getAdditionalFuelRequirement)
+                    .sum();
         }
-    }
-
-    private long getFuelRequirement(long mass) {
-        return (mass / 3) - 2;
-    }
-
-    private long getAdditionalFuelRequirement(long massOrFuel) {
-        long fuel = getFuelRequirement(massOrFuel);
-        if (fuel <= 0) {
-            return 0;
-        }
-        return fuel + getAdditionalFuelRequirement(fuel);
     }
 }

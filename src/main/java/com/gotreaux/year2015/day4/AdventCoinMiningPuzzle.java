@@ -5,6 +5,7 @@ import com.gotreaux.input.InputProvider;
 
 import java.security.MessageDigest;
 import java.util.HexFormat;
+import java.util.function.Predicate;
 
 public class AdventCoinMiningPuzzle extends Puzzle {
     public static void main(String[] args) throws Exception {
@@ -23,35 +24,30 @@ public class AdventCoinMiningPuzzle extends Puzzle {
 
     @Override
     public Long getPartOne() throws Exception {
-        String input = getInputProvider().getInputString();
-        MessageDigest md = MessageDigest.getInstance("MD5");
-
-        long number = 0L;
-        while (true) {
-            String secretKey = input + number;
-            md.update(secretKey.getBytes());
-            String hash = HexFormat.of().formatHex(md.digest());
-
-            if (hash.startsWith("00000")) {
-                return number;
-            }
-
-            number++;
-        }
+        return findHashMatchingCondition(
+                getInputProvider().getInputString(),
+                string -> string.startsWith("00000")
+        );
     }
 
     @Override
     public Long getPartTwo() throws Exception {
-        String input = getInputProvider().getInputString();
+        return findHashMatchingCondition(
+                getInputProvider().getInputString(),
+                string -> string.startsWith("000000")
+        );
+    }
+
+    private Long findHashMatchingCondition(String secretKey, Predicate<String> condition) throws Exception {
         MessageDigest md = MessageDigest.getInstance("MD5");
 
         long number = 0;
         while (true) {
-            String secretKey = input + number;
-            md.update(secretKey.getBytes());
+            String input = secretKey + number;
+            md.update(input.getBytes());
             String hash = HexFormat.of().formatHex(md.digest());
 
-            if (hash.startsWith("000000")) {
+            if (condition.test(hash)) {
                 return number;
             }
 

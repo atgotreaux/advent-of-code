@@ -8,6 +8,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AlmanacRangeTest {
     @Test
+    void throwsIfAlmanacRangeNonPositive() {
+        RandomGenerator generator = RandomGenerator.getDefault();
+        long destinationRangeStart = generator.nextLong();
+        long sourceRangeStart = generator.nextLong();
+        long rangeLength = -generator.nextLong();
+
+        assertThrows(IllegalArgumentException.class, () -> new AlmanacRange(destinationRangeStart, sourceRangeStart, rangeLength));
+    }
+
+    @Test
     void sourceValueWithinRange() {
         RandomGenerator generator = RandomGenerator.getDefault();
 

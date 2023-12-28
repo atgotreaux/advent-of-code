@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 public class WaitForItPuzzle extends Puzzle {
@@ -65,18 +64,12 @@ public class WaitForItPuzzle extends Puzzle {
     @Override
     public Long getPartOne() {
         return races.stream()
-                .mapToLong(this::getWaysToWinRace)
+                .mapToLong(Race::getWaysToWin)
                 .reduce(1, Math::multiplyExact);
     }
 
     @Override
     public Long getPartTwo() {
-        return getWaysToWinRace(kerningRace);
-    }
-
-    private long getWaysToWinRace(Race race) {
-        return LongStream.range(0, race.time() + 1)
-                .filter(hold -> hold * (race.time() - hold) > race.recordDistance())
-                .count();
+        return kerningRace.getWaysToWin();
     }
 }
