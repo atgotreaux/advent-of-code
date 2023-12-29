@@ -16,13 +16,13 @@ public class CalorieCountingPuzzle extends Puzzle {
         puzzle.solve();
     }
 
+    private final Map<Long, Long> elfCalorieCarriage = new HashMap<>();
+
     public CalorieCountingPuzzle() throws Exception {
         super();
 
         prepare();
     }
-
-    private final Map<Long, Long> elfCalorieCarriage = new HashMap<>();
 
     private void prepare() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {

@@ -1,6 +1,6 @@
 package com.gotreaux.year2015.day3;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 

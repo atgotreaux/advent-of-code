@@ -48,7 +48,7 @@ public class HauntedWastelandPuzzle extends Puzzle {
     }
 
     @Override
-    public Long getPartOne() {
+    public Long getPartOne() throws NoSuchElementException {
         return getStepsForNodes(
                 node -> node.position().equals("AAA"),
                 node -> node.position().equals("ZZZ")
@@ -56,7 +56,7 @@ public class HauntedWastelandPuzzle extends Puzzle {
     }
 
     @Override
-    public Long getPartTwo() {
+    public Long getPartTwo() throws NoSuchElementException {
         return getStepsForNodes(
                 node -> node.position().endsWith("A"),
                 node -> node.position().endsWith("Z")

@@ -51,12 +51,12 @@ public class DivePuzzle extends Puzzle {
     }
 
     @Override
-    public Integer getPartOne() throws Exception {
+    public Integer getPartOne() {
         return position.x * position.y;
     }
 
     @Override
-    public Integer getPartTwo() throws Exception {
+    public Integer getPartTwo() {
         return positionWithAim.x * positionWithAim.y;
     }
 }

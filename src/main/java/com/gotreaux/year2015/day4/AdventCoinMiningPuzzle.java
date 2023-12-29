@@ -4,6 +4,7 @@ import com.gotreaux.Puzzle;
 import com.gotreaux.input.InputProvider;
 
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HexFormat;
 import java.util.function.Predicate;
 
@@ -38,7 +39,7 @@ public class AdventCoinMiningPuzzle extends Puzzle {
         );
     }
 
-    private Long findHashMatchingCondition(String secretKey, Predicate<String> condition) throws Exception {
+    private Long findHashMatchingCondition(String secretKey, Predicate<String> condition) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("MD5");
 
         long number = 0;

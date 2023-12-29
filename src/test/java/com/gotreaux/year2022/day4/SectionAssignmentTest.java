@@ -8,7 +8,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.random.RandomGenerator;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SectionAssignmentTest {
     @Test

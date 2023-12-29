@@ -3,7 +3,7 @@ package com.gotreaux.year2015.day3;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.NoSuchElementException;
 import java.util.random.RandomGenerator;
 

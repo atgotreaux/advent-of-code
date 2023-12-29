@@ -2,7 +2,11 @@ package com.gotreaux.year2023.day4;
 
 import com.gotreaux.Puzzle;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class ScratchcardsPuzzle extends Puzzle {

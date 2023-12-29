@@ -51,12 +51,12 @@ public class CampCleanupPuzzle extends Puzzle {
     }
 
     @Override
-    public Long getPartOne() throws Exception {
+    public Long getPartOne() {
         return numberOfAssignmentsContained;
     }
 
     @Override
-    public Long getPartTwo() throws Exception {
+    public Long getPartTwo() {
         return numberOfAssignmentsOverlapping;
     }
 }

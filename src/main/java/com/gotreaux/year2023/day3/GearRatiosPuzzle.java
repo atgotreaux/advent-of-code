@@ -2,9 +2,13 @@ package com.gotreaux.year2023.day3;
 
 import com.gotreaux.Puzzle;
 
-import java.awt.*;
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.*;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.IntStream;
 
@@ -87,12 +91,12 @@ public class GearRatiosPuzzle extends Puzzle {
     }
 
     @Override
-    public Object getPartOne() {
+    public Integer getPartOne() {
         return sumOfParts;
     }
 
     @Override
-    public Object getPartTwo() {
+    public Integer getPartTwo() {
         return sumOfGearRatios;
     }
 }

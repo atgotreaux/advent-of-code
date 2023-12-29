@@ -2,6 +2,7 @@ package com.gotreaux.year2023.day2;
 
 import com.gotreaux.Puzzle;
 
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class CubeConundrumPuzzle extends Puzzle {
@@ -36,9 +37,10 @@ public class CubeConundrumPuzzle extends Puzzle {
                 String gameEvents = gameLine[1];
                 for (String gameEvent : gameEvents.split("; ")) {
                     for (String cube : gameEvent.split(", ")) {
-                        String[] cubesAndColor = cube.split(" ");
-                        int cubeCount = Integer.parseInt(cubesAndColor[0]);
-                        CubeColor color = CubeColor.valueOf(cubesAndColor[1].toUpperCase());
+                        Scanner cubeScanner = new Scanner(cube);
+                        int cubeCount = cubeScanner.nextInt();
+                        CubeColor color = CubeColor.valueOf(cubeScanner.next().toUpperCase());
+                        cubeScanner.close();
                         switch (color) {
                             case RED:
                                 possibleGame &= cubeCount <= 12;
