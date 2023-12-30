@@ -11,8 +11,9 @@ class SeedRangeTest {
     @Test
     void throwsIfSeedRangeNonPositive() {
         RandomGenerator generator = RandomGenerator.getDefault();
-        long seedStart = generator.nextLong();
-        long rangeLength = -generator.nextLong();
+        long negativeArgumentIndex = generator.nextLong(1, 3);
+        long seedStart = negativeArgumentIndex == 1L ? -Math.abs(generator.nextLong()) : Math.abs(generator.nextLong());
+        long rangeLength = negativeArgumentIndex == 2L ? -Math.abs(generator.nextLong()) : Math.abs(generator.nextLong());
 
         assertThrows(IllegalArgumentException.class, () -> new SeedRange(seedStart, rangeLength));
     }
@@ -21,8 +22,8 @@ class SeedRangeTest {
     void rangeCount() {
         RandomGenerator generator = RandomGenerator.getDefault();
 
-        long seedStart = generator.nextLong(1000);
-        long range = generator.nextLong(1000);
+        long seedStart = generator.nextLong(0, 1000);
+        long range = generator.nextLong(1, 1000);
 
         SeedRange seedRange = new SeedRange(seedStart, range);
 

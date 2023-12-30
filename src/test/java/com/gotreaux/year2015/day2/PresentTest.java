@@ -15,9 +15,10 @@ class PresentTest {
     @Test
     void throwsIfNonPositiveDimension() {
         RandomGenerator generator = RandomGenerator.getDefault();
-        long length = generator.nextLong();
-        long width = generator.nextLong();
-        long height = -generator.nextLong();
+        long negativeArgumentIndex = generator.nextLong(1, 4);
+        long length = negativeArgumentIndex == 1L ? -Math.abs(generator.nextLong()) : Math.abs(generator.nextLong());
+        long width = negativeArgumentIndex == 2L ? -Math.abs(generator.nextLong()) : Math.abs(generator.nextLong());
+        long height = negativeArgumentIndex == 3L ? -Math.abs(generator.nextLong()) : Math.abs(generator.nextLong());
 
         assertThrows(IllegalArgumentException.class, () -> new Present(length, width, height));
     }

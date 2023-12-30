@@ -15,7 +15,7 @@ class ModuleTest {
     @Test
     void throwsIfMassIsNonPositive() {
         RandomGenerator generator = RandomGenerator.getDefault();
-        long mass = -generator.nextLong();
+        long mass = -Math.abs(generator.nextLong());
 
         assertThrows(IllegalArgumentException.class, () -> new Module(mass));
     }

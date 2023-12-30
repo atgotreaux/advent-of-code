@@ -1,62 +1,48 @@
 package com.gotreaux.year2015.day3;
 
 import com.gotreaux.input.StringInputProvider;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SphericalHousesPuzzleTest {
-    @Test
-    void testSantaMovesEast() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider(">");
+    @ParameterizedTest
+    @MethodSource("provideHouseDeliveries")
+    void houseDeliveries(String input, int expectedDeliveries) throws Exception {
+        StringInputProvider inputProvider = new StringInputProvider(input);
 
         SphericalHousesPuzzle puzzle = new SphericalHousesPuzzle(inputProvider);
 
-        assertEquals(2, puzzle.getPartOne());
+        assertEquals(expectedDeliveries, puzzle.getPartOne());
     }
 
-    @Test
-    void testSantaFourDeliveries() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("^>v<");
+    @ParameterizedTest
+    @MethodSource("provideAssistedHouseDeliveries")
+    void assistedHouseDeliveries(String input, int expectedDeliveries) throws Exception {
+        StringInputProvider inputProvider = new StringInputProvider(input);
 
         SphericalHousesPuzzle puzzle = new SphericalHousesPuzzle(inputProvider);
 
-        assertEquals(4, puzzle.getPartOne());
+        assertEquals(expectedDeliveries, puzzle.getPartTwo());
     }
 
-    @Test
-    void testSantaLuckyDeliveries() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("^v^v^v^v^v");
-
-        SphericalHousesPuzzle puzzle = new SphericalHousesPuzzle(inputProvider);
-
-        assertEquals(2, puzzle.getPartOne());
+    private static Stream<Arguments> provideHouseDeliveries() {
+        return Stream.of(
+                Arguments.of(">", 2),
+                Arguments.of("^>v<", 4),
+                Arguments.of("^v^v^v^v^v", 2)
+        );
     }
 
-    @Test
-    void testAssistedThreeDeliveries() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("^v");
-
-        SphericalHousesPuzzle puzzle = new SphericalHousesPuzzle(inputProvider);
-
-        assertEquals(3, puzzle.getPartTwo());
-    }
-
-    @Test
-    void testAssistedReturnToStartDeliveries() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("^>v<");
-
-        SphericalHousesPuzzle puzzle = new SphericalHousesPuzzle(inputProvider);
-
-        assertEquals(3, puzzle.getPartTwo());
-    }
-
-    @Test
-    void testAssistedNorthSouthDeliveries() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("^v^v^v^v^v");
-
-        SphericalHousesPuzzle puzzle = new SphericalHousesPuzzle(inputProvider);
-
-        assertEquals(11, puzzle.getPartTwo());
+    private static Stream<Arguments> provideAssistedHouseDeliveries() {
+        return Stream.of(
+                Arguments.of("^v", 3),
+                Arguments.of("^>v<", 3),
+                Arguments.of("^v^v^v^v^v", 11)
+        );
     }
 }

@@ -1,80 +1,50 @@
 package com.gotreaux.year2019.day1;
 
 import com.gotreaux.input.StringInputProvider;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RocketEquationPuzzleTest {
-    @Test
-    void fuelRequirementOf12() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("12");
+    @ParameterizedTest
+    @MethodSource("provideFuelRequirement")
+    void fuelRequirement(String input, long expectedFuelRequirement) throws Exception {
+        StringInputProvider inputProvider = new StringInputProvider(input);
 
         RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
 
-        assertEquals(2L, puzzle.getPartOne());
+        assertEquals(expectedFuelRequirement, puzzle.getPartOne());
     }
 
-    @Test
-    void fuelRequirementOf14() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("14");
+    @ParameterizedTest
+    @MethodSource("provideAdditionalFuelRequirement")
+    void additionalFuelRequirement(String input, long expectedFuelRequirement) throws Exception {
+        StringInputProvider inputProvider = new StringInputProvider(input);
 
         RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
 
-        assertEquals(2L, puzzle.getPartOne());
+        assertEquals(expectedFuelRequirement, puzzle.getPartTwo());
     }
 
-    @Test
-    void fuelRequirementOf1969() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("1969");
-
-        RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
-
-        assertEquals(654L, puzzle.getPartOne());
+    private static Stream<Arguments> provideFuelRequirement() {
+        return Stream.of(
+                Arguments.of("12", 2L),
+                Arguments.of("14", 2L),
+                Arguments.of("1969", 654L),
+                Arguments.of("100756", 33583L)
+        );
     }
 
-    @Test
-    void fuelRequirementOf100756() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("100756");
-
-        RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
-
-        assertEquals(33583L, puzzle.getPartOne());
-    }
-
-    @Test
-    void additionalFuelRequirementOf12() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("12");
-
-        RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
-
-        assertEquals(2L, puzzle.getPartTwo());
-    }
-
-    @Test
-    void additionalFuelRequirementOf14() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("14");
-
-        RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
-
-        assertEquals(2L, puzzle.getPartTwo());
-    }
-
-    @Test
-    void additionalFuelRequirementOf1969() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("1969");
-
-        RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
-
-        assertEquals(966L, puzzle.getPartTwo());
-    }
-
-    @Test
-    void additionalFuelRequirementOf100756() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("100756");
-
-        RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
-
-        assertEquals(50346L, puzzle.getPartTwo());
+    private static Stream<Arguments> provideAdditionalFuelRequirement() {
+        return Stream.of(
+                Arguments.of("12", 2L),
+                Arguments.of("14", 2L),
+                Arguments.of("1969", 966L),
+                Arguments.of("100756", 50346L)
+        );
     }
 }

@@ -1,89 +1,51 @@
 package com.gotreaux.year2015.day5;
 
 import com.gotreaux.input.StringInputProvider;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NiceStringPuzzleTest {
-    @Test
-    void testUgknbfddgicrmopn() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("ugknbfddgicrmopn");
+    @ParameterizedTest
+    @MethodSource("provideNiceString")
+    void niceString(String input, long expectedCount) throws Exception {
+        StringInputProvider inputProvider = new StringInputProvider(input);
 
         NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
 
-        assertEquals(1L, puzzle.getPartOne());
+        assertEquals(expectedCount, puzzle.getPartOne());
     }
 
-    @Test
-    void testAaa() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("aaa");
+    @ParameterizedTest
+    @MethodSource("provideNiceStringBetterModel")
+    void niceStringBetterModel(String input, long expectedCount) throws Exception {
+        StringInputProvider inputProvider = new StringInputProvider(input);
 
         NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
 
-        assertEquals(1L, puzzle.getPartOne());
+        assertEquals(expectedCount, puzzle.getPartTwo());
     }
 
-    @Test
-    void testJchzalrnumimnmhp() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("jchzalrnumimnmhp");
-
-        NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
-
-        assertEquals(0L, puzzle.getPartOne());
+    private static Stream<Arguments> provideNiceString() {
+        return Stream.of(
+                Arguments.of("ugknbfddgicrmopn", 1L),
+                Arguments.of("aaa", 1L),
+                Arguments.of("jchzalrnumimnmhp", 0L),
+                Arguments.of("haegwjzuvuyypxyu", 0L),
+                Arguments.of("dvszwmarrgswjxmb", 0L)
+        );
     }
 
-    @Test
-    void testHaegwjzuvuyypxyu() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("haegwjzuvuyypxyu");
-
-        NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
-
-        assertEquals(0L, puzzle.getPartOne());
-    }
-
-    @Test
-    void testDvszwmarrgswjxmb() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("dvszwmarrgswjxmb");
-
-        NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
-
-        assertEquals(0L, puzzle.getPartOne());
-    }
-
-    @Test
-    void testQjhvhtzxzqqjkmpb() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("qjhvhtzxzqqjkmpb");
-
-        NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
-
-        assertEquals(1L, puzzle.getPartTwo());
-    }
-
-    @Test
-    void testXxyxx() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("xxyxx");
-
-        NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
-
-        assertEquals(1L, puzzle.getPartTwo());
-    }
-
-    @Test
-    void testUurcxstgmygtbstg() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("uurcxstgmygtbstg");
-
-        NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
-
-        assertEquals(0L, puzzle.getPartTwo());
-    }
-
-    @Test
-    void testIeodomkazucvgmuy() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("ieodomkazucvgmuy");
-
-        NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
-
-        assertEquals(0L, puzzle.getPartTwo());
+    private static Stream<Arguments> provideNiceStringBetterModel() {
+        return Stream.of(
+                Arguments.of("qjhvhtzxzqqjkmpb", 1L),
+                Arguments.of("xxyxx", 1L),
+                Arguments.of("uurcxstgmygtbstg", 0L),
+                Arguments.of("ieodomkazucvgmuy", 0L)
+        );
     }
 }
