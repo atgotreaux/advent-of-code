@@ -42,7 +42,7 @@ public class CorruptionChecksumPuzzle extends Puzzle {
     }
 
     @Override
-    public Object getPartTwo() throws Exception {
+    public Long getPartTwo() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             return lines.mapToLong(line -> {
                 List<Long> numbers = new ArrayList<>();
