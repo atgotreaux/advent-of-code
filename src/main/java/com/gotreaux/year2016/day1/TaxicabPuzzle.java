@@ -2,7 +2,6 @@ package com.gotreaux.year2016.day1;
 
 import com.gotreaux.Puzzle;
 import com.gotreaux.input.InputProvider;
-
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;

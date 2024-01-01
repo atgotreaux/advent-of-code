@@ -1,13 +1,12 @@
 package com.gotreaux.year2015.day2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.gotreaux.input.StringInputProvider;
+import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WrappingPaperPuzzleTest {
     @ParameterizedTest
@@ -31,16 +30,10 @@ class WrappingPaperPuzzleTest {
     }
 
     private static Stream<Arguments> provideWrappingPaperOrderTotal() {
-        return Stream.of(
-                Arguments.of("2x3x4", 58L),
-                Arguments.of("1x1x10", 43L)
-        );
+        return Stream.of(Arguments.of("2x3x4", 58L), Arguments.of("1x1x10", 43L));
     }
 
     private static Stream<Arguments> provideRibbonOrderTotal() {
-        return Stream.of(
-                Arguments.of("2x3x4", 34L),
-                Arguments.of("1x1x10", 14L)
-        );
+        return Stream.of(Arguments.of("2x3x4", 34L), Arguments.of("1x1x10", 14L));
     }
 }

@@ -1,13 +1,12 @@
 package com.gotreaux.year2015.day3;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.gotreaux.input.StringInputProvider;
+import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SphericalHousesPuzzleTest {
     @ParameterizedTest
@@ -32,17 +31,11 @@ class SphericalHousesPuzzleTest {
 
     private static Stream<Arguments> provideHouseDeliveries() {
         return Stream.of(
-                Arguments.of(">", 2),
-                Arguments.of("^>v<", 4),
-                Arguments.of("^v^v^v^v^v", 2)
-        );
+                Arguments.of(">", 2), Arguments.of("^>v<", 4), Arguments.of("^v^v^v^v^v", 2));
     }
 
     private static Stream<Arguments> provideAssistedHouseDeliveries() {
         return Stream.of(
-                Arguments.of("^v", 3),
-                Arguments.of("^>v<", 3),
-                Arguments.of("^v^v^v^v^v", 11)
-        );
+                Arguments.of("^v", 3), Arguments.of("^>v<", 3), Arguments.of("^v^v^v^v^v", 11));
     }
 }

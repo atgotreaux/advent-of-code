@@ -2,7 +2,6 @@ package com.gotreaux.year2015.day4;
 
 import com.gotreaux.Puzzle;
 import com.gotreaux.input.InputProvider;
-
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -27,20 +26,17 @@ public class AdventCoinMiningPuzzle extends Puzzle {
     @Override
     public Long getPartOne() throws Exception {
         return findHashMatchingCondition(
-                getInputProvider().getInputString(),
-                string -> string.startsWith("00000")
-        );
+                getInputProvider().getInputString(), string -> string.startsWith("00000"));
     }
 
     @Override
     public Long getPartTwo() throws Exception {
         return findHashMatchingCondition(
-                getInputProvider().getInputString(),
-                string -> string.startsWith("000000")
-        );
+                getInputProvider().getInputString(), string -> string.startsWith("000000"));
     }
 
-    private Long findHashMatchingCondition(String secretKey, Predicate<String> condition) throws NoSuchAlgorithmException {
+    private Long findHashMatchingCondition(String secretKey, Predicate<String> condition)
+            throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("MD5");
 
         long number = 0;

@@ -1,13 +1,12 @@
 package com.gotreaux.year2015.day1;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.gotreaux.input.StringInputProvider;
+import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ApartmentFloorPuzzleTest {
     @ParameterizedTest
@@ -40,14 +39,10 @@ class ApartmentFloorPuzzleTest {
                 Arguments.of("())", -1L),
                 Arguments.of("))(", -1L),
                 Arguments.of(")))", -3L),
-                Arguments.of(")())())", -3L)
-        );
+                Arguments.of(")())())", -3L));
     }
 
     private static Stream<Arguments> providePositionBasementReached() {
-        return Stream.of(
-                Arguments.of(")", 1),
-                Arguments.of("()())", 5)
-        );
+        return Stream.of(Arguments.of(")", 1), Arguments.of("()())", 5));
     }
 }

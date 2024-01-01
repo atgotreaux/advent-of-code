@@ -7,11 +7,15 @@ public abstract class Puzzle {
     private final InputProvider inputProvider;
 
     public Puzzle() {
-        this.inputProvider = new FileInputProvider(getClass().getPackage().getName().replaceAll("\\.", "/") + "/input.txt");
+        this.inputProvider =
+                new FileInputProvider(
+                        getClass().getPackage().getName().replaceAll("\\.", "/") + "/input.txt");
     }
 
     public Puzzle(String fileName) {
-        this.inputProvider = new FileInputProvider(getClass().getPackage().getName().replaceAll("\\.", "/") + "/" + fileName);
+        this.inputProvider =
+                new FileInputProvider(
+                        getClass().getPackage().getName().replaceAll("\\.", "/") + "/" + fileName);
     }
 
     public Puzzle(InputProvider inputProvider) {

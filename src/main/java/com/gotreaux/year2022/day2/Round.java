@@ -6,11 +6,9 @@ public record Round(Hand opponentHand, Hand strategyHand) {
             return 3L;
         }
 
-        if (
-                (opponentHand == Hand.ROCK && strategyHand == Hand.PAPER)
+        if ((opponentHand == Hand.ROCK && strategyHand == Hand.PAPER)
                 || (opponentHand == Hand.PAPER && strategyHand == Hand.SCISSORS)
-                || (opponentHand == Hand.SCISSORS && strategyHand == Hand.ROCK)
-        ) {
+                || (opponentHand == Hand.SCISSORS && strategyHand == Hand.ROCK)) {
             return 6L;
         }
 

@@ -1,7 +1,6 @@
 package com.gotreaux.year2018.day1;
 
 import com.gotreaux.Puzzle;
-
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -29,13 +28,15 @@ public class ChronalCalibrationPuzzle extends Puzzle {
         format.setPositivePrefix("+");
 
         try (Stream<String> lines = getInputProvider().getInputStream()) {
-            return lines.mapToLong(line -> {
-                try {
-                    return format.parse(line).longValue();
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
-            }).sum();
+            return lines.mapToLong(
+                            line -> {
+                                try {
+                                    return format.parse(line).longValue();
+                                } catch (ParseException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            })
+                    .sum();
         }
     }
 
@@ -52,7 +53,8 @@ public class ChronalCalibrationPuzzle extends Puzzle {
 
         int currentFrequencyPosition = 0;
         while (true) {
-            currentFrequency += format.parse(frequencyChanges.get(currentFrequencyPosition)).longValue();
+            currentFrequency +=
+                    format.parse(frequencyChanges.get(currentFrequencyPosition)).longValue();
             if (reachedFrequencies.contains(currentFrequency)) {
                 return currentFrequency;
             }

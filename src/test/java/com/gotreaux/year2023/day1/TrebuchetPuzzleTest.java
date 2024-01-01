@@ -1,8 +1,8 @@
 package com.gotreaux.year2023.day1;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 class TrebuchetPuzzleTest {
     @Test

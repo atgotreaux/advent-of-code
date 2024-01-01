@@ -1,15 +1,14 @@
 package com.gotreaux.year2019.day1;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.random.RandomGenerator;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.random.RandomGenerator;
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ModuleTest {
     @Test
@@ -41,8 +40,7 @@ class ModuleTest {
                 Arguments.of(12L, 2L),
                 Arguments.of(14L, 2L),
                 Arguments.of(1969L, 654L),
-                Arguments.of(100756L, 33583L)
-        );
+                Arguments.of(100756L, 33583L));
     }
 
     private static Stream<Arguments> provideAdditionalFuelRequirement() {
@@ -50,7 +48,6 @@ class ModuleTest {
                 Arguments.of(12L, 2L),
                 Arguments.of(14L, 2L),
                 Arguments.of(1969L, 966L),
-                Arguments.of(100756L, 50346L)
-        );
+                Arguments.of(100756L, 50346L));
     }
 }

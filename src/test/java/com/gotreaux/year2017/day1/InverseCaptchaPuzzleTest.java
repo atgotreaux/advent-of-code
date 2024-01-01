@@ -1,13 +1,12 @@
 package com.gotreaux.year2017.day1;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.gotreaux.input.StringInputProvider;
+import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class InverseCaptchaPuzzleTest {
     @ParameterizedTest
@@ -35,8 +34,7 @@ class InverseCaptchaPuzzleTest {
                 Arguments.of("1122", 3L),
                 Arguments.of("1111", 4L),
                 Arguments.of("1234", 0L),
-                Arguments.of("91212129", 9L)
-        );
+                Arguments.of("91212129", 9L));
     }
 
     private static Stream<Arguments> provideSumOfHalfwayDigitsMatching() {
@@ -45,7 +43,6 @@ class InverseCaptchaPuzzleTest {
                 Arguments.of("1221", 0L),
                 Arguments.of("123425", 4L),
                 Arguments.of("123123", 12L),
-                Arguments.of("12131415", 4L)
-        );
+                Arguments.of("12131415", 4L));
     }
 }

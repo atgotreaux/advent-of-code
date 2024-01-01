@@ -17,19 +17,19 @@ public class Hand implements Comparable<Hand> {
     public Card getFirstCard() {
         return cards.getFirst();
     }
-    
+
     public Card getSecondCard() {
         return cards.get(1);
     }
-    
+
     public Card getThirdCard() {
         return cards.get(2);
     }
-    
+
     public Card getFourthCard() {
         return cards.get(3);
     }
-    
+
     public Card getFifthCard() {
         return cards.get(4);
     }

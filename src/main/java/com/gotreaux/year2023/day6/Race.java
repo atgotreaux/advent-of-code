@@ -5,7 +5,8 @@ import java.util.stream.LongStream;
 public record Race(long time, long recordDistance) {
     public Race {
         if (time <= 0 || recordDistance < 0) {
-            throw new IllegalArgumentException("Race expects positive time and non-negative record distance");
+            throw new IllegalArgumentException(
+                    "Race expects positive time and non-negative record distance");
         }
     }
 

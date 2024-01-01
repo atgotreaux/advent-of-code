@@ -1,12 +1,11 @@
 package com.gotreaux.year2018.day1;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ChronalCalibrationPuzzleTest {
     @ParameterizedTest
@@ -29,8 +28,7 @@ class ChronalCalibrationPuzzleTest {
         return Stream.of(
                 Arguments.of("ExampleOne.txt", 3L),
                 Arguments.of("ExampleTwo.txt", 0L),
-                Arguments.of("ExampleThree.txt", -6L)
-        );
+                Arguments.of("ExampleThree.txt", -6L));
     }
 
     private static Stream<Arguments> provideFirstDuplicateFrequency() {
@@ -38,7 +36,6 @@ class ChronalCalibrationPuzzleTest {
                 Arguments.of("ExampleFour.txt", 0L),
                 Arguments.of("ExampleFive.txt", 10L),
                 Arguments.of("ExampleSix.txt", 5L),
-                Arguments.of("ExampleSeven.txt", 14L)
-        );
+                Arguments.of("ExampleSeven.txt", 14L));
     }
 }

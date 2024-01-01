@@ -13,6 +13,7 @@ public record SectionAssignment(long firstSection, long lastSection) {
 
     public boolean overlaps(SectionAssignment other) {
         return (this.firstSection <= other.firstSection && this.lastSection >= other.firstSection)
-                || (this.firstSection <= other.lastSection && this.lastSection >= other.firstSection);
+                || (this.firstSection <= other.lastSection
+                        && this.lastSection >= other.firstSection);
     }
 }

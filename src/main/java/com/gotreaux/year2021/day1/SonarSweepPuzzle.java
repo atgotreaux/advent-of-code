@@ -1,7 +1,6 @@
 package com.gotreaux.year2021.day1;
 
 import com.gotreaux.Puzzle;
-
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
@@ -28,11 +27,15 @@ public class SonarSweepPuzzle extends Puzzle {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             List<Long> depthMeasurements = lines.map(Long::parseLong).toList();
 
-            List<Long> windows = IntStream.range(0, depthMeasurements.size() - 3 + 1)
-                    .mapToObj(windowStart -> depthMeasurements.subList(windowStart, windowStart + 3))
-                    .flatMapToLong(longs -> LongStream.of(longs.stream().reduce(0L, Long::sum)))
-                    .boxed()
-                    .toList();
+            List<Long> windows =
+                    IntStream.range(0, depthMeasurements.size() - 3 + 1)
+                            .mapToObj(
+                                    windowStart ->
+                                            depthMeasurements.subList(windowStart, windowStart + 3))
+                            .flatMapToLong(
+                                    longs -> LongStream.of(longs.stream().reduce(0L, Long::sum)))
+                            .boxed()
+                            .toList();
 
             return getMeasurementIncreaseCount(windows);
         }

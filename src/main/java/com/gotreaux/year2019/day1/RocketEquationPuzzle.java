@@ -2,7 +2,6 @@ package com.gotreaux.year2019.day1;
 
 import com.gotreaux.Puzzle;
 import com.gotreaux.input.InputProvider;
-
 import java.util.stream.Stream;
 
 public class RocketEquationPuzzle extends Puzzle {

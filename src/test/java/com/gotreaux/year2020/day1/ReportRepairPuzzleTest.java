@@ -1,8 +1,8 @@
 package com.gotreaux.year2020.day1;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 class ReportRepairPuzzleTest {
     @Test

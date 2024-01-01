@@ -29,14 +29,16 @@ public enum Hand {
                 .orElseThrow();
     }
 
-    public static Hand fromEncryptedStrategyLabel(char strategyLabel) throws NoSuchElementException {
+    public static Hand fromEncryptedStrategyLabel(char strategyLabel)
+            throws NoSuchElementException {
         return Arrays.stream(Hand.values())
                 .filter(hand -> hand.strategyLabel == strategyLabel)
                 .findFirst()
                 .orElseThrow();
     }
 
-    public static Hand fromStrategyOutcomeLabel(Hand opponentHand, char outcomeLabel) throws NoSuchElementException {
+    public static Hand fromStrategyOutcomeLabel(Hand opponentHand, char outcomeLabel)
+            throws NoSuchElementException {
         if (outcomeLabel == 'X') {
             return switch (opponentHand) {
                 case ROCK -> SCISSORS;

@@ -19,7 +19,8 @@ public record Present(long length, long width, long height) {
     }
 
     public long getSmallestPerimeter() {
-        return Collections.min(Arrays.asList(2 * (length + width), 2 * (width + height), 2 * (height + length)));
+        return Collections.min(
+                Arrays.asList(2 * (length + width), 2 * (width + height), 2 * (height + length)));
     }
 
     public long getVolume() {

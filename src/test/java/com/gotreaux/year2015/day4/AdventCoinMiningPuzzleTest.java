@@ -1,13 +1,12 @@
 package com.gotreaux.year2015.day4;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.gotreaux.input.StringInputProvider;
+import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AdventCoinMiningPuzzleTest {
     @ParameterizedTest
@@ -21,9 +20,6 @@ class AdventCoinMiningPuzzleTest {
     }
 
     private static Stream<Arguments> provideFiveLeadingZeroes() {
-        return Stream.of(
-                Arguments.of("abcdef", 609043L),
-                Arguments.of("pqrstuv", 1048970L)
-        );
+        return Stream.of(Arguments.of("abcdef", 609043L), Arguments.of("pqrstuv", 1048970L));
     }
 }

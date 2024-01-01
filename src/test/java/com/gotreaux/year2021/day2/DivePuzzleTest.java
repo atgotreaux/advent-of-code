@@ -1,8 +1,8 @@
 package com.gotreaux.year2021.day2;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 class DivePuzzleTest {
     @Test

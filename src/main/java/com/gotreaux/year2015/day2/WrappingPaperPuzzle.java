@@ -2,7 +2,6 @@ package com.gotreaux.year2015.day2;
 
 import com.gotreaux.Puzzle;
 import com.gotreaux.input.InputProvider;
-
 import java.util.Scanner;
 import java.util.stream.Stream;
 
@@ -30,18 +29,22 @@ public class WrappingPaperPuzzle extends Puzzle {
 
     private void prepare() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
-            lines.forEach(line -> {
-                Scanner scanner = new Scanner(line);
-                scanner.useDelimiter("x");
+            lines.forEach(
+                    line -> {
+                        Scanner scanner = new Scanner(line);
+                        scanner.useDelimiter("x");
 
-                Present present = new Present(scanner.nextLong(), scanner.nextLong(), scanner.nextLong());
+                        Present present =
+                                new Present(
+                                        scanner.nextLong(), scanner.nextLong(), scanner.nextLong());
 
-                scanner.close();
+                        scanner.close();
 
-                wrappingPaperOrderTotal += present.getSurfaceArea() + present.getAreaOfSmallestSide();
+                        wrappingPaperOrderTotal +=
+                                present.getSurfaceArea() + present.getAreaOfSmallestSide();
 
-                ribbonOrderTotal += present.getSmallestPerimeter() + present.getVolume();
-            });
+                        ribbonOrderTotal += present.getSmallestPerimeter() + present.getVolume();
+                    });
         }
     }
 

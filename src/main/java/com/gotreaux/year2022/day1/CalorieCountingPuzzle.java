@@ -1,7 +1,6 @@
 package com.gotreaux.year2022.day1;
 
 import com.gotreaux.Puzzle;
-
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,29 +26,26 @@ public class CalorieCountingPuzzle extends Puzzle {
     private void prepare() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             AtomicLong currentElfIndex = new AtomicLong();
-            lines.forEach(line -> {
-                if (line.isBlank()) {
-                    currentElfIndex.getAndIncrement();
-                } else {
-                    long calories = Long.parseLong(line);
-                    elfCalorieCarriage.merge(currentElfIndex.get(), calories, Long::sum);
-                }
-            });
+            lines.forEach(
+                    line -> {
+                        if (line.isBlank()) {
+                            currentElfIndex.getAndIncrement();
+                        } else {
+                            long calories = Long.parseLong(line);
+                            elfCalorieCarriage.merge(currentElfIndex.get(), calories, Long::sum);
+                        }
+                    });
         }
     }
 
     @Override
     public Long getPartOne() throws NoSuchElementException {
-        return elfCalorieCarriage.values()
-                .stream()
-                .max(Long::compare)
-                .orElseThrow();
+        return elfCalorieCarriage.values().stream().max(Long::compare).orElseThrow();
     }
 
     @Override
     public Long getPartTwo() {
-        return elfCalorieCarriage.values()
-                .stream()
+        return elfCalorieCarriage.values().stream()
                 .sorted(Comparator.reverseOrder())
                 .limit(3)
                 .reduce(0L, Long::sum);

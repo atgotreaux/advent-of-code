@@ -1,24 +1,34 @@
 package com.gotreaux.year2023.day5;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.random.RandomGenerator;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.random.RandomGenerator;
+import org.junit.jupiter.api.Test;
 
 class AlmanacRangeTest {
     @Test
     void throwsIfAlmanacRangeNonPositive() {
         RandomGenerator generator = RandomGenerator.getDefault();
         long negativeArgumentIndex = generator.nextLong(1, 4);
-        long destinationRangeStart = negativeArgumentIndex == 1L ? -Math.abs(generator.nextLong()) : Math.abs(generator.nextLong());
-        long sourceRangeStart = negativeArgumentIndex == 2L ? -Math.abs(generator.nextLong()) : Math.abs(generator.nextLong());
-        long rangeLength = negativeArgumentIndex == 3L ? -Math.abs(generator.nextLong()) : Math.abs(generator.nextLong());
+        long destinationRangeStart =
+                negativeArgumentIndex == 1L
+                        ? -Math.abs(generator.nextLong())
+                        : Math.abs(generator.nextLong());
+        long sourceRangeStart =
+                negativeArgumentIndex == 2L
+                        ? -Math.abs(generator.nextLong())
+                        : Math.abs(generator.nextLong());
+        long rangeLength =
+                negativeArgumentIndex == 3L
+                        ? -Math.abs(generator.nextLong())
+                        : Math.abs(generator.nextLong());
 
-        assertThrows(IllegalArgumentException.class, () -> new AlmanacRange(destinationRangeStart, sourceRangeStart, rangeLength));
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> new AlmanacRange(destinationRangeStart, sourceRangeStart, rangeLength));
     }
 
     @Test
@@ -28,7 +38,8 @@ class AlmanacRangeTest {
         long sourceRangeStart = generator.nextLong(0, 1000);
         long rangeLength = generator.nextLong(1, 1000);
 
-        AlmanacRange range = new AlmanacRange(generator.nextLong(1, 1000), sourceRangeStart, rangeLength);
+        AlmanacRange range =
+                new AlmanacRange(generator.nextLong(1, 1000), sourceRangeStart, rangeLength);
 
         long withinRange = generator.nextLong(sourceRangeStart, sourceRangeStart + rangeLength - 1);
 
@@ -42,7 +53,8 @@ class AlmanacRangeTest {
         long sourceRangeStart = generator.nextLong(0, 1000);
         long rangeLength = generator.nextLong(1, 1000);
 
-        AlmanacRange range = new AlmanacRange(generator.nextLong(1, 1000), sourceRangeStart, rangeLength);
+        AlmanacRange range =
+                new AlmanacRange(generator.nextLong(1, 1000), sourceRangeStart, rangeLength);
 
         long outOfRange = generator.nextLong(0, sourceRangeStart);
 

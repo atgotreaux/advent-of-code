@@ -1,7 +1,6 @@
 package com.gotreaux.year2023.day7;
 
 import com.gotreaux.Puzzle;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,22 +26,23 @@ public class CamelCardsPuzzle extends Puzzle {
 
     private void prepare() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
-            lines.forEach(line -> {
-                Scanner scanner = new Scanner(line);
-                String cardLabels = scanner.next();
-                long bid = scanner.nextLong();
-                scanner.close();
+            lines.forEach(
+                    line -> {
+                        Scanner scanner = new Scanner(line);
+                        String cardLabels = scanner.next();
+                        long bid = scanner.nextLong();
+                        scanner.close();
 
-                List<Card> cards = new ArrayList<>();
-                List<Card> jokerCards = new ArrayList<>();
-                for (int i = 0; i < cardLabels.length(); i++) {
-                    cards.add(Card.fromLabel(cardLabels.charAt(i), Card.JOKER));
-                    jokerCards.add(Card.fromLabel(cardLabels.charAt(i), Card.JACK));
-                }
+                        List<Card> cards = new ArrayList<>();
+                        List<Card> jokerCards = new ArrayList<>();
+                        for (int i = 0; i < cardLabels.length(); i++) {
+                            cards.add(Card.fromLabel(cardLabels.charAt(i), Card.JOKER));
+                            jokerCards.add(Card.fromLabel(cardLabels.charAt(i), Card.JACK));
+                        }
 
-                hands.add(new Hand(cards, bid));
-                jokerHands.add(new Hand(jokerCards, bid));
-            });
+                        hands.add(new Hand(cards, bid));
+                        jokerHands.add(new Hand(jokerCards, bid));
+                    });
         }
 
         Collections.sort(hands);

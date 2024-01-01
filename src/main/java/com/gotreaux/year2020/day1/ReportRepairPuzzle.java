@@ -1,7 +1,6 @@
 package com.gotreaux.year2020.day1;
 
 import com.gotreaux.Puzzle;
-
 import java.util.List;
 import java.util.stream.Stream;
 

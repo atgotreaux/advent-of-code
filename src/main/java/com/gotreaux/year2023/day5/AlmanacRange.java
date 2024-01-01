@@ -3,7 +3,8 @@ package com.gotreaux.year2023.day5;
 public record AlmanacRange(long destinationRangeStart, long sourceRangeStart, long rangeLength) {
     public AlmanacRange {
         if (destinationRangeStart < 0 || sourceRangeStart < 0 || rangeLength < 0) {
-            throw new IllegalArgumentException("Almanac range expects non negative numbers for range!");
+            throw new IllegalArgumentException(
+                    "Almanac range expects non negative numbers for range!");
         }
     }
 
