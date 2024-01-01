@@ -90,6 +90,7 @@ public enum HandType {
         return mapping.size() == 2 && cards.contains(Card.JOKER);
     });
 
+    @SuppressWarnings("ImmutableEnumChecker")
     private final Predicate<List<Card>> criterion;
 
     HandType(Predicate<List<Card>> criterion) {

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Stream;
 
 public class SeedLocationPuzzle extends Puzzle {
@@ -25,6 +24,7 @@ public class SeedLocationPuzzle extends Puzzle {
     private final List<AlmanacRange> lightToTemperature = new ArrayList<>();
     private final List<AlmanacRange> temperatureToHumidity = new ArrayList<>();
     private final List<AlmanacRange> humidityToLocation = new ArrayList<>();
+    private AlmanacSection section;
 
     public SeedLocationPuzzle() throws Exception {
         super();
@@ -33,8 +33,6 @@ public class SeedLocationPuzzle extends Puzzle {
     }
 
     private void prepare() throws Exception {
-        AtomicReference<AlmanacSection> section = new AtomicReference<>();
-
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             lines.forEach(line -> {
                 if (line.startsWith("seeds:")) {
@@ -46,20 +44,21 @@ public class SeedLocationPuzzle extends Puzzle {
                         seeds.add(rangeLength);
                         seedRanges.add(new SeedRange(seedStart, rangeLength));
                     }
+                    scanner.close();
                 } else if (line.startsWith("seed-to-soil map:")) {
-                    section.set(AlmanacSection.SEED_TO_SOIL);
+                    section = AlmanacSection.SEED_TO_SOIL;
                 } else if (line.startsWith("soil-to-fertilizer map")) {
-                    section.set(AlmanacSection.SOIL_TO_FERTILIZER);
+                    section = AlmanacSection.SOIL_TO_FERTILIZER;
                 } else if (line.startsWith("fertilizer-to-water map")) {
-                    section.set(AlmanacSection.FERTILIZER_TO_WATER);
+                    section = AlmanacSection.FERTILIZER_TO_WATER;
                 } else if (line.startsWith("water-to-light map:")) {
-                    section.set(AlmanacSection.WATER_TO_LIGHT);
+                    section = AlmanacSection.WATER_TO_LIGHT;
                 } else if (line.startsWith("light-to-temperature map:")) {
-                    section.set(AlmanacSection.LIGHT_TO_TEMPERATURE);
+                    section = AlmanacSection.LIGHT_TO_TEMPERATURE;
                 } else if (line.startsWith("temperature-to-humidity map:")) {
-                    section.set(AlmanacSection.TEMPERATURE_TO_HUMIDITY);
+                    section = AlmanacSection.TEMPERATURE_TO_HUMIDITY;
                 } else if (line.startsWith("humidity-to-location map:")) {
-                    section.set(AlmanacSection.HUMIDITY_TO_LOCATION);
+                    section = AlmanacSection.HUMIDITY_TO_LOCATION;
                 } else if (!line.isEmpty() && Character.isDigit(line.charAt(0))) {
                     Scanner scanner = new Scanner(line);
                     long destinationRangeStart = scanner.nextLong();
@@ -69,14 +68,15 @@ public class SeedLocationPuzzle extends Puzzle {
 
                     AlmanacRange range = new AlmanacRange(destinationRangeStart, sourceRangeStart, rangeLength);
 
-                    switch (section.get()) {
-                        case AlmanacSection.SEED_TO_SOIL: seedToSoil.add(range); break;
-                        case AlmanacSection.SOIL_TO_FERTILIZER: soilToFertilizer.add(range); break;
-                        case AlmanacSection.FERTILIZER_TO_WATER: fertilizerToWater.add(range); break;
-                        case AlmanacSection.WATER_TO_LIGHT: waterToLight.add(range); break;
-                        case AlmanacSection.LIGHT_TO_TEMPERATURE: lightToTemperature.add(range); break;
-                        case AlmanacSection.TEMPERATURE_TO_HUMIDITY: temperatureToHumidity.add(range); break;
-                        case AlmanacSection.HUMIDITY_TO_LOCATION: humidityToLocation.add(range); break;
+                    switch (section) {
+                        case AlmanacSection.SEED_TO_SOIL -> seedToSoil.add(range);
+                        case AlmanacSection.SOIL_TO_FERTILIZER -> soilToFertilizer.add(range);
+                        case AlmanacSection.FERTILIZER_TO_WATER -> fertilizerToWater.add(range);
+                        case AlmanacSection.WATER_TO_LIGHT -> waterToLight.add(range);
+                        case AlmanacSection.LIGHT_TO_TEMPERATURE -> lightToTemperature.add(range);
+                        case AlmanacSection.TEMPERATURE_TO_HUMIDITY -> temperatureToHumidity.add(range);
+                        case AlmanacSection.HUMIDITY_TO_LOCATION -> humidityToLocation.add(range);
+                        default -> throw new RuntimeException("Unexpected section!");
                     }
                 }
             });

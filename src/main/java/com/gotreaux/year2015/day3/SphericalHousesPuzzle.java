@@ -30,8 +30,8 @@ public class SphericalHousesPuzzle extends Puzzle {
         houseDeliveries.add(currentPosition);
 
         String input = getInputProvider().getInputString();
-        for (char directionLabel : input.toCharArray()) {
-            Direction direction = Direction.fromLabel(directionLabel);
+        for (int i = 0; i < input.length(); i++) {
+            Direction direction = Direction.fromLabel(input.charAt(i));
 
             currentPosition = direction.move(currentPosition);
             houseDeliveries.add(currentPosition);

@@ -34,8 +34,8 @@ public class HauntedWastelandPuzzle extends Puzzle {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             lines.forEach(line -> {
                 if (line.matches("^[RL]+$")) {
-                    for (char instructionLabel : line.toCharArray()) {
-                        instructions.add(Instruction.fromLabel(instructionLabel));
+                    for (int i = 0; i < line.length(); i++) {
+                        instructions.add(Instruction.fromLabel(line.charAt(i)));
                     }
                 } else if (line.matches("\\w+\\s=\\s\\(\\w+,\\s\\w+\\)")) {
                     String[] nodeParts = line.replace(" = (", ", ")

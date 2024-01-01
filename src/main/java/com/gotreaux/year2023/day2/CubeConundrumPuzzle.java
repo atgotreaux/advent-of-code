@@ -2,6 +2,7 @@ package com.gotreaux.year2023.day2;
 
 import com.gotreaux.Puzzle;
 
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
@@ -39,7 +40,7 @@ public class CubeConundrumPuzzle extends Puzzle {
                     for (String cube : gameEvent.split(", ")) {
                         Scanner cubeScanner = new Scanner(cube);
                         int cubeCount = cubeScanner.nextInt();
-                        CubeColor color = CubeColor.valueOf(cubeScanner.next().toUpperCase());
+                        CubeColor color = CubeColor.valueOf(cubeScanner.next().toUpperCase(Locale.getDefault()));
                         cubeScanner.close();
                         switch (color) {
                             case RED:

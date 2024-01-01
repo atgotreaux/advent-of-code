@@ -1,5 +1,7 @@
 package com.gotreaux.input;
 
+import com.google.errorprone.annotations.MustBeClosed;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -22,6 +24,7 @@ public class FileInputProvider implements InputProvider {
     }
 
     @Override
+    @MustBeClosed
     public Stream<String> getInputStream() throws IOException, URISyntaxException {
         return Files.lines(loadResource());
     }

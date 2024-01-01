@@ -3,6 +3,7 @@ package com.gotreaux.year2015.day4;
 import com.gotreaux.Puzzle;
 import com.gotreaux.input.InputProvider;
 
+import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HexFormat;
@@ -45,7 +46,7 @@ public class AdventCoinMiningPuzzle extends Puzzle {
         long number = 0;
         while (true) {
             String input = secretKey + number;
-            md.update(input.getBytes());
+            md.update(input.getBytes(Charset.defaultCharset()));
             String hash = HexFormat.of().formatHex(md.digest());
 
             if (condition.test(hash)) {

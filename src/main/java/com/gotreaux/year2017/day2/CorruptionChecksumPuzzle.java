@@ -35,6 +35,7 @@ public class CorruptionChecksumPuzzle extends Puzzle {
                     largest = Math.max(largest, number);
                     smallest = Math.min(smallest, number);
                 }
+                scanner.close();
 
                 return largest - smallest;
             }).sum();
@@ -59,6 +60,7 @@ public class CorruptionChecksumPuzzle extends Puzzle {
                     }
                     numbers.add(number);
                 }
+                scanner.close();
 
                 throw new RuntimeException("No divisible numbers in line '%s'".formatted(line));
             }).sum();

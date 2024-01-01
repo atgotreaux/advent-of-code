@@ -3,6 +3,7 @@ package com.gotreaux.year2021.day2;
 import com.gotreaux.Puzzle;
 
 import java.awt.Point;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
@@ -28,7 +29,7 @@ public class DivePuzzle extends Puzzle {
             lines.forEach(line -> {
                 Scanner scanner = new Scanner(line);
 
-                Command command = Command.valueOf(scanner.next().toUpperCase());
+                Command command = Command.valueOf(scanner.next().toUpperCase(Locale.getDefault()));
                 int units = scanner.nextInt();
 
                 scanner.close();

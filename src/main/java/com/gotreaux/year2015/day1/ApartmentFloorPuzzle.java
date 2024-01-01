@@ -23,7 +23,8 @@ public class ApartmentFloorPuzzle extends Puzzle {
         long currentFloor = 0L;
 
         String input = getInputProvider().getInputString();
-        for (char instructionLabel : input.toCharArray()) {
+        for (int i = 0; i < input.length(); i++) {
+            char instructionLabel = input.charAt(i);
             Instruction instruction = Instruction.fromLabel(instructionLabel);
             switch (instruction) {
                 case UP -> currentFloor++;

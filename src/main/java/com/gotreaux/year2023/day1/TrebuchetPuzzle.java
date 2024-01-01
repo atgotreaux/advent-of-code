@@ -27,7 +27,8 @@ public class TrebuchetPuzzle extends Puzzle {
             return lines.mapToLong(line -> {
                 String firstDigit = null;
                 String lastDigit = null;
-                for (Character c : line.toCharArray()) {
+                for (int i = 0; i < line.length(); i++) {
+                    char c = line.charAt(i);
                     if (Character.isDigit(c)) {
                         if (firstDigit == null) {
                             firstDigit = String.valueOf(c);
@@ -50,7 +51,7 @@ public class TrebuchetPuzzle extends Puzzle {
                 String firstDigit = null;
                 String lastDigit = null;
                 for (int i = 0; i < line.length(); i++) {
-                    Character c = line.charAt(i);
+                    char c = line.charAt(i);
 
                     String subString = line.substring(i);
                     for (String word : words) {
