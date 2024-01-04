@@ -1,8 +1,12 @@
 package com.gotreaux.year2015.day1;
 
 import com.gotreaux.Puzzle;
+import com.gotreaux.annotation.Day;
+import com.gotreaux.annotation.Year;
 import com.gotreaux.input.InputProvider;
 
+@Year(year=2015)
+@Day(day=1)
 public class ApartmentFloorPuzzle extends Puzzle {
     public static void main(String[] args) throws Exception {
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
