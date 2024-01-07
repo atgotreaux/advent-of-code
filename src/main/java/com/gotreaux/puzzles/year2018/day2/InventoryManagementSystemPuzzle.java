@@ -1,23 +1,17 @@
-package com.gotreaux.year2018.day2;
+package com.gotreaux.puzzles.year2018.day2;
 
-import com.gotreaux.Puzzle;
+import com.gotreaux.annotations.ShellPuzzle;
+import com.gotreaux.input.InputProvider;
+import com.gotreaux.puzzles.Puzzle;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@ShellPuzzle(year = 2018, day = 2, title = "Inventory Management System")
 public class InventoryManagementSystemPuzzle extends Puzzle {
-    public static void main(String[] args) throws Exception {
-        InventoryManagementSystemPuzzle puzzle = new InventoryManagementSystemPuzzle();
 
-        puzzle.solve();
-    }
-
-    public InventoryManagementSystemPuzzle() {
-        super();
-    }
-
-    public InventoryManagementSystemPuzzle(String fileName) {
-        super(fileName);
+    public InventoryManagementSystemPuzzle(InputProvider inputProvider) {
+        super(inputProvider);
     }
 
     @Override

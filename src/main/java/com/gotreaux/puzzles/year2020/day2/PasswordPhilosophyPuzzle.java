@@ -1,18 +1,14 @@
-package com.gotreaux.year2020.day2;
+package com.gotreaux.puzzles.year2020.day2;
 
-import com.gotreaux.Puzzle;
+import com.gotreaux.input.InputProvider;
+import com.gotreaux.puzzles.Puzzle;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class PasswordPhilosophyPuzzle extends Puzzle {
-    public static void main(String[] args) throws Exception {
-        PasswordPhilosophyPuzzle puzzle = new PasswordPhilosophyPuzzle();
 
-        puzzle.solve();
-    }
-
-    public PasswordPhilosophyPuzzle() {
-        super();
+    public PasswordPhilosophyPuzzle(InputProvider inputProvider) {
+        super(inputProvider);
     }
 
     @Override

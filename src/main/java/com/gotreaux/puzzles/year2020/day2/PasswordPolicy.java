@@ -1,4 +1,4 @@
-package com.gotreaux.year2020.day2;
+package com.gotreaux.puzzles.year2020.day2;
 
 interface PasswordPolicy {
 
