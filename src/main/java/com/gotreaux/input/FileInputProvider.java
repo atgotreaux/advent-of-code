@@ -13,8 +13,12 @@ import java.util.stream.Stream;
 public class FileInputProvider implements InputProvider {
     private final String inputPath;
 
-    public FileInputProvider(String inputPath) {
-        this.inputPath = inputPath;
+    public FileInputProvider(Class<?> puzzleClass) {
+        this.inputPath = puzzleClass.getPackage().getName().replaceAll("\\.", "/") + "/input.txt";
+    }
+
+    public FileInputProvider(Class<?> puzzleClass, String fileName) {
+        this.inputPath = puzzleClass.getPackage().getName().replaceAll("\\.", "/") + "/" + fileName;
     }
 
     @Override
