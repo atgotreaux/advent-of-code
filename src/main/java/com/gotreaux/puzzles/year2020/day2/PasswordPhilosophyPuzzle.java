@@ -1,10 +1,12 @@
 package com.gotreaux.puzzles.year2020.day2;
 
+import com.gotreaux.annotations.ShellPuzzle;
 import com.gotreaux.input.InputProvider;
 import com.gotreaux.puzzles.Puzzle;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
+@ShellPuzzle(year = 2020, day = 2, title = "Password Philosophy")
 public class PasswordPhilosophyPuzzle extends Puzzle {
 
     public PasswordPhilosophyPuzzle(InputProvider inputProvider) {
