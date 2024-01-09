@@ -1,4 +1,5 @@
 .idea/
 target/
 
+dependency-reduced-pom.xml
 spring-shell.log
