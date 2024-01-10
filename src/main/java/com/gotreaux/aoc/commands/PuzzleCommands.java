@@ -1,24 +1,22 @@
 package com.gotreaux.aoc.commands;
 
-import com.gotreaux.aoc.records.PuzzleResult;
+import com.gotreaux.aoc.dto.PuzzleDto;
 import com.gotreaux.aoc.services.PuzzleService;
-import java.util.LinkedHashMap;
 import java.util.List;
 import org.springframework.shell.command.CommandRegistration.OptionArity;
 import org.springframework.shell.command.annotation.Command;
 import org.springframework.shell.command.annotation.Option;
 import org.springframework.shell.context.InteractionMode;
-import org.springframework.shell.table.BeanListTableModel;
 import org.springframework.shell.table.BorderStyle;
 import org.springframework.shell.table.TableBuilder;
+import org.springframework.shell.table.TableModelBuilder;
 
 @Command(group = "Puzzle Commands", interactionMode = InteractionMode.ALL)
 public class PuzzleCommands {
 
     @Command(
             command = "solve-puzzle",
-            description = "Solve puzzles for specified advent calendar year and day",
-            interactionMode = InteractionMode.ALL)
+            description = "Solve puzzles for specified advent calendar year and day")
     public String solve(
             @Option(
                             longNames = "year",
@@ -36,19 +34,29 @@ public class PuzzleCommands {
                     Integer[] days)
             throws Exception {
         PuzzleService puzzleService = new PuzzleService();
-        List<PuzzleResult> puzzleResults = puzzleService.getPuzzles(List.of(years), List.of(days));
+        List<PuzzleDto> puzzles = puzzleService.getPuzzles(List.of(years), List.of(days));
 
-        LinkedHashMap<String, Object> headers = new LinkedHashMap<>();
-        headers.put("year", "Year");
-        headers.put("day", "Day");
-        headers.put("title", "Title");
-        headers.put("partOne", "Part One");
-        headers.put("partTwo", "Part Two");
+        TableModelBuilder<String> tableModelBuilder = new TableModelBuilder<>();
 
-        BeanListTableModel<PuzzleResult> beanListTableModel =
-                new BeanListTableModel<>(puzzleResults, headers);
+        tableModelBuilder
+                .addRow()
+                .addValue("Year")
+                .addValue("Day")
+                .addValue("Title")
+                .addValue("Part One")
+                .addValue("Part Two");
 
-        TableBuilder tableBuilder = new TableBuilder(beanListTableModel);
+        for (PuzzleDto puzzle : puzzles) {
+            tableModelBuilder
+                    .addRow()
+                    .addValue(String.valueOf(puzzle.year()))
+                    .addValue(String.valueOf(puzzle.day()))
+                    .addValue(puzzle.title())
+                    .addValue(String.valueOf(puzzle.getPartOne()))
+                    .addValue(String.valueOf(puzzle.getPartTwo()));
+        }
+
+        TableBuilder tableBuilder = new TableBuilder(tableModelBuilder.build());
         tableBuilder.addFullBorder(BorderStyle.fancy_light);
 
         return tableBuilder.build().render(120);
