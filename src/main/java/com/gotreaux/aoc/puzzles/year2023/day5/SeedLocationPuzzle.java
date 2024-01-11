@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2023.day5;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,11 @@ public class SeedLocationPuzzle extends Puzzle {
         super(inputProvider);
 
         prepare();
+    }
+
+    @Override
+    public PuzzleOutput<Long, Long> solve() throws Exception {
+        return new PuzzleOutput<>(getPartOne(), getPartTwo());
     }
 
     private void prepare() throws Exception {
@@ -83,12 +89,10 @@ public class SeedLocationPuzzle extends Puzzle {
         }
     }
 
-    @Override
     public Long getPartOne() throws NoSuchElementException {
         return seeds.stream().map(this::getLocation).min(Long::compare).orElseThrow();
     }
 
-    @Override
     public Long getPartTwo() {
         final long[] lowestLocation = {Long.MAX_VALUE};
 

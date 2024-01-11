@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2022.day2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.FileInputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class RockPaperScissorsPuzzleTest {
@@ -12,7 +13,9 @@ class RockPaperScissorsPuzzleTest {
 
         RockPaperScissorsPuzzle puzzle = new RockPaperScissorsPuzzle(inputProvider);
 
-        assertEquals(15L, puzzle.getPartOne());
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(15, output.partOne());
     }
 
     @Test
@@ -21,6 +24,8 @@ class RockPaperScissorsPuzzleTest {
 
         RockPaperScissorsPuzzle puzzle = new RockPaperScissorsPuzzle(inputProvider);
 
-        assertEquals(12L, puzzle.getPartTwo());
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(12, output.partTwo());
     }
 }

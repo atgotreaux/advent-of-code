@@ -14,26 +14,26 @@ class PresentTest {
     @Test
     void throwsIfNonPositiveDimension() {
         RandomGenerator generator = RandomGenerator.getDefault();
-        long negativeArgumentIndex = generator.nextLong(1, 4);
-        long length =
-                negativeArgumentIndex == 1L
-                        ? -Math.abs(generator.nextLong())
-                        : Math.abs(generator.nextLong());
-        long width =
-                negativeArgumentIndex == 2L
-                        ? -Math.abs(generator.nextLong())
-                        : Math.abs(generator.nextLong());
-        long height =
-                negativeArgumentIndex == 3L
-                        ? -Math.abs(generator.nextLong())
-                        : Math.abs(generator.nextLong());
+        int negativeArgumentIndex = generator.nextInt(1, 4);
+        int length =
+                negativeArgumentIndex == 1
+                        ? -Math.abs(generator.nextInt())
+                        : Math.abs(generator.nextInt());
+        int width =
+                negativeArgumentIndex == 2
+                        ? -Math.abs(generator.nextInt())
+                        : Math.abs(generator.nextInt());
+        int height =
+                negativeArgumentIndex == 3
+                        ? -Math.abs(generator.nextInt())
+                        : Math.abs(generator.nextInt());
 
         assertThrows(IllegalArgumentException.class, () -> new Present(length, width, height));
     }
 
     @ParameterizedTest
     @MethodSource("provideSurfaceArea")
-    void surfaceArea(long length, long width, long height, long expectedSurfaceArea) {
+    void surfaceArea(int length, int width, int height, int expectedSurfaceArea) {
         Present present = new Present(length, width, height);
 
         assertEquals(expectedSurfaceArea, present.getSurfaceArea());
@@ -41,7 +41,7 @@ class PresentTest {
 
     @ParameterizedTest
     @MethodSource("provideAreaOfSmallestSide")
-    void areaOfSmallestSide(long length, long width, long height, long expectedArea) {
+    void areaOfSmallestSide(int length, int width, int height, int expectedArea) {
         Present present = new Present(length, width, height);
 
         assertEquals(expectedArea, present.getAreaOfSmallestSide());
@@ -49,7 +49,7 @@ class PresentTest {
 
     @ParameterizedTest
     @MethodSource("provideSmallestPerimeter")
-    void smallestPerimeter(long length, long width, long height, long expectedPerimeter) {
+    void smallestPerimeter(int length, int width, int height, int expectedPerimeter) {
         Present present = new Present(length, width, height);
 
         assertEquals(expectedPerimeter, present.getSmallestPerimeter());
@@ -57,25 +57,25 @@ class PresentTest {
 
     @ParameterizedTest
     @MethodSource("provideVolume")
-    void volume(long length, long width, long height, long expectedVolume) {
+    void volume(int length, int width, int height, int expectedVolume) {
         Present present = new Present(length, width, height);
 
         assertEquals(expectedVolume, present.getVolume());
     }
 
     private static Stream<Arguments> provideSurfaceArea() {
-        return Stream.of(Arguments.of(2L, 3L, 4L, 52L), Arguments.of(1L, 1L, 10L, 42L));
+        return Stream.of(Arguments.of(2, 3, 4, 52), Arguments.of(1, 1, 10, 42));
     }
 
     private static Stream<Arguments> provideAreaOfSmallestSide() {
-        return Stream.of(Arguments.of(2L, 3L, 4L, 6L), Arguments.of(1L, 1L, 10L, 1L));
+        return Stream.of(Arguments.of(2, 3, 4, 6), Arguments.of(1, 1, 10, 1));
     }
 
     private static Stream<Arguments> provideSmallestPerimeter() {
-        return Stream.of(Arguments.of(2L, 3L, 4L, 10L), Arguments.of(1L, 1L, 10L, 4L));
+        return Stream.of(Arguments.of(2, 3, 4, 10), Arguments.of(1, 1, 10, 4));
     }
 
     private static Stream<Arguments> provideVolume() {
-        return Stream.of(Arguments.of(2L, 3L, 4L, 24L), Arguments.of(1L, 1L, 10L, 10L));
+        return Stream.of(Arguments.of(2, 3, 4, 24), Arguments.of(1, 1, 10, 10));
     }
 }

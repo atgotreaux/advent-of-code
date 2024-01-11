@@ -4,21 +4,21 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public enum Hand {
-    ROCK('A', 'X', 1L),
-    PAPER('B', 'Y', 2L),
-    SCISSORS('C', 'Z', 3L);
+    ROCK('A', 'X', 1),
+    PAPER('B', 'Y', 2),
+    SCISSORS('C', 'Z', 3);
 
     private final char opponentLabel;
     private final char strategyLabel;
-    private final long weight;
+    private final int weight;
 
-    Hand(char opponentLabel, char strategyLabel, long weight) {
+    Hand(char opponentLabel, char strategyLabel, int weight) {
         this.opponentLabel = opponentLabel;
         this.strategyLabel = strategyLabel;
         this.weight = weight;
     }
 
-    public long getWeight() {
+    public int getWeight() {
         return this.weight;
     }
 

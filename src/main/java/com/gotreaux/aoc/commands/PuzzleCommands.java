@@ -1,6 +1,7 @@
 package com.gotreaux.aoc.commands;
 
 import com.gotreaux.aoc.dto.PuzzleDto;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.services.PuzzleService;
 import java.util.List;
 import org.springframework.shell.command.CommandRegistration.OptionArity;
@@ -47,13 +48,15 @@ public class PuzzleCommands {
                 .addValue("Part Two");
 
         for (PuzzleDto puzzle : puzzles) {
+            PuzzleOutput<?, ?> output = puzzle.getOutput();
+
             tableModelBuilder
                     .addRow()
                     .addValue(String.valueOf(puzzle.year()))
                     .addValue(String.valueOf(puzzle.day()))
                     .addValue(puzzle.title())
-                    .addValue(String.valueOf(puzzle.getPartOne()))
-                    .addValue(String.valueOf(puzzle.getPartTwo()));
+                    .addValue(String.valueOf(output.partOne()))
+                    .addValue(String.valueOf(output.partTwo()));
         }
 
         TableBuilder tableBuilder = new TableBuilder(tableModelBuilder.build());

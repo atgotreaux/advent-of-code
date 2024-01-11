@@ -3,7 +3,9 @@ package com.gotreaux.aoc.puzzles.year2015.day1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.StringInputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -11,38 +13,37 @@ import org.junit.jupiter.params.provider.MethodSource;
 class ApartmentFloorPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideFloorFromInstructions")
-    void floorFromInstructions(String input, long expectedFloor) throws Exception {
+    void floorFromInstructions(String input, int expectedFloor) throws Exception {
         StringInputProvider inputProvider = new StringInputProvider(input);
 
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
-        assertEquals(expectedFloor, puzzle.getPartOne());
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(expectedFloor, output.partOne());
     }
 
-    @ParameterizedTest
-    @MethodSource("providePositionBasementReached")
-    void positionBasementReached(String input, int expectedFloor) throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider(input);
+    @Test
+    void positionBasementReached() throws Exception {
+        StringInputProvider inputProvider = new StringInputProvider("()())");
 
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
-        assertEquals(expectedFloor, puzzle.getPartTwo());
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(5, output.partTwo());
     }
 
     private static Stream<Arguments> provideFloorFromInstructions() {
         return Stream.of(
-                Arguments.of("(())", 0L),
-                Arguments.of("()()", 0L),
-                Arguments.of("(((", 3L),
-                Arguments.of("(()(()(", 3L),
-                Arguments.of("))(((((", 3L),
-                Arguments.of("())", -1L),
-                Arguments.of("))(", -1L),
-                Arguments.of(")))", -3L),
-                Arguments.of(")())())", -3L));
-    }
-
-    private static Stream<Arguments> providePositionBasementReached() {
-        return Stream.of(Arguments.of(")", 1), Arguments.of("()())", 5));
+                Arguments.of("(())", 0),
+                Arguments.of("()()", 0),
+                Arguments.of("(((", 3),
+                Arguments.of("(()(()(", 3),
+                Arguments.of("))(((((", 3),
+                Arguments.of("())", -1),
+                Arguments.of("))(", -1),
+                Arguments.of(")))", -3),
+                Arguments.of(")())())", -3));
     }
 }

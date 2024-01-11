@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2023.day8;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,11 @@ public class HauntedWastelandPuzzle extends Puzzle {
         prepare();
     }
 
+    @Override
+    public PuzzleOutput<Long, Long> solve() throws Exception {
+        return new PuzzleOutput<>(getPartOne(), getPartTwo());
+    }
+
     private void prepare() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             lines.forEach(
@@ -38,13 +44,11 @@ public class HauntedWastelandPuzzle extends Puzzle {
         }
     }
 
-    @Override
     public Long getPartOne() throws NoSuchElementException {
         return getStepsForNodes(
                 node -> node.position().equals("AAA"), node -> node.position().equals("ZZZ"));
     }
 
-    @Override
     public Long getPartTwo() throws NoSuchElementException {
         return getStepsForNodes(
                 node -> node.position().endsWith("A"), node -> node.position().endsWith("Z"));

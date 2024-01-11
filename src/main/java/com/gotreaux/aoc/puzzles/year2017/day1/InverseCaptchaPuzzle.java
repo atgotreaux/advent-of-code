@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2017.day1;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 
 @ShellPuzzle(year = 2017, day = 1, title = "Inverse Captcha")
@@ -12,6 +13,10 @@ public class InverseCaptchaPuzzle extends Puzzle {
     }
 
     @Override
+    public PuzzleOutput<Long, Long> solve() throws Exception {
+        return new PuzzleOutput<>(getPartOne(), getPartTwo());
+    }
+
     public Long getPartOne() throws Exception {
         long sumOfNextDigitsMatching = 0L;
 
@@ -33,7 +38,6 @@ public class InverseCaptchaPuzzle extends Puzzle {
         return sumOfNextDigitsMatching;
     }
 
-    @Override
     public Long getPartTwo() throws Exception {
         long sumOfHalfwayDigitsMatching = 0L;
 

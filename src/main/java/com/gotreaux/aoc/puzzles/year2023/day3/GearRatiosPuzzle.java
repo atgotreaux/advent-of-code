@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2023.day3;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -23,6 +24,11 @@ public class GearRatiosPuzzle extends Puzzle {
         super(inputProvider);
 
         prepare();
+    }
+
+    @Override
+    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+        return new PuzzleOutput<>(getPartOne(), getPartTwo());
     }
 
     private void prepare() throws Exception {
@@ -108,12 +114,10 @@ public class GearRatiosPuzzle extends Puzzle {
         }
     }
 
-    @Override
     public Integer getPartOne() {
         return sumOfParts;
     }
 
-    @Override
     public Integer getPartTwo() {
         return sumOfGearRatios;
     }

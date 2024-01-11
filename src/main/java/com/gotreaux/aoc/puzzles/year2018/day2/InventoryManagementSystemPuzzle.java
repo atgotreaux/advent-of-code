@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2018.day2;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,10 @@ public class InventoryManagementSystemPuzzle extends Puzzle {
     }
 
     @Override
+    public PuzzleOutput<Long, String> solve() throws Exception {
+        return new PuzzleOutput<>(getPartOne(), getPartTwo());
+    }
+
     public Long getPartOne() throws Exception {
         long boxIdsWithTwoOfLetter = 0L;
         long boxIdsWithThreeOfLetter = 0L;
@@ -36,7 +41,6 @@ public class InventoryManagementSystemPuzzle extends Puzzle {
         return boxIdsWithTwoOfLetter * boxIdsWithThreeOfLetter;
     }
 
-    @Override
     public String getPartTwo() throws Exception {
         List<String> lines = getInputProvider().getInputList();
         for (int i = 0; i < lines.size(); i++) {

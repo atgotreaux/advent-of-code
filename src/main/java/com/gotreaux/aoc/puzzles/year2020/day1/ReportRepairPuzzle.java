@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2020.day1;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.List;
 import java.util.stream.Stream;
@@ -14,6 +15,10 @@ public class ReportRepairPuzzle extends Puzzle {
     }
 
     @Override
+    public PuzzleOutput<Long, Long> solve() throws Exception {
+        return new PuzzleOutput<>(getPartOne(), getPartTwo());
+    }
+
     public Long getPartOne() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             List<Long> expenses = lines.map(Long::parseLong).toList();
@@ -29,7 +34,6 @@ public class ReportRepairPuzzle extends Puzzle {
         throw new RuntimeException("No two numbers sum to 2020!");
     }
 
-    @Override
     public Long getPartTwo() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             List<Long> expenses = lines.map(Long::parseLong).toList();

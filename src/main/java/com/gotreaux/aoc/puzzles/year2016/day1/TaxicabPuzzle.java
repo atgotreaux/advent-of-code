@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2016.day1;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -15,6 +16,10 @@ public class TaxicabPuzzle extends Puzzle {
     }
 
     @Override
+    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+        return new PuzzleOutput<>(getPartOne(), getPartTwo());
+    }
+
     public Integer getPartOne() throws Exception {
         Direction direction = Direction.NORTH;
         Point position = new Point();
@@ -31,7 +36,6 @@ public class TaxicabPuzzle extends Puzzle {
         return Math.abs(position.x) + Math.abs(position.y);
     }
 
-    @Override
     public Integer getPartTwo() throws Exception {
         Direction direction = Direction.NORTH;
 

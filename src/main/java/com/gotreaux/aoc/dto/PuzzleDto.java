@@ -1,6 +1,7 @@
 package com.gotreaux.aoc.dto;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 
 public class PuzzleDto {
@@ -24,11 +25,7 @@ public class PuzzleDto {
         return this.annotation.title();
     }
 
-    public Object getPartOne() throws Exception {
-        return this.puzzle.getPartOne();
-    }
-
-    public Object getPartTwo() throws Exception {
-        return this.puzzle.getPartTwo();
+    public PuzzleOutput<?, ?> getOutput() throws Exception {
+        return this.puzzle.solve();
     }
 }

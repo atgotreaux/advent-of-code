@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2023.day2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.FileInputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class CubeConundrumPuzzleTest {
@@ -12,7 +13,9 @@ class CubeConundrumPuzzleTest {
 
         CubeConundrumPuzzle puzzle = new CubeConundrumPuzzle(inputProvider);
 
-        assertEquals(8L, puzzle.getPartOne());
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(8, output.partOne());
     }
 
     @Test
@@ -21,6 +24,8 @@ class CubeConundrumPuzzleTest {
 
         CubeConundrumPuzzle puzzle = new CubeConundrumPuzzle(inputProvider);
 
-        assertEquals(2286L, puzzle.getPartTwo());
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(2286, output.partTwo());
     }
 }

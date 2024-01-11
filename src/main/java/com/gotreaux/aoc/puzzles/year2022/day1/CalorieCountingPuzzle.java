@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2022.day1;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -21,6 +22,11 @@ public class CalorieCountingPuzzle extends Puzzle {
         prepare();
     }
 
+    @Override
+    public PuzzleOutput<Long, Long> solve() throws Exception {
+        return new PuzzleOutput<>(getPartOne(), getPartTwo());
+    }
+
     private void prepare() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             AtomicLong currentElfIndex = new AtomicLong();
@@ -36,12 +42,10 @@ public class CalorieCountingPuzzle extends Puzzle {
         }
     }
 
-    @Override
     public Long getPartOne() throws NoSuchElementException {
         return elfCalorieCarriage.values().stream().max(Long::compare).orElseThrow();
     }
 
-    @Override
     public Long getPartTwo() {
         return elfCalorieCarriage.values().stream()
                 .sorted(Comparator.reverseOrder())

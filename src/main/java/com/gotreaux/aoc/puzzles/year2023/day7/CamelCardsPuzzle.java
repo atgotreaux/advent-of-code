@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2023.day7;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,6 +21,11 @@ public class CamelCardsPuzzle extends Puzzle {
         super(inputProvider);
 
         prepare();
+    }
+
+    @Override
+    public PuzzleOutput<Long, Long> solve() throws Exception {
+        return new PuzzleOutput<>(getPartOne(), getPartTwo());
     }
 
     private void prepare() throws Exception {
@@ -47,12 +53,10 @@ public class CamelCardsPuzzle extends Puzzle {
         Collections.sort(jokerHands);
     }
 
-    @Override
     public Long getPartOne() {
         return calculateWinnings(hands);
     }
 
-    @Override
     public Long getPartTwo() {
         return calculateWinnings(jokerHands);
     }

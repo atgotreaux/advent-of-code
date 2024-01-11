@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2016.day3;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,10 @@ public class TrianglePuzzle extends Puzzle {
     }
 
     @Override
+    public PuzzleOutput<Long, Long> solve() throws Exception {
+        return new PuzzleOutput<>(getPartOne(), getPartTwo());
+    }
+
     public Long getPartOne() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             return lines.map(
@@ -35,7 +40,6 @@ public class TrianglePuzzle extends Puzzle {
         }
     }
 
-    @Override
     public Long getPartTwo() throws Exception {
         List<Long> columnOne = new ArrayList<>();
         List<Long> columnTwo = new ArrayList<>();

@@ -2,50 +2,36 @@ package com.gotreaux.aoc.puzzles.year2015.day2;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 @ShellPuzzle(year = 2015, day = 2, title = "I Was Told There Would Be No Math")
 public class WrappingPaperPuzzle extends Puzzle {
 
-    private long wrappingPaperOrderTotal;
-    private long ribbonOrderTotal;
-
-    public WrappingPaperPuzzle(InputProvider inputProvider) throws Exception {
+    public WrappingPaperPuzzle(InputProvider inputProvider) {
         super(inputProvider);
-
-        prepare();
     }
 
-    private void prepare() throws Exception {
-        try (Stream<String> lines = getInputProvider().getInputStream()) {
-            lines.forEach(
-                    line -> {
-                        Scanner scanner = new Scanner(line);
-                        scanner.useDelimiter("x");
+    @Override
+    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+        int wrappingPaperOrderTotal = 0;
+        int ribbonOrderTotal = 0;
 
-                        Present present =
-                                new Present(
-                                        scanner.nextLong(), scanner.nextLong(), scanner.nextLong());
+        for (String line : getInputProvider().getInputList()) {
+            Scanner scanner = new Scanner(line);
+            scanner.useDelimiter("x");
 
-                        scanner.close();
+            int length = scanner.nextInt();
+            int width = scanner.nextInt();
+            int height = scanner.nextInt();
 
-                        wrappingPaperOrderTotal +=
-                                present.getSurfaceArea() + present.getAreaOfSmallestSide();
+            Present present = new Present(length, width, height);
 
-                        ribbonOrderTotal += present.getSmallestPerimeter() + present.getVolume();
-                    });
+            wrappingPaperOrderTotal += present.getSurfaceArea() + present.getAreaOfSmallestSide();
+            ribbonOrderTotal += present.getSmallestPerimeter() + present.getVolume();
         }
-    }
 
-    @Override
-    public Long getPartOne() {
-        return wrappingPaperOrderTotal;
-    }
-
-    @Override
-    public Long getPartTwo() {
-        return ribbonOrderTotal;
+        return new PuzzleOutput<>(wrappingPaperOrderTotal, ribbonOrderTotal);
     }
 }

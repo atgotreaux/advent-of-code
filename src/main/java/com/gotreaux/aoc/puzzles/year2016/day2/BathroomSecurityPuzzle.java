@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2016.day2;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,10 @@ public class BathroomSecurityPuzzle extends Puzzle {
     }
 
     @Override
+    public PuzzleOutput<String, String> solve() throws Exception {
+        return new PuzzleOutput<>(getPartOne(), getPartTwo());
+    }
+
     public String getPartOne() throws Exception {
         List<Key> keys = new ArrayList<>();
         Key currentKey = new Key("5", "2", "8", "4", "6");
@@ -42,7 +47,6 @@ public class BathroomSecurityPuzzle extends Puzzle {
         return bathroomCode.toString();
     }
 
-    @Override
     public String getPartTwo() throws Exception {
         List<Key> keys = new ArrayList<>();
         Key currentKey = new Key("5", "5", "5", "5", "6");

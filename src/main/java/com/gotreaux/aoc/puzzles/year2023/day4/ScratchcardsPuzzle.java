@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2023.day4;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +21,11 @@ public class ScratchcardsPuzzle extends Puzzle {
         super(inputProvider);
 
         prepare();
+    }
+
+    @Override
+    public PuzzleOutput<Long, Long> solve() throws Exception {
+        return new PuzzleOutput<>(getPartOne(), getPartTwo());
     }
 
     private void prepare() throws Exception {
@@ -67,12 +73,10 @@ public class ScratchcardsPuzzle extends Puzzle {
         totalScratchcards = totalScratchcardMapping.values().stream().reduce(0, Integer::sum);
     }
 
-    @Override
     public Long getPartOne() {
         return scratchcardPoints;
     }
 
-    @Override
     public Long getPartTwo() {
         return totalScratchcards;
     }

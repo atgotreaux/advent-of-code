@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2018.day1;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -17,6 +18,10 @@ public class ChronalCalibrationPuzzle extends Puzzle {
     }
 
     @Override
+    public PuzzleOutput<Long, Long> solve() throws Exception {
+        return new PuzzleOutput<>(getPartOne(), getPartTwo());
+    }
+
     public Long getPartOne() throws Exception {
         DecimalFormat format = new DecimalFormat();
         format.setPositivePrefix("+");
@@ -34,7 +39,6 @@ public class ChronalCalibrationPuzzle extends Puzzle {
         }
     }
 
-    @Override
     public Long getPartTwo() throws Exception {
         DecimalFormat format = new DecimalFormat();
         format.setPositivePrefix("+");

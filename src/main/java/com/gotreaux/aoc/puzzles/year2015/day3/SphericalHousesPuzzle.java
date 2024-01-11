@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2015.day3;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.awt.Point;
 import java.util.HashSet;
@@ -15,26 +16,12 @@ public class SphericalHousesPuzzle extends Puzzle {
     }
 
     @Override
-    public Integer getPartOne() throws Exception {
+    public PuzzleOutput<Integer, Integer> solve() throws Exception {
         Set<Point> houseDeliveries = new HashSet<>();
+        Set<Point> assistedHouseDeliveries = new HashSet<>();
 
         Point currentPosition = new Point();
         houseDeliveries.add(currentPosition);
-
-        String input = getInputProvider().getInputString();
-        for (int i = 0; i < input.length(); i++) {
-            Direction direction = Direction.fromLabel(input.charAt(i));
-
-            currentPosition = direction.move(currentPosition);
-            houseDeliveries.add(currentPosition);
-        }
-
-        return houseDeliveries.size();
-    }
-
-    @Override
-    public Integer getPartTwo() throws Exception {
-        Set<Point> assistedHouseDeliveries = new HashSet<>();
 
         Point santaPosition = new Point();
         Point roboSantaPosition = new Point();
@@ -42,8 +29,10 @@ public class SphericalHousesPuzzle extends Puzzle {
 
         String input = getInputProvider().getInputString();
         for (int i = 0; i < input.length(); i++) {
-            char directionLabel = input.charAt(i);
-            Direction direction = Direction.fromLabel(directionLabel);
+            Direction direction = Direction.fromLabel(input.charAt(i));
+
+            currentPosition = direction.move(currentPosition);
+            houseDeliveries.add(currentPosition);
 
             if (i % 2 == 0) {
                 santaPosition = direction.move(santaPosition);
@@ -54,6 +43,6 @@ public class SphericalHousesPuzzle extends Puzzle {
             }
         }
 
-        return assistedHouseDeliveries.size();
+        return new PuzzleOutput<>(houseDeliveries.size(), assistedHouseDeliveries.size());
     }
 }

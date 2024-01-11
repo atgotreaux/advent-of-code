@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2015.day5;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -14,6 +15,10 @@ public class NiceStringPuzzle extends Puzzle {
     }
 
     @Override
+    public PuzzleOutput<Long, Long> solve() throws Exception {
+        return new PuzzleOutput<>(getPartOne(), getPartTwo());
+    }
+
     public Long getPartOne() throws Exception {
         Predicate<String> threeVowels = string -> string.replaceAll("[^aeiou]", "").length() >= 3;
         Predicate<String> repeatedCharacter = string -> string.matches("[a-z]*([a-z])\\1[a-z]*");
@@ -27,7 +32,6 @@ public class NiceStringPuzzle extends Puzzle {
         }
     }
 
-    @Override
     public Long getPartTwo() throws Exception {
         Predicate<String> pairRepeated =
                 string -> string.matches("[a-z]*([a-z][a-z])[a-z]*\\1[a-z]*");

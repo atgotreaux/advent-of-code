@@ -1,6 +1,7 @@
 package com.gotreaux.aoc.puzzles;
 
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 
 public abstract class Puzzle {
     private final InputProvider inputProvider;
@@ -13,7 +14,5 @@ public abstract class Puzzle {
         return this.inputProvider;
     }
 
-    public abstract Object getPartOne() throws Exception;
-
-    public abstract Object getPartTwo() throws Exception;
+    public abstract PuzzleOutput<?, ?> solve() throws Exception;
 }

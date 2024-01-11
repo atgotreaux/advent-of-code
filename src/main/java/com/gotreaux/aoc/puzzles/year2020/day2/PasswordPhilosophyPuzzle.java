@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2020.day2;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.Scanner;
 import java.util.stream.Stream;
@@ -14,6 +15,10 @@ public class PasswordPhilosophyPuzzle extends Puzzle {
     }
 
     @Override
+    public PuzzleOutput<Long, Long> solve() throws Exception {
+        return new PuzzleOutput<>(getPartOne(), getPartTwo());
+    }
+
     public Long getPartOne() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             return lines.filter(
@@ -42,7 +47,6 @@ public class PasswordPhilosophyPuzzle extends Puzzle {
         }
     }
 
-    @Override
     public Long getPartTwo() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             return lines.filter(

@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2015.day4;
 
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
@@ -17,22 +18,20 @@ public class AdventCoinMiningPuzzle extends Puzzle {
     }
 
     @Override
-    public Long getPartOne() throws Exception {
-        return findHashMatchingCondition(
-                getInputProvider().getInputString(), string -> string.startsWith("00000"));
+    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+        String input = getInputProvider().getInputString();
+
+        int partOne = findHashMatchingCondition(input, string -> string.startsWith("00000"));
+        int partTwo = findHashMatchingCondition(input, string -> string.startsWith("000000"));
+
+        return new PuzzleOutput<>(partOne, partTwo);
     }
 
-    @Override
-    public Long getPartTwo() throws Exception {
-        return findHashMatchingCondition(
-                getInputProvider().getInputString(), string -> string.startsWith("000000"));
-    }
-
-    private Long findHashMatchingCondition(String secretKey, Predicate<String> condition)
+    private int findHashMatchingCondition(String secretKey, Predicate<String> condition)
             throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("MD5");
 
-        long number = 0;
+        int number = 0;
         while (true) {
             String input = secretKey + number;
             md.update(input.getBytes(Charset.defaultCharset()));
