@@ -1,8 +1,7 @@
 package com.gotreaux.aoc.puzzles.year2020.day2;
 
-public record OccurrenceRangePasswordPolicy(Long min, Long max, char target)
-        implements PasswordPolicy {
-    public OccurrenceRangePasswordPolicy {
+public record OccurrencePasswordPolicy(int min, int max, char target) implements PasswordPolicy {
+    public OccurrencePasswordPolicy {
         if (min < 0 || max <= 0) {
             throw new IllegalArgumentException("Password policy should define a positive range!");
         }

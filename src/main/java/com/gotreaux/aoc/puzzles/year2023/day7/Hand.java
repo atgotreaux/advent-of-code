@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Hand implements Comparable<Hand> {
     private final List<Card> cards;
-    private final long bid;
+    private final int bid;
     private final HandType handType;
 
-    public Hand(List<Card> cards, long bid) {
+    public Hand(List<Card> cards, int bid) {
         this.cards = cards;
         this.bid = bid;
         this.handType = HandType.fromCards(cards);
@@ -34,7 +34,7 @@ public class Hand implements Comparable<Hand> {
         return cards.get(4);
     }
 
-    public long getBid() {
+    public int getBid() {
         return this.bid;
     }
 

@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2022.day1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.FileInputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class CalorieCountingPuzzleTest {
@@ -12,7 +13,9 @@ class CalorieCountingPuzzleTest {
 
         CalorieCountingPuzzle puzzle = new CalorieCountingPuzzle(inputProvider);
 
-        assertEquals(24000L, puzzle.getPartOne());
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(24000, output.partOne());
     }
 
     @Test
@@ -21,6 +24,8 @@ class CalorieCountingPuzzleTest {
 
         CalorieCountingPuzzle puzzle = new CalorieCountingPuzzle(inputProvider);
 
-        assertEquals(45000L, puzzle.getPartTwo());
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(45000, output.partTwo());
     }
 }

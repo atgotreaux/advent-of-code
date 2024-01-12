@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2020.day2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.FileInputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class PasswordPhilosophyPuzzleTest {
@@ -12,7 +13,9 @@ class PasswordPhilosophyPuzzleTest {
 
         PasswordPhilosophyPuzzle puzzle = new PasswordPhilosophyPuzzle(inputProvider);
 
-        assertEquals(2L, puzzle.getPartOne());
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(2, output.partOne());
     }
 
     @Test
@@ -21,6 +24,8 @@ class PasswordPhilosophyPuzzleTest {
 
         PasswordPhilosophyPuzzle puzzle = new PasswordPhilosophyPuzzle(inputProvider);
 
-        assertEquals(1L, puzzle.getPartTwo());
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(1, output.partTwo());
     }
 }

@@ -14,13 +14,13 @@ class RaceTest {
     @Test
     void throwsIfNonPositiveRace() {
         RandomGenerator generator = RandomGenerator.getDefault();
-        long negativeArgumentIndex = generator.nextLong(1, 3);
+        int negativeArgumentIndex = generator.nextInt(1, 3);
         long time =
-                negativeArgumentIndex == 1L
+                negativeArgumentIndex == 1
                         ? -Math.abs(generator.nextLong())
                         : Math.abs(generator.nextLong());
         long recordDistance =
-                negativeArgumentIndex == 2L
+                negativeArgumentIndex == 2
                         ? -Math.abs(generator.nextLong())
                         : Math.abs(generator.nextLong());
 

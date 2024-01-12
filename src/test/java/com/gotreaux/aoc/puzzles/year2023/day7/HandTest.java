@@ -18,27 +18,27 @@ public class HandTest {
         Hand handOne =
                 new Hand(
                         Arrays.asList(Card.THREE, Card.TWO, Card.TEN, Card.THREE, Card.KING),
-                        generator.nextLong());
+                        generator.nextInt());
 
         Hand handTwo =
                 new Hand(
                         Arrays.asList(Card.TEN, Card.FIVE, Card.FIVE, Card.JACK, Card.FIVE),
-                        generator.nextLong());
+                        generator.nextInt());
 
         Hand handThree =
                 new Hand(
                         Arrays.asList(Card.KING, Card.KING, Card.SIX, Card.SEVEN, Card.SEVEN),
-                        generator.nextLong());
+                        generator.nextInt());
 
         Hand handFour =
                 new Hand(
                         Arrays.asList(Card.KING, Card.TEN, Card.JACK, Card.JACK, Card.TEN),
-                        generator.nextLong());
+                        generator.nextInt());
 
         Hand handFive =
                 new Hand(
                         Arrays.asList(Card.QUEEN, Card.QUEEN, Card.QUEEN, Card.JACK, Card.ACE),
-                        generator.nextLong());
+                        generator.nextInt());
 
         List<Hand> hands =
                 new ArrayList<>(Arrays.asList(handOne, handTwo, handThree, handFour, handFive));
@@ -58,27 +58,27 @@ public class HandTest {
         Hand handOne =
                 new Hand(
                         Arrays.asList(Card.THREE, Card.TWO, Card.TEN, Card.THREE, Card.KING),
-                        generator.nextLong());
+                        generator.nextInt());
 
         Hand handTwo =
                 new Hand(
                         Arrays.asList(Card.TEN, Card.FIVE, Card.FIVE, Card.JOKER, Card.FIVE),
-                        generator.nextLong());
+                        generator.nextInt());
 
         Hand handThree =
                 new Hand(
                         Arrays.asList(Card.KING, Card.KING, Card.SIX, Card.SEVEN, Card.SEVEN),
-                        generator.nextLong());
+                        generator.nextInt());
 
         Hand handFour =
                 new Hand(
                         Arrays.asList(Card.KING, Card.TEN, Card.JOKER, Card.JOKER, Card.TEN),
-                        generator.nextLong());
+                        generator.nextInt());
 
         Hand handFive =
                 new Hand(
                         Arrays.asList(Card.QUEEN, Card.QUEEN, Card.QUEEN, Card.JOKER, Card.ACE),
-                        generator.nextLong());
+                        generator.nextInt());
 
         List<Hand> hands =
                 new ArrayList<>(Arrays.asList(handOne, handTwo, handThree, handFour, handFive));

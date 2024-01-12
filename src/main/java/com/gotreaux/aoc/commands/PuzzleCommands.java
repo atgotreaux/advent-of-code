@@ -17,20 +17,20 @@ public class PuzzleCommands {
 
     @Command(
             command = "solve-puzzle",
-            description = "Solve puzzles for specified advent calendar year and day")
+            description = "Solve puzzles for specified advent calendar year(s) and day(s)")
     public String solve(
             @Option(
                             longNames = "year",
-                            shortNames = 'y',
+                            shortNames = 'Y',
                             description = "Solve puzzles for advent calendar year",
-                            label = "YEAR",
+                            label = "YEAR1 YEAR2 YEAR3...",
                             arity = OptionArity.ZERO_OR_MORE)
                     Integer[] years,
             @Option(
                             longNames = "day",
-                            shortNames = 'd',
+                            shortNames = 'D',
                             description = "Solve puzzles for advent calendar day",
-                            label = "DAY",
+                            label = "DAY1 DAY2 DAY3...",
                             arity = OptionArity.ZERO_OR_MORE)
                     Integer[] days)
             throws Exception {

@@ -15,15 +15,15 @@ class PositionPasswordPolicyTest {
     void throwsIfNegativePolicyPositions() {
         RandomGenerator generator = RandomGenerator.getDefault();
 
-        long negativeArgumentIndex = generator.nextLong(1, 3);
-        long first =
-                negativeArgumentIndex == 1L
-                        ? -Math.abs(generator.nextLong())
-                        : Math.abs(generator.nextLong());
-        long second =
-                negativeArgumentIndex == 2L
-                        ? -Math.abs(generator.nextLong())
-                        : Math.abs(generator.nextLong());
+        int negativeArgumentIndex = generator.nextInt(1, 3);
+        int first =
+                negativeArgumentIndex == 1
+                        ? -Math.abs(generator.nextInt())
+                        : Math.abs(generator.nextInt());
+        int second =
+                negativeArgumentIndex == 2
+                        ? -Math.abs(generator.nextInt())
+                        : Math.abs(generator.nextInt());
 
         assertThrows(
                 IllegalArgumentException.class,
@@ -32,7 +32,7 @@ class PositionPasswordPolicyTest {
 
     @ParameterizedTest
     @MethodSource("providePasswordPasses")
-    void passwordPasses(long first, long second, char target, String password, boolean expected) {
+    void passwordPasses(int first, int second, char target, String password, boolean expected) {
         PositionPasswordPolicy passwordPolicy = new PositionPasswordPolicy(first, second, target);
 
         assertEquals(expected, passwordPolicy.passes(password));
@@ -40,8 +40,8 @@ class PositionPasswordPolicyTest {
 
     private static Stream<Arguments> providePasswordPasses() {
         return Stream.of(
-                Arguments.of(1L, 3L, 'a', "abcde", true),
-                Arguments.of(1L, 3L, 'b', "cdefg", false),
-                Arguments.of(2L, 9L, 'c', "ccccccccc", false));
+                Arguments.of(1, 3, 'a', "abcde", true),
+                Arguments.of(1, 3, 'b', "cdefg", false),
+                Arguments.of(2, 9, 'c', "ccccccccc", false));
     }
 }

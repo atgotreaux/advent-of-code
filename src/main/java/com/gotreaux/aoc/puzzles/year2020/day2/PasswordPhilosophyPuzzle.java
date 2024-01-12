@@ -5,7 +5,6 @@ import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 @ShellPuzzle(year = 2020, day = 2, title = "Password Philosophy")
 public class PasswordPhilosophyPuzzle extends Puzzle {
@@ -15,63 +14,41 @@ public class PasswordPhilosophyPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve() throws Exception {
-        return new PuzzleOutput<>(getPartOne(), getPartTwo());
-    }
+    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+        int sumOfValidOccurrencesInRange = 0;
+        int sumOfValidPositions = 0;
 
-    public Long getPartOne() throws Exception {
-        try (Stream<String> lines = getInputProvider().getInputStream()) {
-            return lines.filter(
-                            line -> {
-                                Scanner lineScanner = new Scanner(line);
-                                lineScanner.useDelimiter(": ");
-                                String passwordPolicyString = lineScanner.next();
-                                String password = lineScanner.next();
-                                lineScanner.close();
+        for (String line : getInputProvider().getInputList()) {
+            Scanner lineScanner = new Scanner(line);
+            lineScanner.useDelimiter(": ");
+            String passwordPolicyString = lineScanner.next();
+            String password = lineScanner.next();
+            lineScanner.close();
 
-                                Scanner policyScanner = new Scanner(passwordPolicyString);
-                                String policyRange = policyScanner.next();
-                                String targetString = policyScanner.next();
+            Scanner policyScanner = new Scanner(passwordPolicyString);
+            String policyRange = policyScanner.next();
+            char target = policyScanner.next().charAt(0);
+            policyScanner.close();
 
-                                Scanner policyRangeScanner = new Scanner(policyRange);
-                                policyRangeScanner.useDelimiter("-");
-                                long min = policyRangeScanner.nextLong();
-                                long max = policyRangeScanner.nextLong();
+            Scanner policyRangeScanner = new Scanner(policyRange);
+            policyRangeScanner.useDelimiter("-");
+            int first = policyRangeScanner.nextInt();
+            int second = policyRangeScanner.nextInt();
+            policyRangeScanner.close();
 
-                                OccurrenceRangePasswordPolicy passwordPolicy =
-                                        new OccurrenceRangePasswordPolicy(
-                                                min, max, targetString.charAt(0));
-                                return passwordPolicy.passes(password);
-                            })
-                    .count();
+            OccurrencePasswordPolicy rangePolicy =
+                    new OccurrencePasswordPolicy(first, second, target);
+            if (rangePolicy.passes(password)) {
+                sumOfValidOccurrencesInRange++;
+            }
+
+            PositionPasswordPolicy positionPolicy =
+                    new PositionPasswordPolicy(first, second, target);
+            if (positionPolicy.passes(password)) {
+                sumOfValidPositions++;
+            }
         }
-    }
 
-    public Long getPartTwo() throws Exception {
-        try (Stream<String> lines = getInputProvider().getInputStream()) {
-            return lines.filter(
-                            line -> {
-                                Scanner lineScanner = new Scanner(line);
-                                lineScanner.useDelimiter(": ");
-                                String passwordPolicyString = lineScanner.next();
-                                String password = lineScanner.next();
-                                lineScanner.close();
-
-                                Scanner policyScanner = new Scanner(passwordPolicyString);
-                                String policyRange = policyScanner.next();
-                                String targetString = policyScanner.next();
-
-                                Scanner policyRangeScanner = new Scanner(policyRange);
-                                policyRangeScanner.useDelimiter("-");
-                                long first = policyRangeScanner.nextLong();
-                                long second = policyRangeScanner.nextLong();
-
-                                PositionPasswordPolicy passwordPolicy =
-                                        new PositionPasswordPolicy(
-                                                first, second, targetString.charAt(0));
-                                return passwordPolicy.passes(password);
-                            })
-                    .count();
-        }
+        return new PuzzleOutput<>(sumOfValidOccurrencesInRange, sumOfValidPositions);
     }
 }

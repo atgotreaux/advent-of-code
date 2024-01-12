@@ -15,34 +15,32 @@ class OccurrenceRangePasswordPolicyTest {
     void throwsIfNegativePolicyOccurrences() {
         RandomGenerator generator = RandomGenerator.getDefault();
 
-        long negativeArgumentIndex = generator.nextLong(1, 3);
-        long min =
+        int negativeArgumentIndex = generator.nextInt(1, 3);
+        int min =
                 negativeArgumentIndex == 1L
-                        ? -Math.abs(generator.nextLong())
-                        : Math.abs(generator.nextLong());
-        long max =
+                        ? -Math.abs(generator.nextInt())
+                        : Math.abs(generator.nextInt());
+        int max =
                 negativeArgumentIndex == 2L
-                        ? -Math.abs(generator.nextLong())
-                        : Math.abs(generator.nextLong());
+                        ? -Math.abs(generator.nextInt())
+                        : Math.abs(generator.nextInt());
 
         assertThrows(
-                IllegalArgumentException.class,
-                () -> new OccurrenceRangePasswordPolicy(min, max, 'x'));
+                IllegalArgumentException.class, () -> new OccurrencePasswordPolicy(min, max, 'x'));
     }
 
     @ParameterizedTest
     @MethodSource("providePasswordPasses")
-    void passwordPasses(long min, long max, char target, String password, boolean expected) {
-        OccurrenceRangePasswordPolicy passwordPolicy =
-                new OccurrenceRangePasswordPolicy(min, max, target);
+    void passwordPasses(int min, int max, char target, String password, boolean expected) {
+        OccurrencePasswordPolicy passwordPolicy = new OccurrencePasswordPolicy(min, max, target);
 
         assertEquals(expected, passwordPolicy.passes(password));
     }
 
     private static Stream<Arguments> providePasswordPasses() {
         return Stream.of(
-                Arguments.of(1L, 3L, 'a', "abcde", true),
-                Arguments.of(1L, 3L, 'b', "cdefg", false),
-                Arguments.of(2L, 9L, 'c', "ccccccccc", true));
+                Arguments.of(1, 3, 'a', "abcde", true),
+                Arguments.of(1, 3, 'b', "cdefg", false),
+                Arguments.of(2, 9, 'c', "ccccccccc", true));
     }
 }

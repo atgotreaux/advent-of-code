@@ -11,27 +11,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.IntStream;
 
 @ShellPuzzle(year = 2023, day = 3, title = "Gear Ratios")
 public class GearRatiosPuzzle extends Puzzle {
 
-    private int sumOfParts;
-    private int sumOfGearRatios;
-
-    public GearRatiosPuzzle(InputProvider inputProvider) throws Exception {
+    public GearRatiosPuzzle(InputProvider inputProvider) {
         super(inputProvider);
-
-        prepare();
     }
 
     @Override
     public PuzzleOutput<Integer, Integer> solve() throws Exception {
-        return new PuzzleOutput<>(getPartOne(), getPartTwo());
-    }
+        int sumOfParts = 0;
 
-    private void prepare() throws Exception {
         List<String> lines = getInputProvider().getInputList();
         int rowCount = lines.size();
         int columnCount = lines.getFirst().length();
@@ -44,53 +35,35 @@ public class GearRatiosPuzzle extends Puzzle {
         Map<Point, List<Integer>> gearRatios = new HashMap<>();
         for (int lineRow = 0; lineRow < rowCount; lineRow++) {
             int currentNumber = 0;
-            AtomicBoolean adjacentToPart = new AtomicBoolean(false);
+            boolean adjacentToPart = false;
             Set<Point> gears = new HashSet<>();
             for (int lineCol = 0; lineCol < columnCount + 1; lineCol++) {
                 if (lineCol < columnCount && Character.isDigit(matrix[lineRow][lineCol])) {
                     currentNumber =
-                            currentNumber * 10
-                                    + Integer.parseInt(String.valueOf(matrix[lineRow][lineCol]));
-                    int finalLineCol = lineCol;
-                    int finalLineRow = lineRow;
-                    Set<Point> finalGears = gears;
-                    IntStream.range(-1, 2)
-                            .forEach(
-                                    adjacentLine ->
-                                            IntStream.range(-1, 2)
-                                                    .forEach(
-                                                            adjacentCol -> {
-                                                                int adjustedRow =
-                                                                        adjacentLine + finalLineRow;
-                                                                int adjustedCol =
-                                                                        adjacentCol + finalLineCol;
-                                                                if (adjustedRow >= 0
-                                                                        && adjustedRow < rowCount
-                                                                        && adjustedCol >= 0
-                                                                        && adjustedCol
-                                                                                < columnCount) {
-                                                                    char adjacentChar =
-                                                                            matrix[adjustedRow][
-                                                                                    adjustedCol];
-                                                                    if (!Character.isDigit(
-                                                                                    adjacentChar)
-                                                                            && adjacentChar
-                                                                                    != '.') {
-                                                                        adjacentToPart.set(true);
-                                                                    }
-                                                                    if (adjacentChar == '*') {
-                                                                        finalGears.add(
-                                                                                new Point(
-                                                                                        adjustedRow,
-                                                                                        adjustedCol));
-                                                                    }
-                                                                }
-                                                            }));
+                            currentNumber * 10 + Character.digit(matrix[lineRow][lineCol], 10);
+                    for (int adjacentLine = -1; adjacentLine < 2; adjacentLine++) {
+                        for (int adjacentCol = -1; adjacentCol < 2; adjacentCol++) {
+                            int adjustedRow = adjacentLine + lineRow;
+                            int adjustedCol = adjacentCol + lineCol;
+                            if (adjustedRow >= 0
+                                    && adjustedRow < rowCount
+                                    && adjustedCol >= 0
+                                    && adjustedCol < columnCount) {
+                                char adjacentChar = matrix[adjustedRow][adjustedCol];
+                                if (!Character.isDigit(adjacentChar) && adjacentChar != '.') {
+                                    adjacentToPart = true;
+                                }
+                                if (adjacentChar == '*') {
+                                    gears.add(new Point(adjustedRow, adjustedCol));
+                                }
+                            }
+                        }
+                    }
                 } else if (currentNumber > 0) {
-                    if (adjacentToPart.get()) {
+                    if (adjacentToPart) {
                         sumOfParts += currentNumber;
                     }
-                    adjacentToPart.set(false);
+                    adjacentToPart = false;
 
                     for (Point gear : gears) {
                         if (gearRatios.containsKey(gear)) {
@@ -106,19 +79,12 @@ public class GearRatiosPuzzle extends Puzzle {
             }
         }
 
-        for (Map.Entry<Point, List<Integer>> e : gearRatios.entrySet()) {
-            List<Integer> gearNumbers = e.getValue();
-            if (gearNumbers.size() == 2) {
-                sumOfGearRatios += gearNumbers.get(0) * gearNumbers.get(1);
-            }
-        }
-    }
+        int sumOfGearRatios =
+                gearRatios.values().stream()
+                        .filter(gearNumbers -> gearNumbers.size() == 2)
+                        .mapToInt(gearNumbers -> gearNumbers.getFirst() * gearNumbers.getLast())
+                        .sum();
 
-    public Integer getPartOne() {
-        return sumOfParts;
-    }
-
-    public Integer getPartTwo() {
-        return sumOfGearRatios;
+        return new PuzzleOutput<>(sumOfParts, sumOfGearRatios);
     }
 }

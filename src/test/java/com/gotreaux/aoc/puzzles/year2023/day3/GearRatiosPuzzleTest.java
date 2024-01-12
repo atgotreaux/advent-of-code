@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2023.day3;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.FileInputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class GearRatiosPuzzleTest {
@@ -12,7 +13,9 @@ class GearRatiosPuzzleTest {
 
         GearRatiosPuzzle puzzle = new GearRatiosPuzzle(inputProvider);
 
-        assertEquals(4361, puzzle.getPartOne());
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(4361, output.partOne());
     }
 
     @Test
@@ -21,6 +24,8 @@ class GearRatiosPuzzleTest {
 
         GearRatiosPuzzle puzzle = new GearRatiosPuzzle(inputProvider);
 
-        assertEquals(467835, puzzle.getPartTwo());
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(467835, output.partTwo());
     }
 }

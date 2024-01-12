@@ -26,6 +26,8 @@ public class WrappingPaperPuzzle extends Puzzle {
             int width = scanner.nextInt();
             int height = scanner.nextInt();
 
+            scanner.close();
+
             Present present = new Present(length, width, height);
 
             wrappingPaperOrderTotal += present.getSurfaceArea() + present.getAreaOfSmallestSide();

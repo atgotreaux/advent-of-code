@@ -7,49 +7,36 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Stream;
 
 @ShellPuzzle(year = 2022, day = 1, title = "Calorie Counting")
 public class CalorieCountingPuzzle extends Puzzle {
 
-    private final Map<Long, Long> elfCalorieCarriage = new HashMap<>();
-
-    public CalorieCountingPuzzle(InputProvider inputProvider) throws Exception {
+    public CalorieCountingPuzzle(InputProvider inputProvider) {
         super(inputProvider);
-
-        prepare();
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve() throws Exception {
-        return new PuzzleOutput<>(getPartOne(), getPartTwo());
-    }
+    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+        int currentElfIndex = 0;
+        Map<Integer, Integer> elfCalorieCarriage = new HashMap<>();
 
-    private void prepare() throws Exception {
-        try (Stream<String> lines = getInputProvider().getInputStream()) {
-            AtomicLong currentElfIndex = new AtomicLong();
-            lines.forEach(
-                    line -> {
-                        if (line.isBlank()) {
-                            currentElfIndex.getAndIncrement();
-                        } else {
-                            long calories = Long.parseLong(line);
-                            elfCalorieCarriage.merge(currentElfIndex.get(), calories, Long::sum);
-                        }
-                    });
+        for (String line : getInputProvider().getInputList()) {
+            if (line.isBlank()) {
+                currentElfIndex++;
+            } else {
+                int calories = Integer.parseInt(line);
+                elfCalorieCarriage.merge(currentElfIndex, calories, Integer::sum);
+            }
         }
-    }
 
-    public Long getPartOne() throws NoSuchElementException {
-        return elfCalorieCarriage.values().stream().max(Long::compare).orElseThrow();
-    }
+        int mostCalories = elfCalorieCarriage.values().stream().max(Integer::compare).orElseThrow();
 
-    public Long getPartTwo() {
-        return elfCalorieCarriage.values().stream()
-                .sorted(Comparator.reverseOrder())
-                .limit(3)
-                .reduce(0L, Long::sum);
+        int highestThreeCalories =
+                elfCalorieCarriage.values().stream()
+                        .sorted(Comparator.reverseOrder())
+                        .limit(3)
+                        .reduce(0, Integer::sum);
+
+        return new PuzzleOutput<>(mostCalories, highestThreeCalories);
     }
 }
