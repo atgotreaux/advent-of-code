@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2023.day5;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.FileInputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class SeedLocationPuzzleTest {
@@ -12,7 +13,9 @@ class SeedLocationPuzzleTest {
 
         SeedLocationPuzzle puzzle = new SeedLocationPuzzle(inputProvider);
 
-        assertEquals(35L, puzzle.getPartOne());
+        PuzzleOutput<Long, Long> output = puzzle.solve();
+
+        assertEquals(35L, output.partOne());
     }
 
     @Test
@@ -21,6 +24,8 @@ class SeedLocationPuzzleTest {
 
         SeedLocationPuzzle puzzle = new SeedLocationPuzzle(inputProvider);
 
-        assertEquals(46L, puzzle.getPartTwo());
+        PuzzleOutput<Long, Long> output = puzzle.solve();
+
+        assertEquals(46L, output.partTwo());
     }
 }

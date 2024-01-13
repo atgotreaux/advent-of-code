@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2023.day8;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.FileInputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class HauntedWastelandPuzzleTest {
@@ -13,7 +14,9 @@ class HauntedWastelandPuzzleTest {
 
         HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle(inputProvider);
 
-        assertEquals(2L, puzzle.getPartOne());
+        PuzzleOutput<Long, Long> output = puzzle.solve();
+
+        assertEquals(2L, output.partOne());
     }
 
     @Test
@@ -23,7 +26,9 @@ class HauntedWastelandPuzzleTest {
 
         HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle(inputProvider);
 
-        assertEquals(6L, puzzle.getPartOne());
+        PuzzleOutput<Long, Long> output = puzzle.solve();
+
+        assertEquals(6L, output.partOne());
     }
 
     @Test
@@ -33,6 +38,8 @@ class HauntedWastelandPuzzleTest {
 
         HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle(inputProvider);
 
-        assertEquals(6L, puzzle.getPartTwo());
+        PuzzleOutput<Long, Long> output = puzzle.solve();
+
+        assertEquals(6L, output.partTwo());
     }
 }
