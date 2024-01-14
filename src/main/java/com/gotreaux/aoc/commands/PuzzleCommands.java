@@ -4,7 +4,7 @@ import com.gotreaux.aoc.dto.PuzzleDto;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.services.PuzzleService;
 import java.util.List;
-import org.springframework.shell.command.CommandRegistration.OptionArity;
+import org.springframework.shell.command.CommandRegistration;
 import org.springframework.shell.command.annotation.Command;
 import org.springframework.shell.command.annotation.Option;
 import org.springframework.shell.context.InteractionMode;
@@ -15,6 +15,8 @@ import org.springframework.shell.table.TableModelBuilder;
 @Command(group = "Puzzle Commands", interactionMode = InteractionMode.ALL)
 public class PuzzleCommands {
 
+    private static final int TOTAL_AVAILABLE_WIDTH = 120;
+
     @Command(
             command = "solve-puzzle",
             description = "Solve puzzles for specified advent calendar year(s) and day(s)")
@@ -24,14 +26,14 @@ public class PuzzleCommands {
                             shortNames = 'Y',
                             description = "Solve puzzles for advent calendar year",
                             label = "YEAR1 YEAR2 YEAR3...",
-                            arity = OptionArity.ZERO_OR_MORE)
+                            arity = CommandRegistration.OptionArity.ZERO_OR_MORE)
                     Integer[] years,
             @Option(
                             longNames = "day",
                             shortNames = 'D',
                             description = "Solve puzzles for advent calendar day",
                             label = "DAY1 DAY2 DAY3...",
-                            arity = OptionArity.ZERO_OR_MORE)
+                            arity = CommandRegistration.OptionArity.ZERO_OR_MORE)
                     Integer[] days)
             throws Exception {
         PuzzleService puzzleService = new PuzzleService();
@@ -62,6 +64,6 @@ public class PuzzleCommands {
         TableBuilder tableBuilder = new TableBuilder(tableModelBuilder.build());
         tableBuilder.addFullBorder(BorderStyle.fancy_light);
 
-        return tableBuilder.build().render(120);
+        return tableBuilder.build().render(TOTAL_AVAILABLE_WIDTH);
     }
 }

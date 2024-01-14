@@ -36,14 +36,12 @@ public class PasswordPhilosophyPuzzle extends Puzzle {
             int second = policyRangeScanner.nextInt();
             policyRangeScanner.close();
 
-            OccurrencePasswordPolicy rangePolicy =
-                    new OccurrencePasswordPolicy(first, second, target);
+            PasswordPolicy rangePolicy = new OccurrencePasswordPolicy(first, second, target);
             if (rangePolicy.passes(password)) {
                 sumOfValidOccurrencesInRange++;
             }
 
-            PositionPasswordPolicy positionPolicy =
-                    new PositionPasswordPolicy(first, second, target);
+            PasswordPolicy positionPolicy = new PositionPasswordPolicy(first, second, target);
             if (positionPolicy.passes(password)) {
                 sumOfValidPositions++;
             }

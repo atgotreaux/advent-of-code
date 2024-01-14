@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-public enum Direction {
+enum Direction {
     NORTH('^'),
     SOUTH('v'),
     EAST('>'),
@@ -16,14 +16,14 @@ public enum Direction {
         this.label = label;
     }
 
-    public static Direction fromLabel(char label) throws NoSuchElementException {
-        return Arrays.stream(Direction.values())
+    static Direction fromLabel(char label) throws NoSuchElementException {
+        return Arrays.stream(values())
                 .filter(direction -> direction.label == label)
                 .findFirst()
                 .orElseThrow();
     }
 
-    public Point move(Point point) {
+    Point move(Point point) {
         return switch (this) {
             case NORTH -> new Point(point.x, point.y + 1);
             case SOUTH -> new Point(point.x, point.y - 1);

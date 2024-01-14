@@ -5,7 +5,7 @@ import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
@@ -46,7 +46,7 @@ public class CorruptionChecksumPuzzle extends Puzzle {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             return lines.mapToLong(
                             line -> {
-                                List<Long> numbers = new ArrayList<>();
+                                Collection<Long> numbers = new ArrayList<>();
 
                                 Scanner scanner = new Scanner(line);
                                 while (scanner.hasNextLong()) {
@@ -54,7 +54,7 @@ public class CorruptionChecksumPuzzle extends Puzzle {
                                     for (long previousNumber : numbers) {
                                         long larger = Math.max(previousNumber, number);
                                         long smaller = Math.min(previousNumber, number);
-                                        if (larger % smaller == 0) {
+                                        if (larger % smaller == 0L) {
                                             return larger / smaller;
                                         }
                                     }

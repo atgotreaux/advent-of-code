@@ -21,13 +21,13 @@ public class AdventCoinMiningPuzzle extends Puzzle {
     public PuzzleOutput<Integer, Integer> solve() throws Exception {
         String input = getInputProvider().getInputString();
 
-        int partOne = findHashMatchingCondition(input, string -> string.startsWith("00000"));
-        int partTwo = findHashMatchingCondition(input, string -> string.startsWith("000000"));
+        int partOne = findHashMatchingCondition(input, s -> s.startsWith("00000"));
+        int partTwo = findHashMatchingCondition(input, s -> s.startsWith("000000"));
 
         return new PuzzleOutput<>(partOne, partTwo);
     }
 
-    private int findHashMatchingCondition(String secretKey, Predicate<String> condition)
+    private static int findHashMatchingCondition(String secretKey, Predicate<String> condition)
             throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("MD5");
 

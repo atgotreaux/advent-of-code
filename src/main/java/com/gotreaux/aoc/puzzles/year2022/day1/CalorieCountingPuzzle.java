@@ -34,7 +34,7 @@ public class CalorieCountingPuzzle extends Puzzle {
         int highestThreeCalories =
                 elfCalorieCarriage.values().stream()
                         .sorted(Comparator.reverseOrder())
-                        .limit(3)
+                        .limit(3L)
                         .reduce(0, Integer::sum);
 
         return new PuzzleOutput<>(mostCalories, highestThreeCalories);

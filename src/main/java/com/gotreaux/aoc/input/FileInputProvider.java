@@ -38,7 +38,7 @@ public class FileInputProvider implements InputProvider {
     }
 
     private Path loadResource() throws NoSuchFileException, URISyntaxException {
-        URL resource = getClass().getClassLoader().getResource(this.inputPath);
+        URL resource = getClass().getClassLoader().getResource(inputPath);
         if (resource == null) {
             throw new NoSuchFileException(inputPath);
         }

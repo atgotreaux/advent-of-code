@@ -1,7 +1,7 @@
 package com.gotreaux.aoc.puzzles.year2020.day2;
 
-public record OccurrencePasswordPolicy(int min, int max, char target) implements PasswordPolicy {
-    public OccurrencePasswordPolicy {
+record OccurrencePasswordPolicy(int min, int max, char target) implements PasswordPolicy {
+    OccurrencePasswordPolicy {
         if (min < 0 || max <= 0) {
             throw new IllegalArgumentException("Password policy should define a positive range!");
         }
@@ -15,6 +15,6 @@ public record OccurrencePasswordPolicy(int min, int max, char target) implements
                         .filter(character -> character == target)
                         .count();
 
-        return min <= occurrences && occurrences <= max;
+        return min <= Math.toIntExact(occurrences) && Math.toIntExact(occurrences) <= max;
     }
 }

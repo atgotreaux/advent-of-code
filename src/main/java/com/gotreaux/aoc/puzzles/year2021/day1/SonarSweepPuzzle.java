@@ -47,7 +47,7 @@ public class SonarSweepPuzzle extends Puzzle {
         }
     }
 
-    private long getMeasurementIncreaseCount(List<Long> measurements) {
+    private static long getMeasurementIncreaseCount(List<Long> measurements) {
         return IntStream.range(1, measurements.size())
                 .filter(index -> measurements.get(index) > measurements.get(index - 1))
                 .count();

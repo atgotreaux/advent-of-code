@@ -3,14 +3,14 @@ package com.gotreaux.aoc.puzzles.year2016.day2;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class Keypad {
+class Keypad {
     private final List<Key> keys;
 
-    public Keypad(List<Key> keys) {
+    Keypad(List<Key> keys) {
         this.keys = keys;
     }
 
-    public Key move(Key key, Instruction instruction) throws NoSuchElementException {
+    Key move(Key key, Instruction instruction) throws NoSuchElementException {
         String movedLabel =
                 switch (instruction) {
                     case UP -> key.up();
@@ -19,7 +19,7 @@ public class Keypad {
                     case RIGHT -> key.right();
                 };
 
-        return this.keys.stream()
+        return keys.stream()
                 .filter(keyRecord -> keyRecord.label().equals(movedLabel))
                 .findFirst()
                 .orElseThrow();

@@ -3,7 +3,7 @@ package com.gotreaux.aoc.puzzles.year2015.day1;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-public enum Instruction {
+enum Instruction {
     UP('('),
     DOWN(')');
 
@@ -13,7 +13,7 @@ public enum Instruction {
         this.label = label;
     }
 
-    public static Instruction fromLabel(char label) throws NoSuchElementException {
+    static Instruction fromLabel(char label) throws NoSuchElementException {
         return Arrays.stream(Instruction.values())
                 .filter(instruction -> instruction.label == label)
                 .findFirst()

@@ -20,10 +20,9 @@ public class NiceStringPuzzle extends Puzzle {
     }
 
     public Long getPartOne() throws Exception {
-        Predicate<String> threeVowels = string -> string.replaceAll("[^aeiou]", "").length() >= 3;
-        Predicate<String> repeatedCharacter = string -> string.matches("[a-z]*([a-z])\\1[a-z]*");
-        Predicate<String> noForbiddenStrings =
-                string -> !string.matches("[a-z]*(ab|cd|pq|xy)[a-z]*");
+        Predicate<String> threeVowels = s -> s.replaceAll("[^aeiou]", "").length() >= 3;
+        Predicate<String> repeatedCharacter = s -> s.matches("[a-z]*([a-z])\\1[a-z]*");
+        Predicate<String> noForbiddenStrings = s -> !s.matches("[a-z]*(ab|cd|pq|xy)[a-z]*");
         Predicate<String> niceStringCriteria =
                 threeVowels.and(repeatedCharacter).and(noForbiddenStrings);
 
@@ -33,10 +32,9 @@ public class NiceStringPuzzle extends Puzzle {
     }
 
     public Long getPartTwo() throws Exception {
-        Predicate<String> pairRepeated =
-                string -> string.matches("[a-z]*([a-z][a-z])[a-z]*\\1[a-z]*");
+        Predicate<String> pairRepeated = s -> s.matches("[a-z]*([a-z][a-z])[a-z]*\\1[a-z]*");
         Predicate<String> repeatedWithBetweenCharacter =
-                string -> string.matches("[a-z]*([a-z])[a-z]\\1[a-z]*");
+                s -> s.matches("[a-z]*([a-z])[a-z]\\1[a-z]*");
         Predicate<String> niceStringBetterModelCriteria =
                 pairRepeated.and(repeatedWithBetweenCharacter);
 

@@ -14,18 +14,18 @@ public class PuzzleDto {
     }
 
     public int year() {
-        return this.annotation.year();
+        return annotation.year();
     }
 
     public int day() {
-        return this.annotation.day();
+        return annotation.day();
     }
 
     public String title() {
-        return this.annotation.title();
+        return annotation.title();
     }
 
     public PuzzleOutput<?, ?> getOutput() throws Exception {
-        return this.puzzle.solve();
+        return puzzle.solve();
     }
 }

@@ -6,7 +6,7 @@ import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 @ShellPuzzle(year = 2016, day = 1, title = "No Time for a Taxicab")
 public class TaxicabPuzzle extends Puzzle {
@@ -39,7 +39,7 @@ public class TaxicabPuzzle extends Puzzle {
     public Integer getPartTwo() throws Exception {
         Direction direction = Direction.NORTH;
 
-        List<Point> visitedPositions = new ArrayList<>();
+        Collection<Point> visitedPositions = new ArrayList<>();
         Point position = new Point();
         visitedPositions.add(position);
 

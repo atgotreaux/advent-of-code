@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2021.day2;
 
-public enum Command {
+enum Command {
     FORWARD,
     DOWN,
     UP

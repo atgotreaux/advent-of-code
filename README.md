@@ -27,7 +27,7 @@ Running the `com.gotreaux.aoc.Application` class or the `advent-of-code` jar wit
 
 ### Non-interactive Mode
 
-Running the `com.gotreaux.aoc.Application` class or the `advent-of-code` jar with commands or options will execute the command and without launching a REPL shell.
+Running the `com.gotreaux.aoc.Application` class or the `advent-of-code` jar with commands or options will execute the command without launching a REPL shell.
 
 ## Usage
 
@@ -45,4 +45,4 @@ Run the `bin/ignore-input-resources.cmd` script to ignore working directory chan
 
 The `solve-puzzle` command will solve puzzles with the provided puzzle input for the specified year(s) and day(s).
 
-Synopsis: `solve-puzzle [--help|-h] --year|-y YEAR... --day|-d DAY...`
+Synopsis: `solve-puzzle [--help|-h] --year|-Y YEAR... --day|-D DAY...`

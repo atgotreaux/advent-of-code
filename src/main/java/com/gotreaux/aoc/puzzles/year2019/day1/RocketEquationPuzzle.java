@@ -14,22 +14,22 @@ public class RocketEquationPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve() throws Exception {
+    public PuzzleOutput<Integer, Integer> solve() throws Exception {
         return new PuzzleOutput<>(getPartOne(), getPartTwo());
     }
 
-    public Long getPartOne() throws Exception {
+    public Integer getPartOne() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
-            return lines.map(line -> new Module(Long.parseLong(line)))
-                    .mapToLong(Module::getFuelRequirement)
+            return lines.map(line -> new Module(Integer.parseInt(line)))
+                    .mapToInt(Module::getFuelRequirement)
                     .sum();
         }
     }
 
-    public Long getPartTwo() throws Exception {
+    public Integer getPartTwo() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
-            return lines.map(line -> new Module(Long.parseLong(line)))
-                    .mapToLong(Module::getAdditionalFuelRequirement)
+            return lines.map(line -> new Module(Integer.parseInt(line)))
+                    .mapToInt(Module::getAdditionalFuelRequirement)
                     .sum();
         }
     }

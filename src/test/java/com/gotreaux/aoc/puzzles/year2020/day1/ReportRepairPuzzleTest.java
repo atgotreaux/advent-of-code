@@ -12,7 +12,7 @@ class ReportRepairPuzzleTest {
 
         ReportRepairPuzzle puzzle = new ReportRepairPuzzle(inputProvider);
 
-        assertEquals(514579L, puzzle.getPartOne());
+        assertEquals(514579, puzzle.getPartOne());
     }
 
     @Test
@@ -21,6 +21,6 @@ class ReportRepairPuzzleTest {
 
         ReportRepairPuzzle puzzle = new ReportRepairPuzzle(inputProvider);
 
-        assertEquals(241861950L, puzzle.getPartTwo());
+        assertEquals(241861950, puzzle.getPartTwo());
     }
 }

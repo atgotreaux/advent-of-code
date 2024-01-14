@@ -14,14 +14,14 @@ class ModuleTest {
     @Test
     void throwsIfMassIsNonPositive() {
         RandomGenerator generator = RandomGenerator.getDefault();
-        long mass = -Math.abs(generator.nextLong());
+        int mass = -Math.abs(generator.nextInt());
 
         assertThrows(IllegalArgumentException.class, () -> new Module(mass));
     }
 
     @ParameterizedTest
     @MethodSource("provideFuelRequirement")
-    void fuelRequirement(long mass, long expectedFuelRequirement) {
+    void fuelRequirement(int mass, int expectedFuelRequirement) {
         Module module = new Module(mass);
 
         assertEquals(expectedFuelRequirement, module.getFuelRequirement());
@@ -29,7 +29,7 @@ class ModuleTest {
 
     @ParameterizedTest
     @MethodSource("provideAdditionalFuelRequirement")
-    void additionalFuelRequirement(long mass, long expectedFuelRequirement) {
+    void additionalFuelRequirement(int mass, int expectedFuelRequirement) {
         Module module = new Module(mass);
 
         assertEquals(expectedFuelRequirement, module.getAdditionalFuelRequirement());
@@ -37,17 +37,17 @@ class ModuleTest {
 
     private static Stream<Arguments> provideFuelRequirement() {
         return Stream.of(
-                Arguments.of(12L, 2L),
-                Arguments.of(14L, 2L),
-                Arguments.of(1969L, 654L),
-                Arguments.of(100756L, 33583L));
+                Arguments.of(12, 2),
+                Arguments.of(14, 2),
+                Arguments.of(1969, 654),
+                Arguments.of(100756, 33583));
     }
 
     private static Stream<Arguments> provideAdditionalFuelRequirement() {
         return Stream.of(
-                Arguments.of(12L, 2L),
-                Arguments.of(14L, 2L),
-                Arguments.of(1969L, 966L),
-                Arguments.of(100756L, 50346L));
+                Arguments.of(12, 2),
+                Arguments.of(14, 2),
+                Arguments.of(1969, 966),
+                Arguments.of(100756, 50346));
     }
 }

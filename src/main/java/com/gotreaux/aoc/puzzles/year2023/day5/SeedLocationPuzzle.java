@@ -35,8 +35,10 @@ public class SeedLocationPuzzle extends Puzzle {
                 }
                 scanner.close();
             } else if (line.endsWith("map:")) {
-                maps.add(map);
-                map = new ArrayList<>();
+                if (!map.isEmpty()) {
+                    maps.add(map);
+                    map = new ArrayList<>();
+                }
             } else if (!line.isEmpty() && Character.isDigit(line.charAt(0))) {
                 Scanner scanner = new Scanner(line);
                 long destinationRangeStart = scanner.nextLong();
@@ -47,6 +49,7 @@ public class SeedLocationPuzzle extends Puzzle {
                 map.add(new AlmanacRange(destinationRangeStart, sourceRangeStart, rangeLength));
             }
         }
+        maps.add(map);
 
         Almanac almanac = new Almanac(maps);
 

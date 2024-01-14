@@ -3,7 +3,7 @@ package com.gotreaux.aoc.puzzles.year2022.day2;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-public enum Hand {
+enum Hand {
     ROCK('A', 'X', 1),
     PAPER('B', 'Y', 2),
     SCISSORS('C', 'Z', 3);
@@ -18,26 +18,25 @@ public enum Hand {
         this.weight = weight;
     }
 
-    public int getWeight() {
+    int getWeight() {
         return this.weight;
     }
 
-    public static Hand fromOpponentLabel(char opponentLabel) throws NoSuchElementException {
+    static Hand fromOpponentLabel(char opponentLabel) throws NoSuchElementException {
         return Arrays.stream(Hand.values())
                 .filter(hand -> hand.opponentLabel == opponentLabel)
                 .findFirst()
                 .orElseThrow();
     }
 
-    public static Hand fromEncryptedStrategyLabel(char strategyLabel)
-            throws NoSuchElementException {
+    static Hand fromEncryptedStrategyLabel(char strategyLabel) throws NoSuchElementException {
         return Arrays.stream(Hand.values())
                 .filter(hand -> hand.strategyLabel == strategyLabel)
                 .findFirst()
                 .orElseThrow();
     }
 
-    public static Hand fromStrategyOutcomeLabel(Hand opponentHand, char outcomeLabel)
+    static Hand fromStrategyOutcomeLabel(Hand opponentHand, char outcomeLabel)
             throws NoSuchElementException {
         if (outcomeLabel == 'X') {
             return switch (opponentHand) {

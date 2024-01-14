@@ -1,18 +1,19 @@
 package com.gotreaux.aoc.puzzles.year2019.day1;
 
-public record Module(long mass) {
-    public Module {
+record Module(int mass) {
+
+    Module {
         if (mass <= 0) {
             throw new IllegalArgumentException("Module mass must be greater than 0!");
         }
     }
 
-    public long getFuelRequirement() {
+    int getFuelRequirement() {
         return (mass / 3) - 2;
     }
 
-    public long getAdditionalFuelRequirement() {
-        long fuel = getFuelRequirement();
+    int getAdditionalFuelRequirement() {
+        int fuel = getFuelRequirement();
         if (fuel <= 0) {
             return 0;
         }

@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
-public class Network {
+class Network {
     private final List<Instruction> instructions;
     private final List<Node> nodes;
 
-    public Network(List<Instruction> instructions, List<Node> nodes) {
+    Network(List<Instruction> instructions, List<Node> nodes) {
         this.instructions = instructions;
         this.nodes = nodes;
     }
@@ -20,12 +20,12 @@ public class Network {
 
         return currentNodes.stream()
                 .mapToLong(node -> getStepsForNode(node, endPosition))
-                .reduce(1, MathUtils::lcm);
+                .reduce(1L, MathUtils::lcm);
     }
 
     private long getStepsForNode(Node startPosition, Predicate<Node> endPosition)
             throws NoSuchElementException {
-        long steps = 0;
+        long steps = 0L;
         int currentInstructionIndex = 0;
 
         Node currentNode = startPosition;

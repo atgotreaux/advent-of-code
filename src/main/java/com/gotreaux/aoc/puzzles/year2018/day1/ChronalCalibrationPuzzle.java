@@ -7,6 +7,7 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -45,8 +46,8 @@ public class ChronalCalibrationPuzzle extends Puzzle {
 
         List<String> frequencyChanges = getInputProvider().getInputList();
 
-        long currentFrequency = 0;
-        List<Long> reachedFrequencies = new ArrayList<>();
+        long currentFrequency = 0L;
+        Collection<Long> reachedFrequencies = new ArrayList<>();
         reachedFrequencies.add(currentFrequency);
 
         int currentFrequencyPosition = 0;

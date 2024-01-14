@@ -2,13 +2,13 @@ package com.gotreaux.aoc.puzzles.year2016.day1;
 
 import java.awt.Point;
 
-public enum Direction {
+enum Direction {
     NORTH,
     SOUTH,
     EAST,
     WEST;
 
-    public Point move(Point point, int units) {
+    Point move(Point point, int units) {
         return switch (this) {
             case NORTH -> new Point(point.x, point.y + units);
             case SOUTH -> new Point(point.x, point.y - units);
@@ -17,7 +17,7 @@ public enum Direction {
         };
     }
 
-    public Direction turn(Instruction instruction) {
+    Direction turn(Instruction instruction) {
         return switch (this) {
             case NORTH -> instruction == Instruction.RIGHT ? EAST : WEST;
             case SOUTH -> instruction == Instruction.RIGHT ? WEST : EAST;

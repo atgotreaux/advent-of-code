@@ -1,7 +1,7 @@
 package com.gotreaux.aoc.puzzles.year2022.day2;
 
-public record Round(Hand opponentHand, Hand strategyHand) {
-    public int getScore() {
+record Round(Hand opponentHand, Hand strategyHand) {
+    int getScore() {
         if (opponentHand == strategyHand) {
             return 3;
         }
