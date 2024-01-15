@@ -17,8 +17,11 @@ public class SphericalHousesPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve() throws Exception {
-        Set<Point> houseDeliveries = new HashSet<>();
-        Set<Point> assistedHouseDeliveries = new HashSet<>();
+        String input = getInputProvider().getInputString();
+        int length = input.length();
+
+        Set<Point> houseDeliveries = new HashSet<>(length);
+        Set<Point> assistedHouseDeliveries = new HashSet<>(length);
 
         Point currentPosition = new Point();
         houseDeliveries.add(currentPosition);
@@ -27,8 +30,7 @@ public class SphericalHousesPuzzle extends Puzzle {
         Point roboSantaPosition = new Point();
         assistedHouseDeliveries.add(santaPosition);
 
-        String input = getInputProvider().getInputString();
-        for (int i = 0; i < input.length(); i++) {
+        for (int i = 0; i < length; i++) {
             Direction direction = Direction.fromLabel(input.charAt(i));
 
             currentPosition = direction.move(currentPosition);

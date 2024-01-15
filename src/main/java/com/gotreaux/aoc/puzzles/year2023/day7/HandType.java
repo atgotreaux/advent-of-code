@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public enum HandType {
+enum HandType {
     HIGH_CARD(
             cards ->
                     cards.size() == cards.stream().distinct().count()
@@ -110,7 +110,7 @@ public enum HandType {
         this.criterion = criterion;
     }
 
-    public static HandType fromCards(List<Card> cards) throws NoSuchElementException {
+    static HandType fromCards(List<Card> cards) throws NoSuchElementException {
         return Arrays.stream(HandType.values())
                 .sorted(Collections.reverseOrder())
                 .filter(handType -> handType.criterion.test(cards))

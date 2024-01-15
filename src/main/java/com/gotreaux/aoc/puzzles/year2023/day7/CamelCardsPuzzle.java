@@ -45,7 +45,7 @@ public class CamelCardsPuzzle extends Puzzle {
         return new PuzzleOutput<>(calculateWinnings(hands), calculateWinnings(jokerHands));
     }
 
-    private int calculateWinnings(List<Hand> processingHands) {
+    private static int calculateWinnings(List<Hand> processingHands) {
         return IntStream.range(1, processingHands.size() + 1)
                 .map(rank -> rank * processingHands.get(rank - 1).getBid())
                 .sum();

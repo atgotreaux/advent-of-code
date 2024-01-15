@@ -3,43 +3,43 @@ package com.gotreaux.aoc.puzzles.year2023.day7;
 import java.util.Comparator;
 import java.util.List;
 
-public class Hand implements Comparable<Hand> {
+class Hand implements Comparable<Hand> {
     private final List<Card> cards;
     private final int bid;
     private final HandType handType;
 
-    public Hand(List<Card> cards, int bid) {
+    Hand(List<Card> cards, int bid) {
         this.cards = cards;
         this.bid = bid;
         this.handType = HandType.fromCards(cards);
     }
 
-    public Card getFirstCard() {
+    private Card getFirstCard() {
         return cards.getFirst();
     }
 
-    public Card getSecondCard() {
+    private Card getSecondCard() {
         return cards.get(1);
     }
 
-    public Card getThirdCard() {
+    private Card getThirdCard() {
         return cards.get(2);
     }
 
-    public Card getFourthCard() {
+    private Card getFourthCard() {
         return cards.get(3);
     }
 
-    public Card getFifthCard() {
+    private Card getFifthCard() {
         return cards.get(4);
     }
 
-    public int getBid() {
-        return this.bid;
+    int getBid() {
+        return bid;
     }
 
-    public HandType getHandType() {
-        return this.handType;
+    private HandType getHandType() {
+        return handType;
     }
 
     @Override

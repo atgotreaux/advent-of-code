@@ -6,6 +6,7 @@ import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -16,7 +17,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class PuzzleService {
 
-    public List<PuzzleDto> getPuzzles(List<Integer> years, List<Integer> days) throws Exception {
+    public List<PuzzleDto> getPuzzles(Collection<Integer> years, Collection<Integer> days)
+            throws Exception {
         ClassPathScanningCandidateComponentProvider provider =
                 new ClassPathScanningCandidateComponentProvider(false);
         provider.addIncludeFilter(new AnnotationTypeFilter(ShellPuzzle.class));

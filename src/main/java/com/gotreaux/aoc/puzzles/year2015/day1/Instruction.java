@@ -13,9 +13,13 @@ enum Instruction {
         this.label = label;
     }
 
+    char getLabel() {
+        return label;
+    }
+
     static Instruction fromLabel(char label) throws NoSuchElementException {
-        return Arrays.stream(Instruction.values())
-                .filter(instruction -> instruction.label == label)
+        return Arrays.stream(values())
+                .filter(instruction -> instruction.getLabel() == label)
                 .findFirst()
                 .orElseThrow();
     }

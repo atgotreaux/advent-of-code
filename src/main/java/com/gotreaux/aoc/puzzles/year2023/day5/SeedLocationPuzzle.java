@@ -5,6 +5,7 @@ import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,8 +18,8 @@ public class SeedLocationPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Long, Long> solve() throws Exception {
-        List<Long> seeds = new ArrayList<>();
-        List<SeedRange> seedRanges = new ArrayList<>();
+        Collection<Long> seeds = new ArrayList<>();
+        Collection<SeedRange> seedRanges = new ArrayList<>();
 
         List<List<AlmanacRange>> maps = new ArrayList<>();
         List<AlmanacRange> map = new ArrayList<>();

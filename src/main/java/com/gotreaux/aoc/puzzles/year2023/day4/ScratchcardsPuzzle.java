@@ -4,11 +4,11 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 @ShellPuzzle(year = 2023, day = 4, title = "Scratchcards")
 public class ScratchcardsPuzzle extends Puzzle {
@@ -36,13 +36,12 @@ public class ScratchcardsPuzzle extends Puzzle {
             String winners = winnersAndNumbers[0];
             String numbers = winnersAndNumbers[1];
 
-            List<String> winnerList = new ArrayList<>(Arrays.asList(winners.split("\\s+")));
-            List<String> numberList = new ArrayList<>(Arrays.asList(numbers.split("\\s+")));
-
-            numberList.retainAll(winnerList);
+            Collection<String> winnerList = List.of(winners.split("\\s+"));
+            Collection<String> numberList =
+                    Stream.of(numbers.split("\\s+")).filter(winnerList::contains).toList();
 
             if (!numberList.isEmpty()) {
-                scratchcardPoints += (int) Math.pow(2, numberList.size() - 1);
+                scratchcardPoints += 1 << (numberList.size() - 1);
             }
 
             for (int i = 0; i < numberList.size(); i++) {

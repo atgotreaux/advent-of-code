@@ -6,11 +6,11 @@ import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @ShellPuzzle(year = 2023, day = 3, title = "Gear Ratios")
 public class GearRatiosPuzzle extends Puzzle {
@@ -36,7 +36,7 @@ public class GearRatiosPuzzle extends Puzzle {
         for (int lineRow = 0; lineRow < rowCount; lineRow++) {
             int currentNumber = 0;
             boolean adjacentToPart = false;
-            Set<Point> gears = new HashSet<>();
+            Collection<Point> gears = new HashSet<>();
             for (int lineCol = 0; lineCol < columnCount + 1; lineCol++) {
                 if (lineCol < columnCount && Character.isDigit(matrix[lineRow][lineCol])) {
                     currentNumber =

@@ -16,9 +16,13 @@ enum Direction {
         this.label = label;
     }
 
+    char getLabel() {
+        return label;
+    }
+
     static Direction fromLabel(char label) throws NoSuchElementException {
         return Arrays.stream(values())
-                .filter(direction -> direction.label == label)
+                .filter(direction -> direction.getLabel() == label)
                 .findFirst()
                 .orElseThrow();
     }
