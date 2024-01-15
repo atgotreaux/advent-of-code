@@ -1,9 +1,9 @@
-name: Code Coverage
+name: Static Analysis
 
 on: [push, pull_request]
 
 jobs:
-  code-coverage:
+  static-analysis:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -16,5 +16,5 @@ jobs:
           cache: 'maven'
       - name: Build with Maven
         run: mvn -B package
-      - name: Code coverage check
-        run: mvn jacoco:check
+      - name: Static analysis check
+        run: mvn spotbugs:check

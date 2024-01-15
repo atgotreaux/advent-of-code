@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2023.day7;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 class Hand implements Comparable<Hand> {
     private final List<Card> cards;
@@ -51,5 +52,15 @@ class Hand implements Comparable<Hand> {
                 .thenComparing(Hand::getFourthCard)
                 .thenComparing(Hand::getFifthCard)
                 .compare(this, other);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof Hand && compareTo((Hand) o) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cards, bid, handType);
     }
 }
