@@ -12,9 +12,7 @@ import java.util.Set;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
-import org.springframework.stereotype.Service;
 
-@Service
 public class PuzzleService {
 
     public List<PuzzleDto> getPuzzles(Collection<Integer> years, Collection<Integer> days)
