@@ -6,7 +6,6 @@ import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.List;
 import java.util.stream.IntStream;
-import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 @ShellPuzzle(year = 2021, day = 1, title = "Sonar Sweep")
@@ -18,36 +17,24 @@ public class SonarSweepPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Long, Long> solve() throws Exception {
-        return new PuzzleOutput<>(getPartOne(), getPartTwo());
-    }
-
-    public Long getPartOne() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
-            List<Long> depthMeasurements = lines.map(Long::parseLong).toList();
+            List<Integer> measurements = lines.map(Integer::parseInt).toList();
 
-            return getMeasurementIncreaseCount(depthMeasurements);
-        }
-    }
-
-    public Long getPartTwo() throws Exception {
-        try (Stream<String> lines = getInputProvider().getInputStream()) {
-            List<Long> depthMeasurements = lines.map(Long::parseLong).toList();
-
-            List<Long> windows =
-                    IntStream.range(0, depthMeasurements.size() - 3 + 1)
-                            .mapToObj(
-                                    windowStart ->
-                                            depthMeasurements.subList(windowStart, windowStart + 3))
-                            .flatMapToLong(
-                                    longs -> LongStream.of(longs.stream().reduce(0L, Long::sum)))
+            List<Integer> windows =
+                    IntStream.range(0, measurements.size() - 3 + 1)
+                            .mapToObj(window -> measurements.subList(window, window + 3))
+                            .flatMapToInt(i -> IntStream.of(i.stream().reduce(0, Integer::sum)))
                             .boxed()
                             .toList();
 
-            return getMeasurementIncreaseCount(windows);
+            long measurementIncreaseCount = getMeasurementIncreaseCount(measurements);
+            long measurementWindowIncreaseCount = getMeasurementIncreaseCount(windows);
+
+            return new PuzzleOutput<>(measurementIncreaseCount, measurementWindowIncreaseCount);
         }
     }
 
-    private static long getMeasurementIncreaseCount(List<Long> measurements) {
+    private static long getMeasurementIncreaseCount(List<Integer> measurements) {
         return IntStream.range(1, measurements.size())
                 .filter(index -> measurements.get(index) > measurements.get(index - 1))
                 .count();

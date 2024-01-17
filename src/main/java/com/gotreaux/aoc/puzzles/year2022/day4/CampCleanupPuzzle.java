@@ -28,15 +28,14 @@ public class CampCleanupPuzzle extends Puzzle {
             Scanner firstSectionRange = new Scanner(assignmentOne);
             firstSectionRange.useDelimiter("-");
             SectionAssignment firstAssignment =
-                    new SectionAssignment(
-                            firstSectionRange.nextLong(), firstSectionRange.nextLong());
+                    new SectionAssignment(firstSectionRange.nextInt(), firstSectionRange.nextInt());
             firstSectionRange.close();
 
             Scanner secondSectionRange = new Scanner(assignmentTwo);
             secondSectionRange.useDelimiter("-");
             SectionAssignment secondAssignment =
                     new SectionAssignment(
-                            secondSectionRange.nextLong(), secondSectionRange.nextLong());
+                            secondSectionRange.nextInt(), secondSectionRange.nextInt());
             secondSectionRange.close();
 
             if (firstAssignment.contains(secondAssignment)

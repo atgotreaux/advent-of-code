@@ -18,20 +18,28 @@ enum Hand {
         this.weight = weight;
     }
 
+    char getOpponentLabel() {
+        return opponentLabel;
+    }
+
+    char getStrategyLabel() {
+        return strategyLabel;
+    }
+
     int getWeight() {
-        return this.weight;
+        return weight;
     }
 
     static Hand fromOpponentLabel(char opponentLabel) throws NoSuchElementException {
-        return Arrays.stream(Hand.values())
-                .filter(hand -> hand.opponentLabel == opponentLabel)
+        return Arrays.stream(values())
+                .filter(hand -> hand.getOpponentLabel() == opponentLabel)
                 .findFirst()
                 .orElseThrow();
     }
 
     static Hand fromEncryptedStrategyLabel(char strategyLabel) throws NoSuchElementException {
-        return Arrays.stream(Hand.values())
-                .filter(hand -> hand.strategyLabel == strategyLabel)
+        return Arrays.stream(values())
+                .filter(hand -> hand.getStrategyLabel() == strategyLabel)
                 .findFirst()
                 .orElseThrow();
     }

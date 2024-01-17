@@ -4,7 +4,6 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.util.stream.Stream;
 
 @ShellPuzzle(year = 2019, day = 1, title = "The Tyranny of the Rocket Equation")
 public class RocketEquationPuzzle extends Puzzle {
@@ -15,22 +14,16 @@ public class RocketEquationPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve() throws Exception {
-        return new PuzzleOutput<>(getPartOne(), getPartTwo());
-    }
+        int sumOfFuelRequirements = 0;
+        int sumOfAdditionalFuelRequirements = 0;
 
-    public Integer getPartOne() throws Exception {
-        try (Stream<String> lines = getInputProvider().getInputStream()) {
-            return lines.map(line -> new Module(Integer.parseInt(line)))
-                    .mapToInt(Module::getFuelRequirement)
-                    .sum();
-        }
-    }
+        for (String line : getInputProvider().getInputList()) {
+            Module module = new Module(Integer.parseInt(line));
 
-    public Integer getPartTwo() throws Exception {
-        try (Stream<String> lines = getInputProvider().getInputStream()) {
-            return lines.map(line -> new Module(Integer.parseInt(line)))
-                    .mapToInt(Module::getAdditionalFuelRequirement)
-                    .sum();
+            sumOfFuelRequirements += module.getFuelRequirement();
+            sumOfAdditionalFuelRequirements += module.getAdditionalFuelRequirement();
         }
+
+        return new PuzzleOutput<>(sumOfFuelRequirements, sumOfAdditionalFuelRequirements);
     }
 }

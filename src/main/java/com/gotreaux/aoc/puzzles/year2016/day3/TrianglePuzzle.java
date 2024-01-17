@@ -5,9 +5,9 @@ import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 @ShellPuzzle(year = 2016, day = 3, title = "Squares With Three Sides")
 public class TrianglePuzzle extends Puzzle {
@@ -18,54 +18,40 @@ public class TrianglePuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Long, Long> solve() throws Exception {
-        return new PuzzleOutput<>(getPartOne(), getPartTwo());
-    }
+        Collection<String> input = getInputProvider().getInputList();
+        Collection<Triangle> rowTriangles = new ArrayList<>(input.size());
 
-    public Long getPartOne() throws Exception {
-        try (Stream<String> lines = getInputProvider().getInputStream()) {
-            return lines.map(
-                            line -> {
-                                Scanner scanner = new Scanner(line);
+        List<Integer> colOne = new ArrayList<>(input.size());
+        List<Integer> colTwo = new ArrayList<>(input.size());
+        List<Integer> colThree = new ArrayList<>(input.size());
 
-                                long a = scanner.nextLong();
-                                long b = scanner.nextLong();
-                                long c = scanner.nextLong();
-
-                                scanner.close();
-
-                                return new Triangle(a, b, c);
-                            })
-                    .filter(Triangle::isValid)
-                    .count();
-        }
-    }
-
-    public Long getPartTwo() throws Exception {
-        List<Long> columnOne = new ArrayList<>();
-        List<Long> columnTwo = new ArrayList<>();
-        List<Long> columnThree = new ArrayList<>();
-
-        for (String line : getInputProvider().getInputList()) {
+        for (String line : input) {
             Scanner scanner = new Scanner(line);
-
-            columnOne.add(scanner.nextLong());
-            columnTwo.add(scanner.nextLong());
-            columnThree.add(scanner.nextLong());
-
+            int a = scanner.nextInt();
+            int b = scanner.nextInt();
+            int c = scanner.nextInt();
             scanner.close();
+
+            rowTriangles.add(new Triangle(a, b, c));
+
+            colOne.add(a);
+            colTwo.add(b);
+            colThree.add(c);
         }
 
-        List<Triangle> triangles = new ArrayList<>();
-        for (int i = 0; i < columnOne.size(); i += 3) {
-            triangles.add(
-                    new Triangle(columnOne.get(i), columnOne.get(i + 1), columnOne.get(i + 2)));
-            triangles.add(
-                    new Triangle(columnTwo.get(i), columnTwo.get(i + 1), columnTwo.get(i + 2)));
-            triangles.add(
-                    new Triangle(
-                            columnThree.get(i), columnThree.get(i + 1), columnThree.get(i + 2)));
+        Collection<Triangle> colTriangles = new ArrayList<>(input.size() / 3);
+        if (input.size() >= 3) {
+            for (int i = 0; i < colOne.size(); i += 3) {
+                colTriangles.add(new Triangle(colOne.get(i), colOne.get(i + 1), colOne.get(i + 2)));
+                colTriangles.add(new Triangle(colTwo.get(i), colTwo.get(i + 1), colTwo.get(i + 2)));
+                colTriangles.add(
+                        new Triangle(colThree.get(i), colThree.get(i + 1), colThree.get(i + 2)));
+            }
         }
 
-        return triangles.stream().filter(Triangle::isValid).count();
+        long validRowTriangles = rowTriangles.stream().filter(Triangle::isValid).count();
+        long validColumnTriangles = colTriangles.stream().filter(Triangle::isValid).count();
+
+        return new PuzzleOutput<>(validRowTriangles, validColumnTriangles);
     }
 }

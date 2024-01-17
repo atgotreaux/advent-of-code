@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.StringInputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class TrianglePuzzleTest {
@@ -13,7 +14,9 @@ class TrianglePuzzleTest {
 
         TrianglePuzzle puzzle = new TrianglePuzzle(inputProvider);
 
-        assertEquals(0L, puzzle.getPartOne());
+        PuzzleOutput<Long, Long> output = puzzle.solve();
+
+        assertEquals(0L, output.partOne());
     }
 
     @Test
@@ -22,6 +25,8 @@ class TrianglePuzzleTest {
 
         TrianglePuzzle puzzle = new TrianglePuzzle(inputProvider);
 
-        assertEquals(6L, puzzle.getPartTwo());
+        PuzzleOutput<Long, Long> output = puzzle.solve();
+
+        assertEquals(6L, output.partTwo());
     }
 }

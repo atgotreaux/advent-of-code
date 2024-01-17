@@ -2,7 +2,7 @@ package com.gotreaux.aoc.puzzles.year2023.day5;
 
 record AlmanacRange(long destinationRangeStart, long sourceRangeStart, long rangeLength) {
     AlmanacRange {
-        if (destinationRangeStart < 0 || sourceRangeStart < 0 || rangeLength < 0) {
+        if (destinationRangeStart < 0L || sourceRangeStart < 0L || rangeLength < 0L) {
             throw new IllegalArgumentException(
                     "Almanac range expects non negative numbers for range!");
         }

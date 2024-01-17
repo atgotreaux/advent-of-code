@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2019.day1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.StringInputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -16,7 +17,9 @@ class RocketEquationPuzzleTest {
 
         RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
 
-        assertEquals(expectedFuelRequirement, puzzle.getPartOne());
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(expectedFuelRequirement, output.partOne());
     }
 
     @ParameterizedTest
@@ -26,7 +29,9 @@ class RocketEquationPuzzleTest {
 
         RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
 
-        assertEquals(expectedFuelRequirement, puzzle.getPartTwo());
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(expectedFuelRequirement, output.partTwo());
     }
 
     private static Stream<Arguments> provideFuelRequirement() {

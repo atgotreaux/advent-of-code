@@ -7,7 +7,6 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 @ShellPuzzle(year = 2017, day = 2, title = "Corruption Checksum")
 public class CorruptionChecksumPuzzle extends Puzzle {
@@ -17,55 +16,36 @@ public class CorruptionChecksumPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve() throws Exception {
-        return new PuzzleOutput<>(getPartOne(), getPartTwo());
-    }
+    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+        int sumOfLargestDifferences = 0;
+        int sumOfLargestDivisibility = 0;
 
-    public Long getPartOne() throws Exception {
-        try (Stream<String> lines = getInputProvider().getInputStream()) {
-            return lines.mapToLong(
-                            line -> {
-                                long largest = Long.MIN_VALUE;
-                                long smallest = Long.MAX_VALUE;
+        for (String line : getInputProvider().getInputList()) {
+            Collection<Integer> numbers = new ArrayList<>();
+            int largest = Integer.MIN_VALUE;
+            int smallest = Integer.MAX_VALUE;
 
-                                Scanner scanner = new Scanner(line);
-                                while (scanner.hasNextLong()) {
-                                    long number = scanner.nextLong();
-                                    largest = Math.max(largest, number);
-                                    smallest = Math.min(smallest, number);
-                                }
-                                scanner.close();
+            Scanner scanner = new Scanner(line);
+            while (scanner.hasNextLong()) {
+                int number = scanner.nextInt();
 
-                                return largest - smallest;
-                            })
-                    .sum();
+                largest = Math.max(largest, number);
+                smallest = Math.min(smallest, number);
+
+                for (int previousNumber : numbers) {
+                    int larger = Math.max(previousNumber, number);
+                    int smaller = Math.min(previousNumber, number);
+                    if (larger % smaller == 0) {
+                        sumOfLargestDivisibility += larger / smaller;
+                    }
+                }
+                numbers.add(number);
+            }
+            scanner.close();
+
+            sumOfLargestDifferences += largest - smallest;
         }
-    }
 
-    public Long getPartTwo() throws Exception {
-        try (Stream<String> lines = getInputProvider().getInputStream()) {
-            return lines.mapToLong(
-                            line -> {
-                                Collection<Long> numbers = new ArrayList<>();
-
-                                Scanner scanner = new Scanner(line);
-                                while (scanner.hasNextLong()) {
-                                    long number = scanner.nextLong();
-                                    for (long previousNumber : numbers) {
-                                        long larger = Math.max(previousNumber, number);
-                                        long smaller = Math.min(previousNumber, number);
-                                        if (larger % smaller == 0L) {
-                                            return larger / smaller;
-                                        }
-                                    }
-                                    numbers.add(number);
-                                }
-                                scanner.close();
-
-                                throw new RuntimeException(
-                                        "No divisible numbers in line '%s'".formatted(line));
-                            })
-                    .sum();
-        }
+        return new PuzzleOutput<>(sumOfLargestDifferences, sumOfLargestDivisibility);
     }
 }

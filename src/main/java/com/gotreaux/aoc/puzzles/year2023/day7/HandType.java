@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 enum HandType {
     HIGH_CARD(
             cards ->
-                    cards.size() == cards.stream().distinct().count()
+                    cards.size() == Math.toIntExact(cards.stream().distinct().count())
                             && !cards.contains(Card.JOKER)),
     ONE_PAIR(
             cards ->
-                    cards.size() - 1 == cards.stream().distinct().count()
+                    cards.size() - 1 == Math.toIntExact(cards.stream().distinct().count())
                             || cards.contains(Card.JOKER)),
     TWO_PAIR(
             cards -> {
@@ -110,10 +110,14 @@ enum HandType {
         this.criterion = criterion;
     }
 
+    Predicate<List<Card>> getCriterion() {
+        return criterion;
+    }
+
     static HandType fromCards(List<Card> cards) throws NoSuchElementException {
-        return Arrays.stream(HandType.values())
+        return Arrays.stream(values())
                 .sorted(Collections.reverseOrder())
-                .filter(handType -> handType.criterion.test(cards))
+                .filter(handType -> handType.getCriterion().test(cards))
                 .findFirst()
                 .orElseThrow();
     }

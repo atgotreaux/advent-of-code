@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2016.day1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.StringInputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +18,9 @@ class TaxicabPuzzleTest {
 
         TaxicabPuzzle puzzle = new TaxicabPuzzle(inputProvider);
 
-        assertEquals(expectedDistance, puzzle.getPartOne());
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(expectedDistance, output.partOne());
     }
 
     @Test
@@ -26,7 +29,9 @@ class TaxicabPuzzleTest {
 
         TaxicabPuzzle puzzle = new TaxicabPuzzle(inputProvider);
 
-        assertEquals(4, puzzle.getPartTwo());
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(4, output.partTwo());
     }
 
     private static Stream<Arguments> provideShortestPath() {

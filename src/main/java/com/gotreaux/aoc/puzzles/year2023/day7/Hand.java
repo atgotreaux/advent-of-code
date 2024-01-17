@@ -10,7 +10,7 @@ class Hand implements Comparable<Hand> {
     private final HandType handType;
 
     Hand(List<Card> cards, int bid) {
-        this.cards = cards;
+        this.cards = List.copyOf(cards);
         this.bid = bid;
         this.handType = HandType.fromCards(cards);
     }
@@ -55,8 +55,8 @@ class Hand implements Comparable<Hand> {
     }
 
     @Override
-    public boolean equals(Object o) {
-        return o instanceof Hand && compareTo((Hand) o) == 0;
+    public boolean equals(Object obj) {
+        return obj instanceof Hand && compareTo((Hand) obj) == 0;
     }
 
     @Override

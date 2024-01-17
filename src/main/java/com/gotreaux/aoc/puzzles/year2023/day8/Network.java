@@ -1,6 +1,7 @@
 package com.gotreaux.aoc.puzzles.year2023.day8;
 
 import com.gotreaux.aoc.utils.MathUtils;
+import java.util.Collection;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
@@ -9,12 +10,12 @@ class Network {
     private final List<Instruction> instructions;
     private final List<Node> nodes;
 
-    Network(List<Instruction> instructions, List<Node> nodes) {
-        this.instructions = instructions;
-        this.nodes = nodes;
+    Network(Collection<Instruction> instructions, Collection<Node> nodes) {
+        this.instructions = List.copyOf(instructions);
+        this.nodes = List.copyOf(nodes);
     }
 
-    public long getStepsForNodes(Predicate<Node> startPosition, Predicate<Node> endPosition)
+    long getStepsForNodes(Predicate<Node> startPosition, Predicate<Node> endPosition)
             throws NoSuchElementException {
         List<Node> currentNodes = nodes.stream().filter(startPosition).toList();
 

@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2022.day4;
 
-record SectionAssignment(long firstSection, long lastSection) {
+record SectionAssignment(int firstSection, int lastSection) {
     SectionAssignment {
         if (firstSection > lastSection) {
             throw new IllegalArgumentException("Section assignments must be in ascending format");

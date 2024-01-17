@@ -5,6 +5,7 @@ import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -19,17 +20,19 @@ public class CamelCardsPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve() throws Exception {
-        List<Hand> hands = new ArrayList<>();
-        List<Hand> jokerHands = new ArrayList<>();
+        Collection<String> input = getInputProvider().getInputList();
 
-        for (String line : getInputProvider().getInputList()) {
+        List<Hand> hands = new ArrayList<>(input.size());
+        List<Hand> jokerHands = new ArrayList<>(input.size());
+
+        for (String line : input) {
             Scanner scanner = new Scanner(line);
             String cardLabels = scanner.next();
             int bid = scanner.nextInt();
             scanner.close();
 
-            List<Card> cards = new ArrayList<>();
-            List<Card> jokerCards = new ArrayList<>();
+            List<Card> cards = new ArrayList<>(cardLabels.length());
+            List<Card> jokerCards = new ArrayList<>(cardLabels.length());
             for (int i = 0; i < cardLabels.length(); i++) {
                 cards.add(Card.fromLabel(cardLabels.charAt(i), Card.JOKER));
                 jokerCards.add(Card.fromLabel(cardLabels.charAt(i), Card.JACK));

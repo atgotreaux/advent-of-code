@@ -18,38 +18,26 @@ public class ReportRepairPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve() throws Exception {
-        return new PuzzleOutput<>(getPartOne(), getPartTwo());
-    }
+        int productOfTwoMultiples = 0;
+        int productOfThreeMultiples = 0;
 
-    public Integer getPartOne() throws Exception {
         try (Stream<String> lines = getInputProvider().getInputStream()) {
             List<Integer> expenses = lines.map(Integer::parseInt).toList();
             for (int i = 0; i < expenses.size() - 2; i++) {
                 for (int j = i + 1; j < expenses.size() - 1; j++) {
                     if (expenses.get(i) + expenses.get(j) == TARGET_SUM) {
-                        return expenses.get(i) * expenses.get(j);
+                        productOfTwoMultiples = expenses.get(i) * expenses.get(j);
                     }
-                }
-            }
-        }
-
-        throw new RuntimeException("No two numbers sum to 2020!");
-    }
-
-    public Integer getPartTwo() throws Exception {
-        try (Stream<String> lines = getInputProvider().getInputStream()) {
-            List<Integer> expenses = lines.map(Integer::parseInt).toList();
-            for (int i = 0; i < expenses.size() - 2; i++) {
-                for (int j = i + 1; j < expenses.size() - 1; j++) {
                     for (int k = j + 1; k < expenses.size(); k++) {
                         if (expenses.get(i) + expenses.get(j) + expenses.get(k) == TARGET_SUM) {
-                            return expenses.get(i) * expenses.get(j) * expenses.get(k);
+                            productOfThreeMultiples =
+                                    expenses.get(i) * expenses.get(j) * expenses.get(k);
                         }
                     }
                 }
             }
         }
 
-        throw new RuntimeException("No three numbers sum to 2020!");
+        return new PuzzleOutput<>(productOfTwoMultiples, productOfThreeMultiples);
     }
 }

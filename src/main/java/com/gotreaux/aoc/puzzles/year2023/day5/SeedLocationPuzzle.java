@@ -21,7 +21,7 @@ public class SeedLocationPuzzle extends Puzzle {
         Collection<Long> seeds = new ArrayList<>();
         Collection<SeedRange> seedRanges = new ArrayList<>();
 
-        List<List<AlmanacRange>> maps = new ArrayList<>();
+        Collection<List<AlmanacRange>> maps = new ArrayList<>();
         List<AlmanacRange> map = new ArrayList<>();
 
         for (String line : getInputProvider().getInputList()) {

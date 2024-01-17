@@ -15,8 +15,8 @@ class SectionAssignmentTest {
     @Test
     void throwsIfSectionAssignmentDescending() {
         RandomGenerator generator = RandomGenerator.getDefault();
-        long firstSection = generator.nextLong(2L, 1000L);
-        long lastSection = generator.nextLong(firstSection - 1);
+        int firstSection = generator.nextInt(2, 1000);
+        int lastSection = generator.nextInt(firstSection - 1);
 
         assertThrows(
                 IllegalArgumentException.class,
@@ -26,10 +26,10 @@ class SectionAssignmentTest {
     @ParameterizedTest
     @MethodSource("provideContainsSection")
     void containsSection(
-            long firstAssignmentFirstSection,
-            long firstAssignmentLastSection,
-            long secondAssignmentFirstSection,
-            long secondAssignmentLastSection) {
+            int firstAssignmentFirstSection,
+            int firstAssignmentLastSection,
+            int secondAssignmentFirstSection,
+            int secondAssignmentLastSection) {
         SectionAssignment firstAssignment =
                 new SectionAssignment(firstAssignmentFirstSection, firstAssignmentLastSection);
         SectionAssignment secondAssignment =
@@ -41,10 +41,10 @@ class SectionAssignmentTest {
     @ParameterizedTest
     @MethodSource("provideDoesNotContainSection")
     void doesNotContainSection(
-            long firstAssignmentFirstSection,
-            long firstAssignmentLastSection,
-            long secondAssignmentFirstSection,
-            long secondAssignmentLastSection) {
+            int firstAssignmentFirstSection,
+            int firstAssignmentLastSection,
+            int secondAssignmentFirstSection,
+            int secondAssignmentLastSection) {
         SectionAssignment firstAssignment =
                 new SectionAssignment(firstAssignmentFirstSection, firstAssignmentLastSection);
         SectionAssignment secondAssignment =
@@ -56,10 +56,10 @@ class SectionAssignmentTest {
     @ParameterizedTest
     @MethodSource("provideOverlapsSection")
     void overlapsSection(
-            long firstAssignmentFirstSection,
-            long firstAssignmentLastSection,
-            long secondAssignmentFirstSection,
-            long secondAssignmentLastSection) {
+            int firstAssignmentFirstSection,
+            int firstAssignmentLastSection,
+            int secondAssignmentFirstSection,
+            int secondAssignmentLastSection) {
         SectionAssignment firstAssignment =
                 new SectionAssignment(firstAssignmentFirstSection, firstAssignmentLastSection);
         SectionAssignment secondAssignment =
@@ -71,10 +71,10 @@ class SectionAssignmentTest {
     @ParameterizedTest
     @MethodSource("doesNotOverlapSection")
     void doesNotOverlapSection(
-            long firstAssignmentFirstSection,
-            long firstAssignmentLastSection,
-            long secondAssignmentFirstSection,
-            long secondAssignmentLastSection) {
+            int firstAssignmentFirstSection,
+            int firstAssignmentLastSection,
+            int secondAssignmentFirstSection,
+            int secondAssignmentLastSection) {
         SectionAssignment firstAssignment =
                 new SectionAssignment(firstAssignmentFirstSection, firstAssignmentLastSection);
         SectionAssignment secondAssignment =
@@ -84,36 +84,36 @@ class SectionAssignmentTest {
     }
 
     private static Stream<Arguments> provideContainsSection() {
-        return Stream.of(Arguments.of(2L, 8L, 3L, 7L), Arguments.of(4L, 6L, 6L, 6L));
+        return Stream.of(Arguments.of(2, 8, 3, 7), Arguments.of(4, 6, 6, 6));
     }
 
     private static Stream<Arguments> provideDoesNotContainSection() {
         return Stream.of(
-                Arguments.of(2L, 4L, 6L, 8L),
-                Arguments.of(2L, 3L, 4L, 5L),
-                Arguments.of(5L, 7L, 7L, 9L),
-                Arguments.of(3L, 7L, 2L, 8L),
-                Arguments.of(6L, 6L, 4L, 6L),
-                Arguments.of(2L, 6L, 4L, 8L));
+                Arguments.of(2, 4, 6, 8),
+                Arguments.of(2, 3, 4, 5),
+                Arguments.of(5, 7, 7, 9),
+                Arguments.of(3, 7, 2, 8),
+                Arguments.of(6, 6, 4, 6),
+                Arguments.of(2, 6, 4, 8));
     }
 
     private static Stream<Arguments> provideOverlapsSection() {
         return Stream.of(
-                Arguments.of(5L, 7L, 7L, 9L),
-                Arguments.of(7L, 9L, 5L, 7L),
-                Arguments.of(2L, 8L, 3L, 7L),
-                Arguments.of(3L, 7L, 2L, 8L),
-                Arguments.of(6L, 6L, 4L, 6L),
-                Arguments.of(4L, 6L, 6L, 6L),
-                Arguments.of(2L, 6L, 4L, 8L),
-                Arguments.of(4L, 8L, 2L, 6L));
+                Arguments.of(5, 7, 7, 9),
+                Arguments.of(7, 9, 5, 7),
+                Arguments.of(2, 8, 3, 7),
+                Arguments.of(3, 7, 2, 8),
+                Arguments.of(6, 6, 4, 6),
+                Arguments.of(4, 6, 6, 6),
+                Arguments.of(2, 6, 4, 8),
+                Arguments.of(4, 8, 2, 6));
     }
 
     private static Stream<Arguments> doesNotOverlapSection() {
         return Stream.of(
-                Arguments.of(2L, 4L, 6L, 8L),
-                Arguments.of(6L, 8L, 2L, 4L),
-                Arguments.of(2L, 3L, 4L, 5L),
-                Arguments.of(4L, 5L, 2L, 3L));
+                Arguments.of(2, 4, 6, 8),
+                Arguments.of(6, 8, 2, 4),
+                Arguments.of(2, 3, 4, 5),
+                Arguments.of(4, 5, 2, 3));
     }
 }

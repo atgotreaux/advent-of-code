@@ -1,13 +1,14 @@
 package com.gotreaux.aoc.puzzles.year2016.day2;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.NoSuchElementException;
 
 class Keypad {
-    private final List<Key> keys;
+    private final Collection<Key> keys;
 
-    Keypad(List<Key> keys) {
-        this.keys = keys;
+    Keypad(Collection<Key> keys) {
+        this.keys = Collections.unmodifiableCollection(keys);
     }
 
     Key move(Key key, Instruction instruction) throws NoSuchElementException {

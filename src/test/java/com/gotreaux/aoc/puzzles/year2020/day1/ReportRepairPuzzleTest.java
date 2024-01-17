@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2020.day1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.FileInputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class ReportRepairPuzzleTest {
@@ -12,7 +13,9 @@ class ReportRepairPuzzleTest {
 
         ReportRepairPuzzle puzzle = new ReportRepairPuzzle(inputProvider);
 
-        assertEquals(514579, puzzle.getPartOne());
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(514579, output.partOne());
     }
 
     @Test
@@ -21,6 +24,8 @@ class ReportRepairPuzzleTest {
 
         ReportRepairPuzzle puzzle = new ReportRepairPuzzle(inputProvider);
 
-        assertEquals(241861950, puzzle.getPartTwo());
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(241861950, output.partTwo());
     }
 }
