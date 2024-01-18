@@ -8,10 +8,15 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 @ShellPuzzle(year = 2023, day = 4, title = "Scratchcards")
 public class ScratchcardsPuzzle extends Puzzle {
+
+    private static final Pattern CARD_LINE = Pattern.compile(": ");
+    private static final Pattern ANY_WHITESPACE = Pattern.compile("\\s+");
+    private static final Pattern WINNERS_NUMBER_DELIM = Pattern.compile("\\s+\\|\\s+");
 
     public ScratchcardsPuzzle(InputProvider inputProvider) {
         super(inputProvider);
@@ -23,22 +28,22 @@ public class ScratchcardsPuzzle extends Puzzle {
         int lineCount = input.size();
 
         int scratchcardPoints = 0;
-        Map<Integer, Integer> totalScratchcardMapping = new HashMap<>();
+        Map<Integer, Integer> totalScratchcardMapping = new HashMap<>(lineCount);
 
         for (String line : input) {
-            String[] cardLine = line.split(": ");
+            String[] cardLine = CARD_LINE.split(line);
             String lineNumber = cardLine[0];
-            String[] labelAndNumber = lineNumber.split("\\s+");
+            String[] labelAndNumber = ANY_WHITESPACE.split(lineNumber);
             int number = Integer.parseInt(labelAndNumber[1]);
             totalScratchcardMapping.merge(number, 1, Integer::sum);
 
-            String[] winnersAndNumbers = cardLine[1].split("\\s+\\|\\s+");
+            String[] winnersAndNumbers = WINNERS_NUMBER_DELIM.split(cardLine[1]);
             String winners = winnersAndNumbers[0];
             String numbers = winnersAndNumbers[1];
 
-            Collection<String> winnerList = List.of(winners.split("\\s+"));
+            Collection<String> winnerList = List.of(ANY_WHITESPACE.split(winners));
             Collection<String> numberList =
-                    Stream.of(numbers.split("\\s+")).filter(winnerList::contains).toList();
+                    Stream.of(ANY_WHITESPACE.split(numbers)).filter(winnerList::contains).toList();
 
             if (!numberList.isEmpty()) {
                 scratchcardPoints += 1 << (numberList.size() - 1);

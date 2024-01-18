@@ -13,49 +13,29 @@ public class InverseCaptchaPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve() throws Exception {
-        return new PuzzleOutput<>(getPartOne(), getPartTwo());
-    }
-
-    public Long getPartOne() throws Exception {
-        long sumOfNextDigitsMatching = 0L;
+    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+        int sumOfNextDigitsMatching = 0;
+        int sumOfHalfwayDigitsMatching = 0;
 
         String input = getInputProvider().getInputString();
-        for (int index = 0; index < input.length(); index++) {
-            char currentChar = input.charAt(index);
+        for (int i = 0; i < input.length(); i++) {
+            char currentChar = input.charAt(i);
 
-            int nextIndex = index + 1;
-            if (nextIndex == input.length()) {
-                nextIndex = 0;
-            }
-            char nextChar = input.charAt(nextIndex);
-
+            char nextChar = i + 1 == input.length() ? input.charAt(0) : input.charAt(i + 1);
             if (currentChar == nextChar) {
-                sumOfNextDigitsMatching += Long.parseLong(String.valueOf(currentChar));
+                sumOfNextDigitsMatching += Character.digit(currentChar, 10);
+            }
+
+            int halfwayIndex = i + (input.length() / 2);
+            if (halfwayIndex >= input.length()) {
+                halfwayIndex = halfwayIndex - input.length();
+            }
+            char halfwayChar = input.charAt(halfwayIndex);
+            if (currentChar == halfwayChar) {
+                sumOfHalfwayDigitsMatching += Character.digit(currentChar, 10);
             }
         }
 
-        return sumOfNextDigitsMatching;
-    }
-
-    public Long getPartTwo() throws Exception {
-        long sumOfHalfwayDigitsMatching = 0L;
-
-        String input = getInputProvider().getInputString();
-        for (int index = 0; index < input.length(); index++) {
-            char currentChar = input.charAt(index);
-
-            int nextIndex = index + (input.length() / 2);
-            if (nextIndex >= input.length()) {
-                nextIndex = nextIndex - input.length();
-            }
-            char nextChar = input.charAt(nextIndex);
-
-            if (currentChar == nextChar) {
-                sumOfHalfwayDigitsMatching += Long.parseLong(String.valueOf(currentChar));
-            }
-        }
-
-        return sumOfHalfwayDigitsMatching;
+        return new PuzzleOutput<>(sumOfNextDigitsMatching, sumOfHalfwayDigitsMatching);
     }
 }

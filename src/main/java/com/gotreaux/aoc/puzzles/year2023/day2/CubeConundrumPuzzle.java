@@ -6,9 +6,17 @@ import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 @ShellPuzzle(year = 2023, day = 2, title = "Cube Conundrum")
 public class CubeConundrumPuzzle extends Puzzle {
+
+    private static final Pattern GAME_LINE_DELIM = Pattern.compile(": ");
+    private static final Pattern GAME_EVENT_DELIM = Pattern.compile("; ");
+    private static final Pattern CUBE_LIST_DELIM = Pattern.compile(", ");
+    private static final int TOTAL_RED_CUBES = 12;
+    private static final int TOTAL_GREEN_CUBES = 13;
+    private static final int TOTAL_BLUE_CUBES = 14;
 
     public CubeConundrumPuzzle(InputProvider inputProvider) {
         super(inputProvider);
@@ -25,14 +33,14 @@ public class CubeConundrumPuzzle extends Puzzle {
             int blueMax = 0;
             boolean possibleGame = true;
 
-            String[] gameLine = line.split(": ");
+            String[] gameLine = GAME_LINE_DELIM.split(line);
 
             String gameLabel = gameLine[0];
             int gameNumber = Integer.parseInt(gameLabel.split(" ")[1]);
 
             String gameEvents = gameLine[1];
-            for (String gameEvent : gameEvents.split("; ")) {
-                for (String cube : gameEvent.split(", ")) {
+            for (String gameEvent : GAME_EVENT_DELIM.split(gameEvents)) {
+                for (String cube : CUBE_LIST_DELIM.split(gameEvent)) {
                     Scanner cubeScanner = new Scanner(cube);
                     int cubeCount = cubeScanner.nextInt();
                     CubeColor color =
@@ -40,15 +48,15 @@ public class CubeConundrumPuzzle extends Puzzle {
                     cubeScanner.close();
                     switch (color) {
                         case RED:
-                            possibleGame &= cubeCount <= 12;
+                            possibleGame &= cubeCount <= TOTAL_RED_CUBES;
                             redMax = Math.max(redMax, cubeCount);
                             break;
                         case GREEN:
-                            possibleGame &= cubeCount <= 13;
+                            possibleGame &= cubeCount <= TOTAL_GREEN_CUBES;
                             greenMax = Math.max(greenMax, cubeCount);
                             break;
                         case BLUE:
-                            possibleGame &= cubeCount <= 14;
+                            possibleGame &= cubeCount <= TOTAL_BLUE_CUBES;
                             blueMax = Math.max(blueMax, cubeCount);
                     }
                 }

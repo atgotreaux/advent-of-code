@@ -4,9 +4,7 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 @ShellPuzzle(year = 2023, day = 1, title = "Trebuchet?!")
 public class TrebuchetPuzzle extends Puzzle {
@@ -16,64 +14,45 @@ public class TrebuchetPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve() throws Exception {
-        return new PuzzleOutput<>(getPartOne(), getPartTwo());
+    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+        int calibrationValue = 0;
+        int calibrationValueWithDigits = 0;
+
+        List<String> digitWords =
+                List.of("one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
+
+        for (String line : getInputProvider().getInputList()) {
+            StringBuilder calibrationValues = new StringBuilder();
+            StringBuilder calibrationValuesWithDigits = new StringBuilder();
+
+            for (int i = 0; i < line.length(); i++) {
+                String substring = line.substring(i);
+                for (int j = 0; j < digitWords.size(); j++) {
+                    if (substring.startsWith(digitWords.get(j))) {
+                        calibrationValuesWithDigits.append(j + 1);
+                        break;
+                    }
+                }
+                char c = line.charAt(i);
+                if (Character.isDigit(c)) {
+                    calibrationValues.append(c);
+                    calibrationValuesWithDigits.append(c);
+                }
+            }
+
+            if (!calibrationValues.isEmpty()) {
+                calibrationValue += extractCalibrationValue(calibrationValues);
+            }
+            if (!calibrationValuesWithDigits.isEmpty()) {
+                calibrationValueWithDigits += extractCalibrationValue(calibrationValuesWithDigits);
+            }
+        }
+
+        return new PuzzleOutput<>(calibrationValue, calibrationValueWithDigits);
     }
 
-    public Long getPartOne() throws Exception {
-        try (Stream<String> lines = getInputProvider().getInputStream()) {
-            return lines.mapToLong(
-                            line -> {
-                                String firstDigit = null;
-                                String lastDigit = null;
-                                for (int i = 0; i < line.length(); i++) {
-                                    char c = line.charAt(i);
-                                    if (Character.isDigit(c)) {
-                                        if (firstDigit == null) {
-                                            firstDigit = String.valueOf(c);
-                                        }
-                                        lastDigit = String.valueOf(c);
-                                    }
-                                }
-
-                                return Long.parseLong(firstDigit + lastDigit);
-                            })
-                    .sum();
-        }
-    }
-
-    public Long getPartTwo() throws Exception {
-        List<String> words =
-                Arrays.asList(
-                        "one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
-
-        try (Stream<String> lines = getInputProvider().getInputStream()) {
-            return lines.mapToLong(
-                            line -> {
-                                String firstDigit = null;
-                                String lastDigit = null;
-                                for (int i = 0; i < line.length(); i++) {
-                                    char c = line.charAt(i);
-
-                                    String subString = line.substring(i);
-                                    for (String word : words) {
-                                        if (subString.startsWith(word)) {
-                                            c = String.valueOf(words.indexOf(word) + 1).charAt(0);
-                                            break;
-                                        }
-                                    }
-
-                                    if (Character.isDigit(c)) {
-                                        if (firstDigit == null) {
-                                            firstDigit = String.valueOf(c);
-                                        }
-                                        lastDigit = String.valueOf(c);
-                                    }
-                                }
-
-                                return Long.parseLong(firstDigit + lastDigit);
-                            })
-                    .sum();
-        }
+    private static int extractCalibrationValue(CharSequence sequence) {
+        return 10 * Character.digit(sequence.charAt(0), 10)
+                + Character.digit(sequence.charAt(sequence.length() - 1), 10);
     }
 }

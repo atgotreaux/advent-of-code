@@ -6,12 +6,12 @@ import com.gotreaux.aoc.output.PuzzleOutput;
 public abstract class Puzzle {
     private final InputProvider inputProvider;
 
-    public Puzzle(InputProvider inputProvider) {
+    protected Puzzle(InputProvider inputProvider) {
         this.inputProvider = inputProvider;
     }
 
     protected InputProvider getInputProvider() {
-        return this.inputProvider;
+        return inputProvider;
     }
 
     public abstract PuzzleOutput<?, ?> solve() throws Exception;
