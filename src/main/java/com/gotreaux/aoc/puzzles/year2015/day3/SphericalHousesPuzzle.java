@@ -23,8 +23,8 @@ public class SphericalHousesPuzzle extends Puzzle {
         Set<Point> houseDeliveries = new HashSet<>(length);
         Set<Point> assistedHouseDeliveries = new HashSet<>(length);
 
-        Point currentPosition = new Point();
-        houseDeliveries.add(currentPosition);
+        Point position = new Point();
+        houseDeliveries.add(position);
 
         Point santaPosition = new Point();
         Point roboSantaPosition = new Point();
@@ -33,8 +33,8 @@ public class SphericalHousesPuzzle extends Puzzle {
         for (int i = 0; i < length; i++) {
             Direction direction = Direction.fromLabel(input.charAt(i));
 
-            currentPosition = direction.move(currentPosition);
-            houseDeliveries.add(currentPosition);
+            position = direction.move(position);
+            houseDeliveries.add(position);
 
             if (i % 2 == 0) {
                 santaPosition = direction.move(santaPosition);

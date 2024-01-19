@@ -14,7 +14,7 @@ public class ApartmentFloorPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve() throws Exception {
-        int currentFloor = 0;
+        int floor = 0;
         int positionBasementReached = Integer.MAX_VALUE;
 
         String input = getInputProvider().getInputString();
@@ -22,14 +22,14 @@ public class ApartmentFloorPuzzle extends Puzzle {
             char instructionLabel = input.charAt(i);
             Instruction instruction = Instruction.fromLabel(instructionLabel);
             switch (instruction) {
-                case UP -> currentFloor++;
-                case DOWN -> currentFloor--;
+                case UP -> floor++;
+                case DOWN -> floor--;
             }
-            if (positionBasementReached == Integer.MAX_VALUE && currentFloor < 0) {
+            if (positionBasementReached == Integer.MAX_VALUE && floor < 0) {
                 positionBasementReached = i + 1;
             }
         }
 
-        return new PuzzleOutput<>(currentFloor, positionBasementReached);
+        return new PuzzleOutput<>(floor, positionBasementReached);
     }
 }

@@ -17,15 +17,15 @@ public class CalorieCountingPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve() throws Exception {
-        int currentElfIndex = 0;
+        int elfIndex = 0;
         Map<Integer, Integer> elfCalorieCarriage = new HashMap<>();
 
         for (String line : getInputProvider().getInputList()) {
             if (line.isBlank()) {
-                currentElfIndex++;
+                elfIndex++;
             } else {
                 int calories = Integer.parseInt(line);
-                elfCalorieCarriage.merge(currentElfIndex, calories, Integer::sum);
+                elfCalorieCarriage.merge(elfIndex, calories, Integer::sum);
             }
         }
 

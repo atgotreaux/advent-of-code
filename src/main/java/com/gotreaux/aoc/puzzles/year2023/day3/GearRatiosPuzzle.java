@@ -34,47 +34,43 @@ public class GearRatiosPuzzle extends Puzzle {
 
         Map<Point, List<Integer>> gearRatios = new HashMap<>();
         for (int lineRow = 0; lineRow < rowCount; lineRow++) {
-            int currentNumber = 0;
+            int number = 0;
             boolean adjacentToPart = false;
             Collection<Point> gears = new HashSet<>();
             for (int lineCol = 0; lineCol < columnCount + 1; lineCol++) {
                 if (lineCol < columnCount && Character.isDigit(matrix[lineRow][lineCol])) {
-                    currentNumber =
-                            currentNumber * 10 + Character.digit(matrix[lineRow][lineCol], 10);
+                    number = number * 10 + Character.digit(matrix[lineRow][lineCol], 10);
                     for (int adjacentLine = -1; adjacentLine < 2; adjacentLine++) {
                         for (int adjacentCol = -1; adjacentCol < 2; adjacentCol++) {
-                            int adjustedRow = adjacentLine + lineRow;
-                            int adjustedCol = adjacentCol + lineCol;
-                            if (adjustedRow >= 0
-                                    && adjustedRow < rowCount
-                                    && adjustedCol >= 0
-                                    && adjustedCol < columnCount) {
-                                char adjacentChar = matrix[adjustedRow][adjustedCol];
+                            int row = adjacentLine + lineRow;
+                            int col = adjacentCol + lineCol;
+                            if (row >= 0 && row < rowCount && col >= 0 && col < columnCount) {
+                                char adjacentChar = matrix[row][col];
                                 if (!Character.isDigit(adjacentChar) && adjacentChar != '.') {
                                     adjacentToPart = true;
                                 }
                                 if (adjacentChar == '*') {
-                                    gears.add(new Point(adjustedRow, adjustedCol));
+                                    gears.add(new Point(row, col));
                                 }
                             }
                         }
                     }
-                } else if (currentNumber > 0) {
+                } else if (number > 0) {
                     if (adjacentToPart) {
-                        sumOfParts += currentNumber;
+                        sumOfParts += number;
                     }
                     adjacentToPart = false;
 
                     for (Point gear : gears) {
                         if (gearRatios.containsKey(gear)) {
-                            gearRatios.get(gear).add(currentNumber);
+                            gearRatios.get(gear).add(number);
                         } else {
-                            gearRatios.put(gear, new ArrayList<>(List.of(currentNumber)));
+                            gearRatios.put(gear, new ArrayList<>(List.of(number)));
                         }
                     }
                     gears = new HashSet<>();
 
-                    currentNumber = 0;
+                    number = 0;
                 }
             }
         }

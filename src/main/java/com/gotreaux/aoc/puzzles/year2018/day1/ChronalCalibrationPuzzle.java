@@ -5,11 +5,9 @@ import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Stream;
 
 @ShellPuzzle(year = 2018, day = 1, title = "Chronal Calibration")
 public class ChronalCalibrationPuzzle extends Puzzle {
@@ -19,50 +17,36 @@ public class ChronalCalibrationPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve() throws Exception {
-        return new PuzzleOutput<>(getPartOne(), getPartTwo());
-    }
+    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+        int resultingFrequency = Integer.MAX_VALUE;
+        int firstDuplicateFrequency = Integer.MAX_VALUE;
 
-    public Long getPartOne() throws Exception {
         DecimalFormat format = new DecimalFormat();
         format.setPositivePrefix("+");
 
-        try (Stream<String> lines = getInputProvider().getInputStream()) {
-            return lines.mapToLong(
-                            line -> {
-                                try {
-                                    return format.parse(line).longValue();
-                                } catch (ParseException e) {
-                                    throw new RuntimeException(e);
-                                }
-                            })
-                    .sum();
-        }
-    }
+        int frequency = 0;
+        Collection<Integer> reachedFrequencies = new ArrayList<>();
+        reachedFrequencies.add(frequency);
 
-    public Long getPartTwo() throws Exception {
-        DecimalFormat format = new DecimalFormat();
-        format.setPositivePrefix("+");
-
+        int frequencyPosition = 0;
         List<String> frequencyChanges = getInputProvider().getInputList();
+        while (firstDuplicateFrequency == Integer.MAX_VALUE) {
+            frequency += format.parse(frequencyChanges.get(frequencyPosition)).intValue();
 
-        long currentFrequency = 0L;
-        Collection<Long> reachedFrequencies = new ArrayList<>();
-        reachedFrequencies.add(currentFrequency);
-
-        int currentFrequencyPosition = 0;
-        while (true) {
-            currentFrequency +=
-                    format.parse(frequencyChanges.get(currentFrequencyPosition)).longValue();
-            if (reachedFrequencies.contains(currentFrequency)) {
-                return currentFrequency;
+            if (reachedFrequencies.contains(frequency)) {
+                firstDuplicateFrequency = frequency;
             }
-            reachedFrequencies.add(currentFrequency);
+            reachedFrequencies.add(frequency);
 
-            currentFrequencyPosition++;
-            if (currentFrequencyPosition == frequencyChanges.size()) {
-                currentFrequencyPosition = 0;
+            frequencyPosition++;
+            if (frequencyPosition == frequencyChanges.size()) {
+                if (resultingFrequency == Integer.MAX_VALUE) {
+                    resultingFrequency = frequency;
+                }
+                frequencyPosition = 0;
             }
         }
+
+        return new PuzzleOutput<>(resultingFrequency, firstDuplicateFrequency);
     }
 }
