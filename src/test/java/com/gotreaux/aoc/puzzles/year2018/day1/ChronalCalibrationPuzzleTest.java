@@ -3,9 +3,8 @@ package com.gotreaux.aoc.puzzles.year2018.day1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.FileInputProvider;
-import java.util.stream.Stream;
-
 import com.gotreaux.aoc.output.PuzzleOutput;
+import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -39,9 +38,9 @@ class ChronalCalibrationPuzzleTest {
 
     private static Stream<Arguments> provideResultingFrequency() {
         return Stream.of(
-                //Arguments.of("ExampleOne.txt", 3),
+                // Arguments.of("ExampleOne.txt", 3),
                 Arguments.of("ExampleTwo.txt", 0));
-                //Arguments.of("ExampleThree.txt", -6));
+        // Arguments.of("ExampleThree.txt", -6));
     }
 
     private static Stream<Arguments> provideFirstDuplicateFrequency() {
