@@ -4,6 +4,8 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +18,8 @@ public class CalorieCountingPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+    public PuzzleOutput<Integer, Integer> solve()
+            throws IOException, URISyntaxException, NumberFormatException {
         int elfIndex = 0;
         Map<Integer, Integer> elfCalorieCarriage = new HashMap<>();
 

@@ -5,6 +5,8 @@ import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.awt.Point;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -16,7 +18,8 @@ public class DivePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+    public PuzzleOutput<Integer, Integer> solve()
+            throws IOException, URISyntaxException, IllegalArgumentException {
         Point position = new Point();
 
         int aim = 0;

@@ -4,6 +4,8 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 @ShellPuzzle(year = 2015, day = 1, title = "Not Quite Lisp")
 public class ApartmentFloorPuzzle extends Puzzle {
@@ -13,11 +15,12 @@ public class ApartmentFloorPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+    public PuzzleOutput<Integer, Integer> solve()
+            throws IOException, URISyntaxException, NoSuchMethodException {
         int floor = 0;
         int positionBasementReached = Integer.MAX_VALUE;
 
-        String input = getInputProvider().getInputString();
+        String input = getInputProvider().inputString();
         for (int i = 0; i < input.length(); i++) {
             char instructionLabel = input.charAt(i);
             Instruction instruction = Instruction.fromLabel(instructionLabel);

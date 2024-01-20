@@ -4,8 +4,11 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @ShellPuzzle(year = 2016, day = 2, title = "Bathroom Security")
 public class BathroomSecurityPuzzle extends Puzzle {
@@ -15,7 +18,8 @@ public class BathroomSecurityPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, String> solve() throws Exception {
+    public PuzzleOutput<String, String> solve()
+            throws IOException, URISyntaxException, NoSuchElementException {
         Key imaginedKey = new Key("5", "2", "8", "4", "6");
         Collection<Key> imaginedKeys =
                 List.of(

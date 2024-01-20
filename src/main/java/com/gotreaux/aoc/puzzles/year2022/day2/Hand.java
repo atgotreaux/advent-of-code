@@ -18,11 +18,11 @@ enum Hand {
         this.weight = weight;
     }
 
-    char getOpponentLabel() {
+    private char getOpponentLabel() {
         return opponentLabel;
     }
 
-    char getStrategyLabel() {
+    private char getStrategyLabel() {
         return strategyLabel;
     }
 

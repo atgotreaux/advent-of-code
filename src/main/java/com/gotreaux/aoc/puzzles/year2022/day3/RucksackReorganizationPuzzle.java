@@ -4,6 +4,8 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,11 +17,12 @@ public class RucksackReorganizationPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+    public PuzzleOutput<Integer, Integer> solve()
+            throws IOException, URISyntaxException, IllegalArgumentException {
         int sumOfCompartmentPriorities = 0;
         int sumOfGroupPriorities = 0;
 
-        List<String> group = new ArrayList<>();
+        List<String> group = new ArrayList<>(3);
         for (String line : getInputProvider().getInputList()) {
             String firstCompartment = line.substring(0, line.length() / 2);
             String secondCompartment = line.substring(line.length() / 2);
@@ -27,7 +30,7 @@ public class RucksackReorganizationPuzzle extends Puzzle {
             char sharedCompartmentItem =
                     firstCompartment
                             .chars()
-                            .mapToObj(c -> Character.toString(c).charAt(0))
+                            .mapToObj(codePoint -> Character.toString(codePoint).charAt(0))
                             .filter(c -> secondCompartment.indexOf(c) != -1)
                             .findFirst()
                             .orElseThrow();
@@ -41,7 +44,7 @@ public class RucksackReorganizationPuzzle extends Puzzle {
                 char sharedGroupItem =
                         group.getFirst()
                                 .chars()
-                                .mapToObj(c -> Character.toString(c).charAt(0))
+                                .mapToObj(codePoint -> Character.toString(codePoint).charAt(0))
                                 .filter(c -> group.get(1).indexOf(c) != -1)
                                 .filter(c -> group.get(2).indexOf(c) != -1)
                                 .findFirst()

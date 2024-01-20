@@ -8,21 +8,26 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class FileInputProvider implements InputProvider {
+    private static final Pattern SEPARATOR = Pattern.compile("\\.");
     private final String inputPath;
 
     public FileInputProvider(Class<?> puzzleClass) {
-        this.inputPath = puzzleClass.getPackage().getName().replaceAll("\\.", "/") + "/input.txt";
+        this(puzzleClass, "input.txt");
     }
 
     public FileInputProvider(Class<?> puzzleClass, String fileName) {
-        this.inputPath = puzzleClass.getPackage().getName().replaceAll("\\.", "/") + "/" + fileName;
+        inputPath =
+                SEPARATOR.matcher(puzzleClass.getPackage().getName()).replaceAll("/")
+                        + "/"
+                        + fileName;
     }
 
     @Override
-    public String getInputString() throws IOException, URISyntaxException {
+    public String inputString() throws IOException, URISyntaxException {
         return Files.readString(loadResource());
     }
 

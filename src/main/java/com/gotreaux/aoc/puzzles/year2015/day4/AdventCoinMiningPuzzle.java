@@ -4,6 +4,8 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -18,8 +20,9 @@ public class AdventCoinMiningPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws Exception {
-        String input = getInputProvider().getInputString();
+    public PuzzleOutput<Integer, Integer> solve()
+            throws IOException, URISyntaxException, NoSuchAlgorithmException {
+        String input = getInputProvider().inputString();
 
         int partOne = findHashMatchingCondition(input, s -> s.startsWith("00000"));
         int partTwo = findHashMatchingCondition(input, s -> s.startsWith("000000"));

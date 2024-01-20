@@ -4,6 +4,8 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -17,7 +19,7 @@ public class InventoryManagementSystemPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, String> solve() throws Exception {
+    public PuzzleOutput<Integer, String> solve() throws IOException, URISyntaxException {
         List<String> lines = getInputProvider().getInputList();
 
         int boxIdsWithTwoOfLetter = 0;
@@ -29,7 +31,7 @@ public class InventoryManagementSystemPuzzle extends Puzzle {
 
             Map<Character, Long> characterOccurences =
                     line.chars()
-                            .mapToObj(c -> Character.toString(c).charAt(0))
+                            .mapToObj(codePoint -> Character.toString(codePoint).charAt(0))
                             .collect(
                                     Collectors.groupingBy(
                                             Function.identity(), Collectors.counting()));
@@ -43,7 +45,7 @@ public class InventoryManagementSystemPuzzle extends Puzzle {
             for (int j = i + 1; j < lines.size(); j++) {
                 String nextLine = lines.get(j);
                 int difference = 0;
-                StringBuilder commonLetters = new StringBuilder();
+                StringBuilder commonLetters = new StringBuilder(line.length());
                 for (int k = 0; k < line.length(); k++) {
                     if (line.charAt(k) == nextLine.charAt(k)) {
                         commonLetters.append(line.charAt(k));

@@ -110,7 +110,7 @@ enum HandType {
         this.criterion = criterion;
     }
 
-    Predicate<List<Card>> getCriterion() {
+    private Predicate<List<Card>> getCriterion() {
         return criterion;
     }
 

@@ -4,6 +4,8 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
@@ -24,7 +26,7 @@ public class NiceStringPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
         Predicate<String> threeVowels = s -> THREE_VOWELS.matcher(s).replaceAll("").length() >= 3;
         Predicate<String> repeatedCharacter = s -> REPEATED_CHARACTER.matcher(s).matches();
         Predicate<String> noForbiddenStrings = s -> !NO_FORBIDDEN_STRINGS.matcher(s).matches();

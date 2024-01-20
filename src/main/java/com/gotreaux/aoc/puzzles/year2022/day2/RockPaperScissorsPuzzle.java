@@ -4,6 +4,9 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 @ShellPuzzle(year = 2022, day = 2, title = "Rock Paper Scissors")
@@ -14,7 +17,8 @@ public class RockPaperScissorsPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+    public PuzzleOutput<Integer, Integer> solve()
+            throws IOException, URISyntaxException, NoSuchElementException {
         int encryptedStrategyScore = 0;
         int outcomeStrategyScore = 0;
 

@@ -2,16 +2,16 @@ package com.gotreaux.aoc.puzzles.year2022.day2;
 
 record Round(Hand opponentHand, Hand strategyHand) {
     int getScore() {
+        int score = 0;
+
         if (opponentHand == strategyHand) {
-            return 3;
+            score = 3;
         }
 
-        if ((opponentHand == Hand.ROCK && strategyHand == Hand.PAPER)
-                || (opponentHand == Hand.PAPER && strategyHand == Hand.SCISSORS)
-                || (opponentHand == Hand.SCISSORS && strategyHand == Hand.ROCK)) {
-            return 6;
+        if (Hand.fromStrategyOutcomeLabel(opponentHand, 'Z') == strategyHand) {
+            score = 6;
         }
 
-        return 0;
+        return score;
     }
 }

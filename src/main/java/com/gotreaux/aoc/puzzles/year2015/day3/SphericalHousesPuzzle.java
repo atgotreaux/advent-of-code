@@ -5,7 +5,10 @@ import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.awt.Point;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 @ShellPuzzle(year = 2015, day = 3, title = "Perfectly Spherical Houses in a Vacuum")
@@ -16,8 +19,9 @@ public class SphericalHousesPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws Exception {
-        String input = getInputProvider().getInputString();
+    public PuzzleOutput<Integer, Integer> solve()
+            throws IOException, URISyntaxException, NoSuchElementException {
+        String input = getInputProvider().inputString();
         int length = input.length();
 
         Set<Point> houseDeliveries = new HashSet<>(length);

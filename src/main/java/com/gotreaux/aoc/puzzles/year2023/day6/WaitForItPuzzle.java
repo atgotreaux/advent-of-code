@@ -4,6 +4,8 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +20,8 @@ public class WaitForItPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve() throws Exception {
+    public PuzzleOutput<Long, Long> solve()
+            throws IOException, URISyntaxException, NumberFormatException {
         List<Long> times = new ArrayList<>();
         List<Long> recordDistances = new ArrayList<>();
 

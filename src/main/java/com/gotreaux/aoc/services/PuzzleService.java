@@ -13,9 +13,11 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 
-public class PuzzleService {
+public final class PuzzleService {
 
-    public List<PuzzleDto> getPuzzles(Collection<Integer> years, Collection<Integer> days)
+    private PuzzleService() {}
+
+    public static List<PuzzleDto> getPuzzles(Collection<Integer> years, Collection<Integer> days)
             throws Exception {
         ClassPathScanningCandidateComponentProvider provider =
                 new ClassPathScanningCandidateComponentProvider(false);

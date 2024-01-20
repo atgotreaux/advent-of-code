@@ -4,6 +4,8 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -17,7 +19,7 @@ public class TrianglePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve() throws Exception {
+    public PuzzleOutput<Long, Long> solve() throws IOException, URISyntaxException {
         Collection<String> input = getInputProvider().getInputList();
         Collection<Triangle> rowTriangles = new ArrayList<>(input.size());
 
@@ -27,16 +29,16 @@ public class TrianglePuzzle extends Puzzle {
 
         for (String line : input) {
             Scanner scanner = new Scanner(line);
-            int a = scanner.nextInt();
-            int b = scanner.nextInt();
-            int c = scanner.nextInt();
+            int x = scanner.nextInt();
+            int y = scanner.nextInt();
+            int z = scanner.nextInt();
             scanner.close();
 
-            rowTriangles.add(new Triangle(a, b, c));
+            rowTriangles.add(new Triangle(x, y, z));
 
-            colOne.add(a);
-            colTwo.add(b);
-            colThree.add(c);
+            colOne.add(x);
+            colTwo.add(y);
+            colThree.add(z);
         }
 
         Collection<Triangle> colTriangles = new ArrayList<>(input.size() / 3);

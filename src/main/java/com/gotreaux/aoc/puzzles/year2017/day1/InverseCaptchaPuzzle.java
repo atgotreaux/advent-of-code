@@ -4,6 +4,8 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 @ShellPuzzle(year = 2017, day = 1, title = "Inverse Captcha")
 public class InverseCaptchaPuzzle extends Puzzle {
@@ -13,11 +15,11 @@ public class InverseCaptchaPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
         int sumOfNextDigitsMatching = 0;
         int sumOfHalfwayDigitsMatching = 0;
 
-        String input = getInputProvider().getInputString();
+        String input = getInputProvider().inputString();
         for (int i = 0; i < input.length(); i++) {
             char currentChar = input.charAt(i);
 

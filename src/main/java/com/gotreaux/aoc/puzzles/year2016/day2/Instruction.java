@@ -15,7 +15,7 @@ enum Instruction {
         this.label = label;
     }
 
-    char getLabel() {
+    private char getLabel() {
         return label;
     }
 

@@ -5,6 +5,8 @@ import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.awt.Point;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -20,7 +22,7 @@ public class GearRatiosPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
         int sumOfParts = 0;
 
         List<String> lines = getInputProvider().getInputList();
@@ -68,7 +70,7 @@ public class GearRatiosPuzzle extends Puzzle {
                             gearRatios.put(gear, new ArrayList<>(List.of(number)));
                         }
                     }
-                    gears = new HashSet<>();
+                    gears.clear();
 
                     number = 0;
                 }

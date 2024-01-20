@@ -36,8 +36,7 @@ public class PuzzleCommands {
                             arity = CommandRegistration.OptionArity.ZERO_OR_MORE)
                     Integer[] days)
             throws Exception {
-        PuzzleService puzzleService = new PuzzleService();
-        List<PuzzleDto> puzzles = puzzleService.getPuzzles(List.of(years), List.of(days));
+        List<PuzzleDto> puzzles = PuzzleService.getPuzzles(List.of(years), List.of(days));
 
         TableModelBuilder<String> tableModelBuilder = new TableModelBuilder<>();
 

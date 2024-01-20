@@ -11,7 +11,7 @@ record OccurrencePasswordPolicy(int min, int max, char target) implements Passwo
     public boolean passes(String password) {
         long occurrences =
                 password.chars()
-                        .mapToObj(c -> Character.toString(c).charAt(0))
+                        .mapToObj(codePoint -> Character.toString(codePoint).charAt(0))
                         .filter(character -> character == target)
                         .count();
 

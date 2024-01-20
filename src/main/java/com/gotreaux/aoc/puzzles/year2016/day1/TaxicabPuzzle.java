@@ -5,8 +5,11 @@ import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.awt.Point;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
 
 @ShellPuzzle(year = 2016, day = 1, title = "No Time for a Taxicab")
@@ -19,7 +22,8 @@ public class TaxicabPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+    public PuzzleOutput<Integer, Integer> solve()
+            throws IOException, URISyntaxException, NoSuchElementException, NumberFormatException {
         Direction direction = Direction.NORTH;
         Point position = new Point();
         Point firstDuplicatePosition = null;
@@ -27,7 +31,7 @@ public class TaxicabPuzzle extends Puzzle {
         Collection<Point> visitedPositions = new ArrayList<>();
         visitedPositions.add(position);
 
-        String input = getInputProvider().getInputString();
+        String input = getInputProvider().inputString();
         for (String step : INSTRUCTION_SEPARATOR.split(input)) {
             Instruction instruction = Instruction.fromLabel(step.charAt(0));
             direction = direction.turn(instruction);

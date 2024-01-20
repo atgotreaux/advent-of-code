@@ -4,11 +4,11 @@ public final class MathUtils {
 
     private MathUtils() {}
 
-    public static long lcm(long a, long b) {
-        return (a * b) / gcd(a, b);
+    public static long lcm(long x, long y) {
+        return (x * y) / gcd(x, y);
     }
 
-    static long gcd(long a, long b) {
-        return b == 0L ? a : gcd(b, a % b);
+    static long gcd(long x, long y) {
+        return y == 0L ? x : gcd(y, x % y);
     }
 }

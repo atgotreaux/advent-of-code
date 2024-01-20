@@ -4,6 +4,8 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @ShellPuzzle(year = 2023, day = 1, title = "Trebuchet?!")
@@ -14,7 +16,7 @@ public class TrebuchetPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
         int calibrationValue = 0;
         int calibrationValueWithDigits = 0;
 
@@ -22,8 +24,8 @@ public class TrebuchetPuzzle extends Puzzle {
                 List.of("one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
 
         for (String line : getInputProvider().getInputList()) {
-            StringBuilder calibrationValues = new StringBuilder();
-            StringBuilder calibrationValuesWithDigits = new StringBuilder();
+            StringBuilder calibrationValues = new StringBuilder(line.length());
+            StringBuilder calibrationValuesWithDigits = new StringBuilder(line.length());
 
             for (int i = 0; i < line.length(); i++) {
                 String substring = line.substring(i);

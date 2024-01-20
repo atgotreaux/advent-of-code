@@ -4,6 +4,8 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 @ShellPuzzle(year = 2019, day = 1, title = "The Tyranny of the Rocket Equation")
 public class RocketEquationPuzzle extends Puzzle {
@@ -13,7 +15,8 @@ public class RocketEquationPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+    public PuzzleOutput<Integer, Integer> solve()
+            throws IOException, URISyntaxException, NumberFormatException {
         int sumOfFuelRequirements = 0;
         int sumOfAdditionalFuelRequirements = 0;
 

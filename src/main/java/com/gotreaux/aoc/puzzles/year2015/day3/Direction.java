@@ -16,7 +16,7 @@ enum Direction {
         this.label = label;
     }
 
-    char getLabel() {
+    private char getLabel() {
         return label;
     }
 

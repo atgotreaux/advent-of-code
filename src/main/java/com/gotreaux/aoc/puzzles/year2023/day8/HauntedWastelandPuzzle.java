@@ -4,6 +4,7 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -20,7 +21,8 @@ public class HauntedWastelandPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve() throws Exception {
+    public PuzzleOutput<Long, Long> solve()
+            throws IOException, java.net.URISyntaxException, java.util.NoSuchElementException {
         List<Instruction> instructions = new ArrayList<>();
         List<Node> nodes = new ArrayList<>();
 

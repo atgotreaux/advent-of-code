@@ -9,9 +9,7 @@ import org.junit.jupiter.api.Test;
 class PuzzleServiceTest {
     @Test
     void everyPuzzle() throws Exception {
-        PuzzleService service = new PuzzleService();
-
-        List<PuzzleDto> puzzles = service.getPuzzles(List.of(), List.of());
+        List<PuzzleDto> puzzles = PuzzleService.getPuzzles(List.of(), List.of());
 
         assertEquals(29, puzzles.size());
     }
@@ -19,9 +17,7 @@ class PuzzleServiceTest {
     @Test
     void everyPuzzleForYear() throws Exception {
         // TODO once all puzzles are solved, a random year should return 25 puzzles
-        PuzzleService service = new PuzzleService();
-
-        List<PuzzleDto> puzzles = service.getPuzzles(List.of(2015), List.of());
+        List<PuzzleDto> puzzles = PuzzleService.getPuzzles(List.of(2015), List.of());
 
         assertEquals(5, puzzles.size());
         for (PuzzleDto puzzle : puzzles) {
@@ -32,9 +28,7 @@ class PuzzleServiceTest {
     @Test
     void everyPuzzleForDay() throws Exception {
         // TODO once all puzzles are solved, a random day should return 9 puzzles
-        PuzzleService service = new PuzzleService();
-
-        List<PuzzleDto> puzzles = service.getPuzzles(List.of(), List.of(1));
+        List<PuzzleDto> puzzles = PuzzleService.getPuzzles(List.of(), List.of(1));
 
         assertEquals(9, puzzles.size());
         for (PuzzleDto puzzle : puzzles) {
@@ -45,9 +39,7 @@ class PuzzleServiceTest {
     @Test
     void onePuzzleForDayAndYear() throws Exception {
         // TODO once all puzzles are solved, pick random day and year in valid range
-        PuzzleService service = new PuzzleService();
-
-        List<PuzzleDto> puzzles = service.getPuzzles(List.of(2015), List.of(1));
+        List<PuzzleDto> puzzles = PuzzleService.getPuzzles(List.of(2015), List.of(1));
 
         assertEquals(1, puzzles.size());
         for (PuzzleDto puzzle : puzzles) {
