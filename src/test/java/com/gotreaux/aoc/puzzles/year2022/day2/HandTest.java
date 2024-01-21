@@ -5,23 +5,18 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.NoSuchElementException;
 import java.util.random.RandomGenerator;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class HandTest {
-    @Test
-    void parseOpponentRock() {
-        assertEquals(Hand.ROCK, Hand.fromOpponentLabel('A'));
-    }
-
-    @Test
-    void parseOpponentPaper() {
-        assertEquals(Hand.PAPER, Hand.fromOpponentLabel('B'));
-    }
-
-    @Test
-    void parseOpponentScissors() {
-        assertEquals(Hand.SCISSORS, Hand.fromOpponentLabel('C'));
+    @ParameterizedTest
+    @MethodSource("provideParseOpponentHand")
+    void parseOpponentHand(char label, Hand expectedHand) {
+        assertEquals(expectedHand, Hand.fromOpponentLabel(label));
     }
 
     @Test
@@ -29,19 +24,10 @@ class HandTest {
         assertThrows(NoSuchElementException.class, () -> Hand.fromOpponentLabel('D'));
     }
 
-    @Test
-    void parseStrategyRock() {
-        assertEquals(Hand.ROCK, Hand.fromEncryptedStrategyLabel('X'));
-    }
-
-    @Test
-    void parseStrategyPaper() {
-        assertEquals(Hand.PAPER, Hand.fromEncryptedStrategyLabel('Y'));
-    }
-
-    @Test
-    void parseStrategyScissors() {
-        assertEquals(Hand.SCISSORS, Hand.fromEncryptedStrategyLabel('Z'));
+    @ParameterizedTest
+    @MethodSource("provideParseStrategyHand")
+    void parseStrategyHand(char label, Hand expectedHand) {
+        assertEquals(expectedHand, Hand.fromEncryptedStrategyLabel(label));
     }
 
     @Test
@@ -49,34 +35,10 @@ class HandTest {
         assertThrows(NoSuchElementException.class, () -> Hand.fromEncryptedStrategyLabel('W'));
     }
 
-    @Test
-    void outcomeLoseToRock() {
-        assertEquals(Hand.SCISSORS, Hand.fromStrategyOutcomeLabel(Hand.ROCK, 'X'));
-    }
-
-    @Test
-    void outcomeLoseToPaper() {
-        assertEquals(Hand.ROCK, Hand.fromStrategyOutcomeLabel(Hand.PAPER, 'X'));
-    }
-
-    @Test
-    void outcomeLoseToScissors() {
-        assertEquals(Hand.PAPER, Hand.fromStrategyOutcomeLabel(Hand.SCISSORS, 'X'));
-    }
-
-    @Test
-    void outcomeWinToRock() {
-        assertEquals(Hand.PAPER, Hand.fromStrategyOutcomeLabel(Hand.ROCK, 'Z'));
-    }
-
-    @Test
-    void outcomeWinToPaper() {
-        assertEquals(Hand.SCISSORS, Hand.fromStrategyOutcomeLabel(Hand.PAPER, 'Z'));
-    }
-
-    @Test
-    void outcomeWinToScissors() {
-        assertEquals(Hand.ROCK, Hand.fromStrategyOutcomeLabel(Hand.SCISSORS, 'Z'));
+    @ParameterizedTest
+    @MethodSource("provideParseOutcomeLabel")
+    void parseOutcomeLabel(char label, Hand opponentHand, Hand expectedHand) {
+        assertEquals(expectedHand, Hand.fromStrategyOutcomeLabel(opponentHand, label));
     }
 
     @RepeatedTest(5)
@@ -95,5 +57,29 @@ class HandTest {
         Hand hand = Hand.values()[generator.nextInt(Hand.values().length)];
 
         assertThrows(NoSuchElementException.class, () -> Hand.fromStrategyOutcomeLabel(hand, 'W'));
+    }
+
+    private static Stream<Arguments> provideParseOpponentHand() {
+        return Stream.of(
+                Arguments.of('A', Hand.ROCK),
+                Arguments.of('B', Hand.PAPER),
+                Arguments.of('C', Hand.SCISSORS));
+    }
+
+    private static Stream<Arguments> provideParseStrategyHand() {
+        return Stream.of(
+                Arguments.of('X', Hand.ROCK),
+                Arguments.of('Y', Hand.PAPER),
+                Arguments.of('Z', Hand.SCISSORS));
+    }
+
+    private static Stream<Arguments> provideParseOutcomeLabel() {
+        return Stream.of(
+                Arguments.of('X', Hand.ROCK, Hand.SCISSORS),
+                Arguments.of('X', Hand.PAPER, Hand.ROCK),
+                Arguments.of('X', Hand.SCISSORS, Hand.PAPER),
+                Arguments.of('Z', Hand.ROCK, Hand.PAPER),
+                Arguments.of('Z', Hand.PAPER, Hand.SCISSORS),
+                Arguments.of('Z', Hand.SCISSORS, Hand.ROCK));
     }
 }

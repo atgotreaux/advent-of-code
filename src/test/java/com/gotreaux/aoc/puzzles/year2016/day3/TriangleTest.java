@@ -16,26 +16,26 @@ class TriangleTest {
         RandomGenerator generator = RandomGenerator.getDefault();
 
         int negativeArgumentIndex = generator.nextInt(1, 4);
-        int a =
+        int x =
                 negativeArgumentIndex == 1
                         ? -Math.abs(generator.nextInt())
                         : Math.abs(generator.nextInt());
-        int b =
+        int y =
                 negativeArgumentIndex == 2
                         ? -Math.abs(generator.nextInt())
                         : Math.abs(generator.nextInt());
-        int c =
+        int z =
                 negativeArgumentIndex == 3
                         ? -Math.abs(generator.nextInt())
                         : Math.abs(generator.nextInt());
 
-        assertThrows(IllegalArgumentException.class, () -> new Triangle(a, b, c));
+        assertThrows(IllegalArgumentException.class, () -> new Triangle(x, y, z));
     }
 
     @ParameterizedTest
     @MethodSource("provideValidTriangle")
-    void validTriangle(int a, int b, int c, boolean isValid) {
-        Triangle triangle = new Triangle(a, b, c);
+    void validTriangle(int x, int y, int z, boolean isValid) {
+        Triangle triangle = new Triangle(x, y, z);
 
         assertEquals(isValid, triangle.isValid());
     }

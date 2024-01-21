@@ -4,58 +4,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.NoSuchElementException;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class CardTest {
+    @ParameterizedTest
+    @MethodSource("provideParseCard")
+    void parseCard(char label, Card expectedCard) {
+        assertEquals(expectedCard, Card.fromLabel(label));
+    }
 
     @Test
     void parseJoker() {
         assertEquals(Card.JOKER, Card.fromLabel('J', Card.JACK));
-    }
-
-    @Test
-    void parseTwo() {
-        assertEquals(Card.TWO, Card.fromLabel('2'));
-    }
-
-    @Test
-    void parseThree() {
-        assertEquals(Card.THREE, Card.fromLabel('3'));
-    }
-
-    @Test
-    void parseFour() {
-        assertEquals(Card.FOUR, Card.fromLabel('4'));
-    }
-
-    @Test
-    void parseFive() {
-        assertEquals(Card.FIVE, Card.fromLabel('5'));
-    }
-
-    @Test
-    void parseSix() {
-        assertEquals(Card.SIX, Card.fromLabel('6'));
-    }
-
-    @Test
-    void parseSeven() {
-        assertEquals(Card.SEVEN, Card.fromLabel('7'));
-    }
-
-    @Test
-    void parseEight() {
-        assertEquals(Card.EIGHT, Card.fromLabel('8'));
-    }
-
-    @Test
-    void parseNine() {
-        assertEquals(Card.NINE, Card.fromLabel('9'));
-    }
-
-    @Test
-    void parseTen() {
-        assertEquals(Card.TEN, Card.fromLabel('T'));
     }
 
     @Test
@@ -64,22 +28,23 @@ class CardTest {
     }
 
     @Test
-    void parseQueen() {
-        assertEquals(Card.QUEEN, Card.fromLabel('Q'));
-    }
-
-    @Test
-    void parseKing() {
-        assertEquals(Card.KING, Card.fromLabel('K'));
-    }
-
-    @Test
-    void parseAce() {
-        assertEquals(Card.ACE, Card.fromLabel('A'));
-    }
-
-    @Test
     void throwsIfCannotParse() {
         assertThrows(NoSuchElementException.class, () -> Card.fromLabel('X'));
+    }
+
+    private static Stream<Arguments> provideParseCard() {
+        return Stream.of(
+                Arguments.of('2', Card.TWO),
+                Arguments.of('3', Card.THREE),
+                Arguments.of('4', Card.FOUR),
+                Arguments.of('5', Card.FIVE),
+                Arguments.of('6', Card.SIX),
+                Arguments.of('7', Card.SEVEN),
+                Arguments.of('8', Card.EIGHT),
+                Arguments.of('9', Card.NINE),
+                Arguments.of('T', Card.TEN),
+                Arguments.of('Q', Card.QUEEN),
+                Arguments.of('K', Card.KING),
+                Arguments.of('A', Card.ACE));
     }
 }

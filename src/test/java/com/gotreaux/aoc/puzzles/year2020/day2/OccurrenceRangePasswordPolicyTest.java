@@ -17,11 +17,11 @@ class OccurrenceRangePasswordPolicyTest {
 
         int negativeArgumentIndex = generator.nextInt(1, 3);
         int min =
-                negativeArgumentIndex == 1L
+                negativeArgumentIndex == 1
                         ? -Math.abs(generator.nextInt())
                         : Math.abs(generator.nextInt());
         int max =
-                negativeArgumentIndex == 2L
+                negativeArgumentIndex == 2
                         ? -Math.abs(generator.nextInt())
                         : Math.abs(generator.nextInt());
 

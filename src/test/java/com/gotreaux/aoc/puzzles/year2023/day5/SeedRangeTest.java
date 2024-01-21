@@ -10,13 +10,13 @@ class SeedRangeTest {
     @Test
     void throwsIfSeedRangeNonPositive() {
         RandomGenerator generator = RandomGenerator.getDefault();
-        long negativeArgumentIndex = generator.nextLong(1, 3);
+        int negativeArgumentIndex = generator.nextInt(1, 3);
         long seedStart =
-                negativeArgumentIndex == 1L
+                negativeArgumentIndex == 1
                         ? -Math.abs(generator.nextLong())
                         : Math.abs(generator.nextLong());
         long rangeLength =
-                negativeArgumentIndex == 2L
+                negativeArgumentIndex == 2
                         ? -Math.abs(generator.nextLong())
                         : Math.abs(generator.nextLong());
 
@@ -27,8 +27,8 @@ class SeedRangeTest {
     void rangeCount() {
         RandomGenerator generator = RandomGenerator.getDefault();
 
-        long seedStart = generator.nextLong(0, 1000);
-        long range = generator.nextLong(1, 1000);
+        long seedStart = generator.nextLong(0L, 1000L);
+        long range = generator.nextLong(1L, 1000L);
 
         SeedRange seedRange = new SeedRange(seedStart, range);
 

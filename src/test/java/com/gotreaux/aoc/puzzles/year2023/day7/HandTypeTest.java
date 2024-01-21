@@ -2,81 +2,63 @@ package com.gotreaux.aoc.puzzles.year2023.day7;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Arrays;
 import java.util.List;
-import org.junit.jupiter.api.Test;
+import java.util.stream.Stream;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class HandTypeTest {
+    @ParameterizedTest
+    @MethodSource("provideParseType")
+    void parseType(Card v, Card w, Card x, Card y, Card z, HandType expectedType) {
+        List<Card> cards = List.of(v, w, x, y, z);
 
-    @Test
-    void test32T3K() {
-        List<Card> cards = Arrays.asList(Card.THREE, Card.TWO, Card.TEN, Card.THREE, Card.KING);
-
-        HandType handType = HandType.fromCards(cards);
-
-        assertEquals(HandType.ONE_PAIR, handType);
+        assertEquals(expectedType, HandType.fromCards(cards));
     }
 
-    @Test
-    void testT55Jack5() {
-        List<Card> cards = Arrays.asList(Card.TEN, Card.FIVE, Card.FIVE, Card.JACK, Card.FIVE);
-
-        HandType handType = HandType.fromCards(cards);
-
-        assertEquals(HandType.THREE_OF_A_KIND, handType);
-    }
-
-    @Test
-    void testKK677() {
-        List<Card> cards = Arrays.asList(Card.KING, Card.KING, Card.SIX, Card.SEVEN, Card.SEVEN);
-
-        HandType handType = HandType.fromCards(cards);
-
-        assertEquals(HandType.TWO_PAIR, handType);
-    }
-
-    @Test
-    void testKTJackJackT() {
-        List<Card> cards = Arrays.asList(Card.KING, Card.TEN, Card.JACK, Card.JACK, Card.TEN);
-
-        HandType handType = HandType.fromCards(cards);
-
-        assertEquals(HandType.TWO_PAIR, handType);
-    }
-
-    @Test
-    void testQQQJackA() {
-        List<Card> cards = Arrays.asList(Card.QUEEN, Card.QUEEN, Card.QUEEN, Card.JACK, Card.ACE);
-
-        HandType handType = HandType.fromCards(cards);
-
-        assertEquals(HandType.THREE_OF_A_KIND, handType);
-    }
-
-    @Test
-    void testT55Joker5() {
-        List<Card> cards = Arrays.asList(Card.TEN, Card.FIVE, Card.FIVE, Card.JOKER, Card.FIVE);
-
-        HandType handType = HandType.fromCards(cards);
-
-        assertEquals(HandType.FOUR_OF_A_KIND, handType);
-    }
-
-    @Test
-    void testKTJokerJokerT() {
-        List<Card> cards = Arrays.asList(Card.KING, Card.TEN, Card.JOKER, Card.JOKER, Card.TEN);
-
-        HandType handType = HandType.fromCards(cards);
-
-        assertEquals(HandType.FOUR_OF_A_KIND, handType);
-    }
-
-    @Test
-    void testQQQJokerA() {
-        List<Card> cards = Arrays.asList(Card.QUEEN, Card.QUEEN, Card.QUEEN, Card.JOKER, Card.ACE);
-
-        HandType handType = HandType.fromCards(cards);
-
-        assertEquals(HandType.FOUR_OF_A_KIND, handType);
+    private static Stream<Arguments> provideParseType() {
+        return Stream.of(
+                Arguments.of(
+                        Card.THREE, Card.TWO, Card.TEN, Card.THREE, Card.KING, HandType.ONE_PAIR),
+                Arguments.of(
+                        Card.TEN,
+                        Card.FIVE,
+                        Card.FIVE,
+                        Card.JACK,
+                        Card.FIVE,
+                        HandType.THREE_OF_A_KIND),
+                Arguments.of(
+                        Card.KING, Card.KING, Card.SIX, Card.SEVEN, Card.SEVEN, HandType.TWO_PAIR),
+                Arguments.of(
+                        Card.KING, Card.TEN, Card.JACK, Card.JACK, Card.TEN, HandType.TWO_PAIR),
+                Arguments.of(
+                        Card.QUEEN,
+                        Card.QUEEN,
+                        Card.QUEEN,
+                        Card.JACK,
+                        Card.ACE,
+                        HandType.THREE_OF_A_KIND),
+                Arguments.of(
+                        Card.TEN,
+                        Card.FIVE,
+                        Card.FIVE,
+                        Card.JOKER,
+                        Card.FIVE,
+                        HandType.FOUR_OF_A_KIND),
+                Arguments.of(
+                        Card.KING,
+                        Card.TEN,
+                        Card.JOKER,
+                        Card.JOKER,
+                        Card.TEN,
+                        HandType.FOUR_OF_A_KIND),
+                Arguments.of(
+                        Card.QUEEN,
+                        Card.QUEEN,
+                        Card.QUEEN,
+                        Card.JOKER,
+                        Card.ACE,
+                        HandType.FOUR_OF_A_KIND));
     }
 }

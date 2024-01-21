@@ -94,7 +94,7 @@ enum HandType {
             }),
     FIVE_OF_A_KIND(
             cards -> {
-                if (cards.stream().distinct().count() == 1) {
+                if (cards.stream().distinct().count() == 1L) {
                     return true;
                 }
 

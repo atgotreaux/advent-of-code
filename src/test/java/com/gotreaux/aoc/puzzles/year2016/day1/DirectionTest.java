@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.awt.Point;
 import java.util.random.RandomGenerator;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class DirectionTest {
     @RepeatedTest(5)
@@ -52,43 +55,21 @@ class DirectionTest {
         assertEquals(new Point(point.x - units, point.y), Direction.WEST.move(point, units));
     }
 
-    @Test
-    void facingNorthTurnRight() {
-        assertEquals(Direction.EAST, Direction.NORTH.turn(Instruction.RIGHT));
+    @ParameterizedTest
+    @MethodSource("provideFacingOnTurn")
+    void facingOnTurn(Direction starting, Instruction instruction, Direction expected) {
+        assertEquals(expected, starting.turn(instruction));
     }
 
-    @Test
-    void facingNorthTurnLeft() {
-        assertEquals(Direction.WEST, Direction.NORTH.turn(Instruction.LEFT));
-    }
-
-    @Test
-    void facingSouthTurnRight() {
-        assertEquals(Direction.WEST, Direction.SOUTH.turn(Instruction.RIGHT));
-    }
-
-    @Test
-    void facingSouthTurnLeft() {
-        assertEquals(Direction.EAST, Direction.SOUTH.turn(Instruction.LEFT));
-    }
-
-    @Test
-    void facingEastTurnRight() {
-        assertEquals(Direction.SOUTH, Direction.EAST.turn(Instruction.RIGHT));
-    }
-
-    @Test
-    void facingEastTurnLeft() {
-        assertEquals(Direction.NORTH, Direction.EAST.turn(Instruction.LEFT));
-    }
-
-    @Test
-    void facingWestTurnRight() {
-        assertEquals(Direction.NORTH, Direction.WEST.turn(Instruction.RIGHT));
-    }
-
-    @Test
-    void facingWestTurnLeft() {
-        assertEquals(Direction.SOUTH, Direction.WEST.turn(Instruction.LEFT));
+    private static Stream<Arguments> provideFacingOnTurn() {
+        return Stream.of(
+                Arguments.of(Direction.NORTH, Instruction.RIGHT, Direction.EAST),
+                Arguments.of(Direction.NORTH, Instruction.LEFT, Direction.WEST),
+                Arguments.of(Direction.SOUTH, Instruction.RIGHT, Direction.WEST),
+                Arguments.of(Direction.SOUTH, Instruction.LEFT, Direction.EAST),
+                Arguments.of(Direction.EAST, Instruction.RIGHT, Direction.SOUTH),
+                Arguments.of(Direction.EAST, Instruction.LEFT, Direction.NORTH),
+                Arguments.of(Direction.WEST, Instruction.RIGHT, Direction.NORTH),
+                Arguments.of(Direction.WEST, Instruction.LEFT, Direction.SOUTH));
     }
 }

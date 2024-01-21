@@ -3,50 +3,19 @@ package com.gotreaux.aoc.puzzles.year2022.day2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.random.RandomGenerator;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class RoundTest {
-    @Test
-    void rockBeatsScissors() {
-        Round round = new Round(Hand.SCISSORS, Hand.ROCK);
+    @ParameterizedTest
+    @MethodSource("provideScore")
+    void score(Hand opponentHand, Hand strategyHand, int expectedScore) {
+        Round round = new Round(opponentHand, strategyHand);
 
-        assertEquals(6, round.getScore());
-    }
-
-    @Test
-    void scissorsBeatsPaper() {
-        Round round = new Round(Hand.PAPER, Hand.SCISSORS);
-
-        assertEquals(6, round.getScore());
-    }
-
-    @Test
-    void paperBeatsRock() {
-        Round round = new Round(Hand.ROCK, Hand.PAPER);
-
-        assertEquals(6, round.getScore());
-    }
-
-    @Test
-    void scissorsLosesToRock() {
-        Round round = new Round(Hand.ROCK, Hand.SCISSORS);
-
-        assertEquals(0, round.getScore());
-    }
-
-    @Test
-    void paperLosesToScissors() {
-        Round round = new Round(Hand.SCISSORS, Hand.PAPER);
-
-        assertEquals(0, round.getScore());
-    }
-
-    @Test
-    void rockLosesToPaper() {
-        Round round = new Round(Hand.PAPER, Hand.ROCK);
-
-        assertEquals(0, round.getScore());
+        assertEquals(expectedScore, round.getScore());
     }
 
     @RepeatedTest(5)
@@ -58,5 +27,15 @@ class RoundTest {
         Round round = new Round(hand, hand);
 
         assertEquals(3, round.getScore());
+    }
+
+    private static Stream<Arguments> provideScore() {
+        return Stream.of(
+                Arguments.of(Hand.SCISSORS, Hand.ROCK, 6),
+                Arguments.of(Hand.PAPER, Hand.SCISSORS, 6),
+                Arguments.of(Hand.ROCK, Hand.PAPER, 6),
+                Arguments.of(Hand.ROCK, Hand.SCISSORS, 0),
+                Arguments.of(Hand.SCISSORS, Hand.PAPER, 0),
+                Arguments.of(Hand.PAPER, Hand.ROCK, 0));
     }
 }

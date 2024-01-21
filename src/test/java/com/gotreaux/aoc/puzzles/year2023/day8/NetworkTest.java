@@ -61,8 +61,10 @@ class NetworkTest {
 
         Network network = new Network(instructions, nodes);
 
-        Predicate<Node> startPosition = node -> node.position().endsWith("A");
-        Predicate<Node> endPosition = node -> node.position().endsWith("Z");
+        Predicate<Node> startPosition =
+                node -> node.position().charAt(node.position().length() - 1) == 'A';
+        Predicate<Node> endPosition =
+                node -> node.position().charAt(node.position().length() - 1) == 'Z';
 
         assertEquals(6L, network.getStepsForNodes(startPosition, endPosition));
     }

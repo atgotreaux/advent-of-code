@@ -16,14 +16,14 @@ class KeypadTest {
         String label = String.valueOf(generator.nextInt());
         String up = String.valueOf(generator.nextInt());
 
-        Key one =
+        Key key =
                 new Key(
                         label,
                         up,
                         String.valueOf(generator.nextInt()),
                         String.valueOf(generator.nextInt()),
                         String.valueOf(generator.nextInt()));
-        Key two =
+        Key upKey =
                 new Key(
                         up,
                         String.valueOf(generator.nextInt()),
@@ -31,10 +31,10 @@ class KeypadTest {
                         String.valueOf(generator.nextInt()),
                         String.valueOf(generator.nextInt()));
 
-        List<Key> keys = List.of(one, two);
+        List<Key> keys = List.of(key, upKey);
         Keypad keypad = new Keypad(keys);
 
-        assertEquals(two, keypad.move(one, Instruction.UP));
+        assertEquals(upKey, keypad.move(key, Instruction.UP));
     }
 
     @Test
@@ -44,14 +44,14 @@ class KeypadTest {
         String label = String.valueOf(generator.nextInt());
         String down = String.valueOf(generator.nextInt());
 
-        Key one =
+        Key key =
                 new Key(
                         label,
                         String.valueOf(generator.nextInt()),
                         down,
                         String.valueOf(generator.nextInt()),
                         String.valueOf(generator.nextInt()));
-        Key two =
+        Key downKey =
                 new Key(
                         down,
                         String.valueOf(generator.nextInt()),
@@ -59,10 +59,10 @@ class KeypadTest {
                         String.valueOf(generator.nextInt()),
                         String.valueOf(generator.nextInt()));
 
-        List<Key> keys = List.of(one, two);
+        List<Key> keys = List.of(key, downKey);
         Keypad keypad = new Keypad(keys);
 
-        assertEquals(two, keypad.move(one, Instruction.DOWN));
+        assertEquals(downKey, keypad.move(key, Instruction.DOWN));
     }
 
     @Test
@@ -72,14 +72,14 @@ class KeypadTest {
         String label = String.valueOf(generator.nextInt());
         String left = String.valueOf(generator.nextInt());
 
-        Key one =
+        Key key =
                 new Key(
                         label,
                         String.valueOf(generator.nextInt()),
                         String.valueOf(generator.nextInt()),
                         left,
                         String.valueOf(generator.nextInt()));
-        Key two =
+        Key leftKey =
                 new Key(
                         left,
                         String.valueOf(generator.nextInt()),
@@ -87,10 +87,10 @@ class KeypadTest {
                         String.valueOf(generator.nextInt()),
                         String.valueOf(generator.nextInt()));
 
-        List<Key> keys = List.of(one, two);
+        List<Key> keys = List.of(key, leftKey);
         Keypad keypad = new Keypad(keys);
 
-        assertEquals(two, keypad.move(one, Instruction.LEFT));
+        assertEquals(leftKey, keypad.move(key, Instruction.LEFT));
     }
 
     @Test
@@ -100,14 +100,14 @@ class KeypadTest {
         String label = String.valueOf(generator.nextInt());
         String right = String.valueOf(generator.nextInt());
 
-        Key one =
+        Key key =
                 new Key(
                         label,
                         String.valueOf(generator.nextInt()),
                         String.valueOf(generator.nextInt()),
                         String.valueOf(generator.nextInt()),
                         right);
-        Key two =
+        Key rightKey =
                 new Key(
                         right,
                         String.valueOf(generator.nextInt()),
@@ -115,24 +115,24 @@ class KeypadTest {
                         String.valueOf(generator.nextInt()),
                         String.valueOf(generator.nextInt()));
 
-        List<Key> keys = List.of(one, two);
+        List<Key> keys = List.of(key, rightKey);
         Keypad keypad = new Keypad(keys);
 
-        assertEquals(two, keypad.move(one, Instruction.RIGHT));
+        assertEquals(rightKey, keypad.move(key, Instruction.RIGHT));
     }
 
     @Test
     void throwsIfCannotFindTarget() {
         RandomGenerator generator = RandomGenerator.getDefault();
 
-        Key one = new Key("1", "2", "3", "4", "5");
+        Key key = new Key("1", "2", "3", "4", "5");
 
-        List<Key> keys = List.of(one);
+        List<Key> keys = List.of(key);
         Keypad keypad = new Keypad(keys);
 
         Instruction instruction =
                 Instruction.values()[generator.nextInt(Instruction.values().length)];
 
-        assertThrows(NoSuchElementException.class, () -> keypad.move(one, instruction));
+        assertThrows(NoSuchElementException.class, () -> keypad.move(key, instruction));
     }
 }

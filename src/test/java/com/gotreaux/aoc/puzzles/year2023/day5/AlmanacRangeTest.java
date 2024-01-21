@@ -12,17 +12,17 @@ class AlmanacRangeTest {
     @Test
     void throwsIfAlmanacRangeNonPositive() {
         RandomGenerator generator = RandomGenerator.getDefault();
-        long negativeArgumentIndex = generator.nextLong(1, 4);
+        int negativeArgumentIndex = generator.nextInt(1, 4);
         long destinationRangeStart =
-                negativeArgumentIndex == 1L
+                negativeArgumentIndex == 1
                         ? -Math.abs(generator.nextLong())
                         : Math.abs(generator.nextLong());
         long sourceRangeStart =
-                negativeArgumentIndex == 2L
+                negativeArgumentIndex == 2
                         ? -Math.abs(generator.nextLong())
                         : Math.abs(generator.nextLong());
         long rangeLength =
-                negativeArgumentIndex == 3L
+                negativeArgumentIndex == 3
                         ? -Math.abs(generator.nextLong())
                         : Math.abs(generator.nextLong());
 
@@ -35,13 +35,14 @@ class AlmanacRangeTest {
     void sourceValueWithinRange() {
         RandomGenerator generator = RandomGenerator.getDefault();
 
-        long sourceRangeStart = generator.nextLong(0, 1000);
-        long rangeLength = generator.nextLong(1, 1000);
+        long sourceRangeStart = generator.nextLong(0L, 1000L);
+        long rangeLength = generator.nextLong(1L, 1000L);
 
         AlmanacRange range =
-                new AlmanacRange(generator.nextLong(1, 1000), sourceRangeStart, rangeLength);
+                new AlmanacRange(generator.nextLong(1L, 1000L), sourceRangeStart, rangeLength);
 
-        long withinRange = generator.nextLong(sourceRangeStart, sourceRangeStart + rangeLength - 1);
+        long withinRange =
+                generator.nextLong(sourceRangeStart, sourceRangeStart + rangeLength - 1L);
 
         assertTrue(range.isWithinRange(withinRange));
     }
@@ -50,13 +51,13 @@ class AlmanacRangeTest {
     void sourceValueNotWithinRange() {
         RandomGenerator generator = RandomGenerator.getDefault();
 
-        long sourceRangeStart = generator.nextLong(0, 1000);
-        long rangeLength = generator.nextLong(1, 1000);
+        long sourceRangeStart = generator.nextLong(0L, 1000L);
+        long rangeLength = generator.nextLong(1L, 1000L);
 
         AlmanacRange range =
-                new AlmanacRange(generator.nextLong(1, 1000), sourceRangeStart, rangeLength);
+                new AlmanacRange(generator.nextLong(1L, 1000L), sourceRangeStart, rangeLength);
 
-        long outOfRange = generator.nextLong(0, sourceRangeStart);
+        long outOfRange = generator.nextLong(0L, sourceRangeStart);
 
         assertFalse(range.isWithinRange(outOfRange));
     }
@@ -65,13 +66,14 @@ class AlmanacRangeTest {
     void destinationValueWithinRange() {
         RandomGenerator generator = RandomGenerator.getDefault();
 
-        long destinationRangeStart = generator.nextLong(0, 1000);
-        long sourceRangeStart = generator.nextLong(0, 1000);
-        long rangeLength = generator.nextLong(1, 1000);
+        long destinationRangeStart = generator.nextLong(0L, 1000L);
+        long sourceRangeStart = generator.nextLong(0L, 1000L);
+        long rangeLength = generator.nextLong(1L, 1000L);
 
         AlmanacRange range = new AlmanacRange(destinationRangeStart, sourceRangeStart, rangeLength);
 
-        long sourceValue = generator.nextLong(sourceRangeStart, sourceRangeStart + rangeLength - 1);
+        long sourceValue =
+                generator.nextLong(sourceRangeStart, sourceRangeStart + rangeLength - 1L);
         long offset = sourceValue - sourceRangeStart;
 
         assertEquals(destinationRangeStart + offset, range.getDestinationValue(sourceValue));
@@ -81,9 +83,9 @@ class AlmanacRangeTest {
     void destinationValueNotWithinRange() {
         RandomGenerator generator = RandomGenerator.getDefault();
 
-        long destinationRangeStart = generator.nextLong(0, 1000);
-        long sourceRangeStart = generator.nextLong(0, 1000);
-        long rangeLength = generator.nextLong(1, 1000);
+        long destinationRangeStart = generator.nextLong(0L, 1000L);
+        long sourceRangeStart = generator.nextLong(0L, 1000L);
+        long rangeLength = generator.nextLong(1L, 1000L);
 
         AlmanacRange range = new AlmanacRange(destinationRangeStart, sourceRangeStart, rangeLength);
 

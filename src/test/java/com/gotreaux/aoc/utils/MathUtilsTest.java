@@ -11,14 +11,14 @@ class MathUtilsTest {
 
     @ParameterizedTest
     @MethodSource("provideLcm")
-    void lcm(long a, long b, long expectedLcm) {
-        assertEquals(expectedLcm, MathUtils.lcm(a, b));
+    void lcm(long x, long y, long expectedLcm) {
+        assertEquals(expectedLcm, MathUtils.lcm(x, y));
     }
 
     @ParameterizedTest
     @MethodSource("provideGcd")
-    void gcd(long a, long b, long expectedGcd) {
-        assertEquals(expectedGcd, MathUtils.gcd(a, b));
+    void gcd(long x, long y, long expectedGcd) {
+        assertEquals(expectedGcd, MathUtils.gcd(x, y));
     }
 
     private static Stream<Arguments> provideLcm() {

@@ -6,28 +6,18 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.awt.Point;
 import java.util.NoSuchElementException;
 import java.util.random.RandomGenerator;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class DirectionTest {
-    @Test
-    void parseNorth() {
-        assertEquals(Direction.NORTH, Direction.fromLabel('^'));
-    }
-
-    @Test
-    void parseSouth() {
-        assertEquals(Direction.SOUTH, Direction.fromLabel('v'));
-    }
-
-    @Test
-    void parseEast() {
-        assertEquals(Direction.EAST, Direction.fromLabel('>'));
-    }
-
-    @Test
-    void parseWest() {
-        assertEquals(Direction.WEST, Direction.fromLabel('<'));
+    @ParameterizedTest
+    @MethodSource("provideParseDirection")
+    void parseDirection(char label, Direction expectedDirection) {
+        assertEquals(expectedDirection, Direction.fromLabel(label));
     }
 
     @Test
@@ -69,5 +59,13 @@ class DirectionTest {
         Point point = new Point(generator.nextInt(-1000, 1000), generator.nextInt(-1000, 1000));
 
         assertEquals(new Point(point.x - 1, point.y), Direction.WEST.move(point));
+    }
+
+    private static Stream<Arguments> provideParseDirection() {
+        return Stream.of(
+                Arguments.of('^', Direction.NORTH),
+                Arguments.of('v', Direction.SOUTH),
+                Arguments.of('>', Direction.EAST),
+                Arguments.of('<', Direction.WEST));
     }
 }
