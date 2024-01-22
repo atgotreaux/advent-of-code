@@ -17,4 +17,4 @@ jobs:
       - name: Build with Maven
         run: mvn -B package
       - name: Static analysis check
-        run: mvn spotbugs:check
+        run: mvn -B spotbugs:check

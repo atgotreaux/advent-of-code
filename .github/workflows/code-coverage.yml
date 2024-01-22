@@ -17,4 +17,4 @@ jobs:
       - name: Build with Maven
         run: mvn -B package
       - name: Code coverage check
-        run: mvn jacoco:check
+        run: mvn -B jacoco:check

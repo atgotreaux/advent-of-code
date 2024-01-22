@@ -19,4 +19,6 @@ jobs:
       - name: Build with Maven
         run: mvn -B package
       - name: Dependency vulnerability check
-        run: mvn org.owasp:dependency-check-maven:check -DnvdApiKey=${{ secrets.NVD_API_KEY }}
+        env:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+        run: mvn -B org.owasp:dependency-check-maven:check -DnvdApiKey=$NVD_API_KEY -DnvdApiDelay=6000 -DnvdMaxRetryCount=10

@@ -17,4 +17,4 @@ jobs:
       - name: Build with Maven
         run: mvn -B package
       - name: Code style check
-        run: mvn spotless:check
+        run: mvn -B spotless:check

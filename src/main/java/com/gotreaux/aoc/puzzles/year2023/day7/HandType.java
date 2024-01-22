@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -114,11 +113,11 @@ enum HandType {
         return criterion;
     }
 
-    static HandType fromCards(List<Card> cards) throws NoSuchElementException {
+    static HandType fromCards(List<Card> cards) {
         return Arrays.stream(values())
                 .sorted(Collections.reverseOrder())
                 .filter(handType -> handType.getCriterion().test(cards))
                 .findFirst()
-                .orElseThrow();
+                .orElse(HIGH_CARD);
     }
 }
