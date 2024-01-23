@@ -17,7 +17,8 @@ public class ProgramAlarmPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve()
+            throws IOException, URISyntaxException, IllegalArgumentException {
         String input = getInputProvider().getInputString();
 
         int[] program = Arrays.stream(input.split(",")).mapToInt(Integer::parseInt).toArray();
