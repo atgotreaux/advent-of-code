@@ -27,7 +27,7 @@ public class FileInputProvider implements InputProvider {
     }
 
     @Override
-    public String inputString() throws IOException, URISyntaxException {
+    public String getInputString() throws IOException, URISyntaxException {
         return Files.readString(loadResource());
     }
 

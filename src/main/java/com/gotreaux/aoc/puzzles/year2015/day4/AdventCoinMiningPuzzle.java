@@ -22,7 +22,7 @@ public class AdventCoinMiningPuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Integer, Integer> solve()
             throws IOException, URISyntaxException, NoSuchAlgorithmException {
-        String input = getInputProvider().inputString();
+        String input = getInputProvider().getInputString();
 
         int partOne = findHashMatchingCondition(input, s -> s.startsWith("00000"));
         int partTwo = findHashMatchingCondition(input, s -> s.startsWith("000000"));

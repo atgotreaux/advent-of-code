@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public interface InputProvider {
-    String inputString() throws IOException, URISyntaxException;
+    String getInputString() throws IOException, URISyntaxException;
 
     Stream<String> getInputStream() throws IOException, URISyntaxException;
 

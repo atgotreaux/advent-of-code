@@ -7,6 +7,11 @@ import java.util.stream.Stream;
 public record StringInputProvider(String inputString) implements InputProvider {
 
     @Override
+    public String getInputString() {
+        return inputString;
+    }
+
+    @Override
     public Stream<String> getInputStream() {
         return Stream.of(inputString);
     }

@@ -31,7 +31,7 @@ public class TaxicabPuzzle extends Puzzle {
         Collection<Point> visitedPositions = new ArrayList<>();
         visitedPositions.add(position);
 
-        String input = getInputProvider().inputString();
+        String input = getInputProvider().getInputString();
         for (String step : INSTRUCTION_SEPARATOR.split(input)) {
             Instruction instruction = Instruction.fromLabel(step.charAt(0));
             direction = direction.turn(instruction);

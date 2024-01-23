@@ -21,7 +21,7 @@ public class SphericalHousesPuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Integer, Integer> solve()
             throws IOException, URISyntaxException, NoSuchElementException {
-        String input = getInputProvider().inputString();
+        String input = getInputProvider().getInputString();
         int length = input.length();
 
         Set<Point> houseDeliveries = new HashSet<>(length);

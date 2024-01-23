@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.gotreaux.aoc.dto.PuzzleDto;
 import java.util.List;
+import java.util.random.RandomGenerator;
 import org.junit.jupiter.api.Test;
 
 class PuzzleServiceTest {
@@ -11,7 +12,7 @@ class PuzzleServiceTest {
     void everyPuzzle() throws Exception {
         List<PuzzleDto> puzzles = PuzzleService.getPuzzles(List.of(), List.of());
 
-        assertEquals(29, puzzles.size());
+        assertEquals(30, puzzles.size());
     }
 
     @Test
@@ -28,11 +29,15 @@ class PuzzleServiceTest {
     @Test
     void everyPuzzleForDay() throws Exception {
         // TODO once all puzzles are solved, a random day should return 9 puzzles
-        List<PuzzleDto> puzzles = PuzzleService.getPuzzles(List.of(), List.of(1));
+        RandomGenerator generator = RandomGenerator.getDefault();
+
+        int day = generator.nextInt(1, 3);
+
+        List<PuzzleDto> puzzles = PuzzleService.getPuzzles(List.of(), List.of(day));
 
         assertEquals(9, puzzles.size());
         for (PuzzleDto puzzle : puzzles) {
-            assertEquals(1, puzzle.day());
+            assertEquals(day, puzzle.day());
         }
     }
 

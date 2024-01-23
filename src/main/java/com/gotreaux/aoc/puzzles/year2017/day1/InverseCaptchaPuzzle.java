@@ -19,7 +19,7 @@ public class InverseCaptchaPuzzle extends Puzzle {
         int sumOfNextDigitsMatching = 0;
         int sumOfHalfwayDigitsMatching = 0;
 
-        String input = getInputProvider().inputString();
+        String input = getInputProvider().getInputString();
         for (int i = 0; i < input.length(); i++) {
             char currentChar = input.charAt(i);
 

@@ -20,7 +20,7 @@ public class ApartmentFloorPuzzle extends Puzzle {
         int floor = 0;
         int positionBasementReached = Integer.MAX_VALUE;
 
-        String input = getInputProvider().inputString();
+        String input = getInputProvider().getInputString();
         for (int i = 0; i < input.length(); i++) {
             char instructionLabel = input.charAt(i);
             Instruction instruction = Instruction.fromLabel(instructionLabel);
