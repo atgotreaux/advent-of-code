@@ -30,6 +30,7 @@ git update-index --assume-unchanged src/main/resources/com/gotreaux/aoc/puzzles/
 :: 2021
 git update-index --assume-unchanged src/main/resources/com/gotreaux/aoc/puzzles/year2021/day1/input.txt
 git update-index --assume-unchanged src/main/resources/com/gotreaux/aoc/puzzles/year2021/day2/input.txt
+git update-index --assume-unchanged src/main/resources/com/gotreaux/aoc/puzzles/year2021/day3/input.txt
 
 :: 2022
 git update-index --assume-unchanged src/main/resources/com/gotreaux/aoc/puzzles/year2022/day1/input.txt
