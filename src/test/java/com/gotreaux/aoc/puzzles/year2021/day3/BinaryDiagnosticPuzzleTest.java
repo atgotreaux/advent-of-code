@@ -17,4 +17,15 @@ class BinaryDiagnosticPuzzleTest {
 
         assertEquals(198, output.partOne());
     }
+
+    @Test
+    void lifeSupportRating() throws Exception {
+        FileInputProvider inputProvider = new FileInputProvider(BinaryDiagnosticPuzzle.class);
+
+        BinaryDiagnosticPuzzle puzzle = new BinaryDiagnosticPuzzle(inputProvider);
+
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(230, output.partTwo());
+    }
 }

@@ -6,8 +6,13 @@ import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @ShellPuzzle(year = 2021, day = 3, title = "Binary Diagnostic")
 public class BinaryDiagnosticPuzzle extends Puzzle {
@@ -16,39 +21,55 @@ public class BinaryDiagnosticPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
-        Map<Integer, Integer> zeroes = new HashMap<>();
-        Map<Integer, Integer> ones = new HashMap<>();
+    public PuzzleOutput<Integer, Integer> solve()
+            throws IOException, URISyntaxException, NoSuchElementException, NumberFormatException {
+        List<String> input = getInputProvider().getInputList();
+        int bitLength = input.getFirst().length();
 
-        for (String line : getInputProvider().getInputList()) {
-            for (int i = 0; i < line.length(); i++) {
-                int bit = Character.digit(line.charAt(i), 10);
-                switch (bit) {
-                    case 0:
-                        ones.merge(i, 1, Integer::sum);
-                        break;
-                    case 1:
-                        zeroes.merge(i, 1, Integer::sum);
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Unexpected bit '%d'".formatted(bit));
-                }
-            }
-        }
-
-        StringBuilder gamma = new StringBuilder(zeroes.size());
-        StringBuilder epsilon = new StringBuilder(zeroes.size());
-        for (int i = 0; i < ones.size(); i++) {
-            if (zeroes.get(i) > ones.get(i)) {
-                gamma.append(0);
-                epsilon.append(1);
+        int gamma = 0;
+        int epsilon = 0;
+        List<String> oxygenCandidates = new ArrayList<>(input);
+        List<String> co2Candidates = new ArrayList<>(input);
+        for (int i = 0; i < bitLength; i++) {
+            int position = i;
+            int shift = 1 << Math.abs(i - bitLength + 1);
+            if (getMostCommonBit(input, i) == 0) {
+                epsilon |= shift;
             } else {
-                gamma.append(1);
-                epsilon.append(0);
+                gamma |= shift;
+            }
+
+            if (oxygenCandidates.size() > 1) {
+                int oxyBit = getMostCommonBit(oxygenCandidates, i);
+                oxygenCandidates.removeIf(s -> Character.digit(s.charAt(position), 10) != oxyBit);
+            }
+            if (co2Candidates.size() > 1) {
+                int co2Bit = getMostCommonBit(co2Candidates, i);
+                co2Candidates.removeIf(s -> Character.digit(s.charAt(position), 10) == co2Bit);
             }
         }
-        int power = Integer.parseInt(gamma.toString(), 2) * Integer.parseInt(epsilon.toString(), 2);
 
-        return new PuzzleOutput<>(power, 0);
+        int powerConsumption = gamma * epsilon;
+
+        int oxygenGeneratorRating = Integer.parseInt(oxygenCandidates.getFirst(), 2);
+        int co2ScrubberRating = Integer.parseInt(co2Candidates.getFirst(), 2);
+        int lifeSupportRating = oxygenGeneratorRating * co2ScrubberRating;
+
+        return new PuzzleOutput<>(powerConsumption, lifeSupportRating);
+    }
+
+    private static int getMostCommonBit(Collection<String> numbers, int position)
+            throws NoSuchElementException {
+        return numbers.stream()
+                .mapToInt(s -> Character.digit(s.charAt(position), 10))
+                .boxed()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet()
+                .stream()
+                .max(
+                        Map.Entry.<Integer, Long>comparingByValue()
+                                .thenComparing(Map.Entry.comparingByKey()))
+                .orElseThrow()
+                .getKey();
     }
 }
