@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2017.day3;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.awt.Point;
 import java.util.random.RandomGenerator;

@@ -4,6 +4,7 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.utils.Matrix;
 import java.awt.Point;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -26,13 +27,9 @@ public class GearRatiosPuzzle extends Puzzle {
         int sumOfParts = 0;
 
         List<String> lines = getInputProvider().getInputList();
-        int rowCount = lines.size();
-        int columnCount = lines.getFirst().length();
-
-        char[][] matrix = new char[rowCount][columnCount];
-        for (int i = 0; i < rowCount; i++) {
-            matrix[i] = lines.get(i).toCharArray();
-        }
+        Matrix matrix = new Matrix(lines);
+        int rowCount = matrix.getRowCount();
+        int columnCount = matrix.getColCount();
 
         Map<Point, List<Integer>> gearRatios = new HashMap<>();
         for (int lineRow = 0; lineRow < rowCount; lineRow++) {
@@ -40,14 +37,14 @@ public class GearRatiosPuzzle extends Puzzle {
             boolean adjacentToPart = false;
             Collection<Point> gears = new HashSet<>();
             for (int lineCol = 0; lineCol < columnCount + 1; lineCol++) {
-                if (lineCol < columnCount && Character.isDigit(matrix[lineRow][lineCol])) {
-                    number = number * 10 + Character.digit(matrix[lineRow][lineCol], 10);
+                if (lineCol < columnCount && Character.isDigit(matrix.get(lineRow, lineCol))) {
+                    number = number * 10 + Character.digit(matrix.get(lineRow, lineCol), 10);
                     for (int adjacentLine = -1; adjacentLine < 2; adjacentLine++) {
                         for (int adjacentCol = -1; adjacentCol < 2; adjacentCol++) {
                             int row = adjacentLine + lineRow;
                             int col = adjacentCol + lineCol;
                             if (row >= 0 && row < rowCount && col >= 0 && col < columnCount) {
-                                char adjacentChar = matrix[row][col];
+                                char adjacentChar = matrix.get(row, col);
                                 if (!Character.isDigit(adjacentChar) && adjacentChar != '.') {
                                     adjacentToPart = true;
                                 }

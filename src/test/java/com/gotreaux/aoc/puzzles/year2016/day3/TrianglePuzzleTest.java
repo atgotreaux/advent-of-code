@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2016.day3;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.StringInputProvider;

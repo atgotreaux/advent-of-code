@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.services;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.dto.PuzzleDto;
 import java.util.List;
@@ -12,7 +12,7 @@ class PuzzleServiceTest {
     void everyPuzzle() throws Exception {
         List<PuzzleDto> puzzles = PuzzleService.getPuzzles(List.of(), List.of());
 
-        assertEquals(32, puzzles.size());
+        assertEquals(33, puzzles.size());
     }
 
     @Test
