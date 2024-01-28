@@ -3,13 +3,14 @@ package com.gotreaux.aoc.puzzles.year2021.day2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.FileInputProvider;
+import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class DivePuzzleTest {
     @Test
     void productOfPosition() throws Exception {
-        FileInputProvider inputProvider = new FileInputProvider(DivePuzzle.class);
+        InputProvider inputProvider = new FileInputProvider(DivePuzzle.class);
 
         DivePuzzle puzzle = new DivePuzzle(inputProvider);
 
@@ -20,7 +21,7 @@ class DivePuzzleTest {
 
     @Test
     void productOfPositionWithAim() throws Exception {
-        FileInputProvider inputProvider = new FileInputProvider(DivePuzzle.class);
+        InputProvider inputProvider = new FileInputProvider(DivePuzzle.class);
 
         DivePuzzle puzzle = new DivePuzzle(inputProvider);
 

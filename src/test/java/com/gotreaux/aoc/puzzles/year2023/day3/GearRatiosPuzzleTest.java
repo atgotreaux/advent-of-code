@@ -3,13 +3,14 @@ package com.gotreaux.aoc.puzzles.year2023.day3;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.FileInputProvider;
+import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class GearRatiosPuzzleTest {
     @Test
     void sumOfParts() throws Exception {
-        FileInputProvider inputProvider = new FileInputProvider(GearRatiosPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider(GearRatiosPuzzle.class);
 
         GearRatiosPuzzle puzzle = new GearRatiosPuzzle(inputProvider);
 
@@ -20,7 +21,7 @@ class GearRatiosPuzzleTest {
 
     @Test
     void sumOfGearRatios() throws Exception {
-        FileInputProvider inputProvider = new FileInputProvider(GearRatiosPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider(GearRatiosPuzzle.class);
 
         GearRatiosPuzzle puzzle = new GearRatiosPuzzle(inputProvider);
 

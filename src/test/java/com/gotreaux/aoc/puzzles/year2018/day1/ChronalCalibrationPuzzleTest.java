@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2018.day1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.FileInputProvider;
+import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,7 +14,7 @@ class ChronalCalibrationPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideResultingFrequency")
     void resultingFrequency(String fileName, int expectedFrequency) throws Exception {
-        FileInputProvider inputProvider =
+        InputProvider inputProvider =
                 new FileInputProvider(ChronalCalibrationPuzzle.class, fileName);
 
         ChronalCalibrationPuzzle puzzle = new ChronalCalibrationPuzzle(inputProvider);
@@ -26,7 +27,7 @@ class ChronalCalibrationPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideFirstDuplicateFrequency")
     void firstDuplicateFrequency(String fileName, int expectedFrequency) throws Exception {
-        FileInputProvider inputProvider =
+        InputProvider inputProvider =
                 new FileInputProvider(ChronalCalibrationPuzzle.class, fileName);
 
         ChronalCalibrationPuzzle puzzle = new ChronalCalibrationPuzzle(inputProvider);

@@ -24,12 +24,7 @@ public class TobogganTrajectoryPuzzle extends Puzzle {
         int treesEncountered = slope.getTreesEncountered(map);
 
         List<Slope> slopeCandidates =
-                List.of(
-                        new Slope(1, 1),
-                        new Slope(3, 1),
-                        new Slope(5, 1),
-                        new Slope(7, 1),
-                        new Slope(1, 2));
+                List.of(new Slope(1, 1), new Slope(5, 1), new Slope(7, 1), new Slope(1, 2));
 
         long productOfSlopeCandidates =
                 slopeCandidates.stream()
@@ -37,6 +32,6 @@ public class TobogganTrajectoryPuzzle extends Puzzle {
                         .asLongStream()
                         .reduce(1L, Math::multiplyExact);
 
-        return new PuzzleOutput<>(treesEncountered, productOfSlopeCandidates);
+        return new PuzzleOutput<>(treesEncountered, productOfSlopeCandidates * treesEncountered);
     }
 }

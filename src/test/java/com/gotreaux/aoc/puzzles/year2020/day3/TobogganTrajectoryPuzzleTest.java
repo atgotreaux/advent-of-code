@@ -3,13 +3,14 @@ package com.gotreaux.aoc.puzzles.year2020.day3;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.FileInputProvider;
+import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class TobogganTrajectoryPuzzleTest {
     @Test
     void treesEncountered() throws Exception {
-        FileInputProvider inputProvider = new FileInputProvider(TobogganTrajectoryPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider(TobogganTrajectoryPuzzle.class);
 
         TobogganTrajectoryPuzzle puzzle = new TobogganTrajectoryPuzzle(inputProvider);
 
@@ -20,7 +21,7 @@ class TobogganTrajectoryPuzzleTest {
 
     @Test
     void productOfSlopeCandidates() throws Exception {
-        FileInputProvider inputProvider = new FileInputProvider(TobogganTrajectoryPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider(TobogganTrajectoryPuzzle.class);
 
         TobogganTrajectoryPuzzle puzzle = new TobogganTrajectoryPuzzle(inputProvider);
 

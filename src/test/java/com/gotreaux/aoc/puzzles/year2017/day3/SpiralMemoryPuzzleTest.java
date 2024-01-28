@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2017.day3;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.input.StringInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
@@ -13,7 +14,7 @@ class SpiralMemoryPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideDistanceToAccessPort")
     void distanceToAccessPort(String input, int expectedSteps) throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider(input);
+        InputProvider inputProvider = new StringInputProvider(input);
 
         SpiralMemoryPuzzle puzzle = new SpiralMemoryPuzzle(inputProvider);
 

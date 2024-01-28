@@ -1,5 +1,7 @@
 package com.gotreaux.aoc.commands;
 
+import com.gotreaux.aoc.annotations.EventDays;
+import com.gotreaux.aoc.annotations.EventYears;
 import com.gotreaux.aoc.dto.PuzzleDto;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.services.PuzzleService;
@@ -27,6 +29,7 @@ public class PuzzleCommands {
                             description = "Solve puzzles for advent calendar year",
                             label = "YEAR1 YEAR2 YEAR3...",
                             arity = CommandRegistration.OptionArity.ZERO_OR_MORE)
+                    @EventYears
                     Integer[] years,
             @Option(
                             longNames = "day",
@@ -34,6 +37,7 @@ public class PuzzleCommands {
                             description = "Solve puzzles for advent calendar day",
                             label = "DAY1 DAY2 DAY3...",
                             arity = CommandRegistration.OptionArity.ZERO_OR_MORE)
+                    @EventDays
                     Integer[] days)
             throws Exception {
         List<PuzzleDto> puzzles = PuzzleService.getPuzzles(List.of(years), List.of(days));

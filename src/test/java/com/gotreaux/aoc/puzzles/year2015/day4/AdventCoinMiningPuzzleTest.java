@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2015.day4;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.input.StringInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
@@ -13,7 +14,7 @@ class AdventCoinMiningPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideFiveLeadingZeroes")
     void fiveLeadingZeroes(String input, int expectedKeyNumber) throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider(input);
+        InputProvider inputProvider = new StringInputProvider(input);
 
         AdventCoinMiningPuzzle puzzle = new AdventCoinMiningPuzzle(inputProvider);
 

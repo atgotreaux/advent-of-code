@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2017.day1;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.input.StringInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
@@ -13,7 +14,7 @@ class InverseCaptchaPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideSumOfNextDigitsMatching")
     void sumOfNextDigitsMatching(String input, int expectedSum) throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider(input);
+        InputProvider inputProvider = new StringInputProvider(input);
 
         InverseCaptchaPuzzle puzzle = new InverseCaptchaPuzzle(inputProvider);
 
@@ -25,7 +26,7 @@ class InverseCaptchaPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideSumOfHalfwayDigitsMatching")
     void sumOfHalfwayDigitsMatching(String input, int expectedSum) throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider(input);
+        InputProvider inputProvider = new StringInputProvider(input);
 
         InverseCaptchaPuzzle puzzle = new InverseCaptchaPuzzle(inputProvider);
 

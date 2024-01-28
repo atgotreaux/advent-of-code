@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2015.day1;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.input.StringInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
@@ -14,7 +15,7 @@ class ApartmentFloorPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideFloorFromInstructions")
     void floorFromInstructions(String input, int expectedFloor) throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider(input);
+        InputProvider inputProvider = new StringInputProvider(input);
 
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 
@@ -25,7 +26,7 @@ class ApartmentFloorPuzzleTest {
 
     @Test
     void positionBasementReached() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("()())");
+        InputProvider inputProvider = new StringInputProvider("()())");
 
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
 

@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2016.day1;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.input.StringInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
@@ -14,7 +15,7 @@ class TaxicabPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideShortestPath")
     void shortestPath(String input, int expectedDistance) throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider(input);
+        InputProvider inputProvider = new StringInputProvider(input);
 
         TaxicabPuzzle puzzle = new TaxicabPuzzle(inputProvider);
 
@@ -25,7 +26,7 @@ class TaxicabPuzzleTest {
 
     @Test
     void firstDuplicateLocation() throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider("R8, R4, R4, R8");
+        InputProvider inputProvider = new StringInputProvider("R8, R4, R4, R8");
 
         TaxicabPuzzle puzzle = new TaxicabPuzzle(inputProvider);
 

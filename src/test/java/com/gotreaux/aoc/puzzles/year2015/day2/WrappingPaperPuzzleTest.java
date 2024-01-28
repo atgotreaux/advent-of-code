@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2015.day2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.input.StringInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
@@ -13,7 +14,7 @@ class WrappingPaperPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideWrappingPaperOrderTotal")
     void wrappingPaperOrderTotal(String input, int expectedOrderTotal) throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider(input);
+        InputProvider inputProvider = new StringInputProvider(input);
 
         WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle(inputProvider);
 
@@ -25,7 +26,7 @@ class WrappingPaperPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideRibbonOrderTotal")
     void ribbonOrderTotal(String input, int expectedOrderTotal) throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider(input);
+        InputProvider inputProvider = new StringInputProvider(input);
 
         WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle(inputProvider);
 
