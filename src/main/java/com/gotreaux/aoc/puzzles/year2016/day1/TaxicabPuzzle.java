@@ -4,6 +4,8 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.utils.CardinalDirection;
+import com.gotreaux.aoc.utils.RelativeDirection;
 import java.awt.Point;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -24,7 +26,7 @@ public class TaxicabPuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Integer, Integer> solve()
             throws IOException, URISyntaxException, NoSuchElementException {
-        Direction direction = Direction.NORTH;
+        CardinalDirection direction = CardinalDirection.NORTH;
         Point position = new Point();
         Point firstDuplicatePosition = null;
 
@@ -33,8 +35,8 @@ public class TaxicabPuzzle extends Puzzle {
 
         String input = getInputProvider().getInputString();
         for (String step : INSTRUCTION_SEPARATOR.split(input)) {
-            Instruction instruction = Instruction.fromLabel(step.charAt(0));
-            direction = direction.turn(instruction);
+            RelativeDirection relativeDirection = RelativeDirection.fromLabel(step.charAt(0));
+            direction = direction.turn(relativeDirection);
 
             int units = Character.digit(step.charAt(1), 10);
             for (int i = 0; i < units; i++) {

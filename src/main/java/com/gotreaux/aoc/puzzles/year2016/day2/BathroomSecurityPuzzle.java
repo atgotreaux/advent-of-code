@@ -4,6 +4,7 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.utils.RelativeDirection;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Collection;
@@ -58,11 +59,11 @@ public class BathroomSecurityPuzzle extends Puzzle {
 
         for (String line : input) {
             for (int i = 0; i < line.length(); i++) {
-                char instructionLabel = line.charAt(i);
-                Instruction instruction = Instruction.fromLabel(instructionLabel);
+                char directionLabel = line.charAt(i);
+                RelativeDirection direction = RelativeDirection.fromLabel(directionLabel);
 
-                imaginedKey = imaginedKeypad.move(imaginedKey, instruction);
-                actualKey = actualKeypad.move(actualKey, instruction);
+                imaginedKey = imaginedKeypad.move(imaginedKey, direction);
+                actualKey = actualKeypad.move(actualKey, direction);
             }
             imaginedBathroomCode.append(imaginedKey.label());
             actualBathroomCode.append(actualKey.label());

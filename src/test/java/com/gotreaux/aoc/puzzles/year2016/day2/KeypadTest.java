@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2016.day2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import com.gotreaux.aoc.utils.RelativeDirection;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.random.RandomGenerator;
@@ -34,7 +35,7 @@ class KeypadTest {
         List<Key> keys = List.of(key, upKey);
         Keypad keypad = new Keypad(keys);
 
-        assertEquals(upKey, keypad.move(key, Instruction.UP));
+        assertEquals(upKey, keypad.move(key, RelativeDirection.UP));
     }
 
     @Test
@@ -62,7 +63,7 @@ class KeypadTest {
         List<Key> keys = List.of(key, downKey);
         Keypad keypad = new Keypad(keys);
 
-        assertEquals(downKey, keypad.move(key, Instruction.DOWN));
+        assertEquals(downKey, keypad.move(key, RelativeDirection.DOWN));
     }
 
     @Test
@@ -90,7 +91,7 @@ class KeypadTest {
         List<Key> keys = List.of(key, leftKey);
         Keypad keypad = new Keypad(keys);
 
-        assertEquals(leftKey, keypad.move(key, Instruction.LEFT));
+        assertEquals(leftKey, keypad.move(key, RelativeDirection.LEFT));
     }
 
     @Test
@@ -118,7 +119,7 @@ class KeypadTest {
         List<Key> keys = List.of(key, rightKey);
         Keypad keypad = new Keypad(keys);
 
-        assertEquals(rightKey, keypad.move(key, Instruction.RIGHT));
+        assertEquals(rightKey, keypad.move(key, RelativeDirection.RIGHT));
     }
 
     @Test
@@ -130,9 +131,9 @@ class KeypadTest {
         List<Key> keys = List.of(key);
         Keypad keypad = new Keypad(keys);
 
-        Instruction instruction =
-                Instruction.values()[generator.nextInt(Instruction.values().length)];
+        RelativeDirection direction =
+                RelativeDirection.values()[generator.nextInt(RelativeDirection.values().length)];
 
-        assertThrows(NoSuchElementException.class, () -> keypad.move(key, instruction));
+        assertThrows(NoSuchElementException.class, () -> keypad.move(key, direction));
     }
 }

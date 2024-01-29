@@ -4,6 +4,7 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.utils.CardinalDirection;
 import java.awt.Point;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -35,16 +36,16 @@ public class SphericalHousesPuzzle extends Puzzle {
         assistedHouseDeliveries.add(santaPosition);
 
         for (int i = 0; i < length; i++) {
-            Direction direction = Direction.fromLabel(input.charAt(i));
+            CardinalDirection direction = CardinalDirection.fromLabel(input.charAt(i));
 
-            position = direction.move(position);
+            position = direction.move(position, 1);
             houseDeliveries.add(position);
 
             if (i % 2 == 0) {
-                santaPosition = direction.move(santaPosition);
+                santaPosition = direction.move(santaPosition, 1);
                 assistedHouseDeliveries.add(santaPosition);
             } else {
-                roboSantaPosition = direction.move(roboSantaPosition);
+                roboSantaPosition = direction.move(roboSantaPosition, 1);
                 assistedHouseDeliveries.add(roboSantaPosition);
             }
         }

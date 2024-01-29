@@ -1,4 +1,4 @@
-package com.gotreaux.aoc.puzzles.year2016.day2;
+package com.gotreaux.aoc.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -10,23 +10,23 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class InstructionTest {
+class RelativeDirectionTest {
     @ParameterizedTest
     @MethodSource("provideParseInstruction")
-    void parseInstruction(char label, Instruction expectedInstruction) {
-        assertEquals(expectedInstruction, Instruction.fromLabel(label));
+    void parseInstruction(char label, RelativeDirection expectedInstruction) {
+        assertEquals(expectedInstruction, RelativeDirection.fromLabel(label));
     }
 
     @Test
     void throwsIfCannotParse() {
-        assertThrows(NoSuchElementException.class, () -> Instruction.fromLabel('X'));
+        assertThrows(NoSuchElementException.class, () -> RelativeDirection.fromLabel('X'));
     }
 
     private static Stream<Arguments> provideParseInstruction() {
         return Stream.of(
-                Arguments.of('U', Instruction.UP),
-                Arguments.of('D', Instruction.DOWN),
-                Arguments.of('L', Instruction.LEFT),
-                Arguments.of('R', Instruction.RIGHT));
+                Arguments.of('U', RelativeDirection.UP),
+                Arguments.of('D', RelativeDirection.DOWN),
+                Arguments.of('L', RelativeDirection.LEFT),
+                Arguments.of('R', RelativeDirection.RIGHT));
     }
 }

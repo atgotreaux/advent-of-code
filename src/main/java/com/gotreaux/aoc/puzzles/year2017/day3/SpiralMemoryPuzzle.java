@@ -4,6 +4,8 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.utils.CardinalDirection;
+import com.gotreaux.aoc.utils.RelativeDirection;
 import java.awt.Point;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -28,12 +30,12 @@ public class SpiralMemoryPuzzle extends Puzzle {
 
         int firstValueGreaterThanInput = Integer.MIN_VALUE;
 
-        Direction direction = Direction.SOUTH;
+        CardinalDirection direction = CardinalDirection.SOUTH;
         for (int i = 1; i < squares; i++) {
-            Direction leftTurn = direction.turn();
-            Point leftPosition = leftTurn.move(position);
+            CardinalDirection leftTurn = direction.turn(RelativeDirection.LEFT);
+            Point leftPosition = leftTurn.move(position, 1);
             if (positions.containsKey(leftPosition)) {
-                position = direction.move(position);
+                position = direction.move(position, 1);
             } else {
                 direction = leftTurn;
                 position = leftPosition;

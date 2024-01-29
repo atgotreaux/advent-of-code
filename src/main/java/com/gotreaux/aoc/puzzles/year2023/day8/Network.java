@@ -1,22 +1,23 @@
 package com.gotreaux.aoc.puzzles.year2023.day8;
 
 import com.gotreaux.aoc.utils.MathUtils;
+import com.gotreaux.aoc.utils.RelativeDirection;
 import java.util.Collection;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
 class Network {
-    private final List<Instruction> instructions;
+    private final List<RelativeDirection> directions;
     private final List<Node> nodes;
 
-    Network(Collection<Instruction> instructions, Collection<Node> nodes) {
-        this.instructions = List.copyOf(instructions);
+    Network(Collection<RelativeDirection> directions, Collection<Node> nodes) {
+        this.directions = List.copyOf(directions);
         this.nodes = List.copyOf(nodes);
     }
 
     long getStepsForNodes(Predicate<Node> startPosition, Predicate<Node> endPosition)
-            throws NoSuchElementException {
+            throws NoSuchElementException, IllegalArgumentException {
         List<Node> currentNodes = nodes.stream().filter(startPosition).toList();
 
         return currentNodes.stream()
@@ -25,19 +26,23 @@ class Network {
     }
 
     private long getStepsForNode(Node startPosition, Predicate<Node> endPosition)
-            throws NoSuchElementException {
+            throws NoSuchElementException, IllegalArgumentException {
         long steps = 0L;
-        int currentInstructionIndex = 0;
+        int currentDirectionIndex = 0;
 
         Node currentNode = startPosition;
         while (!endPosition.test(currentNode)) {
             steps++;
 
-            Instruction nextInstruction = instructions.get(currentInstructionIndex);
+            RelativeDirection nextDirection = directions.get(currentDirectionIndex);
             String nextPosition =
-                    switch (nextInstruction) {
+                    switch (nextDirection) {
                         case RIGHT -> currentNode.rightPosition();
                         case LEFT -> currentNode.leftPosition();
+                        default ->
+                                throw new IllegalArgumentException(
+                                        "Unsupported direction! '%s'"
+                                                .formatted(nextDirection.getLabel()));
                     };
 
             currentNode =
@@ -46,9 +51,9 @@ class Network {
                             .findFirst()
                             .orElseThrow();
 
-            currentInstructionIndex++;
-            if (currentInstructionIndex == instructions.size()) {
-                currentInstructionIndex = 0;
+            currentDirectionIndex++;
+            if (currentDirectionIndex == directions.size()) {
+                currentDirectionIndex = 0;
             }
         }
 

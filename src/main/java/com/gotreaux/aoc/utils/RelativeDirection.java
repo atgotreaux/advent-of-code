@@ -1,23 +1,25 @@
-package com.gotreaux.aoc.puzzles.year2023.day8;
+package com.gotreaux.aoc.utils;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-enum Instruction {
-    RIGHT('R'),
-    LEFT('L');
+public enum RelativeDirection {
+    UP('U'),
+    DOWN('D'),
+    LEFT('L'),
+    RIGHT('R');
 
     private final char label;
 
-    Instruction(char label) {
+    RelativeDirection(char label) {
         this.label = label;
     }
 
-    private char getLabel() {
+    public char getLabel() {
         return label;
     }
 
-    static Instruction fromLabel(char label) throws NoSuchElementException {
+    public static RelativeDirection fromLabel(char label) throws NoSuchElementException {
         return Arrays.stream(values())
                 .filter(instruction -> instruction.getLabel() == label)
                 .findFirst()

@@ -1,11 +1,17 @@
 package com.gotreaux.aoc.puzzles.year2019.day2;
 
-record IntcodeProgram(int noun, int verb) {
+import org.springframework.lang.Nullable;
+
+record IntcodeProgram(@Nullable Integer noun, @Nullable Integer verb) {
 
     int process(int[] program) throws IllegalArgumentException {
         int length = program.length;
-        program[1] = noun;
-        program[2] = verb;
+        if (noun != null) {
+            program[1] = noun;
+        }
+        if (verb != null) {
+            program[2] = verb;
+        }
 
         boolean runProgram = true;
         for (int i = 0; i < length && runProgram; i += 4) {

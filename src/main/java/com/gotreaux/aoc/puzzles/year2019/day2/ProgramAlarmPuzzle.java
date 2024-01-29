@@ -33,7 +33,7 @@ public class ProgramAlarmPuzzle extends Puzzle {
                 IntcodeProgram completeProgram = new IntcodeProgram(i, j);
                 int[] programCopy = Arrays.copyOf(program, length);
                 if (completeProgram.process(programCopy) == COMPLETE_GRAVITY_ASSIST) {
-                    completeGravity = 100 * completeProgram.noun() + completeProgram.verb();
+                    completeGravity = 100 * i + j;
                 }
             }
         }
