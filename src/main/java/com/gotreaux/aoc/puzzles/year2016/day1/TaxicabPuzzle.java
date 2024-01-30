@@ -25,7 +25,7 @@ public class TaxicabPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve()
-            throws IOException, URISyntaxException, NoSuchElementException {
+            throws IOException, URISyntaxException, NoSuchElementException, NumberFormatException {
         CardinalDirection direction = CardinalDirection.NORTH;
         Point position = new Point();
         Point firstDuplicatePosition = null;
@@ -38,7 +38,7 @@ public class TaxicabPuzzle extends Puzzle {
             RelativeDirection relativeDirection = RelativeDirection.fromLabel(step.charAt(0));
             direction = direction.turn(relativeDirection);
 
-            int units = Character.digit(step.charAt(1), 10);
+            int units = Integer.parseInt(step.substring(1));
             for (int i = 0; i < units; i++) {
                 position = direction.move(position, 1);
                 if (firstDuplicatePosition == null && visitedPositions.contains(position)) {
