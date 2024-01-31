@@ -4,6 +4,7 @@ git update-index --assume-unchanged src/main/resources/com/gotreaux/aoc/puzzles/
 git update-index --assume-unchanged src/main/resources/com/gotreaux/aoc/puzzles/year2015/day3/input.txt
 git update-index --assume-unchanged src/main/resources/com/gotreaux/aoc/puzzles/year2015/day4/input.txt
 git update-index --assume-unchanged src/main/resources/com/gotreaux/aoc/puzzles/year2015/day5/input.txt
+git update-index --assume-unchanged src/main/resources/com/gotreaux/aoc/puzzles/year2015/day6/input.txt
 
 :: 2016
 git update-index --assume-unchanged src/main/resources/com/gotreaux/aoc/puzzles/year2016/day1/input.txt
