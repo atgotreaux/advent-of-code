@@ -18,9 +18,21 @@ class FireHazardPuzzleTest {
 
         FireHazardPuzzle puzzle = new FireHazardPuzzle(inputProvider);
 
-        PuzzleOutput<Long, Integer> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve();
 
         assertEquals(expectedLights, output.partOne());
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideBrightnessLit")
+    void brightnessLit(String input, int expectedLights) throws Exception {
+        InputProvider inputProvider = new StringInputProvider(input);
+
+        FireHazardPuzzle puzzle = new FireHazardPuzzle(inputProvider);
+
+        PuzzleOutput<Long, Long> output = puzzle.solve();
+
+        assertEquals(expectedLights, output.partTwo());
     }
 
     private static Stream<Arguments> provideLightsLit() {
@@ -28,5 +40,11 @@ class FireHazardPuzzleTest {
                 Arguments.of("turn on 0,0 through 999,999", 1000000),
                 Arguments.of("toggle 0,0 through 999,0", 1000),
                 Arguments.of("turn off 499,499 through 500,500", 0));
+    }
+
+    private static Stream<Arguments> provideBrightnessLit() {
+        return Stream.of(
+                Arguments.of("turn on 0,0 through 0,0", 1),
+                Arguments.of("toggle 0,0 through 999,999", 2000000));
     }
 }

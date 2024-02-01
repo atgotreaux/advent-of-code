@@ -8,22 +8,21 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
+import java.util.stream.IntStream;
 
 @ShellPuzzle(year = 2015, day = 6, title = "Probably a Fire Hazard")
 public class FireHazardPuzzle extends Puzzle {
+    private static final int GRID_DIMENSION = 1000;
+
     public FireHazardPuzzle(InputProvider inputProvider) {
         super(inputProvider);
     }
 
     @Override
-    public PuzzleOutput<Long, Integer> solve()
+    public PuzzleOutput<Long, Long> solve()
             throws IOException, URISyntaxException, NoSuchElementException, NumberFormatException {
-        Boolean[][] lightGrid = new Boolean[1000][1000];
-        for (int row = 0; row < 1000; row++) {
-            Boolean[] rowArray = new Boolean[1000];
-            Arrays.fill(rowArray, Boolean.FALSE);
-            lightGrid[row] = rowArray;
-        }
+        boolean[][] lightGrid = new boolean[GRID_DIMENSION][GRID_DIMENSION];
+        int[][] brightnessGrid = new int[GRID_DIMENSION][GRID_DIMENSION];
 
         for (String line : getInputProvider().getInputList()) {
             Instruction instruction = Instruction.fromLine(line);
@@ -41,22 +40,31 @@ public class FireHazardPuzzle extends Puzzle {
 
             for (int row = startRow; row <= endRow; row++) {
                 for (int col = startCol; col <= endCol; col++) {
-                    lightGrid[row][col] =
-                            switch (instruction) {
-                                case ON -> Boolean.TRUE;
-                                case OFF -> Boolean.FALSE;
-                                case TOGGLE -> Boolean.FALSE.equals(lightGrid[row][col]);
-                            };
+                    switch (instruction) {
+                        case ON:
+                            lightGrid[row][col] = true;
+                            brightnessGrid[row][col]++;
+                            break;
+                        case OFF:
+                            lightGrid[row][col] = false;
+                            brightnessGrid[row][col] = Math.max(0, brightnessGrid[row][col] - 1);
+                            break;
+                        case TOGGLE:
+                            lightGrid[row][col] = !lightGrid[row][col];
+                            brightnessGrid[row][col] += 2;
+                    }
                 }
             }
         }
 
         long lightsLit =
                 Arrays.stream(lightGrid)
-                        .flatMap(Arrays::stream)
+                        .flatMap(row -> IntStream.range(0, GRID_DIMENSION).mapToObj(i -> row[i]))
                         .filter(Boolean::booleanValue)
                         .count();
 
-        return new PuzzleOutput<>(lightsLit, 0);
+        long brightnessLit = Arrays.stream(brightnessGrid).flatMapToInt(Arrays::stream).sum();
+
+        return new PuzzleOutput<>(lightsLit, brightnessLit);
     }
 }
