@@ -11,8 +11,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class CrossedWiresPuzzleTest {
     @ParameterizedTest
-    @MethodSource("provideClosestIntersection")
-    void closestIntersection(String fileName, int expected) throws Exception {
+    @MethodSource("provideClosestIntersectionDistance")
+    void closestIntersectionDistance(String fileName, int expected) throws Exception {
         FileInputProvider inputProvider = new FileInputProvider(CrossedWiresPuzzle.class, fileName);
 
         CrossedWiresPuzzle puzzle = new CrossedWiresPuzzle(inputProvider);
@@ -22,10 +22,29 @@ class CrossedWiresPuzzleTest {
         assertEquals(expected, output.partOne());
     }
 
-    private static Stream<Arguments> provideClosestIntersection() {
+    @ParameterizedTest
+    @MethodSource("provideClosestIntersectionSteps")
+    void closestIntersectionSteps(String fileName, int expected) throws Exception {
+        FileInputProvider inputProvider = new FileInputProvider(CrossedWiresPuzzle.class, fileName);
+
+        CrossedWiresPuzzle puzzle = new CrossedWiresPuzzle(inputProvider);
+
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(expected, output.partTwo());
+    }
+
+    private static Stream<Arguments> provideClosestIntersectionDistance() {
         return Stream.of(
                 Arguments.of("ExampleOne.txt", 6),
                 Arguments.of("ExampleTwo.txt", 159),
                 Arguments.of("ExampleThree.txt", 135));
+    }
+
+    private static Stream<Arguments> provideClosestIntersectionSteps() {
+        return Stream.of(
+                Arguments.of("ExampleOne.txt", 30),
+                Arguments.of("ExampleTwo.txt", 610),
+                Arguments.of("ExampleThree.txt", 410));
     }
 }

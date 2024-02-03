@@ -10,8 +10,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @ShellPuzzle(year = 2019, day = 3, title = "Crossed Wires")
@@ -23,32 +22,48 @@ public class CrossedWiresPuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Integer, Integer> solve()
             throws IOException, URISyntaxException, NoSuchElementException, NumberFormatException {
-        Map<Point, Integer> positions = new HashMap<>();
+        List<String> input = getInputProvider().getInputList();
 
-        for (String line : getInputProvider().getInputList()) {
-            Collection<Point> wirePositions = new ArrayList<>();
-            Point position = new Point();
-            for (String instruction : line.split(",")) {
-                RelativeDirection direction = RelativeDirection.fromLabel(instruction.charAt(0));
+        List<Point> firstWirePositions = getWirePositions(input.getFirst());
+        List<Point> lastWirePositions = getWirePositions(input.getLast());
 
-                int units = Integer.parseInt(instruction.substring(1));
-                for (int i = 0; i < units; i++) {
-                    position = direction.move(position, 1);
-                    if (!wirePositions.contains(position)) {
-                        positions.merge(position, 1, Integer::sum);
-                    }
-                    wirePositions.add(position);
-                }
-            }
-        }
+        Collection<Point> intersections =
+                firstWirePositions.stream().filter(lastWirePositions::contains).toList();
 
-        int closestIntersection =
-                positions.entrySet().stream()
-                        .filter(e -> e.getValue() > 1)
-                        .mapToInt(e -> Math.abs(e.getKey().x) + Math.abs(e.getKey().y))
+        int closestIntersectionDistance =
+                intersections.stream()
+                        .mapToInt(position -> Math.abs(position.x) + Math.abs(position.y))
+                        .filter(i -> i > 0)
                         .min()
                         .orElseThrow();
 
-        return new PuzzleOutput<>(closestIntersection, 0);
+        int closestIntersectionSteps =
+                intersections.stream()
+                        .mapToInt(p -> firstWirePositions.indexOf(p) + lastWirePositions.indexOf(p))
+                        .filter(i -> i > 0)
+                        .min()
+                        .orElseThrow();
+
+        return new PuzzleOutput<>(closestIntersectionDistance, closestIntersectionSteps);
+    }
+
+    private static List<Point> getWirePositions(String line) throws NumberFormatException {
+        String[] instructions = line.split(",");
+
+        List<Point> positions = new ArrayList<>(instructions.length);
+        Point position = new Point();
+        positions.add(position);
+
+        for (String instruction : instructions) {
+            RelativeDirection direction = RelativeDirection.fromLabel(instruction.charAt(0));
+
+            int units = Integer.parseInt(instruction.substring(1));
+            for (int i = 0; i < units; i++) {
+                position = direction.move(position, 1);
+                positions.add(position);
+            }
+        }
+
+        return positions;
     }
 }
