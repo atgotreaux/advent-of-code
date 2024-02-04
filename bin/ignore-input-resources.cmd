@@ -26,6 +26,7 @@ git update-index --assume-unchanged src/main/resources/com/gotreaux/aoc/puzzles/
 git update-index --assume-unchanged src/main/resources/com/gotreaux/aoc/puzzles/year2019/day1/input.txt
 git update-index --assume-unchanged src/main/resources/com/gotreaux/aoc/puzzles/year2019/day2/input.txt
 git update-index --assume-unchanged src/main/resources/com/gotreaux/aoc/puzzles/year2019/day3/input.txt
+git update-index --assume-unchanged src/main/resources/com/gotreaux/aoc/puzzles/year2019/day4/input.txt
 
 :: 2020
 git update-index --assume-unchanged src/main/resources/com/gotreaux/aoc/puzzles/year2020/day1/input.txt
