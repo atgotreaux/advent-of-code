@@ -41,7 +41,7 @@ For example, the `com/gotreaux/aoc/puzzles/year2015/day1/input.txt` resource fil
 
 [Because the AoC staff does NOT want puzzle input redistributed](https://adventofcode.com/2023/about), these resource files appear as blank placeholders in version control. The intent is for the user to provide their input by copying it from the AoC site into these files.
 
-Run the `bin/ignore-input-resources.cmd` script to ignore working directory changes to these files.
+Run the `bin/ignore-input-resources.cmd` or `bin/ignore-input-resources.sh` script to ignore working directory changes to these files.
 
 ### Solving Puzzles
 
