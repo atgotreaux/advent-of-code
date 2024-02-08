@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2017.day4;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.input.StringInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
@@ -13,7 +14,7 @@ class HighEntropyPassphrasePuzzleTest {
     @ParameterizedTest
     @MethodSource("provideUniquePassphraseWords")
     void uniquePassphraseWords(String input, int expectedCount) throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider(input);
+        InputProvider inputProvider = new StringInputProvider(input);
 
         HighEntropyPassphrasePuzzle puzzle = new HighEntropyPassphrasePuzzle(inputProvider);
 
@@ -25,7 +26,7 @@ class HighEntropyPassphrasePuzzleTest {
     @ParameterizedTest
     @MethodSource("provideNoPassphraseWordAnagrams")
     void noPassphraseWordAnagrams(String input, int expectedCount) throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider(input);
+        InputProvider inputProvider = new StringInputProvider(input);
 
         HighEntropyPassphrasePuzzle puzzle = new HighEntropyPassphrasePuzzle(inputProvider);
 

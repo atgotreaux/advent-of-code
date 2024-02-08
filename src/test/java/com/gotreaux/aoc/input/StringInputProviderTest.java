@@ -8,38 +8,38 @@ import org.junit.jupiter.api.Test;
 
 class StringInputProviderTest {
     @Test
-    void inputAsString() {
+    void inputAsString() throws Exception {
         RandomGenerator generator = RandomGenerator.getDefault();
         byte[] bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
         String input = new String(bytes, StandardCharsets.UTF_8);
 
-        StringInputProvider inputProvider = new StringInputProvider(input);
+        InputProvider inputProvider = new StringInputProvider(input);
 
         assertEquals(input, inputProvider.getInputString());
     }
 
     @Test
-    void inputAsStream() {
+    void inputAsStream() throws Exception {
         RandomGenerator generator = RandomGenerator.getDefault();
         byte[] bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
         String input = new String(bytes, StandardCharsets.UTF_8);
 
-        StringInputProvider inputProvider = new StringInputProvider(input);
+        InputProvider inputProvider = new StringInputProvider(input);
 
         assertEquals(1L, inputProvider.getInputStream().count());
         assertEquals(input, inputProvider.getInputStream().toList().getFirst());
     }
 
     @Test
-    void inputAsList() {
+    void inputAsList() throws Exception {
         RandomGenerator generator = RandomGenerator.getDefault();
         byte[] bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
         String input = new String(bytes, StandardCharsets.UTF_8);
 
-        StringInputProvider inputProvider = new StringInputProvider(input);
+        InputProvider inputProvider = new StringInputProvider(input);
 
         assertEquals(1, inputProvider.getInputList().size());
         assertEquals(input, inputProvider.getInputList().getFirst());

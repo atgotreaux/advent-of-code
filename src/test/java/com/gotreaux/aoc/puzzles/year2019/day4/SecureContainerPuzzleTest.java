@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2019.day4;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.input.StringInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
@@ -13,7 +14,7 @@ class SecureContainerPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideValidPasswords")
     void validPasswords(String input, int expected) throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider(input);
+        InputProvider inputProvider = new StringInputProvider(input);
 
         SecureContainerPuzzle puzzle = new SecureContainerPuzzle(inputProvider);
 
@@ -25,7 +26,7 @@ class SecureContainerPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideValidPasswordsNoLargerGroups")
     void validPasswordsNoLargerGroups(String input, int expected) throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider(input);
+        InputProvider inputProvider = new StringInputProvider(input);
 
         SecureContainerPuzzle puzzle = new SecureContainerPuzzle(inputProvider);
 
