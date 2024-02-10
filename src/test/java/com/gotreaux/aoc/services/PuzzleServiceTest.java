@@ -12,7 +12,7 @@ class PuzzleServiceTest {
     void everyPuzzle() throws Exception {
         List<PuzzleDto> puzzles = PuzzleService.getPuzzles(List.of(), List.of());
 
-        assertEquals(40, puzzles.size());
+        assertEquals(41, puzzles.size());
     }
 
     @Test
