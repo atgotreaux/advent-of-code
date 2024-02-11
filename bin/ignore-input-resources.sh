@@ -12,3 +12,5 @@ do
     fi
   done
 done
+
+exit 0
