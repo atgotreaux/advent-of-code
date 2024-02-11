@@ -7,9 +7,14 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import java.awt.Point;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 @ShellPuzzle(year = 2018, day = 3, title = "No Matter How You Slice It")
 public class SliceItPuzzle extends Puzzle {
@@ -18,15 +23,16 @@ public class SliceItPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Integer> solve() throws IOException, URISyntaxException {
-        Map<Point, Integer> fabricClaims = new HashMap<>();
-        int intactClaim = Integer.MAX_VALUE;
+    public PuzzleOutput<Long, Integer> solve()
+            throws IOException, URISyntaxException, NoSuchElementException {
+        Map<Point, List<Integer>> fabricClaims = new HashMap<>();
+        List<Integer> claimIds = new ArrayList<>();
 
         for (String line : getInputProvider().getInputList()) {
             String[] claim = line.replace(":", "").split(" ");
 
             int claimID = Integer.parseInt(claim[0].substring(1));
-            boolean intact = true;
+            claimIds.add(claimID);
 
             Scanner startPointScanner = new Scanner(claim[2]);
             startPointScanner.useDelimiter(",");
@@ -44,18 +50,27 @@ public class SliceItPuzzle extends Puzzle {
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
                     Point point = new Point(position.x + x, position.y + y);
-                    if (fabricClaims.containsKey(point)) {
-                        intact = false;
-                    }
-                    fabricClaims.merge(point, 1, Integer::sum);
+                    fabricClaims.merge(
+                            point,
+                            List.of(claimID),
+                            (w, v) -> Stream.concat(w.stream(), v.stream()).toList());
                 }
-            }
-            if (intact) {
-                intactClaim = claimID;
             }
         }
 
-        long overlapArea = fabricClaims.values().stream().filter(i -> i > 1).count();
+        long overlapArea = fabricClaims.values().stream().filter(list -> list.size() > 1).count();
+
+        List<Integer> overlappingClaims =
+                fabricClaims.values().stream()
+                        .filter(list -> list.size() > 1)
+                        .flatMap(Collection::stream)
+                        .toList();
+
+        int intactClaim =
+                claimIds.stream()
+                        .filter(id -> !overlappingClaims.contains(id))
+                        .findFirst()
+                        .orElseThrow();
 
         return new PuzzleOutput<>(overlapArea, intactClaim);
     }
