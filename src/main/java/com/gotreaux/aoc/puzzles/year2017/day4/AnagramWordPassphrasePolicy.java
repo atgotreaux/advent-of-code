@@ -1,22 +1,13 @@
 package com.gotreaux.aoc.puzzles.year2017.day4;
 
 import java.util.Arrays;
+import java.util.function.Function;
 
 class AnagramWordPassphrasePolicy implements PassphrasePolicy {
     @Override
     public boolean passes(String[] passphrase) {
-        return passphrase.length
-                == Arrays.stream(passphrase)
-                        .map(
-                                s ->
-                                        s.chars()
-                                                .sorted()
-                                                .collect(
-                                                        StringBuilder::new,
-                                                        StringBuilder::appendCodePoint,
-                                                        StringBuilder::append)
-                                                .toString())
-                        .distinct()
-                        .count();
+        Function<String, String> sortChars = new SortCharactersFunction();
+
+        return passphrase.length == Arrays.stream(passphrase).map(sortChars).distinct().count();
     }
 }

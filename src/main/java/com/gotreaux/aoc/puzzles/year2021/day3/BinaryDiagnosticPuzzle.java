@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -60,15 +61,17 @@ public class BinaryDiagnosticPuzzle extends Puzzle {
 
     private static int getMostCommonBit(Collection<String> numbers, int position)
             throws NoSuchElementException {
+        Comparator<Map.Entry<Integer, Long>> comparator =
+                Map.Entry.<Integer, Long>comparingByValue()
+                        .thenComparing(Map.Entry.comparingByKey());
+
         return numbers.stream()
                 .mapToInt(s -> Character.digit(s.charAt(position), 10))
                 .boxed()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .entrySet()
                 .stream()
-                .max(
-                        Map.Entry.<Integer, Long>comparingByValue()
-                                .thenComparing(Map.Entry.comparingByKey()))
+                .max(comparator)
                 .orElseThrow()
                 .getKey();
     }

@@ -48,7 +48,7 @@ public class SomeAssemblyRequiredPuzzle extends Puzzle {
         int signalA = firstCircuit.evaluate("a");
 
         wires.removeIf(wire -> wire.getLabel().equals("b"));
-        wires.add(new SignalWire("b", String.valueOf(signalA)));
+        wires.add(new SignalWire("b", Integer.toString(signalA)));
         Circuit secondCircuit = new Circuit(wires);
 
         return new PuzzleOutput<>(signalA, secondCircuit.evaluate("a"));
