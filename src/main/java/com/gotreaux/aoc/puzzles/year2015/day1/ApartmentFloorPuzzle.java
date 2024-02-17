@@ -6,6 +6,7 @@ import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.NoSuchElementException;
 
 @ShellPuzzle(year = 2015, day = 1, title = "Not Quite Lisp")
 public class ApartmentFloorPuzzle extends Puzzle {
@@ -16,7 +17,7 @@ public class ApartmentFloorPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve()
-            throws IOException, URISyntaxException, NoSuchMethodException {
+            throws IOException, URISyntaxException, NoSuchElementException {
         int floor = 0;
         int positionBasementReached = Integer.MAX_VALUE;
 
