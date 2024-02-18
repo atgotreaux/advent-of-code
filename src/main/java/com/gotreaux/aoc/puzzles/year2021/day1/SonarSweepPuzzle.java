@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 @ShellPuzzle(year = 2021, day = 1, title = "Sonar Sweep")
 public class SonarSweepPuzzle extends Puzzle {
@@ -19,21 +18,20 @@ public class SonarSweepPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Long, Long> solve() throws IOException, URISyntaxException {
-        try (Stream<String> lines = getInputProvider().getInputStream()) {
-            List<Integer> measurements = lines.map(Integer::parseInt).toList();
+        List<Integer> measurements =
+                getInputProvider().getInputStream().map(Integer::parseInt).toList();
 
-            List<Integer> windows =
-                    IntStream.range(0, measurements.size() - 3 + 1)
-                            .mapToObj(window -> measurements.subList(window, window + 3))
-                            .flatMapToInt(w -> IntStream.of(w.stream().reduce(0, Integer::sum)))
-                            .boxed()
-                            .toList();
+        List<Integer> windows =
+                IntStream.range(0, measurements.size() - 3 + 1)
+                        .mapToObj(window -> measurements.subList(window, window + 3))
+                        .flatMapToInt(w -> IntStream.of(w.stream().reduce(0, Integer::sum)))
+                        .boxed()
+                        .toList();
 
-            long measurementIncreaseCount = getMeasurementIncreaseCount(measurements);
-            long measurementWindowIncreaseCount = getMeasurementIncreaseCount(windows);
+        long measurementIncreaseCount = getMeasurementIncreaseCount(measurements);
+        long measurementWindowIncreaseCount = getMeasurementIncreaseCount(windows);
 
-            return new PuzzleOutput<>(measurementIncreaseCount, measurementWindowIncreaseCount);
-        }
+        return new PuzzleOutput<>(measurementIncreaseCount, measurementWindowIncreaseCount);
     }
 
     private static long getMeasurementIncreaseCount(List<Integer> measurements) {

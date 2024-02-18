@@ -25,7 +25,7 @@ class TaxicabPuzzleTest {
     }
 
     @Test
-    void firstDuplicateLocation() throws Exception {
+    void firstDupPath() throws Exception {
         InputProvider inputProvider = new StringInputProvider("R8, R4, R4, R8");
 
         TaxicabPuzzle puzzle = new TaxicabPuzzle(inputProvider);

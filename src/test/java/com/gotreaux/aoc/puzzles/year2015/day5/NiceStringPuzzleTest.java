@@ -18,7 +18,7 @@ class NiceStringPuzzleTest {
 
         NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve();
 
         assertEquals(expectedCount, output.partOne());
     }
@@ -30,7 +30,7 @@ class NiceStringPuzzleTest {
 
         NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve();
 
         assertEquals(expectedCount, output.partTwo());
     }

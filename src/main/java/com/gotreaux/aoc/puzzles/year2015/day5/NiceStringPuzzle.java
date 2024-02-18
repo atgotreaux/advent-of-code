@@ -6,7 +6,6 @@ import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 @ShellPuzzle(year = 2015, day = 5, title = "Doesn't He Have Intern-Elves For This?")
@@ -26,28 +25,21 @@ public class NiceStringPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
-        Predicate<String> threeVowels = s -> THREE_VOWELS.matcher(s).replaceAll("").length() >= 3;
-        Predicate<String> repeatedCharacter = s -> REPEATED_CHARACTER.matcher(s).matches();
-        Predicate<String> noForbiddenStrings = s -> !NO_FORBIDDEN_STRINGS.matcher(s).matches();
-        Predicate<String> niceStringCriteria =
-                threeVowels.and(repeatedCharacter).and(noForbiddenStrings);
+    public PuzzleOutput<Long, Long> solve() throws IOException, URISyntaxException {
+        long niceStringCount =
+                getInputProvider()
+                        .getInputStream()
+                        .filter(s -> THREE_VOWELS.matcher(s).replaceAll("").length() >= 3)
+                        .filter(s -> REPEATED_CHARACTER.matcher(s).matches())
+                        .filter(s -> !NO_FORBIDDEN_STRINGS.matcher(s).matches())
+                        .count();
 
-        Predicate<String> pairRepeated = s -> PAIR_REPEATED.matcher(s).matches();
-        Predicate<String> repeatedWithSeparator = s -> REPEATED_WITH_SEPARATOR.matcher(s).matches();
-        Predicate<String> niceStringBetterModelCriteria = pairRepeated.and(repeatedWithSeparator);
-
-        int niceStringCount = 0;
-        int niceStringBetterModelCount = 0;
-
-        for (String line : getInputProvider().getInputList()) {
-            if (niceStringCriteria.test(line)) {
-                niceStringCount++;
-            }
-            if (niceStringBetterModelCriteria.test(line)) {
-                niceStringBetterModelCount++;
-            }
-        }
+        long niceStringBetterModelCount =
+                getInputProvider()
+                        .getInputStream()
+                        .filter(s -> PAIR_REPEATED.matcher(s).matches())
+                        .filter(s -> REPEATED_WITH_SEPARATOR.matcher(s).matches())
+                        .count();
 
         return new PuzzleOutput<>(niceStringCount, niceStringBetterModelCount);
     }

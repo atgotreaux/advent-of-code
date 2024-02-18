@@ -25,8 +25,8 @@ public class SliceItPuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Long, Integer> solve()
             throws IOException, URISyntaxException, NoSuchElementException {
-        Map<Point, List<Integer>> fabricClaims = new HashMap<>();
-        List<Integer> claimIds = new ArrayList<>();
+        Map<Point, Collection<Integer>> fabricClaims = new HashMap<>();
+        Collection<Integer> claimIds = new ArrayList<>();
 
         for (String line : getInputProvider().getInputList()) {
             String[] claim = line.replace(":", "").split(" ");

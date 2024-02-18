@@ -28,7 +28,7 @@ public class TaxicabPuzzle extends Puzzle {
             throws IOException, URISyntaxException, NoSuchElementException, NumberFormatException {
         CardinalDirection direction = CardinalDirection.NORTH;
         Point position = new Point();
-        Point firstDuplicatePosition = null;
+        Point firstDupPosition = null;
 
         Collection<Point> visitedPositions = new ArrayList<>();
         visitedPositions.add(position);
@@ -41,8 +41,8 @@ public class TaxicabPuzzle extends Puzzle {
             int units = Integer.parseInt(step.substring(1));
             for (int i = 0; i < units; i++) {
                 position = direction.move(position, 1);
-                if (firstDuplicatePosition == null && visitedPositions.contains(position)) {
-                    firstDuplicatePosition = position;
+                if (firstDupPosition == null && visitedPositions.contains(position)) {
+                    firstDupPosition = position;
                 }
                 visitedPositions.add(position);
             }
@@ -50,12 +50,11 @@ public class TaxicabPuzzle extends Puzzle {
 
         int shortestPath = Math.abs(position.x) + Math.abs(position.y);
 
-        int firstDuplicatePath = Integer.MAX_VALUE;
-        if (firstDuplicatePosition != null) {
-            firstDuplicatePath =
-                    Math.abs(firstDuplicatePosition.x) + Math.abs(firstDuplicatePosition.y);
+        int firstDupPath = Integer.MAX_VALUE;
+        if (firstDupPosition != null) {
+            firstDupPath = Math.abs(firstDupPosition.x) + Math.abs(firstDupPosition.y);
         }
 
-        return new PuzzleOutput<>(shortestPath, firstDuplicatePath);
+        return new PuzzleOutput<>(shortestPath, firstDupPath);
     }
 }

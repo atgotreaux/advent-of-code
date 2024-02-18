@@ -27,7 +27,7 @@ public class ScratchcardsPuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Integer, Integer> solve()
             throws IOException, URISyntaxException, NumberFormatException {
-        List<String> input = getInputProvider().getInputList();
+        Collection<String> input = getInputProvider().getInputList();
         int lineCount = input.size();
 
         int scratchcardPoints = 0;
