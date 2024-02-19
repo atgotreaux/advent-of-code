@@ -12,7 +12,7 @@ class PuzzleServiceTest {
     void everyPuzzle() throws Exception {
         List<PuzzleDto> puzzles = PuzzleService.getPuzzles(List.of(), List.of());
 
-        assertEquals(44, puzzles.size());
+        assertEquals(45, puzzles.size());
     }
 
     @Test
@@ -20,7 +20,7 @@ class PuzzleServiceTest {
         // TODO once all puzzles are solved, a random year should return 25 puzzles
         List<PuzzleDto> puzzles = PuzzleService.getPuzzles(List.of(2015), List.of());
 
-        assertEquals(8, puzzles.size());
+        assertEquals(9, puzzles.size());
         for (PuzzleDto puzzle : puzzles) {
             assertEquals(2015, puzzle.year());
         }
