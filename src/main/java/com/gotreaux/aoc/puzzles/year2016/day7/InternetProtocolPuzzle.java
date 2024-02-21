@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.Scanner;
 
 @ShellPuzzle(year = 2016, day = 7, title = "Internet Protocol Version 7")
 public class InternetProtocolPuzzle extends Puzzle {
@@ -18,72 +18,73 @@ public class InternetProtocolPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
-        int supportsTls = 0;
-        int supportsSsl = 0;
+        int supportsTlsCount = 0;
+        int supportsSslCount = 0;
 
         for (String line : getInputProvider().getInputList()) {
-            if (supportsTls(line)) {
-                supportsTls++;
+            Collection<String> supernets = new ArrayList<>();
+            Collection<String> hypernets = new ArrayList<>();
+
+            Scanner scanner = new Scanner(line);
+            scanner.useDelimiter("\\[|]");
+            int match = 0;
+            while (scanner.hasNext()) {
+                if (match % 2 == 0) {
+                    supernets.add(scanner.next());
+                } else {
+                    hypernets.add(scanner.next());
+                }
+                match++;
             }
-            if (supportsSsl(line)) {
-                supportsSsl++;
+            scanner.close();
+
+            if (supportsTls(supernets, hypernets)) {
+                supportsTlsCount++;
+            }
+            if (supportsSsl(supernets, hypernets)) {
+                supportsSslCount++;
             }
         }
 
-        return new PuzzleOutput<>(supportsTls, supportsSsl);
+        return new PuzzleOutput<>(supportsTlsCount, supportsSslCount);
     }
 
-    private static boolean supportsTls(String line) {
-        boolean isHypernet = false;
-        boolean foundAbba = false;
+    private static boolean supportsTls(Collection<String> supernets, Collection<String> hypernets) {
+        return supernets.stream().anyMatch(InternetProtocolPuzzle::hasAbba)
+                && hypernets.stream().noneMatch(InternetProtocolPuzzle::hasAbba);
+    }
 
-        for (int i = 0; i < line.length() - 3; i++) {
-            String abba = line.substring(i, i + 4);
-            if (!isHypernet && abba.contains("[")) {
-                isHypernet = true;
-            }
-            if (isHypernet && abba.contains("]")) {
-                isHypernet = false;
-            }
+    private static boolean supportsSsl(Collection<String> supernets, Collection<String> hypernets) {
+        Collection<String> babs = hypernets.stream().flatMap(s -> getAbas(s).stream()).toList();
+        return supernets.stream()
+                .flatMap(s -> getAbas(s).stream())
+                .map(s -> String.valueOf(s.charAt(1)) + s.charAt(0) + s.charAt(1))
+                .anyMatch(babs::contains);
+    }
 
+    private static boolean hasAbba(String net) {
+        for (int i = 0; i < net.length() - 3; i++) {
+            String abba = net.substring(i, i + 4);
             if (abba.charAt(0) == abba.charAt(3)
                     && abba.charAt(1) == abba.charAt(2)
                     && abba.charAt(0) != abba.charAt(1)) {
-                if (isHypernet) {
-                    return false;
-                }
-                foundAbba = true;
+                return true;
             }
         }
 
-        return foundAbba;
+        return false;
     }
 
-    private static boolean supportsSsl(String line) {
-        boolean isHypernet = false;
+    private static Collection<String> getAbas(String net) {
         Collection<String> abas = new ArrayList<>();
-        List<String> babs = new ArrayList<>();
 
-        for (int i = 0; i < line.length() - 2; i++) {
-            String aba = line.substring(i, i + 3);
-            if (!isHypernet && aba.contains("[")) {
-                isHypernet = true;
-            }
-            if (isHypernet && aba.contains("]")) {
-                isHypernet = false;
-            }
-
+        for (int i = 0; i < net.length() - 2; i++) {
+            String aba = net.substring(i, i + 3);
             if (aba.charAt(0) == aba.charAt(2) && aba.charAt(0) != aba.charAt(1)) {
-                if (isHypernet) {
-                    babs.add(aba);
-                } else {
-                    abas.add(aba);
-                }
+                abas.add(aba);
             }
         }
 
-        return abas.stream()
-                .map(s -> String.valueOf(s.charAt(1)) + s.charAt(0) + s.charAt(1))
-                .anyMatch(babs::contains);
+        return abas;
     }
 }
