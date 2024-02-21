@@ -12,9 +12,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.HexFormat;
 import java.util.Map;
-import java.util.function.Predicate;
-import java.util.function.ToIntBiFunction;
-import java.util.function.ToIntFunction;
 
 @ShellPuzzle(year = 2016, day = 5, title = "How About a Nice Game of Chess?")
 public class ChessGamePuzzle extends Puzzle {
@@ -27,48 +24,39 @@ public class ChessGamePuzzle extends Puzzle {
             throws IOException, URISyntaxException, NoSuchAlgorithmException {
         String doorID = getInputProvider().getInputString();
 
-        String nextCharPassword =
-                findPassword(
-                        doorID, s -> s.startsWith("00000"), (s, i) -> i, s -> s.codePointAt(5));
-
-        String nextPositionPassword =
-                findPassword(
-                        doorID,
-                        s -> s.startsWith("00000") && HexFormat.fromHexDigit(s.codePointAt(5)) < 8,
-                        (s, i) -> HexFormat.fromHexDigit(s.codePointAt(5)),
-                        s -> s.codePointAt(6));
-
-        return new PuzzleOutput<>(nextCharPassword, nextPositionPassword);
-    }
-
-    private static String findPassword(
-            String doorID,
-            Predicate<String> shouldAppend,
-            ToIntBiFunction<String, Integer> appendIndex,
-            ToIntFunction<String> appendChar)
-            throws NoSuchAlgorithmException {
-        Map<Integer, Integer> positionMapping = new HashMap<>(8);
+        StringBuilder nextCharBuilder = new StringBuilder(8);
+        Map<Integer, Integer> positionPasswordMapping = new HashMap<>();
 
         MessageDigest md = MessageDigest.getInstance("MD5");
         int number = 0;
-        while (positionMapping.size() < 8) {
+        while (nextCharBuilder.length() < 8 || positionPasswordMapping.size() < 8) {
             String input = doorID + number;
             md.update(input.getBytes(Charset.defaultCharset()));
             String hash = HexFormat.of().formatHex(md.digest());
 
-            if (shouldAppend.test(hash)) {
-                positionMapping.putIfAbsent(
-                        appendIndex.applyAsInt(hash, positionMapping.size()),
-                        appendChar.applyAsInt(hash));
+            if (hash.startsWith("00000")) {
+                if (nextCharBuilder.length() < 8) {
+                    nextCharBuilder.append(hash.charAt(5));
+                }
+                int hexIndex = HexFormat.fromHexDigit(hash.codePointAt(5));
+                if (positionPasswordMapping.size() < 8 && hexIndex < 8) {
+                    positionPasswordMapping.putIfAbsent(hexIndex, hash.codePointAt(6));
+                }
             }
 
             number++;
         }
 
-        return positionMapping.entrySet().stream()
-                .sorted(Map.Entry.comparingByKey())
-                .map(Map.Entry::getValue)
-                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                .toString();
+        String nextPositionPassword =
+                positionPasswordMapping.entrySet().stream()
+                        .sorted(Map.Entry.comparingByKey())
+                        .map(Map.Entry::getValue)
+                        .collect(
+                                StringBuilder::new,
+                                StringBuilder::appendCodePoint,
+                                StringBuilder::append)
+                        .toString();
+
+        return new PuzzleOutput<>(nextCharBuilder.toString(), nextPositionPassword);
     }
 }

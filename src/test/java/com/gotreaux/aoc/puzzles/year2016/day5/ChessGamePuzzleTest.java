@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class ChessGamePuzzleTest {
     @Test
-    void nextCharPassword() throws Exception {
+    void passwords() throws Exception {
         InputProvider inputProvider = new StringInputProvider("abc");
 
         ChessGamePuzzle puzzle = new ChessGamePuzzle(inputProvider);
@@ -17,16 +17,6 @@ class ChessGamePuzzleTest {
         PuzzleOutput<String, String> output = puzzle.solve();
 
         assertEquals("18f47a30", output.partOne());
-    }
-
-    @Test
-    void nextPositionPassword() throws Exception {
-        InputProvider inputProvider = new StringInputProvider("abc");
-
-        ChessGamePuzzle puzzle = new ChessGamePuzzle(inputProvider);
-
-        PuzzleOutput<String, String> output = puzzle.solve();
-
         assertEquals("05ace8e3", output.partTwo());
     }
 }
