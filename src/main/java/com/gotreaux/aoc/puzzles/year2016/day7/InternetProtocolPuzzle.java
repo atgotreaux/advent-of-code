@@ -26,7 +26,7 @@ public class InternetProtocolPuzzle extends Puzzle {
             Collection<String> hypernets = new ArrayList<>();
 
             Scanner scanner = new Scanner(line);
-            scanner.useDelimiter("\\[|]");
+            scanner.useDelimiter("[\\[\\]]");
             int match = 0;
             while (scanner.hasNext()) {
                 if (match % 2 == 0) {
