@@ -17,8 +17,10 @@ public class AbacusFrameworkPuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
         String input = getInputProvider().getInputString();
+
         JSONTokener tokener = new JSONTokener(input);
         Object json = tokener.nextValue();
+        tokener.close();
 
         SumOfNumbersFunction sumOfNumbersFunction = new SumOfNumbersFunction();
         int sumOfNumbers = sumOfNumbersFunction.apply(json);
