@@ -20,11 +20,28 @@ class CollectionUtilsTest {
         }
     }
 
+    @ParameterizedTest
+    @MethodSource("provideCircularPermutations")
+    void circularPermutations(List<String> list, int expectedSize) {
+        List<List<String>> permutations = CollectionUtils.circularPermutations(list);
+
+        assertEquals(expectedSize, permutations.size());
+        for (List<String> permutation : permutations) {
+            assertEquals(list.size(), permutation.size());
+        }
+    }
+
     private static Stream<Arguments> providePermutations() {
         return Stream.of(
                 Arguments.of(List.of(1), 1),
                 Arguments.of(List.of(1, 2), 2),
                 Arguments.of(List.of(1, 2, 3), 6),
                 Arguments.of(List.of(1, 2, 3, 4), 24));
+    }
+
+    private static Stream<Arguments> provideCircularPermutations() {
+        return Stream.of(
+                Arguments.of(List.of("Alice", "Bob", "Carol"), 2),
+                Arguments.of(List.of("Alice", "Bob", "Carol", "David"), 6));
     }
 }
