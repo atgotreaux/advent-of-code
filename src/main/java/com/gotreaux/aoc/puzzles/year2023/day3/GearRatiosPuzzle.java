@@ -4,7 +4,7 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import com.gotreaux.aoc.utils.Matrix;
+import com.gotreaux.aoc.utils.matrix.CharMatrix;
 import java.awt.Point;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -27,7 +27,7 @@ public class GearRatiosPuzzle extends Puzzle {
         int sumOfParts = 0;
 
         List<String> lines = getInputProvider().getInputList();
-        Matrix matrix = new Matrix(lines);
+        CharMatrix matrix = new CharMatrix(lines);
         int rowCount = matrix.getRowCount();
         int columnCount = matrix.getColCount();
 

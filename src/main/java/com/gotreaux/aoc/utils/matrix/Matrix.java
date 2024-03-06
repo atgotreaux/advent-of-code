@@ -1,21 +1,25 @@
-package com.gotreaux.aoc.utils;
+package com.gotreaux.aoc.utils.matrix;
 
 import java.util.List;
 
-public class Matrix {
+abstract class Matrix<T> {
     private final int rowCount;
     private final int colCount;
-    private final char[][] matrix;
+    private final T[][] matrix;
 
-    public Matrix(List<String> input) {
+    Matrix(List<String> input) {
         rowCount = input.size();
         colCount = input.getFirst().length();
-        matrix = new char[rowCount][colCount];
+        matrix = initialize();
 
         for (int i = 0; i < rowCount; i++) {
-            matrix[i] = input.get(i).toCharArray();
+            matrix[i] = mapper(input.get(i));
         }
     }
+
+    abstract T[][] initialize();
+
+    abstract T[] mapper(String row);
 
     public int getRowCount() {
         return rowCount;
@@ -25,7 +29,7 @@ public class Matrix {
         return colCount;
     }
 
-    public char get(int row, int col) {
+    public T get(int row, int col) {
         return matrix[row][col];
     }
 }

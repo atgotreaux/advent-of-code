@@ -1,9 +1,9 @@
 package com.gotreaux.aoc.puzzles.year2020.day3;
 
-import com.gotreaux.aoc.utils.Matrix;
+import com.gotreaux.aoc.utils.matrix.CharMatrix;
 
 record Slope(int right, int down) {
-    int getTreesEncountered(Matrix map) {
+    int getTreesEncountered(CharMatrix map) {
         int treesEncountered = 0;
 
         int col = 0;

@@ -1,4 +1,4 @@
-package com.gotreaux.aoc.utils;
+package com.gotreaux.aoc.utils.matrix;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,7 +12,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class MatrixTest {
+class CharMatrixTest {
     @ParameterizedTest
     @MethodSource("provideRowCount")
     void rowCount(Class<?> puzzleClass, int expectedRowCount) throws Exception {
@@ -20,7 +20,7 @@ class MatrixTest {
 
         List<String> input = inputProvider.getInputList();
 
-        Matrix matrix = new Matrix(input);
+        CharMatrix matrix = new CharMatrix(input);
 
         assertEquals(expectedRowCount, matrix.getRowCount());
     }
@@ -32,7 +32,7 @@ class MatrixTest {
 
         List<String> input = inputProvider.getInputList();
 
-        Matrix matrix = new Matrix(input);
+        CharMatrix matrix = new CharMatrix(input);
 
         assertEquals(expectedColCount, matrix.getColCount());
     }
@@ -44,7 +44,7 @@ class MatrixTest {
 
         List<String> input = inputProvider.getInputList();
 
-        Matrix matrix = new Matrix(input);
+        CharMatrix matrix = new CharMatrix(input);
 
         assertEquals(expectedChar, matrix.get(row, col));
     }

@@ -4,7 +4,7 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import com.gotreaux.aoc.utils.Matrix;
+import com.gotreaux.aoc.utils.matrix.CharMatrix;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -18,7 +18,7 @@ public class TobogganTrajectoryPuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Integer, Long> solve() throws IOException, URISyntaxException {
         List<String> lines = getInputProvider().getInputList();
-        Matrix map = new Matrix(lines);
+        CharMatrix map = new CharMatrix(lines);
 
         Slope slope = new Slope(3, 1);
         int treesEncountered = slope.getTreesEncountered(map);

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.utils.Matrix;
+import com.gotreaux.aoc.utils.matrix.CharMatrix;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +19,7 @@ class SlopeTest {
 
         List<String> input = inputProvider.getInputList();
 
-        Matrix matrix = new Matrix(input);
+        CharMatrix matrix = new CharMatrix(input);
 
         Slope slope = new Slope(right, down);
 
