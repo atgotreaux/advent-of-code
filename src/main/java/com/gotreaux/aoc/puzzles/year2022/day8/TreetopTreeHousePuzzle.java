@@ -7,6 +7,7 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.matrix.IntMatrix;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 import java.util.List;
 
 @ShellPuzzle(year = 2022, day = 8, title = "Treetop Tree House")
@@ -16,62 +17,54 @@ public class TreetopTreeHousePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Long> solve() throws IOException, URISyntaxException {
         List<String> lines = getInputProvider().getInputList();
         IntMatrix matrix = new IntMatrix(lines);
 
         int treesVisible = 0;
-        for (int lineRow = 0; lineRow < matrix.getRowCount(); lineRow++) {
-            for (int lineCol = 0; lineCol < matrix.getColCount(); lineCol++) {
-                if (visibleFromTop(matrix, lineRow, lineCol)
-                        || visibleFromBottom(matrix, lineRow, lineCol)
-                        || visibleFromLeft(matrix, lineRow, lineCol)
-                        || visibleFromRight(matrix, lineRow, lineCol)) {
+        long maxScenicScore = Integer.MIN_VALUE;
+        for (int row = 0; row < matrix.getRowCount(); row++) {
+            for (int col = 0; col < matrix.getColCount(); col++) {
+                int tree = matrix.get(row, col);
+
+                Integer[] up = matrix.up(row, col);
+                Integer[] down = matrix.down(row, col);
+                Integer[] left = matrix.left(row, col);
+                Integer[] right = matrix.right(row, col);
+
+                if (visible(up, tree)
+                        || visible(down, tree)
+                        || visible(left, tree)
+                        || visible(right, tree)) {
                     treesVisible++;
                 }
+
+                long scenicScore =
+                        score(up, tree)
+                                * score(down, tree)
+                                * score(left, tree)
+                                * score(right, tree);
+                maxScenicScore = Math.max(maxScenicScore, scenicScore);
             }
         }
 
-        return new PuzzleOutput<>(treesVisible, 0);
+        return new PuzzleOutput<>(treesVisible, maxScenicScore);
     }
 
-    private static boolean visibleFromTop(IntMatrix matrix, int row, int col) {
-        int tree = matrix.get(row, col);
-        for (int adjacentRow = row - 1; adjacentRow >= 0; adjacentRow--) {
-            if (matrix.get(adjacentRow, col) >= tree) {
-                return false;
-            }
-        }
-        return true;
+    private static boolean visible(Integer[] adjacentTrees, int tree) {
+        return Arrays.stream(adjacentTrees).noneMatch(adjacentTree -> adjacentTree >= tree);
     }
 
-    private static boolean visibleFromBottom(IntMatrix matrix, int row, int col) {
-        int tree = matrix.get(row, col);
-        for (int adjacentRow = row + 1; adjacentRow < matrix.getRowCount(); adjacentRow++) {
-            if (matrix.get(adjacentRow, col) >= tree) {
-                return false;
-            }
-        }
-        return true;
-    }
+    private static long score(Integer[] adjacentTrees, int tree) {
+        int viewingDistance = 0;
 
-    private static boolean visibleFromLeft(IntMatrix matrix, int row, int col) {
-        int tree = matrix.get(row, col);
-        for (int adjacentCol = col - 1; adjacentCol >= 0; adjacentCol--) {
-            if (matrix.get(row, adjacentCol) >= tree) {
-                return false;
+        for (Integer adjacentTree : adjacentTrees) {
+            viewingDistance++;
+            if (adjacentTree >= tree) {
+                break;
             }
         }
-        return true;
-    }
 
-    private static boolean visibleFromRight(IntMatrix matrix, int row, int col) {
-        int tree = matrix.get(row, col);
-        for (int adjacentCol = col + 1; adjacentCol < matrix.getColCount(); adjacentCol++) {
-            if (matrix.get(row, adjacentCol) >= tree) {
-                return false;
-            }
-        }
-        return true;
+        return viewingDistance;
     }
 }

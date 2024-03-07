@@ -1,6 +1,7 @@
 package com.gotreaux.aoc.utils.matrix;
 
 import java.util.List;
+import java.util.function.IntFunction;
 
 public class IntMatrix extends Matrix<Integer> {
     public IntMatrix(List<String> input) {
@@ -18,5 +19,10 @@ public class IntMatrix extends Matrix<Integer> {
                 .map(codePoint -> Character.digit(codePoint, 10))
                 .boxed()
                 .toArray(Integer[]::new);
+    }
+
+    @Override
+    IntFunction<Integer[]> generator() {
+        return Integer[]::new;
     }
 }

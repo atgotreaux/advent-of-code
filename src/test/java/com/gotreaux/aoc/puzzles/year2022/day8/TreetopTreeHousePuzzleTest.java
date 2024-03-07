@@ -14,8 +14,19 @@ class TreetopTreeHousePuzzleTest {
 
         TreetopTreeHousePuzzle puzzle = new TreetopTreeHousePuzzle(inputProvider);
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Long> output = puzzle.solve();
 
         assertEquals(21, output.partOne());
+    }
+
+    @Test
+    void maxScenicScore() throws Exception {
+        InputProvider inputProvider = new FileInputProvider(TreetopTreeHousePuzzleTest.class);
+
+        TreetopTreeHousePuzzle puzzle = new TreetopTreeHousePuzzle(inputProvider);
+
+        PuzzleOutput<Integer, Long> output = puzzle.solve();
+
+        assertEquals(8L, output.partTwo());
     }
 }
