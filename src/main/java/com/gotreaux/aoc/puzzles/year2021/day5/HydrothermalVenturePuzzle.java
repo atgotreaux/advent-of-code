@@ -4,11 +4,12 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.awt.Point;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @ShellPuzzle(year = 2021, day = 5, title = "Hydrothermal Venture")
 public class HydrothermalVenturePuzzle extends Puzzle {
@@ -17,30 +18,38 @@ public class HydrothermalVenturePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve() throws Exception {
+    public PuzzleOutput<Long, Long> solve() throws IOException, URISyntaxException {
         Collection<Line> lines =
                 getInputProvider()
                         .getInputStream()
                         .map(HydrothermalVenturePuzzle::parseLine)
                         .toList();
 
-        Collection<Line> orthogonalLines =
-                lines.stream().filter(line -> line.isHorizontal() || line.isVertical()).toList();
+        long overlappingOrthogonalPoints =
+                lines.stream()
+                        .filter(line -> line.isHorizontal() || line.isVertical())
+                        .map(Line::getPoints)
+                        .flatMap(Collection::stream)
+                        .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                        .values()
+                        .stream()
+                        .filter(l -> l >= 2L)
+                        .count();
 
-        Map<Point, Integer> points = new HashMap<>();
-        for (Line line : orthogonalLines) {
-            for (int row = line.getStartRow(); row <= line.getEndRow(); row++) {
-                for (int col = line.getStartCol(); col <= line.getEndCol(); col++) {
-                    points.merge(new Point(row, col), 1, Integer::sum);
-                }
-            }
-        }
-        long overlappingOrthogonalPoints = points.values().stream().filter(i -> i >= 2).count();
+        long allOverlappingPoints =
+                lines.stream()
+                        .map(Line::getPoints)
+                        .flatMap(Collection::stream)
+                        .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                        .values()
+                        .stream()
+                        .filter(l -> l >= 2L)
+                        .count();
 
-        return new PuzzleOutput<>(overlappingOrthogonalPoints, 0L);
+        return new PuzzleOutput<>(overlappingOrthogonalPoints, allOverlappingPoints);
     }
 
-    private static Line parseLine(String line) {
+    static Line parseLine(String line) {
         Scanner scanner = new Scanner(line);
         scanner.useDelimiter(",|\s->\s");
 
