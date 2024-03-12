@@ -9,13 +9,24 @@ import org.junit.jupiter.api.Test;
 
 class LanternfishPuzzleTest {
     @Test
-    void populationOfEightyDays() throws Exception {
+    void populationOf80Days() throws Exception {
         InputProvider inputProvider = new StringInputProvider("3,4,3,1,2");
 
         LanternfishPuzzle puzzle = new LanternfishPuzzle(inputProvider);
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve();
 
-        assertEquals(5934, output.partOne());
+        assertEquals(5934L, output.partOne());
+    }
+
+    @Test
+    void populationOf256Days() throws Exception {
+        InputProvider inputProvider = new StringInputProvider("3,4,3,1,2");
+
+        LanternfishPuzzle puzzle = new LanternfishPuzzle(inputProvider);
+
+        PuzzleOutput<Long, Long> output = puzzle.solve();
+
+        assertEquals(26984457539L, output.partTwo());
     }
 }
