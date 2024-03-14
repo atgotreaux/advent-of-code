@@ -1,8 +1,10 @@
 package com.gotreaux.aoc.utils.matrix;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.IntFunction;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 abstract class Matrix<T> {
     private final int rowCount;
@@ -57,5 +59,31 @@ abstract class Matrix<T> {
 
     public T[] right(int row, int col) {
         return IntStream.range(col + 1, colCount).mapToObj(i -> get(row, i)).toArray(generator());
+    }
+
+    public T[] neighbors(int row, int col) {
+        Stream<T> neighbors = Stream.of();
+
+        T[] up = up(row, col);
+        if (up.length > 0) {
+            neighbors = Stream.concat(neighbors, Arrays.stream(Arrays.copyOfRange(up, 0, 1)));
+        }
+
+        T[] down = down(row, col);
+        if (down.length > 0) {
+            neighbors = Stream.concat(neighbors, Arrays.stream(Arrays.copyOfRange(down, 0, 1)));
+        }
+
+        T[] left = left(row, col);
+        if (left.length > 0) {
+            neighbors = Stream.concat(neighbors, Arrays.stream(Arrays.copyOfRange(left, 0, 1)));
+        }
+
+        T[] right = right(row, col);
+        if (right.length > 0) {
+            neighbors = Stream.concat(neighbors, Arrays.stream(Arrays.copyOfRange(right, 0, 1)));
+        }
+
+        return neighbors.toArray(generator());
     }
 }

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.puzzles.year2021.day9.SmokeBasinPuzzle;
 import com.gotreaux.aoc.puzzles.year2022.day8.TreetopTreeHousePuzzle;
 import java.util.List;
 import java.util.stream.Stream;
@@ -97,6 +98,18 @@ class IntMatrixTest {
         assertArrayEquals(expected, matrix.right(row, col));
     }
 
+    @ParameterizedTest
+    @MethodSource("provideNeighbors")
+    void neighbors(Class<?> puzzleClass, int row, int col, Integer[] expected) throws Exception {
+        InputProvider inputProvider = new FileInputProvider(puzzleClass);
+
+        List<String> input = inputProvider.getInputList();
+
+        IntMatrix matrix = new IntMatrix(input);
+
+        assertArrayEquals(expected, matrix.neighbors(row, col));
+    }
+
     private static Stream<Arguments> provideRowCount() {
         return Stream.of(Arguments.of(TreetopTreeHousePuzzle.class, 5));
     }
@@ -138,5 +151,12 @@ class IntMatrixTest {
                 Arguments.of(TreetopTreeHousePuzzle.class, 1, 1, new Integer[] {5, 1, 2}),
                 Arguments.of(TreetopTreeHousePuzzle.class, 1, 2, new Integer[] {1, 2}),
                 Arguments.of(TreetopTreeHousePuzzle.class, 2, 2, new Integer[] {3, 2}));
+    }
+
+    private static Stream<Arguments> provideNeighbors() {
+        return Stream.of(
+                Arguments.of(SmokeBasinPuzzle.class, 2, 4, new Integer[] {8, 8, 6, 8}),
+                Arguments.of(SmokeBasinPuzzle.class, 4, 2, new Integer[] {6, 8, 9}),
+                Arguments.of(SmokeBasinPuzzle.class, 0, 9, new Integer[] {1, 1}));
     }
 }
