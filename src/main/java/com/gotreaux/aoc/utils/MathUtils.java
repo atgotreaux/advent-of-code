@@ -11,4 +11,8 @@ public final class MathUtils {
     static long gcd(long x, long y) {
         return y == 0L ? x : gcd(y, x % y);
     }
+
+    public static int consecutiveSum(int x) {
+        return (x * (x + 1)) / 2;
+    }
 }

@@ -21,6 +21,12 @@ class MathUtilsTest {
         assertEquals(expectedGcd, MathUtils.gcd(x, y));
     }
 
+    @ParameterizedTest
+    @MethodSource("provideConsecutiveSum")
+    void consecutiveSum(int x, int expectedSum) {
+        assertEquals(expectedSum, MathUtils.consecutiveSum(x));
+    }
+
     private static Stream<Arguments> provideLcm() {
         return Stream.of(
                 Arguments.of(4L, 6L, 12L),
@@ -35,5 +41,14 @@ class MathUtilsTest {
                 Arguments.of(30L, 42L, 6L),
                 Arguments.of(60L, 90L, 30L),
                 Arguments.of(198L, 360L, 18L));
+    }
+
+    private static Stream<Arguments> provideConsecutiveSum() {
+        return Stream.of(
+                Arguments.of(11, 66),
+                Arguments.of(4, 10),
+                Arguments.of(3, 6),
+                Arguments.of(5, 15),
+                Arguments.of(9, 45));
     }
 }
