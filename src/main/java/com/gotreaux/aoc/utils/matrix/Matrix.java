@@ -1,7 +1,10 @@
 package com.gotreaux.aoc.utils.matrix;
 
+import java.awt.Point;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.IntFunction;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -10,6 +13,7 @@ abstract class Matrix<T> {
     private final int rowCount;
     private final int colCount;
     private final T[][] matrix;
+    private final Set<Point> visited = new HashSet<>();
 
     Matrix(List<String> input) {
         rowCount = input.size();
@@ -37,6 +41,18 @@ abstract class Matrix<T> {
 
     public T get(int row, int col) {
         return matrix[row][col];
+    }
+
+    public void visit(int row, int col) {
+        visited.add(new Point(row, col));
+    }
+
+    public boolean isVisited(int row, int col) {
+        return visited.contains(new Point(row, col));
+    }
+
+    public void clearVisited() {
+        visited.clear();
     }
 
     public T[] up(int row, int col) {
