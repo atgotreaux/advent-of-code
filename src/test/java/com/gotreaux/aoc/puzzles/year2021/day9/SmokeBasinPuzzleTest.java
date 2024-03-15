@@ -6,13 +6,12 @@ import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.utils.matrix.IntMatrix;
+import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.List;
-import java.util.stream.Stream;
 
 class SmokeBasinPuzzleTest {
     @Test
@@ -54,7 +53,6 @@ class SmokeBasinPuzzleTest {
                 Arguments.of(0, 1, 3),
                 Arguments.of(0, 9, 9),
                 Arguments.of(2, 2, 14),
-                Arguments.of(4, 6, 9)
-        );
+                Arguments.of(4, 6, 9));
     }
 }
