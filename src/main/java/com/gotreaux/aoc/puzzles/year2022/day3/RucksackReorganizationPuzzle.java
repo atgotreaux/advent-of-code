@@ -22,6 +22,8 @@ public class RucksackReorganizationPuzzle extends Puzzle {
         int sumOfCompartmentPriorities = 0;
         int sumOfGroupPriorities = 0;
 
+        String priority = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
         List<String> group = new ArrayList<>(3);
         for (String line : getInputProvider().getInputList()) {
             String firstCompartment = line.substring(0, line.length() / 2);
@@ -35,9 +37,7 @@ public class RucksackReorganizationPuzzle extends Puzzle {
                             .findFirst()
                             .orElseThrow();
 
-            ItemPriority compartmentPriority =
-                    ItemPriority.valueOf(String.valueOf(sharedCompartmentItem));
-            sumOfCompartmentPriorities += compartmentPriority.ordinal() + 1;
+            sumOfCompartmentPriorities += priority.indexOf(sharedCompartmentItem) + 1;
 
             group.add(line);
             if (group.size() == 3) {
@@ -50,8 +50,7 @@ public class RucksackReorganizationPuzzle extends Puzzle {
                                 .findFirst()
                                 .orElseThrow();
 
-                ItemPriority groupPriority = ItemPriority.valueOf(String.valueOf(sharedGroupItem));
-                sumOfGroupPriorities += groupPriority.ordinal() + 1;
+                sumOfGroupPriorities += priority.indexOf(sharedGroupItem) + 1;
 
                 group.clear();
             }

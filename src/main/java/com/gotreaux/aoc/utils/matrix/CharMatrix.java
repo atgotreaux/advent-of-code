@@ -14,7 +14,7 @@ public class CharMatrix extends Matrix<Character> {
     }
 
     @Override
-    Character[] mapper(String row) {
+    protected Character[] mapper(String row) {
         return row.chars()
                 .mapToObj(codePoint -> Character.toString(codePoint).charAt(0))
                 .toArray(Character[]::new);

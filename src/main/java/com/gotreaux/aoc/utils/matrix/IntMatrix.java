@@ -14,7 +14,7 @@ public class IntMatrix extends Matrix<Integer> {
     }
 
     @Override
-    Integer[] mapper(String row) {
+    protected Integer[] mapper(String row) {
         return row.chars()
                 .map(codePoint -> Character.digit(codePoint, 10))
                 .boxed()

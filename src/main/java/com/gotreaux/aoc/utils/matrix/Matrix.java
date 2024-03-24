@@ -2,9 +2,9 @@ package com.gotreaux.aoc.utils.matrix;
 
 import java.awt.Point;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.function.IntFunction;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -13,21 +13,24 @@ abstract class Matrix<T> {
     private final int rowCount;
     private final int colCount;
     private final T[][] matrix;
-    private final Set<Point> visited = new HashSet<>();
+    private final Collection<Point> visited;
 
     Matrix(List<String> input) {
         rowCount = input.size();
-        colCount = input.getFirst().length();
-        matrix = initialize();
 
+        matrix = initialize();
         for (int i = 0; i < rowCount; i++) {
             matrix[i] = mapper(input.get(i));
         }
+
+        colCount = matrix[0].length;
+
+        visited = new HashSet<>(rowCount * colCount);
     }
 
     abstract T[][] initialize();
 
-    abstract T[] mapper(String row);
+    protected abstract T[] mapper(String row);
 
     abstract IntFunction<T[]> generator();
 
