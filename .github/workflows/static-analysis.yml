@@ -16,5 +16,7 @@ jobs:
           cache: 'maven'
       - name: Build with Maven
         run: mvn -B package
-      - name: Static analysis check
+      - name: SpotBugs analysis
         run: mvn -B spotbugs:check
+      - name: PMD analysis
+        run: mvn -B pmd:check

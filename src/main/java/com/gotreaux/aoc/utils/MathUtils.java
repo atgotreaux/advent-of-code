@@ -5,7 +5,7 @@ public final class MathUtils {
     private MathUtils() {}
 
     public static long lcm(long x, long y) {
-        return (x * y) / gcd(x, y);
+        return x * y / gcd(x, y);
     }
 
     static long gcd(long x, long y) {
@@ -13,6 +13,6 @@ public final class MathUtils {
     }
 
     public static int consecutiveSum(int x) {
-        return (x * (x + 1)) / 2;
+        return x * (x + 1) / 2;
     }
 }
