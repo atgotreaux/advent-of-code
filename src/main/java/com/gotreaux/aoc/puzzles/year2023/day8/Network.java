@@ -51,10 +51,7 @@ class Network {
                             .findFirst()
                             .orElseThrow();
 
-            currentDirectionIndex++;
-            if (currentDirectionIndex == directions.size()) {
-                currentDirectionIndex = 0;
-            }
+            currentDirectionIndex = (currentDirectionIndex + 1) % directions.size();
         }
 
         return steps;

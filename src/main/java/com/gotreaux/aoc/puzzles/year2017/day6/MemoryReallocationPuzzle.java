@@ -30,6 +30,7 @@ public class MemoryReallocationPuzzle extends Puzzle {
         scanner.close();
 
         Map<List<Integer>, Integer> distributions = new HashMap<>();
+        int cycleSize;
         int cycles = 1;
         while (true) {
             int maxIndex = banks.indexOf(banks.stream().max(Integer::compareTo).orElseThrow());
@@ -42,12 +43,13 @@ public class MemoryReallocationPuzzle extends Puzzle {
             }
 
             if (distributions.containsKey(banks)) {
+                cycleSize = cycles - distributions.get(banks);
                 break;
             }
             distributions.put(banks, cycles);
             cycles++;
         }
 
-        return new PuzzleOutput<>(cycles, 0);
+        return new PuzzleOutput<>(cycles, cycleSize);
     }
 }

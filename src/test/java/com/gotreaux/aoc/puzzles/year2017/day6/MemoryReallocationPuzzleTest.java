@@ -18,4 +18,15 @@ class MemoryReallocationPuzzleTest {
 
         assertEquals(5, output.partOne());
     }
+
+    @Test
+    void cycleSize() throws Exception {
+        InputProvider inputProvider = new StringInputProvider("0 2 7 0");
+
+        MemoryReallocationPuzzle puzzle = new MemoryReallocationPuzzle(inputProvider);
+
+        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+
+        assertEquals(4, output.partTwo());
+    }
 }
