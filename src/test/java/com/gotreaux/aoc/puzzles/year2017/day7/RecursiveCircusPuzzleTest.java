@@ -18,4 +18,15 @@ class RecursiveCircusPuzzleTest {
 
         assertEquals("tknk", output.partOne());
     }
+
+    @Test
+    void weightOfFixedChild() throws Exception {
+        InputProvider inputProvider = new FileInputProvider(RecursiveCircusPuzzle.class);
+
+        RecursiveCircusPuzzle puzzle = new RecursiveCircusPuzzle(inputProvider);
+
+        PuzzleOutput<String, Integer> output = puzzle.solve();
+
+        assertEquals(60, output.partTwo());
+    }
 }

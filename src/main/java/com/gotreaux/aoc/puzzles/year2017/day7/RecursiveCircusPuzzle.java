@@ -1,5 +1,9 @@
 package com.gotreaux.aoc.puzzles.year2017.day7;
 
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
+
 import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
@@ -9,6 +13,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 @ShellPuzzle(year = 2017, day = 7, title = "Recursive Circus")
@@ -22,31 +27,67 @@ public class RecursiveCircusPuzzle extends Puzzle {
     @Override
     public PuzzleOutput<String, Integer> solve()
             throws IOException, URISyntaxException, NumberFormatException {
-        Collection<Program> programs = new ArrayList<>();
-        Collection<Tower> towers = new ArrayList<>();
+        Collection<String> input = getInputProvider().getInputList();
+        Collection<Disc> discs = new ArrayList<>(input.size());
 
-        for (String line : getInputProvider().getInputList()) {
+        for (String line : input) {
             List<String> parts = List.of(INPUT_DELIMS.matcher(line).replaceAll("").split(" "));
 
-            Program program = new Program(parts.getFirst(), Integer.parseInt(parts.get(1)));
-            programs.add(program);
+            discs.add(new Disc(parts.getFirst(), Integer.parseInt(parts.get(1))));
+        }
 
+        for (String line : input) {
+            List<String> parts = List.of(INPUT_DELIMS.matcher(line).replaceAll("").split(" "));
             if (parts.size() > 2) {
-                towers.add(new Tower(program.name(), parts.subList(3, parts.size())));
+                Disc parent =
+                        discs.stream()
+                                .filter(disc -> disc.getProgram().equals(parts.getFirst()))
+                                .findFirst()
+                                .orElseThrow();
+
+                for (String child : parts.subList(3, parts.size())) {
+                    Disc childDisc =
+                            discs.stream()
+                                    .filter(disc -> disc.getProgram().equals(child))
+                                    .findFirst()
+                                    .orElseThrow();
+
+                    childDisc.setParent(parent);
+                    parent.addChild(childDisc);
+                }
             }
         }
 
-        String nameOfBottomProgram =
-                programs.stream()
-                        .filter(
-                                program ->
-                                        towers.stream()
-                                                .noneMatch(
-                                                        tower -> tower.isHolding(program.name())))
+        Disc disc =
+                discs.stream()
+                        .filter(candidate -> candidate.getParent() == null)
                         .findFirst()
-                        .orElseThrow()
-                        .name();
+                        .orElseThrow();
 
-        return new PuzzleOutput<>(nameOfBottomProgram, 0);
+        String nameOfBottomProgram = disc.getProgram();
+
+        int difference = Integer.MAX_VALUE;
+        while (!disc.getChildren().isEmpty()) {
+            Map<Integer, Long> childWeights =
+                    disc.getChildren().stream()
+                            .map(Disc::getTotalWeight)
+                            .collect(groupingBy(identity(), counting()));
+
+            if (childWeights.size() == 1) {
+                break;
+            }
+
+            difference = Math.abs(childWeights.keySet().stream().reduce(0, (x, y) -> y - x));
+
+            disc =
+                    disc.getChildren().stream()
+                            .filter(childDisc -> childWeights.get(childDisc.getTotalWeight()) == 1L)
+                            .findFirst()
+                            .orElseThrow();
+        }
+
+        int weightOfFixedChild = disc.getWeight() - difference;
+
+        return new PuzzleOutput<>(nameOfBottomProgram, weightOfFixedChild);
     }
 }
