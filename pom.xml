@@ -9,8 +9,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>22</maven.compiler.source>
+        <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -18,17 +18,17 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>6.1.7</version>
+            <version>6.1.11</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.shell</groupId>
             <artifactId>spring-shell-starter</artifactId>
-            <version>3.2.4</version>
+            <version>3.3.1</version>
         </dependency>
         <dependency>
             <groupId>com.google.errorprone</groupId>
             <artifactId>error_prone_annotations</artifactId>
-            <version>2.27.1</version>
+            <version>2.29.2</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
@@ -43,19 +43,19 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.10.2</version>
+            <version>5.10.3</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
-            <version>5.10.2</version>
+            <version>5.10.3</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.shell</groupId>
             <artifactId>spring-shell-starter-test</artifactId>
-            <version>3.2.4</version>
+            <version>3.3.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -66,7 +66,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.2.5</version>
+                <version>3.3.2</version>
                 <executions>
                     <execution>
                         <goals>
@@ -78,15 +78,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
+                <version>3.3.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
                 <configuration>
-                    <source>21</source>
-                    <target>21</target>
+                    <source>22</source>
+                    <target>22</target>
                     <encoding>UTF-8</encoding>
                     <failOnWarning>true</failOnWarning>
                     <compilerArgs>
@@ -97,7 +97,7 @@
                         <path>
                             <groupId>com.google.errorprone</groupId>
                             <artifactId>error_prone_core</artifactId>
-                            <version>2.27.1</version>
+                            <version>2.29.2</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
@@ -117,17 +117,17 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>4.8.5.0</version>
+                <version>4.8.6.2</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.22.0</version>
+                <version>3.24.0</version>
             </plugin>
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
-                <version>9.2.0</version>
+                <version>10.0.3</version>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
