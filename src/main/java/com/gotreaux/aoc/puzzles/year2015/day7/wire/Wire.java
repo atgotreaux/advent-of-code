@@ -5,7 +5,7 @@ import com.gotreaux.aoc.puzzles.year2015.day7.Circuit;
 public abstract class Wire {
     private final String label;
 
-    protected Wire(String label) {
+    Wire(String label) {
         this.label = label;
     }
 

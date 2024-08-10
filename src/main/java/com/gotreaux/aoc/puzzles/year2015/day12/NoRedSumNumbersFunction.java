@@ -5,7 +5,7 @@ import java.util.stream.IntStream;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class NoRedSumNumbersFunction implements Function<Object, Integer> {
+class NoRedSumNumbersFunction implements Function<Object, Integer> {
     @Override
     public Integer apply(Object o) {
         return switch (o) {

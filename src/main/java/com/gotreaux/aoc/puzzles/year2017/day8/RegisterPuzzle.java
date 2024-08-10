@@ -26,7 +26,7 @@ public class RegisterPuzzle extends Puzzle {
         Map<String, Integer> registers =
                 input.stream()
                         .map(line -> line.split(" ")[0])
-                        .collect(Collectors.toMap(Function.identity(), line -> 0, (x, y) -> x));
+                        .collect(Collectors.toMap(Function.identity(), _ -> 0, (x, _) -> x));
 
         int maxRegisterValue = Integer.MIN_VALUE;
         for (String line : input) {

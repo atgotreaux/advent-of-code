@@ -51,7 +51,7 @@ public class HydrothermalVenturePuzzle extends Puzzle {
 
     static Line parseLine(String line) {
         Scanner scanner = new Scanner(line);
-        scanner.useDelimiter(",|\s->\s");
+        scanner.useDelimiter(",| -> ");
 
         int x1 = scanner.nextInt();
         int y1 = scanner.nextInt();

@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 abstract class CrateMover {
-    protected Map<Integer, Deque<Character>> stacks;
+    protected final Map<Integer, Deque<Character>> stacks;
 
     CrateMover(Map<Integer, Deque<Character>> stacks) {
         this.stacks =

@@ -6,6 +6,8 @@ import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +19,7 @@ public class ReindeerOlympicsPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws Exception {
+    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
         Collection<Reindeer> reindeers =
                 getInputProvider()
                         .getInputStream()

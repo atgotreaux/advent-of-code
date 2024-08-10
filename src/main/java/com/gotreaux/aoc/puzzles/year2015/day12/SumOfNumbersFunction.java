@@ -5,7 +5,7 @@ import java.util.stream.IntStream;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class SumOfNumbersFunction implements Function<Object, Integer> {
+class SumOfNumbersFunction implements Function<Object, Integer> {
     @Override
     public Integer apply(Object o) {
         return switch (o) {

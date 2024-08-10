@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.random.RandomGenerator;
 import org.junit.jupiter.api.Test;
 
-public class HandTest {
+class HandTest {
 
     @Test
     void jacksOrdering() {
