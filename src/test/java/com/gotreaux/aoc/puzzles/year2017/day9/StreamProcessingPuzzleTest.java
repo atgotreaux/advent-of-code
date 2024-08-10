@@ -1,15 +1,14 @@
 package com.gotreaux.aoc.puzzles.year2017.day9;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.input.StringInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
+import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class StreamProcessingPuzzleTest {
     @ParameterizedTest
