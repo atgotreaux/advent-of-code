@@ -13,23 +13,43 @@ import org.junit.jupiter.params.provider.MethodSource;
 class CyberspaceExplosivesPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideDecompressedLength")
-    void decompressedLength(String input, int expected) throws Exception {
+    void decompressedLength(String input, long expected) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
         CyberspaceExplosivesPuzzle puzzle = new CyberspaceExplosivesPuzzle(inputProvider);
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve();
 
         assertEquals(expected, output.partOne());
     }
 
+    @ParameterizedTest
+    @MethodSource("provideDecompressedRecursiveLength")
+    void decompressedRecursiveLength(String input, long expected) throws Exception {
+        InputProvider inputProvider = new StringInputProvider(input);
+
+        CyberspaceExplosivesPuzzle puzzle = new CyberspaceExplosivesPuzzle(inputProvider);
+
+        PuzzleOutput<Long, Long> output = puzzle.solve();
+
+        assertEquals(expected, output.partTwo());
+    }
+
     private static Stream<Arguments> provideDecompressedLength() {
         return Stream.of(
-                Arguments.of("ADVENT", 6),
-                Arguments.of("A(1x5)BC", 7),
-                Arguments.of("(3x3)XYZ", 9),
-                Arguments.of("A(2x2)BCD(2x2)EFG", 11),
-                Arguments.of("(6x1)(1x3)A", 6),
-                Arguments.of("X(8x2)(3x3)ABCY", 18));
+                Arguments.of("ADVENT", 6L),
+                Arguments.of("A(1x5)BC", 7L),
+                Arguments.of("(3x3)XYZ", 9L),
+                Arguments.of("A(2x2)BCD(2x2)EFG", 11L),
+                Arguments.of("(6x1)(1x3)A", 6L),
+                Arguments.of("X(8x2)(3x3)ABCY", 18L));
+    }
+
+    private static Stream<Arguments> provideDecompressedRecursiveLength() {
+        return Stream.of(
+                Arguments.of("(3x3)XYZ", 9L),
+                Arguments.of("X(8x2)(3x3)ABCY", 20L),
+                Arguments.of("(27x12)(20x12)(13x14)(7x10)(1x12)A", 241920L),
+                Arguments.of("(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN", 445L));
     }
 }

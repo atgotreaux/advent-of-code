@@ -15,11 +15,19 @@ public class CyberspaceExplosivesPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
+    public PuzzleOutput<Long, Long> solve() throws IOException, URISyntaxException {
         String input = getInputProvider().getInputString();
 
-        StringBuilder decompressedSequence = new StringBuilder(input.length());
+        long decompressedLength = decompress(input, false);
+        long decompressedRecursiveLength = decompress(input, true);
+
+        return new PuzzleOutput<>(decompressedLength, decompressedRecursiveLength);
+    }
+
+    private static long decompress(String input, boolean recursiveDecompression) {
+        long decompressedLength = 0;
         int index = 0;
+
         while (index < input.length()) {
             char c = input.charAt(index);
             if (c == '(') {
@@ -29,19 +37,23 @@ public class CyberspaceExplosivesPuzzle extends Puzzle {
                 Scanner scanner = new Scanner(marker);
                 scanner.useDelimiter("x");
                 int subsequence = scanner.nextInt();
-                int occurrences = scanner.nextInt();
+                long occurrences = scanner.nextLong();
                 scanner.close();
 
                 String sequence = input.substring(markerEnd + 1, markerEnd + subsequence + 1);
-                decompressedSequence.append(sequence.repeat(occurrences));
+                if (recursiveDecompression) {
+                    decompressedLength += occurrences * decompress(sequence, true);
+                } else {
+                    decompressedLength += occurrences * sequence.length();
+                }
 
                 index = markerEnd + subsequence + 1;
             } else {
-                decompressedSequence.append(c);
+                decompressedLength++;
                 index++;
             }
         }
 
-        return new PuzzleOutput<>(decompressedSequence.length(), 0);
+        return decompressedLength;
     }
 }
