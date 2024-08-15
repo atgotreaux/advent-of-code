@@ -1,0 +1,66 @@
+package com.gotreaux.aoc.puzzles.year2018.day7;
+
+import com.gotreaux.aoc.annotations.ShellPuzzle;
+import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.output.PuzzleOutput;
+import com.gotreaux.aoc.puzzles.Puzzle;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Stream;
+
+@ShellPuzzle(year = 2018, day = 7, title = "The Sum of Its Parts")
+public class SumOfPartsPuzzle extends Puzzle {
+    public SumOfPartsPuzzle(InputProvider inputProvider) {
+        super(inputProvider);
+    }
+
+    @Override
+    public PuzzleOutput<String, Integer> solve()
+            throws IOException, URISyntaxException, NoSuchElementException {
+        List<Requirement> reqs =
+                getInputProvider()
+                        .getInputStream()
+                        .map(SumOfPartsPuzzle::parseRequirement)
+                        .toList();
+
+        List<String> steps =
+                reqs.stream()
+                        .flatMap(req -> Stream.of(req.prereq(), req.step()))
+                        .distinct()
+                        .toList();
+
+        StringBuilder stepOrder = new StringBuilder(steps.size());
+        List<String> availableSteps = new ArrayList<>(steps.size());
+        while (stepOrder.length() < steps.size()) {
+            List<String> prereqsCompleteSteps =
+                    steps.stream()
+                            .filter(step -> stepOrder.indexOf(step) == -1)
+                            .filter(step -> !availableSteps.contains(step))
+                            .filter(
+                                    step ->
+                                            reqs.stream()
+                                                    .filter(req -> req.step().equals(step))
+                                                    .allMatch(
+                                                            req ->
+                                                                    stepOrder.indexOf(req.prereq())
+                                                                            >= 0))
+                            .toList();
+
+            availableSteps.addAll(prereqsCompleteSteps);
+            Collections.sort(availableSteps);
+
+            stepOrder.append(availableSteps.removeFirst());
+        }
+
+        return new PuzzleOutput<>(stepOrder.toString(), 0);
+    }
+
+    private static Requirement parseRequirement(String input) {
+        String[] parts = input.split(" ");
+        return new Requirement(parts[1], parts[7]);
+    }
+}
