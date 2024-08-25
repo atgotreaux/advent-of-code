@@ -18,7 +18,7 @@ This project is powered by [**Spring Boot**](https://spring.io/projects/spring-b
 ## Installation
 
 1. Import the project into your IDE of choice ([IntelliJ](https://www.jetbrains.com/help/idea/maven-support.html) | [Eclipse](https://projects.eclipse.org/projects/technology.m2e) | [NetBeans](https://netbeans.apache.org/wiki/main/wiki/MavenBestPractices/)).
-2. Create a run configuration for the `com.gotreaux.aoc.Application` class ([IntelliJ](https://www.jetbrains.com/help/idea/run-debug-configuration.html) | [Eclipse](https://help.eclipse.org/latest/index.jsp?topic=%2Forg.eclipse.cdt.doc.user%2Ftasks%2Fcdt_t_new_run_config.htm) | [NetBeans](https://netbeans.apache.org/tutorial/main/kb/docs/java/quickstart/)).
+2. Confirm run configuration for the `com.gotreaux.aoc.Application` class ([IntelliJ](https://www.jetbrains.com/help/idea/run-debug-configuration.html) | [Eclipse](https://help.eclipse.org/latest/index.jsp?topic=%2Forg.eclipse.cdt.doc.user%2Ftasks%2Fcdt_t_new_run_config.htm) | [NetBeans](https://netbeans.apache.org/tutorial/main/kb/docs/java/quickstart/)).
 3. Build the project with Maven ([Spring Getting Started Guide](https://spring.io/guides/gs/maven/)). `mvn clean package` will create a fat jar if you prefer an executable file.
 
 ## Running
