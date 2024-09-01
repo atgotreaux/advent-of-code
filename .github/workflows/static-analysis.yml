@@ -15,7 +15,7 @@ jobs:
           distribution: 'corretto'
           cache: 'maven'
       - name: Build with Maven
-        run: mvn -B package
+        run: mvn -B -DskipTests package
       - name: SpotBugs analysis
         run: mvn -B spotbugs:check
       - name: PMD analysis
