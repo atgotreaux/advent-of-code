@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2023.day3;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -14,19 +13,21 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2023, day = 3, title = "Gear Ratios")
+@Component
 public class GearRatiosPuzzle extends Puzzle {
 
-    public GearRatiosPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public GearRatiosPuzzle() {
+        super(2023, 3);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
         int sumOfParts = 0;
 
-        List<String> lines = getInputProvider().getInputList();
+        List<String> lines = inputProvider.getInputList();
         CharMatrix matrix = new CharMatrix(lines);
         int rowCount = matrix.getRowCount();
         int columnCount = matrix.getColCount();

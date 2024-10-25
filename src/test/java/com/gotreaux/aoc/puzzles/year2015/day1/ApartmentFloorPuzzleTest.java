@@ -17,9 +17,9 @@ class ApartmentFloorPuzzleTest {
     void floorFromInstructions(String input, int expectedFloor) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
+        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedFloor, output.partOne());
     }
@@ -28,9 +28,9 @@ class ApartmentFloorPuzzleTest {
     void positionBasementReached() throws Exception {
         InputProvider inputProvider = new StringInputProvider("()())");
 
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle(inputProvider);
+        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(5, output.partTwo());
     }

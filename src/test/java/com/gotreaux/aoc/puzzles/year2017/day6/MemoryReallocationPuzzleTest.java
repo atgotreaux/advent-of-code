@@ -12,9 +12,9 @@ class MemoryReallocationPuzzleTest {
     void cyclesBeforeDuplicate() throws Exception {
         InputProvider inputProvider = new StringInputProvider("0 2 7 0");
 
-        MemoryReallocationPuzzle puzzle = new MemoryReallocationPuzzle(inputProvider);
+        MemoryReallocationPuzzle puzzle = new MemoryReallocationPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(5, output.partOne());
     }
@@ -23,9 +23,9 @@ class MemoryReallocationPuzzleTest {
     void cycleSize() throws Exception {
         InputProvider inputProvider = new StringInputProvider("0 2 7 0");
 
-        MemoryReallocationPuzzle puzzle = new MemoryReallocationPuzzle(inputProvider);
+        MemoryReallocationPuzzle puzzle = new MemoryReallocationPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(4, output.partTwo());
     }

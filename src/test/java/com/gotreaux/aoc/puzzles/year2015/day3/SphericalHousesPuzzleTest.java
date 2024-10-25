@@ -16,9 +16,9 @@ class SphericalHousesPuzzleTest {
     void houseDeliveries(String input, int expectedDeliveries) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        SphericalHousesPuzzle puzzle = new SphericalHousesPuzzle(inputProvider);
+        SphericalHousesPuzzle puzzle = new SphericalHousesPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedDeliveries, output.partOne());
     }
@@ -28,9 +28,9 @@ class SphericalHousesPuzzleTest {
     void assistedHouseDeliveries(String input, int expectedDeliveries) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        SphericalHousesPuzzle puzzle = new SphericalHousesPuzzle(inputProvider);
+        SphericalHousesPuzzle puzzle = new SphericalHousesPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedDeliveries, output.partTwo());
     }

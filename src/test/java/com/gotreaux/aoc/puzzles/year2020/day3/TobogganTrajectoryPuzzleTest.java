@@ -12,9 +12,9 @@ class TobogganTrajectoryPuzzleTest {
     void treesEncountered() throws Exception {
         InputProvider inputProvider = new FileInputProvider(TobogganTrajectoryPuzzle.class);
 
-        TobogganTrajectoryPuzzle puzzle = new TobogganTrajectoryPuzzle(inputProvider);
+        TobogganTrajectoryPuzzle puzzle = new TobogganTrajectoryPuzzle();
 
-        PuzzleOutput<Integer, Long> output = puzzle.solve();
+        PuzzleOutput<Integer, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(7, output.partOne());
     }
@@ -23,9 +23,9 @@ class TobogganTrajectoryPuzzleTest {
     void productOfSlopeCandidates() throws Exception {
         InputProvider inputProvider = new FileInputProvider(TobogganTrajectoryPuzzle.class);
 
-        TobogganTrajectoryPuzzle puzzle = new TobogganTrajectoryPuzzle(inputProvider);
+        TobogganTrajectoryPuzzle puzzle = new TobogganTrajectoryPuzzle();
 
-        PuzzleOutput<Integer, Long> output = puzzle.solve();
+        PuzzleOutput<Integer, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(336L, output.partTwo());
     }

@@ -12,9 +12,9 @@ class SecurityThroughObscurityPuzzleTest {
     void sumOfRealRooms() throws Exception {
         InputProvider inputProvider = new FileInputProvider(SecurityThroughObscurityPuzzle.class);
 
-        SecurityThroughObscurityPuzzle puzzle = new SecurityThroughObscurityPuzzle(inputProvider);
+        SecurityThroughObscurityPuzzle puzzle = new SecurityThroughObscurityPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(1514, output.partOne());
     }

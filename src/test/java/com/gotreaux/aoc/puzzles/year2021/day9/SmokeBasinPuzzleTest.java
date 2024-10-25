@@ -18,9 +18,9 @@ class SmokeBasinPuzzleTest {
     void sumOfRiskLevels() throws Exception {
         InputProvider inputProvider = new FileInputProvider(SmokeBasinPuzzle.class);
 
-        SmokeBasinPuzzle puzzle = new SmokeBasinPuzzle(inputProvider);
+        SmokeBasinPuzzle puzzle = new SmokeBasinPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(15, output.partOne());
     }
@@ -29,9 +29,9 @@ class SmokeBasinPuzzleTest {
     void productOfLargestBasins() throws Exception {
         InputProvider inputProvider = new FileInputProvider(SmokeBasinPuzzle.class);
 
-        SmokeBasinPuzzle puzzle = new SmokeBasinPuzzle(inputProvider);
+        SmokeBasinPuzzle puzzle = new SmokeBasinPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(1134, output.partTwo());
     }

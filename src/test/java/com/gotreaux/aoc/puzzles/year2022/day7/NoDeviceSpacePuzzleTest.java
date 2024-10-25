@@ -12,9 +12,9 @@ class NoDeviceSpacePuzzleTest {
     void sumOfSmallDirectories() throws Exception {
         InputProvider inputProvider = new FileInputProvider(NoDeviceSpacePuzzle.class);
 
-        NoDeviceSpacePuzzle puzzle = new NoDeviceSpacePuzzle(inputProvider);
+        NoDeviceSpacePuzzle puzzle = new NoDeviceSpacePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(95437, output.partOne());
     }
@@ -23,9 +23,9 @@ class NoDeviceSpacePuzzleTest {
     void smallestDirectoryToFree() throws Exception {
         InputProvider inputProvider = new FileInputProvider(NoDeviceSpacePuzzle.class);
 
-        NoDeviceSpacePuzzle puzzle = new NoDeviceSpacePuzzle(inputProvider);
+        NoDeviceSpacePuzzle puzzle = new NoDeviceSpacePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(24933642, output.partTwo());
     }

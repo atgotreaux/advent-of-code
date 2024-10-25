@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2016.day3;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -10,17 +9,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2016, day = 3, title = "Squares With Three Sides")
+@Component
 public class TrianglePuzzle extends Puzzle {
 
-    public TrianglePuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public TrianglePuzzle() {
+        super(2016, 3);
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve() throws IOException, URISyntaxException {
-        Collection<String> input = getInputProvider().getInputList();
+    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
+        Collection<String> input = inputProvider.getInputList();
         Collection<Triangle> rowTriangles = new ArrayList<>(input.size());
 
         List<Integer> colOne = new ArrayList<>(input.size());

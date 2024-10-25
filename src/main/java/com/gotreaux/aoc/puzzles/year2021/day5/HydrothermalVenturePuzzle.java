@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2021.day5;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -10,20 +9,20 @@ import java.util.Collection;
 import java.util.Scanner;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2021, day = 5, title = "Hydrothermal Venture")
+@Component
 public class HydrothermalVenturePuzzle extends Puzzle {
-    public HydrothermalVenturePuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public HydrothermalVenturePuzzle() {
+        super(2021, 5);
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve() throws IOException, URISyntaxException {
+    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
         Collection<Line> lines =
-                getInputProvider()
-                        .getInputStream()
-                        .map(HydrothermalVenturePuzzle::parseLine)
-                        .toList();
+                inputProvider.getInputStream().map(HydrothermalVenturePuzzle::parseLine).toList();
 
         long overlappingOrthogonalPoints =
                 lines.stream()

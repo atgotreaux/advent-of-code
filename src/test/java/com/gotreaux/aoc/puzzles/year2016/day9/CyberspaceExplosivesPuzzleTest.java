@@ -16,9 +16,9 @@ class CyberspaceExplosivesPuzzleTest {
     void decompressedLength(String input, long expected) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        CyberspaceExplosivesPuzzle puzzle = new CyberspaceExplosivesPuzzle(inputProvider);
+        CyberspaceExplosivesPuzzle puzzle = new CyberspaceExplosivesPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(expected, output.partOne());
     }
@@ -28,9 +28,9 @@ class CyberspaceExplosivesPuzzleTest {
     void decompressedRecursiveLength(String input, long expected) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        CyberspaceExplosivesPuzzle puzzle = new CyberspaceExplosivesPuzzle(inputProvider);
+        CyberspaceExplosivesPuzzle puzzle = new CyberspaceExplosivesPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(expected, output.partTwo());
     }

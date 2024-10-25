@@ -12,9 +12,9 @@ class SignalNoisePuzzleTest {
     void mostCommonCharMessage() throws Exception {
         InputProvider inputProvider = new FileInputProvider(SignalNoisePuzzle.class);
 
-        SignalNoisePuzzle puzzle = new SignalNoisePuzzle(inputProvider);
+        SignalNoisePuzzle puzzle = new SignalNoisePuzzle();
 
-        PuzzleOutput<String, String> output = puzzle.solve();
+        PuzzleOutput<String, String> output = puzzle.solve(inputProvider);
 
         assertEquals("easter", output.partOne());
     }
@@ -23,9 +23,9 @@ class SignalNoisePuzzleTest {
     void leastCommonCharMessage() throws Exception {
         InputProvider inputProvider = new FileInputProvider(SignalNoisePuzzle.class);
 
-        SignalNoisePuzzle puzzle = new SignalNoisePuzzle(inputProvider);
+        SignalNoisePuzzle puzzle = new SignalNoisePuzzle();
 
-        PuzzleOutput<String, String> output = puzzle.solve();
+        PuzzleOutput<String, String> output = puzzle.solve(inputProvider);
 
         assertEquals("advent", output.partTwo());
     }

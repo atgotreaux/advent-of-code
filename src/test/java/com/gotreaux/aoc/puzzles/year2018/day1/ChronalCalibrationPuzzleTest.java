@@ -17,9 +17,9 @@ class ChronalCalibrationPuzzleTest {
         InputProvider inputProvider =
                 new FileInputProvider(ChronalCalibrationPuzzle.class, fileName);
 
-        ChronalCalibrationPuzzle puzzle = new ChronalCalibrationPuzzle(inputProvider);
+        ChronalCalibrationPuzzle puzzle = new ChronalCalibrationPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedFrequency, output.partOne());
     }
@@ -30,9 +30,9 @@ class ChronalCalibrationPuzzleTest {
         InputProvider inputProvider =
                 new FileInputProvider(ChronalCalibrationPuzzle.class, fileName);
 
-        ChronalCalibrationPuzzle puzzle = new ChronalCalibrationPuzzle(inputProvider);
+        ChronalCalibrationPuzzle puzzle = new ChronalCalibrationPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedFrequency, output.partTwo());
     }

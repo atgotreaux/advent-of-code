@@ -16,9 +16,9 @@ class StreamProcessingPuzzleTest {
     void totalScore(String input, int expectedScore) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        StreamProcessingPuzzle puzzle = new StreamProcessingPuzzle(inputProvider);
+        StreamProcessingPuzzle puzzle = new StreamProcessingPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedScore, output.partOne());
     }
@@ -28,9 +28,9 @@ class StreamProcessingPuzzleTest {
     void garbageCount(String input, int expectedCount) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        StreamProcessingPuzzle puzzle = new StreamProcessingPuzzle(inputProvider);
+        StreamProcessingPuzzle puzzle = new StreamProcessingPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedCount, output.partTwo());
     }

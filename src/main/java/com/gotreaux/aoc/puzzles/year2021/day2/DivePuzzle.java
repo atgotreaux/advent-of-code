@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2021.day2;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -9,23 +8,24 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Locale;
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2021, day = 2, title = "Dive!")
+@Component
 public class DivePuzzle extends Puzzle {
 
-    public DivePuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public DivePuzzle() {
+        super(2021, 2);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, IllegalArgumentException {
         Point position = new Point();
 
         int aim = 0;
         Point positionWithAim = new Point();
 
-        for (String line : getInputProvider().getInputList()) {
+        for (String line : inputProvider.getInputList()) {
             Scanner scanner = new Scanner(line);
 
             Command command = Command.valueOf(scanner.next().toUpperCase(Locale.getDefault()));

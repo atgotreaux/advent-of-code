@@ -16,9 +16,9 @@ class CrossedWiresPuzzleTest {
     void closestIntersectionDistance(String fileName, int expected) throws Exception {
         InputProvider inputProvider = new FileInputProvider(CrossedWiresPuzzle.class, fileName);
 
-        CrossedWiresPuzzle puzzle = new CrossedWiresPuzzle(inputProvider);
+        CrossedWiresPuzzle puzzle = new CrossedWiresPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expected, output.partOne());
     }
@@ -28,9 +28,9 @@ class CrossedWiresPuzzleTest {
     void closestIntersectionSteps(String fileName, int expected) throws Exception {
         InputProvider inputProvider = new FileInputProvider(CrossedWiresPuzzle.class, fileName);
 
-        CrossedWiresPuzzle puzzle = new CrossedWiresPuzzle(inputProvider);
+        CrossedWiresPuzzle puzzle = new CrossedWiresPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expected, output.partTwo());
     }

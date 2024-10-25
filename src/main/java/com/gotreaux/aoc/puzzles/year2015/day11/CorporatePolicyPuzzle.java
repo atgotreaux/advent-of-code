@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2015.day11;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -12,16 +11,19 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2015, day = 11, title = "Corporate Policy")
+@Component
 public class CorporatePolicyPuzzle extends Puzzle {
-    public CorporatePolicyPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public CorporatePolicyPuzzle() {
+        super(2015, 11);
     }
 
     @Override
-    public PuzzleOutput<String, String> solve() throws IOException, URISyntaxException {
-        String nextPassword = getInputProvider().getInputString();
+    public PuzzleOutput<String, String> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
+        String nextPassword = inputProvider.getInputString();
 
         Function<String, String> incrementPassword = new IncrementPasswordFunction();
         Predicate<String> requirements =

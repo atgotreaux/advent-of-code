@@ -12,9 +12,9 @@ class MatchsticksPuzzleTest {
     void differenceOfLiteralsAndValues() throws Exception {
         InputProvider inputProvider = new FileInputProvider(MatchsticksPuzzle.class);
 
-        MatchsticksPuzzle puzzle = new MatchsticksPuzzle(inputProvider);
+        MatchsticksPuzzle puzzle = new MatchsticksPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(12, output.partOne());
     }
@@ -23,9 +23,9 @@ class MatchsticksPuzzleTest {
     void differenceOfEncodedAndLiterals() throws Exception {
         InputProvider inputProvider = new FileInputProvider(MatchsticksPuzzle.class);
 
-        MatchsticksPuzzle puzzle = new MatchsticksPuzzle(inputProvider);
+        MatchsticksPuzzle puzzle = new MatchsticksPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(19, output.partTwo());
     }

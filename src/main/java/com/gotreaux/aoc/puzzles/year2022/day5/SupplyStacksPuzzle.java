@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2022.day5;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -12,20 +11,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2022, day = 5, title = "Supply Stacks")
+@Component
 public class SupplyStacksPuzzle extends Puzzle {
-    public SupplyStacksPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public SupplyStacksPuzzle() {
+        super(2022, 5);
     }
 
     @Override
-    public PuzzleOutput<String, String> solve()
+    public PuzzleOutput<String, String> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NumberFormatException {
         Deque<RearrangeProcedure> procedures = new ArrayDeque<>();
         Map<Integer, Deque<Character>> stacks = new HashMap<>();
 
-        List<String> input = getInputProvider().getInputList();
+        List<String> input = inputProvider.getInputList();
         for (int lineIndex = input.size() - 1; lineIndex >= 0; lineIndex--) {
             String line = input.get(lineIndex);
             if (line.startsWith("move")) {

@@ -12,9 +12,9 @@ class LanternfishPuzzleTest {
     void populationOf80Days() throws Exception {
         InputProvider inputProvider = new StringInputProvider("3,4,3,1,2");
 
-        LanternfishPuzzle puzzle = new LanternfishPuzzle(inputProvider);
+        LanternfishPuzzle puzzle = new LanternfishPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(5934L, output.partOne());
     }
@@ -23,9 +23,9 @@ class LanternfishPuzzleTest {
     void populationOf256Days() throws Exception {
         InputProvider inputProvider = new StringInputProvider("3,4,3,1,2");
 
-        LanternfishPuzzle puzzle = new LanternfishPuzzle(inputProvider);
+        LanternfishPuzzle puzzle = new LanternfishPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(26984457539L, output.partTwo());
     }

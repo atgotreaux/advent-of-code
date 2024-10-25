@@ -12,9 +12,9 @@ class CustomCustomsPuzzleTest {
     void sumOfAnyoneDeclared() throws Exception {
         InputProvider inputProvider = new FileInputProvider(CustomCustomsPuzzle.class);
 
-        CustomCustomsPuzzle puzzle = new CustomCustomsPuzzle(inputProvider);
+        CustomCustomsPuzzle puzzle = new CustomCustomsPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(11L, output.partOne());
     }
@@ -23,9 +23,9 @@ class CustomCustomsPuzzleTest {
     void sumOfEveryoneDeclared() throws Exception {
         InputProvider inputProvider = new FileInputProvider(CustomCustomsPuzzle.class);
 
-        CustomCustomsPuzzle puzzle = new CustomCustomsPuzzle(inputProvider);
+        CustomCustomsPuzzle puzzle = new CustomCustomsPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(6L, output.partTwo());
     }

@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2015.day6;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -9,22 +8,23 @@ import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.stream.IntStream;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2015, day = 6, title = "Probably a Fire Hazard")
+@Component
 public class FireHazardPuzzle extends Puzzle {
     private static final int GRID_DIMENSION = 1000;
 
-    public FireHazardPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public FireHazardPuzzle() {
+        super(2015, 6);
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve()
+    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException, NumberFormatException {
         boolean[][] lightGrid = new boolean[GRID_DIMENSION][GRID_DIMENSION];
         int[][] brightnessGrid = new int[GRID_DIMENSION][GRID_DIMENSION];
 
-        for (String line : getInputProvider().getInputList()) {
+        for (String line : inputProvider.getInputList()) {
             Instruction instruction = Instruction.fromLine(line);
 
             String[] coordinates =

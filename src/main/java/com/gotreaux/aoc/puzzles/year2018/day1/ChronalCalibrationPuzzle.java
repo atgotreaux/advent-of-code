@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2018.day1;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -11,16 +10,17 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2018, day = 1, title = "Chronal Calibration")
+@Component
 public class ChronalCalibrationPuzzle extends Puzzle {
 
-    public ChronalCalibrationPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public ChronalCalibrationPuzzle() {
+        super(2018, 1);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, ParseException {
         int resultingFrequency = Integer.MAX_VALUE;
         int firstDuplicateFrequency = Integer.MAX_VALUE;
@@ -33,7 +33,7 @@ public class ChronalCalibrationPuzzle extends Puzzle {
         reachedFrequencies.add(frequency);
 
         int frequencyPosition = 0;
-        List<String> frequencyChanges = getInputProvider().getInputList();
+        List<String> frequencyChanges = inputProvider.getInputList();
         while (firstDuplicateFrequency == Integer.MAX_VALUE) {
             frequency += format.parse(frequencyChanges.get(frequencyPosition)).intValue();
 

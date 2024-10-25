@@ -16,9 +16,9 @@ class InternetProtocolPuzzleTest {
     void supportsTls(String input, int expected) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        InternetProtocolPuzzle puzzle = new InternetProtocolPuzzle(inputProvider);
+        InternetProtocolPuzzle puzzle = new InternetProtocolPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expected, output.partOne());
     }
@@ -28,9 +28,9 @@ class InternetProtocolPuzzleTest {
     void supportsSsl(String input, int expected) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        InternetProtocolPuzzle puzzle = new InternetProtocolPuzzle(inputProvider);
+        InternetProtocolPuzzle puzzle = new InternetProtocolPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expected, output.partTwo());
     }

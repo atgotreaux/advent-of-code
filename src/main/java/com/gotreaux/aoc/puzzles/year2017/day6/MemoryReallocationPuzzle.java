@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2017.day6;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -11,16 +10,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2017, day = 6, title = "Memory Reallocation")
+@Component
 public class MemoryReallocationPuzzle extends Puzzle {
-    public MemoryReallocationPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public MemoryReallocationPuzzle() {
+        super(2017, 6);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
-        String input = getInputProvider().getInputString();
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
+        String input = inputProvider.getInputString();
 
         Scanner scanner = new Scanner(input);
         List<Integer> banks = new ArrayList<>();

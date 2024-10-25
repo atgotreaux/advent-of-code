@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2020.day5;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -9,18 +8,20 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.IntStream;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2020, day = 5, title = "Binary Boarding")
+@Component
 public class BinaryBoardingPuzzle extends Puzzle {
-    public BinaryBoardingPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public BinaryBoardingPuzzle() {
+        super(2020, 5);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException {
         List<Integer> seatIDs =
-                getInputProvider()
+                inputProvider
                         .getInputStream()
                         .mapToInt(BinaryBoardingPuzzle::getSeatID)
                         .boxed()

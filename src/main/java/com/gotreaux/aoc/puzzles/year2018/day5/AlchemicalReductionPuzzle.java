@@ -1,21 +1,23 @@
 package com.gotreaux.aoc.puzzles.year2018.day5;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2018, day = 5, title = "Alchemical Reduction")
+@Component
 public class AlchemicalReductionPuzzle extends Puzzle {
-    public AlchemicalReductionPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public AlchemicalReductionPuzzle() {
+        super(2018, 5);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
-        String input = getInputProvider().getInputString();
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
+        String input = inputProvider.getInputString();
 
         String collapsedPolymer = collapse(input);
 

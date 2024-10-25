@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2023.day7;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -13,18 +12,19 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.stream.IntStream;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2023, day = 7, title = "Camel Cards")
+@Component
 public class CamelCardsPuzzle extends Puzzle {
 
-    public CamelCardsPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public CamelCardsPuzzle() {
+        super(2023, 7);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException {
-        Collection<String> input = getInputProvider().getInputList();
+        Collection<String> input = inputProvider.getInputList();
 
         List<Hand> hands = new ArrayList<>(input.size());
         List<Hand> jokerHands = new ArrayList<>(input.size());

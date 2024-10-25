@@ -17,9 +17,9 @@ class AlchemicalReductionPuzzleTest {
     void collapsedPolymer(String input, int expectedUnits) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        AlchemicalReductionPuzzle puzzle = new AlchemicalReductionPuzzle(inputProvider);
+        AlchemicalReductionPuzzle puzzle = new AlchemicalReductionPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedUnits, output.partOne());
     }
@@ -28,9 +28,9 @@ class AlchemicalReductionPuzzleTest {
     void shortestCollapsedPolymer() throws Exception {
         InputProvider inputProvider = new StringInputProvider("dabAcCaCBAcCcaDA");
 
-        AlchemicalReductionPuzzle puzzle = new AlchemicalReductionPuzzle(inputProvider);
+        AlchemicalReductionPuzzle puzzle = new AlchemicalReductionPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(4, output.partTwo());
     }

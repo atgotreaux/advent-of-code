@@ -1,25 +1,25 @@
 package com.gotreaux.aoc.puzzles.year2019.day2;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2019, day = 2, title = "1202 Program Alarm")
+@Component
 public class ProgramAlarmPuzzle extends Puzzle {
     private static final int COMPLETE_GRAVITY_ASSIST = 19690720;
 
-    public ProgramAlarmPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public ProgramAlarmPuzzle() {
+        super(2019, 2);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, IllegalArgumentException {
-        String input = getInputProvider().getInputString();
+        String input = inputProvider.getInputString();
 
         int[] program = Arrays.stream(input.split(",")).mapToInt(Integer::parseInt).toArray();
         int length = program.length;

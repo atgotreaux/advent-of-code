@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2022.day10;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -8,16 +7,19 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.IntStream;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2022, day = 10, title = "Cathode-Ray Tube")
+@Component
 public class CathodeRayTubePuzzle extends Puzzle {
-    public CathodeRayTubePuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public CathodeRayTubePuzzle() {
+        super(2022, 10);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
-        List<String> input = getInputProvider().getInputList();
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
+        List<String> input = inputProvider.getInputList();
 
         int sumOfSignalStrengths =
                 IntStream.rangeClosed(0, 5).map(i -> getSignalStrength(input, i * 40 + 20)).sum();

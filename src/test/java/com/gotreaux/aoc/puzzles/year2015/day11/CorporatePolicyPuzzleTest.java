@@ -2,6 +2,7 @@ package com.gotreaux.aoc.puzzles.year2015.day11;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.input.StringInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
@@ -13,11 +14,11 @@ class CorporatePolicyPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideNextPassword")
     void nextPassword(String input, String expected) throws Exception {
-        StringInputProvider inputProvider = new StringInputProvider(input);
+        InputProvider inputProvider = new StringInputProvider(input);
 
-        CorporatePolicyPuzzle puzzle = new CorporatePolicyPuzzle(inputProvider);
+        CorporatePolicyPuzzle puzzle = new CorporatePolicyPuzzle();
 
-        PuzzleOutput<String, String> output = puzzle.solve();
+        PuzzleOutput<String, String> output = puzzle.solve(inputProvider);
 
         assertEquals(expected, output.partOne());
     }

@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2022.day2;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -8,21 +7,22 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2022, day = 2, title = "Rock Paper Scissors")
+@Component
 public class RockPaperScissorsPuzzle extends Puzzle {
 
-    public RockPaperScissorsPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public RockPaperScissorsPuzzle() {
+        super(2022, 2);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException {
         int encryptedStrategyScore = 0;
         int outcomeStrategyScore = 0;
 
-        for (String line : getInputProvider().getInputList()) {
+        for (String line : inputProvider.getInputList()) {
             Scanner scanner = new Scanner(line);
             char opponentLabel = scanner.next().charAt(0);
             char strategyLabel = scanner.next().charAt(0);

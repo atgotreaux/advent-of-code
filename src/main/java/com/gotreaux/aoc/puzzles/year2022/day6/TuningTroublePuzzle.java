@@ -1,22 +1,24 @@
 package com.gotreaux.aoc.puzzles.year2022.day6;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.stream.IntStream;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2022, day = 6, title = "Tuning Trouble")
+@Component
 public class TuningTroublePuzzle extends Puzzle {
-    public TuningTroublePuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public TuningTroublePuzzle() {
+        super(2022, 6);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
-        String input = getInputProvider().getInputString();
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
+        String input = inputProvider.getInputString();
 
         int startOfPacketMarker =
                 IntStream.range(4, input.length())

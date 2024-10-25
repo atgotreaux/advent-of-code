@@ -12,9 +12,9 @@ class SliceItPuzzleTest {
     void overlapArea() throws Exception {
         InputProvider inputProvider = new FileInputProvider(SliceItPuzzle.class);
 
-        SliceItPuzzle puzzle = new SliceItPuzzle(inputProvider);
+        SliceItPuzzle puzzle = new SliceItPuzzle();
 
-        PuzzleOutput<Long, Integer> output = puzzle.solve();
+        PuzzleOutput<Long, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(4L, output.partOne());
     }
@@ -23,9 +23,9 @@ class SliceItPuzzleTest {
     void intactClaim() throws Exception {
         InputProvider inputProvider = new FileInputProvider(SliceItPuzzle.class);
 
-        SliceItPuzzle puzzle = new SliceItPuzzle(inputProvider);
+        SliceItPuzzle puzzle = new SliceItPuzzle();
 
-        PuzzleOutput<Long, Integer> output = puzzle.solve();
+        PuzzleOutput<Long, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(3, output.partTwo());
     }

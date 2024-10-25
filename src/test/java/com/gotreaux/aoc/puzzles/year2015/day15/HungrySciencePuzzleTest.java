@@ -12,9 +12,9 @@ class HungrySciencePuzzleTest {
     void highestScoringCookie() throws Exception {
         InputProvider inputProvider = new FileInputProvider(HungrySciencePuzzle.class);
 
-        HungrySciencePuzzle puzzle = new HungrySciencePuzzle(inputProvider);
+        HungrySciencePuzzle puzzle = new HungrySciencePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(62842880, output.partOne());
     }
@@ -23,9 +23,9 @@ class HungrySciencePuzzleTest {
     void highestScoringCalorieCookie() throws Exception {
         InputProvider inputProvider = new FileInputProvider(HungrySciencePuzzle.class);
 
-        HungrySciencePuzzle puzzle = new HungrySciencePuzzle(inputProvider);
+        HungrySciencePuzzle puzzle = new HungrySciencePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(57600000, output.partTwo());
     }

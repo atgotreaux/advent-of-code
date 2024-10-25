@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2015.day3;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -11,18 +10,19 @@ import java.net.URISyntaxException;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Set;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2015, day = 3, title = "Perfectly Spherical Houses in a Vacuum")
+@Component
 public class SphericalHousesPuzzle extends Puzzle {
 
-    public SphericalHousesPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public SphericalHousesPuzzle() {
+        super(2015, 3);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException {
-        String input = getInputProvider().getInputString();
+        String input = inputProvider.getInputString();
         int length = input.length();
 
         Set<Point> houseDeliveries = new HashSet<>(length);

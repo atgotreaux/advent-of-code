@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2015.day15;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -9,21 +8,20 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.NoSuchElementException;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2015, day = 15, title = "Science for Hungry People")
+@Component
 public class HungrySciencePuzzle extends Puzzle {
-    public HungrySciencePuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public HungrySciencePuzzle() {
+        super(2015, 15);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException {
         List<Ingredient> ingredients =
-                getInputProvider()
-                        .getInputStream()
-                        .map(HungrySciencePuzzle::parseIngredient)
-                        .toList();
+                inputProvider.getInputStream().map(HungrySciencePuzzle::parseIngredient).toList();
 
         List<List<Integer>> combinations =
                 CollectionUtils.combinationsOfSum(ingredients.size(), 100);

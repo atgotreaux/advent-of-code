@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2021.day10;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -11,16 +10,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2021, day = 10, title = "Syntax Scoring")
+@Component
 public class SyntaxScoringPuzzle extends Puzzle {
-    public SyntaxScoringPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public SyntaxScoringPuzzle() {
+        super(2021, 10);
     }
 
     @Override
-    public PuzzleOutput<Integer, Long> solve() throws IOException, URISyntaxException {
-        List<String> input = getInputProvider().getInputList();
+    public PuzzleOutput<Integer, Long> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
+        List<String> input = inputProvider.getInputList();
 
         int totalSyntaxErrorScore = 0;
         List<Long> completionScores = new ArrayList<>();

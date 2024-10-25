@@ -12,9 +12,9 @@ class CubeConundrumPuzzleTest {
     void possibleGames() throws Exception {
         InputProvider inputProvider = new FileInputProvider(CubeConundrumPuzzle.class);
 
-        CubeConundrumPuzzle puzzle = new CubeConundrumPuzzle(inputProvider);
+        CubeConundrumPuzzle puzzle = new CubeConundrumPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(8, output.partOne());
     }
@@ -23,9 +23,9 @@ class CubeConundrumPuzzleTest {
     void powerOfFewestCubes() throws Exception {
         InputProvider inputProvider = new FileInputProvider(CubeConundrumPuzzle.class);
 
-        CubeConundrumPuzzle puzzle = new CubeConundrumPuzzle(inputProvider);
+        CubeConundrumPuzzle puzzle = new CubeConundrumPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(2286, output.partTwo());
     }

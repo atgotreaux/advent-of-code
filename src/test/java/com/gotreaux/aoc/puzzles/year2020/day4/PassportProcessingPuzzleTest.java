@@ -17,9 +17,9 @@ class PassportProcessingPuzzleTest {
         InputProvider inputProvider =
                 new FileInputProvider(PassportProcessingPuzzle.class, "RequiredFields.txt");
 
-        PassportProcessingPuzzle puzzle = new PassportProcessingPuzzle(inputProvider);
+        PassportProcessingPuzzle puzzle = new PassportProcessingPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(2, output.partOne());
     }
@@ -30,9 +30,9 @@ class PassportProcessingPuzzleTest {
         InputProvider inputProvider =
                 new FileInputProvider(PassportProcessingPuzzle.class, fileName);
 
-        PassportProcessingPuzzle puzzle = new PassportProcessingPuzzle(inputProvider);
+        PassportProcessingPuzzle puzzle = new PassportProcessingPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expected, output.partTwo());
     }

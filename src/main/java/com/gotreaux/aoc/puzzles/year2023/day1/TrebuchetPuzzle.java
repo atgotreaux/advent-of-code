@@ -1,29 +1,30 @@
 package com.gotreaux.aoc.puzzles.year2023.day1;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2023, day = 1, title = "Trebuchet?!")
+@Component
 public class TrebuchetPuzzle extends Puzzle {
 
-    public TrebuchetPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public TrebuchetPuzzle() {
+        super(2023, 1);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
         int calibrationValue = 0;
         int calibrationValueWithDigits = 0;
 
         List<String> digitWords =
                 List.of("one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
 
-        for (String line : getInputProvider().getInputList()) {
+        for (String line : inputProvider.getInputList()) {
             StringBuilder calibrationValues = new StringBuilder(line.length());
             StringBuilder calibrationValuesWithDigits = new StringBuilder(line.length());
 

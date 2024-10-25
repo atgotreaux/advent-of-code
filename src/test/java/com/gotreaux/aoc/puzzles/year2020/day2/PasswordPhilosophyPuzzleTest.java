@@ -12,9 +12,9 @@ class PasswordPhilosophyPuzzleTest {
     void sumOfValidOccurrencesInRange() throws Exception {
         InputProvider inputProvider = new FileInputProvider(PasswordPhilosophyPuzzle.class);
 
-        PasswordPhilosophyPuzzle puzzle = new PasswordPhilosophyPuzzle(inputProvider);
+        PasswordPhilosophyPuzzle puzzle = new PasswordPhilosophyPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(2, output.partOne());
     }
@@ -23,9 +23,9 @@ class PasswordPhilosophyPuzzleTest {
     void sumOfValidPositions() throws Exception {
         InputProvider inputProvider = new FileInputProvider(PasswordPhilosophyPuzzle.class);
 
-        PasswordPhilosophyPuzzle puzzle = new PasswordPhilosophyPuzzle(inputProvider);
+        PasswordPhilosophyPuzzle puzzle = new PasswordPhilosophyPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(1, output.partTwo());
     }

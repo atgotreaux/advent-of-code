@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2015.day16;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -11,18 +10,19 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2015, day = 16, title = "Aunt Sue")
+@Component
 public class AuntSuePuzzle extends Puzzle {
-    public AuntSuePuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public AuntSuePuzzle() {
+        super(2015, 16);
     }
 
     @Override
-    public PuzzleOutput<?, ?> solve()
+    public PuzzleOutput<?, ?> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException {
-        List<Aunt> aunts =
-                getInputProvider().getInputStream().map(AuntSuePuzzle::parseAunt).toList();
+        List<Aunt> aunts = inputProvider.getInputStream().map(AuntSuePuzzle::parseAunt).toList();
 
         MFCSAM mfcsam = new MFCSAM(3, 7, 2, 3, 0, 0, 5, 3, 2, 1);
 

@@ -12,9 +12,9 @@ class BathroomSecurityPuzzleTest {
     void picturedKeypad() throws Exception {
         InputProvider inputProvider = new FileInputProvider(BathroomSecurityPuzzle.class);
 
-        BathroomSecurityPuzzle puzzle = new BathroomSecurityPuzzle(inputProvider);
+        BathroomSecurityPuzzle puzzle = new BathroomSecurityPuzzle();
 
-        PuzzleOutput<String, String> output = puzzle.solve();
+        PuzzleOutput<String, String> output = puzzle.solve(inputProvider);
 
         assertEquals("1985", output.partOne());
     }
@@ -23,9 +23,9 @@ class BathroomSecurityPuzzleTest {
     void actualBathroomKeypad() throws Exception {
         InputProvider inputProvider = new FileInputProvider(BathroomSecurityPuzzle.class);
 
-        BathroomSecurityPuzzle puzzle = new BathroomSecurityPuzzle(inputProvider);
+        BathroomSecurityPuzzle puzzle = new BathroomSecurityPuzzle();
 
-        PuzzleOutput<String, String> output = puzzle.solve();
+        PuzzleOutput<String, String> output = puzzle.solve(inputProvider);
 
         assertEquals("5DB3", output.partTwo());
     }

@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2018.day7;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -11,21 +10,20 @@ import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2018, day = 7, title = "The Sum of Its Parts")
+@Component
 public class SumOfPartsPuzzle extends Puzzle {
-    public SumOfPartsPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public SumOfPartsPuzzle() {
+        super(2018, 7);
     }
 
     @Override
-    public PuzzleOutput<String, Integer> solve()
+    public PuzzleOutput<String, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException {
         List<Requirement> reqs =
-                getInputProvider()
-                        .getInputStream()
-                        .map(SumOfPartsPuzzle::parseRequirement)
-                        .toList();
+                inputProvider.getInputStream().map(SumOfPartsPuzzle::parseRequirement).toList();
 
         List<String> steps =
                 reqs.stream()

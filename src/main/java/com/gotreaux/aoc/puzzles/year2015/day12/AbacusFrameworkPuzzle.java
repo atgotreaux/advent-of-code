@@ -1,22 +1,24 @@
 package com.gotreaux.aoc.puzzles.year2015.day12;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import org.json.JSONTokener;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2015, day = 12, title = "JSAbacusFramework.io")
+@Component
 public class AbacusFrameworkPuzzle extends Puzzle {
-    public AbacusFrameworkPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public AbacusFrameworkPuzzle() {
+        super(2015, 12);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
-        String input = getInputProvider().getInputString();
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
+        String input = inputProvider.getInputString();
 
         JSONTokener tokener = new JSONTokener(input);
         Object json = tokener.nextValue();

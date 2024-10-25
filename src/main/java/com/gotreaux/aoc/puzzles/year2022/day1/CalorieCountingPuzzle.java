@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2022.day1;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -9,21 +8,22 @@ import java.net.URISyntaxException;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2022, day = 1, title = "Calorie Counting")
+@Component
 public class CalorieCountingPuzzle extends Puzzle {
 
-    public CalorieCountingPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public CalorieCountingPuzzle() {
+        super(2022, 1);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NumberFormatException {
         int elfIndex = 0;
         Map<Integer, Integer> elfCalorieCarriage = new HashMap<>();
 
-        for (String line : getInputProvider().getInputList()) {
+        for (String line : inputProvider.getInputList()) {
             if (line.isBlank()) {
                 elfIndex++;
             } else {

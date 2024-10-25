@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2016.day6;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -13,17 +12,19 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2016, day = 6, title = "Signals and Noise")
+@Component
 public class SignalNoisePuzzle extends Puzzle {
-    public SignalNoisePuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public SignalNoisePuzzle() {
+        super(2016, 6);
     }
 
     @Override
-    public PuzzleOutput<String, String> solve()
+    public PuzzleOutput<String, String> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException {
-        List<String> input = getInputProvider().getInputList();
+        List<String> input = inputProvider.getInputList();
         int length = input.getFirst().length();
 
         Comparator<Map.Entry<Integer, Long>> mostCommonComparator = Map.Entry.comparingByValue();

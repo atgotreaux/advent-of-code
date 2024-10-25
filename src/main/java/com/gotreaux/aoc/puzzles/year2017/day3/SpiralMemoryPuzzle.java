@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2017.day3;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -11,17 +10,19 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2017, day = 3, title = "Spiral Memory")
+@Component
 public class SpiralMemoryPuzzle extends Puzzle {
-    public SpiralMemoryPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public SpiralMemoryPuzzle() {
+        super(2017, 3);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NumberFormatException {
-        String input = getInputProvider().getInputString();
+        String input = inputProvider.getInputString();
         int squares = Integer.parseInt(input);
 
         Map<Point, Integer> positions = new HashMap<>(squares);

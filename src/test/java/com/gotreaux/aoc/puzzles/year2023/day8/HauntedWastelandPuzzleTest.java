@@ -13,9 +13,9 @@ class HauntedWastelandPuzzleTest {
         InputProvider inputProvider =
                 new FileInputProvider(HauntedWastelandPuzzle.class, "NoRepeats.txt");
 
-        HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle(inputProvider);
+        HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(2L, output.partOne());
     }
@@ -25,9 +25,9 @@ class HauntedWastelandPuzzleTest {
         InputProvider inputProvider =
                 new FileInputProvider(HauntedWastelandPuzzle.class, "Repeats.txt");
 
-        HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle(inputProvider);
+        HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(6L, output.partOne());
     }
@@ -37,9 +37,9 @@ class HauntedWastelandPuzzleTest {
         InputProvider inputProvider =
                 new FileInputProvider(HauntedWastelandPuzzle.class, "Repeats.txt");
 
-        HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle(inputProvider);
+        HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(6L, output.partTwo());
     }

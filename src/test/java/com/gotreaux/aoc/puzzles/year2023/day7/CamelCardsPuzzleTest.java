@@ -12,9 +12,9 @@ class CamelCardsPuzzleTest {
     void jackHands() throws Exception {
         InputProvider inputProvider = new FileInputProvider(CamelCardsPuzzle.class);
 
-        CamelCardsPuzzle puzzle = new CamelCardsPuzzle(inputProvider);
+        CamelCardsPuzzle puzzle = new CamelCardsPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(6440, output.partOne());
     }
@@ -23,9 +23,9 @@ class CamelCardsPuzzleTest {
     void jokerHands() throws Exception {
         InputProvider inputProvider = new FileInputProvider(CamelCardsPuzzle.class);
 
-        CamelCardsPuzzle puzzle = new CamelCardsPuzzle(inputProvider);
+        CamelCardsPuzzle puzzle = new CamelCardsPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(5905, output.partTwo());
     }

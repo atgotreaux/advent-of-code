@@ -13,9 +13,9 @@ class InventoryManagementSystemPuzzleTest {
         InputProvider inputProvider =
                 new FileInputProvider(InventoryManagementSystemPuzzle.class, "ExampleOne.txt");
 
-        InventoryManagementSystemPuzzle puzzle = new InventoryManagementSystemPuzzle(inputProvider);
+        InventoryManagementSystemPuzzle puzzle = new InventoryManagementSystemPuzzle();
 
-        PuzzleOutput<Integer, String> output = puzzle.solve();
+        PuzzleOutput<Integer, String> output = puzzle.solve(inputProvider);
 
         assertEquals(12, output.partOne());
     }
@@ -25,9 +25,9 @@ class InventoryManagementSystemPuzzleTest {
         InputProvider inputProvider =
                 new FileInputProvider(InventoryManagementSystemPuzzle.class, "ExampleTwo.txt");
 
-        InventoryManagementSystemPuzzle puzzle = new InventoryManagementSystemPuzzle(inputProvider);
+        InventoryManagementSystemPuzzle puzzle = new InventoryManagementSystemPuzzle();
 
-        PuzzleOutput<Integer, String> output = puzzle.solve();
+        PuzzleOutput<Integer, String> output = puzzle.solve(inputProvider);
 
         assertEquals("fgij", output.partTwo());
     }

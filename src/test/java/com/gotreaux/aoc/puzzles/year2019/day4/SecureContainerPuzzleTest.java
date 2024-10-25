@@ -16,9 +16,9 @@ class SecureContainerPuzzleTest {
     void validPasswords(String input, int expected) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        SecureContainerPuzzle puzzle = new SecureContainerPuzzle(inputProvider);
+        SecureContainerPuzzle puzzle = new SecureContainerPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expected, output.partOne());
     }
@@ -28,9 +28,9 @@ class SecureContainerPuzzleTest {
     void validPasswordsNoLargerGroups(String input, int expected) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        SecureContainerPuzzle puzzle = new SecureContainerPuzzle(inputProvider);
+        SecureContainerPuzzle puzzle = new SecureContainerPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expected, output.partTwo());
     }

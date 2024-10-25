@@ -1,25 +1,26 @@
 package com.gotreaux.aoc.puzzles.year2017.day1;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2017, day = 1, title = "Inverse Captcha")
+@Component
 public class InverseCaptchaPuzzle extends Puzzle {
 
-    public InverseCaptchaPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public InverseCaptchaPuzzle() {
+        super(2017, 1);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
         int sumOfNextDigitsMatching = 0;
         int sumOfHalfwayDigitsMatching = 0;
 
-        String input = getInputProvider().getInputString();
+        String input = inputProvider.getInputString();
         for (int i = 0; i < input.length(); i++) {
             char currentChar = input.charAt(i);
 

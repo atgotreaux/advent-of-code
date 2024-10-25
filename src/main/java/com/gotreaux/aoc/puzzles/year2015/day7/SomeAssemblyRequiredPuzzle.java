@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2015.day7;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -17,21 +16,20 @@ import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2015, day = 7, title = "Some Assembly Required")
+@Component
 public class SomeAssemblyRequiredPuzzle extends Puzzle {
-    public SomeAssemblyRequiredPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public SomeAssemblyRequiredPuzzle() {
+        super(2015, 7);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException {
         Collection<Wire> wires =
-                getInputProvider()
-                        .getInputStream()
-                        .map(SomeAssemblyRequiredPuzzle::parseWire)
-                        .toList();
+                inputProvider.getInputStream().map(SomeAssemblyRequiredPuzzle::parseWire).toList();
         Circuit firstCircuit = new Circuit(wires);
         int signalA = firstCircuit.evaluate("a");
 

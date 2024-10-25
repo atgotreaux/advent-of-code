@@ -16,9 +16,9 @@ class FireHazardPuzzleTest {
     void lightsLit(String input, int expectedLights) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        FireHazardPuzzle puzzle = new FireHazardPuzzle(inputProvider);
+        FireHazardPuzzle puzzle = new FireHazardPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedLights, output.partOne());
     }
@@ -28,9 +28,9 @@ class FireHazardPuzzleTest {
     void brightnessLit(String input, int expectedLights) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        FireHazardPuzzle puzzle = new FireHazardPuzzle(inputProvider);
+        FireHazardPuzzle puzzle = new FireHazardPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedLights, output.partTwo());
     }

@@ -16,9 +16,9 @@ class HighEntropyPassphrasePuzzleTest {
     void uniquePassphraseWords(String input, int expectedCount) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        HighEntropyPassphrasePuzzle puzzle = new HighEntropyPassphrasePuzzle(inputProvider);
+        HighEntropyPassphrasePuzzle puzzle = new HighEntropyPassphrasePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedCount, output.partOne());
     }
@@ -28,9 +28,9 @@ class HighEntropyPassphrasePuzzleTest {
     void noPassphraseWordAnagrams(String input, int expectedCount) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        HighEntropyPassphrasePuzzle puzzle = new HighEntropyPassphrasePuzzle(inputProvider);
+        HighEntropyPassphrasePuzzle puzzle = new HighEntropyPassphrasePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedCount, output.partTwo());
     }

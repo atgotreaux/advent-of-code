@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2016.day4;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -8,18 +7,20 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2016, day = 4, title = "Security Through Obscurity")
+@Component
 public class SecurityThroughObscurityPuzzle extends Puzzle {
-    public SecurityThroughObscurityPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public SecurityThroughObscurityPuzzle() {
+        super(2016, 4);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NumberFormatException {
         Collection<Room> rooms =
-                getInputProvider()
+                inputProvider
                         .getInputStream()
                         .map(SecurityThroughObscurityPuzzle::parseRoom)
                         .toList();

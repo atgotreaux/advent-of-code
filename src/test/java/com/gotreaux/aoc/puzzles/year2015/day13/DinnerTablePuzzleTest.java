@@ -16,9 +16,9 @@ class DinnerTablePuzzleTest {
     void guestTableOptimalArrangement() throws Exception {
         InputProvider inputProvider = new FileInputProvider(DinnerTablePuzzleTest.class);
 
-        DinnerTablePuzzle puzzle = new DinnerTablePuzzle(inputProvider);
+        DinnerTablePuzzle puzzle = new DinnerTablePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(330, output.partOne());
     }

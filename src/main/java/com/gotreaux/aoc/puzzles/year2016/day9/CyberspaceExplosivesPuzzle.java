@@ -1,22 +1,24 @@
 package com.gotreaux.aoc.puzzles.year2016.day9;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2016, day = 9, title = "Explosives in Cyberspace")
+@Component
 public class CyberspaceExplosivesPuzzle extends Puzzle {
-    public CyberspaceExplosivesPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public CyberspaceExplosivesPuzzle() {
+        super(2016, 9);
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve() throws IOException, URISyntaxException {
-        String input = getInputProvider().getInputString();
+    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
+        String input = inputProvider.getInputString();
 
         long decompressedLength = decompress(input, false);
         long decompressedRecursiveLength = decompress(input, true);

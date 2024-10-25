@@ -2,7 +2,6 @@ package com.gotreaux.aoc.puzzles.year2015.day14;
 
 import static java.util.stream.Collectors.toMap;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -11,20 +10,20 @@ import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2015, day = 14, title = "Reindeer Olympics")
+@Component
 public class ReindeerOlympicsPuzzle extends Puzzle {
-    public ReindeerOlympicsPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public ReindeerOlympicsPuzzle() {
+        super(2015, 14);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
         Collection<Reindeer> reindeers =
-                getInputProvider()
-                        .getInputStream()
-                        .map(ReindeerOlympicsPuzzle::parseReindeer)
-                        .toList();
+                inputProvider.getInputStream().map(ReindeerOlympicsPuzzle::parseReindeer).toList();
 
         int maxDistance =
                 reindeers.stream()

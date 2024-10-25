@@ -12,9 +12,9 @@ class SeedLocationPuzzleTest {
     void lowestLocationNumber() throws Exception {
         InputProvider inputProvider = new FileInputProvider(SeedLocationPuzzle.class);
 
-        SeedLocationPuzzle puzzle = new SeedLocationPuzzle(inputProvider);
+        SeedLocationPuzzle puzzle = new SeedLocationPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(35L, output.partOne());
     }
@@ -23,9 +23,9 @@ class SeedLocationPuzzleTest {
     void lowestLocationNumberInRange() throws Exception {
         InputProvider inputProvider = new FileInputProvider(SeedLocationPuzzle.class);
 
-        SeedLocationPuzzle puzzle = new SeedLocationPuzzle(inputProvider);
+        SeedLocationPuzzle puzzle = new SeedLocationPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(46L, output.partTwo());
     }

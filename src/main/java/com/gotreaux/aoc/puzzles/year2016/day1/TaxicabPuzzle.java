@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2016.day1;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -13,18 +12,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2016, day = 1, title = "No Time for a Taxicab")
+@Component
 public class TaxicabPuzzle extends Puzzle {
 
     private static final Pattern INSTRUCTION_SEPARATOR = Pattern.compile(", ");
 
-    public TaxicabPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public TaxicabPuzzle() {
+        super(2016, 1);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException, NumberFormatException {
         CardinalDirection direction = CardinalDirection.NORTH;
         Point position = new Point();
@@ -33,7 +33,7 @@ public class TaxicabPuzzle extends Puzzle {
         Collection<Point> visitedPositions = new ArrayList<>();
         visitedPositions.add(position);
 
-        String input = getInputProvider().getInputString();
+        String input = inputProvider.getInputString();
         for (String step : INSTRUCTION_SEPARATOR.split(input)) {
             RelativeDirection relativeDirection = RelativeDirection.fromLabel(step.charAt(0));
             direction = direction.turn(relativeDirection);

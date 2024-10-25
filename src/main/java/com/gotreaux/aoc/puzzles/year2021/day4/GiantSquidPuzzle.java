@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2021.day4;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -10,16 +9,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2021, day = 4, title = "Giant Squid")
+@Component
 public class GiantSquidPuzzle extends Puzzle {
-    public GiantSquidPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public GiantSquidPuzzle() {
+        super(2021, 4);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
-        List<String> input = getInputProvider().getInputList();
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
+        List<String> input = inputProvider.getInputList();
 
         int[] numbersDrawn =
                 Arrays.stream(input.getFirst().split(",")).mapToInt(Integer::parseInt).toArray();

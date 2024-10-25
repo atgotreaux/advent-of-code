@@ -12,9 +12,9 @@ class CalorieCountingPuzzleTest {
     void testMostCalories() throws Exception {
         InputProvider inputProvider = new FileInputProvider(CalorieCountingPuzzle.class);
 
-        CalorieCountingPuzzle puzzle = new CalorieCountingPuzzle(inputProvider);
+        CalorieCountingPuzzle puzzle = new CalorieCountingPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(24000, output.partOne());
     }
@@ -23,9 +23,9 @@ class CalorieCountingPuzzleTest {
     void testHighestThreeCalories() throws Exception {
         InputProvider inputProvider = new FileInputProvider(CalorieCountingPuzzle.class);
 
-        CalorieCountingPuzzle puzzle = new CalorieCountingPuzzle(inputProvider);
+        CalorieCountingPuzzle puzzle = new CalorieCountingPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(45000, output.partTwo());
     }

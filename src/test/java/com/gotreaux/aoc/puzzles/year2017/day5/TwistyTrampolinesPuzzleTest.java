@@ -12,9 +12,9 @@ class TwistyTrampolinesPuzzleTest {
     void incrementedStepsToExit() throws Exception {
         InputProvider inputProvider = new FileInputProvider(TwistyTrampolinesPuzzle.class);
 
-        TwistyTrampolinesPuzzle puzzle = new TwistyTrampolinesPuzzle(inputProvider);
+        TwistyTrampolinesPuzzle puzzle = new TwistyTrampolinesPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(5, output.partOne());
     }
@@ -23,9 +23,9 @@ class TwistyTrampolinesPuzzleTest {
     void strangerStepsToExit() throws Exception {
         InputProvider inputProvider = new FileInputProvider(TwistyTrampolinesPuzzle.class);
 
-        TwistyTrampolinesPuzzle puzzle = new TwistyTrampolinesPuzzle(inputProvider);
+        TwistyTrampolinesPuzzle puzzle = new TwistyTrampolinesPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(10, output.partTwo());
     }

@@ -13,9 +13,9 @@ class WaitForItPuzzleTest {
     void productOfPossibleWins() throws Exception {
         InputProvider inputProvider = new FileInputProvider(WaitForItPuzzle.class);
 
-        WaitForItPuzzle puzzle = new WaitForItPuzzle(inputProvider);
+        WaitForItPuzzle puzzle = new WaitForItPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(288L, output.partOne());
     }
@@ -24,9 +24,9 @@ class WaitForItPuzzleTest {
     void kerningRace() throws Exception {
         InputProvider inputProvider = new FileInputProvider(WaitForItPuzzle.class);
 
-        WaitForItPuzzle puzzle = new WaitForItPuzzle(inputProvider);
+        WaitForItPuzzle puzzle = new WaitForItPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(71503L, output.partTwo());
     }

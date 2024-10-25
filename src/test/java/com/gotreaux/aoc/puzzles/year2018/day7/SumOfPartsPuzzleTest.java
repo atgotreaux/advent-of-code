@@ -12,9 +12,9 @@ class SumOfPartsPuzzleTest {
     void stepOrder() throws Exception {
         InputProvider inputProvider = new FileInputProvider(SumOfPartsPuzzle.class);
 
-        SumOfPartsPuzzle puzzle = new SumOfPartsPuzzle(inputProvider);
+        SumOfPartsPuzzle puzzle = new SumOfPartsPuzzle();
 
-        PuzzleOutput<String, Integer> output = puzzle.solve();
+        PuzzleOutput<String, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals("CABDFE", output.partOne());
     }

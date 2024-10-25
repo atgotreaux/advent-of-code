@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2018.day3;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -15,20 +14,22 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.stream.Stream;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2018, day = 3, title = "No Matter How You Slice It")
+@Component
 public class SliceItPuzzle extends Puzzle {
-    public SliceItPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public SliceItPuzzle() {
+        super(2018, 3);
     }
 
     @Override
-    public PuzzleOutput<Long, Integer> solve()
+    public PuzzleOutput<Long, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException {
         Map<Point, Collection<Integer>> fabricClaims = new HashMap<>();
         Collection<Integer> claimIds = new ArrayList<>();
 
-        for (String line : getInputProvider().getInputList()) {
+        for (String line : inputProvider.getInputList()) {
             String[] claim = line.replace(":", "").split(" ");
 
             int claimID = Integer.parseInt(claim[0].substring(1));

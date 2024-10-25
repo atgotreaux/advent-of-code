@@ -1,21 +1,23 @@
 package com.gotreaux.aoc.puzzles.year2017.day9;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2017, day = 9, title = "Stream Processing")
+@Component
 public class StreamProcessingPuzzle extends Puzzle {
-    public StreamProcessingPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public StreamProcessingPuzzle() {
+        super(2017, 9);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
-        String input = getInputProvider().getInputString();
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
+        String input = inputProvider.getInputString();
 
         int totalScore = 0;
         int currentScore = 0;

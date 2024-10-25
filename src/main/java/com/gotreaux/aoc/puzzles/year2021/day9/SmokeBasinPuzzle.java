@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2021.day9;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -12,16 +11,19 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2021, day = 9, title = "Smoke Basin")
+@Component
 public class SmokeBasinPuzzle extends Puzzle {
-    public SmokeBasinPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public SmokeBasinPuzzle() {
+        super(2021, 9);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
-        List<String> lines = getInputProvider().getInputList();
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
+        List<String> lines = inputProvider.getInputList();
         IntMatrix matrix = new IntMatrix(lines);
 
         int sumOfRiskLevels = 0;

@@ -16,9 +16,9 @@ class NiceStringPuzzleTest {
     void niceString(String input, int expectedCount) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
+        NiceStringPuzzle puzzle = new NiceStringPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedCount, output.partOne());
     }
@@ -28,9 +28,9 @@ class NiceStringPuzzleTest {
     void niceStringBetterModel(String input, int expectedCount) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        NiceStringPuzzle puzzle = new NiceStringPuzzle(inputProvider);
+        NiceStringPuzzle puzzle = new NiceStringPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedCount, output.partTwo());
     }

@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2023.day2;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -11,8 +10,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2023, day = 2, title = "Cube Conundrum")
+@Component
 public class CubeConundrumPuzzle extends Puzzle {
 
     private static final Pattern GAME_LINE_DELIM = Pattern.compile(": ");
@@ -22,17 +22,17 @@ public class CubeConundrumPuzzle extends Puzzle {
     private static final int TOTAL_GREEN_CUBES = 13;
     private static final int TOTAL_BLUE_CUBES = 14;
 
-    public CubeConundrumPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public CubeConundrumPuzzle() {
+        super(2023, 2);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, IllegalArgumentException {
         int possibleGames = 0;
         int powerOfFewestCubes = 0;
 
-        for (String line : getInputProvider().getInputList()) {
+        for (String line : inputProvider.getInputList()) {
             Map<CubeColor, Integer> cubeMap = new EnumMap<>(CubeColor.class);
             boolean possibleGame = true;
 

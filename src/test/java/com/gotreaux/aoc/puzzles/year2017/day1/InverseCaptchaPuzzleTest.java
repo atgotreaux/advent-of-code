@@ -16,9 +16,9 @@ class InverseCaptchaPuzzleTest {
     void sumOfNextDigitsMatching(String input, int expectedSum) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        InverseCaptchaPuzzle puzzle = new InverseCaptchaPuzzle(inputProvider);
+        InverseCaptchaPuzzle puzzle = new InverseCaptchaPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedSum, output.partOne());
     }
@@ -28,9 +28,9 @@ class InverseCaptchaPuzzleTest {
     void sumOfHalfwayDigitsMatching(String input, int expectedSum) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        InverseCaptchaPuzzle puzzle = new InverseCaptchaPuzzle(inputProvider);
+        InverseCaptchaPuzzle puzzle = new InverseCaptchaPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedSum, output.partTwo());
     }

@@ -12,9 +12,9 @@ class GiantSquidPuzzleTest {
     void firstWinningScore() throws Exception {
         InputProvider inputProvider = new FileInputProvider(GiantSquidPuzzle.class);
 
-        GiantSquidPuzzle puzzle = new GiantSquidPuzzle(inputProvider);
+        GiantSquidPuzzle puzzle = new GiantSquidPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(4512, output.partOne());
     }
@@ -23,9 +23,9 @@ class GiantSquidPuzzleTest {
     void lastWinningScore() throws Exception {
         InputProvider inputProvider = new FileInputProvider(GiantSquidPuzzle.class);
 
-        GiantSquidPuzzle puzzle = new GiantSquidPuzzle(inputProvider);
+        GiantSquidPuzzle puzzle = new GiantSquidPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(1924, output.partTwo());
     }

@@ -16,9 +16,9 @@ class TuningTroublePuzzleTest {
     void startOfPacketMarker(String input, int expected) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        TuningTroublePuzzle puzzle = new TuningTroublePuzzle(inputProvider);
+        TuningTroublePuzzle puzzle = new TuningTroublePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expected, output.partOne());
     }
@@ -28,9 +28,9 @@ class TuningTroublePuzzleTest {
     void startOfMessageMarker(String input, int expected) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        TuningTroublePuzzle puzzle = new TuningTroublePuzzle(inputProvider);
+        TuningTroublePuzzle puzzle = new TuningTroublePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expected, output.partTwo());
     }

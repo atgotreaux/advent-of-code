@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2016.day5;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -12,17 +11,19 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.HexFormat;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2016, day = 5, title = "How About a Nice Game of Chess?")
+@Component
 public class ChessGamePuzzle extends Puzzle {
-    public ChessGamePuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public ChessGamePuzzle() {
+        super(2016, 5);
     }
 
     @Override
-    public PuzzleOutput<String, String> solve()
+    public PuzzleOutput<String, String> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchAlgorithmException {
-        String doorID = getInputProvider().getInputString();
+        String doorID = inputProvider.getInputString();
 
         StringBuilder nextCharBuilder = new StringBuilder(8);
         Map<Integer, Integer> positionPasswordMapping = new HashMap<>();

@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2015.day13;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -9,21 +8,20 @@ import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2015, day = 13, title = "Knights of the Dinner Table")
+@Component
 public class DinnerTablePuzzle extends Puzzle {
-    public DinnerTablePuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public DinnerTablePuzzle() {
+        super(2015, 13);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException {
         Collection<Arrangement> arrangements =
-                getInputProvider()
-                        .getInputStream()
-                        .map(DinnerTablePuzzle::parseArrangement)
-                        .toList();
+                inputProvider.getInputStream().map(DinnerTablePuzzle::parseArrangement).toList();
 
         Table guestTable = new Table(arrangements);
 

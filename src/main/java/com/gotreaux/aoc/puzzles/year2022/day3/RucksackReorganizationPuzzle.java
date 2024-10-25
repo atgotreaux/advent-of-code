@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2022.day3;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -8,16 +7,17 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2022, day = 3, title = "Rucksack Reorganization")
+@Component
 public class RucksackReorganizationPuzzle extends Puzzle {
 
-    public RucksackReorganizationPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public RucksackReorganizationPuzzle() {
+        super(2022, 3);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, IllegalArgumentException {
         int sumOfCompartmentPriorities = 0;
         int sumOfGroupPriorities = 0;
@@ -25,7 +25,7 @@ public class RucksackReorganizationPuzzle extends Puzzle {
         String priority = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         List<String> group = new ArrayList<>(3);
-        for (String line : getInputProvider().getInputList()) {
+        for (String line : inputProvider.getInputList()) {
             String firstCompartment = line.substring(0, line.length() / 2);
             String secondCompartment = line.substring(line.length() / 2);
 

@@ -16,9 +16,9 @@ class HydrothermalVenturePuzzleTest {
     void overlappingOrthogonalPoints() throws Exception {
         InputProvider inputProvider = new FileInputProvider(HydrothermalVenturePuzzle.class);
 
-        HydrothermalVenturePuzzle puzzle = new HydrothermalVenturePuzzle(inputProvider);
+        HydrothermalVenturePuzzle puzzle = new HydrothermalVenturePuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(5L, output.partOne());
     }
@@ -27,9 +27,9 @@ class HydrothermalVenturePuzzleTest {
     void allOverlappingPoints() throws Exception {
         InputProvider inputProvider = new FileInputProvider(HydrothermalVenturePuzzle.class);
 
-        HydrothermalVenturePuzzle puzzle = new HydrothermalVenturePuzzle(inputProvider);
+        HydrothermalVenturePuzzle puzzle = new HydrothermalVenturePuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(12L, output.partTwo());
     }

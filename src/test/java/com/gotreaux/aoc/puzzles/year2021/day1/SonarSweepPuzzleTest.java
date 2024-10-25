@@ -12,9 +12,9 @@ class SonarSweepPuzzleTest {
     void depthMeasurementIncreaseCount() throws Exception {
         InputProvider inputProvider = new FileInputProvider(SonarSweepPuzzle.class);
 
-        SonarSweepPuzzle puzzle = new SonarSweepPuzzle(inputProvider);
+        SonarSweepPuzzle puzzle = new SonarSweepPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(7L, output.partOne());
     }
@@ -23,9 +23,9 @@ class SonarSweepPuzzleTest {
     void depthMeasurementWindowIncreaseCount() throws Exception {
         InputProvider inputProvider = new FileInputProvider(SonarSweepPuzzle.class);
 
-        SonarSweepPuzzle puzzle = new SonarSweepPuzzle(inputProvider);
+        SonarSweepPuzzle puzzle = new SonarSweepPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(5L, output.partTwo());
     }

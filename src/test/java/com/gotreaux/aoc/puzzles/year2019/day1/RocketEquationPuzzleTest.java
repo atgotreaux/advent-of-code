@@ -16,9 +16,9 @@ class RocketEquationPuzzleTest {
     void fuelRequirement(String input, int expectedFuelRequirement) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
+        RocketEquationPuzzle puzzle = new RocketEquationPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedFuelRequirement, output.partOne());
     }
@@ -28,9 +28,9 @@ class RocketEquationPuzzleTest {
     void additionalFuelRequirement(String input, int expectedFuelRequirement) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        RocketEquationPuzzle puzzle = new RocketEquationPuzzle(inputProvider);
+        RocketEquationPuzzle puzzle = new RocketEquationPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedFuelRequirement, output.partTwo());
     }

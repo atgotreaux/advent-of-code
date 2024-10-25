@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2020.day6;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -8,19 +7,22 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2020, day = 6, title = "Custom Customs")
+@Component
 public class CustomCustomsPuzzle extends Puzzle {
-    public CustomCustomsPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public CustomCustomsPuzzle() {
+        super(2020, 6);
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve() throws IOException, URISyntaxException {
+    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
         Collection<PassengerGroup> passengerGroups = new ArrayList<>();
 
         Collection<String> passengerDeclarations = new ArrayList<>();
-        for (String line : getInputProvider().getInputList()) {
+        for (String line : inputProvider.getInputList()) {
             if (line.isBlank()) {
                 passengerGroups.add(new PassengerGroup(passengerDeclarations));
                 passengerDeclarations = new ArrayList<>();

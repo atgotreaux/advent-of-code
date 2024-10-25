@@ -16,9 +16,9 @@ class AbacusFrameworkPuzzleTest {
     void sumOfNumbers(String input, int expected) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        AbacusFrameworkPuzzle puzzle = new AbacusFrameworkPuzzle(inputProvider);
+        AbacusFrameworkPuzzle puzzle = new AbacusFrameworkPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expected, output.partOne());
     }
@@ -28,9 +28,9 @@ class AbacusFrameworkPuzzleTest {
     void noRedSumNumbers(String input, int expected) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        AbacusFrameworkPuzzle puzzle = new AbacusFrameworkPuzzle(inputProvider);
+        AbacusFrameworkPuzzle puzzle = new AbacusFrameworkPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expected, output.partTwo());
     }

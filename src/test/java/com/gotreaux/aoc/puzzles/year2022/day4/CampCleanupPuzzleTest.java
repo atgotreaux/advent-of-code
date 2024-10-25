@@ -12,9 +12,9 @@ class CampCleanupPuzzleTest {
     void numberOfAssignmentsContained() throws Exception {
         InputProvider inputProvider = new FileInputProvider(CampCleanupPuzzle.class);
 
-        CampCleanupPuzzle puzzle = new CampCleanupPuzzle(inputProvider);
+        CampCleanupPuzzle puzzle = new CampCleanupPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(2, output.partOne());
     }
@@ -23,9 +23,9 @@ class CampCleanupPuzzleTest {
     void numberOfAssignmentsOverlapping() throws Exception {
         InputProvider inputProvider = new FileInputProvider(CampCleanupPuzzle.class);
 
-        CampCleanupPuzzle puzzle = new CampCleanupPuzzle(inputProvider);
+        CampCleanupPuzzle puzzle = new CampCleanupPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(4, output.partTwo());
     }

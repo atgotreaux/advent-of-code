@@ -12,9 +12,9 @@ class WhaleTreacheryPuzzleTest {
     void linearAlignmentFuel() throws Exception {
         InputProvider inputProvider = new StringInputProvider("16,1,2,0,4,2,7,1,2,14");
 
-        WhaleTreacheryPuzzle puzzle = new WhaleTreacheryPuzzle(inputProvider);
+        WhaleTreacheryPuzzle puzzle = new WhaleTreacheryPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(37, output.partOne());
     }
@@ -23,9 +23,9 @@ class WhaleTreacheryPuzzleTest {
     void consecutiveAlignmentFuel() throws Exception {
         InputProvider inputProvider = new StringInputProvider("16,1,2,0,4,2,7,1,2,14");
 
-        WhaleTreacheryPuzzle puzzle = new WhaleTreacheryPuzzle(inputProvider);
+        WhaleTreacheryPuzzle puzzle = new WhaleTreacheryPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(168, output.partTwo());
     }

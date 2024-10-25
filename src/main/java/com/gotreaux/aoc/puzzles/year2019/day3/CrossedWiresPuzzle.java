@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2019.day3;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -12,17 +11,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.NoSuchElementException;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2019, day = 3, title = "Crossed Wires")
+@Component
 public class CrossedWiresPuzzle extends Puzzle {
-    public CrossedWiresPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public CrossedWiresPuzzle() {
+        super(2019, 3);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException, NumberFormatException {
-        List<String> input = getInputProvider().getInputList();
+        List<String> input = inputProvider.getInputList();
 
         List<Point> firstWirePositions = getWirePositions(input.getFirst());
         List<Point> lastWirePositions = getWirePositions(input.getLast());

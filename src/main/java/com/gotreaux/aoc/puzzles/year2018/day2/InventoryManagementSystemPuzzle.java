@@ -4,7 +4,6 @@ import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -12,17 +11,19 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2018, day = 2, title = "Inventory Management System")
+@Component
 public class InventoryManagementSystemPuzzle extends Puzzle {
 
-    public InventoryManagementSystemPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public InventoryManagementSystemPuzzle() {
+        super(2018, 2);
     }
 
     @Override
-    public PuzzleOutput<Integer, String> solve() throws IOException, URISyntaxException {
-        List<String> lines = getInputProvider().getInputList();
+    public PuzzleOutput<Integer, String> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
+        List<String> lines = inputProvider.getInputList();
 
         int boxIdsWithTwoOfLetter = 0;
         int boxIdsWithThreeOfLetter = 0;

@@ -1,27 +1,27 @@
 package com.gotreaux.aoc.puzzles.year2015.day1;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.NoSuchElementException;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2015, day = 1, title = "Not Quite Lisp")
+@Component
 public class ApartmentFloorPuzzle extends Puzzle {
 
-    public ApartmentFloorPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public ApartmentFloorPuzzle() {
+        super(2015, 1);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException {
         int floor = 0;
         int positionBasementReached = Integer.MAX_VALUE;
 
-        String input = getInputProvider().getInputString();
+        String input = inputProvider.getInputString();
         for (int i = 0; i < input.length(); i++) {
             Instruction instruction = Instruction.fromLabel(input.charAt(i));
             switch (instruction) {

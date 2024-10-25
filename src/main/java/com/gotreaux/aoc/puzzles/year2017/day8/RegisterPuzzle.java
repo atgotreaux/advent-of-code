@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2017.day8;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -11,17 +10,19 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2017, day = 8, title = "I Heard You Like Registers")
+@Component
 public class RegisterPuzzle extends Puzzle {
-    public RegisterPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public RegisterPuzzle() {
+        super(2017, 8);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException, NumberFormatException {
-        List<String> input = getInputProvider().getInputList();
+        List<String> input = inputProvider.getInputList();
 
         Map<String, Integer> registers =
                 input.stream()

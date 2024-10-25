@@ -4,7 +4,6 @@ import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -15,19 +14,20 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2017, day = 7, title = "Recursive Circus")
+@Component
 public class RecursiveCircusPuzzle extends Puzzle {
     private static final Pattern INPUT_DELIMS = Pattern.compile("[(),]");
 
-    public RecursiveCircusPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public RecursiveCircusPuzzle() {
+        super(2017, 7);
     }
 
     @Override
-    public PuzzleOutput<String, Integer> solve()
+    public PuzzleOutput<String, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NumberFormatException {
-        Collection<String> input = getInputProvider().getInputList();
+        Collection<String> input = inputProvider.getInputList();
         Collection<Disc> discs = new ArrayList<>(input.size());
 
         for (String line : input) {

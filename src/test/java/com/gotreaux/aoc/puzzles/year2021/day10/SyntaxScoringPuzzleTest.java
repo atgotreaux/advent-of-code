@@ -12,9 +12,9 @@ class SyntaxScoringPuzzleTest {
     void totalSyntaxErrorScore() throws Exception {
         InputProvider inputProvider = new FileInputProvider(SyntaxScoringPuzzle.class);
 
-        SyntaxScoringPuzzle puzzle = new SyntaxScoringPuzzle(inputProvider);
+        SyntaxScoringPuzzle puzzle = new SyntaxScoringPuzzle();
 
-        PuzzleOutput<Integer, Long> output = puzzle.solve();
+        PuzzleOutput<Integer, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(26397, output.partOne());
     }
@@ -23,9 +23,9 @@ class SyntaxScoringPuzzleTest {
     void middleCompletionScore() throws Exception {
         InputProvider inputProvider = new FileInputProvider(SyntaxScoringPuzzle.class);
 
-        SyntaxScoringPuzzle puzzle = new SyntaxScoringPuzzle(inputProvider);
+        SyntaxScoringPuzzle puzzle = new SyntaxScoringPuzzle();
 
-        PuzzleOutput<Integer, Long> output = puzzle.solve();
+        PuzzleOutput<Integer, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(288957L, output.partTwo());
     }

@@ -16,9 +16,9 @@ class BinaryBoardingPuzzleTest {
     void highestSeatID() throws Exception {
         InputProvider inputProvider = new FileInputProvider(BinaryBoardingPuzzle.class);
 
-        BinaryBoardingPuzzle puzzle = new BinaryBoardingPuzzle(inputProvider);
+        BinaryBoardingPuzzle puzzle = new BinaryBoardingPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(820, output.partOne());
     }

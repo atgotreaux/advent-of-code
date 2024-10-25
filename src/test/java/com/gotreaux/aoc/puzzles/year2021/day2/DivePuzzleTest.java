@@ -12,9 +12,9 @@ class DivePuzzleTest {
     void productOfPosition() throws Exception {
         InputProvider inputProvider = new FileInputProvider(DivePuzzle.class);
 
-        DivePuzzle puzzle = new DivePuzzle(inputProvider);
+        DivePuzzle puzzle = new DivePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(150, output.partOne());
     }
@@ -23,9 +23,9 @@ class DivePuzzleTest {
     void productOfPositionWithAim() throws Exception {
         InputProvider inputProvider = new FileInputProvider(DivePuzzle.class);
 
-        DivePuzzle puzzle = new DivePuzzle(inputProvider);
+        DivePuzzle puzzle = new DivePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(900, output.partTwo());
     }

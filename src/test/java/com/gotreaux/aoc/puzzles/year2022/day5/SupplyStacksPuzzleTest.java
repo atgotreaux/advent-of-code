@@ -12,9 +12,9 @@ class SupplyStacksPuzzleTest {
     void crateMover9000() throws Exception {
         InputProvider inputProvider = new FileInputProvider(SupplyStacksPuzzle.class);
 
-        SupplyStacksPuzzle puzzle = new SupplyStacksPuzzle(inputProvider);
+        SupplyStacksPuzzle puzzle = new SupplyStacksPuzzle();
 
-        PuzzleOutput<String, String> output = puzzle.solve();
+        PuzzleOutput<String, String> output = puzzle.solve(inputProvider);
 
         assertEquals("CMZ", output.partOne());
     }
@@ -23,9 +23,9 @@ class SupplyStacksPuzzleTest {
     void crateMover9001() throws Exception {
         InputProvider inputProvider = new FileInputProvider(SupplyStacksPuzzle.class);
 
-        SupplyStacksPuzzle puzzle = new SupplyStacksPuzzle(inputProvider);
+        SupplyStacksPuzzle puzzle = new SupplyStacksPuzzle();
 
-        PuzzleOutput<String, String> output = puzzle.solve();
+        PuzzleOutput<String, String> output = puzzle.solve(inputProvider);
 
         assertEquals("MCD", output.partTwo());
     }

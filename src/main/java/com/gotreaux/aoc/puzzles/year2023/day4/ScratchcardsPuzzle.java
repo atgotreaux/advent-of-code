@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2023.day4;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -12,22 +11,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2023, day = 4, title = "Scratchcards")
+@Component
 public class ScratchcardsPuzzle extends Puzzle {
 
     private static final Pattern CARD_LINE = Pattern.compile(": ");
     private static final Pattern ANY_WHITESPACE = Pattern.compile("\\s+");
     private static final Pattern WINNERS_NUMBER_DELIM = Pattern.compile("\\s+\\|\\s+");
 
-    public ScratchcardsPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public ScratchcardsPuzzle() {
+        super(2023, 4);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NumberFormatException {
-        Collection<String> input = getInputProvider().getInputList();
+        Collection<String> input = inputProvider.getInputList();
         int lineCount = input.size();
 
         int scratchcardPoints = 0;

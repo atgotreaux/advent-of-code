@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2017.day2;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -9,20 +8,22 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2017, day = 2, title = "Corruption Checksum")
+@Component
 public class CorruptionChecksumPuzzle extends Puzzle {
 
-    public CorruptionChecksumPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public CorruptionChecksumPuzzle() {
+        super(2017, 2);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
         int sumOfLargestDifferences = 0;
         int sumOfLargestDivisibility = 0;
 
-        for (String line : getInputProvider().getInputList()) {
+        for (String line : inputProvider.getInputList()) {
             Collection<Integer> numbers = new ArrayList<>();
             int largest = Integer.MIN_VALUE;
             int smallest = Integer.MAX_VALUE;

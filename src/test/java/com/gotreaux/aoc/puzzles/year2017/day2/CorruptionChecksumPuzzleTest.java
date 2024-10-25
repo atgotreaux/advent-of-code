@@ -13,9 +13,9 @@ class CorruptionChecksumPuzzleTest {
         InputProvider inputProvider =
                 new FileInputProvider(CorruptionChecksumPuzzle.class, "ExampleOne.txt");
 
-        CorruptionChecksumPuzzle puzzle = new CorruptionChecksumPuzzle(inputProvider);
+        CorruptionChecksumPuzzle puzzle = new CorruptionChecksumPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(18, output.partOne());
     }
@@ -25,9 +25,9 @@ class CorruptionChecksumPuzzleTest {
         InputProvider inputProvider =
                 new FileInputProvider(CorruptionChecksumPuzzle.class, "ExampleTwo.txt");
 
-        CorruptionChecksumPuzzle puzzle = new CorruptionChecksumPuzzle(inputProvider);
+        CorruptionChecksumPuzzle puzzle = new CorruptionChecksumPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(9, output.partTwo());
     }

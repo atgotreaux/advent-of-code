@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2020.day4;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -13,15 +12,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2020, day = 4, title = "Passport Processing")
+@Component
 public class PassportProcessingPuzzle extends Puzzle {
-    public PassportProcessingPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public PassportProcessingPuzzle() {
+        super(2020, 4);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
         int requiredFieldPassports = 0;
         int validPassports = 0;
 
@@ -29,7 +31,7 @@ public class PassportProcessingPuzzle extends Puzzle {
         Validator validator = factory.getValidator();
         Map<String, String> fields = new HashMap<>(8);
 
-        List<String> input = getInputProvider().getInputList();
+        List<String> input = inputProvider.getInputList();
         for (int i = 0; i <= input.size(); i++) {
             String line = i == input.size() ? "" : input.get(i);
             if (line.isEmpty()) {

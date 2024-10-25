@@ -12,9 +12,9 @@ class RucksackReorganizationPuzzleTest {
     void sumOfCompartmentPriorities() throws Exception {
         InputProvider inputProvider = new FileInputProvider(RucksackReorganizationPuzzle.class);
 
-        RucksackReorganizationPuzzle puzzle = new RucksackReorganizationPuzzle(inputProvider);
+        RucksackReorganizationPuzzle puzzle = new RucksackReorganizationPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(157, output.partOne());
     }
@@ -23,9 +23,9 @@ class RucksackReorganizationPuzzleTest {
     void sumOfGroupPriorities() throws Exception {
         InputProvider inputProvider = new FileInputProvider(RucksackReorganizationPuzzle.class);
 
-        RucksackReorganizationPuzzle puzzle = new RucksackReorganizationPuzzle(inputProvider);
+        RucksackReorganizationPuzzle puzzle = new RucksackReorganizationPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(70, output.partTwo());
     }

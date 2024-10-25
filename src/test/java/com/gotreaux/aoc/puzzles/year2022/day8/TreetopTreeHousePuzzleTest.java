@@ -12,9 +12,9 @@ class TreetopTreeHousePuzzleTest {
     void treesVisible() throws Exception {
         InputProvider inputProvider = new FileInputProvider(TreetopTreeHousePuzzleTest.class);
 
-        TreetopTreeHousePuzzle puzzle = new TreetopTreeHousePuzzle(inputProvider);
+        TreetopTreeHousePuzzle puzzle = new TreetopTreeHousePuzzle();
 
-        PuzzleOutput<Integer, Long> output = puzzle.solve();
+        PuzzleOutput<Integer, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(21, output.partOne());
     }
@@ -23,9 +23,9 @@ class TreetopTreeHousePuzzleTest {
     void maxScenicScore() throws Exception {
         InputProvider inputProvider = new FileInputProvider(TreetopTreeHousePuzzleTest.class);
 
-        TreetopTreeHousePuzzle puzzle = new TreetopTreeHousePuzzle(inputProvider);
+        TreetopTreeHousePuzzle puzzle = new TreetopTreeHousePuzzle();
 
-        PuzzleOutput<Integer, Long> output = puzzle.solve();
+        PuzzleOutput<Integer, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(8L, output.partTwo());
     }

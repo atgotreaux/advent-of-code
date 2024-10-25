@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2016.day2;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -10,16 +9,17 @@ import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.List;
 import java.util.NoSuchElementException;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2016, day = 2, title = "Bathroom Security")
+@Component
 public class BathroomSecurityPuzzle extends Puzzle {
 
-    public BathroomSecurityPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public BathroomSecurityPuzzle() {
+        super(2016, 2);
     }
 
     @Override
-    public PuzzleOutput<String, String> solve()
+    public PuzzleOutput<String, String> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException {
         Key imaginedKey = new Key("5", "2", "8", "4", "6");
         Collection<Key> imaginedKeys =
@@ -53,7 +53,7 @@ public class BathroomSecurityPuzzle extends Puzzle {
                         new Key("D", "B", "D", "D", "D"));
         Keypad actualKeypad = new Keypad(actualKeys);
 
-        Collection<String> input = getInputProvider().getInputList();
+        Collection<String> input = inputProvider.getInputList();
         StringBuilder imaginedBathroomCode = new StringBuilder(input.size());
         StringBuilder actualBathroomCode = new StringBuilder(input.size());
 

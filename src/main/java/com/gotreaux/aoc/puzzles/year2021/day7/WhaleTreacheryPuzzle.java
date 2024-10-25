@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2021.day7;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -11,17 +10,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.IntStream;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2021, day = 7, title = "The Treachery of Whales")
+@Component
 public class WhaleTreacheryPuzzle extends Puzzle {
-    public WhaleTreacheryPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public WhaleTreacheryPuzzle() {
+        super(2021, 7);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException {
-        String input = getInputProvider().getInputString();
+        String input = inputProvider.getInputString();
 
         List<Integer> positions = Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
 

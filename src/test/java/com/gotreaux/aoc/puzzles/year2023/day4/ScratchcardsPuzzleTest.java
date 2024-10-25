@@ -13,9 +13,9 @@ class ScratchcardsPuzzleTest {
     void scratchcardPoints() throws Exception {
         InputProvider inputProvider = new FileInputProvider(ScratchcardsPuzzle.class);
 
-        ScratchcardsPuzzle puzzle = new ScratchcardsPuzzle(inputProvider);
+        ScratchcardsPuzzle puzzle = new ScratchcardsPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(13, output.partOne());
     }
@@ -24,9 +24,9 @@ class ScratchcardsPuzzleTest {
     void totalScratchcards() throws Exception {
         InputProvider inputProvider = new FileInputProvider(ScratchcardsPuzzle.class);
 
-        ScratchcardsPuzzle puzzle = new ScratchcardsPuzzle(inputProvider);
+        ScratchcardsPuzzle puzzle = new ScratchcardsPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(30, output.partTwo());
     }

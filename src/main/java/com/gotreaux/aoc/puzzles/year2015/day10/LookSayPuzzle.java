@@ -1,21 +1,23 @@
 package com.gotreaux.aoc.puzzles.year2015.day10;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2015, day = 10, title = "Elves Look, Elves Say")
+@Component
 public class LookSayPuzzle extends Puzzle {
-    public LookSayPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public LookSayPuzzle() {
+        super(2015, 10);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
-        String partOne = getInputProvider().getInputString();
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
+        String partOne = inputProvider.getInputString();
 
         for (int i = 0; i < 40; i++) {
             partOne = saySequence(partOne);

@@ -1,29 +1,29 @@
 package com.gotreaux.aoc.puzzles.year2020.day1;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2020, day = 1, title = "Report Repair")
+@Component
 public class ReportRepairPuzzle extends Puzzle {
 
     private static final int TARGET_SUM = 2020;
 
-    public ReportRepairPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public ReportRepairPuzzle() {
+        super(2020, 1);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
         int productOfTwoMultiples = 0;
         int productOfThreeMultiples = 0;
 
-        List<Integer> expenses =
-                getInputProvider().getInputStream().map(Integer::parseInt).toList();
+        List<Integer> expenses = inputProvider.getInputStream().map(Integer::parseInt).toList();
 
         for (int i = 0; i < expenses.size() - 2; i++) {
             for (int j = i + 1; j < expenses.size() - 1; j++) {

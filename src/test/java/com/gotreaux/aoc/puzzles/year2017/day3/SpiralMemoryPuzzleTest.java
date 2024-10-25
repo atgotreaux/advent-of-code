@@ -16,9 +16,9 @@ class SpiralMemoryPuzzleTest {
     void distanceToAccessPort(String input, int expectedSteps) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        SpiralMemoryPuzzle puzzle = new SpiralMemoryPuzzle(inputProvider);
+        SpiralMemoryPuzzle puzzle = new SpiralMemoryPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedSteps, output.partOne());
     }

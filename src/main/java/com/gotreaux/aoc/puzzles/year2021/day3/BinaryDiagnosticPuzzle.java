@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2021.day3;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -14,17 +13,19 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2021, day = 3, title = "Binary Diagnostic")
+@Component
 public class BinaryDiagnosticPuzzle extends Puzzle {
-    public BinaryDiagnosticPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public BinaryDiagnosticPuzzle() {
+        super(2021, 3);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException, NumberFormatException {
-        List<String> input = getInputProvider().getInputList();
+        List<String> input = inputProvider.getInputList();
         int bitLength = input.getFirst().length();
 
         int gamma = 0;

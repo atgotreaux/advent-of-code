@@ -16,9 +16,9 @@ class AdventCoinMiningPuzzleTest {
     void fiveLeadingZeroes(String input, int expectedKeyNumber) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        AdventCoinMiningPuzzle puzzle = new AdventCoinMiningPuzzle(inputProvider);
+        AdventCoinMiningPuzzle puzzle = new AdventCoinMiningPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedKeyNumber, output.partOne());
     }

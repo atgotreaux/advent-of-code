@@ -12,9 +12,9 @@ class RegisterPuzzleTest {
     void largestRegisterValue() throws Exception {
         InputProvider inputProvider = new FileInputProvider(RegisterPuzzle.class);
 
-        RegisterPuzzle puzzle = new RegisterPuzzle(inputProvider);
+        RegisterPuzzle puzzle = new RegisterPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(1, output.partOne());
     }
@@ -23,9 +23,9 @@ class RegisterPuzzleTest {
     void maxRegisterValue() throws Exception {
         InputProvider inputProvider = new FileInputProvider(RegisterPuzzle.class);
 
-        RegisterPuzzle puzzle = new RegisterPuzzle(inputProvider);
+        RegisterPuzzle puzzle = new RegisterPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(10, output.partTwo());
     }

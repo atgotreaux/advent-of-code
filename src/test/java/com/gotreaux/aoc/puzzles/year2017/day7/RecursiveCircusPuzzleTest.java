@@ -12,9 +12,9 @@ class RecursiveCircusPuzzleTest {
     void nameOfBottomProgram() throws Exception {
         InputProvider inputProvider = new FileInputProvider(RecursiveCircusPuzzle.class);
 
-        RecursiveCircusPuzzle puzzle = new RecursiveCircusPuzzle(inputProvider);
+        RecursiveCircusPuzzle puzzle = new RecursiveCircusPuzzle();
 
-        PuzzleOutput<String, Integer> output = puzzle.solve();
+        PuzzleOutput<String, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals("tknk", output.partOne());
     }
@@ -23,9 +23,9 @@ class RecursiveCircusPuzzleTest {
     void weightOfFixedChild() throws Exception {
         InputProvider inputProvider = new FileInputProvider(RecursiveCircusPuzzle.class);
 
-        RecursiveCircusPuzzle puzzle = new RecursiveCircusPuzzle(inputProvider);
+        RecursiveCircusPuzzle puzzle = new RecursiveCircusPuzzle();
 
-        PuzzleOutput<String, Integer> output = puzzle.solve();
+        PuzzleOutput<String, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(60, output.partTwo());
     }

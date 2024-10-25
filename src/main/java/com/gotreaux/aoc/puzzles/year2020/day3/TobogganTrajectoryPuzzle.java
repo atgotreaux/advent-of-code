@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2020.day3;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -8,16 +7,19 @@ import com.gotreaux.aoc.utils.matrix.CharMatrix;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2020, day = 3, title = "Toboggan Trajectory")
+@Component
 public class TobogganTrajectoryPuzzle extends Puzzle {
-    public TobogganTrajectoryPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public TobogganTrajectoryPuzzle() {
+        super(2020, 3);
     }
 
     @Override
-    public PuzzleOutput<Integer, Long> solve() throws IOException, URISyntaxException {
-        List<String> lines = getInputProvider().getInputList();
+    public PuzzleOutput<Integer, Long> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
+        List<String> lines = inputProvider.getInputList();
         CharMatrix map = new CharMatrix(lines);
 
         Slope slope = new Slope(3, 1);

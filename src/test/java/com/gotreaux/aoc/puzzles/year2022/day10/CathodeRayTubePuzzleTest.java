@@ -17,9 +17,9 @@ class CathodeRayTubePuzzleTest {
     void sumOfSignalStrengths() throws Exception {
         InputProvider inputProvider = new FileInputProvider(CathodeRayTubePuzzle.class);
 
-        CathodeRayTubePuzzle puzzle = new CathodeRayTubePuzzle(inputProvider);
+        CathodeRayTubePuzzle puzzle = new CathodeRayTubePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(13140, output.partOne());
     }

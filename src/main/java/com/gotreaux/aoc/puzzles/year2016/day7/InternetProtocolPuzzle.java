@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2016.day7;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -9,19 +8,22 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2016, day = 7, title = "Internet Protocol Version 7")
+@Component
 public class InternetProtocolPuzzle extends Puzzle {
-    public InternetProtocolPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public InternetProtocolPuzzle() {
+        super(2016, 7);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
         int supportsTlsCount = 0;
         int supportsSslCount = 0;
 
-        for (String line : getInputProvider().getInputList()) {
+        for (String line : inputProvider.getInputList()) {
             Collection<String> supernets = new ArrayList<>();
             Collection<String> hypernets = new ArrayList<>();
 

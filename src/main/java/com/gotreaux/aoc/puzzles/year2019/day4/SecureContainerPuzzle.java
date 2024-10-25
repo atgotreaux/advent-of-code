@@ -4,7 +4,6 @@ import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -13,16 +12,19 @@ import java.net.URISyntaxException;
 import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2019, day = 4, title = "Secure Container")
+@Component
 public class SecureContainerPuzzle extends Puzzle {
-    public SecureContainerPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public SecureContainerPuzzle() {
+        super(2019, 4);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
-        Scanner scanner = new Scanner(getInputProvider().getInputString());
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
+        Scanner scanner = new Scanner(inputProvider.getInputString());
         scanner.useDelimiter("-");
         int start = scanner.nextInt();
         int stop = scanner.nextInt();

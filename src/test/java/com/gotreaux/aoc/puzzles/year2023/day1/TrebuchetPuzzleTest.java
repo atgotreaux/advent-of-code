@@ -13,9 +13,9 @@ class TrebuchetPuzzleTest {
         InputProvider inputProvider =
                 new FileInputProvider(TrebuchetPuzzle.class, "CalibrationDocument.txt");
 
-        TrebuchetPuzzle puzzle = new TrebuchetPuzzle(inputProvider);
+        TrebuchetPuzzle puzzle = new TrebuchetPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(142, output.partOne());
     }
@@ -25,9 +25,9 @@ class TrebuchetPuzzleTest {
         InputProvider inputProvider =
                 new FileInputProvider(TrebuchetPuzzle.class, "CalibrationDigitsWithLetters.txt");
 
-        TrebuchetPuzzle puzzle = new TrebuchetPuzzle(inputProvider);
+        TrebuchetPuzzle puzzle = new TrebuchetPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(281, output.partTwo());
     }

@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2022.day8;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -9,16 +8,19 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2022, day = 8, title = "Treetop Tree House")
+@Component
 public class TreetopTreeHousePuzzle extends Puzzle {
-    public TreetopTreeHousePuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public TreetopTreeHousePuzzle() {
+        super(2022, 8);
     }
 
     @Override
-    public PuzzleOutput<Integer, Long> solve() throws IOException, URISyntaxException {
-        List<String> lines = getInputProvider().getInputList();
+    public PuzzleOutput<Integer, Long> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
+        List<String> lines = inputProvider.getInputList();
         IntMatrix matrix = new IntMatrix(lines);
 
         int treesVisible = 0;

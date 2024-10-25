@@ -1,26 +1,27 @@
 package com.gotreaux.aoc.puzzles.year2015.day2;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2015, day = 2, title = "I Was Told There Would Be No Math")
+@Component
 public class WrappingPaperPuzzle extends Puzzle {
 
-    public WrappingPaperPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public WrappingPaperPuzzle() {
+        super(2015, 2);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
         int wrappingPaperOrderTotal = 0;
         int ribbonOrderTotal = 0;
 
-        for (String line : getInputProvider().getInputList()) {
+        for (String line : inputProvider.getInputList()) {
             Scanner scanner = new Scanner(line);
             scanner.useDelimiter("x");
 

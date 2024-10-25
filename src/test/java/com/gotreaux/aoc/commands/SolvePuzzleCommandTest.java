@@ -18,7 +18,7 @@ import org.springframework.test.annotation.DirtiesContext;
 @AutoConfigureShellTestClient
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest(classes = Application.class)
-class PuzzleCommandsTest {
+class SolvePuzzleCommandTest {
     @Autowired ShellTestClient client;
 
     @Test

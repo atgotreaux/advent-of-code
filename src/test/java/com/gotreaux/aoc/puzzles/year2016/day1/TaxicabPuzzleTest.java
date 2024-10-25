@@ -17,9 +17,9 @@ class TaxicabPuzzleTest {
     void shortestPath(String input, int expectedDistance) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        TaxicabPuzzle puzzle = new TaxicabPuzzle(inputProvider);
+        TaxicabPuzzle puzzle = new TaxicabPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedDistance, output.partOne());
     }
@@ -28,9 +28,9 @@ class TaxicabPuzzleTest {
     void firstDupPath() throws Exception {
         InputProvider inputProvider = new StringInputProvider("R8, R4, R4, R8");
 
-        TaxicabPuzzle puzzle = new TaxicabPuzzle(inputProvider);
+        TaxicabPuzzle puzzle = new TaxicabPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(4, output.partTwo());
     }

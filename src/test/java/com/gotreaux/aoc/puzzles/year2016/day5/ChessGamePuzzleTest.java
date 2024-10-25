@@ -12,9 +12,9 @@ class ChessGamePuzzleTest {
     void passwords() throws Exception {
         InputProvider inputProvider = new StringInputProvider("abc");
 
-        ChessGamePuzzle puzzle = new ChessGamePuzzle(inputProvider);
+        ChessGamePuzzle puzzle = new ChessGamePuzzle();
 
-        PuzzleOutput<String, String> output = puzzle.solve();
+        PuzzleOutput<String, String> output = puzzle.solve(inputProvider);
 
         assertEquals("18f47a30", output.partOne());
         assertEquals("05ace8e3", output.partTwo());

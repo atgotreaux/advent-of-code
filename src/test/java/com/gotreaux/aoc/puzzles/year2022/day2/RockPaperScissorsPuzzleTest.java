@@ -12,9 +12,9 @@ class RockPaperScissorsPuzzleTest {
     void encryptedStrategyScore() throws Exception {
         InputProvider inputProvider = new FileInputProvider(RockPaperScissorsPuzzle.class);
 
-        RockPaperScissorsPuzzle puzzle = new RockPaperScissorsPuzzle(inputProvider);
+        RockPaperScissorsPuzzle puzzle = new RockPaperScissorsPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(15, output.partOne());
     }
@@ -23,9 +23,9 @@ class RockPaperScissorsPuzzleTest {
     void outcomeStrategyScore() throws Exception {
         InputProvider inputProvider = new FileInputProvider(RockPaperScissorsPuzzle.class);
 
-        RockPaperScissorsPuzzle puzzle = new RockPaperScissorsPuzzle(inputProvider);
+        RockPaperScissorsPuzzle puzzle = new RockPaperScissorsPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(12, output.partTwo());
     }

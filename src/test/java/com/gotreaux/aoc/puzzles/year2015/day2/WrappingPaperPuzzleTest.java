@@ -16,9 +16,9 @@ class WrappingPaperPuzzleTest {
     void wrappingPaperOrderTotal(String input, int expectedOrderTotal) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle(inputProvider);
+        WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedOrderTotal, output.partOne());
     }
@@ -28,9 +28,9 @@ class WrappingPaperPuzzleTest {
     void ribbonOrderTotal(String input, int expectedOrderTotal) throws Exception {
         InputProvider inputProvider = new StringInputProvider(input);
 
-        WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle(inputProvider);
+        WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(expectedOrderTotal, output.partTwo());
     }

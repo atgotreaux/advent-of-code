@@ -12,9 +12,9 @@ class BinaryDiagnosticPuzzleTest {
     void powerConsumption() throws Exception {
         InputProvider inputProvider = new FileInputProvider(BinaryDiagnosticPuzzle.class);
 
-        BinaryDiagnosticPuzzle puzzle = new BinaryDiagnosticPuzzle(inputProvider);
+        BinaryDiagnosticPuzzle puzzle = new BinaryDiagnosticPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(198, output.partOne());
     }
@@ -23,9 +23,9 @@ class BinaryDiagnosticPuzzleTest {
     void lifeSupportRating() throws Exception {
         InputProvider inputProvider = new FileInputProvider(BinaryDiagnosticPuzzle.class);
 
-        BinaryDiagnosticPuzzle puzzle = new BinaryDiagnosticPuzzle(inputProvider);
+        BinaryDiagnosticPuzzle puzzle = new BinaryDiagnosticPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(230, output.partTwo());
     }

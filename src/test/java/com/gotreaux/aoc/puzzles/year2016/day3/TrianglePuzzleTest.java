@@ -13,9 +13,9 @@ class TrianglePuzzleTest {
     void validTriangleRow() throws Exception {
         InputProvider inputProvider = new StringInputProvider("5 10 25");
 
-        TrianglePuzzle puzzle = new TrianglePuzzle(inputProvider);
+        TrianglePuzzle puzzle = new TrianglePuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(0L, output.partOne());
     }
@@ -24,9 +24,9 @@ class TrianglePuzzleTest {
     void validTriangleColumn() throws Exception {
         InputProvider inputProvider = new FileInputProvider(TrianglePuzzle.class);
 
-        TrianglePuzzle puzzle = new TrianglePuzzle(inputProvider);
+        TrianglePuzzle puzzle = new TrianglePuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve();
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
 
         assertEquals(6L, output.partTwo());
     }

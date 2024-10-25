@@ -1,14 +1,14 @@
 package com.gotreaux.aoc.puzzles.year2015.day5;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.regex.Pattern;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2015, day = 5, title = "Doesn't He Have Intern-Elves For This?")
+@Component
 public class NiceStringPuzzle extends Puzzle {
 
     private static final Pattern THREE_VOWELS = Pattern.compile("[^aeiou]");
@@ -20,14 +20,15 @@ public class NiceStringPuzzle extends Puzzle {
     private static final Pattern REPEATED_WITH_SEPARATOR =
             Pattern.compile("[a-z]*([a-z])[a-z]\\1[a-z]*");
 
-    public NiceStringPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public NiceStringPuzzle() {
+        super(2015, 5);
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve() throws IOException, URISyntaxException {
+    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
         long niceStringCount =
-                getInputProvider()
+                inputProvider
                         .getInputStream()
                         .filter(s -> THREE_VOWELS.matcher(s).replaceAll("").length() >= 3)
                         .filter(s -> REPEATED_CHARACTER.matcher(s).matches())
@@ -35,7 +36,7 @@ public class NiceStringPuzzle extends Puzzle {
                         .count();
 
         long niceStringBetterModelCount =
-                getInputProvider()
+                inputProvider
                         .getInputStream()
                         .filter(s -> PAIR_REPEATED.matcher(s).matches())
                         .filter(s -> REPEATED_WITH_SEPARATOR.matcher(s).matches())

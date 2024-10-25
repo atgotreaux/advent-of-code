@@ -12,9 +12,9 @@ class GearRatiosPuzzleTest {
     void sumOfParts() throws Exception {
         InputProvider inputProvider = new FileInputProvider(GearRatiosPuzzle.class);
 
-        GearRatiosPuzzle puzzle = new GearRatiosPuzzle(inputProvider);
+        GearRatiosPuzzle puzzle = new GearRatiosPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(4361, output.partOne());
     }
@@ -23,9 +23,9 @@ class GearRatiosPuzzleTest {
     void sumOfGearRatios() throws Exception {
         InputProvider inputProvider = new FileInputProvider(GearRatiosPuzzle.class);
 
-        GearRatiosPuzzle puzzle = new GearRatiosPuzzle(inputProvider);
+        GearRatiosPuzzle puzzle = new GearRatiosPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(467835, output.partTwo());
     }

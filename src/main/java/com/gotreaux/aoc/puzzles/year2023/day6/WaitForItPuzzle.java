@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2023.day6;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -11,21 +10,22 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2023, day = 6, title = "Wait For It")
+@Component
 public class WaitForItPuzzle extends Puzzle {
 
-    public WaitForItPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public WaitForItPuzzle() {
+        super(2023, 6);
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve()
+    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NumberFormatException {
         List<Long> times = new ArrayList<>();
         List<Long> recordDistances = new ArrayList<>();
 
-        for (String line : getInputProvider().getInputList()) {
+        for (String line : inputProvider.getInputList()) {
             if (line.startsWith("Time:")) {
                 Scanner scanner = new Scanner(line.replace("Time:", ""));
                 while (scanner.hasNextLong()) {

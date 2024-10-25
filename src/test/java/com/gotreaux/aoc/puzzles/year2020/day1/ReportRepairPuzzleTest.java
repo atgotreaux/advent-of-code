@@ -12,9 +12,9 @@ class ReportRepairPuzzleTest {
     void productOfTargetSumWithTwoNumbers() throws Exception {
         InputProvider inputProvider = new FileInputProvider(ReportRepairPuzzle.class);
 
-        ReportRepairPuzzle puzzle = new ReportRepairPuzzle(inputProvider);
+        ReportRepairPuzzle puzzle = new ReportRepairPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(514579, output.partOne());
     }
@@ -23,9 +23,9 @@ class ReportRepairPuzzleTest {
     void productOfTargetSumWithThreeNumbers() throws Exception {
         InputProvider inputProvider = new FileInputProvider(ReportRepairPuzzle.class);
 
-        ReportRepairPuzzle puzzle = new ReportRepairPuzzle(inputProvider);
+        ReportRepairPuzzle puzzle = new ReportRepairPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(241861950, output.partTwo());
     }

@@ -1,26 +1,27 @@
 package com.gotreaux.aoc.puzzles.year2022.day4;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2022, day = 4, title = "Camp Cleanup")
+@Component
 public class CampCleanupPuzzle extends Puzzle {
 
-    public CampCleanupPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+    public CampCleanupPuzzle() {
+        super(2022, 4);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
         int numberOfAssignmentsContained = 0;
         int numberOfAssignmentsOverlapping = 0;
 
-        for (String line : getInputProvider().getInputList()) {
+        for (String line : inputProvider.getInputList()) {
             Scanner elfAssignments = new Scanner(line);
             elfAssignments.useDelimiter(",");
             String assignmentOne = elfAssignments.next();

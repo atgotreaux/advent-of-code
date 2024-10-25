@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2022.day7;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -8,19 +7,21 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2022, day = 7, title = "No Space Left On Device")
+@Component
 public class NoDeviceSpacePuzzle extends Puzzle {
-    public NoDeviceSpacePuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public NoDeviceSpacePuzzle() {
+        super(2022, 7);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve()
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
             throws IOException, URISyntaxException, NoSuchElementException {
         Directory directory = new Directory("/");
 
-        for (String line : getInputProvider().getInputList()) {
+        for (String line : inputProvider.getInputList()) {
             if (Character.isDigit(line.charAt(0))) {
                 Scanner scanner = new Scanner(line);
                 directory.addFile(new File(scanner.nextInt(), scanner.next()));

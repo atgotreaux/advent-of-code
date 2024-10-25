@@ -4,15 +4,22 @@ import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 
 public abstract class Puzzle {
-    private final InputProvider inputProvider;
 
-    protected Puzzle(InputProvider inputProvider) {
-        this.inputProvider = inputProvider;
+    private final int year;
+    private final int day;
+
+    protected Puzzle(int year, int day) {
+        this.year = year;
+        this.day = day;
     }
 
-    protected InputProvider getInputProvider() {
-        return inputProvider;
+    public int getYear() {
+        return year;
     }
 
-    public abstract PuzzleOutput<?, ?> solve() throws Exception;
+    public int getDay() {
+        return day;
+    }
+
+    public abstract PuzzleOutput<?, ?> solve(InputProvider inputProvider) throws Exception;
 }

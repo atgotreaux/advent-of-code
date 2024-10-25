@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2017.day5;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -8,16 +7,19 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.function.IntFunction;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2017, day = 5, title = "A Maze of Twisty Trampolines, All Alike")
+@Component
 public class TwistyTrampolinesPuzzle extends Puzzle {
-    public TwistyTrampolinesPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public TwistyTrampolinesPuzzle() {
+        super(2017, 5);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve() throws IOException, URISyntaxException {
-        int[] input = getInputProvider().getInputStream().mapToInt(Integer::parseInt).toArray();
+    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
+        int[] input = inputProvider.getInputStream().mapToInt(Integer::parseInt).toArray();
 
         int incrementedSteps = getStepsToExit(input, i -> i + 1);
         int strangerSteps = getStepsToExit(input, i -> i >= 3 ? i - 1 : i + 1);

@@ -5,7 +5,6 @@ import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toMap;
 
-import com.gotreaux.aoc.annotations.ShellPuzzle;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -14,17 +13,20 @@ import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
-@ShellPuzzle(year = 2021, day = 6, title = "Lanternfish")
+@Component
 public class LanternfishPuzzle extends Puzzle {
-    public LanternfishPuzzle(InputProvider inputProvider) {
-        super(inputProvider);
+
+    public LanternfishPuzzle() {
+        super(2021, 6);
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve() throws IOException, URISyntaxException {
+    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
+            throws IOException, URISyntaxException {
         Map<Integer, Long> lanternfish =
-                Arrays.stream(getInputProvider().getInputString().split(","))
+                Arrays.stream(inputProvider.getInputString().split(","))
                         .map(Integer::parseInt)
                         .collect(groupingBy(identity(), counting()));
 

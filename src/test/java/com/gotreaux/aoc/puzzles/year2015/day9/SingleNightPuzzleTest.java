@@ -12,9 +12,9 @@ class SingleNightPuzzleTest {
     void shortestDistance() throws Exception {
         InputProvider inputProvider = new FileInputProvider(SingleNightPuzzle.class);
 
-        SingleNightPuzzle puzzle = new SingleNightPuzzle(inputProvider);
+        SingleNightPuzzle puzzle = new SingleNightPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(605, output.partOne());
     }
@@ -23,9 +23,9 @@ class SingleNightPuzzleTest {
     void longestDistance() throws Exception {
         InputProvider inputProvider = new FileInputProvider(SingleNightPuzzle.class);
 
-        SingleNightPuzzle puzzle = new SingleNightPuzzle(inputProvider);
+        SingleNightPuzzle puzzle = new SingleNightPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve();
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
 
         assertEquals(982, output.partTwo());
     }
