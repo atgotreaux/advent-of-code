@@ -15,7 +15,8 @@ import org.springframework.test.annotation.DirtiesContext;
 
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest(classes = Application.class)
-class PuzzleYearPredicateTest {
+class PuzzlePredicateTest {
+
     @Autowired private List<Puzzle> puzzles;
 
     @Test
@@ -25,7 +26,7 @@ class PuzzleYearPredicateTest {
 
         Integer[] years = new Integer[0];
 
-        BiPredicate<Puzzle, Integer[]> predicate = new PuzzleYearPredicate();
+        BiPredicate<Puzzle, Integer[]> predicate = new PuzzlePredicate(Puzzle::getYear);
 
         assertTrue(predicate.test(puzzle, years));
     }
@@ -37,7 +38,7 @@ class PuzzleYearPredicateTest {
 
         Integer[] years = {puzzle.getYear()};
 
-        BiPredicate<Puzzle, Integer[]> predicate = new PuzzleYearPredicate();
+        BiPredicate<Puzzle, Integer[]> predicate = new PuzzlePredicate(Puzzle::getYear);
 
         assertTrue(predicate.test(puzzle, years));
     }
@@ -49,8 +50,44 @@ class PuzzleYearPredicateTest {
 
         Integer[] years = {RandomGenerator.getDefault().nextInt(puzzle.getYear())};
 
-        BiPredicate<Puzzle, Integer[]> predicate = new PuzzleYearPredicate();
+        BiPredicate<Puzzle, Integer[]> predicate = new PuzzlePredicate(Puzzle::getYear);
 
         assertFalse(predicate.test(puzzle, years));
+    }
+
+    @Test
+    void emptyDays() {
+        RandomGenerator generator = RandomGenerator.getDefault();
+        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+
+        Integer[] days = new Integer[0];
+
+        BiPredicate<Puzzle, Integer[]> predicate = new PuzzlePredicate(Puzzle::getDay);
+
+        assertTrue(predicate.test(puzzle, days));
+    }
+
+    @Test
+    void matchingDay() {
+        RandomGenerator generator = RandomGenerator.getDefault();
+        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+
+        Integer[] days = {puzzle.getDay()};
+
+        BiPredicate<Puzzle, Integer[]> predicate = new PuzzlePredicate(Puzzle::getDay);
+
+        assertTrue(predicate.test(puzzle, days));
+    }
+
+    @Test
+    void mismatchingDay() {
+        RandomGenerator generator = RandomGenerator.getDefault();
+        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+
+        Integer[] days = {RandomGenerator.getDefault().nextInt(puzzle.getDay())};
+
+        BiPredicate<Puzzle, Integer[]> predicate = new PuzzlePredicate(Puzzle::getDay);
+
+        assertFalse(predicate.test(puzzle, days));
     }
 }

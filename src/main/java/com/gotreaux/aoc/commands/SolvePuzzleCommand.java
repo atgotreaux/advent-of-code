@@ -75,8 +75,8 @@ public class SolvePuzzleCommand {
 
         List<Puzzle> filteredPuzzles =
                 puzzles.stream()
-                        .filter(puzzle -> new PuzzleYearPredicate().test(puzzle, years))
-                        .filter(puzzle -> new PuzzleDayPredicate().test(puzzle, days))
+                        .filter(puzzle -> new PuzzlePredicate(Puzzle::getYear).test(puzzle, years))
+                        .filter(puzzle -> new PuzzlePredicate(Puzzle::getDay).test(puzzle, days))
                         .toList();
 
         for (Puzzle filteredPuzzle : filteredPuzzles) {
