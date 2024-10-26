@@ -1,12 +1,10 @@
 package com.gotreaux.aoc.commands;
 
-import com.gotreaux.aoc.annotations.EventDays;
-import com.gotreaux.aoc.annotations.EventYears;
+import com.gotreaux.aoc.annotations.ElementsInRange;
 import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
@@ -24,6 +22,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SolvePuzzleCommand {
 
+    static final String COMMAND_NAME = "solve-puzzle";
     private static final int TOTAL_AVAILABLE_WIDTH = 120;
 
     private final Collection<Puzzle> puzzles;
@@ -35,7 +34,7 @@ public class SolvePuzzleCommand {
     }
 
     @Command(
-            command = "solve-puzzle",
+            command = COMMAND_NAME,
             description = "Solve puzzles for specified advent calendar year(s) and day(s)",
             group = "Puzzle Commands",
             interactionMode = InteractionMode.ALL)
@@ -46,7 +45,10 @@ public class SolvePuzzleCommand {
                             description = "Solve puzzles for advent calendar year",
                             label = "YEAR1 YEAR2 YEAR3...",
                             arity = CommandRegistration.OptionArity.ZERO_OR_MORE)
-                    @EventYears
+                    @ElementsInRange(
+                            min = 2015,
+                            max = 2023,
+                            message = "{validation.years.elements-in-range}")
                     Integer[] years,
             @Option(
                             longNames = "day",
@@ -54,56 +56,38 @@ public class SolvePuzzleCommand {
                             description = "Solve puzzles for advent calendar day",
                             label = "DAY1 DAY2 DAY3...",
                             arity = CommandRegistration.OptionArity.ZERO_OR_MORE)
-                    @EventDays
+                    @ElementsInRange(
+                            min = 1,
+                            max = 25,
+                            message = "{validation.days.elements-in-range}")
                     Integer[] days)
             throws Exception {
-        List<Puzzle> filteredPuzzles =
-                puzzles.stream()
-                        .filter(
-                                puzzle ->
-                                        (years.length == 0
-                                                        || Arrays.asList(years)
-                                                                .contains(puzzle.getYear()))
-                                                && (days.length == 0
-                                                        || Arrays.asList(days)
-                                                                .contains(puzzle.getDay())))
-                        .toList();
-
         TableModelBuilder<String> tableModelBuilder = new TableModelBuilder<>();
-
         Locale locale = Locale.getDefault();
 
         tableModelBuilder
                 .addRow()
-                .addValue(
-                        messageSource.getMessage(
-                                "puzzle.command.solve.table-header.year", null, locale))
-                .addValue(
-                        messageSource.getMessage(
-                                "puzzle.command.solve.table-header.day", null, locale))
-                .addValue(
-                        messageSource.getMessage(
-                                "puzzle.command.solve.table-header.title", null, locale))
-                .addValue(
-                        messageSource.getMessage(
-                                "puzzle.command.solve.table-header.part-one", null, locale))
-                .addValue(
-                        messageSource.getMessage(
-                                "puzzle.command.solve.table-header.part-two", null, locale));
+                .addValue(getTableHeaderMessage("year", locale))
+                .addValue(getTableHeaderMessage("day", locale))
+                .addValue(getTableHeaderMessage("title", locale))
+                .addValue(getTableHeaderMessage("part-one", locale))
+                .addValue(getTableHeaderMessage("part-two", locale));
+
+        List<Puzzle> filteredPuzzles =
+                puzzles.stream()
+                        .filter(puzzle -> new PuzzleYearPredicate().test(puzzle, years))
+                        .filter(puzzle -> new PuzzleDayPredicate().test(puzzle, days))
+                        .toList();
 
         for (Puzzle filteredPuzzle : filteredPuzzles) {
             InputProvider inputProvider = new FileInputProvider(filteredPuzzle.getClass());
             PuzzleOutput<?, ?> output = filteredPuzzle.solve(inputProvider);
-            String puzzleTitle =
-                    String.format(
-                            "puzzle.title.%s.%s",
-                            filteredPuzzle.getYear(), filteredPuzzle.getDay());
 
             tableModelBuilder
                     .addRow()
                     .addValue(String.valueOf(filteredPuzzle.getYear()))
                     .addValue(String.valueOf(filteredPuzzle.getDay()))
-                    .addValue(messageSource.getMessage(puzzleTitle, null, locale))
+                    .addValue(getPuzzleTitleMessage(filteredPuzzle, locale))
                     .addValue(String.valueOf(output.partOne()))
                     .addValue(String.valueOf(output.partTwo()));
         }
@@ -112,5 +96,21 @@ public class SolvePuzzleCommand {
         tableBuilder.addFullBorder(BorderStyle.fancy_light);
 
         return tableBuilder.build().render(TOTAL_AVAILABLE_WIDTH);
+    }
+
+    private String getTableHeaderMessage(String header, Locale locale) {
+        String code = String.format("puzzle.command.solve.table-header.%s", header);
+
+        return getMessage(code, locale);
+    }
+
+    private String getPuzzleTitleMessage(Puzzle puzzle, Locale locale) {
+        String code = String.format("puzzle.title.%d.%d", puzzle.getYear(), puzzle.getDay());
+
+        return getMessage(code, locale);
+    }
+
+    private String getMessage(String code, Locale locale) {
+        return messageSource.getMessage(code, null, locale);
     }
 }
