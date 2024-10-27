@@ -2,7 +2,6 @@ package com.gotreaux.aoc.commands;
 
 import static org.awaitility.Awaitility.await;
 
-import com.gotreaux.aoc.Application;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.List;
 import java.util.Locale;
@@ -21,7 +20,7 @@ import org.springframework.test.annotation.DirtiesContext;
 @AutoConfigureShell
 @AutoConfigureShellTestClient
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-@SpringBootTest(classes = Application.class)
+@SpringBootTest
 class SolvePuzzleCommandTest {
     @Autowired private ShellTestClient client;
     @Autowired private List<Puzzle> puzzles;

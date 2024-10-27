@@ -3,7 +3,6 @@ package com.gotreaux.aoc.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.gotreaux.aoc.Application;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.List;
 import java.util.function.BiPredicate;
@@ -14,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-@SpringBootTest(classes = Application.class)
+@SpringBootTest
 class PuzzlePredicateTest {
 
     @Autowired private List<Puzzle> puzzles;
