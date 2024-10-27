@@ -11,10 +11,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Pattern;
+
 import org.springframework.stereotype.Component;
 
 @Component
 public class SupplyStacksPuzzle extends Puzzle {
+
+    private static final Pattern STACK_PATTERN = Pattern.compile("^(\\s+\\d\\s*)+$");
+    private static final Pattern CRATE_PATTERN = Pattern.compile("^(\\s*\\[[A-Z]]\\s*)+$");
 
     public SupplyStacksPuzzle() {
         super(2022, 5);
@@ -37,13 +42,13 @@ public class SupplyStacksPuzzle extends Puzzle {
                 int to = Integer.parseInt(procedureParts[5]);
 
                 procedures.push(new RearrangeProcedure(operationCount, from, to));
-            } else if (line.matches("^(\\s+\\d\\s*)+$")) {
+            } else if (STACK_PATTERN.matcher(line).matches()) {
                 Scanner scanner = new Scanner(line);
                 while (scanner.hasNextInt()) {
                     stacks.put(scanner.nextInt(), new ArrayDeque<>());
                 }
                 scanner.close();
-            } else if (line.matches("^(\\s*\\[[A-Z]]\\s*)+$")) {
+            } else if (CRATE_PATTERN.matcher(line).matches()) {
                 int stackIndex = 1;
                 for (Map.Entry<Integer, Deque<Character>> entry : stacks.entrySet()) {
                     char c = line.charAt(stackIndex);
