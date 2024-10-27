@@ -8,6 +8,8 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.shell.command.CommandRegistration;
 import org.springframework.shell.command.annotation.Command;
@@ -24,6 +26,7 @@ public class SolvePuzzleCommand {
 
     static final String COMMAND_NAME = "solve-puzzle";
     private static final int TOTAL_AVAILABLE_WIDTH = 120;
+    private static final Logger logger = LoggerFactory.getLogger(SolvePuzzleCommand.class);
 
     private final Collection<Puzzle> puzzles;
     private final MessageSource messageSource;
@@ -80,16 +83,28 @@ public class SolvePuzzleCommand {
                         .toList();
 
         for (Puzzle filteredPuzzle : filteredPuzzles) {
-            InputProvider inputProvider = new FileInputProvider(filteredPuzzle.getClass());
-            PuzzleOutput<?, ?> output = filteredPuzzle.solve(inputProvider);
+            String partOne;
+            String partTwo;
+            try {
+                InputProvider inputProvider = new FileInputProvider(filteredPuzzle.getClass());
+                PuzzleOutput<?, ?> output = filteredPuzzle.solve(inputProvider);
+
+                partOne = String.valueOf(output.partOne());
+                partTwo = String.valueOf(output.partTwo());
+            } catch (Exception e) {
+                logger.error(e.getMessage(), e);
+
+                partOne = getMessage("puzzle.command.solve.error", locale);
+                partTwo = partOne;
+            }
 
             tableModelBuilder
                     .addRow()
                     .addValue(String.valueOf(filteredPuzzle.getYear()))
                     .addValue(String.valueOf(filteredPuzzle.getDay()))
                     .addValue(getPuzzleTitleMessage(filteredPuzzle, locale))
-                    .addValue(String.valueOf(output.partOne()))
-                    .addValue(String.valueOf(output.partTwo()));
+                    .addValue(partOne)
+                    .addValue(partTwo);
         }
 
         TableBuilder tableBuilder = new TableBuilder(tableModelBuilder.build());
