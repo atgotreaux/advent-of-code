@@ -3,6 +3,9 @@ package com.gotreaux.aoc.commands;
 import com.gotreaux.aoc.annotations.ElementsInRange;
 import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.StringInputProvider;
+import com.gotreaux.aoc.input.database.DatabaseInputProviderFactory;
+import com.gotreaux.aoc.input.database.PuzzleInputKey;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.Collection;
@@ -30,10 +33,15 @@ public class SolvePuzzleCommand {
 
     private final Collection<Puzzle> puzzles;
     private final MessageSource messageSource;
+    private final DatabaseInputProviderFactory databaseInputProviderFactory;
 
-    public SolvePuzzleCommand(Collection<Puzzle> puzzles, MessageSource messageSource) {
+    public SolvePuzzleCommand(
+            Collection<Puzzle> puzzles,
+            MessageSource messageSource,
+            DatabaseInputProviderFactory databaseInputProviderFactory) {
         this.puzzles = puzzles.stream().toList();
         this.messageSource = messageSource;
+        this.databaseInputProviderFactory = databaseInputProviderFactory;
     }
 
     @Command(
@@ -63,7 +71,15 @@ public class SolvePuzzleCommand {
                             min = 1,
                             max = 25,
                             message = "{validation.days.elements-in-range}")
-                    Integer[] days)
+                    Integer[] days,
+            @Option(
+                            longNames = "input",
+                            shortNames = 'I',
+                            description = "Source of puzzle input",
+                            label = "[database,file,{string}]",
+                            arity = CommandRegistration.OptionArity.ZERO_OR_ONE,
+                            defaultValue = "file")
+                    String source)
             throws Exception {
         TableModelBuilder<String> tableModelBuilder = new TableModelBuilder<>();
         Locale locale = Locale.getDefault();
@@ -86,7 +102,7 @@ public class SolvePuzzleCommand {
             String partOne;
             String partTwo;
             try {
-                InputProvider inputProvider = new FileInputProvider(filteredPuzzle.getClass());
+                InputProvider inputProvider = getInputProvider(filteredPuzzle, source);
                 PuzzleOutput<?, ?> output = filteredPuzzle.solve(inputProvider);
 
                 partOne = String.valueOf(output.partOne());
@@ -111,6 +127,18 @@ public class SolvePuzzleCommand {
         tableBuilder.addFullBorder(BorderStyle.fancy_light);
 
         return tableBuilder.build().render(TOTAL_AVAILABLE_WIDTH);
+    }
+
+    private InputProvider getInputProvider(Puzzle puzzle, String source) {
+        return switch (source) {
+            case "file" -> new FileInputProvider(puzzle.getClass());
+            case "database" -> {
+                PuzzleInputKey inputKey = new PuzzleInputKey(puzzle.getYear(), puzzle.getDay());
+
+                yield databaseInputProviderFactory.createDatabaseInputProvider(inputKey);
+            }
+            default -> new StringInputProvider(source);
+        };
     }
 
     private String getTableHeaderMessage(String header, Locale locale) {
