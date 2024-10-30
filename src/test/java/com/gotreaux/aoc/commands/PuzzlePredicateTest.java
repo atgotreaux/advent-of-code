@@ -19,6 +19,16 @@ class PuzzlePredicateTest {
     @Autowired private List<Puzzle> puzzles;
 
     @Test
+    void nullYears() {
+        RandomGenerator generator = RandomGenerator.getDefault();
+        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+
+        BiPredicate<Puzzle, Integer[]> predicate = new PuzzlePredicate(Puzzle::getYear);
+
+        assertTrue(predicate.test(puzzle, null));
+    }
+
+    @Test
     void emptyYears() {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
@@ -52,6 +62,16 @@ class PuzzlePredicateTest {
         BiPredicate<Puzzle, Integer[]> predicate = new PuzzlePredicate(Puzzle::getYear);
 
         assertFalse(predicate.test(puzzle, years));
+    }
+
+    @Test
+    void nullDays() {
+        RandomGenerator generator = RandomGenerator.getDefault();
+        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+
+        BiPredicate<Puzzle, Integer[]> predicate = new PuzzlePredicate(Puzzle::getDay);
+
+        assertTrue(predicate.test(puzzle, null));
     }
 
     @Test

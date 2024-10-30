@@ -1,6 +1,7 @@
 package com.gotreaux.aoc.input;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.gotreaux.aoc.input.database.PuzzleInput;
 import com.gotreaux.aoc.input.database.PuzzleInputKey;
@@ -8,6 +9,7 @@ import com.gotreaux.aoc.input.database.PuzzleInputRepository;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.random.RandomGenerator;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,18 @@ class DatabaseInputProviderTest {
     @Autowired private List<Puzzle> puzzles;
 
     @Autowired private PuzzleInputRepository puzzleInputRepository;
+
+    @Test
+    void throwsIfNotFound() {
+        RandomGenerator generator = RandomGenerator.getDefault();
+        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        PuzzleInputKey puzzleInputKey = new PuzzleInputKey(puzzle.getYear(), puzzle.getDay());
+
+        InputProvider inputProvider =
+                new DatabaseInputProvider(puzzleInputRepository, puzzleInputKey);
+
+        assertThrows(NoSuchElementException.class, inputProvider::getInputString);
+    }
 
     @Test
     void inputAsString() throws Exception {

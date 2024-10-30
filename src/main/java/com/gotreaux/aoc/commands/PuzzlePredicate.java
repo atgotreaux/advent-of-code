@@ -4,6 +4,7 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.Arrays;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
+import org.springframework.lang.Nullable;
 
 class PuzzlePredicate implements BiPredicate<Puzzle, Integer[]> {
 
@@ -14,9 +15,11 @@ class PuzzlePredicate implements BiPredicate<Puzzle, Integer[]> {
     }
 
     @Override
-    public boolean test(Puzzle puzzle, Integer[] values) {
+    public boolean test(Puzzle puzzle, @Nullable Integer[] values) {
         int puzzleValue = callback.apply(puzzle);
 
-        return values.length == 0 || Arrays.stream(values).anyMatch(i -> puzzleValue == i);
+        return values == null
+                || values.length == 0
+                || Arrays.stream(values).anyMatch(i -> puzzleValue == i);
     }
 }

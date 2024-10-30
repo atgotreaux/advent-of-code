@@ -1,5 +1,7 @@
 package com.gotreaux.aoc.commands;
 
+import static java.util.Comparator.comparingInt;
+
 import com.gotreaux.aoc.annotations.ElementsInRange;
 import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
@@ -96,6 +98,7 @@ public class SolvePuzzleCommand {
                 puzzles.stream()
                         .filter(puzzle -> new PuzzlePredicate(Puzzle::getYear).test(puzzle, years))
                         .filter(puzzle -> new PuzzlePredicate(Puzzle::getDay).test(puzzle, days))
+                        .sorted(comparingInt(Puzzle::getYear).thenComparing(Puzzle::getDay))
                         .toList();
 
         for (Puzzle filteredPuzzle : filteredPuzzles) {
