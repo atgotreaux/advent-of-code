@@ -1,6 +1,7 @@
 package com.gotreaux.aoc.input.database;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -128,5 +129,6 @@ class PuzzleInputTest {
         puzzleInput.setInputData(inputData);
 
         assertDoesNotThrow(() -> puzzleInputRepository.save(puzzleInput));
+        assertEquals(1L, puzzleInputRepository.count());
     }
 }

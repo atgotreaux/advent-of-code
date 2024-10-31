@@ -1,22 +1,21 @@
 package com.gotreaux.aoc.input.database;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import java.util.Objects;
 
 @Entity
-@Table(name = "puzzle_input")
+@Table(
+        name = "puzzle_input",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"puzzle_year", "puzzle_day"}))
 public class PuzzleInput {
 
     @EmbeddedId private PuzzleInputKey id;
 
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    @Column(name = "input_data")
+    @Column(name = "input_data", nullable = false, columnDefinition = "CLOB")
     private String inputData;
 
     public PuzzleInputKey getId() {
@@ -33,5 +32,25 @@ public class PuzzleInput {
 
     public void setInputData(String inputData) {
         this.inputData = inputData;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof PuzzleInput)) {
+            return false;
+        }
+
+        PuzzleInput puzzleInput = (PuzzleInput) obj;
+        return Objects.equals(id, puzzleInput.getId())
+                && Objects.equals(inputData, puzzleInput.getInputData());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, inputData);
     }
 }
