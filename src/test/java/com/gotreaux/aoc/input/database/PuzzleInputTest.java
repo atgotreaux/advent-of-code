@@ -115,6 +115,30 @@ class PuzzleInputTest {
     }
 
     @Test
+    void doesNotInsertIfDuplicate() {
+        RandomGenerator generator = RandomGenerator.getDefault();
+        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        PuzzleInputKey puzzleInputKey = new PuzzleInputKey(puzzle.getYear(), puzzle.getDay());
+        PuzzleInputKey duplicateKey = new PuzzleInputKey(puzzle.getYear(), puzzle.getDay());
+
+        PuzzleInput puzzleInput = new PuzzleInput();
+        puzzleInput.setId(puzzleInputKey);
+        PuzzleInput duplicatePuzzleInput = new PuzzleInput();
+        duplicatePuzzleInput.setId(duplicateKey);
+
+        byte[] bytes = new byte[generator.nextInt(0, 10)];
+        generator.nextBytes(bytes);
+        String inputData = new String(bytes, StandardCharsets.UTF_8);
+        puzzleInput.setInputData(inputData);
+        duplicatePuzzleInput.setInputData(inputData);
+
+        puzzleInputRepository.save(puzzleInput);
+        puzzleInputRepository.save(duplicatePuzzleInput);
+
+        assertEquals(1L, puzzleInputRepository.count());
+    }
+
+    @Test
     void doesNotThrowIfValid() {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
