@@ -2,7 +2,12 @@ package com.gotreaux.aoc.commands;
 
 import static org.awaitility.Awaitility.await;
 
+import com.gotreaux.aoc.input.database.PuzzleInput;
+import com.gotreaux.aoc.input.database.PuzzleInputKey;
+import com.gotreaux.aoc.input.database.PuzzleInputRepository;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.puzzles.year2015.day1.ApartmentFloorPuzzle;
+import com.gotreaux.aoc.puzzles.year2015.day8.MatchsticksPuzzle;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -25,6 +30,7 @@ class SolvePuzzleCommandTest {
     @Autowired private ShellTestClient client;
     @Autowired private List<Puzzle> puzzles;
     @Autowired private MessageSource messageSource;
+    @Autowired private PuzzleInputRepository puzzleInputRepository;
 
     @Test
     void solvePuzzleCommandAvailable() {
@@ -103,5 +109,72 @@ class SolvePuzzleCommandTest {
                         () ->
                                 ShellAssertions.assertThat(session.screen())
                                         .containsText(puzzleTitle));
+    }
+
+    @Test
+    void solvePuzzleFileInput() {
+        MatchsticksPuzzle puzzle = new MatchsticksPuzzle();
+
+        ShellTestClient.NonInteractiveShellSession session =
+                client.nonInterative(
+                                SolvePuzzleCommand.COMMAND_NAME,
+                                "-Y",
+                                String.valueOf(puzzle.getYear()),
+                                "-D",
+                                String.valueOf(puzzle.getDay()),
+                                "-I",
+                                "file")
+                        .run();
+
+        await().atMost(2, TimeUnit.SECONDS)
+                .untilAsserted(
+                        () -> ShellAssertions.assertThat(session.screen()).containsText("12"));
+    }
+
+    @Test
+    void solvePuzzleDatabaseInput() {
+        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
+
+        PuzzleInputKey inputKey = new PuzzleInputKey(puzzle.getYear(), puzzle.getDay());
+        PuzzleInput puzzleInput = new PuzzleInput();
+        puzzleInput.setId(inputKey);
+        puzzleInput.setInputData(")())())");
+
+        puzzleInputRepository.save(puzzleInput);
+
+        ShellTestClient.NonInteractiveShellSession session =
+                client.nonInterative(
+                                SolvePuzzleCommand.COMMAND_NAME,
+                                "-Y",
+                                String.valueOf(puzzle.getYear()),
+                                "-D",
+                                String.valueOf(puzzle.getDay()),
+                                "-I",
+                                "database")
+                        .run();
+
+        await().atMost(2, TimeUnit.SECONDS)
+                .untilAsserted(
+                        () -> ShellAssertions.assertThat(session.screen()).containsText("-3"));
+    }
+
+    @Test
+    void solvePuzzleStringInput() {
+        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
+
+        ShellTestClient.NonInteractiveShellSession session =
+                client.nonInterative(
+                                SolvePuzzleCommand.COMMAND_NAME,
+                                "-Y",
+                                String.valueOf(puzzle.getYear()),
+                                "-D",
+                                String.valueOf(puzzle.getDay()),
+                                "-I",
+                                ")())())")
+                        .run();
+
+        await().atMost(2, TimeUnit.SECONDS)
+                .untilAsserted(
+                        () -> ShellAssertions.assertThat(session.screen()).containsText("-3"));
     }
 }
