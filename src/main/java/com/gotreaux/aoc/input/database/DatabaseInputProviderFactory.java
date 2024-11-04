@@ -12,7 +12,7 @@ public class DatabaseInputProviderFactory {
         this.puzzleInputRepository = puzzleInputRepository;
     }
 
-    public DatabaseInputProvider createDatabaseInputProvider(PuzzleInputKey inputKey) {
-        return new DatabaseInputProvider(puzzleInputRepository, inputKey);
+    public DatabaseInputProvider createDatabaseInputProvider(int year, int day) {
+        return new DatabaseInputProvider(puzzleInputRepository, year, day);
     }
 }

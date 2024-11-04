@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import java.util.Objects;
+import org.springframework.lang.Nullable;
 
 @Entity
 @Table(
@@ -13,24 +14,34 @@ import java.util.Objects;
         uniqueConstraints = @UniqueConstraint(columnNames = {"puzzle_year", "puzzle_day"}))
 public class PuzzleInput {
 
-    @EmbeddedId private PuzzleInputKey id;
+    @EmbeddedId @Nullable private PuzzleInputKey id;
 
     @Column(name = "input_data", nullable = false, columnDefinition = "CLOB")
+    @Nullable
     private String inputData;
 
+    public PuzzleInput() {}
+
+    public PuzzleInput(@Nullable Integer year, @Nullable Integer day, @Nullable String inputData) {
+        id = new PuzzleInputKey(year, day);
+        this.inputData = inputData;
+    }
+
+    @Nullable
     public PuzzleInputKey getId() {
         return id;
     }
 
-    public void setId(PuzzleInputKey id) {
+    public void setId(@Nullable PuzzleInputKey id) {
         this.id = id;
     }
 
+    @Nullable
     public String getInputData() {
         return inputData;
     }
 
-    public void setInputData(String inputData) {
+    public void setInputData(@Nullable String inputData) {
         this.inputData = inputData;
     }
 
@@ -40,11 +51,10 @@ public class PuzzleInput {
             return true;
         }
 
-        if (!(obj instanceof PuzzleInput)) {
+        if (!(obj instanceof PuzzleInput puzzleInput)) {
             return false;
         }
 
-        PuzzleInput puzzleInput = (PuzzleInput) obj;
         return Objects.equals(id, puzzleInput.getId())
                 && Objects.equals(inputData, puzzleInput.getInputData());
     }

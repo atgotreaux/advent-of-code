@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.gotreaux.aoc.input.database.PuzzleInput;
-import com.gotreaux.aoc.input.database.PuzzleInputKey;
 import com.gotreaux.aoc.input.database.PuzzleInputRepository;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.nio.charset.StandardCharsets;
@@ -28,10 +27,9 @@ class DatabaseInputProviderTest {
     void throwsIfNotFound() {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-        PuzzleInputKey puzzleInputKey = new PuzzleInputKey(puzzle.getYear(), puzzle.getDay());
 
         InputProvider inputProvider =
-                new DatabaseInputProvider(puzzleInputRepository, puzzleInputKey);
+                new DatabaseInputProvider(puzzleInputRepository, puzzle.getYear(), puzzle.getDay());
 
         assertThrows(NoSuchElementException.class, inputProvider::getInputString);
     }
@@ -40,20 +38,17 @@ class DatabaseInputProviderTest {
     void inputAsString() throws Exception {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-        PuzzleInputKey puzzleInputKey = new PuzzleInputKey(puzzle.getYear(), puzzle.getDay());
-
-        PuzzleInput puzzleInput = new PuzzleInput();
-        puzzleInput.setId(puzzleInputKey);
 
         byte[] bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
         String inputData = new String(bytes, StandardCharsets.UTF_8);
-        puzzleInput.setInputData(inputData);
+
+        PuzzleInput puzzleInput = new PuzzleInput(puzzle.getYear(), puzzle.getDay(), inputData);
 
         puzzleInputRepository.save(puzzleInput);
 
         InputProvider inputProvider =
-                new DatabaseInputProvider(puzzleInputRepository, puzzleInputKey);
+                new DatabaseInputProvider(puzzleInputRepository, puzzle.getYear(), puzzle.getDay());
 
         assertEquals(puzzleInput.getInputData(), inputProvider.getInputString());
     }
@@ -62,20 +57,17 @@ class DatabaseInputProviderTest {
     void inputAsStream() throws Exception {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-        PuzzleInputKey puzzleInputKey = new PuzzleInputKey(puzzle.getYear(), puzzle.getDay());
-
-        PuzzleInput puzzleInput = new PuzzleInput();
-        puzzleInput.setId(puzzleInputKey);
 
         byte[] bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
         String inputData = new String(bytes, StandardCharsets.UTF_8);
-        puzzleInput.setInputData(inputData);
+
+        PuzzleInput puzzleInput = new PuzzleInput(puzzle.getYear(), puzzle.getDay(), inputData);
 
         puzzleInputRepository.save(puzzleInput);
 
         InputProvider inputProvider =
-                new DatabaseInputProvider(puzzleInputRepository, puzzleInputKey);
+                new DatabaseInputProvider(puzzleInputRepository, puzzle.getYear(), puzzle.getDay());
 
         assertEquals(1L, inputProvider.getInputStream().count());
         assertEquals(
@@ -86,20 +78,17 @@ class DatabaseInputProviderTest {
     void puzzleInputAsList() throws Exception {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-        PuzzleInputKey puzzleInputKey = new PuzzleInputKey(puzzle.getYear(), puzzle.getDay());
-
-        PuzzleInput puzzleInput = new PuzzleInput();
-        puzzleInput.setId(puzzleInputKey);
 
         byte[] bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
         String inputData = new String(bytes, StandardCharsets.UTF_8);
-        puzzleInput.setInputData(inputData);
+
+        PuzzleInput puzzleInput = new PuzzleInput(puzzle.getYear(), puzzle.getDay(), inputData);
 
         puzzleInputRepository.save(puzzleInput);
 
         InputProvider inputProvider =
-                new DatabaseInputProvider(puzzleInputRepository, puzzleInputKey);
+                new DatabaseInputProvider(puzzleInputRepository, puzzle.getYear(), puzzle.getDay());
 
         assertEquals(1, inputProvider.getInputList().size());
         assertEquals(puzzleInput.getInputData(), inputProvider.getInputList().getFirst());

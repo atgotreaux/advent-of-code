@@ -3,7 +3,6 @@ package com.gotreaux.aoc.commands;
 import static org.awaitility.Awaitility.await;
 
 import com.gotreaux.aoc.input.database.PuzzleInput;
-import com.gotreaux.aoc.input.database.PuzzleInputKey;
 import com.gotreaux.aoc.input.database.PuzzleInputRepository;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2015.day1.ApartmentFloorPuzzle;
@@ -135,10 +134,7 @@ class SolvePuzzleCommandTest {
     void solvePuzzleDatabaseInput() {
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
 
-        PuzzleInputKey inputKey = new PuzzleInputKey(puzzle.getYear(), puzzle.getDay());
-        PuzzleInput puzzleInput = new PuzzleInput();
-        puzzleInput.setId(inputKey);
-        puzzleInput.setInputData(")())())");
+        PuzzleInput puzzleInput = new PuzzleInput(puzzle.getYear(), puzzle.getDay(), ")())())");
 
         puzzleInputRepository.save(puzzleInput);
 

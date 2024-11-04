@@ -12,12 +12,13 @@ import java.util.stream.Stream;
 public class DatabaseInputProvider implements InputProvider {
 
     private final PuzzleInputRepository puzzleInputRepository;
-    private final PuzzleInputKey inputKey;
+    private final int year;
+    private final int day;
 
-    public DatabaseInputProvider(
-            PuzzleInputRepository puzzleInputRepository, PuzzleInputKey inputKey) {
+    public DatabaseInputProvider(PuzzleInputRepository puzzleInputRepository, int year, int day) {
         this.puzzleInputRepository = puzzleInputRepository;
-        this.inputKey = inputKey;
+        this.year = year;
+        this.day = day;
     }
 
     @Override
@@ -40,6 +41,8 @@ public class DatabaseInputProvider implements InputProvider {
     }
 
     private String getInputData() throws NoSuchElementException {
+        PuzzleInputKey inputKey = new PuzzleInputKey(year, day);
+
         return puzzleInputRepository
                 .findById(inputKey)
                 .map(PuzzleInput::getInputData)

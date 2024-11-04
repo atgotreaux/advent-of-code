@@ -32,16 +32,12 @@ class PuzzleInputTest {
     void throwsIfEmptyYear() {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-        PuzzleInputKey puzzleInputKey = new PuzzleInputKey();
-        puzzleInputKey.setPuzzleDay(puzzle.getDay());
-
-        PuzzleInput puzzleInput = new PuzzleInput();
-        puzzleInput.setId(puzzleInputKey);
 
         byte[] bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
         String inputData = new String(bytes, StandardCharsets.UTF_8);
-        puzzleInput.setInputData(inputData);
+
+        PuzzleInput puzzleInput = new PuzzleInput(null, puzzle.getDay(), inputData);
 
         assertThrows(DataAccessException.class, () -> puzzleInputRepository.save(puzzleInput));
     }
@@ -50,16 +46,12 @@ class PuzzleInputTest {
     void throwsIfEmptyDay() {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-        PuzzleInputKey puzzleInputKey = new PuzzleInputKey();
-        puzzleInputKey.setPuzzleYear(puzzle.getYear());
-
-        PuzzleInput puzzleInput = new PuzzleInput();
-        puzzleInput.setId(puzzleInputKey);
 
         byte[] bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
         String inputData = new String(bytes, StandardCharsets.UTF_8);
-        puzzleInput.setInputData(inputData);
+
+        PuzzleInput puzzleInput = new PuzzleInput(puzzle.getYear(), null, inputData);
 
         assertThrows(DataAccessException.class, () -> puzzleInputRepository.save(puzzleInput));
     }
@@ -68,10 +60,8 @@ class PuzzleInputTest {
     void throwsIfEmptyInputData() {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-        PuzzleInputKey puzzleInputKey = new PuzzleInputKey(puzzle.getYear(), puzzle.getDay());
 
-        PuzzleInput puzzleInput = new PuzzleInput();
-        puzzleInput.setId(puzzleInputKey);
+        PuzzleInput puzzleInput = new PuzzleInput(puzzle.getYear(), puzzle.getDay(), null);
 
         assertThrows(DataAccessException.class, () -> puzzleInputRepository.save(puzzleInput));
     }
@@ -80,17 +70,14 @@ class PuzzleInputTest {
     void throwsIfInvalidYear() {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-        PuzzleInputKey puzzleInputKey = new PuzzleInputKey();
-        puzzleInputKey.setPuzzleYear(RandomGenerator.getDefault().nextInt(2015));
-        puzzleInputKey.setPuzzleDay(puzzle.getDay());
-
-        PuzzleInput puzzleInput = new PuzzleInput();
-        puzzleInput.setId(puzzleInputKey);
 
         byte[] bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
         String inputData = new String(bytes, StandardCharsets.UTF_8);
-        puzzleInput.setInputData(inputData);
+
+        PuzzleInput puzzleInput =
+                new PuzzleInput(
+                        RandomGenerator.getDefault().nextInt(2015), puzzle.getDay(), inputData);
 
         assertThrows(DataAccessException.class, () -> puzzleInputRepository.save(puzzleInput));
     }
@@ -99,17 +86,13 @@ class PuzzleInputTest {
     void throwsIfInvalidDay() {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-        PuzzleInputKey puzzleInputKey = new PuzzleInputKey();
-        puzzleInputKey.setPuzzleYear(puzzle.getYear());
-        puzzleInputKey.setPuzzleDay(generator.nextInt(26, 32));
-
-        PuzzleInput puzzleInput = new PuzzleInput();
-        puzzleInput.setId(puzzleInputKey);
 
         byte[] bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
         String inputData = new String(bytes, StandardCharsets.UTF_8);
-        puzzleInput.setInputData(inputData);
+
+        PuzzleInput puzzleInput =
+                new PuzzleInput(puzzle.getYear(), generator.nextInt(26, 32), inputData);
 
         assertThrows(DataAccessException.class, () -> puzzleInputRepository.save(puzzleInput));
     }
@@ -118,19 +101,14 @@ class PuzzleInputTest {
     void doesNotInsertIfDuplicate() {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-        PuzzleInputKey puzzleInputKey = new PuzzleInputKey(puzzle.getYear(), puzzle.getDay());
-        PuzzleInputKey duplicateKey = new PuzzleInputKey(puzzle.getYear(), puzzle.getDay());
-
-        PuzzleInput puzzleInput = new PuzzleInput();
-        puzzleInput.setId(puzzleInputKey);
-        PuzzleInput duplicatePuzzleInput = new PuzzleInput();
-        duplicatePuzzleInput.setId(duplicateKey);
 
         byte[] bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
         String inputData = new String(bytes, StandardCharsets.UTF_8);
-        puzzleInput.setInputData(inputData);
-        duplicatePuzzleInput.setInputData(inputData);
+
+        PuzzleInput puzzleInput = new PuzzleInput(puzzle.getYear(), puzzle.getDay(), inputData);
+        PuzzleInput duplicatePuzzleInput =
+                new PuzzleInput(puzzle.getYear(), puzzle.getDay(), inputData);
 
         puzzleInputRepository.save(puzzleInput);
         puzzleInputRepository.save(duplicatePuzzleInput);
@@ -142,15 +120,12 @@ class PuzzleInputTest {
     void doesNotThrowIfValid() {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-        PuzzleInputKey puzzleInputKey = new PuzzleInputKey(puzzle.getYear(), puzzle.getDay());
-
-        PuzzleInput puzzleInput = new PuzzleInput();
-        puzzleInput.setId(puzzleInputKey);
 
         byte[] bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
         String inputData = new String(bytes, StandardCharsets.UTF_8);
-        puzzleInput.setInputData(inputData);
+
+        PuzzleInput puzzleInput = new PuzzleInput(puzzle.getYear(), puzzle.getDay(), inputData);
 
         assertDoesNotThrow(() -> puzzleInputRepository.save(puzzleInput));
         assertEquals(1L, puzzleInputRepository.count());

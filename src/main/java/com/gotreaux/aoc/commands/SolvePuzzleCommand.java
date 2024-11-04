@@ -7,7 +7,6 @@ import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.input.StringInputProvider;
 import com.gotreaux.aoc.input.database.DatabaseInputProviderFactory;
-import com.gotreaux.aoc.input.database.PuzzleInputKey;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.Collection;
@@ -135,11 +134,9 @@ public class SolvePuzzleCommand {
     private InputProvider getInputProvider(Puzzle puzzle, String source) {
         return switch (source) {
             case "file" -> new FileInputProvider(puzzle.getClass());
-            case "database" -> {
-                PuzzleInputKey inputKey = new PuzzleInputKey(puzzle.getYear(), puzzle.getDay());
-
-                yield databaseInputProviderFactory.createDatabaseInputProvider(inputKey);
-            }
+            case "database" ->
+                    databaseInputProviderFactory.createDatabaseInputProvider(
+                            puzzle.getYear(), puzzle.getDay());
             default -> new StringInputProvider(source);
         };
     }

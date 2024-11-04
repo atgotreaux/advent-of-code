@@ -22,10 +22,10 @@ class DatabaseInputProviderFactoryTest {
     void createsDatabaseInputProvider() {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-        PuzzleInputKey puzzleInputKey = new PuzzleInputKey(puzzle.getYear(), puzzle.getDay());
 
         assertInstanceOf(
                 DatabaseInputProvider.class,
-                databaseInputProviderFactory.createDatabaseInputProvider(puzzleInputKey));
+                databaseInputProviderFactory.createDatabaseInputProvider(
+                        puzzle.getYear(), puzzle.getDay()));
     }
 }
