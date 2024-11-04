@@ -29,11 +29,11 @@ public class PuzzleInput {
 
     @Nullable
     public PuzzleInputKey getId() {
-        return id;
+        return id == null ? null : new PuzzleInputKey(id.getPuzzleYear(), id.getPuzzleDay());
     }
 
     public void setId(@Nullable PuzzleInputKey id) {
-        this.id = id;
+        this.id = id == null ? null : new PuzzleInputKey(id.getPuzzleYear(), id.getPuzzleDay());
     }
 
     @Nullable
