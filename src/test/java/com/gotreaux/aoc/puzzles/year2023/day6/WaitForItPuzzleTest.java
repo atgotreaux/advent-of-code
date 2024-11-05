@@ -11,7 +11,7 @@ class WaitForItPuzzleTest {
 
     @Test
     void productOfPossibleWins() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(WaitForItPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(WaitForItPuzzle.class);
 
         WaitForItPuzzle puzzle = new WaitForItPuzzle();
 
@@ -22,7 +22,7 @@ class WaitForItPuzzleTest {
 
     @Test
     void kerningRace() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(WaitForItPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(WaitForItPuzzle.class);
 
         WaitForItPuzzle puzzle = new WaitForItPuzzle();
 

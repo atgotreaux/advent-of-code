@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class TreetopTreeHousePuzzleTest {
     @Test
     void treesVisible() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(TreetopTreeHousePuzzleTest.class);
+        InputProvider inputProvider = new FileInputProvider<>(TreetopTreeHousePuzzleTest.class);
 
         TreetopTreeHousePuzzle puzzle = new TreetopTreeHousePuzzle();
 
@@ -21,7 +21,7 @@ class TreetopTreeHousePuzzleTest {
 
     @Test
     void maxScenicScore() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(TreetopTreeHousePuzzleTest.class);
+        InputProvider inputProvider = new FileInputProvider<>(TreetopTreeHousePuzzleTest.class);
 
         TreetopTreeHousePuzzle puzzle = new TreetopTreeHousePuzzle();
 

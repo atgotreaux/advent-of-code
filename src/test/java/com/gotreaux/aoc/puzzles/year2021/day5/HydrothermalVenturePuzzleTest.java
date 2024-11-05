@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class HydrothermalVenturePuzzleTest {
     @Test
     void overlappingOrthogonalPoints() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(HydrothermalVenturePuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(HydrothermalVenturePuzzle.class);
 
         HydrothermalVenturePuzzle puzzle = new HydrothermalVenturePuzzle();
 
@@ -25,7 +25,7 @@ class HydrothermalVenturePuzzleTest {
 
     @Test
     void allOverlappingPoints() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(HydrothermalVenturePuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(HydrothermalVenturePuzzle.class);
 
         HydrothermalVenturePuzzle puzzle = new HydrothermalVenturePuzzle();
 

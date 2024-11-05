@@ -15,7 +15,7 @@ class SlopeTest {
     @ParameterizedTest
     @MethodSource("provideTreesEncountered")
     void treesEncountered(int right, int down, int expectedTrees) throws Exception {
-        InputProvider inputProvider = new FileInputProvider(TobogganTrajectoryPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(TobogganTrajectoryPuzzle.class);
 
         List<String> input = inputProvider.getInputList();
 

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class MatchsticksPuzzleTest {
     @Test
     void differenceOfLiteralsAndValues() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(MatchsticksPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(MatchsticksPuzzle.class);
 
         MatchsticksPuzzle puzzle = new MatchsticksPuzzle();
 
@@ -21,7 +21,7 @@ class MatchsticksPuzzleTest {
 
     @Test
     void differenceOfEncodedAndLiterals() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(MatchsticksPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(MatchsticksPuzzle.class);
 
         MatchsticksPuzzle puzzle = new MatchsticksPuzzle();
 

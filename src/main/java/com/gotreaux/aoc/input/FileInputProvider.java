@@ -11,15 +11,15 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-public class FileInputProvider implements InputProvider {
+public class FileInputProvider<T> implements InputProvider {
     private static final Pattern SEPARATOR = Pattern.compile("\\.");
     private final String inputPath;
 
-    public FileInputProvider(Class<?> puzzleClass) {
+    public FileInputProvider(Class<T> puzzleClass) {
         this(puzzleClass, "input.txt");
     }
 
-    public FileInputProvider(Class<?> puzzleClass, String fileName) {
+    public FileInputProvider(Class<T> puzzleClass, String fileName) {
         inputPath =
                 SEPARATOR.matcher(puzzleClass.getPackage().getName()).replaceAll("/")
                         + "/"

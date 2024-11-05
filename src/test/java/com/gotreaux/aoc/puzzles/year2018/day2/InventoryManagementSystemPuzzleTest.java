@@ -11,7 +11,7 @@ class InventoryManagementSystemPuzzleTest {
     @Test
     void productOfTwoAndThreeLetterOccurrences() throws Exception {
         InputProvider inputProvider =
-                new FileInputProvider(InventoryManagementSystemPuzzle.class, "ExampleOne.txt");
+                new FileInputProvider<>(InventoryManagementSystemPuzzle.class, "ExampleOne.txt");
 
         InventoryManagementSystemPuzzle puzzle = new InventoryManagementSystemPuzzle();
 
@@ -23,7 +23,7 @@ class InventoryManagementSystemPuzzleTest {
     @Test
     void commonLettersOfCorrectBoxIds() throws Exception {
         InputProvider inputProvider =
-                new FileInputProvider(InventoryManagementSystemPuzzle.class, "ExampleTwo.txt");
+                new FileInputProvider<>(InventoryManagementSystemPuzzle.class, "ExampleTwo.txt");
 
         InventoryManagementSystemPuzzle puzzle = new InventoryManagementSystemPuzzle();
 

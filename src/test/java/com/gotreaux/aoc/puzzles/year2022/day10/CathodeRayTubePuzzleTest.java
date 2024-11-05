@@ -15,7 +15,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class CathodeRayTubePuzzleTest {
     @Test
     void sumOfSignalStrengths() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(CathodeRayTubePuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(CathodeRayTubePuzzle.class);
 
         CathodeRayTubePuzzle puzzle = new CathodeRayTubePuzzle();
 
@@ -27,7 +27,7 @@ class CathodeRayTubePuzzleTest {
     @ParameterizedTest
     @MethodSource("provideSignalStrength")
     void signalStrength(int cycles, int expected) throws Exception {
-        InputProvider inputProvider = new FileInputProvider(CathodeRayTubePuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(CathodeRayTubePuzzle.class);
 
         List<String> input = inputProvider.getInputList();
 

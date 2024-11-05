@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class CamelCardsPuzzleTest {
     @Test
     void jackHands() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(CamelCardsPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(CamelCardsPuzzle.class);
 
         CamelCardsPuzzle puzzle = new CamelCardsPuzzle();
 
@@ -21,7 +21,7 @@ class CamelCardsPuzzleTest {
 
     @Test
     void jokerHands() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(CamelCardsPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(CamelCardsPuzzle.class);
 
         CamelCardsPuzzle puzzle = new CamelCardsPuzzle();
 

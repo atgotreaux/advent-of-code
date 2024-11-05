@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class BinaryDiagnosticPuzzleTest {
     @Test
     void powerConsumption() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(BinaryDiagnosticPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(BinaryDiagnosticPuzzle.class);
 
         BinaryDiagnosticPuzzle puzzle = new BinaryDiagnosticPuzzle();
 
@@ -21,7 +21,7 @@ class BinaryDiagnosticPuzzleTest {
 
     @Test
     void lifeSupportRating() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(BinaryDiagnosticPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(BinaryDiagnosticPuzzle.class);
 
         BinaryDiagnosticPuzzle puzzle = new BinaryDiagnosticPuzzle();
 

@@ -133,7 +133,7 @@ public class SolvePuzzleCommand {
 
     private InputProvider getInputProvider(Puzzle puzzle, String source) {
         return switch (source) {
-            case "file" -> new FileInputProvider(puzzle.getClass());
+            case "file" -> new FileInputProvider<>(puzzle.getClass());
             case "database" ->
                     databaseInputProviderFactory.createDatabaseInputProvider(
                             puzzle.getYear(), puzzle.getDay());

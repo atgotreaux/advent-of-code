@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class TwistyTrampolinesPuzzleTest {
     @Test
     void incrementedStepsToExit() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(TwistyTrampolinesPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(TwistyTrampolinesPuzzle.class);
 
         TwistyTrampolinesPuzzle puzzle = new TwistyTrampolinesPuzzle();
 
@@ -21,7 +21,7 @@ class TwistyTrampolinesPuzzleTest {
 
     @Test
     void strangerStepsToExit() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(TwistyTrampolinesPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(TwistyTrampolinesPuzzle.class);
 
         TwistyTrampolinesPuzzle puzzle = new TwistyTrampolinesPuzzle();
 

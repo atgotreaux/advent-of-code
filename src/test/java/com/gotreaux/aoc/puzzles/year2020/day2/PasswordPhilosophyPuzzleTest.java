@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class PasswordPhilosophyPuzzleTest {
     @Test
     void sumOfValidOccurrencesInRange() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(PasswordPhilosophyPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(PasswordPhilosophyPuzzle.class);
 
         PasswordPhilosophyPuzzle puzzle = new PasswordPhilosophyPuzzle();
 
@@ -21,7 +21,7 @@ class PasswordPhilosophyPuzzleTest {
 
     @Test
     void sumOfValidPositions() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(PasswordPhilosophyPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(PasswordPhilosophyPuzzle.class);
 
         PasswordPhilosophyPuzzle puzzle = new PasswordPhilosophyPuzzle();
 

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class BathroomSecurityPuzzleTest {
     @Test
     void picturedKeypad() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(BathroomSecurityPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(BathroomSecurityPuzzle.class);
 
         BathroomSecurityPuzzle puzzle = new BathroomSecurityPuzzle();
 
@@ -21,7 +21,7 @@ class BathroomSecurityPuzzleTest {
 
     @Test
     void actualBathroomKeypad() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(BathroomSecurityPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(BathroomSecurityPuzzle.class);
 
         BathroomSecurityPuzzle puzzle = new BathroomSecurityPuzzle();
 

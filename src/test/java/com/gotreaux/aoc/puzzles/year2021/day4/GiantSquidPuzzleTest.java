@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class GiantSquidPuzzleTest {
     @Test
     void firstWinningScore() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(GiantSquidPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(GiantSquidPuzzle.class);
 
         GiantSquidPuzzle puzzle = new GiantSquidPuzzle();
 
@@ -21,7 +21,7 @@ class GiantSquidPuzzleTest {
 
     @Test
     void lastWinningScore() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(GiantSquidPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(GiantSquidPuzzle.class);
 
         GiantSquidPuzzle puzzle = new GiantSquidPuzzle();
 

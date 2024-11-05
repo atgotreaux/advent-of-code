@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class SumOfPartsPuzzleTest {
     @Test
     void stepOrder() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(SumOfPartsPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(SumOfPartsPuzzle.class);
 
         SumOfPartsPuzzle puzzle = new SumOfPartsPuzzle();
 

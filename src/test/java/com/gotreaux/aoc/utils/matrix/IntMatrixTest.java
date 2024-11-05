@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2021.day9.SmokeBasinPuzzle;
 import com.gotreaux.aoc.puzzles.year2022.day8.TreetopTreeHousePuzzle;
 import java.util.List;
@@ -16,8 +17,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 class IntMatrixTest {
     @ParameterizedTest
     @MethodSource("provideRowCount")
-    void rowCount(Class<?> puzzleClass, int expectedRowCount) throws Exception {
-        InputProvider inputProvider = new FileInputProvider(puzzleClass);
+    void rowCount(Class<Puzzle> puzzleClass, int expectedRowCount) throws Exception {
+        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
 
         List<String> input = inputProvider.getInputList();
 
@@ -28,8 +29,8 @@ class IntMatrixTest {
 
     @ParameterizedTest
     @MethodSource("provideColCount")
-    void colCount(Class<?> puzzleClass, int expectedColCount) throws Exception {
-        InputProvider inputProvider = new FileInputProvider(puzzleClass);
+    void colCount(Class<Puzzle> puzzleClass, int expectedColCount) throws Exception {
+        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
 
         List<String> input = inputProvider.getInputList();
 
@@ -40,8 +41,8 @@ class IntMatrixTest {
 
     @ParameterizedTest
     @MethodSource("provideGet")
-    void get(Class<?> puzzleClass, int row, int col, int expected) throws Exception {
-        InputProvider inputProvider = new FileInputProvider(puzzleClass);
+    void get(Class<Puzzle> puzzleClass, int row, int col, int expected) throws Exception {
+        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
 
         List<String> input = inputProvider.getInputList();
 
@@ -52,8 +53,8 @@ class IntMatrixTest {
 
     @ParameterizedTest
     @MethodSource("provideUp")
-    void up(Class<?> puzzleClass, int row, int col, Integer[] expected) throws Exception {
-        InputProvider inputProvider = new FileInputProvider(puzzleClass);
+    void up(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) throws Exception {
+        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
 
         List<String> input = inputProvider.getInputList();
 
@@ -64,8 +65,8 @@ class IntMatrixTest {
 
     @ParameterizedTest
     @MethodSource("provideDown")
-    void down(Class<?> puzzleClass, int row, int col, Integer[] expected) throws Exception {
-        InputProvider inputProvider = new FileInputProvider(puzzleClass);
+    void down(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) throws Exception {
+        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
 
         List<String> input = inputProvider.getInputList();
 
@@ -76,8 +77,8 @@ class IntMatrixTest {
 
     @ParameterizedTest
     @MethodSource("provideLeft")
-    void left(Class<?> puzzleClass, int row, int col, Integer[] expected) throws Exception {
-        InputProvider inputProvider = new FileInputProvider(puzzleClass);
+    void left(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) throws Exception {
+        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
 
         List<String> input = inputProvider.getInputList();
 
@@ -88,8 +89,8 @@ class IntMatrixTest {
 
     @ParameterizedTest
     @MethodSource("provideRight")
-    void right(Class<?> puzzleClass, int row, int col, Integer[] expected) throws Exception {
-        InputProvider inputProvider = new FileInputProvider(puzzleClass);
+    void right(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) throws Exception {
+        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
 
         List<String> input = inputProvider.getInputList();
 
@@ -100,8 +101,9 @@ class IntMatrixTest {
 
     @ParameterizedTest
     @MethodSource("provideNeighbors")
-    void neighbors(Class<?> puzzleClass, int row, int col, Integer[] expected) throws Exception {
-        InputProvider inputProvider = new FileInputProvider(puzzleClass);
+    void neighbors(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected)
+            throws Exception {
+        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
 
         List<String> input = inputProvider.getInputList();
 

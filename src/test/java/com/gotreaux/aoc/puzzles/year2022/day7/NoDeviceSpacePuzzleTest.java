@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class NoDeviceSpacePuzzleTest {
     @Test
     void sumOfSmallDirectories() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(NoDeviceSpacePuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(NoDeviceSpacePuzzle.class);
 
         NoDeviceSpacePuzzle puzzle = new NoDeviceSpacePuzzle();
 
@@ -21,7 +21,7 @@ class NoDeviceSpacePuzzleTest {
 
     @Test
     void smallestDirectoryToFree() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(NoDeviceSpacePuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(NoDeviceSpacePuzzle.class);
 
         NoDeviceSpacePuzzle puzzle = new NoDeviceSpacePuzzle();
 

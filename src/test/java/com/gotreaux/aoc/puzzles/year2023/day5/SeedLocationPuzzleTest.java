@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class SeedLocationPuzzleTest {
     @Test
     void lowestLocationNumber() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(SeedLocationPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(SeedLocationPuzzle.class);
 
         SeedLocationPuzzle puzzle = new SeedLocationPuzzle();
 
@@ -21,7 +21,7 @@ class SeedLocationPuzzleTest {
 
     @Test
     void lowestLocationNumberInRange() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(SeedLocationPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(SeedLocationPuzzle.class);
 
         SeedLocationPuzzle puzzle = new SeedLocationPuzzle();
 

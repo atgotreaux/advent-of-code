@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class RockPaperScissorsPuzzleTest {
     @Test
     void encryptedStrategyScore() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(RockPaperScissorsPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(RockPaperScissorsPuzzle.class);
 
         RockPaperScissorsPuzzle puzzle = new RockPaperScissorsPuzzle();
 
@@ -21,7 +21,7 @@ class RockPaperScissorsPuzzleTest {
 
     @Test
     void outcomeStrategyScore() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(RockPaperScissorsPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(RockPaperScissorsPuzzle.class);
 
         RockPaperScissorsPuzzle puzzle = new RockPaperScissorsPuzzle();
 

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class SliceItPuzzleTest {
     @Test
     void overlapArea() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(SliceItPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(SliceItPuzzle.class);
 
         SliceItPuzzle puzzle = new SliceItPuzzle();
 
@@ -21,7 +21,7 @@ class SliceItPuzzleTest {
 
     @Test
     void intactClaim() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(SliceItPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(SliceItPuzzle.class);
 
         SliceItPuzzle puzzle = new SliceItPuzzle();
 

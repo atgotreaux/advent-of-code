@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class CubeConundrumPuzzleTest {
     @Test
     void possibleGames() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(CubeConundrumPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(CubeConundrumPuzzle.class);
 
         CubeConundrumPuzzle puzzle = new CubeConundrumPuzzle();
 
@@ -21,7 +21,7 @@ class CubeConundrumPuzzleTest {
 
     @Test
     void powerOfFewestCubes() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(CubeConundrumPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(CubeConundrumPuzzle.class);
 
         CubeConundrumPuzzle puzzle = new CubeConundrumPuzzle();
 

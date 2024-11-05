@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class RegisterPuzzleTest {
     @Test
     void largestRegisterValue() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(RegisterPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(RegisterPuzzle.class);
 
         RegisterPuzzle puzzle = new RegisterPuzzle();
 
@@ -21,7 +21,7 @@ class RegisterPuzzleTest {
 
     @Test
     void maxRegisterValue() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(RegisterPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(RegisterPuzzle.class);
 
         RegisterPuzzle puzzle = new RegisterPuzzle();
 

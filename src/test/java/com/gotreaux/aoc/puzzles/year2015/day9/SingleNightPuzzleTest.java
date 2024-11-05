@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class SingleNightPuzzleTest {
     @Test
     void shortestDistance() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(SingleNightPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(SingleNightPuzzle.class);
 
         SingleNightPuzzle puzzle = new SingleNightPuzzle();
 
@@ -21,7 +21,7 @@ class SingleNightPuzzleTest {
 
     @Test
     void longestDistance() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(SingleNightPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(SingleNightPuzzle.class);
 
         SingleNightPuzzle puzzle = new SingleNightPuzzle();
 

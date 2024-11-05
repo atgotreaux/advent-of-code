@@ -15,7 +15,7 @@ class ChronalCalibrationPuzzleTest {
     @MethodSource("provideResultingFrequency")
     void resultingFrequency(String fileName, int expectedFrequency) throws Exception {
         InputProvider inputProvider =
-                new FileInputProvider(ChronalCalibrationPuzzle.class, fileName);
+                new FileInputProvider<>(ChronalCalibrationPuzzle.class, fileName);
 
         ChronalCalibrationPuzzle puzzle = new ChronalCalibrationPuzzle();
 
@@ -28,7 +28,7 @@ class ChronalCalibrationPuzzleTest {
     @MethodSource("provideFirstDuplicateFrequency")
     void firstDuplicateFrequency(String fileName, int expectedFrequency) throws Exception {
         InputProvider inputProvider =
-                new FileInputProvider(ChronalCalibrationPuzzle.class, fileName);
+                new FileInputProvider<>(ChronalCalibrationPuzzle.class, fileName);
 
         ChronalCalibrationPuzzle puzzle = new ChronalCalibrationPuzzle();
 

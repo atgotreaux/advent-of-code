@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class DivePuzzleTest {
     @Test
     void productOfPosition() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(DivePuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(DivePuzzle.class);
 
         DivePuzzle puzzle = new DivePuzzle();
 
@@ -21,7 +21,7 @@ class DivePuzzleTest {
 
     @Test
     void productOfPositionWithAim() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(DivePuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(DivePuzzle.class);
 
         DivePuzzle puzzle = new DivePuzzle();
 

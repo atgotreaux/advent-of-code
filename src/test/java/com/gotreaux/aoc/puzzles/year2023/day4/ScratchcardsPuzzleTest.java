@@ -11,7 +11,7 @@ class ScratchcardsPuzzleTest {
 
     @Test
     void scratchcardPoints() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(ScratchcardsPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(ScratchcardsPuzzle.class);
 
         ScratchcardsPuzzle puzzle = new ScratchcardsPuzzle();
 
@@ -22,7 +22,7 @@ class ScratchcardsPuzzleTest {
 
     @Test
     void totalScratchcards() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(ScratchcardsPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(ScratchcardsPuzzle.class);
 
         ScratchcardsPuzzle puzzle = new ScratchcardsPuzzle();
 

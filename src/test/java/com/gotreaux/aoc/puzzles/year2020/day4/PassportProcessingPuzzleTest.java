@@ -15,7 +15,7 @@ class PassportProcessingPuzzleTest {
     @Test
     void requiredFieldPassports() throws Exception {
         InputProvider inputProvider =
-                new FileInputProvider(PassportProcessingPuzzle.class, "RequiredFields.txt");
+                new FileInputProvider<>(PassportProcessingPuzzle.class, "RequiredFields.txt");
 
         PassportProcessingPuzzle puzzle = new PassportProcessingPuzzle();
 
@@ -28,7 +28,7 @@ class PassportProcessingPuzzleTest {
     @MethodSource("provideValidPassports")
     void validPassports(String fileName, int expected) throws Exception {
         InputProvider inputProvider =
-                new FileInputProvider(PassportProcessingPuzzle.class, fileName);
+                new FileInputProvider<>(PassportProcessingPuzzle.class, fileName);
 
         PassportProcessingPuzzle puzzle = new PassportProcessingPuzzle();
 

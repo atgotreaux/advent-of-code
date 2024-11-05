@@ -2,6 +2,7 @@ package com.gotreaux.aoc.input;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2016.day2.BathroomSecurityPuzzle;
 import com.gotreaux.aoc.puzzles.year2018.day2.InventoryManagementSystemPuzzle;
 import com.gotreaux.aoc.puzzles.year2020.day1.ReportRepairPuzzle;
@@ -17,9 +18,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 class FileInputProviderTest {
     @ParameterizedTest
     @MethodSource("provideInputAsStream")
-    void inputAsStream(Class<?> puzzleClass, long expectedCount, String expectedFirstLine)
+    void inputAsStream(Class<Puzzle> puzzleClass, long expectedCount, String expectedFirstLine)
             throws Exception {
-        InputProvider inputProvider = new FileInputProvider(puzzleClass);
+        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
 
         assertEquals(expectedCount, inputProvider.getInputStream().count());
         assertEquals(expectedFirstLine, inputProvider.getInputStream().toList().getFirst());
@@ -27,9 +28,9 @@ class FileInputProviderTest {
 
     @ParameterizedTest
     @MethodSource("provideInputAsList")
-    void inputAsList(Class<?> puzzleClass, long expectedCount, String expectedFirstLine)
+    void inputAsList(Class<Puzzle> puzzleClass, long expectedCount, String expectedFirstLine)
             throws Exception {
-        InputProvider inputProvider = new FileInputProvider(puzzleClass);
+        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
 
         assertEquals(expectedCount, inputProvider.getInputList().size());
         assertEquals(expectedFirstLine, inputProvider.getInputList().getFirst());
@@ -38,9 +39,12 @@ class FileInputProviderTest {
     @ParameterizedTest
     @MethodSource("provideInputFileNameAsList")
     void inputFileNameAsList(
-            Class<?> puzzleClass, String fileName, long expectedCount, String expectedFirstLine)
+            Class<Puzzle> puzzleClass,
+            String fileName,
+            long expectedCount,
+            String expectedFirstLine)
             throws Exception {
-        InputProvider inputProvider = new FileInputProvider(puzzleClass, fileName);
+        InputProvider inputProvider = new FileInputProvider<>(puzzleClass, fileName);
 
         assertEquals(expectedCount, inputProvider.getInputList().size());
         assertEquals(expectedFirstLine, inputProvider.getInputList().getFirst());

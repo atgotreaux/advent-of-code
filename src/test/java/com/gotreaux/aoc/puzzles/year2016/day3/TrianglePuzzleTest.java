@@ -22,7 +22,7 @@ class TrianglePuzzleTest {
 
     @Test
     void validTriangleColumn() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(TrianglePuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(TrianglePuzzle.class);
 
         TrianglePuzzle puzzle = new TrianglePuzzle();
 

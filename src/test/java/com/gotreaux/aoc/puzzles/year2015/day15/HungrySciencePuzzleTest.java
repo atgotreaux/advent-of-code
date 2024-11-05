@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class HungrySciencePuzzleTest {
     @Test
     void highestScoringCookie() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(HungrySciencePuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(HungrySciencePuzzle.class);
 
         HungrySciencePuzzle puzzle = new HungrySciencePuzzle();
 
@@ -21,7 +21,7 @@ class HungrySciencePuzzleTest {
 
     @Test
     void highestScoringCalorieCookie() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(HungrySciencePuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(HungrySciencePuzzle.class);
 
         HungrySciencePuzzle puzzle = new HungrySciencePuzzle();
 

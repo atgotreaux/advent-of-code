@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class SyntaxScoringPuzzleTest {
     @Test
     void totalSyntaxErrorScore() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(SyntaxScoringPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(SyntaxScoringPuzzle.class);
 
         SyntaxScoringPuzzle puzzle = new SyntaxScoringPuzzle();
 
@@ -21,7 +21,7 @@ class SyntaxScoringPuzzleTest {
 
     @Test
     void middleCompletionScore() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(SyntaxScoringPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(SyntaxScoringPuzzle.class);
 
         SyntaxScoringPuzzle puzzle = new SyntaxScoringPuzzle();
 

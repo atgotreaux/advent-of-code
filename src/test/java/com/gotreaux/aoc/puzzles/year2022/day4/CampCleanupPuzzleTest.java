@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class CampCleanupPuzzleTest {
     @Test
     void numberOfAssignmentsContained() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(CampCleanupPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(CampCleanupPuzzle.class);
 
         CampCleanupPuzzle puzzle = new CampCleanupPuzzle();
 
@@ -21,7 +21,7 @@ class CampCleanupPuzzleTest {
 
     @Test
     void numberOfAssignmentsOverlapping() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(CampCleanupPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(CampCleanupPuzzle.class);
 
         CampCleanupPuzzle puzzle = new CampCleanupPuzzle();
 

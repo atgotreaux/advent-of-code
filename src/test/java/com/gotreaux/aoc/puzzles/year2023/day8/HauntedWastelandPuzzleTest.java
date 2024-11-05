@@ -11,7 +11,7 @@ class HauntedWastelandPuzzleTest {
     @Test
     void noRepeatInstructions() throws Exception {
         InputProvider inputProvider =
-                new FileInputProvider(HauntedWastelandPuzzle.class, "NoRepeats.txt");
+                new FileInputProvider<>(HauntedWastelandPuzzle.class, "NoRepeats.txt");
 
         HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle();
 
@@ -23,7 +23,7 @@ class HauntedWastelandPuzzleTest {
     @Test
     void repeatsInstructions() throws Exception {
         InputProvider inputProvider =
-                new FileInputProvider(HauntedWastelandPuzzle.class, "Repeats.txt");
+                new FileInputProvider<>(HauntedWastelandPuzzle.class, "Repeats.txt");
 
         HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle();
 
@@ -35,7 +35,7 @@ class HauntedWastelandPuzzleTest {
     @Test
     void ghostSteps() throws Exception {
         InputProvider inputProvider =
-                new FileInputProvider(HauntedWastelandPuzzle.class, "Repeats.txt");
+                new FileInputProvider<>(HauntedWastelandPuzzle.class, "Repeats.txt");
 
         HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle();
 

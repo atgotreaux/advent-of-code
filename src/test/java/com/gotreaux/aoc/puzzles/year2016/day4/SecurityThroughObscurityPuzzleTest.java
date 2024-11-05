@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class SecurityThroughObscurityPuzzleTest {
     @Test
     void sumOfRealRooms() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(SecurityThroughObscurityPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(SecurityThroughObscurityPuzzle.class);
 
         SecurityThroughObscurityPuzzle puzzle = new SecurityThroughObscurityPuzzle();
 

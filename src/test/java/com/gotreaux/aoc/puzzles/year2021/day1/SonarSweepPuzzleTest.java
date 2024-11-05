@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class SonarSweepPuzzleTest {
     @Test
     void depthMeasurementIncreaseCount() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(SonarSweepPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(SonarSweepPuzzle.class);
 
         SonarSweepPuzzle puzzle = new SonarSweepPuzzle();
 
@@ -21,7 +21,7 @@ class SonarSweepPuzzleTest {
 
     @Test
     void depthMeasurementWindowIncreaseCount() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(SonarSweepPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(SonarSweepPuzzle.class);
 
         SonarSweepPuzzle puzzle = new SonarSweepPuzzle();
 

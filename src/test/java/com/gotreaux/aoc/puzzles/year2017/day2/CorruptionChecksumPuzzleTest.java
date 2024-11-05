@@ -11,7 +11,7 @@ class CorruptionChecksumPuzzleTest {
     @Test
     void checksumDifference() throws Exception {
         InputProvider inputProvider =
-                new FileInputProvider(CorruptionChecksumPuzzle.class, "ExampleOne.txt");
+                new FileInputProvider<>(CorruptionChecksumPuzzle.class, "ExampleOne.txt");
 
         CorruptionChecksumPuzzle puzzle = new CorruptionChecksumPuzzle();
 
@@ -23,7 +23,7 @@ class CorruptionChecksumPuzzleTest {
     @Test
     void checksumDivisibility() throws Exception {
         InputProvider inputProvider =
-                new FileInputProvider(CorruptionChecksumPuzzle.class, "ExampleTwo.txt");
+                new FileInputProvider<>(CorruptionChecksumPuzzle.class, "ExampleTwo.txt");
 
         CorruptionChecksumPuzzle puzzle = new CorruptionChecksumPuzzle();
 

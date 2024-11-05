@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class GearRatiosPuzzleTest {
     @Test
     void sumOfParts() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(GearRatiosPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(GearRatiosPuzzle.class);
 
         GearRatiosPuzzle puzzle = new GearRatiosPuzzle();
 
@@ -21,7 +21,7 @@ class GearRatiosPuzzleTest {
 
     @Test
     void sumOfGearRatios() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(GearRatiosPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(GearRatiosPuzzle.class);
 
         GearRatiosPuzzle puzzle = new GearRatiosPuzzle();
 

@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class BinaryBoardingPuzzleTest {
     @Test
     void highestSeatID() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(BinaryBoardingPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(BinaryBoardingPuzzle.class);
 
         BinaryBoardingPuzzle puzzle = new BinaryBoardingPuzzle();
 

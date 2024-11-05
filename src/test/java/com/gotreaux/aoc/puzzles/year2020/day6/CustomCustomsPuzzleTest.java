@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class CustomCustomsPuzzleTest {
     @Test
     void sumOfAnyoneDeclared() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(CustomCustomsPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(CustomCustomsPuzzle.class);
 
         CustomCustomsPuzzle puzzle = new CustomCustomsPuzzle();
 
@@ -21,7 +21,7 @@ class CustomCustomsPuzzleTest {
 
     @Test
     void sumOfEveryoneDeclared() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(CustomCustomsPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(CustomCustomsPuzzle.class);
 
         CustomCustomsPuzzle puzzle = new CustomCustomsPuzzle();
 

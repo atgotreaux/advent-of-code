@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class ReportRepairPuzzleTest {
     @Test
     void productOfTargetSumWithTwoNumbers() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(ReportRepairPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(ReportRepairPuzzle.class);
 
         ReportRepairPuzzle puzzle = new ReportRepairPuzzle();
 
@@ -21,7 +21,7 @@ class ReportRepairPuzzleTest {
 
     @Test
     void productOfTargetSumWithThreeNumbers() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(ReportRepairPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(ReportRepairPuzzle.class);
 
         ReportRepairPuzzle puzzle = new ReportRepairPuzzle();
 

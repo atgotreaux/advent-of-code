@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class RecursiveCircusPuzzleTest {
     @Test
     void nameOfBottomProgram() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(RecursiveCircusPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(RecursiveCircusPuzzle.class);
 
         RecursiveCircusPuzzle puzzle = new RecursiveCircusPuzzle();
 
@@ -21,7 +21,7 @@ class RecursiveCircusPuzzleTest {
 
     @Test
     void weightOfFixedChild() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(RecursiveCircusPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(RecursiveCircusPuzzle.class);
 
         RecursiveCircusPuzzle puzzle = new RecursiveCircusPuzzle();
 

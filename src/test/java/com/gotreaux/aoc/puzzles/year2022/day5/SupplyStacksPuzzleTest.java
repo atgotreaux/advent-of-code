@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class SupplyStacksPuzzleTest {
     @Test
     void crateMover9000() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(SupplyStacksPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(SupplyStacksPuzzle.class);
 
         SupplyStacksPuzzle puzzle = new SupplyStacksPuzzle();
 
@@ -21,7 +21,7 @@ class SupplyStacksPuzzleTest {
 
     @Test
     void crateMover9001() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(SupplyStacksPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(SupplyStacksPuzzle.class);
 
         SupplyStacksPuzzle puzzle = new SupplyStacksPuzzle();
 

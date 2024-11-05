@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class TobogganTrajectoryPuzzleTest {
     @Test
     void treesEncountered() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(TobogganTrajectoryPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(TobogganTrajectoryPuzzle.class);
 
         TobogganTrajectoryPuzzle puzzle = new TobogganTrajectoryPuzzle();
 
@@ -21,7 +21,7 @@ class TobogganTrajectoryPuzzleTest {
 
     @Test
     void productOfSlopeCandidates() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(TobogganTrajectoryPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(TobogganTrajectoryPuzzle.class);
 
         TobogganTrajectoryPuzzle puzzle = new TobogganTrajectoryPuzzle();
 

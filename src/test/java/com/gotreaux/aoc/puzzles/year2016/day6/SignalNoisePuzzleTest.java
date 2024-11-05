@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class SignalNoisePuzzleTest {
     @Test
     void mostCommonCharMessage() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(SignalNoisePuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(SignalNoisePuzzle.class);
 
         SignalNoisePuzzle puzzle = new SignalNoisePuzzle();
 
@@ -21,7 +21,7 @@ class SignalNoisePuzzleTest {
 
     @Test
     void leastCommonCharMessage() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(SignalNoisePuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(SignalNoisePuzzle.class);
 
         SignalNoisePuzzle puzzle = new SignalNoisePuzzle();
 

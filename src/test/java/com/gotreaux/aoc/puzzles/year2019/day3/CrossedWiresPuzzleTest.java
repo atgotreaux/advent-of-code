@@ -14,7 +14,7 @@ class CrossedWiresPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideClosestIntersectionDistance")
     void closestIntersectionDistance(String fileName, int expected) throws Exception {
-        InputProvider inputProvider = new FileInputProvider(CrossedWiresPuzzle.class, fileName);
+        InputProvider inputProvider = new FileInputProvider<>(CrossedWiresPuzzle.class, fileName);
 
         CrossedWiresPuzzle puzzle = new CrossedWiresPuzzle();
 
@@ -26,7 +26,7 @@ class CrossedWiresPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideClosestIntersectionSteps")
     void closestIntersectionSteps(String fileName, int expected) throws Exception {
-        InputProvider inputProvider = new FileInputProvider(CrossedWiresPuzzle.class, fileName);
+        InputProvider inputProvider = new FileInputProvider<>(CrossedWiresPuzzle.class, fileName);
 
         CrossedWiresPuzzle puzzle = new CrossedWiresPuzzle();
 

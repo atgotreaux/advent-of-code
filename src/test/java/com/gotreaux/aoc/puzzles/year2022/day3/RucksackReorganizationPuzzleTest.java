@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class RucksackReorganizationPuzzleTest {
     @Test
     void sumOfCompartmentPriorities() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(RucksackReorganizationPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(RucksackReorganizationPuzzle.class);
 
         RucksackReorganizationPuzzle puzzle = new RucksackReorganizationPuzzle();
 
@@ -21,7 +21,7 @@ class RucksackReorganizationPuzzleTest {
 
     @Test
     void sumOfGroupPriorities() throws Exception {
-        InputProvider inputProvider = new FileInputProvider(RucksackReorganizationPuzzle.class);
+        InputProvider inputProvider = new FileInputProvider<>(RucksackReorganizationPuzzle.class);
 
         RucksackReorganizationPuzzle puzzle = new RucksackReorganizationPuzzle();
 
