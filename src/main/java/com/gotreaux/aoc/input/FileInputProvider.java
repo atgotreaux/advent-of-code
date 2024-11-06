@@ -1,6 +1,7 @@
 package com.gotreaux.aoc.input;
 
 import com.google.errorprone.annotations.MustBeClosed;
+import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-public class FileInputProvider<T> implements InputProvider {
+public class FileInputProvider<T extends Puzzle> implements InputProvider {
     private static final Pattern SEPARATOR = Pattern.compile("\\.");
     private final String inputPath;
 

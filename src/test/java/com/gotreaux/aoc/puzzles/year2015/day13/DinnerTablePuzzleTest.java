@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class DinnerTablePuzzleTest {
     @Test
     void guestTableOptimalArrangement() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(DinnerTablePuzzleTest.class);
+        InputProvider inputProvider = new FileInputProvider<>(DinnerTablePuzzle.class);
 
         DinnerTablePuzzle puzzle = new DinnerTablePuzzle();
 
