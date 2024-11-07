@@ -2,15 +2,15 @@ package com.gotreaux.aoc.puzzles.year2020.day6;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class CustomCustomsPuzzleTest {
     @Test
     void sumOfAnyoneDeclared() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(CustomCustomsPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(CustomCustomsPuzzle.class);
 
         CustomCustomsPuzzle puzzle = new CustomCustomsPuzzle();
 
@@ -21,7 +21,7 @@ class CustomCustomsPuzzleTest {
 
     @Test
     void sumOfEveryoneDeclared() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(CustomCustomsPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(CustomCustomsPuzzle.class);
 
         CustomCustomsPuzzle puzzle = new CustomCustomsPuzzle();
 

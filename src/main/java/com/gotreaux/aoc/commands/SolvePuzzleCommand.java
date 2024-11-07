@@ -3,8 +3,8 @@ package com.gotreaux.aoc.commands;
 import static java.util.Comparator.comparingInt;
 
 import com.gotreaux.aoc.annotations.ElementsInRange;
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.input.StringInputProvider;
 import com.gotreaux.aoc.input.database.DatabaseInputProviderFactory;
 import com.gotreaux.aoc.output.PuzzleOutput;
@@ -77,9 +77,9 @@ public class SolvePuzzleCommand {
                             longNames = "input",
                             shortNames = 'I',
                             description = "Source of puzzle input",
-                            label = "[database,file,{string}]",
+                            label = "[database,resource,{string}]",
                             arity = CommandRegistration.OptionArity.ZERO_OR_ONE,
-                            defaultValue = "file")
+                            defaultValue = "resource")
                     String source)
             throws Exception {
         TableModelBuilder<String> tableModelBuilder = new TableModelBuilder<>();
@@ -133,7 +133,7 @@ public class SolvePuzzleCommand {
 
     private InputProvider getInputProvider(Puzzle puzzle, String source) {
         return switch (source) {
-            case "file" -> new FileInputProvider<>(puzzle.getClass());
+            case "resource" -> new ResourceInputProvider<>(puzzle.getClass());
             case "database" ->
                     databaseInputProviderFactory.createDatabaseInputProvider(
                             puzzle.getYear(), puzzle.getDay());

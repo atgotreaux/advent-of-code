@@ -3,8 +3,8 @@ package com.gotreaux.aoc.utils.matrix;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2021.day9.SmokeBasinPuzzle;
 import com.gotreaux.aoc.puzzles.year2022.day8.TreetopTreeHousePuzzle;
@@ -18,7 +18,7 @@ class IntMatrixTest {
     @ParameterizedTest
     @MethodSource("provideRowCount")
     void rowCount(Class<Puzzle> puzzleClass, int expectedRowCount) throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
+        InputProvider inputProvider = new ResourceInputProvider<>(puzzleClass);
 
         List<String> input = inputProvider.getInputList();
 
@@ -30,7 +30,7 @@ class IntMatrixTest {
     @ParameterizedTest
     @MethodSource("provideColCount")
     void colCount(Class<Puzzle> puzzleClass, int expectedColCount) throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
+        InputProvider inputProvider = new ResourceInputProvider<>(puzzleClass);
 
         List<String> input = inputProvider.getInputList();
 
@@ -42,7 +42,7 @@ class IntMatrixTest {
     @ParameterizedTest
     @MethodSource("provideGet")
     void get(Class<Puzzle> puzzleClass, int row, int col, int expected) throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
+        InputProvider inputProvider = new ResourceInputProvider<>(puzzleClass);
 
         List<String> input = inputProvider.getInputList();
 
@@ -54,7 +54,7 @@ class IntMatrixTest {
     @ParameterizedTest
     @MethodSource("provideUp")
     void up(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
+        InputProvider inputProvider = new ResourceInputProvider<>(puzzleClass);
 
         List<String> input = inputProvider.getInputList();
 
@@ -66,7 +66,7 @@ class IntMatrixTest {
     @ParameterizedTest
     @MethodSource("provideDown")
     void down(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
+        InputProvider inputProvider = new ResourceInputProvider<>(puzzleClass);
 
         List<String> input = inputProvider.getInputList();
 
@@ -78,7 +78,7 @@ class IntMatrixTest {
     @ParameterizedTest
     @MethodSource("provideLeft")
     void left(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
+        InputProvider inputProvider = new ResourceInputProvider<>(puzzleClass);
 
         List<String> input = inputProvider.getInputList();
 
@@ -90,7 +90,7 @@ class IntMatrixTest {
     @ParameterizedTest
     @MethodSource("provideRight")
     void right(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
+        InputProvider inputProvider = new ResourceInputProvider<>(puzzleClass);
 
         List<String> input = inputProvider.getInputList();
 
@@ -103,7 +103,7 @@ class IntMatrixTest {
     @MethodSource("provideNeighbors")
     void neighbors(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected)
             throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
+        InputProvider inputProvider = new ResourceInputProvider<>(puzzleClass);
 
         List<String> input = inputProvider.getInputList();
 

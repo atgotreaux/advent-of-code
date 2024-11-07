@@ -2,15 +2,15 @@ package com.gotreaux.aoc.puzzles.year2020.day2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class PasswordPhilosophyPuzzleTest {
     @Test
     void sumOfValidOccurrencesInRange() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(PasswordPhilosophyPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(PasswordPhilosophyPuzzle.class);
 
         PasswordPhilosophyPuzzle puzzle = new PasswordPhilosophyPuzzle();
 
@@ -21,7 +21,7 @@ class PasswordPhilosophyPuzzleTest {
 
     @Test
     void sumOfValidPositions() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(PasswordPhilosophyPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(PasswordPhilosophyPuzzle.class);
 
         PasswordPhilosophyPuzzle puzzle = new PasswordPhilosophyPuzzle();
 

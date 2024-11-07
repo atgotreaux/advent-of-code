@@ -2,15 +2,15 @@ package com.gotreaux.aoc.puzzles.year2021.day10;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class SyntaxScoringPuzzleTest {
     @Test
     void totalSyntaxErrorScore() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(SyntaxScoringPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(SyntaxScoringPuzzle.class);
 
         SyntaxScoringPuzzle puzzle = new SyntaxScoringPuzzle();
 
@@ -21,7 +21,7 @@ class SyntaxScoringPuzzleTest {
 
     @Test
     void middleCompletionScore() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(SyntaxScoringPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(SyntaxScoringPuzzle.class);
 
         SyntaxScoringPuzzle puzzle = new SyntaxScoringPuzzle();
 

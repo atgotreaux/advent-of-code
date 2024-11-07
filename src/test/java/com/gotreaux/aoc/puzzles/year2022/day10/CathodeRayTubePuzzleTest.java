@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2022.day10;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.List;
 import java.util.stream.Stream;
@@ -15,7 +15,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class CathodeRayTubePuzzleTest {
     @Test
     void sumOfSignalStrengths() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(CathodeRayTubePuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(CathodeRayTubePuzzle.class);
 
         CathodeRayTubePuzzle puzzle = new CathodeRayTubePuzzle();
 
@@ -27,7 +27,7 @@ class CathodeRayTubePuzzleTest {
     @ParameterizedTest
     @MethodSource("provideSignalStrength")
     void signalStrength(int cycles, int expected) throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(CathodeRayTubePuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(CathodeRayTubePuzzle.class);
 
         List<String> input = inputProvider.getInputList();
 

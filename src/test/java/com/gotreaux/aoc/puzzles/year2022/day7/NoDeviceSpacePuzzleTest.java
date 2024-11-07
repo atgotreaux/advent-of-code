@@ -2,15 +2,15 @@ package com.gotreaux.aoc.puzzles.year2022.day7;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class NoDeviceSpacePuzzleTest {
     @Test
     void sumOfSmallDirectories() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(NoDeviceSpacePuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(NoDeviceSpacePuzzle.class);
 
         NoDeviceSpacePuzzle puzzle = new NoDeviceSpacePuzzle();
 
@@ -21,7 +21,7 @@ class NoDeviceSpacePuzzleTest {
 
     @Test
     void smallestDirectoryToFree() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(NoDeviceSpacePuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(NoDeviceSpacePuzzle.class);
 
         NoDeviceSpacePuzzle puzzle = new NoDeviceSpacePuzzle();
 

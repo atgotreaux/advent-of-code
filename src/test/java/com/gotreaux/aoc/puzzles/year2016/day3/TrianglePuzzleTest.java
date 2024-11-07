@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2016.day3;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.input.StringInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ class TrianglePuzzleTest {
 
     @Test
     void validTriangleColumn() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(TrianglePuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(TrianglePuzzle.class);
 
         TrianglePuzzle puzzle = new TrianglePuzzle();
 

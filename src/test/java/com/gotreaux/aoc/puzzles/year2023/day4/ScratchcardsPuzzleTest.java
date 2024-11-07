@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2023.day4;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ class ScratchcardsPuzzleTest {
 
     @Test
     void scratchcardPoints() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(ScratchcardsPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(ScratchcardsPuzzle.class);
 
         ScratchcardsPuzzle puzzle = new ScratchcardsPuzzle();
 
@@ -22,7 +22,7 @@ class ScratchcardsPuzzleTest {
 
     @Test
     void totalScratchcards() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(ScratchcardsPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(ScratchcardsPuzzle.class);
 
         ScratchcardsPuzzle puzzle = new ScratchcardsPuzzle();
 

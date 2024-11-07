@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2019.day3;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,7 +14,8 @@ class CrossedWiresPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideClosestIntersectionDistance")
     void closestIntersectionDistance(String fileName, int expected) throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(CrossedWiresPuzzle.class, fileName);
+        InputProvider inputProvider =
+                new ResourceInputProvider<>(CrossedWiresPuzzle.class, fileName);
 
         CrossedWiresPuzzle puzzle = new CrossedWiresPuzzle();
 
@@ -26,7 +27,8 @@ class CrossedWiresPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideClosestIntersectionSteps")
     void closestIntersectionSteps(String fileName, int expected) throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(CrossedWiresPuzzle.class, fileName);
+        InputProvider inputProvider =
+                new ResourceInputProvider<>(CrossedWiresPuzzle.class, fileName);
 
         CrossedWiresPuzzle puzzle = new CrossedWiresPuzzle();
 

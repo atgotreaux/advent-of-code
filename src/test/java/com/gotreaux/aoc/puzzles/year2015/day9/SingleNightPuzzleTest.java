@@ -2,15 +2,15 @@ package com.gotreaux.aoc.puzzles.year2015.day9;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class SingleNightPuzzleTest {
     @Test
     void shortestDistance() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(SingleNightPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(SingleNightPuzzle.class);
 
         SingleNightPuzzle puzzle = new SingleNightPuzzle();
 
@@ -21,7 +21,7 @@ class SingleNightPuzzleTest {
 
     @Test
     void longestDistance() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(SingleNightPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(SingleNightPuzzle.class);
 
         SingleNightPuzzle puzzle = new SingleNightPuzzle();
 

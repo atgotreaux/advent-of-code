@@ -2,15 +2,15 @@ package com.gotreaux.aoc.puzzles.year2015.day8;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class MatchsticksPuzzleTest {
     @Test
     void differenceOfLiteralsAndValues() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(MatchsticksPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(MatchsticksPuzzle.class);
 
         MatchsticksPuzzle puzzle = new MatchsticksPuzzle();
 
@@ -21,7 +21,7 @@ class MatchsticksPuzzleTest {
 
     @Test
     void differenceOfEncodedAndLiterals() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(MatchsticksPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(MatchsticksPuzzle.class);
 
         MatchsticksPuzzle puzzle = new MatchsticksPuzzle();
 

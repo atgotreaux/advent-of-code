@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2020.day5;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class BinaryBoardingPuzzleTest {
     @Test
     void highestSeatID() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(BinaryBoardingPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(BinaryBoardingPuzzle.class);
 
         BinaryBoardingPuzzle puzzle = new BinaryBoardingPuzzle();
 

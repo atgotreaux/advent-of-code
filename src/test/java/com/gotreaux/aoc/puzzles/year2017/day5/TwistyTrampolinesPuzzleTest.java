@@ -2,15 +2,15 @@ package com.gotreaux.aoc.puzzles.year2017.day5;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class TwistyTrampolinesPuzzleTest {
     @Test
     void incrementedStepsToExit() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(TwistyTrampolinesPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(TwistyTrampolinesPuzzle.class);
 
         TwistyTrampolinesPuzzle puzzle = new TwistyTrampolinesPuzzle();
 
@@ -21,7 +21,7 @@ class TwistyTrampolinesPuzzleTest {
 
     @Test
     void strangerStepsToExit() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(TwistyTrampolinesPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(TwistyTrampolinesPuzzle.class);
 
         TwistyTrampolinesPuzzle puzzle = new TwistyTrampolinesPuzzle();
 

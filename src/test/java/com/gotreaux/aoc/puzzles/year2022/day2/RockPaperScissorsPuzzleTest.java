@@ -2,15 +2,15 @@ package com.gotreaux.aoc.puzzles.year2022.day2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class RockPaperScissorsPuzzleTest {
     @Test
     void encryptedStrategyScore() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(RockPaperScissorsPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(RockPaperScissorsPuzzle.class);
 
         RockPaperScissorsPuzzle puzzle = new RockPaperScissorsPuzzle();
 
@@ -21,7 +21,7 @@ class RockPaperScissorsPuzzleTest {
 
     @Test
     void outcomeStrategyScore() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(RockPaperScissorsPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(RockPaperScissorsPuzzle.class);
 
         RockPaperScissorsPuzzle puzzle = new RockPaperScissorsPuzzle();
 

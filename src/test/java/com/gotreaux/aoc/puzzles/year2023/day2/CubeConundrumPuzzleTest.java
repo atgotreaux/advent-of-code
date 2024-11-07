@@ -2,15 +2,15 @@ package com.gotreaux.aoc.puzzles.year2023.day2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class CubeConundrumPuzzleTest {
     @Test
     void possibleGames() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(CubeConundrumPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(CubeConundrumPuzzle.class);
 
         CubeConundrumPuzzle puzzle = new CubeConundrumPuzzle();
 
@@ -21,7 +21,7 @@ class CubeConundrumPuzzleTest {
 
     @Test
     void powerOfFewestCubes() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(CubeConundrumPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(CubeConundrumPuzzle.class);
 
         CubeConundrumPuzzle puzzle = new CubeConundrumPuzzle();
 

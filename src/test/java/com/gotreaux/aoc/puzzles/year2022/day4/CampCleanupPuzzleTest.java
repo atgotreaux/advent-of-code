@@ -2,15 +2,15 @@ package com.gotreaux.aoc.puzzles.year2022.day4;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class CampCleanupPuzzleTest {
     @Test
     void numberOfAssignmentsContained() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(CampCleanupPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(CampCleanupPuzzle.class);
 
         CampCleanupPuzzle puzzle = new CampCleanupPuzzle();
 
@@ -21,7 +21,7 @@ class CampCleanupPuzzleTest {
 
     @Test
     void numberOfAssignmentsOverlapping() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(CampCleanupPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(CampCleanupPuzzle.class);
 
         CampCleanupPuzzle puzzle = new CampCleanupPuzzle();
 

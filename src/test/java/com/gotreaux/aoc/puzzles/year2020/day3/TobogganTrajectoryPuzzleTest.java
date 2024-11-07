@@ -2,15 +2,15 @@ package com.gotreaux.aoc.puzzles.year2020.day3;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class TobogganTrajectoryPuzzleTest {
     @Test
     void treesEncountered() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(TobogganTrajectoryPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(TobogganTrajectoryPuzzle.class);
 
         TobogganTrajectoryPuzzle puzzle = new TobogganTrajectoryPuzzle();
 
@@ -21,7 +21,7 @@ class TobogganTrajectoryPuzzleTest {
 
     @Test
     void productOfSlopeCandidates() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(TobogganTrajectoryPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(TobogganTrajectoryPuzzle.class);
 
         TobogganTrajectoryPuzzle puzzle = new TobogganTrajectoryPuzzle();
 

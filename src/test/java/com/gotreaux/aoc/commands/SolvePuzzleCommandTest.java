@@ -111,7 +111,7 @@ class SolvePuzzleCommandTest {
     }
 
     @Test
-    void solvePuzzleFileInput() {
+    void solvePuzzleResourceInput() {
         MatchsticksPuzzle puzzle = new MatchsticksPuzzle();
 
         ShellTestClient.NonInteractiveShellSession session =
@@ -122,7 +122,7 @@ class SolvePuzzleCommandTest {
                                 "-D",
                                 String.valueOf(puzzle.getDay()),
                                 "-I",
-                                "file")
+                                "resource")
                         .run();
 
         await().atMost(2, TimeUnit.SECONDS)

@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2023.day8;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ class HauntedWastelandPuzzleTest {
     @Test
     void noRepeatInstructions() throws Exception {
         InputProvider inputProvider =
-                new FileInputProvider<>(HauntedWastelandPuzzle.class, "NoRepeats.txt");
+                new ResourceInputProvider<>(HauntedWastelandPuzzle.class, "NoRepeats.txt");
 
         HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle();
 
@@ -23,7 +23,7 @@ class HauntedWastelandPuzzleTest {
     @Test
     void repeatsInstructions() throws Exception {
         InputProvider inputProvider =
-                new FileInputProvider<>(HauntedWastelandPuzzle.class, "Repeats.txt");
+                new ResourceInputProvider<>(HauntedWastelandPuzzle.class, "Repeats.txt");
 
         HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle();
 
@@ -35,7 +35,7 @@ class HauntedWastelandPuzzleTest {
     @Test
     void ghostSteps() throws Exception {
         InputProvider inputProvider =
-                new FileInputProvider<>(HauntedWastelandPuzzle.class, "Repeats.txt");
+                new ResourceInputProvider<>(HauntedWastelandPuzzle.class, "Repeats.txt");
 
         HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle();
 

@@ -2,15 +2,15 @@ package com.gotreaux.aoc.puzzles.year2017.day8;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class RegisterPuzzleTest {
     @Test
     void largestRegisterValue() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(RegisterPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(RegisterPuzzle.class);
 
         RegisterPuzzle puzzle = new RegisterPuzzle();
 
@@ -21,7 +21,7 @@ class RegisterPuzzleTest {
 
     @Test
     void maxRegisterValue() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(RegisterPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(RegisterPuzzle.class);
 
         RegisterPuzzle puzzle = new RegisterPuzzle();
 

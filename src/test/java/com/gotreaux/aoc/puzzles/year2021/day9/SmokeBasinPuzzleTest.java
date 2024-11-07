@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2021.day9;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.utils.matrix.IntMatrix;
 import java.util.List;
@@ -16,7 +16,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class SmokeBasinPuzzleTest {
     @Test
     void sumOfRiskLevels() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(SmokeBasinPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(SmokeBasinPuzzle.class);
 
         SmokeBasinPuzzle puzzle = new SmokeBasinPuzzle();
 
@@ -27,7 +27,7 @@ class SmokeBasinPuzzleTest {
 
     @Test
     void productOfLargestBasins() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(SmokeBasinPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(SmokeBasinPuzzle.class);
 
         SmokeBasinPuzzle puzzle = new SmokeBasinPuzzle();
 
@@ -39,7 +39,7 @@ class SmokeBasinPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideBasinSize")
     void basinSize(int row, int col, int expectedSize) throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(SmokeBasinPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(SmokeBasinPuzzle.class);
 
         List<String> input = inputProvider.getInputList();
 

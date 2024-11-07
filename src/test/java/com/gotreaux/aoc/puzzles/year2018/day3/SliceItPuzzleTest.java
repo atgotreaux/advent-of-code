@@ -2,15 +2,15 @@ package com.gotreaux.aoc.puzzles.year2018.day3;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class SliceItPuzzleTest {
     @Test
     void overlapArea() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(SliceItPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(SliceItPuzzle.class);
 
         SliceItPuzzle puzzle = new SliceItPuzzle();
 
@@ -21,7 +21,7 @@ class SliceItPuzzleTest {
 
     @Test
     void intactClaim() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(SliceItPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(SliceItPuzzle.class);
 
         SliceItPuzzle puzzle = new SliceItPuzzle();
 

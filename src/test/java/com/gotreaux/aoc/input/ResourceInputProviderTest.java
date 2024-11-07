@@ -15,12 +15,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class FileInputProviderTest {
+class ResourceInputProviderTest {
     @ParameterizedTest
     @MethodSource("provideInputAsStream")
     void inputAsStream(Class<Puzzle> puzzleClass, long expectedCount, String expectedFirstLine)
             throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
+        InputProvider inputProvider = new ResourceInputProvider<>(puzzleClass);
 
         assertEquals(expectedCount, inputProvider.getInputStream().count());
         assertEquals(expectedFirstLine, inputProvider.getInputStream().toList().getFirst());
@@ -30,7 +30,7 @@ class FileInputProviderTest {
     @MethodSource("provideInputAsList")
     void inputAsList(Class<Puzzle> puzzleClass, long expectedCount, String expectedFirstLine)
             throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(puzzleClass);
+        InputProvider inputProvider = new ResourceInputProvider<>(puzzleClass);
 
         assertEquals(expectedCount, inputProvider.getInputList().size());
         assertEquals(expectedFirstLine, inputProvider.getInputList().getFirst());
@@ -44,7 +44,7 @@ class FileInputProviderTest {
             long expectedCount,
             String expectedFirstLine)
             throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(puzzleClass, fileName);
+        InputProvider inputProvider = new ResourceInputProvider<>(puzzleClass, fileName);
 
         assertEquals(expectedCount, inputProvider.getInputList().size());
         assertEquals(expectedFirstLine, inputProvider.getInputList().getFirst());

@@ -2,15 +2,15 @@ package com.gotreaux.aoc.puzzles.year2021.day4;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class GiantSquidPuzzleTest {
     @Test
     void firstWinningScore() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(GiantSquidPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(GiantSquidPuzzle.class);
 
         GiantSquidPuzzle puzzle = new GiantSquidPuzzle();
 
@@ -21,7 +21,7 @@ class GiantSquidPuzzleTest {
 
     @Test
     void lastWinningScore() throws Exception {
-        InputProvider inputProvider = new FileInputProvider<>(GiantSquidPuzzle.class);
+        InputProvider inputProvider = new ResourceInputProvider<>(GiantSquidPuzzle.class);
 
         GiantSquidPuzzle puzzle = new GiantSquidPuzzle();
 
