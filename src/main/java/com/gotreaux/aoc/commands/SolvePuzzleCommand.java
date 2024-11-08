@@ -3,12 +3,16 @@ package com.gotreaux.aoc.commands;
 import static java.util.Comparator.comparingInt;
 
 import com.gotreaux.aoc.annotations.ElementsInRange;
+import com.gotreaux.aoc.input.FileInputProvider;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.input.ResourceInputProvider;
 import com.gotreaux.aoc.input.StringInputProvider;
 import com.gotreaux.aoc.input.database.DatabaseInputProviderFactory;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
@@ -77,7 +81,7 @@ public class SolvePuzzleCommand {
                             longNames = "input",
                             shortNames = 'I',
                             description = "Source of puzzle input",
-                            label = "[database,resource,{string}]",
+                            label = "[database,resource,{filePath},{string}]",
                             arity = CommandRegistration.OptionArity.ZERO_OR_ONE,
                             defaultValue = "resource")
                     String source)
@@ -133,11 +137,18 @@ public class SolvePuzzleCommand {
 
     private InputProvider getInputProvider(Puzzle puzzle, String source) {
         return switch (source) {
-            case "resource" -> new ResourceInputProvider<>(puzzle.getClass());
             case "database" ->
                     databaseInputProviderFactory.createDatabaseInputProvider(
                             puzzle.getYear(), puzzle.getDay());
-            default -> new StringInputProvider(source);
+            case "resource" -> new ResourceInputProvider<>(puzzle.getClass());
+            default -> {
+                Path filePath = Paths.get(source);
+                if (Files.exists(filePath) && Files.isRegularFile(filePath)) {
+                    yield new FileInputProvider(filePath.toString());
+                }
+
+                yield new StringInputProvider(source);
+            }
         };
     }
 
