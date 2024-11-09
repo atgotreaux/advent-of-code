@@ -1,14 +1,23 @@
 package com.gotreaux.aoc.input;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.random.RandomGenerator;
 import org.junit.jupiter.api.Test;
 
 class FileInputProviderTest {
+    @Test
+    void throwsIfFileNotFound() {
+        InputProvider inputProvider = new FileInputProvider("input.txt");
+
+        assertThrows(NoSuchFileException.class, inputProvider::getInputString);
+    }
+
     @Test
     void inputAsString() throws Exception {
         RandomGenerator generator = RandomGenerator.getDefault();

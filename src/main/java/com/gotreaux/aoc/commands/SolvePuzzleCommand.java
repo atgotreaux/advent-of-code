@@ -144,9 +144,11 @@ public class SolvePuzzleCommand {
             default -> {
                 Path filePath = Paths.get(source);
                 if (Files.exists(filePath) && Files.isRegularFile(filePath)) {
+                    logger.debug("Creating FileInputProvider with path '{}'", source);
                     yield new FileInputProvider(filePath.toString());
                 }
 
+                logger.debug("Creating StringInputProvider with input '{}'", source);
                 yield new StringInputProvider(source);
             }
         };

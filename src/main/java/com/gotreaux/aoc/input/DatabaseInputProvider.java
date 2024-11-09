@@ -4,7 +4,6 @@ import com.gotreaux.aoc.input.database.PuzzleInput;
 import com.gotreaux.aoc.input.database.PuzzleInputKey;
 import com.gotreaux.aoc.input.database.PuzzleInputRepository;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
@@ -27,14 +26,14 @@ public class DatabaseInputProvider implements InputProvider {
     }
 
     @Override
-    public Stream<String> getInputStream() throws IOException, URISyntaxException {
+    public Stream<String> getInputStream() throws IOException, NoSuchElementException {
         String puzzleInput = getInputData();
 
         return Stream.of(puzzleInput.split("\n"));
     }
 
     @Override
-    public List<String> getInputList() throws IOException, URISyntaxException {
+    public List<String> getInputList() throws IOException, NoSuchElementException {
         String puzzleInput = getInputData();
 
         return List.of(puzzleInput.split("\n"));
