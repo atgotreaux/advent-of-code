@@ -7,10 +7,15 @@ import com.gotreaux.aoc.input.database.PuzzleInputRepository;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2015.day1.ApartmentFloorPuzzle;
 import com.gotreaux.aoc.puzzles.year2015.day8.MatchsticksPuzzle;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.random.RandomGenerator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -167,6 +172,35 @@ class SolvePuzzleCommandTest {
                                 String.valueOf(puzzle.getDay()),
                                 "-I",
                                 ")())())")
+                        .run();
+
+        await().atMost(2, TimeUnit.SECONDS)
+                .untilAsserted(
+                        () -> ShellAssertions.assertThat(session.screen()).containsText("-3"));
+    }
+
+    @Test
+    void solvePuzzleFileInput() throws Exception {
+        Path path = Files.createTempFile("input", ".txt");
+        Files.writeString(path, ")())())");
+        String inputPath =
+                path.toAbsolutePath()
+                        .toString()
+                        .replaceAll(
+                                Pattern.quote(File.separator),
+                                Matcher.quoteReplacement(File.separator.repeat(2)));
+
+        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
+
+        ShellTestClient.NonInteractiveShellSession session =
+                client.nonInterative(
+                                SolvePuzzleCommand.COMMAND_NAME,
+                                "-Y",
+                                String.valueOf(puzzle.getYear()),
+                                "-D",
+                                String.valueOf(puzzle.getDay()),
+                                "-I",
+                                "\"" + inputPath + "\"")
                         .run();
 
         await().atMost(2, TimeUnit.SECONDS)
