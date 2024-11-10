@@ -1,23 +1,24 @@
 package com.gotreaux.aoc.puzzles.year2015.day12;
 
-import java.util.function.Function;
-import java.util.stream.IntStream;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import static java.util.stream.StreamSupport.stream;
 
-class NoRedSumNumbersFunction implements Function<Object, Integer> {
+import com.fasterxml.jackson.databind.JsonNode;
+import java.util.function.Function;
+
+class NoRedSumNumbersFunction implements Function<JsonNode, Integer> {
     @Override
-    public Integer apply(Object o) {
-        return switch (o) {
-            case Integer i -> i;
-            case JSONArray array ->
-                    IntStream.range(0, array.length()).map(i -> apply(array.get(i))).sum();
-            case JSONObject obj -> {
-                if (obj.keySet().stream().anyMatch(key -> obj.get(key).equals("red"))) {
+    public Integer apply(JsonNode jsonNode) {
+        return switch (jsonNode) {
+            case JsonNode node when node.isNumber() -> node.asInt();
+            case JsonNode node when node.isObject() -> {
+                if (stream(node.spliterator(), false)
+                        .anyMatch(child -> child.isTextual() && child.asText().equals("red"))) {
                     yield 0;
                 }
-                yield obj.keySet().stream().mapToInt(key -> apply(obj.get(key))).sum();
+                yield stream(node.spliterator(), false).mapToInt(this::apply).sum();
             }
+            case JsonNode node when node.isArray() ->
+                    stream(node.spliterator(), false).mapToInt(this::apply).sum();
             default -> 0;
         };
     }

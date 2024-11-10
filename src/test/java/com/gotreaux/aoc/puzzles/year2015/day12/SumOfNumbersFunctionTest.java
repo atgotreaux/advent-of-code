@@ -2,9 +2,10 @@ package com.gotreaux.aoc.puzzles.year2015.day12;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.stream.Stream;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -12,16 +13,18 @@ import org.junit.jupiter.params.provider.MethodSource;
 class SumOfNumbersFunctionTest {
     @ParameterizedTest
     @MethodSource("provideApply")
-    void apply(Object o, int expected) {
-        NoRedSumNumbersFunction function = new NoRedSumNumbersFunction();
+    void apply(JsonNode jsonNode, int expected) {
+        SumOfNumbersFunction function = new SumOfNumbersFunction();
 
-        assertEquals(expected, function.apply(o));
+        assertEquals(expected, function.apply(jsonNode));
     }
 
-    private static Stream<Arguments> provideApply() {
+    private static Stream<Arguments> provideApply() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+
         return Stream.of(
-                Arguments.of(new JSONArray("[1,2,3]"), 6),
-                Arguments.of(new JSONObject("{\"a\":2,\"b\":4}"), 6),
-                Arguments.of(new JSONArray("[[[3]]]"), 3));
+                Arguments.of(mapper.readTree("[1,2,3]"), 6),
+                Arguments.of(mapper.readTree("{\"a\":2,\"b\":4}"), 6),
+                Arguments.of(mapper.readTree("[[[3]]]"), 3));
     }
 }

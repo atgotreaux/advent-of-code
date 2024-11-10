@@ -1,11 +1,12 @@
 package com.gotreaux.aoc.puzzles.year2015.day12;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gotreaux.aoc.input.InputProvider;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import org.json.JSONTokener;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,15 +21,14 @@ public class AbacusFrameworkPuzzle extends Puzzle {
             throws IOException, URISyntaxException {
         String input = inputProvider.getInputString();
 
-        JSONTokener tokener = new JSONTokener(input);
-        Object json = tokener.nextValue();
-        tokener.close();
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode jsonNode = mapper.readTree(input);
 
         SumOfNumbersFunction sumOfNumbersFunction = new SumOfNumbersFunction();
-        int sumOfNumbers = sumOfNumbersFunction.apply(json);
+        int sumOfNumbers = sumOfNumbersFunction.apply(jsonNode);
 
         NoRedSumNumbersFunction noRedSumNumbersFunction = new NoRedSumNumbersFunction();
-        int noRedSumNumbers = noRedSumNumbersFunction.apply(json);
+        int noRedSumNumbers = noRedSumNumbersFunction.apply(jsonNode);
 
         return new PuzzleOutput<>(sumOfNumbers, noRedSumNumbers);
     }
