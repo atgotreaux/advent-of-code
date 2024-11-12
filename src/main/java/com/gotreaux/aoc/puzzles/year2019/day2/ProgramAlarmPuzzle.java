@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2019.day2;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -17,9 +17,9 @@ public class ProgramAlarmPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException, IllegalArgumentException {
-        String input = inputProvider.getInputString();
+        String input = inputReader.getInputString();
 
         int[] program = Arrays.stream(input.split(",")).mapToInt(Integer::parseInt).toArray();
         int length = program.length;

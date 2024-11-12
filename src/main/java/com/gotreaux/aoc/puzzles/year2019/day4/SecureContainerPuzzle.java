@@ -4,7 +4,7 @@ import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -22,9 +22,9 @@ public class SecureContainerPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
-        Scanner scanner = new Scanner(inputProvider.getInputString());
+        Scanner scanner = new Scanner(inputReader.getInputString());
         scanner.useDelimiter("-");
         int start = scanner.nextInt();
         int stop = scanner.nextInt();

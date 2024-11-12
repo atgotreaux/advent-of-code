@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -28,5 +28,5 @@ public abstract class Puzzle {
         return day;
     }
 
-    public abstract PuzzleOutput<?, ?> solve(InputProvider inputProvider) throws Exception;
+    public abstract PuzzleOutput<?, ?> solve(InputReader inputReader) throws Exception;
 }

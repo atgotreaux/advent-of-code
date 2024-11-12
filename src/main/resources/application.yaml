@@ -2,6 +2,10 @@ logging:
   file:
     path: logs
 spring:
+  jpa:
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
   main:
     banner-mode: off
     web-application-type: none

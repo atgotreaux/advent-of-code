@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2015.day1;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -16,12 +16,12 @@ public class ApartmentFloorPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException, NoSuchElementException {
         int floor = 0;
         int positionBasementReached = Integer.MAX_VALUE;
 
-        String input = inputProvider.getInputString();
+        String input = inputReader.getInputString();
         for (int i = 0; i < input.length(); i++) {
             Instruction instruction = Instruction.fromLabel(input.charAt(i));
             switch (instruction) {

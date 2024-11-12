@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2022.day5;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -25,12 +25,12 @@ public class SupplyStacksPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, String> solve(InputProvider inputProvider)
+    public PuzzleOutput<String, String> solve(InputReader inputReader)
             throws IOException, URISyntaxException, NumberFormatException {
         Deque<RearrangeProcedure> procedures = new ArrayDeque<>();
         Map<Integer, Deque<Character>> stacks = new HashMap<>();
 
-        List<String> input = inputProvider.getInputList();
+        List<String> input = inputReader.getInputList();
         for (int lineIndex = input.size() - 1; lineIndex >= 0; lineIndex--) {
             String line = input.get(lineIndex);
             if (line.startsWith("move")) {

@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2015.day12;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.input.StringInputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
+import com.gotreaux.aoc.input.reader.StringInputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,11 +14,11 @@ class AbacusFrameworkPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideSumOfNumbers")
     void sumOfNumbers(String input, int expected) throws Exception {
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
         AbacusFrameworkPuzzle puzzle = new AbacusFrameworkPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(expected, output.partOne());
     }
@@ -26,11 +26,11 @@ class AbacusFrameworkPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideNoRedSumNumbers")
     void noRedSumNumbers(String input, int expected) throws Exception {
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
         AbacusFrameworkPuzzle puzzle = new AbacusFrameworkPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(expected, output.partTwo());
     }

@@ -1,4 +1,4 @@
-package com.gotreaux.aoc.input;
+package com.gotreaux.aoc.input.reader;
 
 import com.google.errorprone.annotations.MustBeClosed;
 import com.gotreaux.aoc.puzzles.Puzzle;
@@ -12,15 +12,15 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-public class ResourceInputProvider<T extends Puzzle> implements InputProvider {
+public class ResourceInputReader<T extends Puzzle> implements InputReader {
     private static final Pattern SEPARATOR = Pattern.compile("\\.");
     private final String inputPath;
 
-    public ResourceInputProvider(Class<T> puzzleClass) {
+    public ResourceInputReader(Class<T> puzzleClass) {
         this(puzzleClass, "input.txt");
     }
 
-    public ResourceInputProvider(Class<T> puzzleClass, String fileName) {
+    public ResourceInputReader(Class<T> puzzleClass, String fileName) {
         inputPath =
                 SEPARATOR.matcher(puzzleClass.getPackage().getName()).replaceAll("/")
                         + "/"

@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2015.day3;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.CardinalDirection;
@@ -20,9 +20,9 @@ public class SphericalHousesPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException, NoSuchElementException {
-        String input = inputProvider.getInputString();
+        String input = inputReader.getInputString();
         int length = input.length();
 
         Set<Point> houseDeliveries = new HashSet<>(length);

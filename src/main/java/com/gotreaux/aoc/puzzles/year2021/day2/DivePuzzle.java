@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2021.day2;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.awt.Point;
@@ -18,14 +18,14 @@ public class DivePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException, IllegalArgumentException {
         Point position = new Point();
 
         int aim = 0;
         Point positionWithAim = new Point();
 
-        for (String line : inputProvider.getInputList()) {
+        for (String line : inputReader.getInputList()) {
             Scanner scanner = new Scanner(line);
 
             Command command = Command.valueOf(scanner.next().toUpperCase(Locale.getDefault()));

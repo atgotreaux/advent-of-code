@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2020.day1;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -18,12 +18,12 @@ public class ReportRepairPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
         int productOfTwoMultiples = 0;
         int productOfThreeMultiples = 0;
 
-        List<Integer> expenses = inputProvider.getInputStream().map(Integer::parseInt).toList();
+        List<Integer> expenses = inputReader.getInputStream().map(Integer::parseInt).toList();
 
         for (int i = 0; i < expenses.size() - 2; i++) {
             for (int j = i + 1; j < expenses.size() - 1; j++) {

@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2023.day6;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -20,12 +20,12 @@ public class WaitForItPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader)
             throws IOException, URISyntaxException, NumberFormatException {
         List<Long> times = new ArrayList<>();
         List<Long> recordDistances = new ArrayList<>();
 
-        for (String line : inputProvider.getInputList()) {
+        for (String line : inputReader.getInputList()) {
             if (line.startsWith("Time:")) {
                 Scanner scanner = new Scanner(line.replace("Time:", ""));
                 while (scanner.hasNextLong()) {

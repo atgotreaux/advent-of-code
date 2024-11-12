@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2015.day11;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2015.day11.functions.ForbiddenCharsPredicate;
@@ -21,9 +21,9 @@ public class CorporatePolicyPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, String> solve(InputProvider inputProvider)
+    public PuzzleOutput<String, String> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
-        String nextPassword = inputProvider.getInputString();
+        String nextPassword = inputReader.getInputString();
 
         Function<String, String> incrementPassword = new IncrementPasswordFunction();
         Predicate<String> requirements =

@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2017.day9;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.input.StringInputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
+import com.gotreaux.aoc.input.reader.StringInputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,11 +14,11 @@ class StreamProcessingPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideTotalScore")
     void totalScore(String input, int expectedScore) throws Exception {
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
         StreamProcessingPuzzle puzzle = new StreamProcessingPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(expectedScore, output.partOne());
     }
@@ -26,11 +26,11 @@ class StreamProcessingPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideGarbageCount")
     void garbageCount(String input, int expectedCount) throws Exception {
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
         StreamProcessingPuzzle puzzle = new StreamProcessingPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(expectedCount, output.partTwo());
     }

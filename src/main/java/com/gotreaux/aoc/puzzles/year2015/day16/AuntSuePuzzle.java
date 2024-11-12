@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2015.day16;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -20,9 +20,9 @@ public class AuntSuePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<?, ?> solve(InputProvider inputProvider)
+    public PuzzleOutput<?, ?> solve(InputReader inputReader)
             throws IOException, URISyntaxException, NoSuchElementException {
-        List<Aunt> aunts = inputProvider.getInputStream().map(AuntSuePuzzle::parseAunt).toList();
+        List<Aunt> aunts = inputReader.getInputStream().map(AuntSuePuzzle::parseAunt).toList();
 
         MFCSAM mfcsam = new MFCSAM(3, 7, 2, 3, 0, 0, 5, 3, 2, 1);
 

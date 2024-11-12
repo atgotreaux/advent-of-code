@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2021.day5;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -19,10 +19,10 @@ public class HydrothermalVenturePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
         Collection<Line> lines =
-                inputProvider.getInputStream().map(HydrothermalVenturePuzzle::parseLine).toList();
+                inputReader.getInputStream().map(HydrothermalVenturePuzzle::parseLine).toList();
 
         long overlappingOrthogonalPoints =
                 lines.stream()

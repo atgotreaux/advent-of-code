@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2020.day4;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import jakarta.validation.Validation;
@@ -22,7 +22,7 @@ public class PassportProcessingPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
         int requiredFieldPassports = 0;
         int validPassports = 0;
@@ -31,7 +31,7 @@ public class PassportProcessingPuzzle extends Puzzle {
         Validator validator = factory.getValidator();
         Map<String, String> fields = new HashMap<>(8);
 
-        List<String> input = inputProvider.getInputList();
+        List<String> input = inputReader.getInputList();
         for (int i = 0; i <= input.size(); i++) {
             String line = i == input.size() ? "" : input.get(i);
             if (line.isEmpty()) {

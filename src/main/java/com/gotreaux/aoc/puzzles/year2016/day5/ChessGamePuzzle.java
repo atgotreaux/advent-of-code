@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2016.day5;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -21,9 +21,9 @@ public class ChessGamePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, String> solve(InputProvider inputProvider)
+    public PuzzleOutput<String, String> solve(InputReader inputReader)
             throws IOException, URISyntaxException, NoSuchAlgorithmException {
-        String doorID = inputProvider.getInputString();
+        String doorID = inputReader.getInputString();
 
         StringBuilder nextCharBuilder = new StringBuilder(8);
         Map<Integer, Integer> positionPasswordMapping = new HashMap<>();

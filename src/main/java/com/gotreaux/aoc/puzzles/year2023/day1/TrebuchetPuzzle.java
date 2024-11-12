@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2023.day1;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -16,7 +16,7 @@ public class TrebuchetPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
         int calibrationValue = 0;
         int calibrationValueWithDigits = 0;
@@ -24,7 +24,7 @@ public class TrebuchetPuzzle extends Puzzle {
         List<String> digitWords =
                 List.of("one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
 
-        for (String line : inputProvider.getInputList()) {
+        for (String line : inputReader.getInputList()) {
             StringBuilder calibrationValues = new StringBuilder(line.length());
             StringBuilder calibrationValuesWithDigits = new StringBuilder(line.length());
 

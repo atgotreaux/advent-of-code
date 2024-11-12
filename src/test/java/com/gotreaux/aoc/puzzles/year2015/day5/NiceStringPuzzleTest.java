@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2015.day5;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.input.StringInputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
+import com.gotreaux.aoc.input.reader.StringInputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,11 +14,11 @@ class NiceStringPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideNiceString")
     void niceString(String input, int expectedCount) throws Exception {
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
         NiceStringPuzzle puzzle = new NiceStringPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputReader);
 
         assertEquals(expectedCount, output.partOne());
     }
@@ -26,11 +26,11 @@ class NiceStringPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideNiceStringBetterModel")
     void niceStringBetterModel(String input, int expectedCount) throws Exception {
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
         NiceStringPuzzle puzzle = new NiceStringPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputReader);
 
         assertEquals(expectedCount, output.partTwo());
     }

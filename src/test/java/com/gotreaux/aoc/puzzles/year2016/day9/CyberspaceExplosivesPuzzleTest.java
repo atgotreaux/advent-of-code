@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2016.day9;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.input.StringInputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
+import com.gotreaux.aoc.input.reader.StringInputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,11 +14,11 @@ class CyberspaceExplosivesPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideDecompressedLength")
     void decompressedLength(String input, long expected) throws Exception {
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
         CyberspaceExplosivesPuzzle puzzle = new CyberspaceExplosivesPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputReader);
 
         assertEquals(expected, output.partOne());
     }
@@ -26,11 +26,11 @@ class CyberspaceExplosivesPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideDecompressedRecursiveLength")
     void decompressedRecursiveLength(String input, long expected) throws Exception {
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
         CyberspaceExplosivesPuzzle puzzle = new CyberspaceExplosivesPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Long, Long> output = puzzle.solve(inputReader);
 
         assertEquals(expected, output.partTwo());
     }

@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2016.day2;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.RelativeDirection;
@@ -19,7 +19,7 @@ public class BathroomSecurityPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, String> solve(InputProvider inputProvider)
+    public PuzzleOutput<String, String> solve(InputReader inputReader)
             throws IOException, URISyntaxException, NoSuchElementException {
         Key imaginedKey = new Key("5", "2", "8", "4", "6");
         Collection<Key> imaginedKeys =
@@ -53,7 +53,7 @@ public class BathroomSecurityPuzzle extends Puzzle {
                         new Key("D", "B", "D", "D", "D"));
         Keypad actualKeypad = new Keypad(actualKeys);
 
-        Collection<String> input = inputProvider.getInputList();
+        Collection<String> input = inputReader.getInputList();
         StringBuilder imaginedBathroomCode = new StringBuilder(input.size());
         StringBuilder actualBathroomCode = new StringBuilder(input.size());
 

@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2023.day8;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.RelativeDirection;
@@ -24,7 +24,7 @@ public class HauntedWastelandPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader)
             throws IOException,
                     URISyntaxException,
                     NoSuchElementException,
@@ -32,7 +32,7 @@ public class HauntedWastelandPuzzle extends Puzzle {
         List<RelativeDirection> directions = new ArrayList<>();
         List<Node> nodes = new ArrayList<>();
 
-        for (String line : inputProvider.getInputList()) {
+        for (String line : inputReader.getInputList()) {
             if (DIRECTION_LINE.matcher(line).matches()) {
                 for (int i = 0; i < line.length(); i++) {
                     directions.add(RelativeDirection.fromLabel(line.charAt(i)));

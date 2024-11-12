@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2016.day1;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.CardinalDirection;
@@ -24,7 +24,7 @@ public class TaxicabPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException, NoSuchElementException, NumberFormatException {
         CardinalDirection direction = CardinalDirection.NORTH;
         Point position = new Point();
@@ -33,7 +33,7 @@ public class TaxicabPuzzle extends Puzzle {
         Collection<Point> visitedPositions = new ArrayList<>();
         visitedPositions.add(position);
 
-        String input = inputProvider.getInputString();
+        String input = inputReader.getInputString();
         for (String step : INSTRUCTION_SEPARATOR.split(input)) {
             RelativeDirection relativeDirection = RelativeDirection.fromLabel(step.charAt(0));
             direction = direction.turn(relativeDirection);

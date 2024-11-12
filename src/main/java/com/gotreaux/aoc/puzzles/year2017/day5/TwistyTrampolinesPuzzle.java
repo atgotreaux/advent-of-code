@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2017.day5;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -17,9 +17,9 @@ public class TwistyTrampolinesPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
-        int[] input = inputProvider.getInputStream().mapToInt(Integer::parseInt).toArray();
+        int[] input = inputReader.getInputStream().mapToInt(Integer::parseInt).toArray();
 
         int incrementedSteps = getStepsToExit(input, i -> i + 1);
         int strangerSteps = getStepsToExit(input, i -> i >= 3 ? i - 1 : i + 1);

@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2021.day9;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.input.ResourceInputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
+import com.gotreaux.aoc.input.reader.ResourceInputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.utils.matrix.IntMatrix;
 import java.util.List;
@@ -16,22 +16,22 @@ import org.junit.jupiter.params.provider.MethodSource;
 class SmokeBasinPuzzleTest {
     @Test
     void sumOfRiskLevels() throws Exception {
-        InputProvider inputProvider = new ResourceInputProvider<>(SmokeBasinPuzzle.class);
+        InputReader inputReader = new ResourceInputReader<>(SmokeBasinPuzzle.class);
 
         SmokeBasinPuzzle puzzle = new SmokeBasinPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(15, output.partOne());
     }
 
     @Test
     void productOfLargestBasins() throws Exception {
-        InputProvider inputProvider = new ResourceInputProvider<>(SmokeBasinPuzzle.class);
+        InputReader inputReader = new ResourceInputReader<>(SmokeBasinPuzzle.class);
 
         SmokeBasinPuzzle puzzle = new SmokeBasinPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(1134, output.partTwo());
     }
@@ -39,9 +39,9 @@ class SmokeBasinPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideBasinSize")
     void basinSize(int row, int col, int expectedSize) throws Exception {
-        InputProvider inputProvider = new ResourceInputProvider<>(SmokeBasinPuzzle.class);
+        InputReader inputReader = new ResourceInputReader<>(SmokeBasinPuzzle.class);
 
-        List<String> input = inputProvider.getInputList();
+        List<String> input = inputReader.getInputList();
 
         IntMatrix matrix = new IntMatrix(input);
 

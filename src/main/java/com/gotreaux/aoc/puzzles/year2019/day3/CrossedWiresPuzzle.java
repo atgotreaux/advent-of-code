@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2019.day3;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.RelativeDirection;
@@ -21,9 +21,9 @@ public class CrossedWiresPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException, NoSuchElementException, NumberFormatException {
-        List<String> input = inputProvider.getInputList();
+        List<String> input = inputReader.getInputList();
 
         List<Point> firstWirePositions = getWirePositions(input.getFirst());
         List<Point> lastWirePositions = getWirePositions(input.getLast());

@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2021.day10;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -20,9 +20,9 @@ public class SyntaxScoringPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Long> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Long> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
-        List<String> input = inputProvider.getInputList();
+        List<String> input = inputReader.getInputList();
 
         int totalSyntaxErrorScore = 0;
         List<Long> completionScores = new ArrayList<>();

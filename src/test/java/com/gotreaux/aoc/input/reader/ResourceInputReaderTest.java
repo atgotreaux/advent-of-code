@@ -1,4 +1,4 @@
-package com.gotreaux.aoc.input;
+package com.gotreaux.aoc.input.reader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,25 +15,25 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class ResourceInputProviderTest {
+class ResourceInputReaderTest {
     @ParameterizedTest
     @MethodSource("provideInputAsStream")
     void inputAsStream(Class<Puzzle> puzzleClass, long expectedCount, String expectedFirstLine)
             throws Exception {
-        InputProvider inputProvider = new ResourceInputProvider<>(puzzleClass);
+        InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
-        assertEquals(expectedCount, inputProvider.getInputStream().count());
-        assertEquals(expectedFirstLine, inputProvider.getInputStream().toList().getFirst());
+        assertEquals(expectedCount, inputReader.getInputStream().count());
+        assertEquals(expectedFirstLine, inputReader.getInputStream().toList().getFirst());
     }
 
     @ParameterizedTest
     @MethodSource("provideInputAsList")
     void inputAsList(Class<Puzzle> puzzleClass, long expectedCount, String expectedFirstLine)
             throws Exception {
-        InputProvider inputProvider = new ResourceInputProvider<>(puzzleClass);
+        InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
-        assertEquals(expectedCount, inputProvider.getInputList().size());
-        assertEquals(expectedFirstLine, inputProvider.getInputList().getFirst());
+        assertEquals(expectedCount, inputReader.getInputList().size());
+        assertEquals(expectedFirstLine, inputReader.getInputList().getFirst());
     }
 
     @ParameterizedTest
@@ -44,10 +44,10 @@ class ResourceInputProviderTest {
             long expectedCount,
             String expectedFirstLine)
             throws Exception {
-        InputProvider inputProvider = new ResourceInputProvider<>(puzzleClass, fileName);
+        InputReader inputReader = new ResourceInputReader<>(puzzleClass, fileName);
 
-        assertEquals(expectedCount, inputProvider.getInputList().size());
-        assertEquals(expectedFirstLine, inputProvider.getInputList().getFirst());
+        assertEquals(expectedCount, inputReader.getInputList().size());
+        assertEquals(expectedFirstLine, inputReader.getInputList().getFirst());
     }
 
     private static Stream<Arguments> provideInputAsStream() {

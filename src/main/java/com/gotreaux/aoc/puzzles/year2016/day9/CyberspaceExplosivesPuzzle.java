@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2016.day9;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -16,9 +16,9 @@ public class CyberspaceExplosivesPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
-        String input = inputProvider.getInputString();
+        String input = inputReader.getInputString();
 
         long decompressedLength = decompress(input, false);
         long decompressedRecursiveLength = decompress(input, true);

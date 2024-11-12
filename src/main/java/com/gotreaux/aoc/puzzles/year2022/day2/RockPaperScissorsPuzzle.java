@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2022.day2;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -17,12 +17,12 @@ public class RockPaperScissorsPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException, NoSuchElementException {
         int encryptedStrategyScore = 0;
         int outcomeStrategyScore = 0;
 
-        for (String line : inputProvider.getInputList()) {
+        for (String line : inputReader.getInputList()) {
             Scanner scanner = new Scanner(line);
             char opponentLabel = scanner.next().charAt(0);
             char strategyLabel = scanner.next().charAt(0);

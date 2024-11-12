@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2016.day6;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -22,9 +22,9 @@ public class SignalNoisePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, String> solve(InputProvider inputProvider)
+    public PuzzleOutput<String, String> solve(InputReader inputReader)
             throws IOException, URISyntaxException, NoSuchElementException {
-        List<String> input = inputProvider.getInputList();
+        List<String> input = inputReader.getInputList();
         int length = input.getFirst().length();
 
         Comparator<Map.Entry<Integer, Long>> mostCommonComparator = Map.Entry.comparingByValue();

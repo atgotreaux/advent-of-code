@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2020.day3;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.input.ResourceInputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
+import com.gotreaux.aoc.input.reader.ResourceInputReader;
 import com.gotreaux.aoc.utils.matrix.CharMatrix;
 import java.util.List;
 import java.util.stream.Stream;
@@ -15,9 +15,9 @@ class SlopeTest {
     @ParameterizedTest
     @MethodSource("provideTreesEncountered")
     void treesEncountered(int right, int down, int expectedTrees) throws Exception {
-        InputProvider inputProvider = new ResourceInputProvider<>(TobogganTrajectoryPuzzle.class);
+        InputReader inputReader = new ResourceInputReader<>(TobogganTrajectoryPuzzle.class);
 
-        List<String> input = inputProvider.getInputList();
+        List<String> input = inputReader.getInputList();
 
         CharMatrix matrix = new CharMatrix(input);
 

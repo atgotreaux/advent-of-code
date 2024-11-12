@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2021.day1;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -17,9 +17,9 @@ public class SonarSweepPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
-        List<Integer> measurements = inputProvider.getInputStream().map(Integer::parseInt).toList();
+        List<Integer> measurements = inputReader.getInputStream().map(Integer::parseInt).toList();
 
         List<Integer> windows =
                 IntStream.range(0, measurements.size() - 3 + 1)

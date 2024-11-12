@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2020.day6;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -17,12 +17,12 @@ public class CustomCustomsPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
         Collection<PassengerGroup> passengerGroups = new ArrayList<>();
 
         Collection<String> passengerDeclarations = new ArrayList<>();
-        for (String line : inputProvider.getInputList()) {
+        for (String line : inputReader.getInputList()) {
             if (line.isBlank()) {
                 passengerGroups.add(new PassengerGroup(passengerDeclarations));
                 passengerDeclarations = new ArrayList<>();

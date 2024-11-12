@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2021.day7;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.MathUtils;
@@ -20,9 +20,9 @@ public class WhaleTreacheryPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException, NoSuchElementException {
-        String input = inputProvider.getInputString();
+        String input = inputReader.getInputString();
 
         List<Integer> positions = Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
 

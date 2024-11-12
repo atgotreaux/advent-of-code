@@ -1,4 +1,4 @@
-package com.gotreaux.aoc.input;
+package com.gotreaux.aoc.input.reader;
 
 import com.google.errorprone.annotations.MustBeClosed;
 import java.io.IOException;
@@ -8,10 +8,10 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class FileInputProvider implements InputProvider {
+public class FileInputReader implements InputReader {
     private final String inputPath;
 
-    public FileInputProvider(String inputPath) {
+    public FileInputReader(String inputPath) {
         this.inputPath = inputPath;
     }
 

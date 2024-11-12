@@ -1,10 +1,10 @@
-package com.gotreaux.aoc.input;
+package com.gotreaux.aoc.input.reader;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-public record StringInputProvider(String inputString) implements InputProvider {
+public record StringInputReader(String inputString) implements InputReader {
 
     @Override
     public String getInputString() {

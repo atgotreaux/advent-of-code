@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2017.day6;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -20,9 +20,9 @@ public class MemoryReallocationPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
-        String input = inputProvider.getInputString();
+        String input = inputReader.getInputString();
 
         Scanner scanner = new Scanner(input);
         List<Integer> banks = new ArrayList<>();

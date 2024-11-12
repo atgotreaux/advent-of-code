@@ -4,7 +4,7 @@ import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -21,9 +21,9 @@ public class InventoryManagementSystemPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, String> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, String> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
-        List<String> lines = inputProvider.getInputList();
+        List<String> lines = inputReader.getInputList();
 
         int boxIdsWithTwoOfLetter = 0;
         int boxIdsWithThreeOfLetter = 0;

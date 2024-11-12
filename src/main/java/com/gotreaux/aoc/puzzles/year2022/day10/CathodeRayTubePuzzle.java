@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2022.day10;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -17,9 +17,9 @@ public class CathodeRayTubePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
-        List<String> input = inputProvider.getInputList();
+        List<String> input = inputReader.getInputList();
 
         int sumOfSignalStrengths =
                 IntStream.rangeClosed(0, 5).map(i -> getSignalStrength(input, i * 40 + 20)).sum();

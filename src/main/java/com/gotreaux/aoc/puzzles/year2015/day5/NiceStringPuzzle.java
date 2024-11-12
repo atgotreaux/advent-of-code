@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2015.day5;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -25,10 +25,10 @@ public class NiceStringPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
         long niceStringCount =
-                inputProvider
+                inputReader
                         .getInputStream()
                         .filter(s -> THREE_VOWELS.matcher(s).replaceAll("").length() >= 3)
                         .filter(s -> REPEATED_CHARACTER.matcher(s).matches())
@@ -36,7 +36,7 @@ public class NiceStringPuzzle extends Puzzle {
                         .count();
 
         long niceStringBetterModelCount =
-                inputProvider
+                inputReader
                         .getInputStream()
                         .filter(s -> PAIR_REPEATED.matcher(s).matches())
                         .filter(s -> REPEATED_WITH_SEPARATOR.matcher(s).matches())

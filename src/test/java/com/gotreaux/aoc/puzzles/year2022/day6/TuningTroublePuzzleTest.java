@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2022.day6;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.input.StringInputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
+import com.gotreaux.aoc.input.reader.StringInputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,11 +14,11 @@ class TuningTroublePuzzleTest {
     @ParameterizedTest
     @MethodSource("provideStartOfPacketMarker")
     void startOfPacketMarker(String input, int expected) throws Exception {
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
         TuningTroublePuzzle puzzle = new TuningTroublePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(expected, output.partOne());
     }
@@ -26,11 +26,11 @@ class TuningTroublePuzzleTest {
     @ParameterizedTest
     @MethodSource("provideStartOfMessageMarker")
     void startOfMessageMarker(String input, int expected) throws Exception {
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
         TuningTroublePuzzle puzzle = new TuningTroublePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(expected, output.partTwo());
     }

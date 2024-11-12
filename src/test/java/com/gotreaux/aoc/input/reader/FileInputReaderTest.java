@@ -1,4 +1,4 @@
-package com.gotreaux.aoc.input;
+package com.gotreaux.aoc.input.reader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -10,12 +10,12 @@ import java.nio.file.Path;
 import java.util.random.RandomGenerator;
 import org.junit.jupiter.api.Test;
 
-class FileInputProviderTest {
+class FileInputReaderTest {
     @Test
     void throwsIfFileNotFound() {
-        InputProvider inputProvider = new FileInputProvider("input.txt");
+        InputReader inputReader = new FileInputReader("input.txt");
 
-        assertThrows(NoSuchFileException.class, inputProvider::getInputString);
+        assertThrows(NoSuchFileException.class, inputReader::getInputString);
     }
 
     @Test
@@ -28,9 +28,9 @@ class FileInputProviderTest {
         Path path = Files.createTempFile("input", ".txt");
         Files.writeString(path, input);
 
-        InputProvider inputProvider = new FileInputProvider(path.toAbsolutePath().toString());
+        InputReader inputReader = new FileInputReader(path.toAbsolutePath().toString());
 
-        assertEquals(input, inputProvider.getInputString());
+        assertEquals(input, inputReader.getInputString());
     }
 
     @Test
@@ -43,10 +43,10 @@ class FileInputProviderTest {
         Path path = Files.createTempFile("input", ".txt");
         Files.writeString(path, input);
 
-        InputProvider inputProvider = new FileInputProvider(path.toAbsolutePath().toString());
+        InputReader inputReader = new FileInputReader(path.toAbsolutePath().toString());
 
-        assertEquals(1, inputProvider.getInputStream().count());
-        assertEquals(input, inputProvider.getInputStream().toList().getFirst());
+        assertEquals(1, inputReader.getInputStream().count());
+        assertEquals(input, inputReader.getInputStream().toList().getFirst());
     }
 
     @Test
@@ -59,9 +59,9 @@ class FileInputProviderTest {
         Path path = Files.createTempFile("input", ".txt");
         Files.writeString(path, input);
 
-        InputProvider inputProvider = new FileInputProvider(path.toAbsolutePath().toString());
+        InputReader inputReader = new FileInputReader(path.toAbsolutePath().toString());
 
-        assertEquals(1, inputProvider.getInputList().size());
-        assertEquals(input, inputProvider.getInputList().getFirst());
+        assertEquals(1, inputReader.getInputList().size());
+        assertEquals(input, inputReader.getInputList().getFirst());
     }
 }

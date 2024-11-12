@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2018.day1;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class ChronalCalibrationPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException, ParseException {
         int resultingFrequency = Integer.MAX_VALUE;
         int firstDuplicateFrequency = Integer.MAX_VALUE;
@@ -33,7 +33,7 @@ public class ChronalCalibrationPuzzle extends Puzzle {
         reachedFrequencies.add(frequency);
 
         int frequencyPosition = 0;
-        List<String> frequencyChanges = inputProvider.getInputList();
+        List<String> frequencyChanges = inputReader.getInputList();
         while (firstDuplicateFrequency == Integer.MAX_VALUE) {
             frequency += format.parse(frequencyChanges.get(frequencyPosition)).intValue();
 

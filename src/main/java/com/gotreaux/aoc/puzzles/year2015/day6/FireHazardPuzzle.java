@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2015.day6;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -19,12 +19,12 @@ public class FireHazardPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader)
             throws IOException, URISyntaxException, NoSuchElementException, NumberFormatException {
         boolean[][] lightGrid = new boolean[GRID_DIMENSION][GRID_DIMENSION];
         int[][] brightnessGrid = new int[GRID_DIMENSION][GRID_DIMENSION];
 
-        for (String line : inputProvider.getInputList()) {
+        for (String line : inputReader.getInputList()) {
             Instruction instruction = Instruction.fromLine(line);
 
             String[] coordinates =

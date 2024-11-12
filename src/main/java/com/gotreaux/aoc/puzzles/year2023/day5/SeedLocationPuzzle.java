@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2023.day5;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -19,7 +19,7 @@ public class SeedLocationPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
         Collection<Long> seeds = new ArrayList<>();
         Collection<SeedRange> seedRanges = new ArrayList<>();
@@ -27,7 +27,7 @@ public class SeedLocationPuzzle extends Puzzle {
         Collection<List<AlmanacRange>> maps = new ArrayList<>();
         List<AlmanacRange> map = new ArrayList<>();
 
-        for (String line : inputProvider.getInputList()) {
+        for (String line : inputReader.getInputList()) {
             if (line.startsWith("seeds:")) {
                 Scanner scanner = new Scanner(line.replace("seeds: ", ""));
                 while (scanner.hasNextLong()) {

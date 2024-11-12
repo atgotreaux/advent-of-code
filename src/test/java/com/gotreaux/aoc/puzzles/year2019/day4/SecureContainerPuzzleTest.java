@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2019.day4;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.input.StringInputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
+import com.gotreaux.aoc.input.reader.StringInputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,11 +14,11 @@ class SecureContainerPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideValidPasswords")
     void validPasswords(String input, int expected) throws Exception {
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
         SecureContainerPuzzle puzzle = new SecureContainerPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(expected, output.partOne());
     }
@@ -26,11 +26,11 @@ class SecureContainerPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideValidPasswordsNoLargerGroups")
     void validPasswordsNoLargerGroups(String input, int expected) throws Exception {
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
         SecureContainerPuzzle puzzle = new SecureContainerPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(expected, output.partTwo());
     }

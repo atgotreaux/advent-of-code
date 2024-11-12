@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2015.day7;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2015.day7.gate.AndGate;
@@ -26,10 +26,10 @@ public class SomeAssemblyRequiredPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException, NoSuchElementException {
         Collection<Wire> wires =
-                inputProvider.getInputStream().map(SomeAssemblyRequiredPuzzle::parseWire).toList();
+                inputReader.getInputStream().map(SomeAssemblyRequiredPuzzle::parseWire).toList();
         Circuit firstCircuit = new Circuit(wires);
         int signalA = firstCircuit.evaluate("a");
 

@@ -1,11 +1,11 @@
-package com.gotreaux.aoc.input;
+package com.gotreaux.aoc.input.reader;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Stream;
 
-public interface InputProvider {
+public interface InputReader {
     String getInputString() throws IOException, URISyntaxException;
 
     Stream<String> getInputStream() throws IOException, URISyntaxException;

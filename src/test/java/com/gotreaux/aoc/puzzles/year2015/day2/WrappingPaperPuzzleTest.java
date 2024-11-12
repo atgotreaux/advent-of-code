@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2015.day2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.input.StringInputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
+import com.gotreaux.aoc.input.reader.StringInputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,11 +14,11 @@ class WrappingPaperPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideWrappingPaperOrderTotal")
     void wrappingPaperOrderTotal(String input, int expectedOrderTotal) throws Exception {
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
         WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(expectedOrderTotal, output.partOne());
     }
@@ -26,11 +26,11 @@ class WrappingPaperPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideRibbonOrderTotal")
     void ribbonOrderTotal(String input, int expectedOrderTotal) throws Exception {
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
         WrappingPaperPuzzle puzzle = new WrappingPaperPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(expectedOrderTotal, output.partTwo());
     }

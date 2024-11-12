@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2015.day1;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.input.StringInputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
+import com.gotreaux.aoc.input.reader.StringInputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
@@ -15,22 +15,22 @@ class ApartmentFloorPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideFloorFromInstructions")
     void floorFromInstructions(String input, int expectedFloor) throws Exception {
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(expectedFloor, output.partOne());
     }
 
     @Test
     void positionBasementReached() throws Exception {
-        InputProvider inputProvider = new StringInputProvider("()())");
+        InputReader inputReader = new StringInputReader("()())");
 
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(5, output.partTwo());
     }

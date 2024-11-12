@@ -5,7 +5,7 @@ import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toMap;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -23,10 +23,10 @@ public class LanternfishPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
         Map<Integer, Long> lanternfish =
-                Arrays.stream(inputProvider.getInputString().split(","))
+                Arrays.stream(inputReader.getInputString().split(","))
                         .map(Integer::parseInt)
                         .collect(groupingBy(identity(), counting()));
 

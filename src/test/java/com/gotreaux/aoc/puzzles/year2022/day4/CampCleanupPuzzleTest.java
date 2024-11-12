@@ -2,30 +2,30 @@ package com.gotreaux.aoc.puzzles.year2022.day4;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.input.ResourceInputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
+import com.gotreaux.aoc.input.reader.ResourceInputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class CampCleanupPuzzleTest {
     @Test
     void numberOfAssignmentsContained() throws Exception {
-        InputProvider inputProvider = new ResourceInputProvider<>(CampCleanupPuzzle.class);
+        InputReader inputReader = new ResourceInputReader<>(CampCleanupPuzzle.class);
 
         CampCleanupPuzzle puzzle = new CampCleanupPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(2, output.partOne());
     }
 
     @Test
     void numberOfAssignmentsOverlapping() throws Exception {
-        InputProvider inputProvider = new ResourceInputProvider<>(CampCleanupPuzzle.class);
+        InputReader inputReader = new ResourceInputReader<>(CampCleanupPuzzle.class);
 
         CampCleanupPuzzle puzzle = new CampCleanupPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(4, output.partTwo());
     }

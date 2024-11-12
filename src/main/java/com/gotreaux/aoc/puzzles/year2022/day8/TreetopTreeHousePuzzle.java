@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2022.day8;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.matrix.IntMatrix;
@@ -18,9 +18,9 @@ public class TreetopTreeHousePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Long> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Long> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
-        List<String> lines = inputProvider.getInputList();
+        List<String> lines = inputReader.getInputList();
         IntMatrix matrix = new IntMatrix(lines);
 
         int treesVisible = 0;

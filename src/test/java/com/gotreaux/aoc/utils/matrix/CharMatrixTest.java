@@ -2,8 +2,8 @@ package com.gotreaux.aoc.utils.matrix;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.input.ResourceInputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
+import com.gotreaux.aoc.input.reader.ResourceInputReader;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2020.day3.TobogganTrajectoryPuzzle;
 import com.gotreaux.aoc.puzzles.year2023.day3.GearRatiosPuzzle;
@@ -17,9 +17,9 @@ class CharMatrixTest {
     @ParameterizedTest
     @MethodSource("provideRowCount")
     void rowCount(Class<Puzzle> puzzleClass, int expectedRowCount) throws Exception {
-        InputProvider inputProvider = new ResourceInputProvider<>(puzzleClass);
+        InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
-        List<String> input = inputProvider.getInputList();
+        List<String> input = inputReader.getInputList();
 
         CharMatrix matrix = new CharMatrix(input);
 
@@ -29,9 +29,9 @@ class CharMatrixTest {
     @ParameterizedTest
     @MethodSource("provideColCount")
     void colCount(Class<Puzzle> puzzleClass, int expectedColCount) throws Exception {
-        InputProvider inputProvider = new ResourceInputProvider<>(puzzleClass);
+        InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
-        List<String> input = inputProvider.getInputList();
+        List<String> input = inputReader.getInputList();
 
         CharMatrix matrix = new CharMatrix(input);
 
@@ -41,9 +41,9 @@ class CharMatrixTest {
     @ParameterizedTest
     @MethodSource("provideGet")
     void get(Class<Puzzle> puzzleClass, int row, int col, char expectedChar) throws Exception {
-        InputProvider inputProvider = new ResourceInputProvider<>(puzzleClass);
+        InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
-        List<String> input = inputProvider.getInputList();
+        List<String> input = inputReader.getInputList();
 
         CharMatrix matrix = new CharMatrix(input);
 

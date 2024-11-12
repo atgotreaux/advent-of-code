@@ -2,8 +2,8 @@ package com.gotreaux.aoc.commands;
 
 import static org.awaitility.Awaitility.await;
 
-import com.gotreaux.aoc.input.database.PuzzleInput;
-import com.gotreaux.aoc.input.database.PuzzleInputRepository;
+import com.gotreaux.aoc.persistence.entity.PuzzleEntity;
+import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2015.day1.ApartmentFloorPuzzle;
 import com.gotreaux.aoc.puzzles.year2015.day8.MatchsticksPuzzle;
@@ -34,7 +34,7 @@ class SolvePuzzleCommandTest {
     @Autowired private ShellTestClient client;
     @Autowired private List<Puzzle> puzzles;
     @Autowired private MessageSource messageSource;
-    @Autowired private PuzzleInputRepository puzzleInputRepository;
+    @Autowired private PuzzleRepository puzzleRepository;
 
     @Test
     void solvePuzzleCommandAvailable() {
@@ -139,9 +139,9 @@ class SolvePuzzleCommandTest {
     void solvePuzzleDatabaseInput() {
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
 
-        PuzzleInput puzzleInput = new PuzzleInput(puzzle.getYear(), puzzle.getDay(), ")())())");
+        PuzzleEntity puzzleEntity = new PuzzleEntity(puzzle.getYear(), puzzle.getDay(), ")())())");
 
-        puzzleInputRepository.save(puzzleInput);
+        puzzleRepository.save(puzzleEntity);
 
         ShellTestClient.NonInteractiveShellSession session =
                 client.nonInterative(

@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2023.day7;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -22,9 +22,9 @@ public class CamelCardsPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException, NoSuchElementException {
-        Collection<String> input = inputProvider.getInputList();
+        Collection<String> input = inputReader.getInputList();
 
         List<Hand> hands = new ArrayList<>(input.size());
         List<Hand> jokerHands = new ArrayList<>(input.size());

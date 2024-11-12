@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2022.day10;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.input.ResourceInputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
+import com.gotreaux.aoc.input.reader.ResourceInputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.List;
 import java.util.stream.Stream;
@@ -15,11 +15,11 @@ import org.junit.jupiter.params.provider.MethodSource;
 class CathodeRayTubePuzzleTest {
     @Test
     void sumOfSignalStrengths() throws Exception {
-        InputProvider inputProvider = new ResourceInputProvider<>(CathodeRayTubePuzzle.class);
+        InputReader inputReader = new ResourceInputReader<>(CathodeRayTubePuzzle.class);
 
         CathodeRayTubePuzzle puzzle = new CathodeRayTubePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(13140, output.partOne());
     }
@@ -27,9 +27,9 @@ class CathodeRayTubePuzzleTest {
     @ParameterizedTest
     @MethodSource("provideSignalStrength")
     void signalStrength(int cycles, int expected) throws Exception {
-        InputProvider inputProvider = new ResourceInputProvider<>(CathodeRayTubePuzzle.class);
+        InputReader inputReader = new ResourceInputReader<>(CathodeRayTubePuzzle.class);
 
-        List<String> input = inputProvider.getInputList();
+        List<String> input = inputReader.getInputList();
 
         assertEquals(expected, CathodeRayTubePuzzle.getSignalStrength(input, cycles));
     }

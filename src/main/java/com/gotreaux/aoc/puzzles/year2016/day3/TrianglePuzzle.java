@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2016.day3;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -19,9 +19,9 @@ public class TrianglePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputProvider inputProvider)
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
-        Collection<String> input = inputProvider.getInputList();
+        Collection<String> input = inputReader.getInputList();
         Collection<Triangle> rowTriangles = new ArrayList<>(input.size());
 
         List<Integer> colOne = new ArrayList<>(input.size());

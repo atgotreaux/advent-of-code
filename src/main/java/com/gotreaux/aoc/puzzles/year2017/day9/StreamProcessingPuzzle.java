@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2017.day9;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -15,9 +15,9 @@ public class StreamProcessingPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
-        String input = inputProvider.getInputString();
+        String input = inputReader.getInputString();
 
         int totalScore = 0;
         int currentScore = 0;

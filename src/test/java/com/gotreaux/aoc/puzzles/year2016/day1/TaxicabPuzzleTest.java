@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2016.day1;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.input.StringInputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
+import com.gotreaux.aoc.input.reader.StringInputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
@@ -15,22 +15,22 @@ class TaxicabPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideShortestPath")
     void shortestPath(String input, int expectedDistance) throws Exception {
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
         TaxicabPuzzle puzzle = new TaxicabPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(expectedDistance, output.partOne());
     }
 
     @Test
     void firstDupPath() throws Exception {
-        InputProvider inputProvider = new StringInputProvider("R8, R4, R4, R8");
+        InputReader inputReader = new StringInputReader("R8, R4, R4, R8");
 
         TaxicabPuzzle puzzle = new TaxicabPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(4, output.partTwo());
     }

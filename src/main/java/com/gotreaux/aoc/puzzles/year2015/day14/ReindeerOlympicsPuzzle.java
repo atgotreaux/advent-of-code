@@ -2,7 +2,7 @@ package com.gotreaux.aoc.puzzles.year2015.day14;
 
 import static java.util.stream.Collectors.toMap;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -20,10 +20,10 @@ public class ReindeerOlympicsPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
         Collection<Reindeer> reindeers =
-                inputProvider.getInputStream().map(ReindeerOlympicsPuzzle::parseReindeer).toList();
+                inputReader.getInputStream().map(ReindeerOlympicsPuzzle::parseReindeer).toList();
 
         int maxDistance =
                 reindeers.stream()

@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2015.day13;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.input.ResourceInputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
+import com.gotreaux.aoc.input.reader.ResourceInputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
@@ -14,11 +14,11 @@ import org.junit.jupiter.params.provider.MethodSource;
 class DinnerTablePuzzleTest {
     @Test
     void guestTableOptimalArrangement() throws Exception {
-        InputProvider inputProvider = new ResourceInputProvider<>(DinnerTablePuzzle.class);
+        InputReader inputReader = new ResourceInputReader<>(DinnerTablePuzzle.class);
 
         DinnerTablePuzzle puzzle = new DinnerTablePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(330, output.partOne());
     }

@@ -2,30 +2,30 @@ package com.gotreaux.aoc.puzzles.year2016.day6;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.input.ResourceInputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
+import com.gotreaux.aoc.input.reader.ResourceInputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class SignalNoisePuzzleTest {
     @Test
     void mostCommonCharMessage() throws Exception {
-        InputProvider inputProvider = new ResourceInputProvider<>(SignalNoisePuzzle.class);
+        InputReader inputReader = new ResourceInputReader<>(SignalNoisePuzzle.class);
 
         SignalNoisePuzzle puzzle = new SignalNoisePuzzle();
 
-        PuzzleOutput<String, String> output = puzzle.solve(inputProvider);
+        PuzzleOutput<String, String> output = puzzle.solve(inputReader);
 
         assertEquals("easter", output.partOne());
     }
 
     @Test
     void leastCommonCharMessage() throws Exception {
-        InputProvider inputProvider = new ResourceInputProvider<>(SignalNoisePuzzle.class);
+        InputReader inputReader = new ResourceInputReader<>(SignalNoisePuzzle.class);
 
         SignalNoisePuzzle puzzle = new SignalNoisePuzzle();
 
-        PuzzleOutput<String, String> output = puzzle.solve(inputProvider);
+        PuzzleOutput<String, String> output = puzzle.solve(inputReader);
 
         assertEquals("advent", output.partTwo());
     }

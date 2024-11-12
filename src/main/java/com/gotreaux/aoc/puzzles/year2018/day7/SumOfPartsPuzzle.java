@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2018.day7;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -20,10 +20,10 @@ public class SumOfPartsPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<String, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException, NoSuchElementException {
         List<Requirement> reqs =
-                inputProvider.getInputStream().map(SumOfPartsPuzzle::parseRequirement).toList();
+                inputReader.getInputStream().map(SumOfPartsPuzzle::parseRequirement).toList();
 
         List<String> steps =
                 reqs.stream()

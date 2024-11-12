@@ -1,4 +1,4 @@
-package com.gotreaux.aoc.input;
+package com.gotreaux.aoc.input.reader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -6,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.random.RandomGenerator;
 import org.junit.jupiter.api.Test;
 
-class StringInputProviderTest {
+class StringInputReaderTest {
     @Test
     void inputAsString() throws Exception {
         RandomGenerator generator = RandomGenerator.getDefault();
@@ -14,9 +14,9 @@ class StringInputProviderTest {
         generator.nextBytes(bytes);
         String input = new String(bytes, StandardCharsets.UTF_8);
 
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
-        assertEquals(input, inputProvider.getInputString());
+        assertEquals(input, inputReader.getInputString());
     }
 
     @Test
@@ -26,10 +26,10 @@ class StringInputProviderTest {
         generator.nextBytes(bytes);
         String input = new String(bytes, StandardCharsets.UTF_8);
 
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
-        assertEquals(1L, inputProvider.getInputStream().count());
-        assertEquals(input, inputProvider.getInputStream().toList().getFirst());
+        assertEquals(1L, inputReader.getInputStream().count());
+        assertEquals(input, inputReader.getInputStream().toList().getFirst());
     }
 
     @Test
@@ -39,9 +39,9 @@ class StringInputProviderTest {
         generator.nextBytes(bytes);
         String input = new String(bytes, StandardCharsets.UTF_8);
 
-        InputProvider inputProvider = new StringInputProvider(input);
+        InputReader inputReader = new StringInputReader(input);
 
-        assertEquals(1, inputProvider.getInputList().size());
-        assertEquals(input, inputProvider.getInputList().getFirst());
+        assertEquals(1, inputReader.getInputList().size());
+        assertEquals(input, inputReader.getInputList().getFirst());
     }
 }

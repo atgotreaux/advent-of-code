@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2020.day2;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -16,12 +16,12 @@ public class PasswordPhilosophyPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
         int sumOfValidOccurrencesInRange = 0;
         int sumOfValidPositions = 0;
 
-        for (String line : inputProvider.getInputList()) {
+        for (String line : inputReader.getInputList()) {
             Scanner lineScanner = new Scanner(line);
             lineScanner.useDelimiter(": ");
             String passwordPolicyString = lineScanner.next();

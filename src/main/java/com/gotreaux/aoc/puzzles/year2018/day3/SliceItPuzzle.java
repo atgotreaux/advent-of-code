@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2018.day3;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.awt.Point;
@@ -24,12 +24,12 @@ public class SliceItPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Long, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException, NoSuchElementException {
         Map<Point, Collection<Integer>> fabricClaims = new HashMap<>();
         Collection<Integer> claimIds = new ArrayList<>();
 
-        for (String line : inputProvider.getInputList()) {
+        for (String line : inputReader.getInputList()) {
             String[] claim = line.replace(":", "").split(" ");
 
             int claimID = Integer.parseInt(claim[0].substring(1));

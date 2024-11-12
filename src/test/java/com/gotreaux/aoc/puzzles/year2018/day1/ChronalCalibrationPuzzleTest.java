@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2018.day1;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.input.ResourceInputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
+import com.gotreaux.aoc.input.reader.ResourceInputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,12 +14,12 @@ class ChronalCalibrationPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideResultingFrequency")
     void resultingFrequency(String fileName, int expectedFrequency) throws Exception {
-        InputProvider inputProvider =
-                new ResourceInputProvider<>(ChronalCalibrationPuzzle.class, fileName);
+        InputReader inputReader =
+                new ResourceInputReader<>(ChronalCalibrationPuzzle.class, fileName);
 
         ChronalCalibrationPuzzle puzzle = new ChronalCalibrationPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(expectedFrequency, output.partOne());
     }
@@ -27,12 +27,12 @@ class ChronalCalibrationPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideFirstDuplicateFrequency")
     void firstDuplicateFrequency(String fileName, int expectedFrequency) throws Exception {
-        InputProvider inputProvider =
-                new ResourceInputProvider<>(ChronalCalibrationPuzzle.class, fileName);
+        InputReader inputReader =
+                new ResourceInputReader<>(ChronalCalibrationPuzzle.class, fileName);
 
         ChronalCalibrationPuzzle puzzle = new ChronalCalibrationPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputProvider);
+        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
 
         assertEquals(expectedFrequency, output.partTwo());
     }

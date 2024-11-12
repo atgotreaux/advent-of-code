@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2021.day4;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -19,9 +19,9 @@ public class GiantSquidPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException {
-        List<String> input = inputProvider.getInputList();
+        List<String> input = inputReader.getInputList();
 
         int[] numbersDrawn =
                 Arrays.stream(input.getFirst().split(",")).mapToInt(Integer::parseInt).toArray();

@@ -4,7 +4,7 @@ import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
-import com.gotreaux.aoc.input.InputProvider;
+import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -25,9 +25,9 @@ public class RecursiveCircusPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, Integer> solve(InputProvider inputProvider)
+    public PuzzleOutput<String, Integer> solve(InputReader inputReader)
             throws IOException, URISyntaxException, NumberFormatException {
-        Collection<String> input = inputProvider.getInputList();
+        Collection<String> input = inputReader.getInputList();
         Collection<Disc> discs = new ArrayList<>(input.size());
 
         for (String line : input) {

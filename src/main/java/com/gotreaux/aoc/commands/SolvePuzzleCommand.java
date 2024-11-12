@@ -3,12 +3,13 @@ package com.gotreaux.aoc.commands;
 import static java.util.Comparator.comparingInt;
 
 import com.gotreaux.aoc.annotations.ElementsInRange;
-import com.gotreaux.aoc.input.FileInputProvider;
-import com.gotreaux.aoc.input.InputProvider;
-import com.gotreaux.aoc.input.ResourceInputProvider;
-import com.gotreaux.aoc.input.StringInputProvider;
-import com.gotreaux.aoc.input.database.DatabaseInputProviderFactory;
+import com.gotreaux.aoc.input.reader.DatabaseInputReader;
+import com.gotreaux.aoc.input.reader.FileInputReader;
+import com.gotreaux.aoc.input.reader.InputReader;
+import com.gotreaux.aoc.input.reader.ResourceInputReader;
+import com.gotreaux.aoc.input.reader.StringInputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
+import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -38,15 +39,15 @@ public class SolvePuzzleCommand {
 
     private final Collection<Puzzle> puzzles;
     private final MessageSource messageSource;
-    private final DatabaseInputProviderFactory databaseInputProviderFactory;
+    private final PuzzleRepository puzzleRepository;
 
     public SolvePuzzleCommand(
             Collection<Puzzle> puzzles,
             MessageSource messageSource,
-            DatabaseInputProviderFactory databaseInputProviderFactory) {
+            PuzzleRepository puzzleRepository) {
         this.puzzles = puzzles.stream().toList();
         this.messageSource = messageSource;
-        this.databaseInputProviderFactory = databaseInputProviderFactory;
+        this.puzzleRepository = puzzleRepository;
     }
 
     @Command(
@@ -108,8 +109,8 @@ public class SolvePuzzleCommand {
             String partOne;
             String partTwo;
             try {
-                InputProvider inputProvider = getInputProvider(filteredPuzzle, source);
-                PuzzleOutput<?, ?> output = filteredPuzzle.solve(inputProvider);
+                InputReader inputReader = getInputReader(filteredPuzzle, source);
+                PuzzleOutput<?, ?> output = filteredPuzzle.solve(inputReader);
 
                 partOne = String.valueOf(output.partOne());
                 partTwo = String.valueOf(output.partTwo());
@@ -135,21 +136,20 @@ public class SolvePuzzleCommand {
         return tableBuilder.build().render(TOTAL_AVAILABLE_WIDTH);
     }
 
-    private InputProvider getInputProvider(Puzzle puzzle, String source) {
+    private InputReader getInputReader(Puzzle puzzle, String source) {
         return switch (source) {
             case "database" ->
-                    databaseInputProviderFactory.createDatabaseInputProvider(
-                            puzzle.getYear(), puzzle.getDay());
-            case "resource" -> new ResourceInputProvider<>(puzzle.getClass());
+                    new DatabaseInputReader(puzzleRepository, puzzle.getYear(), puzzle.getDay());
+            case "resource" -> new ResourceInputReader<>(puzzle.getClass());
             default -> {
                 Path filePath = Paths.get(source);
                 if (Files.exists(filePath) && Files.isRegularFile(filePath)) {
-                    logger.debug("Creating FileInputProvider with path '{}'", source);
-                    yield new FileInputProvider(filePath.toString());
+                    logger.debug("Creating FileInputReader with path '{}'", source);
+                    yield new FileInputReader(filePath.toString());
                 }
 
-                logger.debug("Creating StringInputProvider with input '{}'", source);
-                yield new StringInputProvider(source);
+                logger.debug("Creating StringInputReader with input '{}'", source);
+                yield new StringInputReader(source);
             }
         };
     }
