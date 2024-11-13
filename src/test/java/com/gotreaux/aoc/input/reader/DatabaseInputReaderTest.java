@@ -3,7 +3,7 @@ package com.gotreaux.aoc.input.reader;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import com.gotreaux.aoc.persistence.entity.PuzzleEntity;
+import com.gotreaux.aoc.input.writer.DatabaseInputWriter;
 import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.nio.charset.StandardCharsets;
@@ -43,14 +43,14 @@ class DatabaseInputReaderTest {
         generator.nextBytes(bytes);
         String input = new String(bytes, StandardCharsets.UTF_8);
 
-        PuzzleEntity puzzleEntity = new PuzzleEntity(puzzle.getYear(), puzzle.getDay(), input);
-
-        puzzleRepository.save(puzzleEntity);
+        DatabaseInputWriter inputWriter =
+                new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
+        inputWriter.write(input);
 
         InputReader inputReader =
                 new DatabaseInputReader(puzzleRepository, puzzle.getYear(), puzzle.getDay());
 
-        assertEquals(puzzleEntity.getInput(), inputReader.getInputString());
+        assertEquals(input, inputReader.getInputString());
     }
 
     @Test
@@ -62,15 +62,15 @@ class DatabaseInputReaderTest {
         generator.nextBytes(bytes);
         String input = new String(bytes, StandardCharsets.UTF_8);
 
-        PuzzleEntity puzzleEntity = new PuzzleEntity(puzzle.getYear(), puzzle.getDay(), input);
-
-        puzzleRepository.save(puzzleEntity);
+        DatabaseInputWriter inputWriter =
+                new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
+        inputWriter.write(input);
 
         InputReader inputReader =
                 new DatabaseInputReader(puzzleRepository, puzzle.getYear(), puzzle.getDay());
 
         assertEquals(1L, inputReader.getInputStream().count());
-        assertEquals(puzzleEntity.getInput(), inputReader.getInputStream().toList().getFirst());
+        assertEquals(input, inputReader.getInputStream().toList().getFirst());
     }
 
     @Test
@@ -82,14 +82,14 @@ class DatabaseInputReaderTest {
         generator.nextBytes(bytes);
         String input = new String(bytes, StandardCharsets.UTF_8);
 
-        PuzzleEntity puzzleEntity = new PuzzleEntity(puzzle.getYear(), puzzle.getDay(), input);
-
-        puzzleRepository.save(puzzleEntity);
+        DatabaseInputWriter inputWriter =
+                new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
+        inputWriter.write(input);
 
         InputReader inputReader =
                 new DatabaseInputReader(puzzleRepository, puzzle.getYear(), puzzle.getDay());
 
         assertEquals(1, inputReader.getInputList().size());
-        assertEquals(puzzleEntity.getInput(), inputReader.getInputList().getFirst());
+        assertEquals(input, inputReader.getInputList().getFirst());
     }
 }

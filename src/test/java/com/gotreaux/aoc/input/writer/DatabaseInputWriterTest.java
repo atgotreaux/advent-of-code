@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.DatabaseInputReader;
 import com.gotreaux.aoc.input.reader.InputReader;
-import com.gotreaux.aoc.persistence.entity.PuzzleEntity;
 import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.nio.charset.StandardCharsets;
@@ -52,11 +51,9 @@ class DatabaseInputWriterTest {
         generator.nextBytes(bytes);
         String input = new String(bytes, StandardCharsets.UTF_8);
 
-        PuzzleEntity puzzleEntity = new PuzzleEntity(puzzle.getYear(), puzzle.getDay(), input);
-        puzzleRepository.save(puzzleEntity);
-
         InputWriter inputWriter =
                 new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
+        inputWriter.write(input);
 
         byte[] updatedBytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(updatedBytes);

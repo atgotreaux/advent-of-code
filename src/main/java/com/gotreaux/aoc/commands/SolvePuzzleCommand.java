@@ -13,7 +13,6 @@ import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
@@ -142,7 +141,7 @@ public class SolvePuzzleCommand {
                     new DatabaseInputReader(puzzleRepository, puzzle.getYear(), puzzle.getDay());
             case "resource" -> new ResourceInputReader<>(puzzle.getClass());
             default -> {
-                Path filePath = Paths.get(source);
+                Path filePath = Path.of(source);
                 if (Files.exists(filePath) && Files.isRegularFile(filePath)) {
                     logger.debug("Creating FileInputReader with path '{}'", source);
                     yield new FileInputReader(filePath.toString());

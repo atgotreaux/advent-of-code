@@ -2,7 +2,9 @@ package com.gotreaux.aoc.commands;
 
 import static org.awaitility.Awaitility.await;
 
-import com.gotreaux.aoc.persistence.entity.PuzzleEntity;
+import com.gotreaux.aoc.input.writer.DatabaseInputWriter;
+import com.gotreaux.aoc.input.writer.FileInputWriter;
+import com.gotreaux.aoc.input.writer.InputWriter;
 import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2015.day1.ApartmentFloorPuzzle;
@@ -139,9 +141,9 @@ class SolvePuzzleCommandTest {
     void solvePuzzleDatabaseInput() {
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
 
-        PuzzleEntity puzzleEntity = new PuzzleEntity(puzzle.getYear(), puzzle.getDay(), ")())())");
-
-        puzzleRepository.save(puzzleEntity);
+        DatabaseInputWriter inputWriter =
+                new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
+        inputWriter.write(")())())");
 
         ShellTestClient.NonInteractiveShellSession session =
                 client.nonInterative(
@@ -182,7 +184,10 @@ class SolvePuzzleCommandTest {
     @Test
     void solvePuzzleFileInput() throws Exception {
         Path path = Files.createTempFile("input", ".txt");
-        Files.writeString(path, ")())())");
+
+        InputWriter inputWriter = new FileInputWriter(path.toAbsolutePath().toString());
+        inputWriter.write(")())())");
+
         String inputPath =
                 path.toAbsolutePath()
                         .toString()

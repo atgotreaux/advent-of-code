@@ -3,6 +3,8 @@ package com.gotreaux.aoc.input.reader;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import com.gotreaux.aoc.input.writer.FileInputWriter;
+import com.gotreaux.aoc.input.writer.InputWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
@@ -23,10 +25,12 @@ class FileInputReaderTest {
         RandomGenerator generator = RandomGenerator.getDefault();
         byte[] bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
-        CharSequence input = new String(bytes, StandardCharsets.UTF_8);
+        String input = new String(bytes, StandardCharsets.UTF_8);
 
         Path path = Files.createTempFile("input", ".txt");
-        Files.writeString(path, input);
+
+        InputWriter inputWriter = new FileInputWriter(path.toAbsolutePath().toString());
+        inputWriter.write(input);
 
         InputReader inputReader = new FileInputReader(path.toAbsolutePath().toString());
 
@@ -38,10 +42,12 @@ class FileInputReaderTest {
         RandomGenerator generator = RandomGenerator.getDefault();
         byte[] bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
-        CharSequence input = new String(bytes, StandardCharsets.UTF_8);
+        String input = new String(bytes, StandardCharsets.UTF_8);
 
         Path path = Files.createTempFile("input", ".txt");
-        Files.writeString(path, input);
+
+        InputWriter inputWriter = new FileInputWriter(path.toAbsolutePath().toString());
+        inputWriter.write(input);
 
         InputReader inputReader = new FileInputReader(path.toAbsolutePath().toString());
 
@@ -54,10 +60,12 @@ class FileInputReaderTest {
         RandomGenerator generator = RandomGenerator.getDefault();
         byte[] bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
-        CharSequence input = new String(bytes, StandardCharsets.UTF_8);
+        String input = new String(bytes, StandardCharsets.UTF_8);
 
         Path path = Files.createTempFile("input", ".txt");
-        Files.writeString(path, input);
+
+        InputWriter inputWriter = new FileInputWriter(path.toAbsolutePath().toString());
+        inputWriter.write(input);
 
         InputReader inputReader = new FileInputReader(path.toAbsolutePath().toString());
 
