@@ -1,6 +1,7 @@
 package com.gotreaux.aoc.commands;
 
 import com.gotreaux.aoc.input.writer.DatabaseInputWriter;
+import com.gotreaux.aoc.input.writer.FileInputWriter;
 import com.gotreaux.aoc.input.writer.InputWriter;
 import com.gotreaux.aoc.input.writer.ResourceInputWriter;
 import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
@@ -13,6 +14,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Collection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -122,7 +125,14 @@ public class SeedPuzzleCommand {
             case "database" ->
                     new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
             case "resource" -> new ResourceInputWriter<>(puzzle.getClass());
-            default -> throw new IllegalStateException("Unexpected value: " + target);
+            default -> {
+                Path filePath = Path.of(target);
+                if (Files.isRegularFile(filePath) || !Files.exists(filePath)) {
+                    yield new FileInputWriter(target);
+                }
+
+                throw new IllegalStateException("Unexpected value: " + target);
+            }
         };
     }
 }
