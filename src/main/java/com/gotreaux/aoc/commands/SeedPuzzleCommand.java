@@ -8,7 +8,6 @@ import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -49,6 +48,7 @@ public class SeedPuzzleCommand {
             @Option(
                             longNames = "year",
                             shortNames = 'Y',
+                            required = true,
                             description = "Seed puzzle for advent calendar year",
                             label = "Year between 2015-2023",
                             arity = CommandRegistration.OptionArity.EXACTLY_ONE)
@@ -58,7 +58,8 @@ public class SeedPuzzleCommand {
             @Option(
                             longNames = "day",
                             shortNames = 'D',
-                            description = "Solve puzzles for advent calendar day",
+                            required = true,
+                            description = "Seed puzzle for advent calendar day",
                             label = "Day between 1-25",
                             arity = CommandRegistration.OptionArity.EXACTLY_ONE)
                     @Min(1)
@@ -67,15 +68,16 @@ public class SeedPuzzleCommand {
             @Option(
                             longNames = "session",
                             shortNames = 'S',
+                            required = true,
                             description = "Session ID extracted from cookie header to authenticate",
                             label = "MD5 hash of session ID",
                             arity = CommandRegistration.OptionArity.EXACTLY_ONE)
-                    @NotBlank
                     @Pattern(regexp = "^[a-f0-9]{128}$")
                     String session,
             @Option(
                             longNames = "target",
                             shortNames = 'T',
+                            required = true,
                             description = "Target destination for puzzle input for seeding",
                             label = "[database,resource,{filePath}]",
                             arity = CommandRegistration.OptionArity.ZERO_OR_ONE,
