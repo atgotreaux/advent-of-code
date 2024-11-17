@@ -39,7 +39,7 @@ class SolvePuzzleCommandTest {
     @Autowired private PuzzleRepository puzzleRepository;
 
     @Test
-    void solvePuzzleCommandAvailable() {
+    void commandAvailable() {
         ShellTestClient.NonInteractiveShellSession session = client.nonInterative("help").run();
 
         await().atMost(2, TimeUnit.SECONDS)
@@ -50,7 +50,7 @@ class SolvePuzzleCommandTest {
     }
 
     @Test
-    void solvePuzzleHelp() {
+    void help() {
         ShellTestClient.NonInteractiveShellSession session =
                 client.nonInterative(SolvePuzzleCommand.COMMAND_NAME, "--help").run();
 
@@ -58,11 +58,14 @@ class SolvePuzzleCommandTest {
                 .untilAsserted(
                         () ->
                                 ShellAssertions.assertThat(session.screen())
-                                        .containsText("help for solve-puzzle"));
+                                        .containsText(
+                                                "help for %s"
+                                                        .formatted(
+                                                                SolvePuzzleCommand.COMMAND_NAME)));
     }
 
     @Test
-    void solvePuzzleInvalidEventYear() {
+    void invalidYear() {
         RandomGenerator generator = RandomGenerator.getDefault();
 
         String year = String.valueOf(generator.nextInt(2015));
@@ -78,7 +81,7 @@ class SolvePuzzleCommandTest {
     }
 
     @Test
-    void solvePuzzleInvalidEventDay() {
+    void invalidDay() {
         RandomGenerator generator = RandomGenerator.getDefault();
 
         String day = String.valueOf(generator.nextInt(26, 32));
@@ -94,7 +97,7 @@ class SolvePuzzleCommandTest {
     }
 
     @Test
-    void solvePuzzleOutput() {
+    void output() {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
@@ -118,7 +121,7 @@ class SolvePuzzleCommandTest {
     }
 
     @Test
-    void solvePuzzleResourceInput() {
+    void resourceInput() {
         MatchsticksPuzzle puzzle = new MatchsticksPuzzle();
 
         ShellTestClient.NonInteractiveShellSession session =
@@ -138,7 +141,7 @@ class SolvePuzzleCommandTest {
     }
 
     @Test
-    void solvePuzzleDatabaseInput() {
+    void databaseInput() {
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
 
         DatabaseInputWriter inputWriter =
@@ -162,7 +165,7 @@ class SolvePuzzleCommandTest {
     }
 
     @Test
-    void solvePuzzleStringInput() {
+    void stringInput() {
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
 
         ShellTestClient.NonInteractiveShellSession session =
@@ -182,7 +185,7 @@ class SolvePuzzleCommandTest {
     }
 
     @Test
-    void solvePuzzleFileInput() throws Exception {
+    void fileInput() throws Exception {
         Path path = Files.createTempFile("input", ".txt");
 
         InputWriter inputWriter = new FileInputWriter(path.toAbsolutePath().toString());

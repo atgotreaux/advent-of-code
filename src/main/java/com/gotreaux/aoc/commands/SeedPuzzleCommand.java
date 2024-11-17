@@ -52,8 +52,8 @@ public class SeedPuzzleCommand {
                             description = "Seed puzzle for advent calendar year",
                             label = "Year between 2015-2023",
                             arity = CommandRegistration.OptionArity.EXACTLY_ONE)
-                    @Min(2015)
-                    @Max(2023)
+                    @Min(value = 2015, message = "{validation.years.elements-in-range}")
+                    @Max(value = 2023, message = "{validation.years.elements-in-range}")
                     Integer year,
             @Option(
                             longNames = "day",
@@ -62,26 +62,25 @@ public class SeedPuzzleCommand {
                             description = "Seed puzzle for advent calendar day",
                             label = "Day between 1-25",
                             arity = CommandRegistration.OptionArity.EXACTLY_ONE)
-                    @Min(1)
-                    @Max(25)
+                    @Min(value = 1, message = "{validation.days.elements-in-range}")
+                    @Max(value = 25, message = "{validation.days.elements-in-range}")
                     Integer day,
             @Option(
                             longNames = "session",
                             shortNames = 'S',
                             required = true,
                             description = "Session ID extracted from cookie header to authenticate",
-                            label = "MD5 hash of session ID",
+                            label = "SHA-512 hash session ID",
                             arity = CommandRegistration.OptionArity.EXACTLY_ONE)
-                    @Pattern(regexp = "^[a-f0-9]{128}$")
+                    @Pattern(regexp = "^[a-f0-9]{128}$", message = "{validation.session.pattern}")
                     String session,
             @Option(
                             longNames = "target",
                             shortNames = 'T',
-                            required = true,
                             description = "Target destination for puzzle input for seeding",
                             label = "[database,resource,{filePath}]",
                             arity = CommandRegistration.OptionArity.ZERO_OR_ONE,
-                            defaultValue = "resource")
+                            defaultValue = "database")
                     String target)
             throws Exception {
         Puzzle filteredPuzzle =
