@@ -15,6 +15,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.Collection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,11 +78,11 @@ public class SeedPuzzleCommand {
             @Option(
                             longNames = "target",
                             shortNames = 'T',
-                            description = "Target destination for puzzle input for seeding",
+                            description = "Target destination(s) for puzzle input for seeding",
                             label = "[database,resource,{filePath}]",
-                            arity = CommandRegistration.OptionArity.ZERO_OR_ONE,
+                            arity = CommandRegistration.OptionArity.ZERO_OR_MORE,
                             defaultValue = "database")
-                    String target)
+                    String[] targets)
             throws Exception {
         Puzzle filteredPuzzle =
                 puzzles.stream()
@@ -96,6 +97,11 @@ public class SeedPuzzleCommand {
                         .findFirst()
                         .orElseThrow();
 
+        Collection<InputWriter> inputWriters =
+                Arrays.stream(targets)
+                        .map(target -> getInputWriter(filteredPuzzle, target))
+                        .toList();
+
         String url = "https://adventofcode.com/%d/day/%d/input".formatted(year, day);
 
         try (HttpClient client = HttpClient.newHttpClient()) {
@@ -109,8 +115,10 @@ public class SeedPuzzleCommand {
                     client.send(request, HttpResponse.BodyHandlers.ofString());
 
             if (response.statusCode() == 200) {
-                InputWriter inputWriter = getInputWriter(filteredPuzzle, target);
-                inputWriter.write(response.body());
+                String input = response.body();
+                for (InputWriter inputWriter : inputWriters) {
+                    inputWriter.write(input);
+                }
             } else {
                 logger.info("Unable to fetch puzzle input. Status code: {}", response.statusCode());
             }
