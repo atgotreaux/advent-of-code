@@ -80,7 +80,7 @@ public class SeedPuzzleCommand {
                             shortNames = 'T',
                             description = "Target destination(s) for puzzle input for seeding",
                             label = "[database,resource,{filePath}]",
-                            arity = CommandRegistration.OptionArity.ZERO_OR_MORE,
+                            arity = CommandRegistration.OptionArity.ONE_OR_MORE,
                             defaultValue = "database")
                     String[] targets)
             throws Exception {
