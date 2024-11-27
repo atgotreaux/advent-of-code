@@ -16,6 +16,7 @@ import java.nio.file.Path;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.Predicate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
@@ -97,10 +98,12 @@ public class SolvePuzzleCommand {
                 .addValue(getTableHeaderMessage("part-one", locale))
                 .addValue(getTableHeaderMessage("part-two", locale));
 
+        Predicate<Puzzle> yearPredicate = new PuzzlePredicate<>(Puzzle::getYear, years);
+        Predicate<Puzzle> dayPredicate = new PuzzlePredicate<>(Puzzle::getDay, days);
         List<Puzzle> filteredPuzzles =
                 puzzles.stream()
-                        .filter(puzzle -> new PuzzlePredicate(Puzzle::getYear).test(puzzle, years))
-                        .filter(puzzle -> new PuzzlePredicate(Puzzle::getDay).test(puzzle, days))
+                        .filter(yearPredicate)
+                        .filter(dayPredicate)
                         .sorted(comparingInt(Puzzle::getYear).thenComparing(Puzzle::getDay))
                         .toList();
 

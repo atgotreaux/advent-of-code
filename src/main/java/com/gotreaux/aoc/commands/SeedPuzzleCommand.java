@@ -1,5 +1,6 @@
 package com.gotreaux.aoc.commands;
 
+import com.gotreaux.aoc.exceptions.NoSuchPuzzleException;
 import com.gotreaux.aoc.input.writer.DatabaseInputWriter;
 import com.gotreaux.aoc.input.writer.FileInputWriter;
 import com.gotreaux.aoc.input.writer.InputWriter;
@@ -17,6 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.function.Predicate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.shell.command.CommandRegistration;
@@ -84,18 +86,15 @@ public class SeedPuzzleCommand {
                             defaultValue = "database")
                     String[] targets)
             throws Exception {
+        Predicate<Puzzle> yearPredicate = new PuzzlePredicate<>(Puzzle::getYear, year);
+        Predicate<Puzzle> dayPredicate = new PuzzlePredicate<>(Puzzle::getDay, day);
+
         Puzzle filteredPuzzle =
                 puzzles.stream()
-                        .filter(
-                                puzzle ->
-                                        new PuzzlePredicate(Puzzle::getYear)
-                                                .test(puzzle, new Integer[] {year}))
-                        .filter(
-                                puzzle ->
-                                        new PuzzlePredicate(Puzzle::getDay)
-                                                .test(puzzle, new Integer[] {day}))
+                        .filter(yearPredicate)
+                        .filter(dayPredicate)
                         .findFirst()
-                        .orElseThrow();
+                        .orElseThrow(() -> new NoSuchPuzzleException(year, day));
 
         Collection<InputWriter> inputWriters =
                 Arrays.stream(targets)
@@ -140,7 +139,8 @@ public class SeedPuzzleCommand {
                     yield new FileInputWriter(target);
                 }
 
-                throw new IllegalStateException("Unexpected value: " + target);
+                throw new IllegalStateException(
+                        "Cannot create input writer for target '%s'".formatted(target));
             }
         };
     }

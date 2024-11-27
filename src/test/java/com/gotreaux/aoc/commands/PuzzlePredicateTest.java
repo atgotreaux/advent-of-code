@@ -5,14 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.List;
-import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 import java.util.random.RandomGenerator;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
 
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest
 class PuzzlePredicateTest {
 
@@ -23,9 +21,9 @@ class PuzzlePredicateTest {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        BiPredicate<Puzzle, Integer[]> predicate = new PuzzlePredicate(Puzzle::getYear);
+        Predicate<Puzzle> predicate = new PuzzlePredicate<>(Puzzle::getYear);
 
-        assertTrue(predicate.test(puzzle, null));
+        assertTrue(predicate.test(puzzle));
     }
 
     @Test
@@ -35,9 +33,9 @@ class PuzzlePredicateTest {
 
         Integer[] years = new Integer[0];
 
-        BiPredicate<Puzzle, Integer[]> predicate = new PuzzlePredicate(Puzzle::getYear);
+        Predicate<Puzzle> predicate = new PuzzlePredicate<>(Puzzle::getYear, years);
 
-        assertTrue(predicate.test(puzzle, years));
+        assertTrue(predicate.test(puzzle));
     }
 
     @Test
@@ -47,9 +45,9 @@ class PuzzlePredicateTest {
 
         Integer[] years = {puzzle.getYear()};
 
-        BiPredicate<Puzzle, Integer[]> predicate = new PuzzlePredicate(Puzzle::getYear);
+        Predicate<Puzzle> predicate = new PuzzlePredicate<>(Puzzle::getYear, years);
 
-        assertTrue(predicate.test(puzzle, years));
+        assertTrue(predicate.test(puzzle));
     }
 
     @Test
@@ -59,9 +57,9 @@ class PuzzlePredicateTest {
 
         Integer[] years = {RandomGenerator.getDefault().nextInt(puzzle.getYear())};
 
-        BiPredicate<Puzzle, Integer[]> predicate = new PuzzlePredicate(Puzzle::getYear);
+        Predicate<Puzzle> predicate = new PuzzlePredicate<>(Puzzle::getYear, years);
 
-        assertFalse(predicate.test(puzzle, years));
+        assertFalse(predicate.test(puzzle));
     }
 
     @Test
@@ -69,9 +67,9 @@ class PuzzlePredicateTest {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        BiPredicate<Puzzle, Integer[]> predicate = new PuzzlePredicate(Puzzle::getDay);
+        Predicate<Puzzle> predicate = new PuzzlePredicate<>(Puzzle::getDay);
 
-        assertTrue(predicate.test(puzzle, null));
+        assertTrue(predicate.test(puzzle));
     }
 
     @Test
@@ -81,9 +79,9 @@ class PuzzlePredicateTest {
 
         Integer[] days = new Integer[0];
 
-        BiPredicate<Puzzle, Integer[]> predicate = new PuzzlePredicate(Puzzle::getDay);
+        Predicate<Puzzle> predicate = new PuzzlePredicate<>(Puzzle::getDay, days);
 
-        assertTrue(predicate.test(puzzle, days));
+        assertTrue(predicate.test(puzzle));
     }
 
     @Test
@@ -93,9 +91,9 @@ class PuzzlePredicateTest {
 
         Integer[] days = {puzzle.getDay()};
 
-        BiPredicate<Puzzle, Integer[]> predicate = new PuzzlePredicate(Puzzle::getDay);
+        Predicate<Puzzle> predicate = new PuzzlePredicate<>(Puzzle::getDay, days);
 
-        assertTrue(predicate.test(puzzle, days));
+        assertTrue(predicate.test(puzzle));
     }
 
     @Test
@@ -105,8 +103,8 @@ class PuzzlePredicateTest {
 
         Integer[] days = {RandomGenerator.getDefault().nextInt(puzzle.getDay())};
 
-        BiPredicate<Puzzle, Integer[]> predicate = new PuzzlePredicate(Puzzle::getDay);
+        Predicate<Puzzle> predicate = new PuzzlePredicate<>(Puzzle::getDay, days);
 
-        assertFalse(predicate.test(puzzle, days));
+        assertFalse(predicate.test(puzzle));
     }
 }

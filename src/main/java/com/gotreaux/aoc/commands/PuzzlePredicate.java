@@ -2,24 +2,25 @@ package com.gotreaux.aoc.commands;
 
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.Arrays;
-import java.util.function.BiPredicate;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import org.springframework.lang.Nullable;
 
-class PuzzlePredicate implements BiPredicate<Puzzle, Integer[]> {
+class PuzzlePredicate<T> implements Predicate<Puzzle> {
 
-    private final Function<Puzzle, Integer> callback;
+    private final Function<Puzzle, T> callback;
+    private final @Nullable T[] values;
 
-    PuzzlePredicate(Function<Puzzle, Integer> callback) {
+    @SafeVarargs
+    PuzzlePredicate(Function<Puzzle, T> callback, T... values) {
         this.callback = callback;
+        this.values = Arrays.copyOf(values, values.length);
     }
 
     @Override
-    public boolean test(Puzzle puzzle, @Nullable Integer[] values) {
-        int puzzleValue = callback.apply(puzzle);
+    public boolean test(Puzzle puzzle) {
+        T puzzleValue = callback.apply(puzzle);
 
-        return values == null
-                || values.length == 0
-                || Arrays.stream(values).anyMatch(i -> puzzleValue == i);
+        return values == null || values.length == 0 || Arrays.asList(values).contains(puzzleValue);
     }
 }

@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest
 class DatabaseInputReaderTest {
 
@@ -35,6 +34,7 @@ class DatabaseInputReaderTest {
     }
 
     @Test
+    @DirtiesContext
     void inputAsString() throws Exception {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
@@ -54,6 +54,7 @@ class DatabaseInputReaderTest {
     }
 
     @Test
+    @DirtiesContext
     void inputAsStream() throws Exception {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
@@ -74,6 +75,7 @@ class DatabaseInputReaderTest {
     }
 
     @Test
+    @DirtiesContext
     void puzzleInputAsList() throws Exception {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));

@@ -30,7 +30,6 @@ import org.springframework.test.annotation.DirtiesContext;
 
 @AutoConfigureShell
 @AutoConfigureShellTestClient
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest
 class SolvePuzzleCommandTest {
     @Autowired private ShellTestClient client;
@@ -141,6 +140,7 @@ class SolvePuzzleCommandTest {
     }
 
     @Test
+    @DirtiesContext
     void databaseInput() {
         ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
 

@@ -15,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataAccessException;
 import org.springframework.test.annotation.DirtiesContext;
 
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest
 class PuzzleEntityTest {
     @Autowired private List<Puzzle> puzzles;
@@ -99,6 +98,7 @@ class PuzzleEntityTest {
     }
 
     @Test
+    @DirtiesContext
     void doesNotInsertIfDuplicate() {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
@@ -118,6 +118,7 @@ class PuzzleEntityTest {
     }
 
     @Test
+    @DirtiesContext
     void doesNotThrowIfValid() {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));

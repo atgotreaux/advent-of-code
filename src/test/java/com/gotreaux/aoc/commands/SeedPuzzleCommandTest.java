@@ -15,11 +15,9 @@ import org.springframework.shell.test.ShellAssertions;
 import org.springframework.shell.test.ShellTestClient;
 import org.springframework.shell.test.autoconfigure.AutoConfigureShell;
 import org.springframework.shell.test.autoconfigure.AutoConfigureShellTestClient;
-import org.springframework.test.annotation.DirtiesContext;
 
 @AutoConfigureShell
 @AutoConfigureShellTestClient
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest
 class SeedPuzzleCommandTest {
     @Autowired private ShellTestClient client;
