@@ -3,13 +3,10 @@ package com.gotreaux.aoc.puzzles.year2023.day7;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 import org.springframework.stereotype.Component;
@@ -22,8 +19,7 @@ public class CamelCardsPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, NoSuchElementException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         Collection<String> input = inputReader.getInputList();
 
         List<Hand> hands = new ArrayList<>(input.size());

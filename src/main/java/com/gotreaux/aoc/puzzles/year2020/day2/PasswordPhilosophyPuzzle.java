@@ -3,8 +3,6 @@ package com.gotreaux.aoc.puzzles.year2020.day2;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Scanner;
 import org.springframework.stereotype.Component;
 
@@ -16,8 +14,7 @@ public class PasswordPhilosophyPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         int sumOfValidOccurrencesInRange = 0;
         int sumOfValidPositions = 0;
 

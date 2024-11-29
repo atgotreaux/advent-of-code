@@ -4,8 +4,6 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.matrix.IntMatrix;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -21,8 +19,7 @@ public class SmokeBasinPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         List<String> lines = inputReader.getInputList();
         IntMatrix matrix = new IntMatrix(lines);
 

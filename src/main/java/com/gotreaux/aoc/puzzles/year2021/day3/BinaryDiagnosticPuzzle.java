@@ -3,8 +3,6 @@ package com.gotreaux.aoc.puzzles.year2021.day3;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -23,8 +21,7 @@ public class BinaryDiagnosticPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, NoSuchElementException, NumberFormatException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         List<String> input = inputReader.getInputList();
         int bitLength = input.getFirst().length();
 

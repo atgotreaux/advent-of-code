@@ -3,11 +3,8 @@ package com.gotreaux.aoc.puzzles.year2016.day5;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.HexFormat;
 import java.util.Map;
@@ -21,8 +18,7 @@ public class ChessGamePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, String> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, NoSuchAlgorithmException {
+    public PuzzleOutput<String, String> solve(InputReader inputReader) throws Exception {
         String doorID = inputReader.getInputString();
 
         StringBuilder nextCharBuilder = new StringBuilder(8);

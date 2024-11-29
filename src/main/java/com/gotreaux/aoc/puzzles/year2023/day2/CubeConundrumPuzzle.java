@@ -3,8 +3,6 @@ package com.gotreaux.aoc.puzzles.year2023.day2;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.EnumMap;
 import java.util.Locale;
 import java.util.Map;
@@ -27,8 +25,7 @@ public class CubeConundrumPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, IllegalArgumentException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         int possibleGames = 0;
         int powerOfFewestCubes = 0;
 

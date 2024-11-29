@@ -3,8 +3,6 @@ package com.gotreaux.aoc.puzzles.year2021.day5;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.Scanner;
 import java.util.function.Function;
@@ -19,8 +17,7 @@ public class HydrothermalVenturePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader)
-            throws IOException, URISyntaxException {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
         Collection<Line> lines =
                 inputReader.getInputStream().map(HydrothermalVenturePuzzle::parseLine).toList();
 

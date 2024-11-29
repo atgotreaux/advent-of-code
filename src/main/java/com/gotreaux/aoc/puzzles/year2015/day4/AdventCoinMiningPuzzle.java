@@ -3,8 +3,6 @@ package com.gotreaux.aoc.puzzles.year2015.day4;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -20,8 +18,7 @@ public class AdventCoinMiningPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, NoSuchAlgorithmException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         String input = inputReader.getInputString();
 
         int partOne = findHashMatchingCondition(input, s -> s.startsWith("00000"));

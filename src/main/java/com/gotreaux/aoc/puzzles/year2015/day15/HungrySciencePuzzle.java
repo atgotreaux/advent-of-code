@@ -4,10 +4,7 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.CollectionUtils;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
-import java.util.NoSuchElementException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,8 +15,7 @@ public class HungrySciencePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, NoSuchElementException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         List<Ingredient> ingredients =
                 inputReader.getInputStream().map(HungrySciencePuzzle::parseIngredient).toList();
 

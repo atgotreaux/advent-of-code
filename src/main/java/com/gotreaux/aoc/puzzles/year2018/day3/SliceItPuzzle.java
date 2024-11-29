@@ -4,14 +4,11 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.awt.Point;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.stream.Stream;
 import org.springframework.stereotype.Component;
@@ -24,8 +21,7 @@ public class SliceItPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, NoSuchElementException {
+    public PuzzleOutput<Long, Integer> solve(InputReader inputReader) throws Exception {
         Map<Point, Collection<Integer>> fabricClaims = new HashMap<>();
         Collection<Integer> claimIds = new ArrayList<>();
 

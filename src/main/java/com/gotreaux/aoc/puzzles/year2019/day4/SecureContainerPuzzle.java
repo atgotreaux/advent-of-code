@@ -7,8 +7,6 @@ import static java.util.stream.Collectors.groupingBy;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
@@ -22,8 +20,7 @@ public class SecureContainerPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         Scanner scanner = new Scanner(inputReader.getInputString());
         scanner.useDelimiter("-");
         int start = scanner.nextInt();

@@ -3,8 +3,6 @@ package com.gotreaux.aoc.puzzles.year2020.day6;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.springframework.stereotype.Component;
@@ -17,8 +15,7 @@ public class CustomCustomsPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader)
-            throws IOException, URISyntaxException {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
         Collection<PassengerGroup> passengerGroups = new ArrayList<>();
 
         Collection<String> passengerDeclarations = new ArrayList<>();

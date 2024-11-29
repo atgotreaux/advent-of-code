@@ -8,8 +8,6 @@ import static java.util.stream.Collectors.toMap;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,8 +21,7 @@ public class LanternfishPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader)
-            throws IOException, URISyntaxException {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
         Map<Integer, Long> lanternfish =
                 Arrays.stream(inputReader.getInputString().split(","))
                         .map(Integer::parseInt)

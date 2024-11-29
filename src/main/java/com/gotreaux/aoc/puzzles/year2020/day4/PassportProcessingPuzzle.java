@@ -6,8 +6,6 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,8 +20,7 @@ public class PassportProcessingPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         int requiredFieldPassports = 0;
         int validPassports = 0;
 

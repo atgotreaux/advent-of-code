@@ -3,8 +3,6 @@ package com.gotreaux.aoc.puzzles.year2022.day1;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,8 +16,7 @@ public class CalorieCountingPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, NumberFormatException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         int elfIndex = 0;
         Map<Integer, Integer> elfCalorieCarriage = new HashMap<>();
 

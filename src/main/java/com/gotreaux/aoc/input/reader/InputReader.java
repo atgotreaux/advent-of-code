@@ -1,14 +1,12 @@
 package com.gotreaux.aoc.input.reader;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Stream;
 
 public interface InputReader {
-    String getInputString() throws IOException, URISyntaxException;
+    String getInputString() throws Exception;
 
-    Stream<String> getInputStream() throws IOException, URISyntaxException;
+    Stream<String> getInputStream() throws Exception;
 
-    List<String> getInputList() throws IOException, URISyntaxException;
+    List<String> getInputList() throws Exception;
 }

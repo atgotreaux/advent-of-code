@@ -3,8 +3,6 @@ package com.gotreaux.aoc.puzzles.year2016.day9;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Scanner;
 import org.springframework.stereotype.Component;
 
@@ -16,8 +14,7 @@ public class CyberspaceExplosivesPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader)
-            throws IOException, URISyntaxException {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
         String input = inputReader.getInputString();
 
         long decompressedLength = decompress(input, false);

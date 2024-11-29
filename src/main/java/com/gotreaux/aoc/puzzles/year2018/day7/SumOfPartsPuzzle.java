@@ -3,12 +3,9 @@ package com.gotreaux.aoc.puzzles.year2018.day7;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 import org.springframework.stereotype.Component;
 
@@ -20,8 +17,7 @@ public class SumOfPartsPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, NoSuchElementException {
+    public PuzzleOutput<String, Integer> solve(InputReader inputReader) throws Exception {
         List<Requirement> reqs =
                 inputReader.getInputStream().map(SumOfPartsPuzzle::parseRequirement).toList();
 

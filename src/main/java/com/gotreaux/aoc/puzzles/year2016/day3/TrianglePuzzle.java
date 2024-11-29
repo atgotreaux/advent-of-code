@@ -3,8 +3,6 @@ package com.gotreaux.aoc.puzzles.year2016.day3;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -19,8 +17,7 @@ public class TrianglePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader)
-            throws IOException, URISyntaxException {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
         Collection<String> input = inputReader.getInputList();
         Collection<Triangle> rowTriangles = new ArrayList<>(input.size());
 

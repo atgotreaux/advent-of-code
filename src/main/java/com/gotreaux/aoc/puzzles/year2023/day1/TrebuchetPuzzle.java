@@ -3,8 +3,6 @@ package com.gotreaux.aoc.puzzles.year2023.day1;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
@@ -16,8 +14,7 @@ public class TrebuchetPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         int calibrationValue = 0;
         int calibrationValueWithDigits = 0;
 

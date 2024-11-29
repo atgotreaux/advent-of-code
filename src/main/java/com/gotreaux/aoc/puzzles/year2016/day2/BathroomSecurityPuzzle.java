@@ -4,11 +4,8 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.RelativeDirection;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.List;
-import java.util.NoSuchElementException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,8 +16,7 @@ public class BathroomSecurityPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, String> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, NoSuchElementException {
+    public PuzzleOutput<String, String> solve(InputReader inputReader) throws Exception {
         Key imaginedKey = new Key("5", "2", "8", "4", "6");
         Collection<Key> imaginedKeys =
                 List.of(

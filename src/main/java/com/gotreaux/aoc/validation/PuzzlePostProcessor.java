@@ -23,7 +23,8 @@ public class PuzzlePostProcessor implements BeanPostProcessor {
         if (bean instanceof Puzzle) {
             Set<ConstraintViolation<Object>> violations = validator.validate(bean);
             if (!violations.isEmpty()) {
-                throw new IllegalStateException("Puzzle bean validation failed: " + violations);
+                throw new IllegalStateException(
+                        "Puzzle bean validation failed: %s".formatted(violations));
             }
         }
         return bean;

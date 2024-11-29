@@ -7,8 +7,6 @@ import com.gotreaux.aoc.puzzles.year2015.day11.functions.ForbiddenCharsPredicate
 import com.gotreaux.aoc.puzzles.year2015.day11.functions.IncreasingCharsPredicate;
 import com.gotreaux.aoc.puzzles.year2015.day11.functions.IncrementPasswordFunction;
 import com.gotreaux.aoc.puzzles.year2015.day11.functions.TwoPairsPredicate;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import org.springframework.stereotype.Component;
@@ -21,8 +19,7 @@ public class CorporatePolicyPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, String> solve(InputReader inputReader)
-            throws IOException, URISyntaxException {
+    public PuzzleOutput<String, String> solve(InputReader inputReader) throws Exception {
         String nextPassword = inputReader.getInputString();
 
         Function<String, String> incrementPassword = new IncrementPasswordFunction();

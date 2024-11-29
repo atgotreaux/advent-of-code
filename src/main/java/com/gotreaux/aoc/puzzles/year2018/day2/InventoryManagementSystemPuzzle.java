@@ -7,8 +7,6 @@ import static java.util.stream.Collectors.groupingBy;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Component;
@@ -21,8 +19,7 @@ public class InventoryManagementSystemPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, String> solve(InputReader inputReader)
-            throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, String> solve(InputReader inputReader) throws Exception {
         List<String> lines = inputReader.getInputList();
 
         int boxIdsWithTwoOfLetter = 0;

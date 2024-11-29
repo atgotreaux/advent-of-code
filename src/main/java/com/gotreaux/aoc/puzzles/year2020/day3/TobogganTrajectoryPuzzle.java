@@ -4,8 +4,6 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.matrix.CharMatrix;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
@@ -17,8 +15,7 @@ public class TobogganTrajectoryPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Long> solve(InputReader inputReader)
-            throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Long> solve(InputReader inputReader) throws Exception {
         List<String> lines = inputReader.getInputList();
         CharMatrix map = new CharMatrix(lines);
 

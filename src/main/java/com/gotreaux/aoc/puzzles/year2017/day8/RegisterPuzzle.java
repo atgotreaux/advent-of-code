@@ -3,11 +3,8 @@ package com.gotreaux.aoc.puzzles.year2017.day8;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
@@ -20,8 +17,7 @@ public class RegisterPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, NoSuchElementException, NumberFormatException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         List<String> input = inputReader.getInputList();
 
         Map<String, Integer> registers =

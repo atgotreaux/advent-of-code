@@ -3,8 +3,6 @@ package com.gotreaux.aoc.puzzles.year2022.day3;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;
@@ -17,8 +15,7 @@ public class RucksackReorganizationPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, IllegalArgumentException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         int sumOfCompartmentPriorities = 0;
         int sumOfGroupPriorities = 0;
 

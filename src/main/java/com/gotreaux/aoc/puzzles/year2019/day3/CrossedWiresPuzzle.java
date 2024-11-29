@@ -5,12 +5,9 @@ import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.RelativeDirection;
 import java.awt.Point;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.NoSuchElementException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,8 +18,7 @@ public class CrossedWiresPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, NoSuchElementException, NumberFormatException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         List<String> input = inputReader.getInputList();
 
         List<Point> firstWirePositions = getWirePositions(input.getFirst());

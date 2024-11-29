@@ -4,11 +4,8 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.RelativeDirection;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
 import org.springframework.stereotype.Component;
 
@@ -24,11 +21,7 @@ public class HauntedWastelandPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader)
-            throws IOException,
-                    URISyntaxException,
-                    NoSuchElementException,
-                    IllegalArgumentException {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
         List<RelativeDirection> directions = new ArrayList<>();
         List<Node> nodes = new ArrayList<>();
 

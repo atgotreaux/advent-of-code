@@ -1,11 +1,11 @@
 package com.gotreaux.aoc.input.reader;
 
+import com.gotreaux.aoc.exceptions.NoSuchPuzzleException;
 import com.gotreaux.aoc.persistence.entity.PuzzleEntity;
 import com.gotreaux.aoc.persistence.entity.PuzzleEntityId;
 import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
 import java.io.IOException;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 public class DatabaseInputReader implements InputReader {
@@ -21,25 +21,25 @@ public class DatabaseInputReader implements InputReader {
     }
 
     @Override
-    public String getInputString() throws NoSuchElementException {
+    public String getInputString() throws NoSuchPuzzleException {
         return getInput();
     }
 
     @Override
-    public Stream<String> getInputStream() throws IOException, NoSuchElementException {
+    public Stream<String> getInputStream() throws IOException, NoSuchPuzzleException {
         String puzzleInput = getInput();
 
         return Stream.of(puzzleInput.split("\n"));
     }
 
     @Override
-    public List<String> getInputList() throws IOException, NoSuchElementException {
+    public List<String> getInputList() throws IOException, NoSuchPuzzleException {
         String puzzleInput = getInput();
 
         return List.of(puzzleInput.split("\n"));
     }
 
-    private String getInput() throws NoSuchElementException {
+    private String getInput() throws NoSuchPuzzleException {
         PuzzleEntityId inputKey = new PuzzleEntityId(year, day);
 
         return puzzleRepository.findById(inputKey).map(PuzzleEntity::getInput).orElseThrow();

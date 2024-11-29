@@ -3,8 +3,6 @@ package com.gotreaux.aoc.puzzles.year2021.day1;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.IntStream;
 import org.springframework.stereotype.Component;
@@ -17,8 +15,7 @@ public class SonarSweepPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader)
-            throws IOException, URISyntaxException {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
         List<Integer> measurements = inputReader.getInputStream().map(Integer::parseInt).toList();
 
         List<Integer> windows =

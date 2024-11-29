@@ -3,8 +3,6 @@ package com.gotreaux.aoc.puzzles.year2017.day5;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.function.IntFunction;
 import org.springframework.stereotype.Component;
@@ -17,8 +15,7 @@ public class TwistyTrampolinesPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         int[] input = inputReader.getInputStream().mapToInt(Integer::parseInt).toArray();
 
         int incrementedSteps = getStepsToExit(input, i -> i + 1);

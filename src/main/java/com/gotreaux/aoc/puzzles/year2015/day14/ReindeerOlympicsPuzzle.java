@@ -5,8 +5,6 @@ import static java.util.stream.Collectors.toMap;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,8 +18,7 @@ public class ReindeerOlympicsPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         Collection<Reindeer> reindeers =
                 inputReader.getInputStream().map(ReindeerOlympicsPuzzle::parseReindeer).toList();
 

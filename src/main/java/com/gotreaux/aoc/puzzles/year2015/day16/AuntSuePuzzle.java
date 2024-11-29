@@ -3,13 +3,10 @@ package com.gotreaux.aoc.puzzles.year2015.day16;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,8 +17,7 @@ public class AuntSuePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<?, ?> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, NoSuchElementException {
+    public PuzzleOutput<?, ?> solve(InputReader inputReader) throws Exception {
         List<Aunt> aunts = inputReader.getInputStream().map(AuntSuePuzzle::parseAunt).toList();
 
         MFCSAM mfcsam = new MFCSAM(3, 7, 2, 3, 0, 0, 5, 3, 2, 1);

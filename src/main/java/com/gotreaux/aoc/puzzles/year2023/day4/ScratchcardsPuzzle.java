@@ -3,8 +3,6 @@ package com.gotreaux.aoc.puzzles.year2023.day4;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -25,8 +23,7 @@ public class ScratchcardsPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, NumberFormatException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         Collection<String> input = inputReader.getInputList();
         int lineCount = input.size();
 

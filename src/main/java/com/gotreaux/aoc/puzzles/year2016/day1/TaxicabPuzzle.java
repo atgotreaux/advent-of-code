@@ -6,11 +6,8 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.CardinalDirection;
 import com.gotreaux.aoc.utils.RelativeDirection;
 import java.awt.Point;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
 import org.springframework.stereotype.Component;
 
@@ -24,8 +21,7 @@ public class TaxicabPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, NoSuchElementException, NumberFormatException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         CardinalDirection direction = CardinalDirection.NORTH;
         Point position = new Point();
         Point firstDupPosition = null;

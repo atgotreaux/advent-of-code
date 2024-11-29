@@ -3,8 +3,6 @@ package com.gotreaux.aoc.puzzles.year2018.day5;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,8 +13,7 @@ public class AlchemicalReductionPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         String input = inputReader.getInputString();
 
         String collapsedPolymer = collapse(input);

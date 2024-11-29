@@ -11,10 +11,7 @@ import com.gotreaux.aoc.puzzles.year2015.day7.gate.RightShiftGate;
 import com.gotreaux.aoc.puzzles.year2015.day7.wire.GateWire;
 import com.gotreaux.aoc.puzzles.year2015.day7.wire.SignalWire;
 import com.gotreaux.aoc.puzzles.year2015.day7.wire.Wire;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Collection;
-import java.util.NoSuchElementException;
 import java.util.function.Function;
 import org.springframework.stereotype.Component;
 
@@ -26,8 +23,7 @@ public class SomeAssemblyRequiredPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, NoSuchElementException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         Collection<Wire> wires =
                 inputReader.getInputStream().map(SomeAssemblyRequiredPuzzle::parseWire).toList();
         Circuit firstCircuit = new Circuit(wires);

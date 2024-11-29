@@ -3,10 +3,7 @@ package com.gotreaux.aoc.puzzles.year2015.day13;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Collection;
-import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 import org.springframework.stereotype.Component;
 
@@ -18,8 +15,7 @@ public class DinnerTablePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, NoSuchElementException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         Collection<Arrangement> arrangements =
                 inputReader.getInputStream().map(DinnerTablePuzzle::parseArrangement).toList();
 

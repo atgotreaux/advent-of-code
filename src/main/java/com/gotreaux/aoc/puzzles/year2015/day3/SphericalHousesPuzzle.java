@@ -5,10 +5,7 @@ import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.CardinalDirection;
 import java.awt.Point;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.HashSet;
-import java.util.NoSuchElementException;
 import java.util.Set;
 import org.springframework.stereotype.Component;
 
@@ -20,8 +17,7 @@ public class SphericalHousesPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, NoSuchElementException {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         String input = inputReader.getInputString();
         int length = input.length();
 

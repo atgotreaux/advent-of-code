@@ -3,8 +3,6 @@ package com.gotreaux.aoc.puzzles.year2022.day5;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
@@ -25,8 +23,7 @@ public class SupplyStacksPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, String> solve(InputReader inputReader)
-            throws IOException, URISyntaxException, NumberFormatException {
+    public PuzzleOutput<String, String> solve(InputReader inputReader) throws Exception {
         Deque<RearrangeProcedure> procedures = new ArrayDeque<>();
         Map<Integer, Deque<Character>> stacks = new HashMap<>();
 
