@@ -16,11 +16,17 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Locale;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.MessageSource;
 import org.springframework.shell.command.CommandRegistration;
 import org.springframework.shell.command.annotation.Command;
 import org.springframework.shell.command.annotation.Option;
@@ -34,10 +40,18 @@ public class SeedPuzzleCommand {
     static final String COMMAND_NAME = "seed-puzzle";
     private static final Logger logger = LoggerFactory.getLogger(SeedPuzzleCommand.class);
 
+    private final MessageSource messageSource;
+    private final HttpClient client;
     private final Collection<Puzzle> puzzles;
     private final PuzzleRepository puzzleRepository;
 
-    public SeedPuzzleCommand(Collection<Puzzle> puzzles, PuzzleRepository puzzleRepository) {
+    public SeedPuzzleCommand(
+            MessageSource messageSource,
+            HttpClient client,
+            Collection<Puzzle> puzzles,
+            PuzzleRepository puzzleRepository) {
+        this.messageSource = messageSource;
+        this.client = client;
         this.puzzles = puzzles.stream().toList();
         this.puzzleRepository = puzzleRepository;
     }
@@ -86,6 +100,12 @@ public class SeedPuzzleCommand {
                             defaultValue = "database")
                     String[] targets)
             throws Exception {
+        logger.debug(
+                "Seeding puzzle of year '{}' and day '{}' to targets '{}'",
+                year,
+                day,
+                String.join(", ", targets));
+
         Predicate<Puzzle> yearPredicate = new PuzzlePredicate<>(Puzzle::getYear, year);
         Predicate<Puzzle> dayPredicate = new PuzzlePredicate<>(Puzzle::getDay, day);
 
@@ -96,36 +116,74 @@ public class SeedPuzzleCommand {
                         .findFirst()
                         .orElseThrow(() -> new NoSuchPuzzleException(year, day));
 
-        Collection<InputWriter> inputWriters =
+        logger.debug("Found puzzle class '{}'", filteredPuzzle.getClass().getSimpleName());
+
+        Map<String, InputWriter> inputWriters =
                 Arrays.stream(targets)
-                        .map(target -> getInputWriter(filteredPuzzle, target))
-                        .toList();
+                        .collect(
+                                Collectors.toMap(
+                                        Function.identity(),
+                                        target -> getInputWriter(filteredPuzzle, target)));
 
         String url = "https://adventofcode.com/%d/day/%d/input".formatted(year, day);
 
-        try (HttpClient client = HttpClient.newHttpClient()) {
-            HttpRequest request =
-                    HttpRequest.newBuilder()
-                            .uri(new URI(url))
-                            .header("Cookie", "session=%s".formatted(session))
-                            .build();
+        HttpRequest request =
+                HttpRequest.newBuilder()
+                        .uri(URI.create(url))
+                        .header("Cookie", "session=%s".formatted(session))
+                        .build();
 
-            HttpResponse<String> response =
-                    client.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            if (response.statusCode() == 200) {
-                String input = response.body();
-                for (InputWriter inputWriter : inputWriters) {
-                    inputWriter.write(input);
-                }
-            } else {
-                logger.info("Unable to fetch puzzle input. Status code: {}", response.statusCode());
-            }
-        } catch (RuntimeException e) {
-            logger.error(e.getMessage(), e);
+        Locale locale = Locale.getDefault();
+        if (response.statusCode() != 200) {
+            String error =
+                    messageSource.getMessage(
+                            "puzzle.command.seed.status-code",
+                            new Object[] {response.statusCode()},
+                            locale);
+            logger.error(error);
+            return error;
         }
 
-        return "";
+        String input = response.body();
+        if (input == null || input.isEmpty()) {
+            String error =
+                    messageSource.getMessage(
+                            "puzzle.command.seed.empty-response", new Object[] {url}, locale);
+            logger.error(error);
+            return error;
+        }
+
+        Collection<String> successfulTargets = new ArrayList<>();
+        for (Map.Entry<String, InputWriter> entry : inputWriters.entrySet()) {
+            try {
+                entry.getValue().write(input);
+                successfulTargets.add(entry.getKey());
+                logger.info("Input seeded to target '{}'", entry.getKey());
+            } catch (Exception e) {
+                logger.error("Failed to seed input to target '{}'", entry.getKey());
+                logger.error(e.getMessage());
+            }
+        }
+
+        if (successfulTargets.isEmpty()) {
+            String message =
+                    messageSource.getMessage(
+                            "puzzle.command.seed.failed-to-seed",
+                            new Object[] {String.join(", ", targets)},
+                            locale);
+            logger.info(message);
+            return message;
+        }
+
+        String message =
+                messageSource.getMessage(
+                        "puzzle.command.seed.seeded",
+                        new Object[] {String.join(", ", successfulTargets)},
+                        locale);
+        logger.info(message);
+        return message;
     }
 
     private InputWriter getInputWriter(Puzzle puzzle, String target) {
