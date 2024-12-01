@@ -67,10 +67,10 @@ public class SeedPuzzleCommand {
                             shortNames = 'Y',
                             required = true,
                             description = "Seed puzzle for advent calendar year",
-                            label = "Year between 2015-2023",
+                            label = "Year between 2015-2024",
                             arity = CommandRegistration.OptionArity.EXACTLY_ONE)
                     @Min(value = 2015, message = "{validation.years.elements-in-range}")
-                    @Max(value = 2023, message = "{validation.years.elements-in-range}")
+                    @Max(value = 2024, message = "{validation.years.elements-in-range}")
                     Integer year,
             @Option(
                             longNames = "day",

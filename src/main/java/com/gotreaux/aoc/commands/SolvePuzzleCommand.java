@@ -64,7 +64,7 @@ public class SolvePuzzleCommand {
                             arity = CommandRegistration.OptionArity.ZERO_OR_MORE)
                     @ElementsInRange(
                             min = 2015,
-                            max = 2023,
+                            max = 2024,
                             message = "{validation.years.elements-in-range}")
                     Integer[] years,
             @Option(
