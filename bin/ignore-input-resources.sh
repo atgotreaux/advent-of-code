@@ -2,7 +2,7 @@
 
 scriptDir=$(dirname "$(readlink -f "$0")")
 
-for year in {2015..2023}
+for year in {2015..2024}
 do
   for day in {1..25}
   do
