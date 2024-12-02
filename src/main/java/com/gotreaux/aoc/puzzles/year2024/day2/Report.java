@@ -49,8 +49,6 @@ record Report(List<Integer> levels) {
                                         .mapToObj(levels::get)
                                         .toList())
                 .map(Report::new)
-                .map(Report::isSafe)
-                .findFirst()
-                .orElse(false);
+                .anyMatch(Report::isSafe);
     }
 }
