@@ -56,7 +56,7 @@ External files are any file that can be read from or written to.
 
 These values need to be escaped and quoted to preserve separators.
 
-Example: `"C:\Users\atgotreaux\Downloads\input.txt"`.
+Example: `"C:\\Users\\atgotreaux\\Downloads\\input.txt"`.
 
 #### Database
 
