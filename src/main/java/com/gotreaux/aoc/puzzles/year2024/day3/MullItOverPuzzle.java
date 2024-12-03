@@ -34,7 +34,7 @@ public class MullItOverPuzzle extends Puzzle {
                     sumOfEnabledMultiplications += multiplier * multiplicand;
                 }
             } else {
-                enabled = matcher.group(4).equals("do");
+                enabled = "do".equals(matcher.group(4));
             }
         }
 
