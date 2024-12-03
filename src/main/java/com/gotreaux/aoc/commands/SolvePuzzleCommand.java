@@ -3,16 +3,10 @@ package com.gotreaux.aoc.commands;
 import static java.util.Comparator.comparingInt;
 
 import com.gotreaux.aoc.annotations.ElementsInRange;
-import com.gotreaux.aoc.input.reader.DatabaseInputReader;
-import com.gotreaux.aoc.input.reader.FileInputReader;
 import com.gotreaux.aoc.input.reader.InputReader;
-import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.input.reader.StringInputReader;
+import com.gotreaux.aoc.input.reader.InputReaderFactory;
 import com.gotreaux.aoc.output.PuzzleOutput;
-import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
@@ -39,15 +33,15 @@ public class SolvePuzzleCommand {
 
     private final Collection<Puzzle> puzzles;
     private final MessageSource messageSource;
-    private final PuzzleRepository puzzleRepository;
+    private final InputReaderFactory inputReaderFactory;
 
     public SolvePuzzleCommand(
             Collection<Puzzle> puzzles,
             MessageSource messageSource,
-            PuzzleRepository puzzleRepository) {
+            InputReaderFactory inputReaderFactory) {
         this.puzzles = puzzles.stream().toList();
         this.messageSource = messageSource;
-        this.puzzleRepository = puzzleRepository;
+        this.inputReaderFactory = inputReaderFactory;
     }
 
     @Command(
@@ -84,7 +78,7 @@ public class SolvePuzzleCommand {
                             description = "Source of puzzle input",
                             label = "[database,resource,{filePath},{string}]",
                             arity = CommandRegistration.OptionArity.ZERO_OR_ONE,
-                            defaultValue = "resource")
+                            defaultValue = InputReaderFactory.DATABASE_READER)
                     String source)
             throws Exception {
         TableModelBuilder<String> tableModelBuilder = new TableModelBuilder<>();
@@ -108,10 +102,9 @@ public class SolvePuzzleCommand {
                         .toList();
 
         for (Puzzle filteredPuzzle : filteredPuzzles) {
-            String partOne;
-            String partTwo;
+            String partOne, partTwo;
             try {
-                InputReader inputReader = getInputReader(filteredPuzzle, source);
+                InputReader inputReader = inputReaderFactory.create(filteredPuzzle, source);
                 PuzzleOutput<?, ?> output = filteredPuzzle.solve(inputReader);
 
                 partOne = String.valueOf(output.partOne());
@@ -136,24 +129,6 @@ public class SolvePuzzleCommand {
         tableBuilder.addFullBorder(BorderStyle.fancy_light);
 
         return tableBuilder.build().render(TOTAL_AVAILABLE_WIDTH);
-    }
-
-    private InputReader getInputReader(Puzzle puzzle, String source) {
-        return switch (source) {
-            case "database" ->
-                    new DatabaseInputReader(puzzleRepository, puzzle.getYear(), puzzle.getDay());
-            case "resource" -> new ResourceInputReader<>(puzzle.getClass());
-            default -> {
-                Path filePath = Path.of(source);
-                if (Files.exists(filePath) && Files.isRegularFile(filePath)) {
-                    logger.debug("Creating FileInputReader with path '{}'", source);
-                    yield new FileInputReader(filePath.toString());
-                }
-
-                logger.debug("Creating StringInputReader with input '{}'", source);
-                yield new StringInputReader(source);
-            }
-        };
     }
 
     private String getTableHeaderMessage(String header, Locale locale) {

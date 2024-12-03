@@ -5,11 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.gotreaux.aoc.input.writer.FileInputWriter;
 import com.gotreaux.aoc.input.writer.InputWriter;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
-import java.util.random.RandomGenerator;
+import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
 
 class FileInputReaderTest {
@@ -22,10 +21,7 @@ class FileInputReaderTest {
 
     @Test
     void inputAsString() throws Exception {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        byte[] bytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(bytes);
-        String input = new String(bytes, StandardCharsets.UTF_8);
+        String input = RandomString.make(10);
 
         Path path = Files.createTempFile("input", ".txt");
 
@@ -39,10 +35,7 @@ class FileInputReaderTest {
 
     @Test
     void inputAsStream() throws Exception {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        byte[] bytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(bytes);
-        String input = new String(bytes, StandardCharsets.UTF_8);
+        String input = RandomString.make(10);
 
         Path path = Files.createTempFile("input", ".txt");
 
@@ -57,10 +50,7 @@ class FileInputReaderTest {
 
     @Test
     void inputAsList() throws Exception {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        byte[] bytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(bytes);
-        String input = new String(bytes, StandardCharsets.UTF_8);
+        String input = RandomString.make(10);
 
         Path path = Files.createTempFile("input", ".txt");
 

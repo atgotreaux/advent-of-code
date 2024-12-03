@@ -2,6 +2,7 @@ package com.gotreaux.aoc.commands;
 
 import static org.awaitility.Awaitility.await;
 
+import com.gotreaux.aoc.input.reader.InputReaderFactory;
 import com.gotreaux.aoc.input.writer.DatabaseInputWriter;
 import com.gotreaux.aoc.input.writer.FileInputWriter;
 import com.gotreaux.aoc.input.writer.InputWriter;
@@ -131,7 +132,7 @@ class SolvePuzzleCommandTest {
                                 "-D",
                                 String.valueOf(puzzle.getDay()),
                                 "-I",
-                                "resource")
+                                InputReaderFactory.RESOURCE_READER)
                         .run();
 
         await().atMost(2, TimeUnit.SECONDS)
@@ -156,7 +157,7 @@ class SolvePuzzleCommandTest {
                                 "-D",
                                 String.valueOf(puzzle.getDay()),
                                 "-I",
-                                "database")
+                                InputReaderFactory.DATABASE_READER)
                         .run();
 
         await().atMost(2, TimeUnit.SECONDS)

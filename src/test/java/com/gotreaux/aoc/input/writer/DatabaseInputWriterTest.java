@@ -6,9 +6,9 @@ import com.gotreaux.aoc.input.reader.DatabaseInputReader;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.random.RandomGenerator;
+import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,9 +30,7 @@ class DatabaseInputWriterTest {
         InputWriter inputWriter =
                 new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
 
-        byte[] bytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(bytes);
-        String input = new String(bytes, StandardCharsets.UTF_8);
+        String input = RandomString.make(10);
 
         inputWriter.write(input);
 
@@ -47,17 +45,11 @@ class DatabaseInputWriterTest {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        byte[] bytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(bytes);
-        String input = new String(bytes, StandardCharsets.UTF_8);
-
         InputWriter inputWriter =
                 new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
-        inputWriter.write(input);
+        inputWriter.write(RandomString.make(10));
 
-        byte[] updatedBytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(updatedBytes);
-        String updatedInput = new String(updatedBytes, StandardCharsets.UTF_8);
+        String updatedInput = RandomString.make(10);
 
         inputWriter.write(updatedInput);
 

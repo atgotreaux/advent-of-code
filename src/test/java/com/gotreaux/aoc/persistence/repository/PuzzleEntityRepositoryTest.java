@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.gotreaux.aoc.persistence.entity.PuzzleEntity;
 import com.gotreaux.aoc.persistence.entity.PuzzleEntityId;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.random.RandomGenerator;
+import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -38,10 +38,7 @@ class PuzzleEntityRepositoryTest {
         PuzzleEntity puzzleEntity = new PuzzleEntity();
         puzzleEntity.setId(puzzleEntityId);
 
-        byte[] bytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(bytes);
-        String input = new String(bytes, StandardCharsets.UTF_8);
-        puzzleEntity.setInput(input);
+        puzzleEntity.setInput(RandomString.make(10));
 
         puzzleRepository.save(puzzleEntity);
 

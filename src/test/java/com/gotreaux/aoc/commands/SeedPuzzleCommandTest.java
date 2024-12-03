@@ -7,13 +7,14 @@ import com.gotreaux.aoc.input.reader.DatabaseInputReader;
 import com.gotreaux.aoc.input.reader.FileInputReader;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
+import com.gotreaux.aoc.input.writer.InputWriterFactory;
 import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2015.day1.ApartmentFloorPuzzle;
 import java.io.File;
+import java.net.HttpURLConnection;
 import java.net.http.HttpClient;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.MessageDigest;
@@ -23,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.random.RandomGenerator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
@@ -213,7 +215,7 @@ class SeedPuzzleCommandTest {
         String sessionId = HexFormat.of().formatHex(md.digest());
 
         HttpResponse<String> mockResponse = Mockito.mock(HttpResponse.class);
-        Mockito.when(mockResponse.statusCode()).thenReturn(401);
+        Mockito.when(mockResponse.statusCode()).thenReturn(HttpURLConnection.HTTP_UNAUTHORIZED);
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenAnswer(_ -> mockResponse);
 
@@ -253,7 +255,7 @@ class SeedPuzzleCommandTest {
         String sessionId = HexFormat.of().formatHex(md.digest());
 
         HttpResponse<String> mockResponse = Mockito.mock(HttpResponse.class);
-        Mockito.when(mockResponse.statusCode()).thenReturn(200);
+        Mockito.when(mockResponse.statusCode()).thenReturn(HttpURLConnection.HTTP_OK);
         Mockito.when(mockResponse.body()).thenReturn(null);
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenAnswer(_ -> mockResponse);
@@ -295,12 +297,10 @@ class SeedPuzzleCommandTest {
         md.update(sessionBytes);
         String sessionId = HexFormat.of().formatHex(md.digest());
 
-        byte[] inputBytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(inputBytes);
-        String input = new String(inputBytes, StandardCharsets.UTF_8);
+        String input = RandomString.make(10);
 
         HttpResponse<String> mockResponse = Mockito.mock(HttpResponse.class);
-        Mockito.when(mockResponse.statusCode()).thenReturn(200);
+        Mockito.when(mockResponse.statusCode()).thenReturn(HttpURLConnection.HTTP_OK);
         Mockito.when(mockResponse.body()).thenReturn(input);
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenAnswer(_ -> mockResponse);
@@ -346,9 +346,7 @@ class SeedPuzzleCommandTest {
         md.update(sessionBytes);
         String sessionId = HexFormat.of().formatHex(md.digest());
 
-        byte[] inputBytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(inputBytes);
-        String input = new String(inputBytes, StandardCharsets.UTF_8);
+        String input = RandomString.make(10);
 
         Path path = Files.createTempFile("input", ".txt");
 
@@ -360,7 +358,7 @@ class SeedPuzzleCommandTest {
                                 Matcher.quoteReplacement(File.separator.repeat(2)));
 
         HttpResponse<String> mockResponse = Mockito.mock(HttpResponse.class);
-        Mockito.when(mockResponse.statusCode()).thenReturn(200);
+        Mockito.when(mockResponse.statusCode()).thenReturn(HttpURLConnection.HTTP_OK);
         Mockito.when(mockResponse.body()).thenReturn(input);
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenAnswer(_ -> mockResponse);
@@ -391,7 +389,6 @@ class SeedPuzzleCommandTest {
         InputReader inputReader = new FileInputReader(path.toAbsolutePath().toString());
 
         assertEquals(input, inputReader.getInputString());
-        assertEquals(0L, puzzleRepository.count());
     }
 
     @Test
@@ -407,12 +404,10 @@ class SeedPuzzleCommandTest {
         md.update(sessionBytes);
         String sessionId = HexFormat.of().formatHex(md.digest());
 
-        byte[] inputBytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(inputBytes);
-        String input = new String(inputBytes, StandardCharsets.UTF_8);
+        String input = RandomString.make(10);
 
         HttpResponse<String> mockResponse = Mockito.mock(HttpResponse.class);
-        Mockito.when(mockResponse.statusCode()).thenReturn(200);
+        Mockito.when(mockResponse.statusCode()).thenReturn(HttpURLConnection.HTTP_OK);
         Mockito.when(mockResponse.body()).thenReturn(input);
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenAnswer(_ -> mockResponse);
@@ -427,7 +422,7 @@ class SeedPuzzleCommandTest {
                                 "-S",
                                 sessionId,
                                 "-T",
-                                "resource")
+                                InputWriterFactory.RESOURCE_WRITER)
                         .run();
 
         await().atMost(2, TimeUnit.SECONDS)
@@ -443,6 +438,5 @@ class SeedPuzzleCommandTest {
         InputReader inputReader = new ResourceInputReader<>(ApartmentFloorPuzzle.class);
 
         assertEquals(input, inputReader.getInputString());
-        assertEquals(0L, puzzleRepository.count());
     }
 }

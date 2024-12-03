@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.random.RandomGenerator;
+import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,9 +33,7 @@ class PuzzleEntityTest {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        byte[] bytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(bytes);
-        String input = new String(bytes, StandardCharsets.UTF_8);
+        String input = RandomString.make(10);
 
         PuzzleEntity puzzleEntity = new PuzzleEntity(null, puzzle.getDay(), input);
 
@@ -47,9 +45,7 @@ class PuzzleEntityTest {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        byte[] bytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(bytes);
-        String input = new String(bytes, StandardCharsets.UTF_8);
+        String input = RandomString.make(10);
 
         PuzzleEntity puzzleEntity = new PuzzleEntity(puzzle.getYear(), null, input);
 
@@ -71,9 +67,7 @@ class PuzzleEntityTest {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        byte[] bytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(bytes);
-        String input = new String(bytes, StandardCharsets.UTF_8);
+        String input = RandomString.make(10);
 
         PuzzleEntity puzzleEntity =
                 new PuzzleEntity(
@@ -87,9 +81,7 @@ class PuzzleEntityTest {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        byte[] bytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(bytes);
-        String input = new String(bytes, StandardCharsets.UTF_8);
+        String input = RandomString.make(10);
 
         PuzzleEntity puzzleEntity =
                 new PuzzleEntity(puzzle.getYear(), generator.nextInt(26, 32), input);
@@ -103,9 +95,7 @@ class PuzzleEntityTest {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        byte[] bytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(bytes);
-        String input = new String(bytes, StandardCharsets.UTF_8);
+        String input = RandomString.make(10);
 
         PuzzleEntity puzzleEntity = new PuzzleEntity(puzzle.getYear(), puzzle.getDay(), input);
         PuzzleEntity duplicatePuzzleEntity =
@@ -123,9 +113,7 @@ class PuzzleEntityTest {
         RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        byte[] bytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(bytes);
-        String input = new String(bytes, StandardCharsets.UTF_8);
+        String input = RandomString.make(10);
 
         PuzzleEntity puzzleEntity = new PuzzleEntity(puzzle.getYear(), puzzle.getDay(), input);
 

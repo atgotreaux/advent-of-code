@@ -2,17 +2,13 @@ package com.gotreaux.aoc.input.reader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.nio.charset.StandardCharsets;
-import java.util.random.RandomGenerator;
+import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
 
 class StringInputReaderTest {
     @Test
     void inputAsString() throws Exception {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        byte[] bytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(bytes);
-        String input = new String(bytes, StandardCharsets.UTF_8);
+        String input = RandomString.make(10);
 
         InputReader inputReader = new StringInputReader(input);
 
@@ -21,10 +17,7 @@ class StringInputReaderTest {
 
     @Test
     void inputAsStream() throws Exception {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        byte[] bytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(bytes);
-        String input = new String(bytes, StandardCharsets.UTF_8);
+        String input = RandomString.make(10);
 
         InputReader inputReader = new StringInputReader(input);
 
@@ -34,10 +27,7 @@ class StringInputReaderTest {
 
     @Test
     void inputAsList() throws Exception {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        byte[] bytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(bytes);
-        String input = new String(bytes, StandardCharsets.UTF_8);
+        String input = RandomString.make(10);
 
         InputReader inputReader = new StringInputReader(input);
 

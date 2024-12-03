@@ -1,21 +1,17 @@
 package com.gotreaux.aoc.commands;
 
 import com.gotreaux.aoc.exceptions.NoSuchPuzzleException;
-import com.gotreaux.aoc.input.writer.DatabaseInputWriter;
-import com.gotreaux.aoc.input.writer.FileInputWriter;
 import com.gotreaux.aoc.input.writer.InputWriter;
-import com.gotreaux.aoc.input.writer.ResourceInputWriter;
-import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
+import com.gotreaux.aoc.input.writer.InputWriterFactory;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -43,17 +39,17 @@ public class SeedPuzzleCommand {
     private final MessageSource messageSource;
     private final HttpClient client;
     private final Collection<Puzzle> puzzles;
-    private final PuzzleRepository puzzleRepository;
+    private final InputWriterFactory inputWriterFactory;
 
     public SeedPuzzleCommand(
             MessageSource messageSource,
             HttpClient client,
             Collection<Puzzle> puzzles,
-            PuzzleRepository puzzleRepository) {
+            InputWriterFactory inputWriterFactory) {
         this.messageSource = messageSource;
         this.client = client;
         this.puzzles = puzzles.stream().toList();
-        this.puzzleRepository = puzzleRepository;
+        this.inputWriterFactory = inputWriterFactory;
     }
 
     @Command(
@@ -97,7 +93,7 @@ public class SeedPuzzleCommand {
                             description = "Target destination(s) for puzzle input for seeding",
                             label = "[database,resource,{filePath}]",
                             arity = CommandRegistration.OptionArity.ONE_OR_MORE,
-                            defaultValue = "database")
+                            defaultValue = InputWriterFactory.DATABASE_WRITER)
                     String[] targets)
             throws Exception {
         logger.debug(
@@ -109,21 +105,21 @@ public class SeedPuzzleCommand {
         Predicate<Puzzle> yearPredicate = new PuzzlePredicate<>(Puzzle::getYear, year);
         Predicate<Puzzle> dayPredicate = new PuzzlePredicate<>(Puzzle::getDay, day);
 
-        Puzzle filteredPuzzle =
+        Puzzle puzzle =
                 puzzles.stream()
                         .filter(yearPredicate)
                         .filter(dayPredicate)
                         .findFirst()
                         .orElseThrow(() -> new NoSuchPuzzleException(year, day));
 
-        logger.debug("Found puzzle class '{}'", filteredPuzzle.getClass().getSimpleName());
+        logger.debug("Found puzzle class '{}'", puzzle.getClass().getSimpleName());
 
         Map<String, InputWriter> inputWriters =
                 Arrays.stream(targets)
                         .collect(
                                 Collectors.toMap(
                                         Function.identity(),
-                                        target -> getInputWriter(filteredPuzzle, target)));
+                                        target -> inputWriterFactory.create(puzzle, target)));
 
         String url = "https://adventofcode.com/%d/day/%d/input".formatted(year, day);
 
@@ -136,7 +132,7 @@ public class SeedPuzzleCommand {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         Locale locale = Locale.getDefault();
-        if (response.statusCode() != 200) {
+        if (response.statusCode() != HttpURLConnection.HTTP_OK) {
             String error =
                     messageSource.getMessage(
                             "puzzle.command.seed.status-code",
@@ -155,7 +151,7 @@ public class SeedPuzzleCommand {
             return error;
         }
 
-        Collection<String> successfulTargets = new ArrayList<>();
+        Collection<String> successfulTargets = new ArrayList<>(inputWriters.size());
         for (Map.Entry<String, InputWriter> entry : inputWriters.entrySet()) {
             try {
                 entry.getValue().write(input);
@@ -184,22 +180,5 @@ public class SeedPuzzleCommand {
                         locale);
         logger.info(message);
         return message;
-    }
-
-    private InputWriter getInputWriter(Puzzle puzzle, String target) {
-        return switch (target) {
-            case "database" ->
-                    new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
-            case "resource" -> new ResourceInputWriter<>(puzzle.getClass());
-            default -> {
-                Path filePath = Path.of(target);
-                if (Files.isRegularFile(filePath) || !Files.exists(filePath)) {
-                    yield new FileInputWriter(target);
-                }
-
-                throw new IllegalStateException(
-                        "Cannot create input writer for target '%s'".formatted(target));
-            }
-        };
     }
 }
