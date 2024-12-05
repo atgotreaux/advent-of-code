@@ -1,12 +1,14 @@
 package com.gotreaux.aoc.utils.matrix;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.IntFunction;
-import java.util.stream.IntStream;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 abstract class Matrix<T> {
@@ -59,25 +61,71 @@ abstract class Matrix<T> {
     }
 
     public T[] up(int row, int col) {
-        return IntStream.range(0, row)
-                .map(i -> row - i - 1)
-                .mapToObj(i -> get(i, col))
-                .toArray(generator());
+        return direction(row, col, i -> i - 1, i -> i, new LimitPredicate());
+    }
+
+    protected T[] up(int row, int col, int limit) {
+        return direction(row, col, i -> i - 1, i -> i, new LimitPredicate(limit));
     }
 
     public T[] down(int row, int col) {
-        return IntStream.range(row + 1, rowCount).mapToObj(i -> get(i, col)).toArray(generator());
+        return direction(row, col, i -> i + 1, i -> i, new LimitPredicate());
+    }
+
+    protected T[] down(int row, int col, int limit) {
+        return direction(row, col, i -> i + 1, i -> i, new LimitPredicate(limit));
     }
 
     public T[] left(int row, int col) {
-        return IntStream.range(0, col)
-                .map(i -> col - i - 1)
-                .mapToObj(i -> get(row, i))
-                .toArray(generator());
+        return direction(row, col, i -> i, i -> i - 1, new LimitPredicate());
+    }
+
+    protected T[] left(int row, int col, int limit) {
+        return direction(row, col, i -> i, i -> i - 1, new LimitPredicate(limit));
     }
 
     public T[] right(int row, int col) {
-        return IntStream.range(col + 1, colCount).mapToObj(i -> get(row, i)).toArray(generator());
+        return direction(row, col, i -> i, i -> i + 1, new LimitPredicate());
+    }
+
+    protected T[] right(int row, int col, int limit) {
+        return direction(row, col, i -> i, i -> i + 1, new LimitPredicate(limit));
+    }
+
+    protected T[] southeast(int row, int col, int limit) {
+        return direction(row, col, i -> i + 1, i -> i + 1, new LimitPredicate(limit));
+    }
+
+    protected T[] southwest(int row, int col, int limit) {
+        return direction(row, col, i -> i + 1, i -> i - 1, new LimitPredicate(limit));
+    }
+
+    protected T[] northeast(int row, int col, int limit) {
+        return direction(row, col, i -> i - 1, i -> i + 1, new LimitPredicate(limit));
+    }
+
+    protected T[] northwest(int row, int col, int limit) {
+        return direction(row, col, i -> i - 1, i -> i - 1, new LimitPredicate(limit));
+    }
+
+    private T[] direction(
+            int startRow,
+            int startCol,
+            Function<Integer, Integer> adjustRow,
+            Function<Integer, Integer> adjustCol,
+            Predicate<Integer> limitPredicate) {
+        Collection<T> elements = new ArrayList<>();
+
+        int row = adjustRow.apply(startRow);
+        int col = adjustCol.apply(startCol);
+
+        while (isValid(row, col) && limitPredicate.test(elements.size())) {
+            elements.add(get(row, col));
+            row = adjustRow.apply(row);
+            col = adjustCol.apply(col);
+        }
+
+        return elements.toArray(generator());
     }
 
     public T[] neighbors(int row, int col) {
@@ -104,5 +152,9 @@ abstract class Matrix<T> {
         }
 
         return neighbors.toArray(generator());
+    }
+
+    private boolean isValid(int row, int col) {
+        return row >= 0 && row < rowCount && col >= 0 && col < colCount;
     }
 }
