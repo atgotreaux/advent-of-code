@@ -45,6 +45,16 @@ class CollectionUtilsTest {
         assertEquals(expectedSize, expectedSumCount);
     }
 
+    @ParameterizedTest
+    @MethodSource("provideCombinations")
+    void combinations(List<String> elements, int length, int expectedSize) {
+        List<List<String>> combinations = CollectionUtils.combinations(elements, length);
+
+        assertEquals(expectedSize, combinations.size());
+        assertEquals(
+                Integer.toUnsignedLong(expectedSize), combinations.stream().distinct().count());
+    }
+
     private static Stream<Arguments> providePermutations() {
         return Stream.of(
                 Arguments.of(List.of(1), 1),
@@ -61,5 +71,13 @@ class CollectionUtilsTest {
 
     private static Stream<Arguments> provideCombinationsOfSum() {
         return Stream.of(Arguments.of(2, 100, 101), Arguments.of(4, 100, 176851));
+    }
+
+    private static Stream<Arguments> provideCombinations() {
+        return Stream.of(
+                Arguments.of(List.of("+", "*"), 1, 2),
+                Arguments.of(List.of("+", "*"), 2, 4),
+                Arguments.of(List.of("+", "*"), 3, 8),
+                Arguments.of(List.of("+", "*"), 5, 32));
     }
 }

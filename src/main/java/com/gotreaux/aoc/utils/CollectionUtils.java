@@ -60,4 +60,24 @@ public final class CollectionUtils {
         }
         return combinations;
     }
+
+    public static <T> List<List<T>> combinations(List<T> elements, int length) {
+        List<List<T>> combinations = new ArrayList<>();
+        combination(elements, length, new ArrayList<>(), combinations);
+        return combinations;
+    }
+
+    private static <T> void combination(
+            List<T> elements, int length, List<T> combination, List<List<T>> combinations) {
+        if (combination.size() == length) {
+            combinations.add(new ArrayList<>(combination));
+            return;
+        }
+
+        for (T element : elements) {
+            combination.add(element);
+            combination(elements, length, combination, combinations);
+            combination.removeLast();
+        }
+    }
 }
