@@ -11,37 +11,25 @@ class ReportTest {
 
     @ParameterizedTest
     @MethodSource("provideIsSafe")
-    void isSafe(String line, boolean expected) {
+    void isSafe(String line, Tolerance tolerance, boolean expected) {
         Report report = Report.from(line);
 
-        assertEquals(expected, report.isSafe());
-    }
-
-    @ParameterizedTest
-    @MethodSource("provideIsSafeWithTolerance")
-    void isSafeWithTolerance(String line, boolean expected) {
-        Report report = Report.from(line);
-
-        assertEquals(expected, report.isSafeWithTolerance());
+        assertEquals(expected, report.isSafe(tolerance));
     }
 
     private static Stream<Arguments> provideIsSafe() {
         return Stream.of(
-                Arguments.of("7 6 4 2 1", true),
-                Arguments.of("1 2 7 8 9", false),
-                Arguments.of("9 7 6 2 1", false),
-                Arguments.of("1 3 2 4 5", false),
-                Arguments.of("8 6 4 4 1", false),
-                Arguments.of("1 3 6 7 9", true));
-    }
-
-    private static Stream<Arguments> provideIsSafeWithTolerance() {
-        return Stream.of(
-                Arguments.of("7 6 4 2 1", true),
-                Arguments.of("1 2 7 8 9", false),
-                Arguments.of("9 7 6 2 1", false),
-                Arguments.of("1 3 2 4 5", true),
-                Arguments.of("8 6 4 4 1", true),
-                Arguments.of("1 3 6 7 9", true));
+                Arguments.of("7 6 4 2 1", Tolerance.NO, true),
+                Arguments.of("1 2 7 8 9", Tolerance.NO, false),
+                Arguments.of("9 7 6 2 1", Tolerance.NO, false),
+                Arguments.of("1 3 2 4 5", Tolerance.NO, false),
+                Arguments.of("8 6 4 4 1", Tolerance.NO, false),
+                Arguments.of("1 3 6 7 9", Tolerance.NO, true),
+                Arguments.of("7 6 4 2 1", Tolerance.YES, true),
+                Arguments.of("1 2 7 8 9", Tolerance.YES, false),
+                Arguments.of("9 7 6 2 1", Tolerance.YES, false),
+                Arguments.of("1 3 2 4 5", Tolerance.YES, true),
+                Arguments.of("8 6 4 4 1", Tolerance.YES, true),
+                Arguments.of("1 3 6 7 9", Tolerance.YES, true));
     }
 }

@@ -17,10 +17,11 @@ public class RedNosedReportPuzzle extends Puzzle {
     public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
         List<Report> reports = inputReader.getInputStream().map(Report::from).toList();
 
-        long numOfSafeReports = reports.stream().filter(Report::isSafe).count();
+        long numOfSafeReports =
+                reports.stream().filter(report -> report.isSafe(Tolerance.NO)).count();
 
         long numOfSafeReportsWithTolerance =
-                reports.stream().filter(Report::isSafeWithTolerance).count();
+                reports.stream().filter(report -> report.isSafe(Tolerance.YES)).count();
 
         return new PuzzleOutput<>(numOfSafeReports, numOfSafeReportsWithTolerance);
     }
