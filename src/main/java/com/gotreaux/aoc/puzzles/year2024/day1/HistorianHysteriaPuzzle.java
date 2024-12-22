@@ -5,7 +5,9 @@ import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 import org.springframework.stereotype.Component;
@@ -19,14 +21,20 @@ public class HistorianHysteriaPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        List<Location> first = new ArrayList<>();
-        List<Location> second = new ArrayList<>();
-
         List<String> input = inputReader.getInputList();
+
+        List<Integer> first = new ArrayList<>(input.size());
+        List<Integer> second = new ArrayList<>(input.size());
+        Map<Integer, Integer> countMapping = new HashMap<>();
+
         for (String line : input) {
             Scanner scanner = new Scanner(line);
-            first.add(new Location(scanner.nextInt()));
-            second.add(new Location(scanner.nextInt()));
+            first.add(scanner.nextInt());
+
+            int secondValue = scanner.nextInt();
+            second.add(secondValue);
+            countMapping.merge(secondValue, 1, Integer::sum);
+
             scanner.close();
         }
 
@@ -35,11 +43,11 @@ public class HistorianHysteriaPuzzle extends Puzzle {
 
         int sumOfDistances =
                 IntStream.range(0, first.size())
-                        .map(i -> Math.abs(first.get(i).id() - second.get(i).id()))
+                        .map(i -> Math.abs(first.get(i) - second.get(i)))
                         .sum();
 
         int sumOfSimilarityScores =
-                first.stream().mapToInt(location -> location.getSimilarityScore(second)).sum();
+                first.stream().mapToInt(i -> i * countMapping.getOrDefault(i, 0)).sum();
 
         return new PuzzleOutput<>(sumOfDistances, sumOfSimilarityScores);
     }
