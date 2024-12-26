@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2024.day2;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -20,21 +19,19 @@ record Report(List<Integer> levels) {
     }
 
     private List<Report> generateReports(Tolerance tolerance) {
-        List<Report> reports = new ArrayList<>(List.of(this));
-
-        if (tolerance == Tolerance.YES) {
-            IntStream.range(0, levels.size())
-                    .mapToObj(
-                            i ->
-                                    IntStream.range(0, levels.size())
-                                            .filter(index -> index != i)
-                                            .mapToObj(levels::get)
-                                            .toList())
-                    .map(Report::new)
-                    .forEach(reports::add);
+        if (tolerance == Tolerance.NO) {
+            return List.of(this);
         }
 
-        return reports;
+        return IntStream.range(-1, levels.size())
+                .mapToObj(
+                        i ->
+                                IntStream.range(0, levels.size())
+                                        .filter(index -> index != i)
+                                        .mapToObj(levels::get)
+                                        .toList())
+                .map(Report::new)
+                .toList();
     }
 
     private boolean test() {
