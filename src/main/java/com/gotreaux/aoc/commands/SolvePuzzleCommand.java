@@ -1,16 +1,14 @@
 package com.gotreaux.aoc.commands;
 
-import static java.util.Comparator.comparingInt;
-
-import com.gotreaux.aoc.annotations.ElementsInRange;
+import com.gotreaux.aoc.exceptions.NoSuchPuzzleException;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.InputReaderFactory;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import java.util.Collection;
-import java.util.List;
 import java.util.Locale;
-import java.util.function.Predicate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
@@ -18,9 +16,6 @@ import org.springframework.shell.command.CommandRegistration;
 import org.springframework.shell.command.annotation.Command;
 import org.springframework.shell.command.annotation.Option;
 import org.springframework.shell.context.InteractionMode;
-import org.springframework.shell.table.BorderStyle;
-import org.springframework.shell.table.TableBuilder;
-import org.springframework.shell.table.TableModelBuilder;
 import org.springframework.stereotype.Component;
 
 @Command
@@ -28,7 +23,6 @@ import org.springframework.stereotype.Component;
 public class SolvePuzzleCommand {
 
     static final String COMMAND_NAME = "solve-puzzle";
-    private static final int TOTAL_AVAILABLE_WIDTH = 120;
     private static final Logger logger = LoggerFactory.getLogger(SolvePuzzleCommand.class);
 
     private final Collection<Puzzle> puzzles;
@@ -46,32 +40,30 @@ public class SolvePuzzleCommand {
 
     @Command(
             command = COMMAND_NAME,
-            description = "Solve puzzles for specified advent calendar year(s) and day(s)",
+            description = "Solve puzzle for specified advent calendar year and day",
             group = "Puzzle Commands",
             interactionMode = InteractionMode.ALL)
     public String solve(
             @Option(
                             longNames = "year",
                             shortNames = 'Y',
-                            description = "Solve puzzles for advent calendar year",
-                            label = "YEAR1 YEAR2 YEAR3...",
-                            arity = CommandRegistration.OptionArity.ZERO_OR_MORE)
-                    @ElementsInRange(
-                            min = 2015,
-                            max = 2024,
-                            message = "{validation.years.elements-in-range}")
-                    Integer[] years,
+                            required = true,
+                            description = "Solve puzzle for advent calendar year",
+                            label = "Year between 2015-2024",
+                            arity = CommandRegistration.OptionArity.EXACTLY_ONE)
+                    @Min(2015)
+                    @Max(2024)
+                    Integer year,
             @Option(
                             longNames = "day",
                             shortNames = 'D',
-                            description = "Solve puzzles for advent calendar day",
-                            label = "DAY1 DAY2 DAY3...",
-                            arity = CommandRegistration.OptionArity.ZERO_OR_MORE)
-                    @ElementsInRange(
-                            min = 1,
-                            max = 25,
-                            message = "{validation.days.elements-in-range}")
-                    Integer[] days,
+                            required = true,
+                            description = "Solve puzzle for advent calendar day",
+                            label = "Day between 1-25",
+                            arity = CommandRegistration.OptionArity.EXACTLY_ONE)
+                    @Min(1)
+                    @Max(25)
+                    Integer day,
             @Option(
                             longNames = "input",
                             shortNames = 'I',
@@ -79,71 +71,39 @@ public class SolvePuzzleCommand {
                             label = "[database,resource,{filePath},{string}]",
                             arity = CommandRegistration.OptionArity.ZERO_OR_ONE,
                             defaultValue = InputReaderFactory.DATABASE_READER)
-                    String source)
+                    String input)
             throws Exception {
-        TableModelBuilder<String> tableModelBuilder = new TableModelBuilder<>();
-        Locale locale = Locale.getDefault();
+        logger.debug("Solving puzzle of year '{}' and day '{}' from input '{}'", year, day, input);
 
-        tableModelBuilder
-                .addRow()
-                .addValue(getTableHeaderMessage("year", locale))
-                .addValue(getTableHeaderMessage("day", locale))
-                .addValue(getTableHeaderMessage("title", locale))
-                .addValue(getTableHeaderMessage("part-one", locale))
-                .addValue(getTableHeaderMessage("part-two", locale));
-
-        Predicate<Puzzle> yearPredicate = new PuzzlePredicate<>(Puzzle::getYear, years);
-        Predicate<Puzzle> dayPredicate = new PuzzlePredicate<>(Puzzle::getDay, days);
-        List<Puzzle> filteredPuzzles =
+        Puzzle puzzle =
                 puzzles.stream()
-                        .filter(yearPredicate)
-                        .filter(dayPredicate)
-                        .sorted(comparingInt(Puzzle::getYear).thenComparing(Puzzle::getDay))
-                        .toList();
+                        .filter(p -> p.getYear() == year)
+                        .filter(p -> p.getDay() == day)
+                        .findFirst()
+                        .orElseThrow(() -> new NoSuchPuzzleException(year, day));
 
-        for (Puzzle filteredPuzzle : filteredPuzzles) {
-            String partOne, partTwo;
-            try {
-                InputReader inputReader = inputReaderFactory.create(filteredPuzzle, source);
-                PuzzleOutput<?, ?> output = filteredPuzzle.solve(inputReader);
+        logger.debug("Found puzzle class '{}'", puzzle.getClass().getSimpleName());
 
-                partOne = String.valueOf(output.partOne());
-                partTwo = String.valueOf(output.partTwo());
-            } catch (Exception e) {
-                logger.error(e.getMessage(), e);
+        Locale locale = Locale.getDefault();
+        try {
+            InputReader inputReader = inputReaderFactory.create(puzzle, input);
+            PuzzleOutput<?, ?> output = puzzle.solve(inputReader);
 
-                partOne = getMessage("puzzle.command.solve.error", locale);
-                partTwo = partOne;
-            }
+            String partOne = String.valueOf(output.partOne());
+            String partTwo = String.valueOf(output.partTwo());
 
-            tableModelBuilder
-                    .addRow()
-                    .addValue(String.valueOf(filteredPuzzle.getYear()))
-                    .addValue(String.valueOf(filteredPuzzle.getDay()))
-                    .addValue(getPuzzleTitleMessage(filteredPuzzle, locale))
-                    .addValue(partOne)
-                    .addValue(partTwo);
+            String code = String.format("puzzle.title.%d.%d", puzzle.getYear(), puzzle.getDay());
+            String puzzleTitle = messageSource.getMessage(code, null, locale);
+
+            return messageSource.getMessage(
+                    "puzzle.command.solve.solved",
+                    new Object[] {puzzleTitle, partOne, partTwo},
+                    locale);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+
+            return messageSource.getMessage(
+                    "puzzle.command.solve.failed-to-solve", new Object[] {input}, locale);
         }
-
-        TableBuilder tableBuilder = new TableBuilder(tableModelBuilder.build());
-        tableBuilder.addFullBorder(BorderStyle.fancy_light);
-
-        return tableBuilder.build().render(TOTAL_AVAILABLE_WIDTH);
-    }
-
-    private String getTableHeaderMessage(String header, Locale locale) {
-        String code = String.format("puzzle.command.solve.table-header.%s", header);
-
-        return getMessage(code, locale);
-    }
-
-    private String getPuzzleTitleMessage(Puzzle puzzle, Locale locale) {
-        String code = String.format("puzzle.title.%d.%d", puzzle.getYear(), puzzle.getDay());
-
-        return getMessage(code, locale);
-    }
-
-    private String getMessage(String code, Locale locale) {
-        return messageSource.getMessage(code, null, locale);
     }
 }

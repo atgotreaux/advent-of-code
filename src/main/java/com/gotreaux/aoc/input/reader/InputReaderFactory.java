@@ -22,14 +22,14 @@ public class InputReaderFactory {
         this.puzzleRepository = puzzleRepository;
     }
 
-    public InputReader create(Puzzle puzzle, String source) {
-        return switch (source) {
+    public InputReader create(Puzzle puzzle, String input) {
+        return switch (input) {
             case DATABASE_READER ->
                     new DatabaseInputReader(puzzleRepository, puzzle.getYear(), puzzle.getDay());
             case RESOURCE_READER -> new ResourceInputReader<>(puzzle.getClass());
             default -> {
                 try {
-                    Path filePath = Path.of(source);
+                    Path filePath = Path.of(input);
                     if (Files.exists(filePath) && Files.isRegularFile(filePath)) {
                         yield new FileInputReader(filePath.toString());
                     }
@@ -37,7 +37,7 @@ public class InputReaderFactory {
                     logger.error(e.getMessage());
                 }
 
-                yield new StringInputReader(source);
+                yield new StringInputReader(input);
             }
         };
     }

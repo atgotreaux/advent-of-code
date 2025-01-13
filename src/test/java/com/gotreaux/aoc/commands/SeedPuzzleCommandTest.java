@@ -113,7 +113,7 @@ class SeedPuzzleCommandTest {
                 .untilAsserted(
                         () ->
                                 ShellAssertions.assertThat(session.screen())
-                                        .containsText("Event years"));
+                                        .containsText("seed.year"));
     }
 
     @Test
@@ -157,7 +157,7 @@ class SeedPuzzleCommandTest {
                 .untilAsserted(
                         () ->
                                 ShellAssertions.assertThat(session.screen())
-                                        .containsText("Event days"));
+                                        .containsText("seed.day"));
     }
 
     @Test
@@ -199,7 +199,7 @@ class SeedPuzzleCommandTest {
                 .untilAsserted(
                         () ->
                                 ShellAssertions.assertThat(session.screen())
-                                        .containsText("Session ID should be"));
+                                        .containsText("seed.session"));
     }
 
     @Test

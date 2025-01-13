@@ -18,7 +18,6 @@ import java.util.Collection;
 import java.util.Locale;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,8 +64,8 @@ public class SeedPuzzleCommand {
                             description = "Seed puzzle for advent calendar year",
                             label = "Year between 2015-2024",
                             arity = CommandRegistration.OptionArity.EXACTLY_ONE)
-                    @Min(value = 2015, message = "{validation.years.elements-in-range}")
-                    @Max(value = 2024, message = "{validation.years.elements-in-range}")
+                    @Min(2015)
+                    @Max(2024)
                     Integer year,
             @Option(
                             longNames = "day",
@@ -75,8 +74,8 @@ public class SeedPuzzleCommand {
                             description = "Seed puzzle for advent calendar day",
                             label = "Day between 1-25",
                             arity = CommandRegistration.OptionArity.EXACTLY_ONE)
-                    @Min(value = 1, message = "{validation.days.elements-in-range}")
-                    @Max(value = 25, message = "{validation.days.elements-in-range}")
+                    @Min(1)
+                    @Max(25)
                     Integer day,
             @Option(
                             longNames = "session",
@@ -85,14 +84,14 @@ public class SeedPuzzleCommand {
                             description = "Session ID extracted from cookie header to authenticate",
                             label = "SHA-512 hash session ID",
                             arity = CommandRegistration.OptionArity.EXACTLY_ONE)
-                    @Pattern(regexp = "^[a-f0-9]{128}$", message = "{validation.session.pattern}")
+                    @Pattern(regexp = "^[a-f0-9]{128}$")
                     String session,
             @Option(
                             longNames = "target",
                             shortNames = 'T',
                             description = "Target destination(s) for puzzle input for seeding",
                             label = "[database,resource,{filePath}]",
-                            arity = CommandRegistration.OptionArity.ONE_OR_MORE,
+                            arity = CommandRegistration.OptionArity.ZERO_OR_MORE,
                             defaultValue = InputWriterFactory.DATABASE_WRITER)
                     String[] targets)
             throws Exception {
@@ -102,13 +101,10 @@ public class SeedPuzzleCommand {
                 day,
                 String.join(", ", targets));
 
-        Predicate<Puzzle> yearPredicate = new PuzzlePredicate<>(Puzzle::getYear, year);
-        Predicate<Puzzle> dayPredicate = new PuzzlePredicate<>(Puzzle::getDay, day);
-
         Puzzle puzzle =
                 puzzles.stream()
-                        .filter(yearPredicate)
-                        .filter(dayPredicate)
+                        .filter(p -> p.getYear() == year)
+                        .filter(p -> p.getDay() == day)
                         .findFirst()
                         .orElseThrow(() -> new NoSuchPuzzleException(year, day));
 
@@ -133,22 +129,16 @@ public class SeedPuzzleCommand {
 
         Locale locale = Locale.getDefault();
         if (response.statusCode() != HttpURLConnection.HTTP_OK) {
-            String error =
-                    messageSource.getMessage(
-                            "puzzle.command.seed.status-code",
-                            new Object[] {response.statusCode()},
-                            locale);
-            logger.error(error);
-            return error;
+            return messageSource.getMessage(
+                    "puzzle.command.seed.status-code",
+                    new Object[] {response.statusCode()},
+                    locale);
         }
 
         String input = response.body();
         if (input == null || input.isEmpty()) {
-            String error =
-                    messageSource.getMessage(
-                            "puzzle.command.seed.empty-response", new Object[] {url}, locale);
-            logger.error(error);
-            return error;
+            return messageSource.getMessage(
+                    "puzzle.command.seed.empty-response", new Object[] {url}, locale);
         }
 
         Collection<String> successfulTargets = new ArrayList<>(inputWriters.size());
@@ -164,21 +154,15 @@ public class SeedPuzzleCommand {
         }
 
         if (successfulTargets.isEmpty()) {
-            String message =
-                    messageSource.getMessage(
-                            "puzzle.command.seed.failed-to-seed",
-                            new Object[] {String.join(", ", targets)},
-                            locale);
-            logger.info(message);
-            return message;
+            return messageSource.getMessage(
+                    "puzzle.command.seed.failed-to-seed",
+                    new Object[] {String.join(", ", targets)},
+                    locale);
         }
 
-        String message =
-                messageSource.getMessage(
-                        "puzzle.command.seed.seeded",
-                        new Object[] {String.join(", ", successfulTargets)},
-                        locale);
-        logger.info(message);
-        return message;
+        return messageSource.getMessage(
+                "puzzle.command.seed.seeded",
+                new Object[] {String.join(", ", successfulTargets)},
+                locale);
     }
 }

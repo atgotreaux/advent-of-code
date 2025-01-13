@@ -14,7 +14,6 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.random.RandomGenerator;
 import java.util.regex.Matcher;
@@ -22,7 +21,6 @@ import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.MessageSource;
 import org.springframework.shell.test.ShellAssertions;
 import org.springframework.shell.test.ShellTestClient;
 import org.springframework.shell.test.autoconfigure.AutoConfigureShell;
@@ -35,7 +33,6 @@ import org.springframework.test.annotation.DirtiesContext;
 class SolvePuzzleCommandTest {
     @Autowired private ShellTestClient client;
     @Autowired private List<Puzzle> puzzles;
-    @Autowired private MessageSource messageSource;
     @Autowired private PuzzleRepository puzzleRepository;
 
     @Test
@@ -65,50 +62,29 @@ class SolvePuzzleCommandTest {
     }
 
     @Test
+    void yearRequired() {
+        ShellTestClient.NonInteractiveShellSession session =
+                client.nonInterative(SolvePuzzleCommand.COMMAND_NAME).run();
+
+        await().atMost(2, TimeUnit.SECONDS)
+                .untilAsserted(
+                        () ->
+                                ShellAssertions.assertThat(session.screen())
+                                        .containsText("Missing mandatory option '--year'"));
+    }
+
+    @Test
     void invalidYear() {
         RandomGenerator generator = RandomGenerator.getDefault();
 
-        String year = String.valueOf(generator.nextInt(2015));
-
-        ShellTestClient.NonInteractiveShellSession session =
-                client.nonInterative(SolvePuzzleCommand.COMMAND_NAME, "-Y", year).run();
-
-        await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(session.screen())
-                                        .containsText("Event years"));
-    }
-
-    @Test
-    void invalidDay() {
-        RandomGenerator generator = RandomGenerator.getDefault();
-
-        String day = String.valueOf(generator.nextInt(26, 32));
-
-        ShellTestClient.NonInteractiveShellSession session =
-                client.nonInterative(SolvePuzzleCommand.COMMAND_NAME, "-D", day).run();
-
-        await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(session.screen())
-                                        .containsText("Event days"));
-    }
-
-    @Test
-    void output() {
-        RandomGenerator generator = RandomGenerator.getDefault();
         Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-
-        String code = String.format("puzzle.title.%d.%d", puzzle.getYear(), puzzle.getDay());
-        String puzzleTitle = messageSource.getMessage(code, null, Locale.getDefault());
+        String year = String.valueOf(generator.nextInt(2015));
 
         ShellTestClient.NonInteractiveShellSession session =
                 client.nonInterative(
                                 SolvePuzzleCommand.COMMAND_NAME,
                                 "-Y",
-                                String.valueOf(puzzle.getYear()),
+                                year,
                                 "-D",
                                 String.valueOf(puzzle.getDay()))
                         .run();
@@ -117,7 +93,42 @@ class SolvePuzzleCommandTest {
                 .untilAsserted(
                         () ->
                                 ShellAssertions.assertThat(session.screen())
-                                        .containsText(puzzleTitle));
+                                        .containsText("solve.year"));
+    }
+
+    @Test
+    void dayRequired() {
+        ShellTestClient.NonInteractiveShellSession session =
+                client.nonInterative(SolvePuzzleCommand.COMMAND_NAME).run();
+
+        await().atMost(2, TimeUnit.SECONDS)
+                .untilAsserted(
+                        () ->
+                                ShellAssertions.assertThat(session.screen())
+                                        .containsText("Missing mandatory option '--day'"));
+    }
+
+    @Test
+    void invalidDay() {
+        RandomGenerator generator = RandomGenerator.getDefault();
+
+        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        String day = String.valueOf(generator.nextInt(26, 32));
+
+        ShellTestClient.NonInteractiveShellSession session =
+                client.nonInterative(
+                                SolvePuzzleCommand.COMMAND_NAME,
+                                "-Y",
+                                String.valueOf(puzzle.getYear()),
+                                "-D",
+                                day)
+                        .run();
+
+        await().atMost(2, TimeUnit.SECONDS)
+                .untilAsserted(
+                        () ->
+                                ShellAssertions.assertThat(session.screen())
+                                        .containsText("solve.day"));
     }
 
     @Test
