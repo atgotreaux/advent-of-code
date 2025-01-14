@@ -72,7 +72,7 @@ Example: The puzzle input for ApartmentFloorPuzzle would be represented as below
 
 ### Seeding Puzzle Input
 
-The `seed-puzzle` command will seed puzzle input for the given year and date to the specified target list.
+The `seed-puzzle` command will seed puzzle input for the given year and day to the specified target list.
 
 Synopsis: `seed-puzzle [--help|-h] --year|-Y YEAR --day|-D DAY --session|-S --target|-T [database,resource,{filePath}]`
 
@@ -90,10 +90,10 @@ Targets can be a resource file, external file or an `h2` database.
 
 ### Solving Puzzles
 
-The `solve-puzzle` command will solve puzzles with the provided puzzle input for the specified year(s) and day(s).
+The `solve-puzzle` command will solve a puzzle for the given year and day with the provided puzzle input.
 
-Synopsis: `solve-puzzle [--help|-h] --year|-Y YEAR... --day|-D DAY... --input|-I [database,resource,{filePath}]`
+Synopsis: `solve-puzzle [--help|-h] --year|-Y YEAR --day|-D DAY --input|-I [database,resource,{filePath}]`
 
 #### Input
 
-Targets can be a resource file, external file or an `h2` database.
+Inputs can be a resource file, external file or an `h2` database row.
