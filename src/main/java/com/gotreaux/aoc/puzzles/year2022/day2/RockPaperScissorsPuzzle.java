@@ -24,9 +24,9 @@ public class RockPaperScissorsPuzzle extends Puzzle {
             char strategyLabel = scanner.next().charAt(0);
             scanner.close();
 
-            Hand opponentHand = Hand.fromOpponentLabel(opponentLabel);
-            Hand encryptedStrategyHand = Hand.fromEncryptedStrategyLabel(strategyLabel);
-            Hand outcomeStrategyHand = Hand.fromStrategyOutcomeLabel(opponentHand, strategyLabel);
+            Hand opponentHand = Hand.ofOpponentLabel(opponentLabel);
+            Hand encryptedStrategyHand = Hand.ofEncryptedStrategyLabel(strategyLabel);
+            Hand outcomeStrategyHand = Hand.ofStrategyOutcomeLabel(opponentHand, strategyLabel);
 
             Round encryptedRound = new Round(opponentHand, encryptedStrategyHand);
             Round outcomeRound = new Round(opponentHand, outcomeStrategyHand);

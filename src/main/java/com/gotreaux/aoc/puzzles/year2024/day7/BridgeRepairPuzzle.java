@@ -19,7 +19,7 @@ public class BridgeRepairPuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
         List<CalibrationEquation> equations =
-                inputReader.getInputStream().map(CalibrationEquation::from).toList();
+                inputReader.getInputStream().map(CalibrationEquation::of).toList();
 
         long totalCalibrationResult =
                 getTotalCalibrationResult(

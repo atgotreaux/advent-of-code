@@ -56,7 +56,7 @@ public class BathroomSecurityPuzzle extends Puzzle {
         for (String line : input) {
             for (int i = 0; i < line.length(); i++) {
                 char directionLabel = line.charAt(i);
-                RelativeDirection direction = RelativeDirection.fromLabel(directionLabel);
+                RelativeDirection direction = RelativeDirection.of(directionLabel);
 
                 imaginedKey = imaginedKeypad.move(imaginedKey, direction);
                 actualKey = actualKeypad.move(actualKey, direction);

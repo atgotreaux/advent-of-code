@@ -17,12 +17,12 @@ class RelativeDirectionTest {
     @ParameterizedTest
     @MethodSource("provideParseInstruction")
     void parseInstruction(char label, RelativeDirection expectedInstruction) {
-        assertEquals(expectedInstruction, RelativeDirection.fromLabel(label));
+        assertEquals(expectedInstruction, RelativeDirection.of(label));
     }
 
     @Test
     void throwsIfCannotParse() {
-        assertThrows(NoSuchElementException.class, () -> RelativeDirection.fromLabel('X'));
+        assertThrows(NoSuchElementException.class, () -> RelativeDirection.of('X'));
     }
 
     @RepeatedTest(5)

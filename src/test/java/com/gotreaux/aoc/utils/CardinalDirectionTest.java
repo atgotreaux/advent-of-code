@@ -17,12 +17,12 @@ class CardinalDirectionTest {
     @ParameterizedTest
     @MethodSource("provideParseDirection")
     void parseDirection(char label, CardinalDirection expectedDirection) {
-        assertEquals(expectedDirection, CardinalDirection.fromLabel(label));
+        assertEquals(expectedDirection, CardinalDirection.of(label));
     }
 
     @Test
     void throwsIfCannotParse() {
-        assertThrows(NoSuchElementException.class, () -> CardinalDirection.fromLabel('x'));
+        assertThrows(NoSuchElementException.class, () -> CardinalDirection.of('x'));
     }
 
     @RepeatedTest(5)

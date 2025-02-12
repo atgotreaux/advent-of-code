@@ -20,7 +20,7 @@ public enum RelativeDirection {
         return label;
     }
 
-    public static RelativeDirection fromLabel(char label) throws NoSuchElementException {
+    public static RelativeDirection of(char label) throws NoSuchElementException {
         return Arrays.stream(values())
                 .filter(instruction -> instruction.getLabel() == label)
                 .findFirst()

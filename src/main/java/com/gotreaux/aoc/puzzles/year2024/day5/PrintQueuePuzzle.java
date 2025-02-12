@@ -24,13 +24,13 @@ public class PrintQueuePuzzle extends Puzzle {
         Collection<PageOrderingRule> rules =
                 input.stream()
                         .filter(line -> RULE_PATTERN.matcher(line).matches())
-                        .map(PageOrderingRule::from)
+                        .map(PageOrderingRule::of)
                         .toList();
 
         Collection<PageUpdate> pageUpdates =
                 input.stream()
                         .filter(line -> UPDATE_PATTERN.matcher(line).matches())
-                        .map(PageUpdate::from)
+                        .map(PageUpdate::of)
                         .toList();
 
         int sumOfCorrectOrders =

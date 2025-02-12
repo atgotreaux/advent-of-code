@@ -43,7 +43,7 @@ public class BinaryBoardingPuzzle extends Puzzle {
         int colLow = 0;
 
         for (int i = 0; i < sequence.length(); i++) {
-            Region region = Region.fromLabel(sequence.charAt(i));
+            Region region = Region.of(sequence.charAt(i));
             switch (region) {
                 case FRONT -> rowHigh = (rowHigh + rowLow) / 2;
                 case BACK -> rowLow = (rowHigh + rowLow + 1) / 2;

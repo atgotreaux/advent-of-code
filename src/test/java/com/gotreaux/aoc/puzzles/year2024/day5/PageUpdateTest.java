@@ -14,9 +14,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 class PageUpdateTest {
 
     @ParameterizedTest
-    @MethodSource("provideFrom")
-    void from(String line, Collection<Integer> expectedPages) {
-        PageUpdate pageUpdate = PageUpdate.from(line);
+    @MethodSource("provideOf")
+    void of(String line, Collection<Integer> expectedPages) {
+        PageUpdate pageUpdate = PageUpdate.of(line);
 
         assertEquals(expectedPages, pageUpdate.getPages());
     }
@@ -24,12 +24,12 @@ class PageUpdateTest {
     @ParameterizedTest
     @MethodSource("provideIsCorrectOrder")
     void isCorrectOrder(String line, boolean expected) throws Exception {
-        PageUpdate pageUpdate = PageUpdate.from(line);
+        PageUpdate pageUpdate = PageUpdate.of(line);
 
         InputReader inputReader = new ResourceInputReader<>(PrintQueuePuzzle.class, "rules.txt");
 
         List<PageOrderingRule> rules =
-                inputReader.getInputStream().map(PageOrderingRule::from).toList();
+                inputReader.getInputStream().map(PageOrderingRule::of).toList();
 
         assertEquals(expected, pageUpdate.isCorrectOrder(rules));
     }
@@ -37,17 +37,17 @@ class PageUpdateTest {
     @ParameterizedTest
     @MethodSource("provideGetMiddlePage")
     void getMiddlePage(String line, int expectedMiddlePage) throws Exception {
-        PageUpdate pageUpdate = PageUpdate.from(line);
+        PageUpdate pageUpdate = PageUpdate.of(line);
 
         InputReader inputReader = new ResourceInputReader<>(PrintQueuePuzzle.class, "rules.txt");
 
         List<PageOrderingRule> rules =
-                inputReader.getInputStream().map(PageOrderingRule::from).toList();
+                inputReader.getInputStream().map(PageOrderingRule::of).toList();
 
         assertEquals(expectedMiddlePage, pageUpdate.getMiddlePage(rules));
     }
 
-    private static Stream<Arguments> provideFrom() {
+    private static Stream<Arguments> provideOf() {
         return Stream.of(
                 Arguments.of("75,47,61,53,29", List.of(75, 47, 61, 53, 29)),
                 Arguments.of("97,61,53,29,13", List.of(97, 61, 53, 29, 13)),

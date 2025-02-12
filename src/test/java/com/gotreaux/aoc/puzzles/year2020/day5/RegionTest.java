@@ -14,12 +14,12 @@ class RegionTest {
     @ParameterizedTest
     @MethodSource("provideParseRegion")
     void parseRegion(char label, Region expectedRegion) {
-        assertEquals(expectedRegion, Region.fromLabel(label));
+        assertEquals(expectedRegion, Region.of(label));
     }
 
     @Test
     void throwsIfCannotParse() {
-        assertThrows(NoSuchElementException.class, () -> Region.fromLabel('X'));
+        assertThrows(NoSuchElementException.class, () -> Region.of('X'));
     }
 
     private static Stream<Arguments> provideParseRegion() {

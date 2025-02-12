@@ -32,7 +32,7 @@ public class SphericalHousesPuzzle extends Puzzle {
         assistedHouseDeliveries.add(santaPosition);
 
         for (int i = 0; i < length; i++) {
-            CardinalDirection direction = CardinalDirection.fromLabel(input.charAt(i));
+            CardinalDirection direction = CardinalDirection.of(input.charAt(i));
 
             position = direction.move(position, 1);
             houseDeliveries.add(position);

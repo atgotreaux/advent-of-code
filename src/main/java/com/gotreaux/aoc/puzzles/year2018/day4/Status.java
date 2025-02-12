@@ -19,7 +19,7 @@ enum Status {
         return pattern;
     }
 
-    static Status from(CharSequence line) throws NoSuchElementException {
+    static Status of(CharSequence line) throws NoSuchElementException {
         return Arrays.stream(values())
                 .filter(status -> status.getPattern().matcher(line).matches())
                 .findFirst()

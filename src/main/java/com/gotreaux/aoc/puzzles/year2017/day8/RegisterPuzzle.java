@@ -30,11 +30,10 @@ public class RegisterPuzzle extends Puzzle {
             String[] instructionParts = line.split(" ");
 
             String register = instructionParts[0];
-            Instruction instruction = Instruction.fromLabel(instructionParts[1]);
+            Instruction instruction = Instruction.of(instructionParts[1]);
             int amount = Integer.parseInt(instructionParts[2]);
             String operandRegister = instructionParts[4];
-            ComparisonOperator comparisonOperator =
-                    ComparisonOperator.fromLabel(instructionParts[5]);
+            ComparisonOperator comparisonOperator = ComparisonOperator.of(instructionParts[5]);
             int comparisonValue = Integer.parseInt(instructionParts[6]);
 
             boolean expressionResult =

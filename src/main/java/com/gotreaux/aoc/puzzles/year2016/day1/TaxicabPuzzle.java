@@ -31,7 +31,7 @@ public class TaxicabPuzzle extends Puzzle {
 
         String input = inputReader.getInputString();
         for (String step : INSTRUCTION_SEPARATOR.split(input)) {
-            RelativeDirection relativeDirection = RelativeDirection.fromLabel(step.charAt(0));
+            RelativeDirection relativeDirection = RelativeDirection.of(step.charAt(0));
             direction = direction.turn(relativeDirection);
 
             int units = Integer.parseInt(step.substring(1));

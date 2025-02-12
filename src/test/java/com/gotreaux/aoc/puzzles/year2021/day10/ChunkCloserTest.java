@@ -13,12 +13,12 @@ class ChunkCloserTest {
     @ParameterizedTest
     @MethodSource("provideParseChunkCloser")
     void parseChunkCloser(char label, ChunkCloser expectedChunkCloser) {
-        assertEquals(expectedChunkCloser, ChunkCloser.fromLabel(label));
+        assertEquals(expectedChunkCloser, ChunkCloser.of(label));
     }
 
     @Test
     void nullIfCannotParse() {
-        assertNull(ChunkCloser.fromLabel('X'));
+        assertNull(ChunkCloser.of('X'));
     }
 
     private static Stream<Arguments> provideParseChunkCloser() {

@@ -29,7 +29,7 @@ public enum Card {
         return label;
     }
 
-    static Card fromLabel(char label, Card... cardsToExclude) throws NoSuchElementException {
+    static Card of(char label, Card... cardsToExclude) throws NoSuchElementException {
         return Arrays.stream(values())
                 .filter(card -> !Arrays.asList(cardsToExclude).contains(card))
                 .filter(card -> card.getLabel() == label)

@@ -13,12 +13,12 @@ class ChunkOpenerTest {
     @ParameterizedTest
     @MethodSource("provideParseChunkOpener")
     void parseChunkOpener(char label, ChunkOpener expectedChunkOpener) {
-        assertEquals(expectedChunkOpener, ChunkOpener.fromLabel(label));
+        assertEquals(expectedChunkOpener, ChunkOpener.of(label));
     }
 
     @Test
     void nullIfCannotParse() {
-        assertNull(ChunkOpener.fromLabel('X'));
+        assertNull(ChunkOpener.of('X'));
     }
 
     private static Stream<Arguments> provideParseChunkOpener() {

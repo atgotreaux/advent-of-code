@@ -17,7 +17,7 @@ enum Instruction {
         return label;
     }
 
-    static Instruction fromLabel(String label) throws NoSuchElementException {
+    static Instruction of(String label) throws NoSuchElementException {
         return Arrays.stream(values())
                 .filter(instruction -> instruction.getLabel().equals(label))
                 .findFirst()

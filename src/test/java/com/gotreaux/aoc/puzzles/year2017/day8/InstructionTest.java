@@ -14,12 +14,12 @@ class InstructionTest {
     @ParameterizedTest
     @MethodSource("provideParseInstruction")
     void parseInstruction(String label, Instruction expectedInstruction) {
-        assertEquals(expectedInstruction, Instruction.fromLabel(label));
+        assertEquals(expectedInstruction, Instruction.of(label));
     }
 
     @Test
     void throwsIfCannotParse() {
-        assertThrows(NoSuchElementException.class, () -> Instruction.fromLabel("X"));
+        assertThrows(NoSuchElementException.class, () -> Instruction.of("X"));
     }
 
     private static Stream<Arguments> provideParseInstruction() {

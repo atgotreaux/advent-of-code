@@ -14,12 +14,12 @@ class ComparisonOperatorTest {
     @ParameterizedTest
     @MethodSource("provideParseComparisonOperator")
     void parseComparisonOperator(String label, ComparisonOperator operator) {
-        assertEquals(operator, ComparisonOperator.fromLabel(label));
+        assertEquals(operator, ComparisonOperator.of(label));
     }
 
     @Test
     void throwsIfCannotParse() {
-        assertThrows(NoSuchElementException.class, () -> ComparisonOperator.fromLabel("X"));
+        assertThrows(NoSuchElementException.class, () -> ComparisonOperator.of("X"));
     }
 
     private static Stream<Arguments> provideParseComparisonOperator() {

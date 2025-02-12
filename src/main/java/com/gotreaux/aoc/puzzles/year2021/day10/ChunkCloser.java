@@ -31,7 +31,7 @@ enum ChunkCloser {
         return autoCompleteScore;
     }
 
-    static @Nullable ChunkCloser fromLabel(char label) {
+    static @Nullable ChunkCloser of(char label) {
         return Arrays.stream(values())
                 .filter(chunkCloser -> chunkCloser.getLabel() == label)
                 .findFirst()

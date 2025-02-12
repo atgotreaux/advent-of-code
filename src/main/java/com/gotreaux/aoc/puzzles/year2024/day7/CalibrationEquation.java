@@ -8,7 +8,7 @@ record CalibrationEquation(long result, List<Long> operands) {
 
     private static final Pattern EQUATION_PATTERN = Pattern.compile(": | ");
 
-    static CalibrationEquation from(CharSequence line) {
+    static CalibrationEquation of(CharSequence line) {
         List<Long> parts =
                 Arrays.stream(EQUATION_PATTERN.split(line)).map(Long::parseLong).toList();
 

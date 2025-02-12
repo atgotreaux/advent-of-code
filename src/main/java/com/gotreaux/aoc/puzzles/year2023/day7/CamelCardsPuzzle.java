@@ -34,8 +34,8 @@ public class CamelCardsPuzzle extends Puzzle {
             List<Card> cards = new ArrayList<>(cardLabels.length());
             List<Card> jokerCards = new ArrayList<>(cardLabels.length());
             for (int i = 0; i < cardLabels.length(); i++) {
-                cards.add(Card.fromLabel(cardLabels.charAt(i), Card.JOKER));
-                jokerCards.add(Card.fromLabel(cardLabels.charAt(i), Card.JACK));
+                cards.add(Card.of(cardLabels.charAt(i), Card.JOKER));
+                jokerCards.add(Card.of(cardLabels.charAt(i), Card.JACK));
             }
 
             hands.add(new Hand(cards, bid));

@@ -20,7 +20,7 @@ public enum CardinalDirection {
         return label;
     }
 
-    public static CardinalDirection fromLabel(char label) throws NoSuchElementException {
+    public static CardinalDirection of(char label) throws NoSuchElementException {
         return Arrays.stream(values())
                 .filter(direction -> direction.getLabel() == label)
                 .findFirst()

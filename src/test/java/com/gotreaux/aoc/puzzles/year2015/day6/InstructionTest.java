@@ -11,7 +11,7 @@ class InstructionTest {
     @ParameterizedTest
     @MethodSource("provideParseLine")
     void parseLine(String line, Instruction expected) {
-        assertEquals(expected, Instruction.fromLine(line));
+        assertEquals(expected, Instruction.of(line));
     }
 
     private static Stream<Arguments> provideParseLine() {

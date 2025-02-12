@@ -21,7 +21,7 @@ enum ComparisonOperator {
         return label;
     }
 
-    static ComparisonOperator fromLabel(String label) throws NoSuchElementException {
+    static ComparisonOperator of(String label) throws NoSuchElementException {
         return Arrays.stream(values())
                 .filter(comparisonOperator -> comparisonOperator.getLabel().equals(label))
                 .findFirst()

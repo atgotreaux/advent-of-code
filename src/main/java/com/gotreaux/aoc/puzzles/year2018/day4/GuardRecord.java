@@ -15,7 +15,7 @@ record GuardRecord(LocalDateTime time, Status status, @Nullable Integer guardId)
     static final Pattern FALLS_ASLEEP_PATTERN = Pattern.compile("^falls asleep$");
     static final Pattern BEGINS_SHIFT_PATTERN = Pattern.compile("^Guard #(\\d+) begins shift$");
 
-    static GuardRecord from(String line) {
+    static GuardRecord of(String line) {
         Matcher recordMatcher = RECORD_PATTERN.matcher(line);
         if (!recordMatcher.matches()) {
             throw new IllegalArgumentException("Invalid record: %s".formatted(line));
@@ -24,7 +24,7 @@ record GuardRecord(LocalDateTime time, Status status, @Nullable Integer guardId)
         DateTimeFormatter formatter =
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm", Locale.getDefault());
         LocalDateTime time = LocalDateTime.parse(recordMatcher.group(1), formatter);
-        Status status = Status.from(recordMatcher.group(2));
+        Status status = Status.of(recordMatcher.group(2));
 
         Integer guardId = null;
         if (status == Status.BEGINS_SHIFT) {

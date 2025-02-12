@@ -13,17 +13,17 @@ import org.junit.jupiter.params.provider.MethodSource;
 class StatusTest {
 
     @ParameterizedTest
-    @MethodSource("provideFrom")
-    void from(CharSequence line, Status expected) {
-        assertEquals(expected, Status.from(line));
+    @MethodSource("provideOf")
+    void of(CharSequence line, Status expected) {
+        assertEquals(expected, Status.of(line));
     }
 
     @Test
     void throwsIfCannotMatch() {
-        assertThrows(NoSuchElementException.class, () -> Status.from("x"));
+        assertThrows(NoSuchElementException.class, () -> Status.of("x"));
     }
 
-    private static Stream<Arguments> provideFrom() {
+    private static Stream<Arguments> provideOf() {
         return Stream.of(
                 Arguments.of("Guard #10 begins shift", Status.BEGINS_SHIFT),
                 Arguments.of("falls asleep", Status.FALLS_ASLEEP),

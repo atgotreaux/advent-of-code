@@ -15,7 +15,7 @@ public class RedNosedReportPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
-        List<Report> reports = inputReader.getInputStream().map(Report::from).toList();
+        List<Report> reports = inputReader.getInputStream().map(Report::of).toList();
 
         long numOfSafeReports =
                 reports.stream().filter(report -> report.isSafe(Tolerance.NO)).count();

@@ -28,12 +28,12 @@ public class SyntaxScoringPuzzle extends Puzzle {
             for (int i = 0; i < line.length(); i++) {
                 char c = line.charAt(i);
 
-                ChunkOpener chunkOpener = ChunkOpener.fromLabel(c);
+                ChunkOpener chunkOpener = ChunkOpener.of(c);
                 if (chunkOpener != null) {
                     chunkOpeners.push(chunkOpener);
                 }
 
-                ChunkCloser chunkCloser = ChunkCloser.fromLabel(c);
+                ChunkCloser chunkCloser = ChunkCloser.of(c);
                 if (chunkCloser != null) {
                     chunkOpener = chunkOpeners.pop();
                     if (!chunkOpener.matches(chunkCloser)) {

@@ -16,29 +16,29 @@ class HandTest {
     @ParameterizedTest
     @MethodSource("provideParseOpponentHand")
     void parseOpponentHand(char label, Hand expectedHand) {
-        assertEquals(expectedHand, Hand.fromOpponentLabel(label));
+        assertEquals(expectedHand, Hand.ofOpponentLabel(label));
     }
 
     @Test
     void throwsIfCannotParseOpponentLabel() {
-        assertThrows(NoSuchElementException.class, () -> Hand.fromOpponentLabel('D'));
+        assertThrows(NoSuchElementException.class, () -> Hand.ofOpponentLabel('D'));
     }
 
     @ParameterizedTest
     @MethodSource("provideParseStrategyHand")
     void parseStrategyHand(char label, Hand expectedHand) {
-        assertEquals(expectedHand, Hand.fromEncryptedStrategyLabel(label));
+        assertEquals(expectedHand, Hand.ofEncryptedStrategyLabel(label));
     }
 
     @Test
     void throwsIfCannotParseEncryptedStrategyLabel() {
-        assertThrows(NoSuchElementException.class, () -> Hand.fromEncryptedStrategyLabel('W'));
+        assertThrows(NoSuchElementException.class, () -> Hand.ofEncryptedStrategyLabel('W'));
     }
 
     @ParameterizedTest
     @MethodSource("provideParseOutcomeLabel")
     void parseOutcomeLabel(char label, Hand opponentHand, Hand expectedHand) {
-        assertEquals(expectedHand, Hand.fromStrategyOutcomeLabel(opponentHand, label));
+        assertEquals(expectedHand, Hand.ofStrategyOutcomeLabel(opponentHand, label));
     }
 
     @RepeatedTest(5)
@@ -47,7 +47,7 @@ class HandTest {
 
         Hand hand = Hand.values()[generator.nextInt(Hand.values().length)];
 
-        assertEquals(hand, Hand.fromStrategyOutcomeLabel(hand, 'Y'));
+        assertEquals(hand, Hand.ofStrategyOutcomeLabel(hand, 'Y'));
     }
 
     @Test
@@ -56,7 +56,7 @@ class HandTest {
 
         Hand hand = Hand.values()[generator.nextInt(Hand.values().length)];
 
-        assertThrows(NoSuchElementException.class, () -> Hand.fromStrategyOutcomeLabel(hand, 'W'));
+        assertThrows(NoSuchElementException.class, () -> Hand.ofStrategyOutcomeLabel(hand, 'W'));
     }
 
     private static Stream<Arguments> provideParseOpponentHand() {

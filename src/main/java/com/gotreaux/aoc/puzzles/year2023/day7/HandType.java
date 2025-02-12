@@ -113,7 +113,7 @@ enum HandType {
         return criterion;
     }
 
-    static HandType fromCards(List<Card> cards) {
+    static HandType of(List<Card> cards) {
         return Arrays.stream(values())
                 .sorted(Collections.reverseOrder())
                 .filter(handType -> handType.getCriterion().test(cards))

@@ -12,7 +12,7 @@ class Hand implements Comparable<Hand> {
     Hand(List<Card> cards, int bid) {
         this.cards = List.copyOf(cards);
         this.bid = bid;
-        handType = HandType.fromCards(cards);
+        handType = HandType.of(cards);
     }
 
     private Card getFirstCard() {

@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 
 record Report(List<Integer> levels) {
 
-    static Report from(String line) {
+    static Report of(String line) {
         List<Integer> levels = Arrays.stream(line.split(" ")).map(Integer::parseInt).toList();
 
         return new Report(levels);

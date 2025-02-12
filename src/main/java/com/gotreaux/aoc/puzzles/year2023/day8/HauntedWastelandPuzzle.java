@@ -28,7 +28,7 @@ public class HauntedWastelandPuzzle extends Puzzle {
         for (String line : inputReader.getInputList()) {
             if (DIRECTION_LINE.matcher(line).matches()) {
                 for (int i = 0; i < line.length(); i++) {
-                    directions.add(RelativeDirection.fromLabel(line.charAt(i)));
+                    directions.add(RelativeDirection.of(line.charAt(i)));
                 }
             } else if (NODE_LINE.matcher(line).matches()) {
                 String[] nodeParts = NODE_DELIM.split(line.replace(" = (", ", ").replace(")", ""));

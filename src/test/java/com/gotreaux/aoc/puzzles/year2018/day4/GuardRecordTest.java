@@ -14,13 +14,13 @@ import org.springframework.lang.Nullable;
 class GuardRecordTest {
 
     @ParameterizedTest
-    @MethodSource("provideFrom")
-    void from(
+    @MethodSource("provideOf")
+    void of(
             String line,
             LocalDateTime expectedDateTime,
             Status expectedStatus,
             @Nullable Integer expectedGuardId) {
-        GuardRecord record = GuardRecord.from(line);
+        GuardRecord record = GuardRecord.of(line);
 
         assertEquals(expectedDateTime, record.time());
         assertEquals(expectedStatus, record.status());
@@ -29,10 +29,10 @@ class GuardRecordTest {
 
     @Test
     void throwsIfInvalidRecord() {
-        assertThrows(IllegalArgumentException.class, () -> GuardRecord.from("x"));
+        assertThrows(IllegalArgumentException.class, () -> GuardRecord.of("x"));
     }
 
-    private static Stream<Arguments> provideFrom() {
+    private static Stream<Arguments> provideOf() {
         return Stream.of(
                 Arguments.of(
                         "[1518-11-01 00:00] Guard #10 begins shift",

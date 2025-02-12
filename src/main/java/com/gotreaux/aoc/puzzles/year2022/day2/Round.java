@@ -8,7 +8,7 @@ record Round(Hand opponentHand, Hand strategyHand) {
             score = 3;
         }
 
-        if (Hand.fromStrategyOutcomeLabel(opponentHand, 'Z') == strategyHand) {
+        if (Hand.ofStrategyOutcomeLabel(opponentHand, 'Z') == strategyHand) {
             score = 6;
         }
 

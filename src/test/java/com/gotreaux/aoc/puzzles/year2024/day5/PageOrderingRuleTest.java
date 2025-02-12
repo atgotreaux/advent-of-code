@@ -10,15 +10,15 @@ import org.junit.jupiter.params.provider.MethodSource;
 class PageOrderingRuleTest {
 
     @ParameterizedTest
-    @MethodSource("provideFrom")
-    void from(String line, int expectedBefore, int expectedAfter) {
-        PageOrderingRule rule = PageOrderingRule.from(line);
+    @MethodSource("provideOf")
+    void of(String line, int expectedBefore, int expectedAfter) {
+        PageOrderingRule rule = PageOrderingRule.of(line);
 
         assertEquals(expectedBefore, rule.before());
         assertEquals(expectedAfter, rule.after());
     }
 
-    private static Stream<Arguments> provideFrom() {
+    private static Stream<Arguments> provideOf() {
         return Stream.of(
                 Arguments.of("47|53", 47, 53),
                 Arguments.of("97|13", 97, 13),

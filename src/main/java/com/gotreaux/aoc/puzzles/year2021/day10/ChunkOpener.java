@@ -25,7 +25,7 @@ enum ChunkOpener {
         return closer;
     }
 
-    static @Nullable ChunkOpener fromLabel(char label) {
+    static @Nullable ChunkOpener of(char label) {
         return Arrays.stream(values())
                 .filter(chunkOpener -> chunkOpener.getLabel() == label)
                 .findFirst()

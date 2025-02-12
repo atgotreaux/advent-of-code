@@ -21,7 +21,7 @@ public class FireHazardPuzzle extends Puzzle {
         int[][] brightnessGrid = new int[GRID_DIMENSION][GRID_DIMENSION];
 
         for (String line : inputReader.getInputList()) {
-            Instruction instruction = Instruction.fromLine(line);
+            Instruction instruction = Instruction.of(line);
 
             String[] coordinates =
                     line.replace(instruction.getLabel(), "")

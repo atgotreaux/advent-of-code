@@ -52,7 +52,7 @@ public class CrossedWiresPuzzle extends Puzzle {
         positions.add(position);
 
         for (String instruction : instructions) {
-            RelativeDirection direction = RelativeDirection.fromLabel(instruction.charAt(0));
+            RelativeDirection direction = RelativeDirection.of(instruction.charAt(0));
 
             int units = Integer.parseInt(instruction.substring(1));
             for (int i = 0; i < units; i++) {

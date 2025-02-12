@@ -14,22 +14,22 @@ class CardTest {
     @ParameterizedTest
     @MethodSource("provideParseCard")
     void parseCard(char label, Card expectedCard) {
-        assertEquals(expectedCard, Card.fromLabel(label));
+        assertEquals(expectedCard, Card.of(label));
     }
 
     @Test
     void parseJoker() {
-        assertEquals(Card.JOKER, Card.fromLabel('J', Card.JACK));
+        assertEquals(Card.JOKER, Card.of('J', Card.JACK));
     }
 
     @Test
     void parseJack() {
-        assertEquals(Card.JACK, Card.fromLabel('J', Card.JOKER));
+        assertEquals(Card.JACK, Card.of('J', Card.JOKER));
     }
 
     @Test
     void throwsIfCannotParse() {
-        assertThrows(NoSuchElementException.class, () -> Card.fromLabel('X'));
+        assertThrows(NoSuchElementException.class, () -> Card.of('X'));
     }
 
     private static Stream<Arguments> provideParseCard() {

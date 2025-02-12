@@ -11,7 +11,7 @@ class PageUpdate {
     private final List<Integer> pages;
     private final Map<Integer, Integer> pageWeights;
 
-    static PageUpdate from(String line) {
+    static PageUpdate of(String line) {
         Collection<Integer> pages = Arrays.stream(line.split(",")).map(Integer::parseInt).toList();
 
         return new PageUpdate(pages);

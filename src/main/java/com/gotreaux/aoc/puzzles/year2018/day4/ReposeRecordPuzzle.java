@@ -23,7 +23,7 @@ public class ReposeRecordPuzzle extends Puzzle {
         List<GuardRecord> records =
                 inputReader
                         .getInputStream()
-                        .map(GuardRecord::from)
+                        .map(GuardRecord::of)
                         .sorted(Comparator.comparing(GuardRecord::time))
                         .toList();
 

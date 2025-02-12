@@ -14,7 +14,7 @@ class HandTypeTest {
     void parseType(Card v, Card w, Card x, Card y, Card z, HandType expectedType) {
         List<Card> cards = List.of(v, w, x, y, z);
 
-        assertEquals(expectedType, HandType.fromCards(cards));
+        assertEquals(expectedType, HandType.of(cards));
     }
 
     private static Stream<Arguments> provideParseType() {

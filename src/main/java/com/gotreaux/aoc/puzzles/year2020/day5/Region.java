@@ -19,7 +19,7 @@ public enum Region {
         return label;
     }
 
-    static Region fromLabel(char label) throws NoSuchElementException {
+    static Region of(char label) throws NoSuchElementException {
         return Arrays.stream(values())
                 .filter(region -> region.getLabel() == label)
                 .findFirst()
