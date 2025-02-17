@@ -2,7 +2,6 @@ package com.gotreaux.aoc.utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class CollectionUtils {
@@ -36,29 +35,6 @@ public final class CollectionUtils {
         return permutations.stream()
                 .map(permutation -> Stream.concat(Stream.of(first), permutation.stream()).toList())
                 .toList();
-    }
-
-    public static List<List<Integer>> combinationsOfSum(int remainingAddends, int remainingSum) {
-        List<Integer> combination =
-                Stream.generate(() -> 0).limit(remainingAddends).collect(Collectors.toList());
-        return combinationsOfSum(combination, remainingAddends, remainingSum);
-    }
-
-    private static List<List<Integer>> combinationsOfSum(
-            List<Integer> combination, int remainingAddends, int remainingSum) {
-        if (remainingAddends == 0) {
-            if (remainingSum == 0) {
-                return List.of(new ArrayList<>(combination));
-            }
-            return new ArrayList<>(0);
-        }
-        List<List<Integer>> combinations = new ArrayList<>();
-        for (int i = 0; i <= remainingSum; i++) {
-            combination.set(remainingAddends - 1, i);
-            combinations.addAll(
-                    combinationsOfSum(combination, remainingAddends - 1, remainingSum - i));
-        }
-        return combinations;
     }
 
     public static <T> List<List<T>> combinations(List<T> elements, int length) {
