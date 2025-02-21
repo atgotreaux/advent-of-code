@@ -48,6 +48,10 @@ abstract class Matrix<T> {
         return matrix[row][col];
     }
 
+    public void set(int row, int col, T value) {
+        matrix[row][col] = value;
+    }
+
     public void visit(int row, int col) {
         visited.add(new Point(row, col));
     }
