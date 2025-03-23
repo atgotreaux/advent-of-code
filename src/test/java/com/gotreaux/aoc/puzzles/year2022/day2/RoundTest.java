@@ -2,6 +2,9 @@ package com.gotreaux.aoc.puzzles.year2022.day2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.random.RandomGenerator;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.RepeatedTest;
@@ -22,7 +25,9 @@ class RoundTest {
     void draw() {
         RandomGenerator generator = RandomGenerator.getDefault();
 
-        Hand hand = Hand.values()[generator.nextInt(Hand.values().length)];
+        List<Hand> hands = Arrays.asList(Hand.values());
+        Collections.shuffle(hands, generator);
+        Hand hand = hands.getFirst();
 
         Round round = new Round(hand, hand);
 

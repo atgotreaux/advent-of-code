@@ -3,6 +3,9 @@ package com.gotreaux.aoc.puzzles.year2022.day2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.random.RandomGenerator;
 import java.util.stream.Stream;
@@ -45,7 +48,9 @@ class HandTest {
     void outcomeDraw() {
         RandomGenerator generator = RandomGenerator.getDefault();
 
-        Hand hand = Hand.values()[generator.nextInt(Hand.values().length)];
+        List<Hand> hands = Arrays.asList(Hand.values());
+        Collections.shuffle(hands, generator);
+        Hand hand = hands.getFirst();
 
         assertEquals(hand, Hand.ofStrategyOutcomeLabel(hand, 'Y'));
     }
@@ -54,7 +59,9 @@ class HandTest {
     void throwsIfCannotParseOutcomeStrategyLabel() {
         RandomGenerator generator = RandomGenerator.getDefault();
 
-        Hand hand = Hand.values()[generator.nextInt(Hand.values().length)];
+        List<Hand> hands = Arrays.asList(Hand.values());
+        Collections.shuffle(hands, generator);
+        Hand hand = hands.getFirst();
 
         assertThrows(NoSuchElementException.class, () -> Hand.ofStrategyOutcomeLabel(hand, 'W'));
     }

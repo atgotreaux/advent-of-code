@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.gotreaux.aoc.utils.RelativeDirection;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.random.RandomGenerator;
@@ -131,8 +133,9 @@ class KeypadTest {
         List<Key> keys = List.of(key);
         Keypad keypad = new Keypad(keys);
 
-        RelativeDirection direction =
-                RelativeDirection.values()[generator.nextInt(RelativeDirection.values().length)];
+        List<RelativeDirection> directions = Arrays.asList(RelativeDirection.values());
+        Collections.shuffle(keys, generator);
+        RelativeDirection direction = directions.getFirst();
 
         assertThrows(NoSuchElementException.class, () -> keypad.move(key, direction));
     }

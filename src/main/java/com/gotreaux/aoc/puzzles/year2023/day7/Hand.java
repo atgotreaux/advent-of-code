@@ -56,7 +56,7 @@ class Hand implements Comparable<Hand> {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof Hand && compareTo((Hand) obj) == 0;
+        return obj instanceof Hand hand && compareTo(hand) == 0;
     }
 
     @Override
