@@ -37,17 +37,18 @@ public class FireHazardPuzzle extends Puzzle {
             for (int row = startRow; row <= endRow; row++) {
                 for (int col = startCol; col <= endCol; col++) {
                     switch (instruction) {
-                        case ON:
+                        case ON -> {
                             lightGrid[row][col] = true;
                             brightnessGrid[row][col]++;
-                            break;
-                        case OFF:
+                        }
+                        case OFF -> {
                             lightGrid[row][col] = false;
                             brightnessGrid[row][col] = Math.max(0, brightnessGrid[row][col] - 1);
-                            break;
-                        case TOGGLE:
+                        }
+                        case TOGGLE -> {
                             lightGrid[row][col] = !lightGrid[row][col];
                             brightnessGrid[row][col] += 2;
+                        }
                     }
                 }
             }

@@ -31,17 +31,18 @@ public class DivePuzzle extends Puzzle {
             scanner.close();
 
             switch (command) {
-                case FORWARD:
+                case FORWARD -> {
                     position.translate(units, 0);
                     positionWithAim.translate(units, units * aim);
-                    break;
-                case DOWN:
+                }
+                case DOWN -> {
                     position.translate(0, units);
                     aim += units;
-                    break;
-                case UP:
+                }
+                case UP -> {
                     position.translate(0, -units);
                     aim -= units;
+                }
             }
         }
 

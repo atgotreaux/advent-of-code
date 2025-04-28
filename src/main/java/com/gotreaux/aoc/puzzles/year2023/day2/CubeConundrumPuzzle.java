@@ -45,17 +45,18 @@ public class CubeConundrumPuzzle extends Puzzle {
                             CubeColor.valueOf(cubeScanner.next().toUpperCase(Locale.getDefault()));
                     cubeScanner.close();
                     switch (color) {
-                        case RED:
+                        case RED -> {
                             possibleGame &= cubeCount <= TOTAL_RED_CUBES;
                             cubeMap.merge(CubeColor.RED, cubeCount, Math::max);
-                            break;
-                        case GREEN:
+                        }
+                        case GREEN -> {
                             possibleGame &= cubeCount <= TOTAL_GREEN_CUBES;
                             cubeMap.merge(CubeColor.GREEN, cubeCount, Math::max);
-                            break;
-                        case BLUE:
+                        }
+                        case BLUE -> {
                             possibleGame &= cubeCount <= TOTAL_BLUE_CUBES;
                             cubeMap.merge(CubeColor.BLUE, cubeCount, Math::max);
+                        }
                     }
                 }
             }
