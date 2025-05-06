@@ -18,8 +18,7 @@ public class HungrySciencePuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        List<Ingredient> ingredients =
-                inputReader.getInputStream().map(HungrySciencePuzzle::parseIngredient).toList();
+        List<Ingredient> ingredients = inputReader.getInputStream().map(Ingredient::of).toList();
 
         CombinationsOfSum combinationsOfSum =
                 new CombinationsOfSum(
@@ -41,16 +40,5 @@ public class HungrySciencePuzzle extends Puzzle {
                         .orElseThrow();
 
         return new PuzzleOutput<>(highestScoringCookie, highestScoringCalorieCookie);
-    }
-
-    private static Ingredient parseIngredient(String input) {
-        String[] parts = input.replace(":", "").replace(",", "").split(" ");
-
-        return new Ingredient(
-                Integer.parseInt(parts[2]),
-                Integer.parseInt(parts[4]),
-                Integer.parseInt(parts[6]),
-                Integer.parseInt(parts[8]),
-                Integer.parseInt(parts[10]));
     }
 }

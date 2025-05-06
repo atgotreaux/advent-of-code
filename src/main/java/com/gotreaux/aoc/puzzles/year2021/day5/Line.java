@@ -3,8 +3,24 @@ package com.gotreaux.aoc.puzzles.year2021.day5;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Scanner;
 
 record Line(int x1, int y1, int x2, int y2) {
+
+    static Line of(String line) {
+        Scanner scanner = new Scanner(line);
+        scanner.useDelimiter(",| -> ");
+
+        int x1 = scanner.nextInt();
+        int y1 = scanner.nextInt();
+        int x2 = scanner.nextInt();
+        int y2 = scanner.nextInt();
+
+        scanner.close();
+
+        return new Line(x1, y1, x2, y2);
+    }
+
     boolean isHorizontal() {
         return x1 == x2;
     }

@@ -8,6 +8,13 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LineTest {
+
+    @ParameterizedTest
+    @MethodSource("provideOf")
+    void of(String input, Line expected) {
+        assertEquals(expected, Line.of(input));
+    }
+
     @ParameterizedTest
     @MethodSource("provideHorizontal")
     void horizontal(Line line, boolean expected) {
@@ -24,6 +31,13 @@ class LineTest {
     @MethodSource("providePoints")
     void points(Line line, int expected) {
         assertEquals(expected, line.getPoints().size());
+    }
+
+    private static Stream<Arguments> provideOf() {
+        return Stream.of(
+                Arguments.of("0,9 -> 5,9", new Line(0, 9, 5, 9)),
+                Arguments.of("8,0 -> 0,8", new Line(8, 0, 0, 8)),
+                Arguments.of("6,4 -> 2,0", new Line(6, 4, 2, 0)));
     }
 
     private static Stream<Arguments> provideHorizontal() {

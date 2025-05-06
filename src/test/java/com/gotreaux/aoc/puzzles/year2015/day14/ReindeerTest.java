@@ -8,10 +8,27 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class ReindeerTest {
+
+    @ParameterizedTest
+    @MethodSource("provideOf")
+    void of(String line, Reindeer expected) {
+        assertEquals(expected, Reindeer.of(line));
+    }
+
     @ParameterizedTest
     @MethodSource("provideDistance")
     void distance(Reindeer reindeer, int time, int expectedDistance) {
         assertEquals(expectedDistance, reindeer.getDistance(time));
+    }
+
+    private static Stream<Arguments> provideOf() {
+        return Stream.of(
+                Arguments.of(
+                        "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.",
+                        new Reindeer("Comet", 14, 10, 127)),
+                Arguments.of(
+                        "Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.",
+                        new Reindeer("Dancer", 16, 11, 162)));
     }
 
     private static Stream<Arguments> provideDistance() {

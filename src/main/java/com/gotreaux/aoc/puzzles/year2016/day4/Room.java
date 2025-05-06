@@ -6,8 +6,31 @@ import static java.util.stream.Collectors.groupingBy;
 
 import java.util.Comparator;
 import java.util.Map;
+import java.util.Scanner;
 
 record Room(int sectorID, String checksum, String encryptedName) {
+
+    static Room of(String line) {
+        int sectorID = 0;
+        String checksum = "";
+        StringBuilder encryptedName = new StringBuilder();
+
+        Scanner scanner = new Scanner(line);
+        scanner.useDelimiter("-");
+        while (scanner.hasNext()) {
+            String roomPart = scanner.next();
+            if (Character.isDigit(roomPart.charAt(0))) {
+                sectorID = Integer.parseInt(roomPart.substring(0, 3));
+                checksum = roomPart.substring(4, 9);
+            } else {
+                encryptedName.append(roomPart);
+            }
+        }
+        scanner.close();
+
+        return new Room(sectorID, checksum, encryptedName.toString());
+    }
+
     boolean isValid() {
         Comparator<Map.Entry<Integer, Long>> comparator =
                 Map.Entry.<Integer, Long>comparingByValue(Comparator.reverseOrder())

@@ -20,8 +20,7 @@ public class SingleNightPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        Collection<Route> routes =
-                inputReader.getInputStream().map(SingleNightPuzzle::parseRoute).toList();
+        Collection<Route> routes = inputReader.getInputStream().map(Route::of).toList();
 
         List<String> locations =
                 routes.stream()
@@ -41,12 +40,6 @@ public class SingleNightPuzzle extends Puzzle {
         int longestDistance = distances.stream().max(Integer::compareTo).orElseThrow();
 
         return new PuzzleOutput<>(shortestDistance, longestDistance);
-    }
-
-    private static Route parseRoute(String line) {
-        String[] routeParts = line.split(" ");
-
-        return new Route(routeParts[0], routeParts[2], Integer.parseInt(routeParts[4]));
     }
 
     private static int getDistance(Collection<Route> routes, List<String> permutation)

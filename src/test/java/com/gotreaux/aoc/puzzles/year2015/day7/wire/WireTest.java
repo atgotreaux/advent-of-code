@@ -1,20 +1,18 @@
-package com.gotreaux.aoc.puzzles.year2015.day7;
+package com.gotreaux.aoc.puzzles.year2015.day7.wire;
 
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
-import com.gotreaux.aoc.puzzles.year2015.day7.wire.GateWire;
-import com.gotreaux.aoc.puzzles.year2015.day7.wire.SignalWire;
-import com.gotreaux.aoc.puzzles.year2015.day7.wire.Wire;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class SomeAssemblyRequiredPuzzleTest {
+class WireTest {
+
     @ParameterizedTest
     @MethodSource("provideParseWire")
     void parseWire(String input, Class<? extends Wire> wireClass) {
-        assertInstanceOf(wireClass, SomeAssemblyRequiredPuzzle.parseWire(input));
+        assertInstanceOf(wireClass, Wire.of(input));
     }
 
     private static Stream<Arguments> provideParseWire() {

@@ -17,7 +17,7 @@ public class DinnerTablePuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         Collection<Arrangement> arrangements =
-                inputReader.getInputStream().map(DinnerTablePuzzle::parseArrangement).toList();
+                inputReader.getInputStream().map(Arrangement::of).toList();
 
         Table guestTable = new Table(arrangements);
 
@@ -35,19 +35,5 @@ public class DinnerTablePuzzle extends Puzzle {
 
         return new PuzzleOutput<>(
                 guestTable.getOptimalArrangement(), myTable.getOptimalArrangement());
-    }
-
-    static Arrangement parseArrangement(String line) {
-        String[] arrangementParts = line.split(" ");
-
-        String relative = arrangementParts[0];
-        String neighbor = arrangementParts[10].replace(".", "");
-
-        int happiness = Integer.parseInt(arrangementParts[3]);
-        if (arrangementParts[2].equals("lose")) {
-            happiness = -happiness;
-        }
-
-        return new Arrangement(relative, neighbor, happiness);
     }
 }

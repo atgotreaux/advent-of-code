@@ -18,8 +18,7 @@ public class SumOfPartsPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<String, Integer> solve(InputReader inputReader) throws Exception {
-        List<Requirement> reqs =
-                inputReader.getInputStream().map(SumOfPartsPuzzle::parseRequirement).toList();
+        List<Requirement> reqs = inputReader.getInputStream().map(Requirement::of).toList();
 
         List<String> steps =
                 reqs.stream()
@@ -51,10 +50,5 @@ public class SumOfPartsPuzzle extends Puzzle {
         }
 
         return new PuzzleOutput<>(stepOrder.toString(), 0);
-    }
-
-    private static Requirement parseRequirement(String input) {
-        String[] parts = input.split(" ");
-        return new Requirement(parts[1], parts[7]);
     }
 }

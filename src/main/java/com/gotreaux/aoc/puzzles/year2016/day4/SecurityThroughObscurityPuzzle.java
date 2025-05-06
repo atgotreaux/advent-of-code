@@ -4,7 +4,6 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.Collection;
-import java.util.Scanner;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,11 +15,7 @@ public class SecurityThroughObscurityPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        Collection<Room> rooms =
-                inputReader
-                        .getInputStream()
-                        .map(SecurityThroughObscurityPuzzle::parseRoom)
-                        .toList();
+        Collection<Room> rooms = inputReader.getInputStream().map(Room::of).toList();
 
         int sumOfRealRooms = rooms.stream().filter(Room::isValid).mapToInt(Room::sectorID).sum();
 
@@ -32,26 +27,5 @@ public class SecurityThroughObscurityPuzzle extends Puzzle {
                         .orElse(Integer.MAX_VALUE);
 
         return new PuzzleOutput<>(sumOfRealRooms, northPoleSectorID);
-    }
-
-    private static Room parseRoom(String line) {
-        int sectorID = 0;
-        String checksum = "";
-        StringBuilder encryptedName = new StringBuilder();
-
-        Scanner scanner = new Scanner(line);
-        scanner.useDelimiter("-");
-        while (scanner.hasNext()) {
-            String roomPart = scanner.next();
-            if (Character.isDigit(roomPart.charAt(0))) {
-                sectorID = Integer.parseInt(roomPart.substring(0, 3));
-                checksum = roomPart.substring(4, 9);
-            } else {
-                encryptedName.append(roomPart);
-            }
-        }
-        scanner.close();
-
-        return new Room(sectorID, checksum, encryptedName.toString());
     }
 }

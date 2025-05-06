@@ -4,7 +4,6 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.Collection;
-import java.util.Scanner;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
@@ -18,8 +17,7 @@ public class HydrothermalVenturePuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
-        Collection<Line> lines =
-                inputReader.getInputStream().map(HydrothermalVenturePuzzle::parseLine).toList();
+        Collection<Line> lines = inputReader.getInputStream().map(Line::of).toList();
 
         long overlappingOrthogonalPoints =
                 lines.stream()
@@ -43,19 +41,5 @@ public class HydrothermalVenturePuzzle extends Puzzle {
                         .count();
 
         return new PuzzleOutput<>(overlappingOrthogonalPoints, allOverlappingPoints);
-    }
-
-    static Line parseLine(String line) {
-        Scanner scanner = new Scanner(line);
-        scanner.useDelimiter(",| -> ");
-
-        int x1 = scanner.nextInt();
-        int y1 = scanner.nextInt();
-        int x2 = scanner.nextInt();
-        int y2 = scanner.nextInt();
-
-        scanner.close();
-
-        return new Line(x1, y1, x2, y2);
     }
 }

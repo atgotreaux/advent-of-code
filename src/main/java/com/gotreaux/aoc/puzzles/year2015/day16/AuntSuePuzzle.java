@@ -3,10 +3,7 @@ package com.gotreaux.aoc.puzzles.year2015.day16;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.util.EnumMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,7 +15,7 @@ public class AuntSuePuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<?, ?> solve(InputReader inputReader) throws Exception {
-        List<Aunt> aunts = inputReader.getInputStream().map(AuntSuePuzzle::parseAunt).toList();
+        List<Aunt> aunts = inputReader.getInputStream().map(Aunt::of).toList();
 
         MFCSAM mfcsam = new MFCSAM(3, 7, 2, 3, 0, 0, 5, 3, 2, 1);
 
@@ -27,19 +24,5 @@ public class AuntSuePuzzle extends Puzzle {
                 aunts.stream().filter(mfcsam::matchesRange).findFirst().orElseThrow();
 
         return new PuzzleOutput<>(matchingAunt.id(), matchingRangeAunt.id());
-    }
-
-    private static Aunt parseAunt(String input) {
-        String[] parts = input.replace(":", "").replace(",", "").split(" ");
-        int length = parts.length;
-
-        int id = Integer.parseInt(parts[1]);
-        Map<Attribute, Integer> attributes = new EnumMap<>(Attribute.class);
-        for (int i = 2; i < length; i += 2) {
-            Attribute attribute = Attribute.valueOf(parts[i].toUpperCase(Locale.getDefault()));
-            attributes.put(attribute, Integer.parseInt(parts[i + 1]));
-        }
-
-        return new Aunt(id, attributes);
     }
 }

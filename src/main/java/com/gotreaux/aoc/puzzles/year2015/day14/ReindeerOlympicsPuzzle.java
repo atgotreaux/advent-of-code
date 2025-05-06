@@ -19,8 +19,7 @@ public class ReindeerOlympicsPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        Collection<Reindeer> reindeers =
-                inputReader.getInputStream().map(ReindeerOlympicsPuzzle::parseReindeer).toList();
+        Collection<Reindeer> reindeers = inputReader.getInputStream().map(Reindeer::of).toList();
 
         int maxDistance =
                 reindeers.stream()
@@ -52,15 +51,5 @@ public class ReindeerOlympicsPuzzle extends Puzzle {
                 reindeerScores.values().stream().max(Integer::compareTo).orElseThrow();
 
         return new PuzzleOutput<>(maxDistance, maxReindeerScore);
-    }
-
-    static Reindeer parseReindeer(String line) {
-        String[] reindeerParts = line.split(" ");
-
-        return new Reindeer(
-                reindeerParts[0],
-                Integer.parseInt(reindeerParts[3]),
-                Integer.parseInt(reindeerParts[6]),
-                Integer.parseInt(reindeerParts[13]));
     }
 }
