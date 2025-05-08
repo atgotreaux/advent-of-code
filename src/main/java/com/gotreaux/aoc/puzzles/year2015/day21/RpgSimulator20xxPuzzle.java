@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2015.day21;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.utils.CollectionUtils;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -24,9 +25,9 @@ public class RpgSimulator20xxPuzzle extends Puzzle {
 
         Collection<Player> players = new ArrayList<>();
         for (Weapon weapon : Weapon.values()) {
-            for (Optional<Armor> armor : getOptionalValues(Armor.values())) {
-                for (Optional<Ring> leftRing : getOptionalValues(Ring.values())) {
-                    for (Optional<Ring> rightRing : getOptionalValues(Ring.values())) {
+            for (Optional<Armor> armor : CollectionUtils.optionalValues(Armor.values())) {
+                for (Optional<Ring> leftRing : CollectionUtils.optionalValues(Ring.values())) {
+                    for (Optional<Ring> rightRing : CollectionUtils.optionalValues(Ring.values())) {
                         if (leftRing.isEmpty() || !leftRing.equals(rightRing)) {
                             players.add(new Player(100, weapon, armor, leftRing, rightRing));
                         }
@@ -50,14 +51,5 @@ public class RpgSimulator20xxPuzzle extends Puzzle {
         int maximumLoseCost = loseCosts.stream().max(Integer::compareTo).orElseThrow();
 
         return new PuzzleOutput<>(minimumWinCost, maximumLoseCost);
-    }
-
-    private static <T> Collection<Optional<T>> getOptionalValues(T[] values) {
-        Collection<Optional<T>> optionalValues = new ArrayList<>(values.length + 1);
-        optionalValues.add(Optional.empty());
-        for (T value : values) {
-            optionalValues.add(Optional.of(value));
-        }
-        return optionalValues;
     }
 }

@@ -18,22 +18,16 @@ public class SonarSweepPuzzle extends Puzzle {
     public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
         List<Integer> measurements = inputReader.getInputStream().map(Integer::parseInt).toList();
 
-        List<Integer> windows =
-                IntStream.range(0, measurements.size() - 3 + 1)
-                        .mapToObj(window -> measurements.subList(window, window + 3))
-                        .flatMapToInt(w -> IntStream.of(w.stream().reduce(0, Integer::sum)))
-                        .boxed()
-                        .toList();
+        long measurementIncreaseCount =
+                IntStream.range(1, measurements.size())
+                        .filter(index -> measurements.get(index) > measurements.get(index - 1))
+                        .count();
 
-        long measurementIncreaseCount = getMeasurementIncreaseCount(measurements);
-        long measurementWindowIncreaseCount = getMeasurementIncreaseCount(windows);
+        long measurementWindowIncreaseCount =
+                IntStream.range(0, measurements.size() - 3)
+                        .filter(index -> measurements.get(index + 3) > measurements.get(index))
+                        .count();
 
         return new PuzzleOutput<>(measurementIncreaseCount, measurementWindowIncreaseCount);
-    }
-
-    private static long getMeasurementIncreaseCount(List<Integer> measurements) {
-        return IntStream.range(1, measurements.size())
-                .filter(index -> measurements.get(index) > measurements.get(index - 1))
-                .count();
     }
 }

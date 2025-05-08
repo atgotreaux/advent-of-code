@@ -1,7 +1,9 @@
 package com.gotreaux.aoc.utils;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public final class CollectionUtils {
@@ -55,5 +57,14 @@ public final class CollectionUtils {
             combination(elements, length, combination, combinations);
             combination.removeLast();
         }
+    }
+
+    public static <T> Collection<Optional<T>> optionalValues(T[] values) {
+        Collection<Optional<T>> optionalValues = new ArrayList<>(values.length + 1);
+        optionalValues.add(Optional.empty());
+        for (T value : values) {
+            optionalValues.add(Optional.of(value));
+        }
+        return optionalValues;
     }
 }

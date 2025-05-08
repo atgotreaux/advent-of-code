@@ -2,7 +2,9 @@ package com.gotreaux.aoc.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -41,6 +43,18 @@ class CollectionUtilsTest {
                 Integer.toUnsignedLong(expectedSize), combinations.stream().distinct().count());
     }
 
+    @ParameterizedTest
+    @MethodSource("provideOptionalValues")
+    <T> void optionalValues(T[] elements) {
+        Collection<Optional<T>> optionalValues = CollectionUtils.optionalValues(elements);
+
+        assertEquals(elements.length + 1, optionalValues.size());
+        assertEquals(1L, optionalValues.stream().filter(Optional::isEmpty).count());
+        assertEquals(
+                elements.length,
+                optionalValues.stream().filter(Optional::isPresent).distinct().count());
+    }
+
     private static Stream<Arguments> providePermutations() {
         return Stream.of(
                 Arguments.of(List.of(1), 1),
@@ -61,5 +75,11 @@ class CollectionUtilsTest {
                 Arguments.of(List.of("+", "*"), 2, 4),
                 Arguments.of(List.of("+", "*"), 3, 8),
                 Arguments.of(List.of("+", "*"), 5, 32));
+    }
+
+    private static Stream<Arguments> provideOptionalValues() {
+        return Stream.of(
+                Arguments.of((Object) CardinalDirection.values()),
+                Arguments.of((Object) RelativeDirection.values()));
     }
 }
