@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class PasswordPhilosophyPuzzleTest {
@@ -12,9 +11,9 @@ class PasswordPhilosophyPuzzleTest {
     void sumOfValidOccurrencesInRange() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(PasswordPhilosophyPuzzle.class);
 
-        PasswordPhilosophyPuzzle puzzle = new PasswordPhilosophyPuzzle();
+        var puzzle = new PasswordPhilosophyPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(2, output.partOne());
     }
@@ -23,9 +22,9 @@ class PasswordPhilosophyPuzzleTest {
     void sumOfValidPositions() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(PasswordPhilosophyPuzzle.class);
 
-        PasswordPhilosophyPuzzle puzzle = new PasswordPhilosophyPuzzle();
+        var puzzle = new PasswordPhilosophyPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(1, output.partTwo());
     }

@@ -19,7 +19,7 @@ public class HydrothermalVenturePuzzle extends Puzzle {
     public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
         Collection<Line> lines = inputReader.getInputStream().map(Line::of).toList();
 
-        long overlappingOrthogonalPoints =
+        var overlappingOrthogonalPoints =
                 lines.stream()
                         .filter(line -> line.isHorizontal() || line.isVertical())
                         .map(Line::getPoints)
@@ -30,7 +30,7 @@ public class HydrothermalVenturePuzzle extends Puzzle {
                         .filter(l -> l >= 2L)
                         .count();
 
-        long allOverlappingPoints =
+        var allOverlappingPoints =
                 lines.stream()
                         .map(Line::getPoints)
                         .flatMap(Collection::stream)

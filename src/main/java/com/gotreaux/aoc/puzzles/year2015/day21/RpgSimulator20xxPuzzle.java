@@ -6,8 +6,6 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.CollectionUtils;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,15 +17,15 @@ public class RpgSimulator20xxPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        Boss boss = Boss.of(input);
+        var boss = Boss.of(input);
 
         Collection<Player> players = new ArrayList<>();
-        for (Weapon weapon : Weapon.values()) {
-            for (Optional<Armor> armor : CollectionUtils.optionalValues(Armor.values())) {
-                for (Optional<Ring> leftRing : CollectionUtils.optionalValues(Ring.values())) {
-                    for (Optional<Ring> rightRing : CollectionUtils.optionalValues(Ring.values())) {
+        for (var weapon : Weapon.values()) {
+            for (var armor : CollectionUtils.optionalValues(Armor.values())) {
+                for (var leftRing : CollectionUtils.optionalValues(Ring.values())) {
+                    for (var rightRing : CollectionUtils.optionalValues(Ring.values())) {
                         if (leftRing.isEmpty() || !leftRing.equals(rightRing)) {
                             players.add(new Player(100, weapon, armor, leftRing, rightRing));
                         }
@@ -38,8 +36,8 @@ public class RpgSimulator20xxPuzzle extends Puzzle {
 
         Collection<Integer> winCosts = new ArrayList<>();
         Collection<Integer> loseCosts = new ArrayList<>();
-        for (Player player : players) {
-            Battle battle = new Battle(player, boss);
+        for (var player : players) {
+            var battle = new Battle(player, boss);
             if (battle.isWin()) {
                 winCosts.add(player.calculateCost());
             } else {

@@ -14,13 +14,13 @@ class NoRedSumNumbersFunctionTest {
     @ParameterizedTest
     @MethodSource("provideApply")
     void apply(JsonNode jsonNode, int expected) {
-        NoRedSumNumbersFunction function = new NoRedSumNumbersFunction();
+        var function = new NoRedSumNumbersFunction();
 
         assertEquals(expected, function.apply(jsonNode));
     }
 
     private static Stream<Arguments> provideApply() throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
+        var mapper = new ObjectMapper();
 
         return Stream.of(
                 Arguments.of(mapper.readTree("[1,2,3]"), 6),

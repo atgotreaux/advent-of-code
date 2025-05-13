@@ -11,7 +11,7 @@ class TwoPairsPredicateTest {
     @ParameterizedTest
     @MethodSource("provideTest")
     void test(String input, boolean expected) {
-        TwoPairsPredicate predicate = new TwoPairsPredicate();
+        var predicate = new TwoPairsPredicate();
 
         assertEquals(expected, predicate.test(input));
     }

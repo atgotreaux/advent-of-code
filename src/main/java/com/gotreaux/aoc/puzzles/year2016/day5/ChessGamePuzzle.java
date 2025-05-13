@@ -19,23 +19,23 @@ public class ChessGamePuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<String, String> solve(InputReader inputReader) throws Exception {
-        String doorID = inputReader.getInputString();
+        var doorID = inputReader.getInputString();
 
-        StringBuilder nextCharBuilder = new StringBuilder(8);
+        var nextCharBuilder = new StringBuilder(8);
         Map<Integer, Integer> positionPasswordMapping = new HashMap<>();
 
-        MessageDigest md = MessageDigest.getInstance("MD5");
-        int number = 0;
+        var md = MessageDigest.getInstance("MD5");
+        var number = 0;
         while (nextCharBuilder.length() < 8 || positionPasswordMapping.size() < 8) {
-            String input = doorID + number;
+            var input = doorID + number;
             md.update(input.getBytes(Charset.defaultCharset()));
-            String hash = HexFormat.of().formatHex(md.digest());
+            var hash = HexFormat.of().formatHex(md.digest());
 
             if (hash.startsWith("00000")) {
                 if (nextCharBuilder.length() < 8) {
                     nextCharBuilder.append(hash.charAt(5));
                 }
-                int hexIndex = HexFormat.fromHexDigit(hash.codePointAt(5));
+                var hexIndex = HexFormat.fromHexDigit(hash.codePointAt(5));
                 if (positionPasswordMapping.size() < 8 && hexIndex < 8) {
                     positionPasswordMapping.putIfAbsent(hexIndex, hash.codePointAt(6));
                 }
@@ -44,7 +44,7 @@ public class ChessGamePuzzle extends Puzzle {
             number++;
         }
 
-        String nextPositionPassword =
+        var nextPositionPassword =
                 positionPasswordMapping.entrySet().stream()
                         .sorted(Map.Entry.comparingByKey())
                         .map(Map.Entry::getValue)

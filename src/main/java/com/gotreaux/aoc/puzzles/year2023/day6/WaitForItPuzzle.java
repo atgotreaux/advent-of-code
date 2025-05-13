@@ -22,15 +22,15 @@ public class WaitForItPuzzle extends Puzzle {
         List<Long> times = new ArrayList<>();
         List<Long> recordDistances = new ArrayList<>();
 
-        for (String line : inputReader.getInputList()) {
+        for (var line : inputReader.getInputList()) {
             if (line.startsWith("Time:")) {
-                Scanner scanner = new Scanner(line.replace("Time:", ""));
+                var scanner = new Scanner(line.replace("Time:", ""));
                 while (scanner.hasNextLong()) {
                     times.add(scanner.nextLong());
                 }
                 scanner.close();
             } else if (line.startsWith("Distance:")) {
-                Scanner scanner = new Scanner(line.replace("Distance:", ""));
+                var scanner = new Scanner(line.replace("Distance:", ""));
                 while (scanner.hasNextLong()) {
                     recordDistances.add(scanner.nextLong());
                 }
@@ -38,16 +38,16 @@ public class WaitForItPuzzle extends Puzzle {
             }
         }
 
-        long productOfPossibleWins =
+        var productOfPossibleWins =
                 IntStream.range(0, times.size())
                         .mapToObj(index -> new Race(times.get(index), recordDistances.get(index)))
                         .mapToLong(Race::getWaysToWin)
                         .reduce(1L, Math::multiplyExact);
 
-        String kerningTime = times.stream().map(Object::toString).collect(Collectors.joining());
-        String kerningRecordDistance =
+        var kerningTime = times.stream().map(Object::toString).collect(Collectors.joining());
+        var kerningRecordDistance =
                 recordDistances.stream().map(Object::toString).collect(Collectors.joining());
-        Race kerningRace =
+        var kerningRace =
                 new Race(Long.parseLong(kerningTime), Long.parseLong(kerningRecordDistance));
 
         return new PuzzleOutput<>(productOfPossibleWins, kerningRace.getWaysToWin());

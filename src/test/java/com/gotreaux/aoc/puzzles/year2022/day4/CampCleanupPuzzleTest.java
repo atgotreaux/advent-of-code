@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class CampCleanupPuzzleTest {
@@ -12,9 +11,9 @@ class CampCleanupPuzzleTest {
     void numberOfAssignmentsContained() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(CampCleanupPuzzle.class);
 
-        CampCleanupPuzzle puzzle = new CampCleanupPuzzle();
+        var puzzle = new CampCleanupPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(2, output.partOne());
     }
@@ -23,9 +22,9 @@ class CampCleanupPuzzleTest {
     void numberOfAssignmentsOverlapping() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(CampCleanupPuzzle.class);
 
-        CampCleanupPuzzle puzzle = new CampCleanupPuzzle();
+        var puzzle = new CampCleanupPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(4, output.partTwo());
     }

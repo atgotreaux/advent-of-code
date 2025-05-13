@@ -14,9 +14,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 class SectionAssignmentTest {
     @Test
     void throwsIfSectionAssignmentDescending() {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        int firstSection = generator.nextInt(2, 1000);
-        int lastSection = generator.nextInt(firstSection - 1);
+        var generator = RandomGenerator.getDefault();
+        var firstSection = generator.nextInt(2, 1000);
+        var lastSection = generator.nextInt(firstSection - 1);
 
         assertThrows(
                 IllegalArgumentException.class,
@@ -30,9 +30,9 @@ class SectionAssignmentTest {
             int firstAssignmentLastSection,
             int secondAssignmentFirstSection,
             int secondAssignmentLastSection) {
-        SectionAssignment firstAssignment =
+        var firstAssignment =
                 new SectionAssignment(firstAssignmentFirstSection, firstAssignmentLastSection);
-        SectionAssignment secondAssignment =
+        var secondAssignment =
                 new SectionAssignment(secondAssignmentFirstSection, secondAssignmentLastSection);
 
         assertTrue(firstAssignment.contains(secondAssignment));
@@ -45,9 +45,9 @@ class SectionAssignmentTest {
             int firstAssignmentLastSection,
             int secondAssignmentFirstSection,
             int secondAssignmentLastSection) {
-        SectionAssignment firstAssignment =
+        var firstAssignment =
                 new SectionAssignment(firstAssignmentFirstSection, firstAssignmentLastSection);
-        SectionAssignment secondAssignment =
+        var secondAssignment =
                 new SectionAssignment(secondAssignmentFirstSection, secondAssignmentLastSection);
 
         assertFalse(firstAssignment.contains(secondAssignment));
@@ -60,9 +60,9 @@ class SectionAssignmentTest {
             int firstAssignmentLastSection,
             int secondAssignmentFirstSection,
             int secondAssignmentLastSection) {
-        SectionAssignment firstAssignment =
+        var firstAssignment =
                 new SectionAssignment(firstAssignmentFirstSection, firstAssignmentLastSection);
-        SectionAssignment secondAssignment =
+        var secondAssignment =
                 new SectionAssignment(secondAssignmentFirstSection, secondAssignmentLastSection);
 
         assertTrue(firstAssignment.overlaps(secondAssignment));
@@ -75,9 +75,9 @@ class SectionAssignmentTest {
             int firstAssignmentLastSection,
             int secondAssignmentFirstSection,
             int secondAssignmentLastSection) {
-        SectionAssignment firstAssignment =
+        var firstAssignment =
                 new SectionAssignment(firstAssignmentFirstSection, firstAssignmentLastSection);
-        SectionAssignment secondAssignment =
+        var secondAssignment =
                 new SectionAssignment(secondAssignmentFirstSection, secondAssignmentLastSection);
 
         assertFalse(firstAssignment.overlaps(secondAssignment));

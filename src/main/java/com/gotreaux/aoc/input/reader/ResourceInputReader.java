@@ -4,7 +4,6 @@ import com.google.errorprone.annotations.MustBeClosed;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
@@ -44,7 +43,7 @@ public class ResourceInputReader<T extends Puzzle> implements InputReader {
     }
 
     private Path loadResource() throws NoSuchFileException, URISyntaxException {
-        URL resource = getClass().getClassLoader().getResource(inputPath);
+        var resource = getClass().getClassLoader().getResource(inputPath);
         if (resource == null) {
             throw new NoSuchFileException(inputPath);
         }

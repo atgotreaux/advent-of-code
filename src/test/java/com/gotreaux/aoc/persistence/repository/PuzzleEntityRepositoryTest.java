@@ -21,9 +21,9 @@ class PuzzleEntityRepositoryTest {
 
     @Test
     void emptyIfNotFound() {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-        PuzzleEntityId puzzleEntityId = new PuzzleEntityId(puzzle.getYear(), puzzle.getDay());
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzleEntityId = new PuzzleEntityId(puzzle.getYear(), puzzle.getDay());
 
         assertTrue(puzzleRepository.findById(puzzleEntityId).isEmpty());
     }
@@ -31,11 +31,11 @@ class PuzzleEntityRepositoryTest {
     @Test
     @DirtiesContext
     void testPresentIfFound() {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-        PuzzleEntityId puzzleEntityId = new PuzzleEntityId(puzzle.getYear(), puzzle.getDay());
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzleEntityId = new PuzzleEntityId(puzzle.getYear(), puzzle.getDay());
 
-        PuzzleEntity puzzleEntity = new PuzzleEntity();
+        var puzzleEntity = new PuzzleEntity();
         puzzleEntity.setId(puzzleEntityId);
 
         puzzleEntity.setInput(RandomString.make(10));

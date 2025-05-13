@@ -17,16 +17,16 @@ public class InternetProtocolPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        int supportsTlsCount = 0;
-        int supportsSslCount = 0;
+        var supportsTlsCount = 0;
+        var supportsSslCount = 0;
 
-        for (String line : inputReader.getInputList()) {
+        for (var line : inputReader.getInputList()) {
             Collection<String> supernets = new ArrayList<>();
             Collection<String> hypernets = new ArrayList<>();
 
-            Scanner scanner = new Scanner(line);
+            var scanner = new Scanner(line);
             scanner.useDelimiter("[\\[\\]]");
-            int match = 0;
+            var match = 0;
             while (scanner.hasNext()) {
                 if (match % 2 == 0) {
                     supernets.add(scanner.next());
@@ -62,8 +62,8 @@ public class InternetProtocolPuzzle extends Puzzle {
     }
 
     private static boolean hasAbba(String net) {
-        for (int i = 0; i < net.length() - 3; i++) {
-            String abba = net.substring(i, i + 4);
+        for (var i = 0; i < net.length() - 3; i++) {
+            var abba = net.substring(i, i + 4);
             if (abba.charAt(0) == abba.charAt(3)
                     && abba.charAt(1) == abba.charAt(2)
                     && abba.charAt(0) != abba.charAt(1)) {
@@ -77,8 +77,8 @@ public class InternetProtocolPuzzle extends Puzzle {
     private static Collection<String> getAbas(String net) {
         Collection<String> abas = new ArrayList<>();
 
-        for (int i = 0; i < net.length() - 2; i++) {
-            String aba = net.substring(i, i + 3);
+        for (var i = 0; i < net.length() - 2; i++) {
+            var aba = net.substring(i, i + 3);
             if (aba.charAt(0) == aba.charAt(2) && aba.charAt(0) != aba.charAt(1)) {
                 abas.add(aba);
             }

@@ -17,7 +17,7 @@ public class BathroomSecurityPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<String, String> solve(InputReader inputReader) throws Exception {
-        Key imaginedKey = new Key("5", "2", "8", "4", "6");
+        var imaginedKey = new Key("5", "2", "8", "4", "6");
         Collection<Key> imaginedKeys =
                 List.of(
                         new Key("1", "1", "4", "1", "2"),
@@ -29,9 +29,9 @@ public class BathroomSecurityPuzzle extends Puzzle {
                         new Key("7", "4", "7", "7", "8"),
                         new Key("8", "5", "8", "7", "9"),
                         new Key("9", "6", "9", "8", "9"));
-        Keypad imaginedKeypad = new Keypad(imaginedKeys);
+        var imaginedKeypad = new Keypad(imaginedKeys);
 
-        Key actualKey = new Key("5", "5", "5", "5", "6");
+        var actualKey = new Key("5", "5", "5", "5", "6");
         Collection<Key> actualKeys =
                 List.of(
                         new Key("1", "1", "3", "1", "1"),
@@ -47,16 +47,16 @@ public class BathroomSecurityPuzzle extends Puzzle {
                         new Key("B", "7", "D", "A", "C"),
                         new Key("C", "8", "C", "B", "C"),
                         new Key("D", "B", "D", "D", "D"));
-        Keypad actualKeypad = new Keypad(actualKeys);
+        var actualKeypad = new Keypad(actualKeys);
 
         Collection<String> input = inputReader.getInputList();
-        StringBuilder imaginedBathroomCode = new StringBuilder(input.size());
-        StringBuilder actualBathroomCode = new StringBuilder(input.size());
+        var imaginedBathroomCode = new StringBuilder(input.size());
+        var actualBathroomCode = new StringBuilder(input.size());
 
-        for (String line : input) {
-            for (int i = 0; i < line.length(); i++) {
-                char directionLabel = line.charAt(i);
-                RelativeDirection direction = RelativeDirection.of(directionLabel);
+        for (var line : input) {
+            for (var i = 0; i < line.length(); i++) {
+                var directionLabel = line.charAt(i);
+                var direction = RelativeDirection.of(directionLabel);
 
                 imaginedKey = imaginedKeypad.move(imaginedKey, direction);
                 actualKey = actualKeypad.move(actualKey, direction);

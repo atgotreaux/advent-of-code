@@ -14,15 +14,15 @@ public class StreamProcessingPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        String input = inputReader.getInputString();
+        var input = inputReader.getInputString();
 
-        int totalScore = 0;
-        int currentScore = 0;
-        int garbageCount = 0;
-        boolean inGarbage = false;
+        var totalScore = 0;
+        var currentScore = 0;
+        var garbageCount = 0;
+        var inGarbage = false;
 
-        for (int i = 0; i < input.length(); i++) {
-            char c = input.charAt(i);
+        for (var i = 0; i < input.length(); i++) {
+            var c = input.charAt(i);
 
             if (inGarbage) {
                 if (c == '!') {

@@ -13,7 +13,7 @@ class OrGateTest {
     void evaluate() {
         List<Wire> wires = List.of(new SignalWire("x", "123"), new SignalWire("y", "456"));
 
-        Circuit circuit = new Circuit(wires);
+        var circuit = new Circuit(wires);
 
         Gate gate = new AndGate("x", "y");
 

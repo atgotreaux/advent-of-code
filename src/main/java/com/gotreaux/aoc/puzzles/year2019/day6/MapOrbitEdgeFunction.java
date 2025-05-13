@@ -7,7 +7,7 @@ public class MapOrbitEdgeFunction implements Function<String, Edge> {
 
     @Override
     public Edge apply(String line) {
-        String[] parts = line.split("\\)");
+        var parts = line.split("\\)");
 
         return new Edge(parts[0], parts[1]);
     }

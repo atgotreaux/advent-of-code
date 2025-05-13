@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class HistorianHysteriaPuzzleTest {
@@ -13,9 +12,9 @@ class HistorianHysteriaPuzzleTest {
     void sumOfDistances() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(HistorianHysteriaPuzzle.class);
 
-        HistorianHysteriaPuzzle puzzle = new HistorianHysteriaPuzzle();
+        var puzzle = new HistorianHysteriaPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(11, output.partOne());
     }
@@ -24,9 +23,9 @@ class HistorianHysteriaPuzzleTest {
     void sumOfSimilarityScores() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(HistorianHysteriaPuzzle.class);
 
-        HistorianHysteriaPuzzle puzzle = new HistorianHysteriaPuzzle();
+        var puzzle = new HistorianHysteriaPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(31, output.partTwo());
     }

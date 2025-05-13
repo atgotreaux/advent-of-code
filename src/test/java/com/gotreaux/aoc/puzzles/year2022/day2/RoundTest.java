@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.random.RandomGenerator;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.RepeatedTest;
@@ -16,20 +15,20 @@ class RoundTest {
     @ParameterizedTest
     @MethodSource("provideScore")
     void score(Hand opponentHand, Hand strategyHand, int expectedScore) {
-        Round round = new Round(opponentHand, strategyHand);
+        var round = new Round(opponentHand, strategyHand);
 
         assertEquals(expectedScore, round.getScore());
     }
 
     @RepeatedTest(5)
     void draw() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        List<Hand> hands = Arrays.asList(Hand.values());
+        var hands = Arrays.asList(Hand.values());
         Collections.shuffle(hands, generator);
-        Hand hand = hands.getFirst();
+        var hand = hands.getFirst();
 
-        Round round = new Round(hand, hand);
+        var round = new Round(hand, hand);
 
         assertEquals(3, round.getScore());
     }

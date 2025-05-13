@@ -19,19 +19,19 @@ public class SpiralMemoryPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        String input = inputReader.getInputString();
-        int squares = Integer.parseInt(input);
+        var input = inputReader.getInputString();
+        var squares = Integer.parseInt(input);
 
         Map<Point, Integer> positions = new HashMap<>(squares);
-        Point position = new Point();
+        var position = new Point();
         positions.put(position, 1);
 
-        int firstValueGreaterThanInput = Integer.MIN_VALUE;
+        var firstValueGreaterThanInput = Integer.MIN_VALUE;
 
-        CardinalDirection direction = CardinalDirection.SOUTH;
-        for (int i = 1; i < squares; i++) {
-            CardinalDirection leftTurn = direction.turn(RelativeDirection.LEFT);
-            Point leftPosition = leftTurn.move(position, 1);
+        var direction = CardinalDirection.SOUTH;
+        for (var i = 1; i < squares; i++) {
+            var leftTurn = direction.turn(RelativeDirection.LEFT);
+            var leftPosition = leftTurn.move(position, 1);
             if (positions.containsKey(leftPosition)) {
                 position = direction.move(position, 1);
             } else {
@@ -39,25 +39,25 @@ public class SpiralMemoryPuzzle extends Puzzle {
                 position = leftPosition;
             }
 
-            int value = getSumOfNeighbors(positions, position);
+            var value = getSumOfNeighbors(positions, position);
             if (firstValueGreaterThanInput == Integer.MIN_VALUE && value > squares) {
                 firstValueGreaterThanInput = value;
             }
             positions.put(position, value);
         }
 
-        int manhattanDistance = Math.abs(position.x) + Math.abs(position.y);
+        var manhattanDistance = Math.abs(position.x) + Math.abs(position.y);
 
         return new PuzzleOutput<>(manhattanDistance, firstValueGreaterThanInput);
     }
 
     private static int getSumOfNeighbors(Map<Point, Integer> positions, Point position) {
-        int sum = 0;
+        var sum = 0;
 
-        for (int x = -1; x < 2; x++) {
-            for (int y = -1; y < 2; y++) {
+        for (var x = -1; x < 2; x++) {
+            for (var y = -1; y < 2; y++) {
                 if (x != 0 || y != 0) {
-                    Point neighbor = new Point(position.x + x, position.y + y);
+                    var neighbor = new Point(position.x + x, position.y + y);
                     if (positions.containsKey(neighbor)) {
                         sum += positions.get(neighbor);
                     }

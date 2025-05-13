@@ -19,9 +19,9 @@ public class MemoryReallocationPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        String input = inputReader.getInputString();
+        var input = inputReader.getInputString();
 
-        Scanner scanner = new Scanner(input);
+        var scanner = new Scanner(input);
         List<Integer> banks = new ArrayList<>();
         while (scanner.hasNextInt()) {
             banks.add(scanner.nextInt());
@@ -30,9 +30,9 @@ public class MemoryReallocationPuzzle extends Puzzle {
 
         Map<List<Integer>, Integer> distributions = new HashMap<>();
         int cycleSize;
-        int cycles = 1;
+        var cycles = 1;
         while (true) {
-            int maxIndex = banks.indexOf(banks.stream().max(Integer::compareTo).orElseThrow());
+            var maxIndex = banks.indexOf(banks.stream().max(Integer::compareTo).orElseThrow());
             int max = banks.set(maxIndex, 0);
 
             while (max > 0) {

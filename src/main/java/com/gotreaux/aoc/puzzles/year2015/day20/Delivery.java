@@ -6,12 +6,12 @@ import java.util.stream.IntStream;
 record Delivery(Collection<Elf> elves, int presentTarget) {
 
     int getMinimumHouseNumber() {
-        int maxHouseNumber = presentTarget / 10;
+        var maxHouseNumber = presentTarget / 10;
 
-        int[] housePresents = new int[maxHouseNumber + 1];
-        for (Elf elf : elves) {
-            int housesElfDelivered = 0;
-            for (int house = elf.id();
+        var housePresents = new int[maxHouseNumber + 1];
+        for (var elf : elves) {
+            var housesElfDelivered = 0;
+            for (var house = elf.id();
                     house <= maxHouseNumber && housesElfDelivered < elf.maximumHouses();
                     house += elf.id()) {
                 housePresents[house] += elf.id() * elf.presents();

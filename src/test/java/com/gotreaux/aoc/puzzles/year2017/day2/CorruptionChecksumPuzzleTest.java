@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class CorruptionChecksumPuzzleTest {
@@ -13,9 +12,9 @@ class CorruptionChecksumPuzzleTest {
         InputReader inputReader =
                 new ResourceInputReader<>(CorruptionChecksumPuzzle.class, "ExampleOne.txt");
 
-        CorruptionChecksumPuzzle puzzle = new CorruptionChecksumPuzzle();
+        var puzzle = new CorruptionChecksumPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(18, output.partOne());
     }
@@ -25,9 +24,9 @@ class CorruptionChecksumPuzzleTest {
         InputReader inputReader =
                 new ResourceInputReader<>(CorruptionChecksumPuzzle.class, "ExampleTwo.txt");
 
-        CorruptionChecksumPuzzle puzzle = new CorruptionChecksumPuzzle();
+        var puzzle = new CorruptionChecksumPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(9, output.partTwo());
     }

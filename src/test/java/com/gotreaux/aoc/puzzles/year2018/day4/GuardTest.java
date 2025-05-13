@@ -21,7 +21,7 @@ class GuardTest {
             List<LocalDateTime> startTimes,
             List<LocalDateTime> endTimes,
             int expected) {
-        for (int i = 0; i < startTimes.size(); i++) {
+        for (var i = 0; i < startTimes.size(); i++) {
             guard.addSleep(startTimes.get(i), endTimes.get(i));
         }
 
@@ -35,7 +35,7 @@ class GuardTest {
             List<LocalDateTime> startTimes,
             List<LocalDateTime> endTimes,
             int expected) {
-        for (int i = 0; i < startTimes.size(); i++) {
+        for (var i = 0; i < startTimes.size(); i++) {
             guard.addSleep(startTimes.get(i), endTimes.get(i));
         }
 
@@ -44,7 +44,7 @@ class GuardTest {
 
     @Test
     void minuteMostAsleepThrowsIfNoSleep() {
-        Guard guard = new Guard(10);
+        var guard = new Guard(10);
 
         assertThrows(NoSuchElementException.class, guard::getMinuteMostAsleep);
     }
@@ -56,7 +56,7 @@ class GuardTest {
             List<LocalDateTime> startTimes,
             List<LocalDateTime> endTimes,
             int expected) {
-        for (int i = 0; i < startTimes.size(); i++) {
+        for (var i = 0; i < startTimes.size(); i++) {
             guard.addSleep(startTimes.get(i), endTimes.get(i));
         }
 

@@ -1,7 +1,6 @@
 package com.gotreaux.aoc.commands;
 
 import com.gotreaux.aoc.exceptions.NoSuchPuzzleException;
-import com.gotreaux.aoc.input.writer.InputWriter;
 import com.gotreaux.aoc.input.writer.InputWriterFactory;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import jakarta.validation.constraints.Max;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
-import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
@@ -101,7 +99,7 @@ public class SeedPuzzleCommand {
                 day,
                 String.join(", ", targets));
 
-        Puzzle puzzle =
+        var puzzle =
                 puzzles.stream()
                         .filter(p -> p.getYear() == year)
                         .filter(p -> p.getDay() == day)
@@ -110,24 +108,24 @@ public class SeedPuzzleCommand {
 
         logger.debug("Found puzzle class '{}'", puzzle.getClass().getSimpleName());
 
-        Map<String, InputWriter> inputWriters =
+        var inputWriters =
                 Arrays.stream(targets)
                         .collect(
                                 Collectors.toMap(
                                         Function.identity(),
                                         target -> inputWriterFactory.create(puzzle, target)));
 
-        String url = "https://adventofcode.com/%d/day/%d/input".formatted(year, day);
+        var url = "https://adventofcode.com/%d/day/%d/input".formatted(year, day);
 
-        HttpRequest request =
+        var request =
                 HttpRequest.newBuilder()
                         .uri(URI.create(url))
                         .header("Cookie", "session=%s".formatted(session))
                         .build();
 
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        var response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        Locale locale = Locale.getDefault();
+        var locale = Locale.getDefault();
         if (response.statusCode() != HttpURLConnection.HTTP_OK) {
             return messageSource.getMessage(
                     "puzzle.command.seed.status-code",
@@ -135,14 +133,14 @@ public class SeedPuzzleCommand {
                     locale);
         }
 
-        String input = response.body();
+        var input = response.body();
         if (input == null || input.isEmpty()) {
             return messageSource.getMessage(
                     "puzzle.command.seed.empty-response", new Object[] {url}, locale);
         }
 
         Collection<String> successfulTargets = new ArrayList<>(inputWriters.size());
-        for (Map.Entry<String, InputWriter> entry : inputWriters.entrySet()) {
+        for (var entry : inputWriters.entrySet()) {
             try {
                 entry.getValue().write(input);
                 successfulTargets.add(entry.getKey());

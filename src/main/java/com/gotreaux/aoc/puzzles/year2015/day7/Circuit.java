@@ -24,8 +24,8 @@ public class Circuit {
             return memo.get(signal);
         }
 
-        Wire wire = getWire(signal);
-        int result = wire.evaluate(this);
+        var wire = getWire(signal);
+        var result = wire.evaluate(this);
         memo.put(wire.getLabel(), result);
 
         return result;

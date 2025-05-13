@@ -17,25 +17,25 @@ public class FireHazardPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
-        boolean[][] lightGrid = new boolean[GRID_DIMENSION][GRID_DIMENSION];
-        int[][] brightnessGrid = new int[GRID_DIMENSION][GRID_DIMENSION];
+        var lightGrid = new boolean[GRID_DIMENSION][GRID_DIMENSION];
+        var brightnessGrid = new int[GRID_DIMENSION][GRID_DIMENSION];
 
-        for (String line : inputReader.getInputList()) {
-            Instruction instruction = Instruction.of(line);
+        for (var line : inputReader.getInputList()) {
+            var instruction = Instruction.of(line);
 
-            String[] coordinates =
+            var coordinates =
                     line.replace(instruction.getLabel(), "")
                             .replace(" through ", ",")
                             .trim()
                             .split(",");
 
-            int startRow = Integer.parseInt(coordinates[0]);
-            int startCol = Integer.parseInt(coordinates[1]);
-            int endRow = Integer.parseInt(coordinates[2]);
-            int endCol = Integer.parseInt(coordinates[3]);
+            var startRow = Integer.parseInt(coordinates[0]);
+            var startCol = Integer.parseInt(coordinates[1]);
+            var endRow = Integer.parseInt(coordinates[2]);
+            var endCol = Integer.parseInt(coordinates[3]);
 
-            for (int row = startRow; row <= endRow; row++) {
-                for (int col = startCol; col <= endCol; col++) {
+            for (var row = startRow; row <= endRow; row++) {
+                for (var col = startCol; col <= endCol; col++) {
                     switch (instruction) {
                         case ON -> {
                             lightGrid[row][col] = true;
@@ -54,7 +54,7 @@ public class FireHazardPuzzle extends Puzzle {
             }
         }
 
-        long lightsLit =
+        var lightsLit =
                 Arrays.stream(lightGrid)
                         .flatMap(row -> IntStream.range(0, GRID_DIMENSION).mapToObj(i -> row[i]))
                         .filter(Boolean::booleanValue)

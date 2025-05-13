@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class ReportRepairPuzzleTest {
@@ -12,9 +11,9 @@ class ReportRepairPuzzleTest {
     void productOfTargetSumWithTwoNumbers() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(ReportRepairPuzzle.class);
 
-        ReportRepairPuzzle puzzle = new ReportRepairPuzzle();
+        var puzzle = new ReportRepairPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(514579, output.partOne());
     }
@@ -23,9 +22,9 @@ class ReportRepairPuzzleTest {
     void productOfTargetSumWithThreeNumbers() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(ReportRepairPuzzle.class);
 
-        ReportRepairPuzzle puzzle = new ReportRepairPuzzle();
+        var puzzle = new ReportRepairPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(241861950, output.partTwo());
     }

@@ -3,7 +3,6 @@ package com.gotreaux.aoc.puzzles.year2020.day5;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.util.List;
 import java.util.stream.IntStream;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +15,7 @@ public class BinaryBoardingPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        List<Integer> seatIDs =
+        var seatIDs =
                 inputReader
                         .getInputStream()
                         .mapToInt(BinaryBoardingPuzzle::getSeatID)
@@ -26,7 +25,7 @@ public class BinaryBoardingPuzzle extends Puzzle {
 
         int highestSeatID = seatIDs.getLast();
 
-        int assignedSeatID =
+        var assignedSeatID =
                 IntStream.range(0, seatIDs.size() - 1)
                         .filter(i -> seatIDs.get(i + 1) == seatIDs.get(i) + 2)
                         .map(i -> seatIDs.get(i) + 1)
@@ -37,13 +36,13 @@ public class BinaryBoardingPuzzle extends Puzzle {
     }
 
     static int getSeatID(CharSequence sequence) {
-        int rowHigh = 127;
-        int rowLow = 0;
-        int colHigh = 7;
-        int colLow = 0;
+        var rowHigh = 127;
+        var rowLow = 0;
+        var colHigh = 7;
+        var colLow = 0;
 
-        for (int i = 0; i < sequence.length(); i++) {
-            Region region = Region.of(sequence.charAt(i));
+        for (var i = 0; i < sequence.length(); i++) {
+            var region = Region.of(sequence.charAt(i));
             switch (region) {
                 case FRONT -> rowHigh = (rowHigh + rowLow) / 2;
                 case BACK -> rowLow = (rowHigh + rowLow + 1) / 2;

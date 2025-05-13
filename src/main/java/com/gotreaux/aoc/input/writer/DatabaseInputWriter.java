@@ -16,7 +16,7 @@ public class DatabaseInputWriter implements InputWriter {
 
     @Override
     public void write(String input) {
-        PuzzleEntity puzzleEntity = new PuzzleEntity(year, day, input);
+        var puzzleEntity = new PuzzleEntity(year, day, input);
         puzzleRepository.save(puzzleEntity);
     }
 }

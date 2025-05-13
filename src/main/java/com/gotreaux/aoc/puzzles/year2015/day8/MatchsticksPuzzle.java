@@ -15,17 +15,17 @@ public class MatchsticksPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        int differenceOfLiteralsAndValues = 0;
-        int differenceOfEncodedAndLiterals = 0;
+        var differenceOfLiteralsAndValues = 0;
+        var differenceOfEncodedAndLiterals = 0;
 
-        for (String line : inputReader.getInputList()) {
-            int length = line.length();
-            int values = 0;
-            StringBuilder encoded = new StringBuilder("\"");
+        for (var line : inputReader.getInputList()) {
+            var length = line.length();
+            var values = 0;
+            var encoded = new StringBuilder("\"");
 
-            int i = 0;
+            var i = 0;
             while (i < length) {
-                char literal = line.charAt(i);
+                var literal = line.charAt(i);
                 if (literal == '"') {
                     encoded.append("\\\"");
                     i++;

@@ -4,9 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.utils.matrix.IntMatrix;
-import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,9 +16,9 @@ class SmokeBasinPuzzleTest {
     void sumOfRiskLevels() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(SmokeBasinPuzzle.class);
 
-        SmokeBasinPuzzle puzzle = new SmokeBasinPuzzle();
+        var puzzle = new SmokeBasinPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(15, output.partOne());
     }
@@ -29,9 +27,9 @@ class SmokeBasinPuzzleTest {
     void productOfLargestBasins() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(SmokeBasinPuzzle.class);
 
-        SmokeBasinPuzzle puzzle = new SmokeBasinPuzzle();
+        var puzzle = new SmokeBasinPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(1134, output.partTwo());
     }
@@ -41,9 +39,9 @@ class SmokeBasinPuzzleTest {
     void basinSize(int row, int col, int expectedSize) throws Exception {
         InputReader inputReader = new ResourceInputReader<>(SmokeBasinPuzzle.class);
 
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        IntMatrix matrix = new IntMatrix(input);
+        var matrix = new IntMatrix(input);
 
         assertEquals(expectedSize, SmokeBasinPuzzle.getBasinSize(matrix, row, col));
     }

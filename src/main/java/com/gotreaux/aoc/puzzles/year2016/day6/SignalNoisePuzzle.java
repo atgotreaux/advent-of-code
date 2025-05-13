@@ -5,7 +5,6 @@ import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
@@ -21,16 +20,16 @@ public class SignalNoisePuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<String, String> solve(InputReader inputReader) throws Exception {
-        List<String> input = inputReader.getInputList();
-        int length = input.getFirst().length();
+        var input = inputReader.getInputList();
+        var length = input.getFirst().length();
 
         Comparator<Map.Entry<Integer, Long>> mostCommonComparator = Map.Entry.comparingByValue();
         Comparator<Map.Entry<Integer, Long>> leastCommonComparator =
                 Map.Entry.comparingByValue(Comparator.reverseOrder());
 
-        StringBuilder mostCommonBuilder = new StringBuilder(length);
-        StringBuilder leastCommonBuilder = new StringBuilder(length);
-        for (int i = 0; i < length; i++) {
+        var mostCommonBuilder = new StringBuilder(length);
+        var leastCommonBuilder = new StringBuilder(length);
+        for (var i = 0; i < length; i++) {
             mostCommonBuilder.appendCodePoint(getCommonChar(input, i, mostCommonComparator));
             leastCommonBuilder.appendCodePoint(getCommonChar(input, i, leastCommonComparator));
         }

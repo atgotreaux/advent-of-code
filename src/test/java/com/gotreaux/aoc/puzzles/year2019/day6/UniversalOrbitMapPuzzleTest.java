@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class UniversalOrbitMapPuzzleTest {
@@ -14,9 +13,9 @@ class UniversalOrbitMapPuzzleTest {
         InputReader inputReader =
                 new ResourceInputReader<>(UniversalOrbitMapPuzzle.class, "ExampleOne.txt");
 
-        UniversalOrbitMapPuzzle puzzle = new UniversalOrbitMapPuzzle();
+        var puzzle = new UniversalOrbitMapPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(42, output.partOne());
     }
@@ -26,9 +25,9 @@ class UniversalOrbitMapPuzzleTest {
         InputReader inputReader =
                 new ResourceInputReader<>(UniversalOrbitMapPuzzle.class, "ExampleTwo.txt");
 
-        UniversalOrbitMapPuzzle puzzle = new UniversalOrbitMapPuzzle();
+        var puzzle = new UniversalOrbitMapPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(4, output.partTwo());
     }

@@ -3,7 +3,7 @@ package com.gotreaux.aoc.puzzles.year2015.day14;
 record Reindeer(String name, int speed, int duration, int rest) {
 
     static Reindeer of(String line) {
-        String[] parts = line.split(" ");
+        var parts = line.split(" ");
 
         return new Reindeer(
                 parts[0],
@@ -13,9 +13,9 @@ record Reindeer(String name, int speed, int duration, int rest) {
     }
 
     int getDistance(int time) {
-        int cycleTime = duration + rest;
-        int cycles = time / cycleTime;
-        int remainingTime = time % cycleTime;
+        var cycleTime = duration + rest;
+        var cycles = time / cycleTime;
+        var remainingTime = time % cycleTime;
 
         return (cycles * speed * duration) + (Math.min(remainingTime, duration) * speed);
     }

@@ -6,7 +6,6 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,18 +17,18 @@ public class ChronalCalibrationPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        int resultingFrequency = Integer.MAX_VALUE;
-        int firstDuplicateFrequency = Integer.MAX_VALUE;
+        var resultingFrequency = Integer.MAX_VALUE;
+        var firstDuplicateFrequency = Integer.MAX_VALUE;
 
-        DecimalFormat format = new DecimalFormat();
+        var format = new DecimalFormat();
         format.setPositivePrefix("+");
 
-        int frequency = 0;
+        var frequency = 0;
         Collection<Integer> reachedFrequencies = new ArrayList<>();
         reachedFrequencies.add(frequency);
 
-        int frequencyPosition = 0;
-        List<String> frequencyChanges = inputReader.getInputList();
+        var frequencyPosition = 0;
+        var frequencyChanges = inputReader.getInputList();
         while (firstDuplicateFrequency == Integer.MAX_VALUE) {
             frequency += format.parse(frequencyChanges.get(frequencyPosition)).intValue();
 

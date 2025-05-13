@@ -15,25 +15,25 @@ public class TrebuchetPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        int calibrationValue = 0;
-        int calibrationValueWithDigits = 0;
+        var calibrationValue = 0;
+        var calibrationValueWithDigits = 0;
 
-        List<String> digitWords =
+        var digitWords =
                 List.of("one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
 
-        for (String line : inputReader.getInputList()) {
-            StringBuilder calibrationValues = new StringBuilder(line.length());
-            StringBuilder calibrationValuesWithDigits = new StringBuilder(line.length());
+        for (var line : inputReader.getInputList()) {
+            var calibrationValues = new StringBuilder(line.length());
+            var calibrationValuesWithDigits = new StringBuilder(line.length());
 
-            for (int i = 0; i < line.length(); i++) {
-                String substring = line.substring(i);
-                for (int j = 0; j < digitWords.size(); j++) {
+            for (var i = 0; i < line.length(); i++) {
+                var substring = line.substring(i);
+                for (var j = 0; j < digitWords.size(); j++) {
                     if (substring.startsWith(digitWords.get(j))) {
                         calibrationValuesWithDigits.append(j + 1);
                         break;
                     }
                 }
-                char c = line.charAt(i);
+                var c = line.charAt(i);
                 if (Character.isDigit(c)) {
                     calibrationValues.append(c);
                     calibrationValuesWithDigits.append(c);

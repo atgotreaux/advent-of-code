@@ -21,16 +21,16 @@ public class ReindeerOlympicsPuzzle extends Puzzle {
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         Collection<Reindeer> reindeers = inputReader.getInputStream().map(Reindeer::of).toList();
 
-        int maxDistance =
+        var maxDistance =
                 reindeers.stream()
                         .mapToInt(reindeer -> reindeer.getDistance(2503))
                         .max()
                         .orElseThrow();
 
         Map<String, Integer> reindeerScores = new HashMap<>(reindeers.size());
-        for (int i = 1; i <= 2503; i++) {
-            int finalI = i;
-            Map<String, Integer> reindeerDistances =
+        for (var i = 1; i <= 2503; i++) {
+            var finalI = i;
+            var reindeerDistances =
                     reindeers.stream().collect(toMap(Reindeer::name, r -> r.getDistance(finalI)));
 
             int maxSecondDistance =
@@ -42,7 +42,7 @@ public class ReindeerOlympicsPuzzle extends Puzzle {
                             .map(Map.Entry::getKey)
                             .toList();
 
-            for (String leadingReindeer : leadingReindeers) {
+            for (var leadingReindeer : leadingReindeers) {
                 reindeerScores.merge(leadingReindeer, 1, Integer::sum);
             }
         }

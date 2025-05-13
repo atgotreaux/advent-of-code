@@ -8,13 +8,13 @@ import java.util.function.BiPredicate;
 record Aunt(int id, Map<Attribute, Integer> attributes) {
 
     static Aunt of(String line) {
-        String[] parts = line.replace(":", "").replace(",", "").split(" ");
-        int length = parts.length;
+        var parts = line.replace(":", "").replace(",", "").split(" ");
+        var length = parts.length;
 
-        int id = Integer.parseInt(parts[1]);
+        var id = Integer.parseInt(parts[1]);
         Map<Attribute, Integer> attributes = new EnumMap<>(Attribute.class);
-        for (int i = 2; i < length; i += 2) {
-            Attribute attribute = Attribute.valueOf(parts[i].toUpperCase(Locale.getDefault()));
+        for (var i = 2; i < length; i += 2) {
+            var attribute = Attribute.valueOf(parts[i].toUpperCase(Locale.getDefault()));
             attributes.put(attribute, Integer.parseInt(parts[i + 1]));
         }
 

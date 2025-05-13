@@ -13,14 +13,14 @@ import org.junit.jupiter.params.provider.MethodSource;
 class OccurrenceRangePasswordPolicyTest {
     @Test
     void throwsIfNegativePolicyOccurrences() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        int negativeArgumentIndex = generator.nextInt(1, 3);
-        int min =
+        var negativeArgumentIndex = generator.nextInt(1, 3);
+        var min =
                 negativeArgumentIndex == 1
                         ? -Math.abs(generator.nextInt())
                         : Math.abs(generator.nextInt());
-        int max =
+        var max =
                 negativeArgumentIndex == 2
                         ? -Math.abs(generator.nextInt())
                         : Math.abs(generator.nextInt());
@@ -32,7 +32,7 @@ class OccurrenceRangePasswordPolicyTest {
     @ParameterizedTest
     @MethodSource("providePasswordPasses")
     void passwordPasses(int min, int max, char target, String password, boolean expected) {
-        OccurrencePasswordPolicy passwordPolicy = new OccurrencePasswordPolicy(min, max, target);
+        var passwordPolicy = new OccurrencePasswordPolicy(min, max, target);
 
         assertEquals(expected, passwordPolicy.passes(password));
     }

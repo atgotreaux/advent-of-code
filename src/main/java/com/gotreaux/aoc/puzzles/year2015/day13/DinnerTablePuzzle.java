@@ -19,7 +19,7 @@ public class DinnerTablePuzzle extends Puzzle {
         Collection<Arrangement> arrangements =
                 inputReader.getInputStream().map(Arrangement::of).toList();
 
-        Table guestTable = new Table(arrangements);
+        var guestTable = new Table(arrangements);
 
         Collection<Arrangement> myArrangements =
                 guestTable.getRelatives().stream()
@@ -30,7 +30,7 @@ public class DinnerTablePuzzle extends Puzzle {
                                                 new Arrangement(relative, "Me", 0)))
                         .toList();
 
-        Table myTable =
+        var myTable =
                 new Table(Stream.concat(arrangements.stream(), myArrangements.stream()).toList());
 
         return new PuzzleOutput<>(

@@ -2,7 +2,6 @@ package com.gotreaux.aoc.puzzles.year2015.day19;
 
 import com.gotreaux.aoc.utils.graph.Edge;
 import java.util.function.Function;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 class MapReplacementEdgeFunction implements Function<String, Edge> {
@@ -11,7 +10,7 @@ class MapReplacementEdgeFunction implements Function<String, Edge> {
 
     @Override
     public Edge apply(String line) {
-        Matcher matcher = PATTERN.matcher(line);
+        var matcher = PATTERN.matcher(line);
         if (!matcher.matches()) {
             throw new IllegalArgumentException("Invalid replacement: %s".formatted(line));
         }

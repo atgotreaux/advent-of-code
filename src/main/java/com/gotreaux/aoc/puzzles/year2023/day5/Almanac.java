@@ -11,10 +11,10 @@ class Almanac {
     }
 
     long convert(long seed) {
-        long value = seed;
+        var value = seed;
 
-        for (List<AlmanacRange> map : maps) {
-            for (AlmanacRange range : map) {
+        for (var map : maps) {
+            for (var range : map) {
                 if (range.isWithinRange(value)) {
                     value = range.getDestinationValue(value);
                     break;

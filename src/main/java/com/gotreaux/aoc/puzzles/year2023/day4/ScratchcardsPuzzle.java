@@ -25,21 +25,21 @@ public class ScratchcardsPuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         Collection<String> input = inputReader.getInputList();
-        int lineCount = input.size();
+        var lineCount = input.size();
 
-        int scratchcardPoints = 0;
+        var scratchcardPoints = 0;
         Map<Integer, Integer> totalScratchcardMapping = new HashMap<>(lineCount);
 
-        for (String line : input) {
-            String[] cardLine = CARD_LINE.split(line);
-            String lineNumber = cardLine[0];
-            String[] labelAndNumber = ANY_WHITESPACE.split(lineNumber);
-            int number = Integer.parseInt(labelAndNumber[1]);
+        for (var line : input) {
+            var cardLine = CARD_LINE.split(line);
+            var lineNumber = cardLine[0];
+            var labelAndNumber = ANY_WHITESPACE.split(lineNumber);
+            var number = Integer.parseInt(labelAndNumber[1]);
             totalScratchcardMapping.merge(number, 1, Integer::sum);
 
-            String[] winnersAndNumbers = WINNERS_NUMBER_DELIM.split(cardLine[1]);
-            String winners = winnersAndNumbers[0];
-            String numbers = winnersAndNumbers[1];
+            var winnersAndNumbers = WINNERS_NUMBER_DELIM.split(cardLine[1]);
+            var winners = winnersAndNumbers[0];
+            var numbers = winnersAndNumbers[1];
 
             Collection<String> winnerList = List.of(ANY_WHITESPACE.split(winners));
             Collection<String> numberList =
@@ -49,7 +49,7 @@ public class ScratchcardsPuzzle extends Puzzle {
                 scratchcardPoints += 1 << (numberList.size() - 1);
             }
 
-            for (int i = 0; i < numberList.size(); i++) {
+            for (var i = 0; i < numberList.size(); i++) {
                 if (number < lineCount) {
                     totalScratchcardMapping.merge(
                             number + i + 1, totalScratchcardMapping.get(number), Integer::sum);

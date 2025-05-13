@@ -11,7 +11,7 @@ class IncreasingCharsPredicateTest {
     @ParameterizedTest
     @MethodSource("provideTest")
     void test(String input, boolean expected) {
-        IncreasingCharsPredicate predicate = new IncreasingCharsPredicate();
+        var predicate = new IncreasingCharsPredicate();
 
         assertEquals(expected, predicate.test(input));
     }

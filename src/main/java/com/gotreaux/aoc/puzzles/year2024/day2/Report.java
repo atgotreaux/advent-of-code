@@ -7,13 +7,13 @@ import java.util.stream.IntStream;
 record Report(List<Integer> levels) {
 
     static Report of(String line) {
-        List<Integer> levels = Arrays.stream(line.split(" ")).map(Integer::parseInt).toList();
+        var levels = Arrays.stream(line.split(" ")).map(Integer::parseInt).toList();
 
         return new Report(levels);
     }
 
     boolean isSafe(Tolerance tolerance) {
-        List<Report> reports = generateReports(tolerance);
+        var reports = generateReports(tolerance);
 
         return reports.stream().anyMatch(Report::test);
     }
@@ -37,8 +37,8 @@ record Report(List<Integer> levels) {
     private boolean test() {
         boolean increasing = true, decreasing = true;
 
-        for (int i = 0; i < levels.size() - 1; i++) {
-            int difference = levels.get(i) - levels.get(i + 1);
+        for (var i = 0; i < levels.size() - 1; i++) {
+            var difference = levels.get(i) - levels.get(i + 1);
 
             if (difference == 0 || Math.abs(difference) > 3) {
                 return false;

@@ -16,19 +16,19 @@ public class LikeAGifForYourYardPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        List<Point> stuckLights =
+        var stuckLights =
                 List.of(
                         new Point(0, 0),
                         new Point(0, input.getFirst().length() - 1),
                         new Point(input.size() - 1, 0),
                         new Point(input.size() - 1, input.getFirst().length() - 1));
 
-        LightGridMatrix partOneMatrix = new LightGridMatrix(input);
-        LightGridMatrix partTwoMatrix = new LightGridMatrix(input, stuckLights);
+        var partOneMatrix = new LightGridMatrix(input);
+        var partTwoMatrix = new LightGridMatrix(input, stuckLights);
 
-        for (int i = 0; i < 100; i++) {
+        for (var i = 0; i < 100; i++) {
             partOneMatrix = partOneMatrix.animate();
             partTwoMatrix = partTwoMatrix.animate();
         }

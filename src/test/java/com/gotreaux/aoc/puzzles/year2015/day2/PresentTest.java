@@ -13,17 +13,17 @@ import org.junit.jupiter.params.provider.MethodSource;
 class PresentTest {
     @Test
     void throwsIfNonPositiveDimension() {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        int negativeArgumentIndex = generator.nextInt(1, 4);
-        int length =
+        var generator = RandomGenerator.getDefault();
+        var negativeArgumentIndex = generator.nextInt(1, 4);
+        var length =
                 negativeArgumentIndex == 1
                         ? -Math.abs(generator.nextInt())
                         : Math.abs(generator.nextInt());
-        int width =
+        var width =
                 negativeArgumentIndex == 2
                         ? -Math.abs(generator.nextInt())
                         : Math.abs(generator.nextInt());
-        int height =
+        var height =
                 negativeArgumentIndex == 3
                         ? -Math.abs(generator.nextInt())
                         : Math.abs(generator.nextInt());
@@ -34,7 +34,7 @@ class PresentTest {
     @ParameterizedTest
     @MethodSource("provideSurfaceArea")
     void surfaceArea(int length, int width, int height, int expectedSurfaceArea) {
-        Present present = new Present(length, width, height);
+        var present = new Present(length, width, height);
 
         assertEquals(expectedSurfaceArea, present.getSurfaceArea());
     }
@@ -42,7 +42,7 @@ class PresentTest {
     @ParameterizedTest
     @MethodSource("provideAreaOfSmallestSide")
     void areaOfSmallestSide(int length, int width, int height, int expectedArea) {
-        Present present = new Present(length, width, height);
+        var present = new Present(length, width, height);
 
         assertEquals(expectedArea, present.getAreaOfSmallestSide());
     }
@@ -50,7 +50,7 @@ class PresentTest {
     @ParameterizedTest
     @MethodSource("provideSmallestPerimeter")
     void smallestPerimeter(int length, int width, int height, int expectedPerimeter) {
-        Present present = new Present(length, width, height);
+        var present = new Present(length, width, height);
 
         assertEquals(expectedPerimeter, present.getSmallestPerimeter());
     }
@@ -58,7 +58,7 @@ class PresentTest {
     @ParameterizedTest
     @MethodSource("provideVolume")
     void volume(int length, int width, int height, int expectedVolume) {
-        Present present = new Present(length, width, height);
+        var present = new Present(length, width, height);
 
         assertEquals(expectedVolume, present.getVolume());
     }

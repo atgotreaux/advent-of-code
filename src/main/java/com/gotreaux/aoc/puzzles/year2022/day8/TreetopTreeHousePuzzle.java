@@ -5,7 +5,6 @@ import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.matrix.IntMatrix;
 import java.util.Arrays;
-import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,19 +16,19 @@ public class TreetopTreeHousePuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Long> solve(InputReader inputReader) throws Exception {
-        List<String> lines = inputReader.getInputList();
-        IntMatrix matrix = new IntMatrix(lines);
+        var lines = inputReader.getInputList();
+        var matrix = new IntMatrix(lines);
 
-        int treesVisible = 0;
+        var treesVisible = 0;
         long maxScenicScore = Integer.MIN_VALUE;
-        for (int row = 0; row < matrix.getRowCount(); row++) {
-            for (int col = 0; col < matrix.getColCount(); col++) {
+        for (var row = 0; row < matrix.getRowCount(); row++) {
+            for (var col = 0; col < matrix.getColCount(); col++) {
                 int tree = matrix.get(row, col);
 
-                Integer[] up = matrix.up(row, col);
-                Integer[] down = matrix.down(row, col);
-                Integer[] left = matrix.left(row, col);
-                Integer[] right = matrix.right(row, col);
+                var up = matrix.up(row, col);
+                var down = matrix.down(row, col);
+                var left = matrix.left(row, col);
+                var right = matrix.right(row, col);
 
                 if (visible(up, tree)
                         || visible(down, tree)
@@ -38,7 +37,7 @@ public class TreetopTreeHousePuzzle extends Puzzle {
                     treesVisible++;
                 }
 
-                long scenicScore =
+                var scenicScore =
                         score(up, tree)
                                 * score(down, tree)
                                 * score(left, tree)
@@ -55,9 +54,9 @@ public class TreetopTreeHousePuzzle extends Puzzle {
     }
 
     private static long score(Integer[] adjacentTrees, int tree) {
-        int viewingDistance = 0;
+        var viewingDistance = 0;
 
-        for (Integer adjacentTree : adjacentTrees) {
+        for (var adjacentTree : adjacentTrees) {
             viewingDistance++;
             if (adjacentTree >= tree) {
                 break;

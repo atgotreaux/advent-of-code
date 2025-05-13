@@ -14,9 +14,9 @@ public class AlchemicalReductionPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        String input = inputReader.getInputString();
+        var input = inputReader.getInputString();
 
-        String collapsedPolymer = collapse(input);
+        var collapsedPolymer = collapse(input);
 
         int shortestCollapsedPolymer =
                 input.chars()
@@ -38,9 +38,9 @@ public class AlchemicalReductionPuzzle extends Puzzle {
     }
 
     private static String collapse(String input) {
-        StringBuilder result = new StringBuilder(input.length());
-        for (int i = 0; i < input.length(); i++) {
-            int x = input.codePointAt(i);
+        var result = new StringBuilder(input.length());
+        for (var i = 0; i < input.length(); i++) {
+            var x = input.codePointAt(i);
             if (i < input.length() - 1
                     && x != input.codePointAt(i + 1)
                     && Character.toLowerCase(x)

@@ -4,10 +4,7 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import org.springframework.stereotype.Component;
@@ -21,18 +18,18 @@ public class PassportProcessingPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        int requiredFieldPassports = 0;
-        int validPassports = 0;
+        var requiredFieldPassports = 0;
+        var validPassports = 0;
 
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        Validator validator = factory.getValidator();
+        var factory = Validation.buildDefaultValidatorFactory();
+        var validator = factory.getValidator();
         Map<String, String> fields = new HashMap<>(8);
 
-        List<String> input = inputReader.getInputList();
-        for (int i = 0; i <= input.size(); i++) {
-            String line = i == input.size() ? "" : input.get(i);
+        var input = inputReader.getInputList();
+        for (var i = 0; i <= input.size(); i++) {
+            var line = i == input.size() ? "" : input.get(i);
             if (line.isEmpty()) {
-                Passport passport =
+                var passport =
                         new Passport(
                                 fields.getOrDefault("byr", ""),
                                 fields.getOrDefault("iyr", ""),
@@ -50,9 +47,9 @@ public class PassportProcessingPuzzle extends Puzzle {
                 }
                 fields.clear();
             } else {
-                Scanner scanner = new Scanner(line);
+                var scanner = new Scanner(line);
                 while (scanner.hasNext()) {
-                    String[] field = scanner.next().split(":");
+                    var field = scanner.next().split(":");
                     fields.put(field[0], field[1]);
                 }
                 scanner.close();

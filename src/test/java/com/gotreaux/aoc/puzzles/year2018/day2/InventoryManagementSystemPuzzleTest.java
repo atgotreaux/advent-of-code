@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class InventoryManagementSystemPuzzleTest {
@@ -13,9 +12,9 @@ class InventoryManagementSystemPuzzleTest {
         InputReader inputReader =
                 new ResourceInputReader<>(InventoryManagementSystemPuzzle.class, "ExampleOne.txt");
 
-        InventoryManagementSystemPuzzle puzzle = new InventoryManagementSystemPuzzle();
+        var puzzle = new InventoryManagementSystemPuzzle();
 
-        PuzzleOutput<Integer, String> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(12, output.partOne());
     }
@@ -25,9 +24,9 @@ class InventoryManagementSystemPuzzleTest {
         InputReader inputReader =
                 new ResourceInputReader<>(InventoryManagementSystemPuzzle.class, "ExampleTwo.txt");
 
-        InventoryManagementSystemPuzzle puzzle = new InventoryManagementSystemPuzzle();
+        var puzzle = new InventoryManagementSystemPuzzle();
 
-        PuzzleOutput<Integer, String> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals("fgij", output.partTwo());
     }

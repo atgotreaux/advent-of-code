@@ -13,7 +13,7 @@ class PassengerGroupTest {
     @ParameterizedTest
     @MethodSource("provideAnyoneDeclared")
     void anyoneDeclared(Collection<String> input, long expected) {
-        PassengerGroup passengerGroup = new PassengerGroup(input);
+        var passengerGroup = new PassengerGroup(input);
 
         assertEquals(expected, passengerGroup.anyoneDeclared());
     }
@@ -21,7 +21,7 @@ class PassengerGroupTest {
     @ParameterizedTest
     @MethodSource("provideEveryoneDeclared")
     void everyoneDeclared(Collection<String> input, long expected) {
-        PassengerGroup passengerGroup = new PassengerGroup(input);
+        var passengerGroup = new PassengerGroup(input);
 
         assertEquals(expected, passengerGroup.everyoneDeclared());
     }

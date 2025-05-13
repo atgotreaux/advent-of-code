@@ -12,16 +12,16 @@ record Table(Collection<Arrangement> arrangements) {
     }
 
     int getOptimalArrangement() {
-        List<List<String>> permutations = CollectionUtils.circularPermutations(getRelatives());
+        var permutations = CollectionUtils.circularPermutations(getRelatives());
 
-        List<Integer> arrangementHappiness =
+        var arrangementHappiness =
                 permutations.stream().mapToInt(this::getHappiness).boxed().toList();
 
         return arrangementHappiness.stream().max(Integer::compareTo).orElseThrow();
     }
 
     private int getHappiness(List<String> permutation) throws NoSuchElementException {
-        int clockwiseHappiness =
+        var clockwiseHappiness =
                 IntStream.range(0, permutation.size())
                         .mapToObj(
                                 i ->
@@ -32,7 +32,7 @@ record Table(Collection<Arrangement> arrangements) {
                         .mapToInt(Arrangement::happiness)
                         .sum();
 
-        int counterClockwiseHappiness =
+        var counterClockwiseHappiness =
                 IntStream.range(0, permutation.size())
                         .mapToObj(
                                 i ->

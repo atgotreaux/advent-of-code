@@ -37,7 +37,7 @@ class AlmanacTest {
         maps.add(List.of(new AlmanacRange(0L, 69L, 1L), new AlmanacRange(1L, 0L, 69L)));
         maps.add(List.of(new AlmanacRange(60L, 56L, 37L), new AlmanacRange(56L, 93L, 4L)));
 
-        Almanac almanac = new Almanac(maps);
+        var almanac = new Almanac(maps);
 
         assertEquals(expectedLocation, almanac.convert(seed));
     }

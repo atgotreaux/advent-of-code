@@ -16,16 +16,16 @@ public class TobogganTrajectoryPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Long> solve(InputReader inputReader) throws Exception {
-        List<String> lines = inputReader.getInputList();
-        CharMatrix map = new CharMatrix(lines);
+        var lines = inputReader.getInputList();
+        var map = new CharMatrix(lines);
 
-        Slope slope = new Slope(3, 1);
-        int treesEncountered = slope.getTreesEncountered(map);
+        var slope = new Slope(3, 1);
+        var treesEncountered = slope.getTreesEncountered(map);
 
-        List<Slope> slopeCandidates =
+        var slopeCandidates =
                 List.of(new Slope(1, 1), new Slope(5, 1), new Slope(7, 1), new Slope(1, 2));
 
-        long productOfSlopeCandidates =
+        var productOfSlopeCandidates =
                 slopeCandidates.stream()
                         .mapToInt(slopeCandidate -> slopeCandidate.getTreesEncountered(map))
                         .asLongStream()

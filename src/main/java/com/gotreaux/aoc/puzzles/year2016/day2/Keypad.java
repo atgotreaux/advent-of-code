@@ -13,7 +13,7 @@ class Keypad {
     }
 
     Key move(Key key, RelativeDirection direction) throws NoSuchElementException {
-        String movedLabel =
+        var movedLabel =
                 switch (direction) {
                     case UP -> key.up();
                     case DOWN -> key.down();

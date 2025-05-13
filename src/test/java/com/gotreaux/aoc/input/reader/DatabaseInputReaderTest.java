@@ -24,8 +24,8 @@ class DatabaseInputReaderTest {
 
     @Test
     void throwsIfNotFound() {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
         InputReader inputReader =
                 new DatabaseInputReader(puzzleRepository, puzzle.getYear(), puzzle.getDay());
@@ -36,12 +36,12 @@ class DatabaseInputReaderTest {
     @Test
     @DirtiesContext
     void inputAsString() throws Exception {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        String input = RandomString.make(10);
+        var input = RandomString.make(10);
 
-        DatabaseInputWriter inputWriter =
+        var inputWriter =
                 new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
         inputWriter.write(input);
 
@@ -54,12 +54,12 @@ class DatabaseInputReaderTest {
     @Test
     @DirtiesContext
     void inputAsStream() throws Exception {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        String input = RandomString.make(10);
+        var input = RandomString.make(10);
 
-        DatabaseInputWriter inputWriter =
+        var inputWriter =
                 new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
         inputWriter.write(input);
 
@@ -73,12 +73,12 @@ class DatabaseInputReaderTest {
     @Test
     @DirtiesContext
     void puzzleInputAsList() throws Exception {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        String input = RandomString.make(10);
+        var input = RandomString.make(10);
 
-        DatabaseInputWriter inputWriter =
+        var inputWriter =
                 new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
         inputWriter.write(input);
 

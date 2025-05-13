@@ -21,7 +21,7 @@ class Guard {
     }
 
     void addSleep(LocalDateTime start, ChronoLocalDateTime<LocalDate> end) {
-        LocalDateTime time = start;
+        var time = start;
         while (!time.isEqual(end)) {
             sleepMapping.merge(time.getMinute(), 1, Integer::sum);
             time = time.plusMinutes(1);

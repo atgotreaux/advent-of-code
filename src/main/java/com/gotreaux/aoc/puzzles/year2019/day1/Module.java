@@ -13,12 +13,12 @@ record Module(int mass) {
     }
 
     int getAdditionalFuelRequirement() {
-        int fuel = getFuelRequirement();
+        var fuel = getFuelRequirement();
         if (fuel <= 0) {
             return 0;
         }
 
-        Module module = new Module(fuel);
+        var module = new Module(fuel);
         return fuel + module.getAdditionalFuelRequirement();
     }
 }

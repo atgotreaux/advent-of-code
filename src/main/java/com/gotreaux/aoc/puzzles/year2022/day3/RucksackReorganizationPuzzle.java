@@ -16,15 +16,15 @@ public class RucksackReorganizationPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        int sumOfCompartmentPriorities = 0;
-        int sumOfGroupPriorities = 0;
+        var sumOfCompartmentPriorities = 0;
+        var sumOfGroupPriorities = 0;
 
-        String priority = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var priority = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         List<String> group = new ArrayList<>(3);
-        for (String line : inputReader.getInputList()) {
-            String firstCompartment = line.substring(0, line.length() / 2);
-            String secondCompartment = line.substring(line.length() / 2);
+        for (var line : inputReader.getInputList()) {
+            var firstCompartment = line.substring(0, line.length() / 2);
+            var secondCompartment = line.substring(line.length() / 2);
 
             char sharedCompartmentItem =
                     firstCompartment

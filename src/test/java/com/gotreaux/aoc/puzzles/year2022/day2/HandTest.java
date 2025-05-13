@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.random.RandomGenerator;
 import java.util.stream.Stream;
@@ -46,22 +45,22 @@ class HandTest {
 
     @RepeatedTest(5)
     void outcomeDraw() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        List<Hand> hands = Arrays.asList(Hand.values());
+        var hands = Arrays.asList(Hand.values());
         Collections.shuffle(hands, generator);
-        Hand hand = hands.getFirst();
+        var hand = hands.getFirst();
 
         assertEquals(hand, Hand.ofStrategyOutcomeLabel(hand, 'Y'));
     }
 
     @Test
     void throwsIfCannotParseOutcomeStrategyLabel() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        List<Hand> hands = Arrays.asList(Hand.values());
+        var hands = Arrays.asList(Hand.values());
         Collections.shuffle(hands, generator);
-        Hand hand = hands.getFirst();
+        var hand = hands.getFirst();
 
         assertThrows(NoSuchElementException.class, () -> Hand.ofStrategyOutcomeLabel(hand, 'W'));
     }

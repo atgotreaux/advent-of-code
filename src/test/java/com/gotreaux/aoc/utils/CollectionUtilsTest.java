@@ -2,7 +2,6 @@ package com.gotreaux.aoc.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -14,10 +13,10 @@ class CollectionUtilsTest {
     @ParameterizedTest
     @MethodSource("providePermutations")
     void permutations(List<Integer> list, int expectedSize) {
-        List<List<Integer>> permutations = CollectionUtils.permutations(list);
+        var permutations = CollectionUtils.permutations(list);
 
         assertEquals(expectedSize, permutations.size());
-        for (List<Integer> permutation : permutations) {
+        for (var permutation : permutations) {
             assertEquals(list.size(), permutation.size());
         }
     }
@@ -25,10 +24,10 @@ class CollectionUtilsTest {
     @ParameterizedTest
     @MethodSource("provideCircularPermutations")
     void circularPermutations(List<String> list, int expectedSize) {
-        List<List<String>> permutations = CollectionUtils.circularPermutations(list);
+        var permutations = CollectionUtils.circularPermutations(list);
 
         assertEquals(expectedSize, permutations.size());
-        for (List<String> permutation : permutations) {
+        for (var permutation : permutations) {
             assertEquals(list.size(), permutation.size());
         }
     }
@@ -36,7 +35,7 @@ class CollectionUtilsTest {
     @ParameterizedTest
     @MethodSource("provideCombinations")
     void combinations(List<String> elements, int length, int expectedSize) {
-        List<List<String>> combinations = CollectionUtils.combinations(elements, length);
+        var combinations = CollectionUtils.combinations(elements, length);
 
         assertEquals(expectedSize, combinations.size());
         assertEquals(
@@ -46,7 +45,7 @@ class CollectionUtilsTest {
     @ParameterizedTest
     @MethodSource("provideOptionalValues")
     <T> void optionalValues(T[] elements) {
-        Collection<Optional<T>> optionalValues = CollectionUtils.optionalValues(elements);
+        var optionalValues = CollectionUtils.optionalValues(elements);
 
         assertEquals(elements.length + 1, optionalValues.size());
         assertEquals(1L, optionalValues.stream().filter(Optional::isEmpty).count());

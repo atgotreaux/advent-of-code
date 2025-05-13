@@ -21,10 +21,10 @@ public class SecureContainerPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        Scanner scanner = new Scanner(inputReader.getInputString());
+        var scanner = new Scanner(inputReader.getInputString());
         scanner.useDelimiter("-");
-        int start = scanner.nextInt();
-        int stop = scanner.nextInt();
+        var start = scanner.nextInt();
+        var stop = scanner.nextInt();
         scanner.close();
 
         Predicate<String> adjacentDigits =
@@ -42,12 +42,12 @@ public class SecureContainerPuzzle extends Puzzle {
                                 .collect(groupingBy(identity(), counting()))
                                 .containsValue(2L);
 
-        Predicate<String> validPassword = adjacentDigits.and(increasingDigits);
-        Predicate<String> validPasswordNoLargerGroups = digitPair.and(increasingDigits);
+        var validPassword = adjacentDigits.and(increasingDigits);
+        var validPasswordNoLargerGroups = digitPair.and(increasingDigits);
 
-        int validPasswords = 0;
-        int validPasswordsNoLargerGroups = 0;
-        for (int i = start; i <= stop; i++) {
+        var validPasswords = 0;
+        var validPasswordsNoLargerGroups = 0;
+        for (var i = start; i <= stop; i++) {
             if (validPassword.test(Integer.toString(i))) {
                 validPasswords++;
             }

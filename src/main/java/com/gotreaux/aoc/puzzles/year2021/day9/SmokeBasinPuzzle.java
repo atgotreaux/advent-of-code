@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,16 +19,16 @@ public class SmokeBasinPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        List<String> lines = inputReader.getInputList();
-        IntMatrix matrix = new IntMatrix(lines);
+        var lines = inputReader.getInputList();
+        var matrix = new IntMatrix(lines);
 
-        int sumOfRiskLevels = 0;
+        var sumOfRiskLevels = 0;
         Collection<Integer> basinSizes = new ArrayList<>();
 
-        for (int row = 0; row < matrix.getRowCount(); row++) {
-            for (int col = 0; col < matrix.getColCount(); col++) {
+        for (var row = 0; row < matrix.getRowCount(); row++) {
+            for (var col = 0; col < matrix.getColCount(); col++) {
                 int height = matrix.get(row, col);
-                Integer[] neighbors = matrix.neighbors(row, col);
+                var neighbors = matrix.neighbors(row, col);
 
                 if (Arrays.stream(neighbors).allMatch(i -> i > height)) {
                     sumOfRiskLevels += height + 1;
@@ -49,7 +48,7 @@ public class SmokeBasinPuzzle extends Puzzle {
     }
 
     static int getBasinSize(IntMatrix matrix, int row, int col) {
-        int size = 1;
+        var size = 1;
         matrix.visit(row, col);
 
         if (row > 0 && matrix.get(row - 1, col) < 9 && !matrix.isVisited(row - 1, col)) {

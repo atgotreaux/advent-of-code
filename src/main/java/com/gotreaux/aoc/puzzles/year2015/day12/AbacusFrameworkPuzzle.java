@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.puzzles.year2015.day12;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
@@ -16,15 +15,15 @@ public class AbacusFrameworkPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        String input = inputReader.getInputString();
+        var input = inputReader.getInputString();
 
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode jsonNode = mapper.readTree(input);
+        var mapper = new ObjectMapper();
+        var jsonNode = mapper.readTree(input);
 
-        SumOfNumbersFunction sumOfNumbersFunction = new SumOfNumbersFunction();
+        var sumOfNumbersFunction = new SumOfNumbersFunction();
         int sumOfNumbers = sumOfNumbersFunction.apply(jsonNode);
 
-        NoRedSumNumbersFunction noRedSumNumbersFunction = new NoRedSumNumbersFunction();
+        var noRedSumNumbersFunction = new NoRedSumNumbersFunction();
         int noRedSumNumbers = noRedSumNumbersFunction.apply(jsonNode);
 
         return new PuzzleOutput<>(sumOfNumbers, noRedSumNumbers);

@@ -13,29 +13,29 @@ class HandTest {
 
     @Test
     void jacksOrdering() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        Hand handOne =
+        var handOne =
                 new Hand(
                         Arrays.asList(Card.THREE, Card.TWO, Card.TEN, Card.THREE, Card.KING),
                         generator.nextInt());
 
-        Hand handTwo =
+        var handTwo =
                 new Hand(
                         Arrays.asList(Card.TEN, Card.FIVE, Card.FIVE, Card.JACK, Card.FIVE),
                         generator.nextInt());
 
-        Hand handThree =
+        var handThree =
                 new Hand(
                         Arrays.asList(Card.KING, Card.KING, Card.SIX, Card.SEVEN, Card.SEVEN),
                         generator.nextInt());
 
-        Hand handFour =
+        var handFour =
                 new Hand(
                         Arrays.asList(Card.KING, Card.TEN, Card.JACK, Card.JACK, Card.TEN),
                         generator.nextInt());
 
-        Hand handFive =
+        var handFive =
                 new Hand(
                         Arrays.asList(Card.QUEEN, Card.QUEEN, Card.QUEEN, Card.JACK, Card.ACE),
                         generator.nextInt());
@@ -53,29 +53,29 @@ class HandTest {
 
     @Test
     void jokersOrdering() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        Hand handOne =
+        var handOne =
                 new Hand(
                         Arrays.asList(Card.THREE, Card.TWO, Card.TEN, Card.THREE, Card.KING),
                         generator.nextInt());
 
-        Hand handTwo =
+        var handTwo =
                 new Hand(
                         Arrays.asList(Card.TEN, Card.FIVE, Card.FIVE, Card.JOKER, Card.FIVE),
                         generator.nextInt());
 
-        Hand handThree =
+        var handThree =
                 new Hand(
                         Arrays.asList(Card.KING, Card.KING, Card.SIX, Card.SEVEN, Card.SEVEN),
                         generator.nextInt());
 
-        Hand handFour =
+        var handFour =
                 new Hand(
                         Arrays.asList(Card.KING, Card.TEN, Card.JOKER, Card.JOKER, Card.TEN),
                         generator.nextInt());
 
-        Hand handFive =
+        var handFive =
                 new Hand(
                         Arrays.asList(Card.QUEEN, Card.QUEEN, Card.QUEEN, Card.JOKER, Card.ACE),
                         generator.nextInt());

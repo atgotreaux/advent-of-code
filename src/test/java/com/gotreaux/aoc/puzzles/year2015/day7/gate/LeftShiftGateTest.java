@@ -13,7 +13,7 @@ class LeftShiftGateTest {
     void evaluate() {
         List<Wire> wires = List.of(new SignalWire("x", "123"));
 
-        Circuit circuit = new Circuit(wires);
+        var circuit = new Circuit(wires);
 
         Gate gate = new LeftShiftGate("x", "2");
 

@@ -26,22 +26,22 @@ public class CubeConundrumPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        int possibleGames = 0;
-        int powerOfFewestCubes = 0;
+        var possibleGames = 0;
+        var powerOfFewestCubes = 0;
 
-        for (String line : inputReader.getInputList()) {
+        for (var line : inputReader.getInputList()) {
             Map<CubeColor, Integer> cubeMap = new EnumMap<>(CubeColor.class);
-            boolean possibleGame = true;
+            var possibleGame = true;
 
-            String[] gameLine = GAME_LINE_DELIM.split(line);
+            var gameLine = GAME_LINE_DELIM.split(line);
 
-            int gameNumber = Integer.parseInt(gameLine[0].split(" ")[1]);
+            var gameNumber = Integer.parseInt(gameLine[0].split(" ")[1]);
 
-            for (String gameEvent : GAME_EVENT_DELIM.split(gameLine[1])) {
-                for (String cube : CUBE_LIST_DELIM.split(gameEvent)) {
-                    Scanner cubeScanner = new Scanner(cube);
-                    int cubeCount = cubeScanner.nextInt();
-                    CubeColor color =
+            for (var gameEvent : GAME_EVENT_DELIM.split(gameLine[1])) {
+                for (var cube : CUBE_LIST_DELIM.split(gameEvent)) {
+                    var cubeScanner = new Scanner(cube);
+                    var cubeCount = cubeScanner.nextInt();
+                    var color =
                             CubeColor.valueOf(cubeScanner.next().toUpperCase(Locale.getDefault()));
                     cubeScanner.close();
                     switch (color) {

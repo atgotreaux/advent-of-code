@@ -15,21 +15,21 @@ public class RockPaperScissorsPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        int encryptedStrategyScore = 0;
-        int outcomeStrategyScore = 0;
+        var encryptedStrategyScore = 0;
+        var outcomeStrategyScore = 0;
 
-        for (String line : inputReader.getInputList()) {
-            Scanner scanner = new Scanner(line);
-            char opponentLabel = scanner.next().charAt(0);
-            char strategyLabel = scanner.next().charAt(0);
+        for (var line : inputReader.getInputList()) {
+            var scanner = new Scanner(line);
+            var opponentLabel = scanner.next().charAt(0);
+            var strategyLabel = scanner.next().charAt(0);
             scanner.close();
 
-            Hand opponentHand = Hand.ofOpponentLabel(opponentLabel);
-            Hand encryptedStrategyHand = Hand.ofEncryptedStrategyLabel(strategyLabel);
-            Hand outcomeStrategyHand = Hand.ofStrategyOutcomeLabel(opponentHand, strategyLabel);
+            var opponentHand = Hand.ofOpponentLabel(opponentLabel);
+            var encryptedStrategyHand = Hand.ofEncryptedStrategyLabel(strategyLabel);
+            var outcomeStrategyHand = Hand.ofStrategyOutcomeLabel(opponentHand, strategyLabel);
 
-            Round encryptedRound = new Round(opponentHand, encryptedStrategyHand);
-            Round outcomeRound = new Round(opponentHand, outcomeStrategyHand);
+            var encryptedRound = new Round(opponentHand, encryptedStrategyHand);
+            var outcomeRound = new Round(opponentHand, outcomeStrategyHand);
 
             encryptedStrategyScore += encryptedRound.getScore() + encryptedStrategyHand.getWeight();
             outcomeStrategyScore += outcomeRound.getScore() + outcomeStrategyHand.getWeight();

@@ -24,13 +24,13 @@ class DatabaseInputWriterTest {
 
     @Test
     void writesNewRowToTable() throws Exception {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
         InputWriter inputWriter =
                 new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
 
-        String input = RandomString.make(10);
+        var input = RandomString.make(10);
 
         inputWriter.write(input);
 
@@ -42,14 +42,14 @@ class DatabaseInputWriterTest {
 
     @Test
     void updatesExistingRow() throws Exception {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
         InputWriter inputWriter =
                 new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
         inputWriter.write(RandomString.make(10));
 
-        String updatedInput = RandomString.make(10);
+        var updatedInput = RandomString.make(10);
 
         inputWriter.write(updatedInput);
 

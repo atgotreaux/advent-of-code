@@ -9,7 +9,7 @@ record OccurrencePasswordPolicy(int min, int max, char target) implements Passwo
 
     @Override
     public boolean passes(String password) {
-        long occurrences =
+        var occurrences =
                 password.chars()
                         .mapToObj(codePoint -> Character.toString(codePoint).charAt(0))
                         .filter(character -> character == target)

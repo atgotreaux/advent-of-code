@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class PrintQueuePuzzleTest {
@@ -13,9 +12,9 @@ class PrintQueuePuzzleTest {
     void sumOfCorrectOrders() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(PrintQueuePuzzle.class);
 
-        PrintQueuePuzzle puzzle = new PrintQueuePuzzle();
+        var puzzle = new PrintQueuePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(143, output.partOne());
     }
@@ -24,9 +23,9 @@ class PrintQueuePuzzleTest {
     void sumOfIncorrectOrders() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(PrintQueuePuzzle.class);
 
-        PrintQueuePuzzle puzzle = new PrintQueuePuzzle();
+        var puzzle = new PrintQueuePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(123, output.partTwo());
     }

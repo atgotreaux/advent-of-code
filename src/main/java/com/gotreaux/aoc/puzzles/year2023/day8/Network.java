@@ -18,7 +18,7 @@ class Network {
 
     long getStepsForNodes(Predicate<Node> startPosition, Predicate<Node> endPosition)
             throws NoSuchElementException, IllegalArgumentException {
-        List<Node> currentNodes = nodes.stream().filter(startPosition).toList();
+        var currentNodes = nodes.stream().filter(startPosition).toList();
 
         return currentNodes.stream()
                 .mapToLong(node -> getStepsForNode(node, endPosition))
@@ -27,15 +27,15 @@ class Network {
 
     private long getStepsForNode(Node startPosition, Predicate<Node> endPosition)
             throws NoSuchElementException, IllegalArgumentException {
-        long steps = 0L;
-        int currentDirectionIndex = 0;
+        var steps = 0L;
+        var currentDirectionIndex = 0;
 
-        Node currentNode = startPosition;
+        var currentNode = startPosition;
         while (!endPosition.test(currentNode)) {
             steps++;
 
-            RelativeDirection nextDirection = directions.get(currentDirectionIndex);
-            String nextPosition =
+            var nextDirection = directions.get(currentDirectionIndex);
+            var nextPosition =
                     switch (nextDirection) {
                         case RIGHT -> currentNode.rightPosition();
                         case LEFT -> currentNode.leftPosition();

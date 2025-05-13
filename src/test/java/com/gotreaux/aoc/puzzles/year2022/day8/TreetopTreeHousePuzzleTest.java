@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class TreetopTreeHousePuzzleTest {
@@ -12,9 +11,9 @@ class TreetopTreeHousePuzzleTest {
     void treesVisible() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(TreetopTreeHousePuzzle.class);
 
-        TreetopTreeHousePuzzle puzzle = new TreetopTreeHousePuzzle();
+        var puzzle = new TreetopTreeHousePuzzle();
 
-        PuzzleOutput<Integer, Long> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(21, output.partOne());
     }
@@ -23,9 +22,9 @@ class TreetopTreeHousePuzzleTest {
     void maxScenicScore() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(TreetopTreeHousePuzzle.class);
 
-        TreetopTreeHousePuzzle puzzle = new TreetopTreeHousePuzzle();
+        var puzzle = new TreetopTreeHousePuzzle();
 
-        PuzzleOutput<Integer, Long> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(8L, output.partTwo());
     }

@@ -13,11 +13,11 @@ class CrateMover9001 extends CrateMover {
     void operate(RearrangeProcedure procedure) {
         Deque<Character> crates = new ArrayDeque<>(procedure.operationCount());
 
-        for (int operation = 0; operation < procedure.operationCount(); operation++) {
+        for (var operation = 0; operation < procedure.operationCount(); operation++) {
             crates.push(stacks.get(procedure.from()).pop());
         }
 
-        for (Character c : crates) {
+        for (var c : crates) {
             stacks.get(procedure.to()).push(c);
         }
     }

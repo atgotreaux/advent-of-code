@@ -15,31 +15,31 @@ public class CyberspaceExplosivesPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
-        String input = inputReader.getInputString();
+        var input = inputReader.getInputString();
 
-        long decompressedLength = decompress(input, false);
-        long decompressedRecursiveLength = decompress(input, true);
+        var decompressedLength = decompress(input, false);
+        var decompressedRecursiveLength = decompress(input, true);
 
         return new PuzzleOutput<>(decompressedLength, decompressedRecursiveLength);
     }
 
     private static long decompress(String input, boolean recursiveDecompression) {
         long decompressedLength = 0;
-        int index = 0;
+        var index = 0;
 
         while (index < input.length()) {
-            char c = input.charAt(index);
+            var c = input.charAt(index);
             if (c == '(') {
-                int markerEnd = input.indexOf(')', index);
-                String marker = input.substring(index + 1, markerEnd);
+                var markerEnd = input.indexOf(')', index);
+                var marker = input.substring(index + 1, markerEnd);
 
-                Scanner scanner = new Scanner(marker);
+                var scanner = new Scanner(marker);
                 scanner.useDelimiter("x");
-                int subsequence = scanner.nextInt();
-                long occurrences = scanner.nextLong();
+                var subsequence = scanner.nextInt();
+                var occurrences = scanner.nextLong();
                 scanner.close();
 
-                String sequence = input.substring(markerEnd + 1, markerEnd + subsequence + 1);
+                var sequence = input.substring(markerEnd + 1, markerEnd + subsequence + 1);
                 if (recursiveDecompression) {
                     decompressedLength += occurrences * decompress(sequence, true);
                 } else {

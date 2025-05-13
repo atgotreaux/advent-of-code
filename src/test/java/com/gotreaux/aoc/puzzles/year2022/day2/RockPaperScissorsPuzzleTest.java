@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class RockPaperScissorsPuzzleTest {
@@ -12,9 +11,9 @@ class RockPaperScissorsPuzzleTest {
     void encryptedStrategyScore() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(RockPaperScissorsPuzzle.class);
 
-        RockPaperScissorsPuzzle puzzle = new RockPaperScissorsPuzzle();
+        var puzzle = new RockPaperScissorsPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(15, output.partOne());
     }
@@ -23,9 +22,9 @@ class RockPaperScissorsPuzzleTest {
     void outcomeStrategyScore() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(RockPaperScissorsPuzzle.class);
 
-        RockPaperScissorsPuzzle puzzle = new RockPaperScissorsPuzzle();
+        var puzzle = new RockPaperScissorsPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(12, output.partTwo());
     }

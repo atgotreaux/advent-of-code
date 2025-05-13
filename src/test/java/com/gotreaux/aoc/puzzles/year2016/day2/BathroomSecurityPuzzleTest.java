@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class BathroomSecurityPuzzleTest {
@@ -12,9 +11,9 @@ class BathroomSecurityPuzzleTest {
     void picturedKeypad() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(BathroomSecurityPuzzle.class);
 
-        BathroomSecurityPuzzle puzzle = new BathroomSecurityPuzzle();
+        var puzzle = new BathroomSecurityPuzzle();
 
-        PuzzleOutput<String, String> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals("1985", output.partOne());
     }
@@ -23,9 +22,9 @@ class BathroomSecurityPuzzleTest {
     void actualBathroomKeypad() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(BathroomSecurityPuzzle.class);
 
-        BathroomSecurityPuzzle puzzle = new BathroomSecurityPuzzle();
+        var puzzle = new BathroomSecurityPuzzle();
 
-        PuzzleOutput<String, String> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals("5DB3", output.partTwo());
     }

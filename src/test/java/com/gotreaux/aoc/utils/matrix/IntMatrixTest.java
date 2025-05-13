@@ -8,7 +8,6 @@ import com.gotreaux.aoc.input.reader.ResourceInputReader;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2021.day9.SmokeBasinPuzzle;
 import com.gotreaux.aoc.puzzles.year2022.day8.TreetopTreeHousePuzzle;
-import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -20,9 +19,9 @@ class IntMatrixTest {
     void rowCount(Class<Puzzle> puzzleClass, int expectedRowCount) throws Exception {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        IntMatrix matrix = new IntMatrix(input);
+        var matrix = new IntMatrix(input);
 
         assertEquals(expectedRowCount, matrix.getRowCount());
     }
@@ -32,9 +31,9 @@ class IntMatrixTest {
     void colCount(Class<Puzzle> puzzleClass, int expectedColCount) throws Exception {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        IntMatrix matrix = new IntMatrix(input);
+        var matrix = new IntMatrix(input);
 
         assertEquals(expectedColCount, matrix.getColCount());
     }
@@ -44,9 +43,9 @@ class IntMatrixTest {
     void get(Class<Puzzle> puzzleClass, int row, int col, int expected) throws Exception {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        IntMatrix matrix = new IntMatrix(input);
+        var matrix = new IntMatrix(input);
 
         assertEquals(expected, matrix.get(row, col));
     }
@@ -56,9 +55,9 @@ class IntMatrixTest {
     void up(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) throws Exception {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        IntMatrix matrix = new IntMatrix(input);
+        var matrix = new IntMatrix(input);
 
         assertArrayEquals(expected, matrix.up(row, col));
     }
@@ -68,9 +67,9 @@ class IntMatrixTest {
     void down(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) throws Exception {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        IntMatrix matrix = new IntMatrix(input);
+        var matrix = new IntMatrix(input);
 
         assertArrayEquals(expected, matrix.down(row, col));
     }
@@ -80,9 +79,9 @@ class IntMatrixTest {
     void left(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) throws Exception {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        IntMatrix matrix = new IntMatrix(input);
+        var matrix = new IntMatrix(input);
 
         assertArrayEquals(expected, matrix.left(row, col));
     }
@@ -92,9 +91,9 @@ class IntMatrixTest {
     void right(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) throws Exception {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        IntMatrix matrix = new IntMatrix(input);
+        var matrix = new IntMatrix(input);
 
         assertArrayEquals(expected, matrix.right(row, col));
     }
@@ -105,9 +104,9 @@ class IntMatrixTest {
             throws Exception {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        IntMatrix matrix = new IntMatrix(input);
+        var matrix = new IntMatrix(input);
 
         assertArrayEquals(expected, matrix.neighbors(row, col));
     }

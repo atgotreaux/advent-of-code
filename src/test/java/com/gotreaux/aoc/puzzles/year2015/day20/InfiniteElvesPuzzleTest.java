@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.StringInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -17,9 +16,9 @@ class InfiniteElvesPuzzleTest {
     void minimumHouseNumber(int presentTarget, int expectedMinimumHouseNumber) throws Exception {
         InputReader inputReader = new StringInputReader(String.valueOf(presentTarget));
 
-        InfiniteElvesPuzzle puzzle = new InfiniteElvesPuzzle();
+        var puzzle = new InfiniteElvesPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(expectedMinimumHouseNumber, output.partOne());
     }

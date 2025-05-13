@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class RecursiveCircusPuzzleTest {
@@ -12,9 +11,9 @@ class RecursiveCircusPuzzleTest {
     void nameOfBottomProgram() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(RecursiveCircusPuzzle.class);
 
-        RecursiveCircusPuzzle puzzle = new RecursiveCircusPuzzle();
+        var puzzle = new RecursiveCircusPuzzle();
 
-        PuzzleOutput<String, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals("tknk", output.partOne());
     }
@@ -23,9 +22,9 @@ class RecursiveCircusPuzzleTest {
     void weightOfFixedChild() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(RecursiveCircusPuzzle.class);
 
-        RecursiveCircusPuzzle puzzle = new RecursiveCircusPuzzle();
+        var puzzle = new RecursiveCircusPuzzle();
 
-        PuzzleOutput<String, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(60, output.partTwo());
     }

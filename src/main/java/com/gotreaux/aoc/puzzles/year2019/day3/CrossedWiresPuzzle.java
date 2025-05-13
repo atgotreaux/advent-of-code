@@ -19,22 +19,22 @@ public class CrossedWiresPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        List<Point> firstWirePositions = getWirePositions(input.getFirst());
-        List<Point> lastWirePositions = getWirePositions(input.getLast());
+        var firstWirePositions = getWirePositions(input.getFirst());
+        var lastWirePositions = getWirePositions(input.getLast());
 
         Collection<Point> intersections =
                 firstWirePositions.stream().filter(lastWirePositions::contains).toList();
 
-        int closestIntersectionDistance =
+        var closestIntersectionDistance =
                 intersections.stream()
                         .mapToInt(position -> Math.abs(position.x) + Math.abs(position.y))
                         .filter(i -> i > 0)
                         .min()
                         .orElseThrow();
 
-        int closestIntersectionSteps =
+        var closestIntersectionSteps =
                 intersections.stream()
                         .mapToInt(p -> firstWirePositions.indexOf(p) + lastWirePositions.indexOf(p))
                         .filter(i -> i > 0)
@@ -45,17 +45,17 @@ public class CrossedWiresPuzzle extends Puzzle {
     }
 
     private static List<Point> getWirePositions(String line) throws NumberFormatException {
-        String[] instructions = line.split(",");
+        var instructions = line.split(",");
 
         List<Point> positions = new ArrayList<>(instructions.length);
-        Point position = new Point();
+        var position = new Point();
         positions.add(position);
 
-        for (String instruction : instructions) {
-            RelativeDirection direction = RelativeDirection.of(instruction.charAt(0));
+        for (var instruction : instructions) {
+            var direction = RelativeDirection.of(instruction.charAt(0));
 
-            int units = Integer.parseInt(instruction.substring(1));
-            for (int i = 0; i < units; i++) {
+            var units = Integer.parseInt(instruction.substring(1));
+            for (var i = 0; i < units; i++) {
                 position = direction.move(position, 1);
                 positions.add(position);
             }

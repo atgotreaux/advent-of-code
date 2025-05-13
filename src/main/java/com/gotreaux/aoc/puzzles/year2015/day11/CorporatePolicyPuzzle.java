@@ -8,7 +8,6 @@ import com.gotreaux.aoc.puzzles.year2015.day11.functions.IncreasingCharsPredicat
 import com.gotreaux.aoc.puzzles.year2015.day11.functions.IncrementPasswordFunction;
 import com.gotreaux.aoc.puzzles.year2015.day11.functions.TwoPairsPredicate;
 import java.util.function.Function;
-import java.util.function.Predicate;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,10 +19,10 @@ public class CorporatePolicyPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<String, String> solve(InputReader inputReader) throws Exception {
-        String nextPassword = inputReader.getInputString();
+        var nextPassword = inputReader.getInputString();
 
         Function<String, String> incrementPassword = new IncrementPasswordFunction();
-        Predicate<String> requirements =
+        var requirements =
                 new IncreasingCharsPredicate()
                         .and(new ForbiddenCharsPredicate())
                         .and(new TwoPairsPredicate());
@@ -31,7 +30,7 @@ public class CorporatePolicyPuzzle extends Puzzle {
         while (!requirements.test(nextPassword)) {
             nextPassword = incrementPassword.apply(nextPassword);
         }
-        String expiredAgainPassword = incrementPassword.apply(nextPassword);
+        var expiredAgainPassword = incrementPassword.apply(nextPassword);
         while (!requirements.test(expiredAgainPassword)) {
             expiredAgainPassword = incrementPassword.apply(expiredAgainPassword);
         }

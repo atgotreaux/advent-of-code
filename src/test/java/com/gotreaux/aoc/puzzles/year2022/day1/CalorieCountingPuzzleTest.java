@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class CalorieCountingPuzzleTest {
@@ -12,9 +11,9 @@ class CalorieCountingPuzzleTest {
     void testMostCalories() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(CalorieCountingPuzzle.class);
 
-        CalorieCountingPuzzle puzzle = new CalorieCountingPuzzle();
+        var puzzle = new CalorieCountingPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(24000, output.partOne());
     }
@@ -23,9 +22,9 @@ class CalorieCountingPuzzleTest {
     void testHighestThreeCalories() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(CalorieCountingPuzzle.class);
 
-        CalorieCountingPuzzle puzzle = new CalorieCountingPuzzle();
+        var puzzle = new CalorieCountingPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(45000, output.partTwo());
     }

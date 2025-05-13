@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
-import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,9 +15,9 @@ class CathodeRayTubePuzzleTest {
     void sumOfSignalStrengths() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(CathodeRayTubePuzzle.class);
 
-        CathodeRayTubePuzzle puzzle = new CathodeRayTubePuzzle();
+        var puzzle = new CathodeRayTubePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(13140, output.partOne());
     }
@@ -29,7 +27,7 @@ class CathodeRayTubePuzzleTest {
     void signalStrength(int cycles, int expected) throws Exception {
         InputReader inputReader = new ResourceInputReader<>(CathodeRayTubePuzzle.class);
 
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
         assertEquals(expected, CathodeRayTubePuzzle.getSignalStrength(input, cycles));
     }

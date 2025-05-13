@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class SupplyStacksPuzzleTest {
@@ -12,9 +11,9 @@ class SupplyStacksPuzzleTest {
     void crateMover9000() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(SupplyStacksPuzzle.class);
 
-        SupplyStacksPuzzle puzzle = new SupplyStacksPuzzle();
+        var puzzle = new SupplyStacksPuzzle();
 
-        PuzzleOutput<String, String> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals("CMZ", output.partOne());
     }
@@ -23,9 +22,9 @@ class SupplyStacksPuzzleTest {
     void crateMover9001() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(SupplyStacksPuzzle.class);
 
-        SupplyStacksPuzzle puzzle = new SupplyStacksPuzzle();
+        var puzzle = new SupplyStacksPuzzle();
 
-        PuzzleOutput<String, String> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals("MCD", output.partTwo());
     }

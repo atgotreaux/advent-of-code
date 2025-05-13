@@ -14,11 +14,11 @@ public class RocketEquationPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        int sumOfFuelRequirements = 0;
-        int sumOfAdditionalFuelRequirements = 0;
+        var sumOfFuelRequirements = 0;
+        var sumOfAdditionalFuelRequirements = 0;
 
-        for (String line : inputReader.getInputList()) {
-            Module module = new Module(Integer.parseInt(line));
+        for (var line : inputReader.getInputList()) {
+            var module = new Module(Integer.parseInt(line));
 
             sumOfFuelRequirements += module.getFuelRequirement();
             sumOfAdditionalFuelRequirements += module.getAdditionalFuelRequirement();

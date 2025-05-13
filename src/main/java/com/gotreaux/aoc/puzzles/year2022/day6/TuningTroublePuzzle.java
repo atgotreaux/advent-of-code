@@ -15,15 +15,15 @@ public class TuningTroublePuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        String input = inputReader.getInputString();
+        var input = inputReader.getInputString();
 
-        int startOfPacketMarker =
+        var startOfPacketMarker =
                 IntStream.range(4, input.length())
                         .filter(i -> input.substring(i - 4, i).chars().distinct().count() == 4L)
                         .findFirst()
                         .orElse(Integer.MAX_VALUE);
 
-        int startOfMessageMarket =
+        var startOfMessageMarket =
                 IntStream.range(14, input.length())
                         .filter(i -> input.substring(i - 14, i).chars().distinct().count() == 14L)
                         .findFirst()

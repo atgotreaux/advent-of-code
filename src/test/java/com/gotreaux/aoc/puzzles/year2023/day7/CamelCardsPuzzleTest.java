@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class CamelCardsPuzzleTest {
@@ -12,9 +11,9 @@ class CamelCardsPuzzleTest {
     void jackHands() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(CamelCardsPuzzle.class);
 
-        CamelCardsPuzzle puzzle = new CamelCardsPuzzle();
+        var puzzle = new CamelCardsPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(6440, output.partOne());
     }
@@ -23,9 +22,9 @@ class CamelCardsPuzzleTest {
     void jokerHands() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(CamelCardsPuzzle.class);
 
-        CamelCardsPuzzle puzzle = new CamelCardsPuzzle();
+        var puzzle = new CamelCardsPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(5905, output.partTwo());
     }

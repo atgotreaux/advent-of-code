@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class StringInputReaderTest {
     @Test
     void inputAsString() throws Exception {
-        String input = RandomString.make(10);
+        var input = RandomString.make(10);
 
         InputReader inputReader = new StringInputReader(input);
 
@@ -17,7 +17,7 @@ class StringInputReaderTest {
 
     @Test
     void inputAsStream() throws Exception {
-        String input = RandomString.make(10);
+        var input = RandomString.make(10);
 
         InputReader inputReader = new StringInputReader(input);
 
@@ -27,7 +27,7 @@ class StringInputReaderTest {
 
     @Test
     void inputAsList() throws Exception {
-        String input = RandomString.make(10);
+        var input = RandomString.make(10);
 
         InputReader inputReader = new StringInputReader(input);
 

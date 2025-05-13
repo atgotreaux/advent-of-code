@@ -25,28 +25,28 @@ public class SliceItPuzzle extends Puzzle {
         Map<Point, Collection<Integer>> fabricClaims = new HashMap<>();
         Collection<Integer> claimIds = new ArrayList<>();
 
-        for (String line : inputReader.getInputList()) {
-            String[] claim = line.replace(":", "").split(" ");
+        for (var line : inputReader.getInputList()) {
+            var claim = line.replace(":", "").split(" ");
 
-            int claimID = Integer.parseInt(claim[0].substring(1));
+            var claimID = Integer.parseInt(claim[0].substring(1));
             claimIds.add(claimID);
 
-            Scanner startPointScanner = new Scanner(claim[2]);
+            var startPointScanner = new Scanner(claim[2]);
             startPointScanner.useDelimiter(",");
-            int startX = startPointScanner.nextInt();
-            int startY = startPointScanner.nextInt();
+            var startX = startPointScanner.nextInt();
+            var startY = startPointScanner.nextInt();
             startPointScanner.close();
 
-            Scanner dimensionScanner = new Scanner(claim[3]);
+            var dimensionScanner = new Scanner(claim[3]);
             dimensionScanner.useDelimiter("x");
-            int width = dimensionScanner.nextInt();
-            int height = dimensionScanner.nextInt();
+            var width = dimensionScanner.nextInt();
+            var height = dimensionScanner.nextInt();
             dimensionScanner.close();
 
-            Point position = new Point(startX, startY);
-            for (int x = 0; x < width; x++) {
-                for (int y = 0; y < height; y++) {
-                    Point point = new Point(position.x + x, position.y + y);
+            var position = new Point(startX, startY);
+            for (var x = 0; x < width; x++) {
+                for (var y = 0; y < height; y++) {
+                    var point = new Point(position.x + x, position.y + y);
                     fabricClaims.merge(
                             point,
                             List.of(claimID),
@@ -55,9 +55,9 @@ public class SliceItPuzzle extends Puzzle {
             }
         }
 
-        long overlapArea = fabricClaims.values().stream().filter(list -> list.size() > 1).count();
+        var overlapArea = fabricClaims.values().stream().filter(list -> list.size() > 1).count();
 
-        List<Integer> overlappingClaims =
+        var overlappingClaims =
                 fabricClaims.values().stream()
                         .filter(list -> list.size() > 1)
                         .flatMap(Collection::stream)

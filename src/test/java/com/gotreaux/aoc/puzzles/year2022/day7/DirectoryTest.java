@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 class DirectoryTest {
     @Test
     void parent() {
-        Directory root = new Directory("/");
-        Directory child = new Directory("child", root);
-        Directory grandChild = new Directory("grandChild", child);
+        var root = new Directory("/");
+        var child = new Directory("child", root);
+        var grandChild = new Directory("grandChild", child);
 
         assertEquals(root, root.getParent());
         assertEquals(root, child.getParent());
@@ -20,9 +20,9 @@ class DirectoryTest {
 
     @Test
     void root() {
-        Directory root = new Directory("/");
-        Directory child = new Directory("child", root);
-        Directory grandChild = new Directory("grandChild", child);
+        var root = new Directory("/");
+        var child = new Directory("child", root);
+        var grandChild = new Directory("grandChild", child);
 
         assertEquals(root, root.getRoot());
         assertEquals(root, child.getRoot());
@@ -31,10 +31,10 @@ class DirectoryTest {
 
     @Test
     void directory() {
-        Directory directory = new Directory("directory");
-        Directory x = new Directory("x", directory);
+        var directory = new Directory("directory");
+        var x = new Directory("x", directory);
         directory.addDirectory(x);
-        Directory y = new Directory("y", directory);
+        var y = new Directory("y", directory);
         directory.addDirectory(y);
         y.addDirectory(new Directory("z", y));
 
@@ -45,7 +45,7 @@ class DirectoryTest {
 
     @Test
     void directories() {
-        Directory directory = new Directory("directory");
+        var directory = new Directory("directory");
         directory.addDirectory(new Directory("x", directory));
         directory.addDirectory(new Directory("y", directory));
         directory.addDirectory(new Directory("z", directory));
@@ -55,21 +55,21 @@ class DirectoryTest {
 
     @Test
     void size() {
-        Directory root = new Directory("/");
+        var root = new Directory("/");
         root.addFile(new File(14848514, "b.txt"));
         root.addFile(new File(8504156, "c.dat"));
 
-        Directory dirA = new Directory("a", root);
+        var dirA = new Directory("a", root);
         dirA.addFile(new File(29116, "f"));
         dirA.addFile(new File(2557, "g"));
         dirA.addFile(new File(62596, "h.lst"));
         root.addDirectory(dirA);
 
-        Directory dirE = new Directory("e", dirA);
+        var dirE = new Directory("e", dirA);
         dirE.addFile(new File(584, "i"));
         dirA.addDirectory(dirE);
 
-        Directory dirD = new Directory("d", root);
+        var dirD = new Directory("d", root);
         dirD.addFile(new File(4060174, "j"));
         dirD.addFile(new File(8033020, "d.log"));
         dirD.addFile(new File(5626152, "d.ext"));

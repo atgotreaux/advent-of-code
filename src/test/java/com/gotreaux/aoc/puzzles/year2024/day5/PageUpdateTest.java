@@ -16,7 +16,7 @@ class PageUpdateTest {
     @ParameterizedTest
     @MethodSource("provideOf")
     void of(String line, Collection<Integer> expectedPages) {
-        PageUpdate pageUpdate = PageUpdate.of(line);
+        var pageUpdate = PageUpdate.of(line);
 
         assertEquals(expectedPages, pageUpdate.getPages());
     }
@@ -24,12 +24,11 @@ class PageUpdateTest {
     @ParameterizedTest
     @MethodSource("provideIsCorrectOrder")
     void isCorrectOrder(String line, boolean expected) throws Exception {
-        PageUpdate pageUpdate = PageUpdate.of(line);
+        var pageUpdate = PageUpdate.of(line);
 
         InputReader inputReader = new ResourceInputReader<>(PrintQueuePuzzle.class, "rules.txt");
 
-        List<PageOrderingRule> rules =
-                inputReader.getInputStream().map(PageOrderingRule::of).toList();
+        var rules = inputReader.getInputStream().map(PageOrderingRule::of).toList();
 
         assertEquals(expected, pageUpdate.isCorrectOrder(rules));
     }
@@ -37,12 +36,11 @@ class PageUpdateTest {
     @ParameterizedTest
     @MethodSource("provideGetMiddlePage")
     void getMiddlePage(String line, int expectedMiddlePage) throws Exception {
-        PageUpdate pageUpdate = PageUpdate.of(line);
+        var pageUpdate = PageUpdate.of(line);
 
         InputReader inputReader = new ResourceInputReader<>(PrintQueuePuzzle.class, "rules.txt");
 
-        List<PageOrderingRule> rules =
-                inputReader.getInputStream().map(PageOrderingRule::of).toList();
+        var rules = inputReader.getInputStream().map(PageOrderingRule::of).toList();
 
         assertEquals(expectedMiddlePage, pageUpdate.getMiddlePage(rules));
     }

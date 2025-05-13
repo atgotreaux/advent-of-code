@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,9 +15,9 @@ class BinaryBoardingPuzzleTest {
     void highestSeatID() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(BinaryBoardingPuzzle.class);
 
-        BinaryBoardingPuzzle puzzle = new BinaryBoardingPuzzle();
+        var puzzle = new BinaryBoardingPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(820, output.partOne());
     }

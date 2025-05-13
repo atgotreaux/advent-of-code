@@ -11,8 +11,8 @@ record MoleculeMachine(Collection<Edge> replacements, String molecule) {
     Collection<String> getCalibrationMolecules() {
         Collection<String> molecules = new HashSet<>();
 
-        for (Edge replacement : replacements) {
-            for (int i = 0; i < molecule.length(); i++) {
+        for (var replacement : replacements) {
+            for (var i = 0; i < molecule.length(); i++) {
                 if (molecule.startsWith(replacement.from(), i)) {
                     molecules.add(
                             molecule.substring(0, i)
@@ -33,10 +33,10 @@ record MoleculeMachine(Collection<Edge> replacements, String molecule) {
         List<Edge> sortedReplacements = new ArrayList<>(replacements);
         sortedReplacements.sort((r1, r2) -> Integer.compare(r2.to().length(), r1.to().length()));
 
-        int steps = 0;
-        String currentMolecule = molecule;
+        var steps = 0;
+        var currentMolecule = molecule;
         while (!currentMolecule.equals("e")) {
-            for (Edge replacement : sortedReplacements) {
+            for (var replacement : sortedReplacements) {
                 if (currentMolecule.contains(replacement.to())) {
                     currentMolecule =
                             currentMolecule.replaceFirst(replacement.to(), replacement.from());

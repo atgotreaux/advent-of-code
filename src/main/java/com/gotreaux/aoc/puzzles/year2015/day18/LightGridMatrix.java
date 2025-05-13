@@ -22,7 +22,7 @@ final class LightGridMatrix extends CharMatrix {
         super(input);
         this.stuckLights = stuckLights.stream().toList();
 
-        for (Point light : stuckLights) {
+        for (var light : stuckLights) {
             set(light.x, light.y, ON);
         }
     }
@@ -30,9 +30,9 @@ final class LightGridMatrix extends CharMatrix {
     LightGridMatrix animate() {
         List<String> result = new ArrayList<>(getRowCount());
 
-        for (int row = 0; row < getRowCount(); row++) {
-            StringBuilder resultRow = new StringBuilder(getColCount());
-            for (int col = 0; col < getColCount(); col++) {
+        for (var row = 0; row < getRowCount(); row++) {
+            var resultRow = new StringBuilder(getColCount());
+            for (var col = 0; col < getColCount(); col++) {
                 resultRow.append(getNextState(row, col));
             }
             result.add(resultRow.toString());
@@ -45,7 +45,7 @@ final class LightGridMatrix extends CharMatrix {
         if (stuckLights.contains(new Point(row, col))) {
             return ON;
         }
-        long neighbors = getNeighboringLightCount(row, col);
+        var neighbors = getNeighboringLightCount(row, col);
         if (get(row, col) == ON) {
             return (neighbors == 2L || neighbors == 3L) ? ON : OFF;
         }
@@ -68,10 +68,10 @@ final class LightGridMatrix extends CharMatrix {
     }
 
     int getLightCount() {
-        int count = 0;
+        var count = 0;
 
-        for (int row = 0; row < getRowCount(); row++) {
-            for (int col = 0; col < getColCount(); col++) {
+        for (var row = 0; row < getRowCount(); row++) {
+            for (var col = 0; col < getColCount(); col++) {
                 if (get(row, col) == ON) {
                     count++;
                 }

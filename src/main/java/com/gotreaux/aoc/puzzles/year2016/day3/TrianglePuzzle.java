@@ -25,11 +25,11 @@ public class TrianglePuzzle extends Puzzle {
         List<Integer> colTwo = new ArrayList<>(input.size());
         List<Integer> colThree = new ArrayList<>(input.size());
 
-        for (String line : input) {
-            Scanner scanner = new Scanner(line);
-            int x = scanner.nextInt();
-            int y = scanner.nextInt();
-            int z = scanner.nextInt();
+        for (var line : input) {
+            var scanner = new Scanner(line);
+            var x = scanner.nextInt();
+            var y = scanner.nextInt();
+            var z = scanner.nextInt();
             scanner.close();
 
             rowTriangles.add(new Triangle(x, y, z));
@@ -41,7 +41,7 @@ public class TrianglePuzzle extends Puzzle {
 
         Collection<Triangle> colTriangles = new ArrayList<>(input.size() / 3);
         if (input.size() >= 3) {
-            for (int i = 0; i < colOne.size(); i += 3) {
+            for (var i = 0; i < colOne.size(); i += 3) {
                 colTriangles.add(new Triangle(colOne.get(i), colOne.get(i + 1), colOne.get(i + 2)));
                 colTriangles.add(new Triangle(colTwo.get(i), colTwo.get(i + 1), colTwo.get(i + 2)));
                 colTriangles.add(
@@ -49,8 +49,8 @@ public class TrianglePuzzle extends Puzzle {
             }
         }
 
-        long validRowTriangles = rowTriangles.stream().filter(Triangle::isValid).count();
-        long validColumnTriangles = colTriangles.stream().filter(Triangle::isValid).count();
+        var validRowTriangles = rowTriangles.stream().filter(Triangle::isValid).count();
+        var validColumnTriangles = colTriangles.stream().filter(Triangle::isValid).count();
 
         return new PuzzleOutput<>(validRowTriangles, validColumnTriangles);
     }

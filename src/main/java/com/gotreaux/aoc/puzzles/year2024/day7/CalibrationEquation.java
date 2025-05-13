@@ -9,17 +9,16 @@ record CalibrationEquation(long result, List<Long> operands) {
     private static final Pattern EQUATION_PATTERN = Pattern.compile(": | ");
 
     static CalibrationEquation of(CharSequence line) {
-        List<Long> parts =
-                Arrays.stream(EQUATION_PATTERN.split(line)).map(Long::parseLong).toList();
+        var parts = Arrays.stream(EQUATION_PATTERN.split(line)).map(Long::parseLong).toList();
 
         return new CalibrationEquation(parts.getFirst(), parts.subList(1, parts.size()));
     }
 
     long evaluate(Iterable<CalibrationOperator> calibrationOperators) {
         long operationResult = operands.getFirst();
-        int operandIndex = 1;
+        var operandIndex = 1;
 
-        for (CalibrationOperator operator : calibrationOperators) {
+        for (var operator : calibrationOperators) {
             operationResult =
                     switch (operator) {
                         case ADD -> operationResult + operands.get(operandIndex);

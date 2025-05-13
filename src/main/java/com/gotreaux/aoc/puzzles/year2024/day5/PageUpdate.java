@@ -31,7 +31,7 @@ class PageUpdate {
     }
 
     int getMiddlePage(Collection<PageOrderingRule> rules) {
-        List<Integer> orderedPages = getOrderedPages(rules);
+        var orderedPages = getOrderedPages(rules);
 
         return orderedPages.get(orderedPages.size() / 2);
     }
@@ -47,8 +47,8 @@ class PageUpdate {
 
     private void initializePageWeights(Collection<PageOrderingRule> rules) {
         if (pageWeights.isEmpty()) {
-            Collection<PageOrderingRule> filteredRules = filterRules(rules);
-            for (PageOrderingRule rule : filteredRules) {
+            var filteredRules = filterRules(rules);
+            for (var rule : filteredRules) {
                 pageWeights.merge(rule.before(), -1, Integer::sum);
                 pageWeights.merge(rule.after(), 1, Integer::sum);
             }

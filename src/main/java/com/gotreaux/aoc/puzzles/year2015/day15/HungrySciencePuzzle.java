@@ -6,7 +6,6 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.collection.CombinationsOfSum;
 import com.gotreaux.aoc.utils.collection.UniqueCombinationElements;
 import com.gotreaux.aoc.utils.collection.VariableCombinationLength;
-import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,15 +17,15 @@ public class HungrySciencePuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        List<Ingredient> ingredients = inputReader.getInputStream().map(Ingredient::of).toList();
+        var ingredients = inputReader.getInputStream().map(Ingredient::of).toList();
 
-        CombinationsOfSum combinationsOfSum =
+        var combinationsOfSum =
                 new CombinationsOfSum(
                         100, VariableCombinationLength.NO, UniqueCombinationElements.NO);
 
-        List<List<Integer>> combinations = combinationsOfSum.of(ingredients.size());
+        var combinations = combinationsOfSum.of(ingredients.size());
 
-        List<Recipe> recipes =
+        var recipes =
                 combinations.stream().map(teaspoons -> new Recipe(ingredients, teaspoons)).toList();
 
         int highestScoringCookie =

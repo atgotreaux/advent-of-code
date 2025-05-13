@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.StringInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,9 +16,9 @@ class TaxicabPuzzleTest {
     void shortestPath(String input, int expectedDistance) throws Exception {
         InputReader inputReader = new StringInputReader(input);
 
-        TaxicabPuzzle puzzle = new TaxicabPuzzle();
+        var puzzle = new TaxicabPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(expectedDistance, output.partOne());
     }
@@ -28,9 +27,9 @@ class TaxicabPuzzleTest {
     void firstDupPath() throws Exception {
         InputReader inputReader = new StringInputReader("R8, R4, R4, R8");
 
-        TaxicabPuzzle puzzle = new TaxicabPuzzle();
+        var puzzle = new TaxicabPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(4, output.partTwo());
     }

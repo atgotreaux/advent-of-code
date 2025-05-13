@@ -12,7 +12,6 @@ import com.gotreaux.aoc.puzzles.year2015.day1.ApartmentFloorPuzzle;
 import com.gotreaux.aoc.puzzles.year2015.day8.MatchsticksPuzzle;
 import java.io.File;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.random.RandomGenerator;
@@ -37,7 +36,7 @@ class SolvePuzzleCommandTest {
 
     @Test
     void commandAvailable() {
-        ShellTestClient.NonInteractiveShellSession session = client.nonInterative("help").run();
+        var session = client.nonInterative("help").run();
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
@@ -48,8 +47,7 @@ class SolvePuzzleCommandTest {
 
     @Test
     void help() {
-        ShellTestClient.NonInteractiveShellSession session =
-                client.nonInterative(SolvePuzzleCommand.COMMAND_NAME, "--help").run();
+        var session = client.nonInterative(SolvePuzzleCommand.COMMAND_NAME, "--help").run();
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
@@ -63,8 +61,7 @@ class SolvePuzzleCommandTest {
 
     @Test
     void yearRequired() {
-        ShellTestClient.NonInteractiveShellSession session =
-                client.nonInterative(SolvePuzzleCommand.COMMAND_NAME).run();
+        var session = client.nonInterative(SolvePuzzleCommand.COMMAND_NAME).run();
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
@@ -75,12 +72,12 @@ class SolvePuzzleCommandTest {
 
     @Test
     void invalidYear() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-        String year = String.valueOf(generator.nextInt(2015));
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var year = String.valueOf(generator.nextInt(2015));
 
-        ShellTestClient.NonInteractiveShellSession session =
+        var session =
                 client.nonInterative(
                                 SolvePuzzleCommand.COMMAND_NAME,
                                 "-Y",
@@ -98,8 +95,7 @@ class SolvePuzzleCommandTest {
 
     @Test
     void dayRequired() {
-        ShellTestClient.NonInteractiveShellSession session =
-                client.nonInterative(SolvePuzzleCommand.COMMAND_NAME).run();
+        var session = client.nonInterative(SolvePuzzleCommand.COMMAND_NAME).run();
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
@@ -110,12 +106,12 @@ class SolvePuzzleCommandTest {
 
     @Test
     void invalidDay() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-        String day = String.valueOf(generator.nextInt(26, 32));
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var day = String.valueOf(generator.nextInt(26, 32));
 
-        ShellTestClient.NonInteractiveShellSession session =
+        var session =
                 client.nonInterative(
                                 SolvePuzzleCommand.COMMAND_NAME,
                                 "-Y",
@@ -133,9 +129,9 @@ class SolvePuzzleCommandTest {
 
     @Test
     void resourceInput() {
-        MatchsticksPuzzle puzzle = new MatchsticksPuzzle();
+        var puzzle = new MatchsticksPuzzle();
 
-        ShellTestClient.NonInteractiveShellSession session =
+        var session =
                 client.nonInterative(
                                 SolvePuzzleCommand.COMMAND_NAME,
                                 "-Y",
@@ -154,13 +150,13 @@ class SolvePuzzleCommandTest {
     @Test
     @DirtiesContext
     void databaseInput() {
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
+        var puzzle = new ApartmentFloorPuzzle();
 
-        DatabaseInputWriter inputWriter =
+        var inputWriter =
                 new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
         inputWriter.write(")())())");
 
-        ShellTestClient.NonInteractiveShellSession session =
+        var session =
                 client.nonInterative(
                                 SolvePuzzleCommand.COMMAND_NAME,
                                 "-Y",
@@ -178,9 +174,9 @@ class SolvePuzzleCommandTest {
 
     @Test
     void stringInput() {
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
+        var puzzle = new ApartmentFloorPuzzle();
 
-        ShellTestClient.NonInteractiveShellSession session =
+        var session =
                 client.nonInterative(
                                 SolvePuzzleCommand.COMMAND_NAME,
                                 "-Y",
@@ -198,21 +194,21 @@ class SolvePuzzleCommandTest {
 
     @Test
     void fileInput() throws Exception {
-        Path path = Files.createTempFile("input", ".txt");
+        var path = Files.createTempFile("input", ".txt");
 
         InputWriter inputWriter = new FileInputWriter(path.toAbsolutePath().toString());
         inputWriter.write(")())())");
 
-        String inputPath =
+        var inputPath =
                 path.toAbsolutePath()
                         .toString()
                         .replaceAll(
                                 Pattern.quote(File.separator),
                                 Matcher.quoteReplacement(File.separator.repeat(2)));
 
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
+        var puzzle = new ApartmentFloorPuzzle();
 
-        ShellTestClient.NonInteractiveShellSession session =
+        var session =
                 client.nonInterative(
                                 SolvePuzzleCommand.COMMAND_NAME,
                                 "-Y",

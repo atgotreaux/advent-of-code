@@ -5,7 +5,6 @@ import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -22,16 +21,16 @@ public class BinaryDiagnosticPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        List<String> input = inputReader.getInputList();
-        int bitLength = input.getFirst().length();
+        var input = inputReader.getInputList();
+        var bitLength = input.getFirst().length();
 
-        int gamma = 0;
-        int epsilon = 0;
+        var gamma = 0;
+        var epsilon = 0;
         List<String> oxygenCandidates = new ArrayList<>(input);
         List<String> co2Candidates = new ArrayList<>(input);
-        for (int i = 0; i < bitLength; i++) {
-            int position = i;
-            int shift = 1 << Math.abs(i - bitLength + 1);
+        for (var i = 0; i < bitLength; i++) {
+            var position = i;
+            var shift = 1 << Math.abs(i - bitLength + 1);
             if (getMostCommonBit(input, i) == 0) {
                 epsilon |= shift;
             } else {
@@ -39,27 +38,27 @@ public class BinaryDiagnosticPuzzle extends Puzzle {
             }
 
             if (oxygenCandidates.size() > 1) {
-                int oxyBit = getMostCommonBit(oxygenCandidates, i);
+                var oxyBit = getMostCommonBit(oxygenCandidates, i);
                 oxygenCandidates.removeIf(s -> Character.digit(s.charAt(position), 10) != oxyBit);
             }
             if (co2Candidates.size() > 1) {
-                int co2Bit = getMostCommonBit(co2Candidates, i);
+                var co2Bit = getMostCommonBit(co2Candidates, i);
                 co2Candidates.removeIf(s -> Character.digit(s.charAt(position), 10) == co2Bit);
             }
         }
 
-        int powerConsumption = gamma * epsilon;
+        var powerConsumption = gamma * epsilon;
 
-        int oxygenGeneratorRating = Integer.parseInt(oxygenCandidates.getFirst(), 2);
-        int co2ScrubberRating = Integer.parseInt(co2Candidates.getFirst(), 2);
-        int lifeSupportRating = oxygenGeneratorRating * co2ScrubberRating;
+        var oxygenGeneratorRating = Integer.parseInt(oxygenCandidates.getFirst(), 2);
+        var co2ScrubberRating = Integer.parseInt(co2Candidates.getFirst(), 2);
+        var lifeSupportRating = oxygenGeneratorRating * co2ScrubberRating;
 
         return new PuzzleOutput<>(powerConsumption, lifeSupportRating);
     }
 
     private static int getMostCommonBit(Collection<String> numbers, int position)
             throws NoSuchElementException {
-        Comparator<Map.Entry<Integer, Long>> comparator =
+        var comparator =
                 Map.Entry.<Integer, Long>comparingByValue()
                         .thenComparing(Map.Entry.comparingByKey());
 

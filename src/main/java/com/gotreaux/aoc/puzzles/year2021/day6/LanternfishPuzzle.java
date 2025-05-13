@@ -22,17 +22,17 @@ public class LanternfishPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
-        Map<Integer, Long> lanternfish =
+        var lanternfish =
                 Arrays.stream(inputReader.getInputString().split(","))
                         .map(Integer::parseInt)
                         .collect(groupingBy(identity(), counting()));
 
-        for (int day = 1; day <= 80; day++) {
+        for (var day = 1; day <= 80; day++) {
             lanternfish = simulate(lanternfish);
         }
         long populationOf80Days = lanternfish.values().stream().reduce(0L, Long::sum);
 
-        for (int day = 81; day <= 256; day++) {
+        for (var day = 81; day <= 256; day++) {
             lanternfish = simulate(lanternfish);
         }
         long populationOf256Days = lanternfish.values().stream().reduce(0L, Long::sum);

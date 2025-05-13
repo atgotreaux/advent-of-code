@@ -11,7 +11,7 @@ class CrateMover9000 extends CrateMover {
 
     @Override
     void operate(RearrangeProcedure procedure) {
-        for (int operation = 0; operation < procedure.operationCount(); operation++) {
+        for (var operation = 0; operation < procedure.operationCount(); operation++) {
             stacks.get(procedure.to()).push(stacks.get(procedure.from()).pop());
         }
     }

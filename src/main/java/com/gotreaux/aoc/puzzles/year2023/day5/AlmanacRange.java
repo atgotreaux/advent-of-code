@@ -13,7 +13,7 @@ record AlmanacRange(long destinationRangeStart, long sourceRangeStart, long rang
     }
 
     long getDestinationValue(long sourceValue) {
-        long offset = sourceValue - sourceRangeStart;
+        var offset = sourceValue - sourceRangeStart;
         if (offset >= 0L && offset < rangeLength) {
             return destinationRangeStart + offset;
         }

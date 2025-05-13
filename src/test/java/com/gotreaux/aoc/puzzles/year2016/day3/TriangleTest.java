@@ -13,18 +13,18 @@ import org.junit.jupiter.params.provider.MethodSource;
 class TriangleTest {
     @Test
     void throwsIfNegativeSideLength() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        int negativeArgumentIndex = generator.nextInt(1, 4);
-        int x =
+        var negativeArgumentIndex = generator.nextInt(1, 4);
+        var x =
                 negativeArgumentIndex == 1
                         ? -Math.abs(generator.nextInt())
                         : Math.abs(generator.nextInt());
-        int y =
+        var y =
                 negativeArgumentIndex == 2
                         ? -Math.abs(generator.nextInt())
                         : Math.abs(generator.nextInt());
-        int z =
+        var z =
                 negativeArgumentIndex == 3
                         ? -Math.abs(generator.nextInt())
                         : Math.abs(generator.nextInt());
@@ -35,7 +35,7 @@ class TriangleTest {
     @ParameterizedTest
     @MethodSource("provideValidTriangle")
     void validTriangle(int x, int y, int z, boolean isValid) {
-        Triangle triangle = new Triangle(x, y, z);
+        var triangle = new Triangle(x, y, z);
 
         assertEquals(isValid, triangle.isValid());
     }

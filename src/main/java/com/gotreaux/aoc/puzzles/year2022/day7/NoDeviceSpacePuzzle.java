@@ -15,11 +15,11 @@ public class NoDeviceSpacePuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        Directory directory = new Directory("/");
+        var directory = new Directory("/");
 
-        for (String line : inputReader.getInputList()) {
+        for (var line : inputReader.getInputList()) {
             if (Character.isDigit(line.charAt(0))) {
-                Scanner scanner = new Scanner(line);
+                var scanner = new Scanner(line);
                 directory.addFile(new File(scanner.nextInt(), scanner.next()));
                 scanner.close();
             } else if (line.startsWith("dir")) {
@@ -36,15 +36,15 @@ public class NoDeviceSpacePuzzle extends Puzzle {
         }
 
         directory = directory.getRoot();
-        int rootSize = directory.size();
+        var rootSize = directory.size();
 
-        int sumOfSmallDirectories =
+        var sumOfSmallDirectories =
                 directory.getDirectories().stream()
                         .mapToInt(Directory::size)
                         .filter(size -> size < 100000)
                         .sum();
 
-        int smallestDirectoryToFree =
+        var smallestDirectoryToFree =
                 directory.getDirectories().stream()
                         .mapToInt(Directory::size)
                         .filter(size -> size > rootSize - 40000000)

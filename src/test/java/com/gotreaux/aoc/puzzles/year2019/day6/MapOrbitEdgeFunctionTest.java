@@ -2,7 +2,6 @@ package com.gotreaux.aoc.puzzles.year2019.day6;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.utils.graph.Edge;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -13,9 +12,9 @@ class MapOrbitEdgeFunctionTest {
     @ParameterizedTest
     @MethodSource("provideApply")
     void apply(String line, String expectedObject, String expectedSatellite) {
-        MapOrbitEdgeFunction mapOrbitEdge = new MapOrbitEdgeFunction();
+        var mapOrbitEdge = new MapOrbitEdgeFunction();
 
-        Edge edge = mapOrbitEdge.apply(line);
+        var edge = mapOrbitEdge.apply(line);
 
         assertEquals(expectedObject, edge.from());
         assertEquals(expectedSatellite, edge.to());

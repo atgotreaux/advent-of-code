@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.StringInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -16,9 +15,9 @@ class NiceStringPuzzleTest {
     void niceString(String input, int expectedCount) throws Exception {
         InputReader inputReader = new StringInputReader(input);
 
-        NiceStringPuzzle puzzle = new NiceStringPuzzle();
+        var puzzle = new NiceStringPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(expectedCount, output.partOne());
     }
@@ -28,9 +27,9 @@ class NiceStringPuzzleTest {
     void niceStringBetterModel(String input, int expectedCount) throws Exception {
         InputReader inputReader = new StringInputReader(input);
 
-        NiceStringPuzzle puzzle = new NiceStringPuzzle();
+        var puzzle = new NiceStringPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(expectedCount, output.partTwo());
     }

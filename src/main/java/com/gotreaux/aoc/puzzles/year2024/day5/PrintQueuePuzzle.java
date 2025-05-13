@@ -33,13 +33,13 @@ public class PrintQueuePuzzle extends Puzzle {
                         .map(PageUpdate::of)
                         .toList();
 
-        int sumOfCorrectOrders =
+        var sumOfCorrectOrders =
                 pageUpdates.stream()
                         .filter(update -> update.isCorrectOrder(rules))
                         .mapToInt(update -> update.getMiddlePage(rules))
                         .sum();
 
-        int sumOfIncorrectOrders =
+        var sumOfIncorrectOrders =
                 pageUpdates.stream()
                         .filter(update -> !update.isCorrectOrder(rules))
                         .mapToInt(update -> update.getMiddlePage(rules))

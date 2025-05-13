@@ -12,9 +12,9 @@ class Board extends IntMatrix {
 
     @Override
     protected Integer[] mapper(String row) {
-        Scanner scanner = new Scanner(row);
+        var scanner = new Scanner(row);
 
-        Integer[] result = scanner.tokens().map(Integer::parseInt).toArray(Integer[]::new);
+        var result = scanner.tokens().map(Integer::parseInt).toArray(Integer[]::new);
 
         scanner.close();
 
@@ -22,8 +22,8 @@ class Board extends IntMatrix {
     }
 
     void mark(Integer drawn) {
-        for (int row = 0; row < getRowCount(); row++) {
-            for (int col = 0; col < getColCount(); col++) {
+        for (var row = 0; row < getRowCount(); row++) {
+            for (var col = 0; col < getColCount(); col++) {
                 if (drawn.equals(get(row, col))) {
                     visit(row, col);
                 }
@@ -32,7 +32,7 @@ class Board extends IntMatrix {
     }
 
     boolean isWinner() {
-        boolean result =
+        var result =
                 IntStream.range(0, getRowCount())
                         .anyMatch(
                                 row ->
@@ -50,10 +50,10 @@ class Board extends IntMatrix {
     }
 
     int getScore() {
-        int score = 0;
+        var score = 0;
 
-        for (int row = 0; row < getRowCount(); row++) {
-            for (int col = 0; col < getColCount(); col++) {
+        for (var row = 0; row < getRowCount(); row++) {
+            for (var col = 0; col < getColCount(); col++) {
                 if (!isVisited(row, col)) {
                     score += get(row, col);
                 }

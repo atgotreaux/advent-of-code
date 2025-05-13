@@ -19,21 +19,21 @@ public class SyntaxScoringPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Long> solve(InputReader inputReader) throws Exception {
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        int totalSyntaxErrorScore = 0;
+        var totalSyntaxErrorScore = 0;
         List<Long> completionScores = new ArrayList<>();
-        for (String line : input) {
+        for (var line : input) {
             Deque<ChunkOpener> chunkOpeners = new ArrayDeque<>();
-            for (int i = 0; i < line.length(); i++) {
-                char c = line.charAt(i);
+            for (var i = 0; i < line.length(); i++) {
+                var c = line.charAt(i);
 
-                ChunkOpener chunkOpener = ChunkOpener.of(c);
+                var chunkOpener = ChunkOpener.of(c);
                 if (chunkOpener != null) {
                     chunkOpeners.push(chunkOpener);
                 }
 
-                ChunkCloser chunkCloser = ChunkCloser.of(c);
+                var chunkCloser = ChunkCloser.of(c);
                 if (chunkCloser != null) {
                     chunkOpener = chunkOpeners.pop();
                     if (!chunkOpener.matches(chunkCloser)) {
@@ -46,8 +46,8 @@ public class SyntaxScoringPuzzle extends Puzzle {
 
             if (!chunkOpeners.isEmpty()) {
                 long completionScore = 0;
-                for (ChunkOpener chunkOpener : chunkOpeners) {
-                    ChunkCloser chunkCloser = chunkOpener.getCloser();
+                for (var chunkOpener : chunkOpeners) {
+                    var chunkCloser = chunkOpener.getCloser();
                     completionScore = (completionScore * 5) + chunkCloser.getAutoCompleteScore();
                 }
                 completionScores.add(completionScore);

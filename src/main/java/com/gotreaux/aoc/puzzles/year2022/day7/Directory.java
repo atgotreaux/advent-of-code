@@ -31,7 +31,7 @@ class Directory {
     }
 
     Directory getRoot() {
-        Directory directory = this;
+        var directory = this;
         while (!directory.equals(directory.getParent())) {
             directory = directory.getParent();
         }

@@ -19,23 +19,23 @@ public class AdventCoinMiningPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        String input = inputReader.getInputString();
+        var input = inputReader.getInputString();
 
-        int partOne = findHashMatchingCondition(input, s -> s.startsWith("00000"));
-        int partTwo = findHashMatchingCondition(input, s -> s.startsWith("000000"));
+        var partOne = findHashMatchingCondition(input, s -> s.startsWith("00000"));
+        var partTwo = findHashMatchingCondition(input, s -> s.startsWith("000000"));
 
         return new PuzzleOutput<>(partOne, partTwo);
     }
 
     private static int findHashMatchingCondition(String secretKey, Predicate<String> condition)
             throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("MD5");
+        var md = MessageDigest.getInstance("MD5");
 
-        int number = 0;
+        var number = 0;
         while (true) {
-            String input = secretKey + number;
+            var input = secretKey + number;
             md.update(input.getBytes(Charset.defaultCharset()));
-            String hash = HexFormat.of().formatHex(md.digest());
+            var hash = HexFormat.of().formatHex(md.digest());
 
             if (condition.test(hash)) {
                 return number;

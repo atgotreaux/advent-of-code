@@ -29,9 +29,9 @@ class BFSTest {
 
         Collection<Edge> edges = inputReader.getInputList().stream().map(edgeFunction).toList();
 
-        BFS bfs = new BFS(edges);
+        var bfs = new BFS(edges);
 
-        int distances = bfs.getDistances(from).values().stream().mapToInt(Integer::intValue).sum();
+        var distances = bfs.getDistances(from).values().stream().mapToInt(Integer::intValue).sum();
 
         assertEquals(expectedDistances, distances);
     }
@@ -50,9 +50,9 @@ class BFSTest {
 
         Collection<Edge> edges = inputReader.getInputList().stream().map(edgeFunction).toList();
 
-        BFS bfs = new BFS(edges);
+        var bfs = new BFS(edges);
 
-        int distance = bfs.getDistance(from, to);
+        var distance = bfs.getDistance(from, to);
 
         assertEquals(expectedDistance, distance);
     }

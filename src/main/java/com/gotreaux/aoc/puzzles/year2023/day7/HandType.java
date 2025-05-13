@@ -3,7 +3,6 @@ package com.gotreaux.aoc.puzzles.year2023.day7;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -18,13 +17,12 @@ enum HandType {
                             || cards.contains(Card.JOKER)),
     TWO_PAIR(
             cards -> {
-                int pairs = 0;
+                var pairs = 0;
 
-                Map<Character, List<Card>> mapping =
-                        cards.stream().collect(Collectors.groupingBy(Card::getLabel));
+                var mapping = cards.stream().collect(Collectors.groupingBy(Card::getLabel));
 
-                for (Map.Entry<Character, List<Card>> entry : mapping.entrySet()) {
-                    List<Card> kind = entry.getValue();
+                for (var entry : mapping.entrySet()) {
+                    var kind = entry.getValue();
                     if (kind.size() == 2) {
                         pairs++;
                     }
@@ -34,20 +32,19 @@ enum HandType {
                     return true;
                 }
 
-                int jokerCount =
+                var jokerCount =
                         cards.contains(Card.JOKER) ? mapping.get(Card.JOKER.getLabel()).size() : 0;
 
                 return pairs == 1 && jokerCount == 1;
             }),
     THREE_OF_A_KIND(
             cards -> {
-                Map<Character, List<Card>> mapping =
-                        cards.stream().collect(Collectors.groupingBy(Card::getLabel));
-                int jokerOffset =
+                var mapping = cards.stream().collect(Collectors.groupingBy(Card::getLabel));
+                var jokerOffset =
                         cards.contains(Card.JOKER) ? mapping.get(Card.JOKER.getLabel()).size() : 0;
 
-                for (Map.Entry<Character, List<Card>> entry : mapping.entrySet()) {
-                    List<Card> kind = entry.getValue();
+                for (var entry : mapping.entrySet()) {
+                    var kind = entry.getValue();
                     if (kind.getFirst() != Card.JOKER && kind.size() == 3 - jokerOffset) {
                         return true;
                     }
@@ -56,13 +53,12 @@ enum HandType {
             }),
     FULL_HOUSE(
             cards -> {
-                boolean foundThreeKind = false;
-                boolean foundTwoKind = false;
+                var foundThreeKind = false;
+                var foundTwoKind = false;
 
-                Map<Character, List<Card>> mapping =
-                        cards.stream().collect(Collectors.groupingBy(Card::getLabel));
-                for (Map.Entry<Character, List<Card>> entry : mapping.entrySet()) {
-                    List<Card> kind = entry.getValue();
+                var mapping = cards.stream().collect(Collectors.groupingBy(Card::getLabel));
+                for (var entry : mapping.entrySet()) {
+                    var kind = entry.getValue();
                     if (kind.size() == 2) {
                         foundTwoKind = true;
                     }
@@ -78,13 +74,12 @@ enum HandType {
             }),
     FOUR_OF_A_KIND(
             cards -> {
-                Map<Character, List<Card>> mapping =
-                        cards.stream().collect(Collectors.groupingBy(Card::getLabel));
-                int jokerOffset =
+                var mapping = cards.stream().collect(Collectors.groupingBy(Card::getLabel));
+                var jokerOffset =
                         cards.contains(Card.JOKER) ? mapping.get(Card.JOKER.getLabel()).size() : 0;
 
-                for (Map.Entry<Character, List<Card>> entry : mapping.entrySet()) {
-                    List<Card> kind = entry.getValue();
+                for (var entry : mapping.entrySet()) {
+                    var kind = entry.getValue();
                     if (kind.getFirst() != Card.JOKER && kind.size() == 4 - jokerOffset) {
                         return true;
                     }
@@ -97,8 +92,7 @@ enum HandType {
                     return true;
                 }
 
-                Map<Character, List<Card>> mapping =
-                        cards.stream().collect(Collectors.groupingBy(Card::getLabel));
+                var mapping = cards.stream().collect(Collectors.groupingBy(Card::getLabel));
                 return mapping.size() == 2 && cards.contains(Card.JOKER);
             });
 

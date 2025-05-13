@@ -27,22 +27,22 @@ class RelativeDirectionTest {
 
     @RepeatedTest(5)
     void moveUp() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        Point point = new Point(generator.nextInt(-1000, 1000), generator.nextInt(-1000, 1000));
+        var point = new Point(generator.nextInt(-1000, 1000), generator.nextInt(-1000, 1000));
 
-        int units = generator.nextInt(1, 1000);
+        var units = generator.nextInt(1, 1000);
 
         assertEquals(new Point(point.x, point.y + units), RelativeDirection.UP.move(point, units));
     }
 
     @RepeatedTest(5)
     void moveDown() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        Point point = new Point(generator.nextInt(-1000, 1000), generator.nextInt(-1000, 1000));
+        var point = new Point(generator.nextInt(-1000, 1000), generator.nextInt(-1000, 1000));
 
-        int units = generator.nextInt(1, 1000);
+        var units = generator.nextInt(1, 1000);
 
         assertEquals(
                 new Point(point.x, point.y - units), RelativeDirection.DOWN.move(point, units));
@@ -50,11 +50,11 @@ class RelativeDirectionTest {
 
     @RepeatedTest(5)
     void moveLeft() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        Point point = new Point(generator.nextInt(-1000, 1000), generator.nextInt(-1000, 1000));
+        var point = new Point(generator.nextInt(-1000, 1000), generator.nextInt(-1000, 1000));
 
-        int units = generator.nextInt(1, 1000);
+        var units = generator.nextInt(1, 1000);
 
         assertEquals(
                 new Point(point.x - units, point.y), RelativeDirection.LEFT.move(point, units));
@@ -62,11 +62,11 @@ class RelativeDirectionTest {
 
     @RepeatedTest(5)
     void moveRight() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        Point point = new Point(generator.nextInt(-1000, 1000), generator.nextInt(-1000, 1000));
+        var point = new Point(generator.nextInt(-1000, 1000), generator.nextInt(-1000, 1000));
 
-        int units = generator.nextInt(1, 1000);
+        var units = generator.nextInt(1, 1000);
 
         assertEquals(
                 new Point(point.x + units, point.y), RelativeDirection.RIGHT.move(point, units));

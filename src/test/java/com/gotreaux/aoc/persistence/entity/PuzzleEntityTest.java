@@ -23,53 +23,53 @@ class PuzzleEntityTest {
 
     @Test
     void throwsIfEmpty() {
-        PuzzleEntity puzzleEntity = new PuzzleEntity();
+        var puzzleEntity = new PuzzleEntity();
 
         assertThrows(DataAccessException.class, () -> puzzleRepository.save(puzzleEntity));
     }
 
     @Test
     void throwsIfEmptyYear() {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        String input = RandomString.make(10);
+        var input = RandomString.make(10);
 
-        PuzzleEntity puzzleEntity = new PuzzleEntity(null, puzzle.getDay(), input);
+        var puzzleEntity = new PuzzleEntity(null, puzzle.getDay(), input);
 
         assertThrows(DataAccessException.class, () -> puzzleRepository.save(puzzleEntity));
     }
 
     @Test
     void throwsIfEmptyDay() {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        String input = RandomString.make(10);
+        var input = RandomString.make(10);
 
-        PuzzleEntity puzzleEntity = new PuzzleEntity(puzzle.getYear(), null, input);
+        var puzzleEntity = new PuzzleEntity(puzzle.getYear(), null, input);
 
         assertThrows(DataAccessException.class, () -> puzzleRepository.save(puzzleEntity));
     }
 
     @Test
     void throwsIfEmptyInput() {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        PuzzleEntity puzzleEntity = new PuzzleEntity(puzzle.getYear(), puzzle.getDay(), null);
+        var puzzleEntity = new PuzzleEntity(puzzle.getYear(), puzzle.getDay(), null);
 
         assertThrows(DataAccessException.class, () -> puzzleRepository.save(puzzleEntity));
     }
 
     @Test
     void throwsIfInvalidYear() {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        String input = RandomString.make(10);
+        var input = RandomString.make(10);
 
-        PuzzleEntity puzzleEntity =
+        var puzzleEntity =
                 new PuzzleEntity(
                         RandomGenerator.getDefault().nextInt(2015), puzzle.getDay(), input);
 
@@ -78,13 +78,12 @@ class PuzzleEntityTest {
 
     @Test
     void throwsIfInvalidDay() {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        String input = RandomString.make(10);
+        var input = RandomString.make(10);
 
-        PuzzleEntity puzzleEntity =
-                new PuzzleEntity(puzzle.getYear(), generator.nextInt(26, 32), input);
+        var puzzleEntity = new PuzzleEntity(puzzle.getYear(), generator.nextInt(26, 32), input);
 
         assertThrows(DataAccessException.class, () -> puzzleRepository.save(puzzleEntity));
     }
@@ -92,14 +91,13 @@ class PuzzleEntityTest {
     @Test
     @DirtiesContext
     void doesNotInsertIfDuplicate() {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        String input = RandomString.make(10);
+        var input = RandomString.make(10);
 
-        PuzzleEntity puzzleEntity = new PuzzleEntity(puzzle.getYear(), puzzle.getDay(), input);
-        PuzzleEntity duplicatePuzzleEntity =
-                new PuzzleEntity(puzzle.getYear(), puzzle.getDay(), input);
+        var puzzleEntity = new PuzzleEntity(puzzle.getYear(), puzzle.getDay(), input);
+        var duplicatePuzzleEntity = new PuzzleEntity(puzzle.getYear(), puzzle.getDay(), input);
 
         puzzleRepository.save(puzzleEntity);
         puzzleRepository.save(duplicatePuzzleEntity);
@@ -110,12 +108,12 @@ class PuzzleEntityTest {
     @Test
     @DirtiesContext
     void doesNotThrowIfValid() {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        String input = RandomString.make(10);
+        var input = RandomString.make(10);
 
-        PuzzleEntity puzzleEntity = new PuzzleEntity(puzzle.getYear(), puzzle.getDay(), input);
+        var puzzleEntity = new PuzzleEntity(puzzle.getYear(), puzzle.getDay(), input);
 
         assertDoesNotThrow(() -> puzzleRepository.save(puzzleEntity));
         assertEquals(1L, puzzleRepository.count());

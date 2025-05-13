@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class TrebuchetPuzzleTest {
@@ -13,9 +12,9 @@ class TrebuchetPuzzleTest {
         InputReader inputReader =
                 new ResourceInputReader<>(TrebuchetPuzzle.class, "CalibrationDocument.txt");
 
-        TrebuchetPuzzle puzzle = new TrebuchetPuzzle();
+        var puzzle = new TrebuchetPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(142, output.partOne());
     }
@@ -26,9 +25,9 @@ class TrebuchetPuzzleTest {
                 new ResourceInputReader<>(
                         TrebuchetPuzzle.class, "CalibrationDigitsWithLetters.txt");
 
-        TrebuchetPuzzle puzzle = new TrebuchetPuzzle();
+        var puzzle = new TrebuchetPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(281, output.partTwo());
     }

@@ -15,25 +15,25 @@ public class PasswordPhilosophyPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        int sumOfValidOccurrencesInRange = 0;
-        int sumOfValidPositions = 0;
+        var sumOfValidOccurrencesInRange = 0;
+        var sumOfValidPositions = 0;
 
-        for (String line : inputReader.getInputList()) {
-            Scanner lineScanner = new Scanner(line);
+        for (var line : inputReader.getInputList()) {
+            var lineScanner = new Scanner(line);
             lineScanner.useDelimiter(": ");
-            String passwordPolicyString = lineScanner.next();
-            String password = lineScanner.next();
+            var passwordPolicyString = lineScanner.next();
+            var password = lineScanner.next();
             lineScanner.close();
 
-            Scanner policyScanner = new Scanner(passwordPolicyString);
-            String policyRange = policyScanner.next();
-            char target = policyScanner.next().charAt(0);
+            var policyScanner = new Scanner(passwordPolicyString);
+            var policyRange = policyScanner.next();
+            var target = policyScanner.next().charAt(0);
             policyScanner.close();
 
-            Scanner policyRangeScanner = new Scanner(policyRange);
+            var policyRangeScanner = new Scanner(policyRange);
             policyRangeScanner.useDelimiter("-");
-            int first = policyRangeScanner.nextInt();
-            int second = policyRangeScanner.nextInt();
+            var first = policyRangeScanner.nextInt();
+            var second = policyRangeScanner.nextInt();
             policyRangeScanner.close();
 
             PasswordPolicy rangePolicy = new OccurrencePasswordPolicy(first, second, target);

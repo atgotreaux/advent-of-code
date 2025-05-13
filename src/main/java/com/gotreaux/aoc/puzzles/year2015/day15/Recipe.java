@@ -13,7 +13,7 @@ record Recipe(List<Ingredient> ingredients, List<Integer> teaspoons) {
     }
 
     int getPropertyScore(Function<Ingredient, Integer> ingredientScore) {
-        int propertyScore =
+        var propertyScore =
                 IntStream.range(0, ingredients.size())
                         .map(i -> ingredientScore.apply(ingredients.get(i)) * teaspoons.get(i))
                         .sum();

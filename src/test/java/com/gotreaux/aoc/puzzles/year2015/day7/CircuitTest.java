@@ -10,7 +10,6 @@ import com.gotreaux.aoc.puzzles.year2015.day7.gate.OrGate;
 import com.gotreaux.aoc.puzzles.year2015.day7.gate.RightShiftGate;
 import com.gotreaux.aoc.puzzles.year2015.day7.wire.GateWire;
 import com.gotreaux.aoc.puzzles.year2015.day7.wire.SignalWire;
-import com.gotreaux.aoc.puzzles.year2015.day7.wire.Wire;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.random.RandomGenerator;
@@ -19,9 +18,9 @@ import org.junit.jupiter.api.Test;
 class CircuitTest {
     @Test
     void getWire() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        List<Wire> wires =
+        var wires =
                 List.of(
                         new SignalWire("x", "123"),
                         new SignalWire("y", "456"),
@@ -32,17 +31,17 @@ class CircuitTest {
                         new GateWire("h", new NotGate("x")),
                         new GateWire("i", new NotGate("y")));
 
-        Circuit circuit = new Circuit(wires);
+        var circuit = new Circuit(wires);
 
-        int index = generator.nextInt(0, wires.size());
-        Wire wire = wires.get(index);
+        var index = generator.nextInt(0, wires.size());
+        var wire = wires.get(index);
 
         assertEquals(wire, circuit.getWire(wire.getLabel()));
     }
 
     @Test
     void throwsIfCannotFindWire() {
-        List<Wire> wires =
+        var wires =
                 List.of(
                         new SignalWire("x", "123"),
                         new SignalWire("y", "456"),
@@ -53,7 +52,7 @@ class CircuitTest {
                         new GateWire("h", new NotGate("x")),
                         new GateWire("i", new NotGate("y")));
 
-        Circuit circuit = new Circuit(wires);
+        var circuit = new Circuit(wires);
 
         assertThrows(NoSuchElementException.class, () -> circuit.getWire("a"));
     }

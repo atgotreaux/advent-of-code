@@ -17,7 +17,7 @@ class NotGateTest {
     void evaluate(String label, int signal, int expected) {
         List<Wire> wires = List.of(new SignalWire(label, String.valueOf(signal)));
 
-        Circuit circuit = new Circuit(wires);
+        var circuit = new Circuit(wires);
 
         Gate gate = new NotGate(label);
 

@@ -25,15 +25,15 @@ public class CamelCardsPuzzle extends Puzzle {
         List<Hand> hands = new ArrayList<>(input.size());
         List<Hand> jokerHands = new ArrayList<>(input.size());
 
-        for (String line : input) {
-            Scanner scanner = new Scanner(line);
-            String cardLabels = scanner.next();
-            int bid = scanner.nextInt();
+        for (var line : input) {
+            var scanner = new Scanner(line);
+            var cardLabels = scanner.next();
+            var bid = scanner.nextInt();
             scanner.close();
 
             List<Card> cards = new ArrayList<>(cardLabels.length());
             List<Card> jokerCards = new ArrayList<>(cardLabels.length());
-            for (int i = 0; i < cardLabels.length(); i++) {
+            for (var i = 0; i < cardLabels.length(); i++) {
                 cards.add(Card.of(cardLabels.charAt(i), Card.JOKER));
                 jokerCards.add(Card.of(cardLabels.charAt(i), Card.JACK));
             }

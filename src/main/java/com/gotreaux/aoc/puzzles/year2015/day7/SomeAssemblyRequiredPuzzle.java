@@ -19,8 +19,8 @@ public class SomeAssemblyRequiredPuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         Collection<Wire> wires = inputReader.getInputStream().map(Wire::of).toList();
-        Circuit firstCircuit = new Circuit(wires);
-        int signalA = firstCircuit.evaluate("a");
+        var firstCircuit = new Circuit(wires);
+        var signalA = firstCircuit.evaluate("a");
 
         Function<Wire, Wire> remapWireB =
                 wire ->
@@ -29,7 +29,7 @@ public class SomeAssemblyRequiredPuzzle extends Puzzle {
                                 : wire;
         wires = wires.stream().map(remapWireB).toList();
 
-        Circuit secondCircuit = new Circuit(wires);
+        var secondCircuit = new Circuit(wires);
 
         return new PuzzleOutput<>(signalA, secondCircuit.evaluate("a"));
     }

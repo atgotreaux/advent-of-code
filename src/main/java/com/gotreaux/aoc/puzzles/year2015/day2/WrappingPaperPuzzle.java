@@ -15,20 +15,20 @@ public class WrappingPaperPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        int wrappingPaperOrderTotal = 0;
-        int ribbonOrderTotal = 0;
+        var wrappingPaperOrderTotal = 0;
+        var ribbonOrderTotal = 0;
 
-        for (String line : inputReader.getInputList()) {
-            Scanner scanner = new Scanner(line);
+        for (var line : inputReader.getInputList()) {
+            var scanner = new Scanner(line);
             scanner.useDelimiter("x");
 
-            int length = scanner.nextInt();
-            int width = scanner.nextInt();
-            int height = scanner.nextInt();
+            var length = scanner.nextInt();
+            var width = scanner.nextInt();
+            var height = scanner.nextInt();
 
             scanner.close();
 
-            Present present = new Present(length, width, height);
+            var present = new Present(length, width, height);
 
             wrappingPaperOrderTotal += present.getSurfaceArea() + present.getAreaOfSmallestSide();
             ribbonOrderTotal += present.getSmallestPerimeter() + present.getVolume();

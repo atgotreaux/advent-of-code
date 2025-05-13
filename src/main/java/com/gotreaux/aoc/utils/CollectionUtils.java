@@ -16,11 +16,11 @@ public final class CollectionUtils {
             result.add(new ArrayList<>());
             return result;
         }
-        T first = collection.getFirst();
+        var first = collection.getFirst();
         List<List<T>> returnList = new ArrayList<>();
-        List<List<T>> permutations = permutations(collection.subList(1, collection.size()));
-        for (List<T> smallerPermutated : permutations) {
-            for (int i = 0; i <= smallerPermutated.size(); i++) {
+        var permutations = permutations(collection.subList(1, collection.size()));
+        for (var smallerPermutated : permutations) {
+            for (var i = 0; i <= smallerPermutated.size(); i++) {
                 List<T> temp = new ArrayList<>(smallerPermutated);
                 temp.add(i, first);
                 returnList.add(temp);
@@ -30,9 +30,9 @@ public final class CollectionUtils {
     }
 
     public static <T> List<List<T>> circularPermutations(List<T> collection) {
-        T first = collection.getFirst();
+        var first = collection.getFirst();
 
-        List<List<T>> permutations = permutations(collection.subList(1, collection.size()));
+        var permutations = permutations(collection.subList(1, collection.size()));
 
         return permutations.stream()
                 .map(permutation -> Stream.concat(Stream.of(first), permutation.stream()).toList())
@@ -52,7 +52,7 @@ public final class CollectionUtils {
             return;
         }
 
-        for (T element : elements) {
+        for (var element : elements) {
             combination.add(element);
             combination(elements, length, combination, combinations);
             combination.removeLast();
@@ -62,7 +62,7 @@ public final class CollectionUtils {
     public static <T> Collection<Optional<T>> optionalValues(T[] values) {
         Collection<Optional<T>> optionalValues = new ArrayList<>(values.length + 1);
         optionalValues.add(Optional.empty());
-        for (T value : values) {
+        for (var value : values) {
             optionalValues.add(Optional.of(value));
         }
         return optionalValues;

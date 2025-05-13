@@ -17,24 +17,24 @@ public class CorruptionChecksumPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        int sumOfLargestDifferences = 0;
-        int sumOfLargestDivisibility = 0;
+        var sumOfLargestDifferences = 0;
+        var sumOfLargestDivisibility = 0;
 
-        for (String line : inputReader.getInputList()) {
+        for (var line : inputReader.getInputList()) {
             Collection<Integer> numbers = new ArrayList<>();
-            int largest = Integer.MIN_VALUE;
-            int smallest = Integer.MAX_VALUE;
+            var largest = Integer.MIN_VALUE;
+            var smallest = Integer.MAX_VALUE;
 
-            Scanner scanner = new Scanner(line);
+            var scanner = new Scanner(line);
             while (scanner.hasNextLong()) {
-                int number = scanner.nextInt();
+                var number = scanner.nextInt();
 
                 largest = Math.max(largest, number);
                 smallest = Math.min(smallest, number);
 
                 for (int previousNumber : numbers) {
-                    int larger = Math.max(previousNumber, number);
-                    int smaller = Math.min(previousNumber, number);
+                    var larger = Math.max(previousNumber, number);
+                    var smaller = Math.min(previousNumber, number);
                     if (larger % smaller == 0) {
                         sumOfLargestDivisibility += larger / smaller;
                     }

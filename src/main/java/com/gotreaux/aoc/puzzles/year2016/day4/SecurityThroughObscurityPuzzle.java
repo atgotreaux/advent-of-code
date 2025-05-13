@@ -17,9 +17,9 @@ public class SecurityThroughObscurityPuzzle extends Puzzle {
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         Collection<Room> rooms = inputReader.getInputStream().map(Room::of).toList();
 
-        int sumOfRealRooms = rooms.stream().filter(Room::isValid).mapToInt(Room::sectorID).sum();
+        var sumOfRealRooms = rooms.stream().filter(Room::isValid).mapToInt(Room::sectorID).sum();
 
-        int northPoleSectorID =
+        var northPoleSectorID =
                 rooms.stream()
                         .filter(room -> room.decryptName().equals("northpoleobjectstorage"))
                         .mapToInt(Room::sectorID)

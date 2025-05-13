@@ -6,7 +6,6 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.graph.Edge;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,12 +17,12 @@ public class RudolphMedicinePuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        String molecule = "";
-        MapReplacementEdgeFunction mapReplacementEdge = new MapReplacementEdgeFunction();
+        var molecule = "";
+        var mapReplacementEdge = new MapReplacementEdgeFunction();
         Collection<Edge> replacements = new ArrayList<>(input.size() - 2);
-        for (String line : input) {
+        for (var line : input) {
             if (MapReplacementEdgeFunction.PATTERN.matcher(line).matches()) {
                 replacements.add(mapReplacementEdge.apply(line));
             } else if (!line.isEmpty()) {
@@ -31,10 +30,10 @@ public class RudolphMedicinePuzzle extends Puzzle {
             }
         }
 
-        MoleculeMachine moleculeMachine = new MoleculeMachine(replacements, molecule);
+        var moleculeMachine = new MoleculeMachine(replacements, molecule);
 
-        int calibrationMolecules = moleculeMachine.getCalibrationMolecules().size();
-        int stepsToFabricate = moleculeMachine.getStepCountToFabricate();
+        var calibrationMolecules = moleculeMachine.getCalibrationMolecules().size();
+        var stepsToFabricate = moleculeMachine.getStepCountToFabricate();
 
         return new PuzzleOutput<>(calibrationMolecules, stepsToFabricate);
     }

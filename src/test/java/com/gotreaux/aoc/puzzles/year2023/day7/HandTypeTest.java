@@ -12,7 +12,7 @@ class HandTypeTest {
     @ParameterizedTest
     @MethodSource("provideParseType")
     void parseType(Card v, Card w, Card x, Card y, Card z, HandType expectedType) {
-        List<Card> cards = List.of(v, w, x, y, z);
+        var cards = List.of(v, w, x, y, z);
 
         assertEquals(expectedType, HandType.of(cards));
     }

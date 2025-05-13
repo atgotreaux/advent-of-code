@@ -8,13 +8,13 @@ import java.util.Scanner;
 record Line(int x1, int y1, int x2, int y2) {
 
     static Line of(String line) {
-        Scanner scanner = new Scanner(line);
+        var scanner = new Scanner(line);
         scanner.useDelimiter(",| -> ");
 
-        int x1 = scanner.nextInt();
-        int y1 = scanner.nextInt();
-        int x2 = scanner.nextInt();
-        int y2 = scanner.nextInt();
+        var x1 = scanner.nextInt();
+        var y1 = scanner.nextInt();
+        var x2 = scanner.nextInt();
+        var y2 = scanner.nextInt();
 
         scanner.close();
 
@@ -32,8 +32,8 @@ record Line(int x1, int y1, int x2, int y2) {
     Collection<Point> getPoints() {
         Collection<Point> points = new ArrayList<>(Math.max(Math.abs(x1 - x2), Math.abs(y1 - y2)));
 
-        int row = x1;
-        int col = y1;
+        var row = x1;
+        var col = y1;
         while (row != x2 || col != y2) {
             points.add(new Point(row, col));
             if (x1 > x2) {

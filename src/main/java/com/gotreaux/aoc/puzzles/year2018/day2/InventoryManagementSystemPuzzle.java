@@ -7,8 +7,6 @@ import static java.util.stream.Collectors.groupingBy;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.util.List;
-import java.util.Map;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,16 +18,16 @@ public class InventoryManagementSystemPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, String> solve(InputReader inputReader) throws Exception {
-        List<String> lines = inputReader.getInputList();
+        var lines = inputReader.getInputList();
 
-        int boxIdsWithTwoOfLetter = 0;
-        int boxIdsWithThreeOfLetter = 0;
-        String commonLettersOfCorrectBoxIds = "";
+        var boxIdsWithTwoOfLetter = 0;
+        var boxIdsWithThreeOfLetter = 0;
+        var commonLettersOfCorrectBoxIds = "";
 
-        for (int i = 0; i < lines.size(); i++) {
-            String line = lines.get(i);
+        for (var i = 0; i < lines.size(); i++) {
+            var line = lines.get(i);
 
-            Map<Integer, Long> characterOccurrences =
+            var characterOccurrences =
                     line.chars().boxed().collect(groupingBy(identity(), counting()));
             if (characterOccurrences.containsValue(2L)) {
                 boxIdsWithTwoOfLetter++;
@@ -38,11 +36,11 @@ public class InventoryManagementSystemPuzzle extends Puzzle {
                 boxIdsWithThreeOfLetter++;
             }
 
-            for (int j = i + 1; j < lines.size(); j++) {
-                String nextLine = lines.get(j);
-                int difference = 0;
-                StringBuilder commonLetters = new StringBuilder(line.length());
-                for (int k = 0; k < line.length(); k++) {
+            for (var j = i + 1; j < lines.size(); j++) {
+                var nextLine = lines.get(j);
+                var difference = 0;
+                var commonLetters = new StringBuilder(line.length());
+                for (var k = 0; k < line.length(); k++) {
                     if (line.charAt(k) == nextLine.charAt(k)) {
                         commonLetters.append(line.charAt(k));
                     } else {
@@ -58,7 +56,7 @@ public class InventoryManagementSystemPuzzle extends Puzzle {
             }
         }
 
-        int productOfOccurrences = boxIdsWithTwoOfLetter * boxIdsWithThreeOfLetter;
+        var productOfOccurrences = boxIdsWithTwoOfLetter * boxIdsWithThreeOfLetter;
 
         return new PuzzleOutput<>(productOfOccurrences, commonLettersOfCorrectBoxIds);
     }

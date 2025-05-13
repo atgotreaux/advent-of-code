@@ -11,7 +11,7 @@ class ForbiddenCharsPredicateTest {
     @ParameterizedTest
     @MethodSource("provideTest")
     void test(String input, boolean expected) {
-        ForbiddenCharsPredicate predicate = new ForbiddenCharsPredicate();
+        var predicate = new ForbiddenCharsPredicate();
 
         assertEquals(expected, predicate.test(input));
     }

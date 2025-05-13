@@ -14,13 +14,13 @@ public class LookSayPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        String partOne = inputReader.getInputString();
+        var partOne = inputReader.getInputString();
 
-        for (int i = 0; i < 40; i++) {
+        for (var i = 0; i < 40; i++) {
             partOne = saySequence(partOne);
         }
-        String partTwo = partOne;
-        for (int i = 0; i < 10; i++) {
+        var partTwo = partOne;
+        for (var i = 0; i < 10; i++) {
             partTwo = saySequence(partTwo);
         }
 
@@ -28,12 +28,12 @@ public class LookSayPuzzle extends Puzzle {
     }
 
     static String saySequence(CharSequence sequence) {
-        StringBuilder sayBuilder = new StringBuilder(sequence.length());
+        var sayBuilder = new StringBuilder(sequence.length());
 
-        int cursor = 0;
+        var cursor = 0;
         while (cursor < sequence.length()) {
-            int occurrences = 1;
-            char c = sequence.charAt(cursor);
+            var occurrences = 1;
+            var c = sequence.charAt(cursor);
 
             while (cursor < sequence.length() - 1 && c == sequence.charAt(cursor + 1)) {
                 cursor++;

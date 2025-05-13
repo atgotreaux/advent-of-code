@@ -12,7 +12,7 @@ class ReportTest {
     @ParameterizedTest
     @MethodSource("provideIsSafe")
     void isSafe(String line, Tolerance tolerance, boolean expected) {
-        Report report = Report.of(line);
+        var report = Report.of(line);
 
         assertEquals(expected, report.isSafe(tolerance));
     }

@@ -29,7 +29,7 @@ public class InputWriterFactory {
             case RESOURCE_WRITER -> new ResourceInputWriter<>(puzzle.getClass());
             default -> {
                 try {
-                    Path filePath = Path.of(target);
+                    var filePath = Path.of(target);
                     if (Files.exists(filePath) && Files.isRegularFile(filePath)) {
                         yield new FileInputWriter(target);
                     }

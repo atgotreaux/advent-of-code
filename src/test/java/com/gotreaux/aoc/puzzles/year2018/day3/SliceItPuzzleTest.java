@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class SliceItPuzzleTest {
@@ -12,9 +11,9 @@ class SliceItPuzzleTest {
     void overlapArea() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(SliceItPuzzle.class);
 
-        SliceItPuzzle puzzle = new SliceItPuzzle();
+        var puzzle = new SliceItPuzzle();
 
-        PuzzleOutput<Long, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(4L, output.partOne());
     }
@@ -23,9 +22,9 @@ class SliceItPuzzleTest {
     void intactClaim() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(SliceItPuzzle.class);
 
-        SliceItPuzzle puzzle = new SliceItPuzzle();
+        var puzzle = new SliceItPuzzle();
 
-        PuzzleOutput<Long, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(3, output.partTwo());
     }

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
 import com.gotreaux.aoc.input.reader.StringInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class TrianglePuzzleTest {
@@ -13,9 +12,9 @@ class TrianglePuzzleTest {
     void validTriangleRow() throws Exception {
         InputReader inputReader = new StringInputReader("5 10 25");
 
-        TrianglePuzzle puzzle = new TrianglePuzzle();
+        var puzzle = new TrianglePuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(0L, output.partOne());
     }
@@ -24,9 +23,9 @@ class TrianglePuzzleTest {
     void validTriangleColumn() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(TrianglePuzzle.class);
 
-        TrianglePuzzle puzzle = new TrianglePuzzle();
+        var puzzle = new TrianglePuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(6L, output.partTwo());
     }

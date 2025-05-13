@@ -16,7 +16,6 @@ import java.net.HttpURLConnection;
 import java.net.http.HttpClient;
 import java.net.http.HttpResponse;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.util.HexFormat;
 import java.util.List;
@@ -48,7 +47,7 @@ class SeedPuzzleCommandTest {
 
     @Test
     void commandAvailable() {
-        ShellTestClient.NonInteractiveShellSession session = client.nonInterative("help").run();
+        var session = client.nonInterative("help").run();
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
@@ -59,8 +58,7 @@ class SeedPuzzleCommandTest {
 
     @Test
     void help() {
-        ShellTestClient.NonInteractiveShellSession session =
-                client.nonInterative(SeedPuzzleCommand.COMMAND_NAME, "--help").run();
+        var session = client.nonInterative(SeedPuzzleCommand.COMMAND_NAME, "--help").run();
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
@@ -74,8 +72,7 @@ class SeedPuzzleCommandTest {
 
     @Test
     void yearRequired() {
-        ShellTestClient.NonInteractiveShellSession session =
-                client.nonInterative(SeedPuzzleCommand.COMMAND_NAME).run();
+        var session = client.nonInterative(SeedPuzzleCommand.COMMAND_NAME).run();
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
@@ -86,19 +83,19 @@ class SeedPuzzleCommandTest {
 
     @Test
     void invalidYear() throws Exception {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        String year = String.valueOf(generator.nextInt(2015));
+        var year = String.valueOf(generator.nextInt(2015));
 
-        byte[] bytes = new byte[generator.nextInt(0, 10)];
+        var bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
 
-        MessageDigest md = MessageDigest.getInstance("SHA-512");
+        var md = MessageDigest.getInstance("SHA-512");
         md.update(bytes);
-        String sessionId = HexFormat.of().formatHex(md.digest());
+        var sessionId = HexFormat.of().formatHex(md.digest());
 
-        ShellTestClient.NonInteractiveShellSession session =
+        var session =
                 client.nonInterative(
                                 SeedPuzzleCommand.COMMAND_NAME,
                                 "-Y",
@@ -118,8 +115,7 @@ class SeedPuzzleCommandTest {
 
     @Test
     void dayRequired() {
-        ShellTestClient.NonInteractiveShellSession session =
-                client.nonInterative(SeedPuzzleCommand.COMMAND_NAME).run();
+        var session = client.nonInterative(SeedPuzzleCommand.COMMAND_NAME).run();
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
@@ -130,19 +126,19 @@ class SeedPuzzleCommandTest {
 
     @Test
     void invalidDay() throws Exception {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        String day = String.valueOf(generator.nextInt(26, 32));
+        var day = String.valueOf(generator.nextInt(26, 32));
 
-        byte[] bytes = new byte[generator.nextInt(0, 10)];
+        var bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
 
-        MessageDigest md = MessageDigest.getInstance("SHA-512");
+        var md = MessageDigest.getInstance("SHA-512");
         md.update(bytes);
-        String sessionId = HexFormat.of().formatHex(md.digest());
+        var sessionId = HexFormat.of().formatHex(md.digest());
 
-        ShellTestClient.NonInteractiveShellSession session =
+        var session =
                 client.nonInterative(
                                 SeedPuzzleCommand.COMMAND_NAME,
                                 "-Y",
@@ -162,8 +158,7 @@ class SeedPuzzleCommandTest {
 
     @Test
     void sessionRequired() {
-        ShellTestClient.NonInteractiveShellSession session =
-                client.nonInterative(SeedPuzzleCommand.COMMAND_NAME).run();
+        var session = client.nonInterative(SeedPuzzleCommand.COMMAND_NAME).run();
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
@@ -174,17 +169,17 @@ class SeedPuzzleCommandTest {
 
     @Test
     void invalidSession() throws Exception {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        byte[] bytes = new byte[generator.nextInt(0, 10)];
+        var bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
 
-        MessageDigest md = MessageDigest.getInstance("MD5");
+        var md = MessageDigest.getInstance("MD5");
         md.update(bytes);
-        String sessionId = HexFormat.of().formatHex(md.digest());
+        var sessionId = HexFormat.of().formatHex(md.digest());
 
-        ShellTestClient.NonInteractiveShellSession session =
+        var session =
                 client.nonInterative(
                                 SeedPuzzleCommand.COMMAND_NAME,
                                 "-Y",
@@ -204,22 +199,22 @@ class SeedPuzzleCommandTest {
 
     @Test
     void statusCodeMessage() throws Exception {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        byte[] sessionBytes = new byte[generator.nextInt(0, 10)];
+        var sessionBytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(sessionBytes);
 
-        MessageDigest md = MessageDigest.getInstance("SHA-512");
+        var md = MessageDigest.getInstance("SHA-512");
         md.update(sessionBytes);
-        String sessionId = HexFormat.of().formatHex(md.digest());
+        var sessionId = HexFormat.of().formatHex(md.digest());
 
         HttpResponse<String> mockResponse = Mockito.mock(HttpResponse.class);
         Mockito.when(mockResponse.statusCode()).thenReturn(HttpURLConnection.HTTP_UNAUTHORIZED);
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenAnswer(_ -> mockResponse);
 
-        ShellTestClient.NonInteractiveShellSession session =
+        var session =
                 client.nonInterative(
                                 SeedPuzzleCommand.COMMAND_NAME,
                                 "-Y",
@@ -244,15 +239,15 @@ class SeedPuzzleCommandTest {
 
     @Test
     void emptyResponseMessage() throws Exception {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        byte[] sessionBytes = new byte[generator.nextInt(0, 10)];
+        var sessionBytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(sessionBytes);
 
-        MessageDigest md = MessageDigest.getInstance("SHA-512");
+        var md = MessageDigest.getInstance("SHA-512");
         md.update(sessionBytes);
-        String sessionId = HexFormat.of().formatHex(md.digest());
+        var sessionId = HexFormat.of().formatHex(md.digest());
 
         HttpResponse<String> mockResponse = Mockito.mock(HttpResponse.class);
         Mockito.when(mockResponse.statusCode()).thenReturn(HttpURLConnection.HTTP_OK);
@@ -260,7 +255,7 @@ class SeedPuzzleCommandTest {
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenAnswer(_ -> mockResponse);
 
-        ShellTestClient.NonInteractiveShellSession session =
+        var session =
                 client.nonInterative(
                                 SeedPuzzleCommand.COMMAND_NAME,
                                 "-Y",
@@ -287,17 +282,17 @@ class SeedPuzzleCommandTest {
     @Test
     @DirtiesContext
     void writesToDatabase() throws Exception {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        byte[] sessionBytes = new byte[generator.nextInt(0, 10)];
+        var sessionBytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(sessionBytes);
 
-        MessageDigest md = MessageDigest.getInstance("SHA-512");
+        var md = MessageDigest.getInstance("SHA-512");
         md.update(sessionBytes);
-        String sessionId = HexFormat.of().formatHex(md.digest());
+        var sessionId = HexFormat.of().formatHex(md.digest());
 
-        String input = RandomString.make(10);
+        var input = RandomString.make(10);
 
         HttpResponse<String> mockResponse = Mockito.mock(HttpResponse.class);
         Mockito.when(mockResponse.statusCode()).thenReturn(HttpURLConnection.HTTP_OK);
@@ -305,7 +300,7 @@ class SeedPuzzleCommandTest {
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenAnswer(_ -> mockResponse);
 
-        ShellTestClient.NonInteractiveShellSession session =
+        var session =
                 client.nonInterative(
                                 SeedPuzzleCommand.COMMAND_NAME,
                                 "-Y",
@@ -336,21 +331,21 @@ class SeedPuzzleCommandTest {
     @Test
     @DirtiesContext
     void writesToFile() throws Exception {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        byte[] sessionBytes = new byte[generator.nextInt(0, 10)];
+        var sessionBytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(sessionBytes);
 
-        MessageDigest md = MessageDigest.getInstance("SHA-512");
+        var md = MessageDigest.getInstance("SHA-512");
         md.update(sessionBytes);
-        String sessionId = HexFormat.of().formatHex(md.digest());
+        var sessionId = HexFormat.of().formatHex(md.digest());
 
-        String input = RandomString.make(10);
+        var input = RandomString.make(10);
 
-        Path path = Files.createTempFile("input", ".txt");
+        var path = Files.createTempFile("input", ".txt");
 
-        String inputPath =
+        var inputPath =
                 path.toAbsolutePath()
                         .toString()
                         .replaceAll(
@@ -363,7 +358,7 @@ class SeedPuzzleCommandTest {
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenAnswer(_ -> mockResponse);
 
-        ShellTestClient.NonInteractiveShellSession session =
+        var session =
                 client.nonInterative(
                                 SeedPuzzleCommand.COMMAND_NAME,
                                 "-Y",
@@ -394,17 +389,17 @@ class SeedPuzzleCommandTest {
     @Test
     @DirtiesContext
     void writesToResource() throws Exception {
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
+        var puzzle = new ApartmentFloorPuzzle();
 
-        RandomGenerator generator = RandomGenerator.getDefault();
-        byte[] sessionBytes = new byte[generator.nextInt(0, 10)];
+        var generator = RandomGenerator.getDefault();
+        var sessionBytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(sessionBytes);
 
-        MessageDigest md = MessageDigest.getInstance("SHA-512");
+        var md = MessageDigest.getInstance("SHA-512");
         md.update(sessionBytes);
-        String sessionId = HexFormat.of().formatHex(md.digest());
+        var sessionId = HexFormat.of().formatHex(md.digest());
 
-        String input = RandomString.make(10);
+        var input = RandomString.make(10);
 
         HttpResponse<String> mockResponse = Mockito.mock(HttpResponse.class);
         Mockito.when(mockResponse.statusCode()).thenReturn(HttpURLConnection.HTTP_OK);
@@ -412,7 +407,7 @@ class SeedPuzzleCommandTest {
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenAnswer(_ -> mockResponse);
 
-        ShellTestClient.NonInteractiveShellSession session =
+        var session =
                 client.nonInterative(
                                 SeedPuzzleCommand.COMMAND_NAME,
                                 "-Y",

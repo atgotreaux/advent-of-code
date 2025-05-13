@@ -16,8 +16,8 @@ public class InfiniteElvesPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        int presentTarget = Integer.parseInt(inputReader.getInputString());
-        int maxHouseNumber = presentTarget / 10;
+        var presentTarget = Integer.parseInt(inputReader.getInputString());
+        var maxHouseNumber = presentTarget / 10;
 
         Collection<Elf> infiniteElves =
                 IntStream.rangeClosed(1, maxHouseNumber)
@@ -27,8 +27,8 @@ public class InfiniteElvesPuzzle extends Puzzle {
         Collection<Elf> finiteElves =
                 IntStream.rangeClosed(1, maxHouseNumber).mapToObj(i -> new Elf(i, 50, 11)).toList();
 
-        Delivery infiniteDelivery = new Delivery(infiniteElves, presentTarget);
-        Delivery finiteDelivery = new Delivery(finiteElves, presentTarget);
+        var infiniteDelivery = new Delivery(infiniteElves, presentTarget);
+        var finiteDelivery = new Delivery(finiteElves, presentTarget);
 
         return new PuzzleOutput<>(
                 infiniteDelivery.getMinimumHouseNumber(), finiteDelivery.getMinimumHouseNumber());

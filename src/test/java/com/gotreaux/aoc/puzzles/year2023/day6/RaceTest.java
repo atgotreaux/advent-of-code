@@ -13,13 +13,13 @@ import org.junit.jupiter.params.provider.MethodSource;
 class RaceTest {
     @Test
     void throwsIfNonPositiveRace() {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        int negativeArgumentIndex = generator.nextInt(1, 3);
-        long time =
+        var generator = RandomGenerator.getDefault();
+        var negativeArgumentIndex = generator.nextInt(1, 3);
+        var time =
                 negativeArgumentIndex == 1
                         ? -Math.abs(generator.nextLong())
                         : Math.abs(generator.nextLong());
-        long recordDistance =
+        var recordDistance =
                 negativeArgumentIndex == 2
                         ? -Math.abs(generator.nextLong())
                         : Math.abs(generator.nextLong());
@@ -30,7 +30,7 @@ class RaceTest {
     @ParameterizedTest
     @MethodSource("provideWaysToWin")
     void waysToWin(long time, long recordDistance, long expectedCount) {
-        Race race = new Race(time, recordDistance);
+        var race = new Race(time, recordDistance);
 
         assertEquals(expectedCount, race.getWaysToWin());
     }

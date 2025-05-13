@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
 import com.gotreaux.aoc.utils.matrix.CharMatrix;
-import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -17,11 +16,11 @@ class SlopeTest {
     void treesEncountered(int right, int down, int expectedTrees) throws Exception {
         InputReader inputReader = new ResourceInputReader<>(TobogganTrajectoryPuzzle.class);
 
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        CharMatrix matrix = new CharMatrix(input);
+        var matrix = new CharMatrix(input);
 
-        Slope slope = new Slope(right, down);
+        var slope = new Slope(right, down);
 
         assertEquals(expectedTrees, slope.getTreesEncountered(matrix));
     }

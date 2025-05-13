@@ -2,7 +2,6 @@ package com.gotreaux.aoc.puzzles.year2015.day19;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.utils.graph.Edge;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -13,8 +12,8 @@ class MapReplacementEdgeFunctionTest {
     @ParameterizedTest
     @MethodSource("provideApply")
     void apply(String line, String expectedFrom, String expectedTo) {
-        MapReplacementEdgeFunction mapReplacementEdge = new MapReplacementEdgeFunction();
-        Edge replacement = mapReplacementEdge.apply(line);
+        var mapReplacementEdge = new MapReplacementEdgeFunction();
+        var replacement = mapReplacementEdge.apply(line);
 
         assertEquals(expectedFrom, replacement.from());
         assertEquals(expectedTo, replacement.to());

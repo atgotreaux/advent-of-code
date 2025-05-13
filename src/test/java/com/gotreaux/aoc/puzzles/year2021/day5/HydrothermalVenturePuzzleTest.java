@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class HydrothermalVenturePuzzleTest {
@@ -13,9 +12,9 @@ class HydrothermalVenturePuzzleTest {
     void overlappingOrthogonalPoints() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(HydrothermalVenturePuzzle.class);
 
-        HydrothermalVenturePuzzle puzzle = new HydrothermalVenturePuzzle();
+        var puzzle = new HydrothermalVenturePuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(5L, output.partOne());
     }
@@ -24,9 +23,9 @@ class HydrothermalVenturePuzzleTest {
     void allOverlappingPoints() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(HydrothermalVenturePuzzle.class);
 
-        HydrothermalVenturePuzzle puzzle = new HydrothermalVenturePuzzle();
+        var puzzle = new HydrothermalVenturePuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(12L, output.partTwo());
     }

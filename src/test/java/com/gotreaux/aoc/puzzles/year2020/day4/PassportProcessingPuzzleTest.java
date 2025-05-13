@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,9 +16,9 @@ class PassportProcessingPuzzleTest {
         InputReader inputReader =
                 new ResourceInputReader<>(PassportProcessingPuzzle.class, "RequiredFields.txt");
 
-        PassportProcessingPuzzle puzzle = new PassportProcessingPuzzle();
+        var puzzle = new PassportProcessingPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(2, output.partOne());
     }
@@ -30,9 +29,9 @@ class PassportProcessingPuzzleTest {
         InputReader inputReader =
                 new ResourceInputReader<>(PassportProcessingPuzzle.class, fileName);
 
-        PassportProcessingPuzzle puzzle = new PassportProcessingPuzzle();
+        var puzzle = new PassportProcessingPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(expected, output.partTwo());
     }

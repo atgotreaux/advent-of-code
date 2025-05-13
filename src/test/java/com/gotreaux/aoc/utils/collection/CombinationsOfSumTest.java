@@ -18,12 +18,11 @@ class CombinationsOfSumTest {
             UniqueCombinationElements uniqueElements,
             int addends,
             int expectedSize) {
-        CombinationsOfSum combinationsOfSum =
-                new CombinationsOfSum(sum, variableLength, uniqueElements);
+        var combinationsOfSum = new CombinationsOfSum(sum, variableLength, uniqueElements);
 
-        List<List<Integer>> combinations = combinationsOfSum.of(addends);
+        var combinations = combinationsOfSum.of(addends);
 
-        long expectedSumCount =
+        var expectedSumCount =
                 combinations.stream()
                         .map(combination -> combination.stream().reduce(0, Integer::sum))
                         .filter(combinationSum -> combinationSum == sum)
@@ -40,12 +39,12 @@ class CombinationsOfSumTest {
             UniqueCombinationElements uniqueElements,
             List<Integer> addends,
             int expectedSize) {
-        CombinationsOfSum combinationsOfSum =
+        var combinationsOfSum =
                 new CombinationsOfSum(sum, variableCombinationLength, uniqueElements);
 
-        List<List<Integer>> combinations = combinationsOfSum.of(addends);
+        var combinations = combinationsOfSum.of(addends);
 
-        long expectedSumCount =
+        var expectedSumCount =
                 combinations.stream()
                         .map(combination -> combination.stream().reduce(0, Integer::sum))
                         .filter(combinationSum -> combinationSum == sum)

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class SumOfPartsPuzzleTest {
@@ -12,9 +11,9 @@ class SumOfPartsPuzzleTest {
     void stepOrder() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(SumOfPartsPuzzle.class);
 
-        SumOfPartsPuzzle puzzle = new SumOfPartsPuzzle();
+        var puzzle = new SumOfPartsPuzzle();
 
-        PuzzleOutput<String, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals("CABDFE", output.partOne());
     }

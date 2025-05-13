@@ -24,12 +24,12 @@ public class SeedLocationPuzzle extends Puzzle {
         Collection<List<AlmanacRange>> maps = new ArrayList<>();
         List<AlmanacRange> map = new ArrayList<>();
 
-        for (String line : inputReader.getInputList()) {
+        for (var line : inputReader.getInputList()) {
             if (line.startsWith("seeds:")) {
-                Scanner scanner = new Scanner(line.replace("seeds: ", ""));
+                var scanner = new Scanner(line.replace("seeds: ", ""));
                 while (scanner.hasNextLong()) {
-                    long seedStart = scanner.nextLong();
-                    long rangeLength = scanner.nextLong();
+                    var seedStart = scanner.nextLong();
+                    var rangeLength = scanner.nextLong();
                     seeds.add(seedStart);
                     seeds.add(rangeLength);
                     seedRanges.add(new SeedRange(seedStart, rangeLength));
@@ -41,10 +41,10 @@ public class SeedLocationPuzzle extends Puzzle {
                     map = new ArrayList<>();
                 }
             } else if (!line.isEmpty() && Character.isDigit(line.charAt(0))) {
-                Scanner scanner = new Scanner(line);
-                long destinationRangeStart = scanner.nextLong();
-                long sourceRangeStart = scanner.nextLong();
-                long rangeLength = scanner.nextLong();
+                var scanner = new Scanner(line);
+                var destinationRangeStart = scanner.nextLong();
+                var sourceRangeStart = scanner.nextLong();
+                var rangeLength = scanner.nextLong();
                 scanner.close();
 
                 map.add(new AlmanacRange(destinationRangeStart, sourceRangeStart, rangeLength));
@@ -52,12 +52,12 @@ public class SeedLocationPuzzle extends Puzzle {
         }
         maps.add(map);
 
-        Almanac almanac = new Almanac(maps);
+        var almanac = new Almanac(maps);
 
         long lowestLocationNumber =
                 seeds.stream().map(almanac::convert).min(Long::compare).orElseThrow();
 
-        long lowestLocationNumberInRange =
+        var lowestLocationNumberInRange =
                 seedRanges.stream()
                         .flatMapToLong(SeedRange::range)
                         .map(almanac::convert)

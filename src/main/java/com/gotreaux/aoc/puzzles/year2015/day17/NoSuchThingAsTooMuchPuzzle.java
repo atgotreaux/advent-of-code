@@ -18,17 +18,17 @@ public class NoSuchThingAsTooMuchPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Long> solve(InputReader inputReader) throws Exception {
-        List<Integer> containers = inputReader.getInputStream().map(Integer::parseInt).toList();
+        var containers = inputReader.getInputStream().map(Integer::parseInt).toList();
 
-        CombinationsOfSum combinationsOfSum =
+        var combinationsOfSum =
                 new CombinationsOfSum(
                         150, VariableCombinationLength.YES, UniqueCombinationElements.YES);
 
-        List<List<Integer>> combinations = combinationsOfSum.of(containers);
+        var combinations = combinationsOfSum.of(containers);
 
-        int minContainers = combinations.stream().mapToInt(List::size).min().orElseThrow();
+        var minContainers = combinations.stream().mapToInt(List::size).min().orElseThrow();
 
-        long minContainersCombinations =
+        var minContainersCombinations =
                 combinations.stream()
                         .filter(combination -> combination.size() == minContainers)
                         .count();

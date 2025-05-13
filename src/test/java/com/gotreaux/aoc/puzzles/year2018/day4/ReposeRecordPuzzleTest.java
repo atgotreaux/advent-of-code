@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class ReposeRecordPuzzleTest {
@@ -13,9 +12,9 @@ class ReposeRecordPuzzleTest {
     void guardMostMinutesAsleep() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(ReposeRecordPuzzle.class);
 
-        ReposeRecordPuzzle puzzle = new ReposeRecordPuzzle();
+        var puzzle = new ReposeRecordPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(240, output.partOne());
     }
@@ -24,9 +23,9 @@ class ReposeRecordPuzzleTest {
     void guardMinuteMostFrequentlyAsleep() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(ReposeRecordPuzzle.class);
 
-        ReposeRecordPuzzle puzzle = new ReposeRecordPuzzle();
+        var puzzle = new ReposeRecordPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(4455, output.partTwo());
     }

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import org.junit.jupiter.api.Test;
 
 class HauntedWastelandPuzzleTest {
@@ -13,9 +12,9 @@ class HauntedWastelandPuzzleTest {
         InputReader inputReader =
                 new ResourceInputReader<>(HauntedWastelandPuzzle.class, "NoRepeats.txt");
 
-        HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle();
+        var puzzle = new HauntedWastelandPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(2L, output.partOne());
     }
@@ -25,9 +24,9 @@ class HauntedWastelandPuzzleTest {
         InputReader inputReader =
                 new ResourceInputReader<>(HauntedWastelandPuzzle.class, "Repeats.txt");
 
-        HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle();
+        var puzzle = new HauntedWastelandPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(6L, output.partOne());
     }
@@ -37,9 +36,9 @@ class HauntedWastelandPuzzleTest {
         InputReader inputReader =
                 new ResourceInputReader<>(HauntedWastelandPuzzle.class, "Repeats.txt");
 
-        HauntedWastelandPuzzle puzzle = new HauntedWastelandPuzzle();
+        var puzzle = new HauntedWastelandPuzzle();
 
-        PuzzleOutput<Long, Long> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(6L, output.partTwo());
     }

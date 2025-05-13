@@ -21,7 +21,7 @@ abstract class Matrix<T> {
         rowCount = input.size();
 
         matrix = initialize();
-        for (int i = 0; i < rowCount; i++) {
+        for (var i = 0; i < rowCount; i++) {
             matrix[i] = mapper(input.get(i));
         }
 
@@ -135,22 +135,22 @@ abstract class Matrix<T> {
     public T[] neighbors(int row, int col) {
         Stream<T> neighbors = Stream.of();
 
-        T[] up = up(row, col);
+        var up = up(row, col);
         if (up.length > 0) {
             neighbors = Stream.concat(neighbors, Arrays.stream(Arrays.copyOfRange(up, 0, 1)));
         }
 
-        T[] down = down(row, col);
+        var down = down(row, col);
         if (down.length > 0) {
             neighbors = Stream.concat(neighbors, Arrays.stream(Arrays.copyOfRange(down, 0, 1)));
         }
 
-        T[] left = left(row, col);
+        var left = left(row, col);
         if (left.length > 0) {
             neighbors = Stream.concat(neighbors, Arrays.stream(Arrays.copyOfRange(left, 0, 1)));
         }
 
-        T[] right = right(row, col);
+        var right = right(row, col);
         if (right.length > 0) {
             neighbors = Stream.concat(neighbors, Arrays.stream(Arrays.copyOfRange(right, 0, 1)));
         }

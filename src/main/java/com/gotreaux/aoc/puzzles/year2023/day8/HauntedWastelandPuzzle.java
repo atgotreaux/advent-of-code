@@ -25,25 +25,25 @@ public class HauntedWastelandPuzzle extends Puzzle {
         List<RelativeDirection> directions = new ArrayList<>();
         List<Node> nodes = new ArrayList<>();
 
-        for (String line : inputReader.getInputList()) {
+        for (var line : inputReader.getInputList()) {
             if (DIRECTION_LINE.matcher(line).matches()) {
-                for (int i = 0; i < line.length(); i++) {
+                for (var i = 0; i < line.length(); i++) {
                     directions.add(RelativeDirection.of(line.charAt(i)));
                 }
             } else if (NODE_LINE.matcher(line).matches()) {
-                String[] nodeParts = NODE_DELIM.split(line.replace(" = (", ", ").replace(")", ""));
+                var nodeParts = NODE_DELIM.split(line.replace(" = (", ", ").replace(")", ""));
                 nodes.add(new Node(nodeParts[0], nodeParts[1], nodeParts[2]));
             }
         }
 
-        Network network = new Network(directions, nodes);
+        var network = new Network(directions, nodes);
 
-        long escapeWasteland =
+        var escapeWasteland =
                 network.getStepsForNodes(
                         node -> node.position().equals("AAA"),
                         node -> node.position().equals("ZZZ"));
 
-        long ghostsEscapeWasteland =
+        var ghostsEscapeWasteland =
                 network.getStepsForNodes(
                         node -> node.position().charAt(node.position().length() - 1) == 'A',
                         node -> node.position().charAt(node.position().length() - 1) == 'Z');

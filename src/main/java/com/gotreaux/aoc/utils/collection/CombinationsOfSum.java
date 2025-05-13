@@ -28,7 +28,7 @@ public class CombinationsOfSum {
     }
 
     public List<List<Integer>> of(int remainingAddends) {
-        List<Integer> addends = IntStream.rangeClosed(0, sum).boxed().toList();
+        var addends = IntStream.rangeClosed(0, sum).boxed().toList();
         List<List<Integer>> combinations = new ArrayList<>();
 
         find(addends, new ArrayList<>(), combinations, remainingAddends, sum);
@@ -38,7 +38,7 @@ public class CombinationsOfSum {
 
     public List<List<Integer>> of(List<Integer> addends) {
         int smallestAddend = addends.stream().min(Integer::compareTo).orElseThrow();
-        int combinationSize = sum / smallestAddend;
+        var combinationSize = sum / smallestAddend;
         List<List<Integer>> combinations = new ArrayList<>();
 
         find(addends, new ArrayList<>(), combinations, combinationSize, sum);
@@ -60,7 +60,7 @@ public class CombinationsOfSum {
             return;
         }
 
-        for (int i = 0; i < addends.size(); i++) {
+        for (var i = 0; i < addends.size(); i++) {
             int addend = addends.get(i);
             if (addend <= remainingSum) {
                 combination.add(addend);

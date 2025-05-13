@@ -14,14 +14,14 @@ public class HighEntropyPassphrasePuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        int validDuplicateWordPassphrases = 0;
-        int validAnagramWordPassphrases = 0;
+        var validDuplicateWordPassphrases = 0;
+        var validAnagramWordPassphrases = 0;
 
         PassphrasePolicy duplicateWordPolicy = new DuplicateWordPassphrasePolicy();
         PassphrasePolicy anagramWordPolicy = new AnagramWordPassphrasePolicy();
 
-        for (String line : inputReader.getInputList()) {
-            String[] passphrase = line.split(" ");
+        for (var line : inputReader.getInputList()) {
+            var passphrase = line.split(" ");
 
             if (duplicateWordPolicy.passes(passphrase)) {
                 validDuplicateWordPassphrases++;

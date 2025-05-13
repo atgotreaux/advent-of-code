@@ -6,7 +6,6 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,23 +17,23 @@ public class GiantSquidPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        int[] numbersDrawn =
+        var numbersDrawn =
                 Arrays.stream(input.getFirst().split(",")).mapToInt(Integer::parseInt).toArray();
 
         Collection<Board> boards = new ArrayList<>();
-        for (int i = 2; i < input.size(); i += 6) {
+        for (var i = 2; i < input.size(); i += 6) {
             boards.add(new Board(input.subList(i, i + 5)));
         }
 
-        int firstWinningScore = 0;
-        int lastWinningScore = 0;
-        for (int numberDrawn : numbersDrawn) {
-            for (Board board : boards.stream().filter(board -> !board.isWinner()).toList()) {
+        var firstWinningScore = 0;
+        var lastWinningScore = 0;
+        for (var numberDrawn : numbersDrawn) {
+            for (var board : boards.stream().filter(board -> !board.isWinner()).toList()) {
                 board.mark(numberDrawn);
                 if (board.isWinner()) {
-                    int score = numberDrawn * board.getScore();
+                    var score = numberDrawn * board.getScore();
                     if (firstWinningScore == 0) {
                         firstWinningScore = score;
                     }

@@ -15,25 +15,25 @@ public class CampCleanupPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        int numberOfAssignmentsContained = 0;
-        int numberOfAssignmentsOverlapping = 0;
+        var numberOfAssignmentsContained = 0;
+        var numberOfAssignmentsOverlapping = 0;
 
-        for (String line : inputReader.getInputList()) {
-            Scanner elfAssignments = new Scanner(line);
+        for (var line : inputReader.getInputList()) {
+            var elfAssignments = new Scanner(line);
             elfAssignments.useDelimiter(",");
-            String assignmentOne = elfAssignments.next();
-            String assignmentTwo = elfAssignments.next();
+            var assignmentOne = elfAssignments.next();
+            var assignmentTwo = elfAssignments.next();
             elfAssignments.close();
 
-            Scanner firstSectionRange = new Scanner(assignmentOne);
+            var firstSectionRange = new Scanner(assignmentOne);
             firstSectionRange.useDelimiter("-");
-            SectionAssignment firstAssignment =
+            var firstAssignment =
                     new SectionAssignment(firstSectionRange.nextInt(), firstSectionRange.nextInt());
             firstSectionRange.close();
 
-            Scanner secondSectionRange = new Scanner(assignmentTwo);
+            var secondSectionRange = new Scanner(assignmentTwo);
             secondSectionRange.useDelimiter("-");
-            SectionAssignment secondAssignment =
+            var secondAssignment =
                     new SectionAssignment(
                             secondSectionRange.nextInt(), secondSectionRange.nextInt());
             secondSectionRange.close();

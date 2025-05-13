@@ -12,7 +12,7 @@ class PageOrderingRuleTest {
     @ParameterizedTest
     @MethodSource("provideOf")
     void of(String line, int expectedBefore, int expectedAfter) {
-        PageOrderingRule rule = PageOrderingRule.of(line);
+        var rule = PageOrderingRule.of(line);
 
         assertEquals(expectedBefore, rule.before());
         assertEquals(expectedAfter, rule.after());

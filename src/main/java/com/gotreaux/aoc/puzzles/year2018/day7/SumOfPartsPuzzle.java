@@ -18,18 +18,18 @@ public class SumOfPartsPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<String, Integer> solve(InputReader inputReader) throws Exception {
-        List<Requirement> reqs = inputReader.getInputStream().map(Requirement::of).toList();
+        var reqs = inputReader.getInputStream().map(Requirement::of).toList();
 
-        List<String> steps =
+        var steps =
                 reqs.stream()
                         .flatMap(req -> Stream.of(req.prereq(), req.step()))
                         .distinct()
                         .toList();
 
-        StringBuilder stepOrder = new StringBuilder(steps.size());
+        var stepOrder = new StringBuilder(steps.size());
         List<String> availableSteps = new ArrayList<>(steps.size());
         while (stepOrder.length() < steps.size()) {
-            List<String> prereqsCompleteSteps =
+            var prereqsCompleteSteps =
                     steps.stream()
                             .filter(step -> stepOrder.indexOf(step) == -1)
                             .filter(step -> !availableSteps.contains(step))

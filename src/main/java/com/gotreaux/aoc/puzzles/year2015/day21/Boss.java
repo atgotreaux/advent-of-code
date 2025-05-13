@@ -7,12 +7,12 @@ record Boss(int hitPoints, int damage, int armor) {
     private static final Pattern PATTERN = Pattern.compile(": ");
 
     static Boss of(Iterable<String> input) {
-        int hitPoints = 0;
-        int damage = 0;
-        int armor = 0;
+        var hitPoints = 0;
+        var damage = 0;
+        var armor = 0;
 
-        for (String line : input) {
-            String[] parts = PATTERN.split(line);
+        for (var line : input) {
+            var parts = PATTERN.split(line);
             switch (parts[0]) {
                 case "Hit Points" -> hitPoints = Integer.parseInt(parts[1]);
                 case "Damage" -> damage = Integer.parseInt(parts[1]);

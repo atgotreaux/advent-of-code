@@ -20,7 +20,7 @@ class GuardRecordTest {
             LocalDateTime expectedDateTime,
             Status expectedStatus,
             @Nullable Integer expectedGuardId) {
-        GuardRecord record = GuardRecord.of(line);
+        var record = GuardRecord.of(line);
 
         assertEquals(expectedDateTime, record.time());
         assertEquals(expectedStatus, record.status());

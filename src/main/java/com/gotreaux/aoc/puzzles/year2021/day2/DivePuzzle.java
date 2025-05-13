@@ -17,16 +17,16 @@ public class DivePuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        Point position = new Point();
+        var position = new Point();
 
-        int aim = 0;
-        Point positionWithAim = new Point();
+        var aim = 0;
+        var positionWithAim = new Point();
 
-        for (String line : inputReader.getInputList()) {
-            Scanner scanner = new Scanner(line);
+        for (var line : inputReader.getInputList()) {
+            var scanner = new Scanner(line);
 
-            Command command = Command.valueOf(scanner.next().toUpperCase(Locale.getDefault()));
-            int units = scanner.nextInt();
+            var command = Command.valueOf(scanner.next().toUpperCase(Locale.getDefault()));
+            var units = scanner.nextInt();
 
             scanner.close();
 
@@ -46,8 +46,8 @@ public class DivePuzzle extends Puzzle {
             }
         }
 
-        int productOfPosition = position.x * position.y;
-        int productOfPositionWithAim = positionWithAim.x * positionWithAim.y;
+        var productOfPosition = position.x * position.y;
+        var productOfPositionWithAim = positionWithAim.x * positionWithAim.y;
 
         return new PuzzleOutput<>(productOfPosition, productOfPositionWithAim);
     }

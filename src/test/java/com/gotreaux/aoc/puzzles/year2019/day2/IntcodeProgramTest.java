@@ -11,7 +11,7 @@ class IntcodeProgramTest {
     @ParameterizedTest
     @MethodSource("provideProcess")
     void process(int[] program, int expectedReturn) {
-        IntcodeProgram intcodeProgram = new IntcodeProgram(null, null);
+        var intcodeProgram = new IntcodeProgram(null, null);
 
         assertEquals(expectedReturn, intcodeProgram.process(program));
     }

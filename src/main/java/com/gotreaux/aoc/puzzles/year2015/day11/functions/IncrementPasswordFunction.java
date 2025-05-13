@@ -5,10 +5,10 @@ import java.util.function.Function;
 public class IncrementPasswordFunction implements Function<String, String> {
     @Override
     public String apply(String s) {
-        StringBuilder result = new StringBuilder(s.length());
-        boolean incremented = false;
+        var result = new StringBuilder(s.length());
+        var incremented = false;
 
-        for (int i = s.length() - 1; i >= 0; i--) {
+        for (var i = s.length() - 1; i >= 0; i--) {
             if (incremented) {
                 result.append(s.charAt(i));
             } else if (s.charAt(i) == 'z') {

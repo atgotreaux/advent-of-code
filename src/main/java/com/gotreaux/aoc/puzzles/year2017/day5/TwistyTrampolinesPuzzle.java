@@ -16,22 +16,22 @@ public class TwistyTrampolinesPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        int[] input = inputReader.getInputStream().mapToInt(Integer::parseInt).toArray();
+        var input = inputReader.getInputStream().mapToInt(Integer::parseInt).toArray();
 
-        int incrementedSteps = getStepsToExit(input, i -> i + 1);
-        int strangerSteps = getStepsToExit(input, i -> i >= 3 ? i - 1 : i + 1);
+        var incrementedSteps = getStepsToExit(input, i -> i + 1);
+        var strangerSteps = getStepsToExit(input, i -> i >= 3 ? i - 1 : i + 1);
 
         return new PuzzleOutput<>(incrementedSteps, strangerSteps);
     }
 
     private static int getStepsToExit(int[] input, IntFunction<Integer> adjustOffset) {
-        int steps = 0;
-        int position = 0;
-        int length = input.length;
-        int[] offsets = Arrays.copyOf(input, length);
+        var steps = 0;
+        var position = 0;
+        var length = input.length;
+        var offsets = Arrays.copyOf(input, length);
 
         while (position >= 0 && position < length) {
-            int offset = offsets[position];
+            var offset = offsets[position];
             offsets[position] = adjustOffset.apply(offsets[position]);
             position += offset;
             steps++;

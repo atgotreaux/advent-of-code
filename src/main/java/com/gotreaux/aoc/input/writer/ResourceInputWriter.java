@@ -3,7 +3,6 @@ package com.gotreaux.aoc.input.writer;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
@@ -26,7 +25,7 @@ public class ResourceInputWriter<T extends Puzzle> implements InputWriter {
     }
 
     private Path loadResource() throws NoSuchFileException, URISyntaxException {
-        URL resource = getClass().getClassLoader().getResource(inputPath);
+        var resource = getClass().getClassLoader().getResource(inputPath);
         if (resource == null) {
             throw new NoSuchFileException(inputPath);
         }

@@ -10,7 +10,6 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Pattern;
 import org.springframework.stereotype.Component;
 
@@ -27,23 +26,23 @@ public class RecursiveCircusPuzzle extends Puzzle {
         Collection<String> input = inputReader.getInputList();
         Collection<Disc> discs = new ArrayList<>(input.size());
 
-        for (String line : input) {
-            List<String> parts = List.of(INPUT_DELIMS.matcher(line).replaceAll("").split(" "));
+        for (var line : input) {
+            var parts = List.of(INPUT_DELIMS.matcher(line).replaceAll("").split(" "));
 
             discs.add(new Disc(parts.getFirst(), Integer.parseInt(parts.get(1))));
         }
 
-        for (String line : input) {
-            List<String> parts = List.of(INPUT_DELIMS.matcher(line).replaceAll("").split(" "));
+        for (var line : input) {
+            var parts = List.of(INPUT_DELIMS.matcher(line).replaceAll("").split(" "));
             if (parts.size() > 2) {
-                Disc parent =
+                var parent =
                         discs.stream()
                                 .filter(disc -> disc.getProgram().equals(parts.getFirst()))
                                 .findFirst()
                                 .orElseThrow();
 
-                for (String child : parts.subList(3, parts.size())) {
-                    Disc childDisc =
+                for (var child : parts.subList(3, parts.size())) {
+                    var childDisc =
                             discs.stream()
                                     .filter(disc -> disc.getProgram().equals(child))
                                     .findFirst()
@@ -55,17 +54,17 @@ public class RecursiveCircusPuzzle extends Puzzle {
             }
         }
 
-        Disc disc =
+        var disc =
                 discs.stream()
                         .filter(candidate -> candidate.getParent() == null)
                         .findFirst()
                         .orElseThrow();
 
-        String nameOfBottomProgram = disc.getProgram();
+        var nameOfBottomProgram = disc.getProgram();
 
-        int difference = Integer.MAX_VALUE;
+        var difference = Integer.MAX_VALUE;
         while (!disc.getChildren().isEmpty()) {
-            Map<Integer, Long> childWeights =
+            var childWeights =
                     disc.getChildren().stream()
                             .map(Disc::getTotalWeight)
                             .collect(groupingBy(identity(), counting()));
@@ -83,7 +82,7 @@ public class RecursiveCircusPuzzle extends Puzzle {
                             .orElseThrow();
         }
 
-        int weightOfFixedChild = disc.getWeight() - difference;
+        var weightOfFixedChild = disc.getWeight() - difference;
 
         return new PuzzleOutput<>(nameOfBottomProgram, weightOfFixedChild);
     }

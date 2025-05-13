@@ -27,11 +27,11 @@ class CardinalDirectionTest {
 
     @RepeatedTest(5)
     void moveNorth() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        Point point = new Point(generator.nextInt(-1000, 1000), generator.nextInt(-1000, 1000));
+        var point = new Point(generator.nextInt(-1000, 1000), generator.nextInt(-1000, 1000));
 
-        int units = generator.nextInt(1, 1000);
+        var units = generator.nextInt(1, 1000);
 
         assertEquals(
                 new Point(point.x, point.y + units), CardinalDirection.NORTH.move(point, units));
@@ -39,11 +39,11 @@ class CardinalDirectionTest {
 
     @RepeatedTest(5)
     void moveSouth() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        Point point = new Point(generator.nextInt(-1000, 1000), generator.nextInt(-1000, 1000));
+        var point = new Point(generator.nextInt(-1000, 1000), generator.nextInt(-1000, 1000));
 
-        int units = generator.nextInt(1, 1000);
+        var units = generator.nextInt(1, 1000);
 
         assertEquals(
                 new Point(point.x, point.y - units), CardinalDirection.SOUTH.move(point, units));
@@ -51,11 +51,11 @@ class CardinalDirectionTest {
 
     @RepeatedTest(5)
     void moveEast() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        Point point = new Point(generator.nextInt(-1000, 1000), generator.nextInt(-1000, 1000));
+        var point = new Point(generator.nextInt(-1000, 1000), generator.nextInt(-1000, 1000));
 
-        int units = generator.nextInt(1, 1000);
+        var units = generator.nextInt(1, 1000);
 
         assertEquals(
                 new Point(point.x + units, point.y), CardinalDirection.EAST.move(point, units));
@@ -63,11 +63,11 @@ class CardinalDirectionTest {
 
     @RepeatedTest(5)
     void moveWest() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        Point point = new Point(generator.nextInt(-1000, 1000), generator.nextInt(-1000, 1000));
+        var point = new Point(generator.nextInt(-1000, 1000), generator.nextInt(-1000, 1000));
 
-        int units = generator.nextInt(1, 1000);
+        var units = generator.nextInt(1, 1000);
 
         assertEquals(
                 new Point(point.x - units, point.y), CardinalDirection.WEST.move(point, units));

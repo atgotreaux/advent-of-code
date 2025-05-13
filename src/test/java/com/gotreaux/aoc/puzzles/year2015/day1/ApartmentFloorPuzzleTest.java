@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.StringInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,9 +16,9 @@ class ApartmentFloorPuzzleTest {
     void floorFromInstructions(String input, int expectedFloor) throws Exception {
         InputReader inputReader = new StringInputReader(input);
 
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
+        var puzzle = new ApartmentFloorPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(expectedFloor, output.partOne());
     }
@@ -28,9 +27,9 @@ class ApartmentFloorPuzzleTest {
     void positionBasementReached() throws Exception {
         InputReader inputReader = new StringInputReader("()())");
 
-        ApartmentFloorPuzzle puzzle = new ApartmentFloorPuzzle();
+        var puzzle = new ApartmentFloorPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(5, output.partTwo());
     }

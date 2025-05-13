@@ -13,8 +13,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 class ModuleTest {
     @Test
     void throwsIfMassIsNonPositive() {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        int mass = -Math.abs(generator.nextInt());
+        var generator = RandomGenerator.getDefault();
+        var mass = -Math.abs(generator.nextInt());
 
         assertThrows(IllegalArgumentException.class, () -> new Module(mass));
     }
@@ -22,7 +22,7 @@ class ModuleTest {
     @ParameterizedTest
     @MethodSource("provideFuelRequirement")
     void fuelRequirement(int mass, int expectedFuelRequirement) {
-        Module module = new Module(mass);
+        var module = new Module(mass);
 
         assertEquals(expectedFuelRequirement, module.getFuelRequirement());
     }
@@ -30,7 +30,7 @@ class ModuleTest {
     @ParameterizedTest
     @MethodSource("provideAdditionalFuelRequirement")
     void additionalFuelRequirement(int mass, int expectedFuelRequirement) {
-        Module module = new Module(mass);
+        var module = new Module(mass);
 
         assertEquals(expectedFuelRequirement, module.getAdditionalFuelRequirement());
     }

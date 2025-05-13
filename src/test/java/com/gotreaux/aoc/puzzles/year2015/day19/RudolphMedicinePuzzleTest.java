@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -17,9 +16,9 @@ class RudolphMedicinePuzzleTest {
     void calibrationMolecules(String fileName, int expected) throws Exception {
         InputReader inputReader = new ResourceInputReader<>(RudolphMedicinePuzzle.class, fileName);
 
-        RudolphMedicinePuzzle puzzle = new RudolphMedicinePuzzle();
+        var puzzle = new RudolphMedicinePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(expected, output.partOne());
     }
@@ -29,9 +28,9 @@ class RudolphMedicinePuzzleTest {
     void stepsToFabricate(String fileName, int expected) throws Exception {
         InputReader inputReader = new ResourceInputReader<>(RudolphMedicinePuzzle.class, fileName);
 
-        RudolphMedicinePuzzle puzzle = new RudolphMedicinePuzzle();
+        var puzzle = new RudolphMedicinePuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(expected, output.partTwo());
     }

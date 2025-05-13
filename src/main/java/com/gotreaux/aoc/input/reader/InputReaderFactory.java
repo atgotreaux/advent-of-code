@@ -29,7 +29,7 @@ public class InputReaderFactory {
             case RESOURCE_READER -> new ResourceInputReader<>(puzzle.getClass());
             default -> {
                 try {
-                    Path filePath = Path.of(input);
+                    var filePath = Path.of(input);
                     if (Files.exists(filePath) && Files.isRegularFile(filePath)) {
                         yield new FileInputReader(filePath.toString());
                     }

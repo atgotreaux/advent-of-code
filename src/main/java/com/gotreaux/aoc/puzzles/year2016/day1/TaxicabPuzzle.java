@@ -22,20 +22,20 @@ public class TaxicabPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        CardinalDirection direction = CardinalDirection.NORTH;
-        Point position = new Point();
+        var direction = CardinalDirection.NORTH;
+        var position = new Point();
         Point firstDupPosition = null;
 
         Collection<Point> visitedPositions = new ArrayList<>();
         visitedPositions.add(position);
 
-        String input = inputReader.getInputString();
-        for (String step : INSTRUCTION_SEPARATOR.split(input)) {
-            RelativeDirection relativeDirection = RelativeDirection.of(step.charAt(0));
+        var input = inputReader.getInputString();
+        for (var step : INSTRUCTION_SEPARATOR.split(input)) {
+            var relativeDirection = RelativeDirection.of(step.charAt(0));
             direction = direction.turn(relativeDirection);
 
-            int units = Integer.parseInt(step.substring(1));
-            for (int i = 0; i < units; i++) {
+            var units = Integer.parseInt(step.substring(1));
+            for (var i = 0; i < units; i++) {
                 position = direction.move(position, 1);
                 if (firstDupPosition == null && visitedPositions.contains(position)) {
                     firstDupPosition = position;
@@ -44,9 +44,9 @@ public class TaxicabPuzzle extends Puzzle {
             }
         }
 
-        int shortestPath = Math.abs(position.x) + Math.abs(position.y);
+        var shortestPath = Math.abs(position.x) + Math.abs(position.y);
 
-        int firstDupPath = Integer.MAX_VALUE;
+        var firstDupPath = Integer.MAX_VALUE;
         if (firstDupPosition != null) {
             firstDupPath = Math.abs(firstDupPosition.x) + Math.abs(firstDupPosition.y);
         }

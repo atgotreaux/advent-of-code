@@ -3,8 +3,6 @@ package com.gotreaux.aoc.puzzles.year2017.day8;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
@@ -18,25 +16,25 @@ public class RegisterPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        Map<String, Integer> registers =
+        var registers =
                 input.stream()
                         .map(line -> line.split(" ")[0])
                         .collect(Collectors.toMap(Function.identity(), _ -> 0, (x, _) -> x));
 
-        int maxRegisterValue = Integer.MIN_VALUE;
-        for (String line : input) {
-            String[] instructionParts = line.split(" ");
+        var maxRegisterValue = Integer.MIN_VALUE;
+        for (var line : input) {
+            var instructionParts = line.split(" ");
 
-            String register = instructionParts[0];
-            Instruction instruction = Instruction.of(instructionParts[1]);
-            int amount = Integer.parseInt(instructionParts[2]);
-            String operandRegister = instructionParts[4];
-            ComparisonOperator comparisonOperator = ComparisonOperator.of(instructionParts[5]);
-            int comparisonValue = Integer.parseInt(instructionParts[6]);
+            var register = instructionParts[0];
+            var instruction = Instruction.of(instructionParts[1]);
+            var amount = Integer.parseInt(instructionParts[2]);
+            var operandRegister = instructionParts[4];
+            var comparisonOperator = ComparisonOperator.of(instructionParts[5]);
+            var comparisonValue = Integer.parseInt(instructionParts[6]);
 
-            boolean expressionResult =
+            var expressionResult =
                     switch (comparisonOperator) {
                         case EQ -> registers.get(operandRegister) == comparisonValue;
                         case NE -> registers.get(operandRegister) != comparisonValue;
@@ -47,7 +45,7 @@ public class RegisterPuzzle extends Puzzle {
                     };
 
             if (expressionResult) {
-                int resultValue =
+                var resultValue =
                         switch (instruction) {
                             case INCREASE -> registers.get(register) + amount;
                             case DECREASE -> registers.get(register) - amount;

@@ -9,7 +9,7 @@ class PlayerTest {
 
     @Test
     void calculateDamage() {
-        Player player =
+        var player =
                 new Player(
                         8,
                         Weapon.SHORTSWORD,
@@ -22,7 +22,7 @@ class PlayerTest {
 
     @Test
     void calculateArmor() {
-        Player player =
+        var player =
                 new Player(
                         8,
                         Weapon.SHORTSWORD,
@@ -35,7 +35,7 @@ class PlayerTest {
 
     @Test
     void calculateCost() {
-        Player player =
+        var player =
                 new Player(
                         8,
                         Weapon.SHORTSWORD,

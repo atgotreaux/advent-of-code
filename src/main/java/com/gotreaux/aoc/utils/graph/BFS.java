@@ -15,7 +15,7 @@ public class BFS {
     private final Map<String, List<String>> adjacencyList = new HashMap<>();
 
     public BFS(Iterable<Edge> edges) {
-        for (Edge edge : edges) {
+        for (var edge : edges) {
             adjacencyList.computeIfAbsent(edge.from(), _ -> new ArrayList<>()).add(edge.to());
             adjacencyList.computeIfAbsent(edge.to(), _ -> new ArrayList<>()).add(edge.from());
         }
@@ -39,10 +39,10 @@ public class BFS {
         distances.put(from, 0);
 
         while (!queue.isEmpty()) {
-            String current = queue.poll();
+            var current = queue.poll();
             int currentDistance = distances.get(current);
 
-            for (String neighbor : adjacencyList.getOrDefault(current, new ArrayList<>())) {
+            for (var neighbor : adjacencyList.getOrDefault(current, new ArrayList<>())) {
                 if (visited.add(neighbor)) {
                     distances.put(neighbor, currentDistance + 1);
                     if (neighbor.equals(to)) {

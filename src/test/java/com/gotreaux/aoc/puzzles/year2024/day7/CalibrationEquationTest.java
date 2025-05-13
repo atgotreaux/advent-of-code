@@ -13,7 +13,7 @@ class CalibrationEquationTest {
     @ParameterizedTest
     @MethodSource("provideFrom")
     void from(CharSequence line, long expectedResult, List<Long> expectedOperands) {
-        CalibrationEquation calibrationEquation = CalibrationEquation.of(line);
+        var calibrationEquation = CalibrationEquation.of(line);
 
         assertEquals(expectedResult, calibrationEquation.result());
         assertEquals(expectedOperands, calibrationEquation.operands());
@@ -22,7 +22,7 @@ class CalibrationEquationTest {
     @ParameterizedTest
     @MethodSource("provideEvaluate")
     void evaluate(CharSequence line, Iterable<CalibrationOperator> operators, long expected) {
-        CalibrationEquation calibrationEquation = CalibrationEquation.of(line);
+        var calibrationEquation = CalibrationEquation.of(line);
 
         assertEquals(expected, calibrationEquation.evaluate(operators));
     }

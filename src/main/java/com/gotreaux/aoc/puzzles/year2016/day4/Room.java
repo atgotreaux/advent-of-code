@@ -11,14 +11,14 @@ import java.util.Scanner;
 record Room(int sectorID, String checksum, String encryptedName) {
 
     static Room of(String line) {
-        int sectorID = 0;
-        String checksum = "";
-        StringBuilder encryptedName = new StringBuilder();
+        var sectorID = 0;
+        var checksum = "";
+        var encryptedName = new StringBuilder();
 
-        Scanner scanner = new Scanner(line);
+        var scanner = new Scanner(line);
         scanner.useDelimiter("-");
         while (scanner.hasNext()) {
-            String roomPart = scanner.next();
+            var roomPart = scanner.next();
             if (Character.isDigit(roomPart.charAt(0))) {
                 sectorID = Integer.parseInt(roomPart.substring(0, 3));
                 checksum = roomPart.substring(4, 9);
@@ -32,7 +32,7 @@ record Room(int sectorID, String checksum, String encryptedName) {
     }
 
     boolean isValid() {
-        Comparator<Map.Entry<Integer, Long>> comparator =
+        var comparator =
                 Map.Entry.<Integer, Long>comparingByValue(Comparator.reverseOrder())
                         .thenComparing(Map.Entry.comparingByKey());
 

@@ -16,21 +16,21 @@ public class CathodeRayTubePuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        int sumOfSignalStrengths =
+        var sumOfSignalStrengths =
                 IntStream.rangeClosed(0, 5).map(i -> getSignalStrength(input, i * 40 + 20)).sum();
 
         return new PuzzleOutput<>(sumOfSignalStrengths, 0);
     }
 
     static int getSignalStrength(List<String> input, int cycles) {
-        boolean wait = false;
-        int instructionIndex = 0;
-        int x = 1;
+        var wait = false;
+        var instructionIndex = 0;
+        var x = 1;
 
-        for (int cycleIndex = 1; cycleIndex < cycles; cycleIndex++) {
-            String instruction = input.get(instructionIndex);
+        for (var cycleIndex = 1; cycleIndex < cycles; cycleIndex++) {
+            var instruction = input.get(instructionIndex);
             if (instruction.equals("noop")) {
                 instructionIndex++;
             } else if (instruction.startsWith("addx")) {

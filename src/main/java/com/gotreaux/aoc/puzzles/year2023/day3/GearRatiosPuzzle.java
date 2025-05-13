@@ -22,25 +22,25 @@ public class GearRatiosPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        int sumOfParts = 0;
+        var sumOfParts = 0;
 
-        List<String> lines = inputReader.getInputList();
-        CharMatrix matrix = new CharMatrix(lines);
-        int rowCount = matrix.getRowCount();
-        int columnCount = matrix.getColCount();
+        var lines = inputReader.getInputList();
+        var matrix = new CharMatrix(lines);
+        var rowCount = matrix.getRowCount();
+        var columnCount = matrix.getColCount();
 
         Map<Point, List<Integer>> gearRatios = new HashMap<>();
-        for (int lineRow = 0; lineRow < rowCount; lineRow++) {
-            int number = 0;
-            boolean adjacentToPart = false;
+        for (var lineRow = 0; lineRow < rowCount; lineRow++) {
+            var number = 0;
+            var adjacentToPart = false;
             Collection<Point> gears = new HashSet<>();
-            for (int lineCol = 0; lineCol < columnCount + 1; lineCol++) {
+            for (var lineCol = 0; lineCol < columnCount + 1; lineCol++) {
                 if (lineCol < columnCount && Character.isDigit(matrix.get(lineRow, lineCol))) {
                     number = number * 10 + Character.digit(matrix.get(lineRow, lineCol), 10);
-                    for (int adjacentLine = -1; adjacentLine < 2; adjacentLine++) {
-                        for (int adjacentCol = -1; adjacentCol < 2; adjacentCol++) {
-                            int row = adjacentLine + lineRow;
-                            int col = adjacentCol + lineCol;
+                    for (var adjacentLine = -1; adjacentLine < 2; adjacentLine++) {
+                        for (var adjacentCol = -1; adjacentCol < 2; adjacentCol++) {
+                            var row = adjacentLine + lineRow;
+                            var col = adjacentCol + lineCol;
                             if (row >= 0 && row < rowCount && col >= 0 && col < columnCount) {
                                 char adjacentChar = matrix.get(row, col);
                                 if (!Character.isDigit(adjacentChar) && adjacentChar != '.') {
@@ -58,7 +58,7 @@ public class GearRatiosPuzzle extends Puzzle {
                     }
                     adjacentToPart = false;
 
-                    for (Point gear : gears) {
+                    for (var gear : gears) {
                         if (gearRatios.containsKey(gear)) {
                             gearRatios.get(gear).add(number);
                         } else {
@@ -72,7 +72,7 @@ public class GearRatiosPuzzle extends Puzzle {
             }
         }
 
-        int sumOfGearRatios =
+        var sumOfGearRatios =
                 gearRatios.values().stream()
                         .filter(gearNumbers -> gearNumbers.size() == 2)
                         .mapToInt(gearNumbers -> gearNumbers.getFirst() * gearNumbers.getLast())

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 import java.util.random.RandomGenerator;
 import net.bytebuddy.utility.RandomString;
@@ -20,8 +19,8 @@ class InputReaderFactoryTest {
 
     @Test
     void createsDatabaseReader() {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
         assertInstanceOf(
                 DatabaseInputReader.class,
@@ -30,8 +29,8 @@ class InputReaderFactoryTest {
 
     @Test
     void createsResourceReader() {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
         assertInstanceOf(
                 ResourceInputReader.class,
@@ -40,10 +39,10 @@ class InputReaderFactoryTest {
 
     @Test
     void createsFileReader() throws IOException {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        Path path = Files.createTempFile("input", ".txt");
+        var path = Files.createTempFile("input", ".txt");
 
         assertInstanceOf(
                 FileInputReader.class, factory.create(puzzle, path.toAbsolutePath().toString()));
@@ -51,22 +50,22 @@ class InputReaderFactoryTest {
 
     @Test
     void createsStringReaderIfFileDoesNotExist() throws IOException {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        Path path = Files.createTempFile("input", ".txt");
+        var path = Files.createTempFile("input", ".txt");
 
-        String target = path.toAbsolutePath().toString().replace("input", "input2");
+        var target = path.toAbsolutePath().toString().replace("input", "input2");
 
         assertInstanceOf(StringInputReader.class, factory.create(puzzle, target));
     }
 
     @Test
     void createsStringReader() {
-        RandomGenerator generator = RandomGenerator.getDefault();
-        Puzzle puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        String target = RandomString.make(10);
+        var target = RandomString.make(10);
 
         assertInstanceOf(StringInputReader.class, factory.create(puzzle, target));
     }

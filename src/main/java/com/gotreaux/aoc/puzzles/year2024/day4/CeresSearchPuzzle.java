@@ -4,7 +4,6 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.Arrays;
-import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,15 +17,15 @@ public class CeresSearchPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
-        List<String> lines = inputReader.getInputList();
+        var lines = inputReader.getInputList();
 
         long xmasAppearances = 0, xMasAppearances = 0;
 
-        WordSearchMatrix matrix = new WordSearchMatrix(lines);
-        int rowCount = matrix.getRowCount();
-        int columnCount = matrix.getColCount();
-        for (int row = 0; row < rowCount; row++) {
-            for (int col = 0; col < columnCount; col++) {
+        var matrix = new WordSearchMatrix(lines);
+        var rowCount = matrix.getRowCount();
+        var columnCount = matrix.getColCount();
+        for (var row = 0; row < rowCount; row++) {
+            for (var col = 0; col < columnCount; col++) {
                 char c = matrix.get(row, col);
                 if (c == 'X') {
                     xmasAppearances +=

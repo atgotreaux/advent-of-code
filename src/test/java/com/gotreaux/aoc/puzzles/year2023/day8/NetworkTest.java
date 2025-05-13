@@ -10,10 +10,9 @@ import org.junit.jupiter.api.Test;
 class NetworkTest {
     @Test
     void testEscapeNoRepeats() {
-        List<RelativeDirection> directions =
-                List.of(RelativeDirection.RIGHT, RelativeDirection.LEFT);
+        var directions = List.of(RelativeDirection.RIGHT, RelativeDirection.LEFT);
 
-        List<Node> nodes =
+        var nodes =
                 List.of(
                         new Node("AAA", "BBB", "CCC"),
                         new Node("BBB", "DDD", "EEE"),
@@ -23,7 +22,7 @@ class NetworkTest {
                         new Node("GGG", "GGG", "GGG"),
                         new Node("ZZZ", "ZZZ", "ZZZ"));
 
-        Network network = new Network(directions, nodes);
+        var network = new Network(directions, nodes);
 
         Predicate<Node> startPosition = node -> node.position().equals("AAA");
         Predicate<Node> endPosition = node -> node.position().equals("ZZZ");
@@ -33,16 +32,16 @@ class NetworkTest {
 
     @Test
     void testEscapeRepeats() {
-        List<RelativeDirection> directions =
+        var directions =
                 List.of(RelativeDirection.LEFT, RelativeDirection.LEFT, RelativeDirection.RIGHT);
 
-        List<Node> nodes =
+        var nodes =
                 List.of(
                         new Node("AAA", "BBB", "BBB"),
                         new Node("BBB", "AAA", "ZZZ"),
                         new Node("ZZZ", "ZZZ", "ZZZ"));
 
-        Network network = new Network(directions, nodes);
+        var network = new Network(directions, nodes);
 
         Predicate<Node> startPosition = node -> node.position().equals("AAA");
         Predicate<Node> endPosition = node -> node.position().equals("ZZZ");
@@ -52,16 +51,16 @@ class NetworkTest {
 
     @Test
     void testEscapeGhostRepeats() {
-        List<RelativeDirection> directions =
+        var directions =
                 List.of(RelativeDirection.LEFT, RelativeDirection.LEFT, RelativeDirection.RIGHT);
 
-        List<Node> nodes =
+        var nodes =
                 List.of(
                         new Node("AAA", "BBB", "BBB"),
                         new Node("BBB", "AAA", "ZZZ"),
                         new Node("ZZZ", "ZZZ", "ZZZ"));
 
-        Network network = new Network(directions, nodes);
+        var network = new Network(directions, nodes);
 
         Predicate<Node> startPosition =
                 node -> node.position().charAt(node.position().length() - 1) == 'A';

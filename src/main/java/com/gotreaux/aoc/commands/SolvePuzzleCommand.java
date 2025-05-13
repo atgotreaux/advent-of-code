@@ -1,9 +1,7 @@
 package com.gotreaux.aoc.commands;
 
 import com.gotreaux.aoc.exceptions.NoSuchPuzzleException;
-import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.InputReaderFactory;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -75,7 +73,7 @@ public class SolvePuzzleCommand {
             throws Exception {
         logger.debug("Solving puzzle of year '{}' and day '{}' from input '{}'", year, day, input);
 
-        Puzzle puzzle =
+        var puzzle =
                 puzzles.stream()
                         .filter(p -> p.getYear() == year)
                         .filter(p -> p.getDay() == day)
@@ -84,16 +82,16 @@ public class SolvePuzzleCommand {
 
         logger.debug("Found puzzle class '{}'", puzzle.getClass().getSimpleName());
 
-        Locale locale = Locale.getDefault();
+        var locale = Locale.getDefault();
         try {
-            InputReader inputReader = inputReaderFactory.create(puzzle, input);
-            PuzzleOutput<?, ?> output = puzzle.solve(inputReader);
+            var inputReader = inputReaderFactory.create(puzzle, input);
+            var output = puzzle.solve(inputReader);
 
-            String partOne = String.valueOf(output.partOne());
-            String partTwo = String.valueOf(output.partTwo());
+            var partOne = String.valueOf(output.partOne());
+            var partTwo = String.valueOf(output.partTwo());
 
-            String code = String.format("puzzle.title.%d.%d", puzzle.getYear(), puzzle.getDay());
-            String puzzleTitle = messageSource.getMessage(code, null, locale);
+            var code = String.format("puzzle.title.%d.%d", puzzle.getYear(), puzzle.getDay());
+            var puzzleTitle = messageSource.getMessage(code, null, locale);
 
             return messageSource.getMessage(
                     "puzzle.command.solve.solved",

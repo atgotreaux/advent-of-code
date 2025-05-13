@@ -12,14 +12,14 @@ class RoomTest {
     @ParameterizedTest
     @MethodSource("provideValid")
     void valid(int sectorID, String checksum, String encryptedName, boolean expected) {
-        Room room = new Room(sectorID, checksum, encryptedName);
+        var room = new Room(sectorID, checksum, encryptedName);
 
         assertEquals(expected, room.isValid());
     }
 
     @Test
     void decryptName() {
-        Room room = new Room(343, "", "qzmtzixmtkozyivhz");
+        var room = new Room(343, "", "qzmtzixmtkozyivhz");
 
         assertEquals("veryencryptedname", room.decryptName());
     }

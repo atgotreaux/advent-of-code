@@ -24,7 +24,7 @@ public class NiceStringPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
-        long niceStringCount =
+        var niceStringCount =
                 inputReader
                         .getInputStream()
                         .filter(s -> THREE_VOWELS.matcher(s).replaceAll("").length() >= 3)
@@ -32,7 +32,7 @@ public class NiceStringPuzzle extends Puzzle {
                         .filter(s -> !NO_FORBIDDEN_STRINGS.matcher(s).matches())
                         .count();
 
-        long niceStringBetterModelCount =
+        var niceStringBetterModelCount =
                 inputReader
                         .getInputStream()
                         .filter(s -> PAIR_REPEATED.matcher(s).matches())

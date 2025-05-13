@@ -10,7 +10,7 @@ import com.gotreaux.aoc.puzzles.year2015.day7.gate.RightShiftGate;
 public abstract class Wire {
 
     public static Wire of(String line) {
-        String[] parts = line.split(" ");
+        var parts = line.split(" ");
         return switch (line) {
             case String s when s.contains("AND") ->
                     new GateWire(parts[4], new AndGate(parts[0], parts[2]));

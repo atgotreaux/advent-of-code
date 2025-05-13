@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.StringInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -16,9 +15,9 @@ class RocketEquationPuzzleTest {
     void fuelRequirement(String input, int expectedFuelRequirement) throws Exception {
         InputReader inputReader = new StringInputReader(input);
 
-        RocketEquationPuzzle puzzle = new RocketEquationPuzzle();
+        var puzzle = new RocketEquationPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(expectedFuelRequirement, output.partOne());
     }
@@ -28,9 +27,9 @@ class RocketEquationPuzzleTest {
     void additionalFuelRequirement(String input, int expectedFuelRequirement) throws Exception {
         InputReader inputReader = new StringInputReader(input);
 
-        RocketEquationPuzzle puzzle = new RocketEquationPuzzle();
+        var puzzle = new RocketEquationPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(expectedFuelRequirement, output.partTwo());
     }

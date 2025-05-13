@@ -18,21 +18,21 @@ public class SphericalHousesPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        String input = inputReader.getInputString();
-        int length = input.length();
+        var input = inputReader.getInputString();
+        var length = input.length();
 
         Set<Point> houseDeliveries = new HashSet<>(length);
         Set<Point> assistedHouseDeliveries = new HashSet<>(length);
 
-        Point position = new Point();
+        var position = new Point();
         houseDeliveries.add(position);
 
-        Point santaPosition = new Point();
-        Point roboSantaPosition = new Point();
+        var santaPosition = new Point();
+        var roboSantaPosition = new Point();
         assistedHouseDeliveries.add(santaPosition);
 
-        for (int i = 0; i < length; i++) {
-            CardinalDirection direction = CardinalDirection.of(input.charAt(i));
+        for (var i = 0; i < length; i++) {
+            var direction = CardinalDirection.of(input.charAt(i));
 
             position = direction.move(position, 1);
             houseDeliveries.add(position);

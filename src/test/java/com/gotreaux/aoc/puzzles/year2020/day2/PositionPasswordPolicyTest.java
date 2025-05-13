@@ -13,14 +13,14 @@ import org.junit.jupiter.params.provider.MethodSource;
 class PositionPasswordPolicyTest {
     @Test
     void throwsIfNegativePolicyPositions() {
-        RandomGenerator generator = RandomGenerator.getDefault();
+        var generator = RandomGenerator.getDefault();
 
-        int negativeArgumentIndex = generator.nextInt(1, 3);
-        int first =
+        var negativeArgumentIndex = generator.nextInt(1, 3);
+        var first =
                 negativeArgumentIndex == 1
                         ? -Math.abs(generator.nextInt())
                         : Math.abs(generator.nextInt());
-        int second =
+        var second =
                 negativeArgumentIndex == 2
                         ? -Math.abs(generator.nextInt())
                         : Math.abs(generator.nextInt());
@@ -33,7 +33,7 @@ class PositionPasswordPolicyTest {
     @ParameterizedTest
     @MethodSource("providePasswordPasses")
     void passwordPasses(int first, int second, char target, String password, boolean expected) {
-        PositionPasswordPolicy passwordPolicy = new PositionPasswordPolicy(first, second, target);
+        var passwordPolicy = new PositionPasswordPolicy(first, second, target);
 
         assertEquals(expected, passwordPolicy.passes(password));
     }

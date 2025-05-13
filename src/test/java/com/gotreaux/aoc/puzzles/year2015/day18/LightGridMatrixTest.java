@@ -18,10 +18,10 @@ class LightGridMatrixTest {
     void getLightCount(int steps, int expected) throws Exception {
         InputReader inputReader = new ResourceInputReader<>(LikeAGifForYourYardPuzzle.class);
 
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        LightGridMatrix matrix = new LightGridMatrix(input);
-        for (int step = 0; step < steps; step++) {
+        var matrix = new LightGridMatrix(input);
+        for (var step = 0; step < steps; step++) {
             matrix = matrix.animate();
         }
 
@@ -33,17 +33,17 @@ class LightGridMatrixTest {
     void getStuckLightCount(int steps, int expected) throws Exception {
         InputReader inputReader = new ResourceInputReader<>(LikeAGifForYourYardPuzzle.class);
 
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        List<Point> stuckLights =
+        var stuckLights =
                 List.of(
                         new Point(0, 0),
                         new Point(0, input.getFirst().length() - 1),
                         new Point(input.size() - 1, 0),
                         new Point(input.size() - 1, input.getFirst().length() - 1));
 
-        LightGridMatrix matrix = new LightGridMatrix(input, stuckLights);
-        for (int step = 0; step < steps; step++) {
+        var matrix = new LightGridMatrix(input, stuckLights);
+        for (var step = 0; step < steps; step++) {
             matrix = matrix.animate();
         }
 

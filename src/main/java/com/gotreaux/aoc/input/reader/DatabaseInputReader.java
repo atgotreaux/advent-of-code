@@ -27,20 +27,20 @@ public class DatabaseInputReader implements InputReader {
 
     @Override
     public Stream<String> getInputStream() throws IOException, NoSuchPuzzleException {
-        String puzzleInput = getInput();
+        var puzzleInput = getInput();
 
         return Stream.of(puzzleInput.split("\n"));
     }
 
     @Override
     public List<String> getInputList() throws IOException, NoSuchPuzzleException {
-        String puzzleInput = getInput();
+        var puzzleInput = getInput();
 
         return List.of(puzzleInput.split("\n"));
     }
 
     private String getInput() throws NoSuchPuzzleException {
-        PuzzleEntityId inputKey = new PuzzleEntityId(year, day);
+        var inputKey = new PuzzleEntityId(year, day);
 
         return puzzleRepository.findById(inputKey).map(PuzzleEntity::getInput).orElseThrow();
     }

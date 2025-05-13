@@ -6,7 +6,6 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,7 +19,7 @@ public class ReposeRecordPuzzle extends Puzzle {
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         Collection<Guard> guards = new ArrayList<>();
 
-        List<GuardRecord> records =
+        var records =
                 inputReader
                         .getInputStream()
                         .map(GuardRecord::of)
@@ -29,7 +28,7 @@ public class ReposeRecordPuzzle extends Puzzle {
 
         Guard currentGuard = null;
         GuardRecord asleepRecord = null;
-        for (GuardRecord record : records) {
+        for (var record : records) {
             switch (record.status()) {
                 case BEGINS_SHIFT ->
                         currentGuard =
@@ -38,7 +37,7 @@ public class ReposeRecordPuzzle extends Puzzle {
                                         .findFirst()
                                         .orElseGet(
                                                 () -> {
-                                                    Guard guard = new Guard(record.guardId());
+                                                    var guard = new Guard(record.guardId());
                                                     guards.add(guard);
                                                     return guard;
                                                 });

@@ -7,7 +7,6 @@ import com.gotreaux.aoc.input.reader.ResourceInputReader;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2020.day3.TobogganTrajectoryPuzzle;
 import com.gotreaux.aoc.puzzles.year2023.day3.GearRatiosPuzzle;
-import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -19,9 +18,9 @@ class CharMatrixTest {
     void rowCount(Class<Puzzle> puzzleClass, int expectedRowCount) throws Exception {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        CharMatrix matrix = new CharMatrix(input);
+        var matrix = new CharMatrix(input);
 
         assertEquals(expectedRowCount, matrix.getRowCount());
     }
@@ -31,9 +30,9 @@ class CharMatrixTest {
     void colCount(Class<Puzzle> puzzleClass, int expectedColCount) throws Exception {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        CharMatrix matrix = new CharMatrix(input);
+        var matrix = new CharMatrix(input);
 
         assertEquals(expectedColCount, matrix.getColCount());
     }
@@ -43,9 +42,9 @@ class CharMatrixTest {
     void get(Class<Puzzle> puzzleClass, int row, int col, char expectedChar) throws Exception {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        CharMatrix matrix = new CharMatrix(input);
+        var matrix = new CharMatrix(input);
 
         assertEquals(expectedChar, matrix.get(row, col));
     }

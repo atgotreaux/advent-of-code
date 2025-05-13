@@ -16,7 +16,7 @@ class SignalWireTest {
     void evaluate(String label, int signal) {
         Wire wire = new SignalWire(label, String.valueOf(signal));
 
-        Circuit circuit = new Circuit(List.of(wire));
+        var circuit = new Circuit(List.of(wire));
 
         assertEquals(signal, wire.evaluate(circuit));
     }
@@ -30,7 +30,7 @@ class SignalWireTest {
         Wire signalWire = new SignalWire("x", "123");
         Wire wire = new SignalWire("y", "x");
 
-        Circuit circuit = new Circuit(List.of(signalWire, wire));
+        var circuit = new Circuit(List.of(signalWire, wire));
 
         assertEquals(123, wire.evaluate(circuit));
     }

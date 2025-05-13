@@ -14,12 +14,12 @@ public class ApartmentFloorPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
-        int floor = 0;
-        int positionBasementReached = Integer.MAX_VALUE;
+        var floor = 0;
+        var positionBasementReached = Integer.MAX_VALUE;
 
-        String input = inputReader.getInputString();
-        for (int i = 0; i < input.length(); i++) {
-            Instruction instruction = Instruction.of(input.charAt(i));
+        var input = inputReader.getInputString();
+        for (var i = 0; i < input.length(); i++) {
+            var instruction = Instruction.of(input.charAt(i));
             switch (instruction) {
                 case UP -> floor++;
                 case DOWN -> floor--;

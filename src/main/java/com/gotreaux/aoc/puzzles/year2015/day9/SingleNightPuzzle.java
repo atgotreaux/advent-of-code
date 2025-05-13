@@ -22,15 +22,15 @@ public class SingleNightPuzzle extends Puzzle {
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
         Collection<Route> routes = inputReader.getInputStream().map(Route::of).toList();
 
-        List<String> locations =
+        var locations =
                 routes.stream()
                         .flatMap(route -> Stream.of(route.from(), route.to()))
                         .distinct()
                         .toList();
 
-        List<List<String>> permutations = CollectionUtils.permutations(locations);
+        var permutations = CollectionUtils.permutations(locations);
 
-        List<Integer> distances =
+        var distances =
                 permutations.stream()
                         .mapToInt(permutation -> getDistance(routes, permutation))
                         .boxed()

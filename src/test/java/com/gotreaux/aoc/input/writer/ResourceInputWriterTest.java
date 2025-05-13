@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 class ResourceInputWriterTest {
     @Test
     void writesToResourceFile() throws Exception {
-        String input = RandomString.make(10);
+        var input = RandomString.make(10);
 
         InputWriter inputWriter = new ResourceInputWriter<>(ApartmentFloorPuzzle.class);
         inputWriter.write(input);

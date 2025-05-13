@@ -19,7 +19,7 @@ public class CustomCustomsPuzzle extends Puzzle {
         Collection<PassengerGroup> passengerGroups = new ArrayList<>();
 
         Collection<String> passengerDeclarations = new ArrayList<>();
-        for (String line : inputReader.getInputList()) {
+        for (var line : inputReader.getInputList()) {
             if (line.isBlank()) {
                 passengerGroups.add(new PassengerGroup(passengerDeclarations));
                 passengerDeclarations = new ArrayList<>();
@@ -29,10 +29,10 @@ public class CustomCustomsPuzzle extends Puzzle {
         }
         passengerGroups.add(new PassengerGroup(passengerDeclarations));
 
-        long sumOfAnyoneDeclared =
+        var sumOfAnyoneDeclared =
                 passengerGroups.stream().mapToLong(PassengerGroup::anyoneDeclared).sum();
 
-        long sumOfEveryoneDeclared =
+        var sumOfEveryoneDeclared =
                 passengerGroups.stream().mapToLong(PassengerGroup::everyoneDeclared).sum();
 
         return new PuzzleOutput<>(sumOfAnyoneDeclared, sumOfEveryoneDeclared);

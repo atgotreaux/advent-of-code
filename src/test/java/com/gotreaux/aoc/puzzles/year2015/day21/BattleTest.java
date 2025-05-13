@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
@@ -13,10 +12,10 @@ class BattleTest {
     @Test
     void isWin() throws Exception {
         InputReader inputReader = new ResourceInputReader<>(RpgSimulator20xxPuzzle.class);
-        List<String> input = inputReader.getInputList();
+        var input = inputReader.getInputList();
 
-        Boss boss = Boss.of(input);
-        Player player =
+        var boss = Boss.of(input);
+        var player =
                 new Player(
                         8,
                         Weapon.SHORTSWORD,
@@ -24,7 +23,7 @@ class BattleTest {
                         Optional.empty(),
                         Optional.empty());
 
-        Battle battle = new Battle(player, boss);
+        var battle = new Battle(player, boss);
 
         assertTrue(battle.isWin());
     }

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.StringInputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,9 +16,9 @@ class AlchemicalReductionPuzzleTest {
     void collapsedPolymer(String input, int expectedUnits) throws Exception {
         InputReader inputReader = new StringInputReader(input);
 
-        AlchemicalReductionPuzzle puzzle = new AlchemicalReductionPuzzle();
+        var puzzle = new AlchemicalReductionPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(expectedUnits, output.partOne());
     }
@@ -28,9 +27,9 @@ class AlchemicalReductionPuzzleTest {
     void shortestCollapsedPolymer() throws Exception {
         InputReader inputReader = new StringInputReader("dabAcCaCBAcCcaDA");
 
-        AlchemicalReductionPuzzle puzzle = new AlchemicalReductionPuzzle();
+        var puzzle = new AlchemicalReductionPuzzle();
 
-        PuzzleOutput<Integer, Integer> output = puzzle.solve(inputReader);
+        var output = puzzle.solve(inputReader);
 
         assertEquals(4, output.partTwo());
     }

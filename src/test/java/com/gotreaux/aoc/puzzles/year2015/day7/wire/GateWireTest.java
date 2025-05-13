@@ -18,9 +18,9 @@ class GateWireTest {
     @ParameterizedTest
     @MethodSource("provideEvaluate")
     void evaluate(GateWire wire, int expected) {
-        List<Wire> wires = List.of(new SignalWire("x", "123"), new SignalWire("y", "456"), wire);
+        var wires = List.of(new SignalWire("x", "123"), new SignalWire("y", "456"), wire);
 
-        Circuit circuit = new Circuit(wires);
+        var circuit = new Circuit(wires);
 
         assertEquals(expected, wire.evaluate(circuit));
     }
