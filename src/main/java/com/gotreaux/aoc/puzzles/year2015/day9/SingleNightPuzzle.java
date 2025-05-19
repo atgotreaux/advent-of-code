@@ -6,7 +6,6 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.CollectionUtils;
 import java.util.Collection;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import org.springframework.stereotype.Component;
@@ -42,16 +41,14 @@ public class SingleNightPuzzle extends Puzzle {
         return new PuzzleOutput<>(shortestDistance, longestDistance);
     }
 
-    private static int getDistance(Collection<Route> routes, List<String> permutation)
-            throws NoSuchElementException {
+    private static int getDistance(Collection<Route> routes, List<String> permutation) {
         return IntStream.range(0, permutation.size() - 1)
                 .mapToObj(i -> findRoute(routes, permutation.get(i), permutation.get(i + 1)))
                 .mapToInt(Route::distance)
                 .sum();
     }
 
-    private static Route findRoute(Collection<Route> routes, String from, String to)
-            throws NoSuchElementException {
+    private static Route findRoute(Collection<Route> routes, String from, String to) {
         return routes.stream().filter(route -> route.matches(from, to)).findFirst().orElseThrow();
     }
 }

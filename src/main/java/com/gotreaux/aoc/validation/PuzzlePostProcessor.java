@@ -2,7 +2,6 @@ package com.gotreaux.aoc.validation;
 
 import com.gotreaux.aoc.puzzles.Puzzle;
 import jakarta.validation.Validator;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 
@@ -16,8 +15,7 @@ public class PuzzlePostProcessor implements BeanPostProcessor {
     }
 
     @Override
-    public Object postProcessAfterInitialization(Object bean, String beanName)
-            throws BeansException {
+    public Object postProcessAfterInitialization(Object bean, String beanName) {
         if (bean instanceof Puzzle) {
             var violations = validator.validate(bean);
             if (!violations.isEmpty()) {

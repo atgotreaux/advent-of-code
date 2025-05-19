@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 class Guard {
 
@@ -32,7 +31,7 @@ class Guard {
         return sleepMapping.values().stream().mapToInt(Integer::intValue).sum();
     }
 
-    int getMinuteMostAsleep() throws NoSuchElementException {
+    int getMinuteMostAsleep() {
         return sleepMapping.entrySet().stream()
                 .max(Map.Entry.comparingByValue())
                 .map(Map.Entry::getKey)

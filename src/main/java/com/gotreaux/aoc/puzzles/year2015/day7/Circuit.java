@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 public class Circuit {
     private final Collection<Wire> wires;
@@ -15,7 +14,7 @@ public class Circuit {
         this.wires = List.copyOf(wires);
     }
 
-    public int evaluate(String signal) throws NoSuchElementException {
+    public int evaluate(String signal) {
         if (signal.chars().allMatch(Character::isDigit)) {
             return Integer.parseInt(signal);
         }
@@ -31,7 +30,7 @@ public class Circuit {
         return result;
     }
 
-    Wire getWire(String signal) throws NoSuchElementException {
+    Wire getWire(String signal) {
         return wires.stream()
                 .filter(wire -> wire.getLabel().equals(signal))
                 .findFirst()

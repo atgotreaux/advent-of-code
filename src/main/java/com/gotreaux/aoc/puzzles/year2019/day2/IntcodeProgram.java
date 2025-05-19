@@ -4,7 +4,7 @@ import org.springframework.lang.Nullable;
 
 record IntcodeProgram(@Nullable Integer noun, @Nullable Integer verb) {
 
-    int process(int[] program) throws IllegalArgumentException {
+    int process(int[] program) {
         var length = program.length;
         if (noun != null) {
             program[1] = noun;

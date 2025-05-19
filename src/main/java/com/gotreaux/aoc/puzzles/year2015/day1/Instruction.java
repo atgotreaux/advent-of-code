@@ -1,7 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2015.day1;
 
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 enum Instruction {
     UP('('),
@@ -17,7 +16,7 @@ enum Instruction {
         return label;
     }
 
-    static Instruction of(char label) throws NoSuchElementException {
+    static Instruction of(char label) {
         return Arrays.stream(values())
                 .filter(instruction -> instruction.getLabel() == label)
                 .findFirst()

@@ -30,22 +30,21 @@ enum Hand {
         return weight;
     }
 
-    static Hand ofOpponentLabel(char opponentLabel) throws NoSuchElementException {
+    static Hand ofOpponentLabel(char opponentLabel) {
         return Arrays.stream(values())
                 .filter(hand -> hand.getOpponentLabel() == opponentLabel)
                 .findFirst()
                 .orElseThrow();
     }
 
-    static Hand ofEncryptedStrategyLabel(char strategyLabel) throws NoSuchElementException {
+    static Hand ofEncryptedStrategyLabel(char strategyLabel) {
         return Arrays.stream(values())
                 .filter(hand -> hand.getStrategyLabel() == strategyLabel)
                 .findFirst()
                 .orElseThrow();
     }
 
-    static Hand ofStrategyOutcomeLabel(Hand opponentHand, char outcomeLabel)
-            throws NoSuchElementException {
+    static Hand ofStrategyOutcomeLabel(Hand opponentHand, char outcomeLabel) {
         if (outcomeLabel == 'X') {
             return switch (opponentHand) {
                 case ROCK -> SCISSORS;

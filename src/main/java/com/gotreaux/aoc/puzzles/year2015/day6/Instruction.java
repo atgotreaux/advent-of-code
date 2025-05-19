@@ -1,7 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2015.day6;
 
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 enum Instruction {
     ON("turn on"),
@@ -18,7 +17,7 @@ enum Instruction {
         return label;
     }
 
-    static Instruction of(String line) throws NoSuchElementException {
+    static Instruction of(String line) {
         return Arrays.stream(values())
                 .filter(instruction -> line.startsWith(instruction.getLabel()))
                 .findFirst()

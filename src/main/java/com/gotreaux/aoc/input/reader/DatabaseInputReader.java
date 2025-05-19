@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.input.reader;
 
-import com.gotreaux.aoc.exceptions.NoSuchPuzzleException;
 import com.gotreaux.aoc.persistence.entity.PuzzleEntity;
 import com.gotreaux.aoc.persistence.entity.PuzzleEntityId;
 import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
@@ -21,25 +20,25 @@ public class DatabaseInputReader implements InputReader {
     }
 
     @Override
-    public String getInputString() throws NoSuchPuzzleException {
+    public String getInputString() {
         return getInput();
     }
 
     @Override
-    public Stream<String> getInputStream() throws IOException, NoSuchPuzzleException {
+    public Stream<String> getInputStream() throws IOException {
         var puzzleInput = getInput();
 
         return Stream.of(puzzleInput.split("\n"));
     }
 
     @Override
-    public List<String> getInputList() throws IOException, NoSuchPuzzleException {
+    public List<String> getInputList() throws IOException {
         var puzzleInput = getInput();
 
         return List.of(puzzleInput.split("\n"));
     }
 
-    private String getInput() throws NoSuchPuzzleException {
+    private String getInput() {
         var inputKey = new PuzzleEntityId(year, day);
 
         return puzzleRepository.findById(inputKey).map(PuzzleEntity::getInput).orElseThrow();

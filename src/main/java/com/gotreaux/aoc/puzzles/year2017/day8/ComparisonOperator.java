@@ -1,7 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2017.day8;
 
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 enum ComparisonOperator {
     EQ("=="),
@@ -21,7 +20,7 @@ enum ComparisonOperator {
         return label;
     }
 
-    static ComparisonOperator of(String label) throws NoSuchElementException {
+    static ComparisonOperator of(String label) {
         return Arrays.stream(values())
                 .filter(comparisonOperator -> comparisonOperator.getLabel().equals(label))
                 .findFirst()

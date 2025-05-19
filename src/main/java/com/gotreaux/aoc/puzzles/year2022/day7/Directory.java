@@ -2,7 +2,6 @@ package com.gotreaux.aoc.puzzles.year2022.day7;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 import org.springframework.lang.Nullable;
 
@@ -46,7 +45,7 @@ class Directory {
         directories.add(directory);
     }
 
-    Directory getDirectory(String name) throws NoSuchElementException {
+    Directory getDirectory(String name) {
         return directories.stream()
                 .filter(directory -> directory.getName().equals(name))
                 .findFirst()

@@ -3,7 +3,6 @@ package com.gotreaux.aoc.puzzles.year2015.day13;
 import com.gotreaux.aoc.utils.CollectionUtils;
 import java.util.Collection;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.IntStream;
 
 record Table(Collection<Arrangement> arrangements) {
@@ -20,7 +19,7 @@ record Table(Collection<Arrangement> arrangements) {
         return arrangementHappiness.stream().max(Integer::compareTo).orElseThrow();
     }
 
-    private int getHappiness(List<String> permutation) throws NoSuchElementException {
+    private int getHappiness(List<String> permutation) {
         var clockwiseHappiness =
                 IntStream.range(0, permutation.size())
                         .mapToObj(
@@ -46,8 +45,7 @@ record Table(Collection<Arrangement> arrangements) {
         return clockwiseHappiness + counterClockwiseHappiness;
     }
 
-    private Arrangement findArrangement(String relative, String neighbor)
-            throws NoSuchElementException {
+    private Arrangement findArrangement(String relative, String neighbor) {
         return arrangements.stream()
                 .filter(arrangement -> arrangement.relative().equals(relative))
                 .filter(arrangement -> arrangement.neighbor().equals(neighbor))

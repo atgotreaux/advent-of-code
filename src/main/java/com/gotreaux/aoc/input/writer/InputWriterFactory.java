@@ -22,7 +22,7 @@ public class InputWriterFactory {
         this.puzzleRepository = puzzleRepository;
     }
 
-    public InputWriter create(Puzzle puzzle, String target) throws IllegalStateException {
+    public InputWriter create(Puzzle puzzle, String target) {
         return switch (target) {
             case DATABASE_WRITER ->
                     new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());

@@ -1,7 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2018.day4;
 
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
 
 enum Status {
@@ -19,7 +18,7 @@ enum Status {
         return pattern;
     }
 
-    static Status of(CharSequence line) throws NoSuchElementException {
+    static Status of(CharSequence line) {
         return Arrays.stream(values())
                 .filter(status -> status.getPattern().matcher(line).matches())
                 .findFirst()

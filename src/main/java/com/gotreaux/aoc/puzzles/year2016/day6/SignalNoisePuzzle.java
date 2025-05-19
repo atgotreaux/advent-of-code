@@ -6,7 +6,6 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
@@ -40,8 +39,7 @@ public class SignalNoisePuzzle extends Puzzle {
     private static int getCommonChar(
             Collection<String> messages,
             int position,
-            Comparator<Map.Entry<Integer, Long>> comparator)
-            throws NoSuchElementException {
+            Comparator<Map.Entry<Integer, Long>> comparator) {
         return messages.stream()
                 .mapToInt(s -> s.codePointAt(position))
                 .boxed()

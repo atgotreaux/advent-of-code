@@ -4,7 +4,6 @@ import com.gotreaux.aoc.utils.MathUtils;
 import com.gotreaux.aoc.utils.RelativeDirection;
 import java.util.Collection;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
 class Network {
@@ -16,8 +15,7 @@ class Network {
         this.nodes = List.copyOf(nodes);
     }
 
-    long getStepsForNodes(Predicate<Node> startPosition, Predicate<Node> endPosition)
-            throws NoSuchElementException, IllegalArgumentException {
+    long getStepsForNodes(Predicate<Node> startPosition, Predicate<Node> endPosition) {
         var currentNodes = nodes.stream().filter(startPosition).toList();
 
         return currentNodes.stream()
@@ -25,8 +23,7 @@ class Network {
                 .reduce(1L, MathUtils::lcm);
     }
 
-    private long getStepsForNode(Node startPosition, Predicate<Node> endPosition)
-            throws NoSuchElementException, IllegalArgumentException {
+    private long getStepsForNode(Node startPosition, Predicate<Node> endPosition) {
         var steps = 0L;
         var currentDirectionIndex = 0;
 

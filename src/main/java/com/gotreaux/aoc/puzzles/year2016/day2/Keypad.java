@@ -3,7 +3,6 @@ package com.gotreaux.aoc.puzzles.year2016.day2;
 import com.gotreaux.aoc.utils.RelativeDirection;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.NoSuchElementException;
 
 class Keypad {
     private final Collection<Key> keys;
@@ -12,7 +11,7 @@ class Keypad {
         this.keys = Collections.unmodifiableCollection(keys);
     }
 
-    Key move(Key key, RelativeDirection direction) throws NoSuchElementException {
+    Key move(Key key, RelativeDirection direction) {
         var movedLabel =
                 switch (direction) {
                     case UP -> key.up();

@@ -1,7 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2017.day8;
 
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 enum Instruction {
     INCREASE("inc"),
@@ -17,7 +16,7 @@ enum Instruction {
         return label;
     }
 
-    static Instruction of(String label) throws NoSuchElementException {
+    static Instruction of(String label) {
         return Arrays.stream(values())
                 .filter(instruction -> instruction.getLabel().equals(label))
                 .findFirst()

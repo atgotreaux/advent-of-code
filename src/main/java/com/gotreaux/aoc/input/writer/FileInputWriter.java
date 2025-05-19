@@ -2,7 +2,6 @@ package com.gotreaux.aoc.input.writer;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 
 public class FileInputWriter implements InputWriter {
@@ -13,7 +12,7 @@ public class FileInputWriter implements InputWriter {
     }
 
     @Override
-    public void write(String input) throws IOException, InvalidPathException {
+    public void write(String input) throws IOException {
         Files.writeString(Path.of(inputPath), input);
     }
 }

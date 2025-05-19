@@ -44,7 +44,7 @@ public class CrossedWiresPuzzle extends Puzzle {
         return new PuzzleOutput<>(closestIntersectionDistance, closestIntersectionSteps);
     }
 
-    private static List<Point> getWirePositions(String line) throws NumberFormatException {
+    private static List<Point> getWirePositions(String line) {
         var instructions = line.split(",");
 
         List<Point> positions = new ArrayList<>(instructions.length);

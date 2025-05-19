@@ -2,7 +2,6 @@ package com.gotreaux.aoc.utils;
 
 import java.awt.Point;
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 public enum CardinalDirection {
     NORTH('^'),
@@ -20,7 +19,7 @@ public enum CardinalDirection {
         return label;
     }
 
-    public static CardinalDirection of(char label) throws NoSuchElementException {
+    public static CardinalDirection of(char label) {
         return Arrays.stream(values())
                 .filter(direction -> direction.getLabel() == label)
                 .findFirst()
@@ -36,7 +35,7 @@ public enum CardinalDirection {
         };
     }
 
-    public CardinalDirection turn(RelativeDirection direction) throws IllegalArgumentException {
+    public CardinalDirection turn(RelativeDirection direction) {
         if (direction == RelativeDirection.UP || direction == RelativeDirection.DOWN) {
             throw new IllegalArgumentException("Cannot turn up or down");
         }

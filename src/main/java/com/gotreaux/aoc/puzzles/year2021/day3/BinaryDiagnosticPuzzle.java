@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
@@ -56,8 +55,7 @@ public class BinaryDiagnosticPuzzle extends Puzzle {
         return new PuzzleOutput<>(powerConsumption, lifeSupportRating);
     }
 
-    private static int getMostCommonBit(Collection<String> numbers, int position)
-            throws NoSuchElementException {
+    private static int getMostCommonBit(Collection<String> numbers, int position) {
         var comparator =
                 Map.Entry.<Integer, Long>comparingByValue()
                         .thenComparing(Map.Entry.comparingByKey());

@@ -2,7 +2,6 @@ package com.gotreaux.aoc.utils;
 
 import java.awt.Point;
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 public enum RelativeDirection {
     UP('U'),
@@ -20,7 +19,7 @@ public enum RelativeDirection {
         return label;
     }
 
-    public static RelativeDirection of(char label) throws NoSuchElementException {
+    public static RelativeDirection of(char label) {
         return Arrays.stream(values())
                 .filter(instruction -> instruction.getLabel() == label)
                 .findFirst()

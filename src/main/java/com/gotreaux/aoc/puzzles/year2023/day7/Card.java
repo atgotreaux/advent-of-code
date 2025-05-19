@@ -1,7 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2023.day7;
 
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 public enum Card {
     JOKER('J'),
@@ -29,7 +28,7 @@ public enum Card {
         return label;
     }
 
-    static Card of(char label, Card... cardsToExclude) throws NoSuchElementException {
+    static Card of(char label, Card... cardsToExclude) {
         return Arrays.stream(values())
                 .filter(card -> !Arrays.asList(cardsToExclude).contains(card))
                 .filter(card -> card.getLabel() == label)

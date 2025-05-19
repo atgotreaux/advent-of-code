@@ -1,7 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2020.day5;
 
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 public enum Region {
     FRONT('F'),
@@ -19,7 +18,7 @@ public enum Region {
         return label;
     }
 
-    static Region of(char label) throws NoSuchElementException {
+    static Region of(char label) {
         return Arrays.stream(values())
                 .filter(region -> region.getLabel() == label)
                 .findFirst()
