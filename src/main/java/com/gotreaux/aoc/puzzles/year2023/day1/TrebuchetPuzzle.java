@@ -14,7 +14,7 @@ public class TrebuchetPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var calibrationValue = 0;
         var calibrationValueWithDigits = 0;
 

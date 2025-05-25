@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class LanternfishPuzzleTest {
     @Test
-    void populationOf80Days() throws Exception {
+    void populationOf80Days() {
         InputReader inputReader = new StringInputReader("3,4,3,1,2");
 
         var puzzle = new LanternfishPuzzle();
@@ -19,7 +19,7 @@ class LanternfishPuzzleTest {
     }
 
     @Test
-    void populationOf256Days() throws Exception {
+    void populationOf256Days() {
         InputReader inputReader = new StringInputReader("3,4,3,1,2");
 
         var puzzle = new LanternfishPuzzle();

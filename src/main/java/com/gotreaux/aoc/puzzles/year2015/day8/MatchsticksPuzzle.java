@@ -14,7 +14,7 @@ public class MatchsticksPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var differenceOfLiteralsAndValues = 0;
         var differenceOfEncodedAndLiterals = 0;
 

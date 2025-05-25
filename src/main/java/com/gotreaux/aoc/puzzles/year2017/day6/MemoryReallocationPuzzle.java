@@ -18,7 +18,7 @@ public class MemoryReallocationPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var input = inputReader.getInputString();
 
         var scanner = new Scanner(input);

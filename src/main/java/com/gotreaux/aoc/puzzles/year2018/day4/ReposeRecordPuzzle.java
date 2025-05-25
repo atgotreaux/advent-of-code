@@ -16,7 +16,7 @@ public class ReposeRecordPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         Collection<Guard> guards = new ArrayList<>();
 
         var records =

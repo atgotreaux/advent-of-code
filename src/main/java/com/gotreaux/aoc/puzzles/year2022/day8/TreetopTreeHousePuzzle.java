@@ -15,7 +15,7 @@ public class TreetopTreeHousePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Long> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Long> solve(InputReader inputReader) {
         var lines = inputReader.getInputList();
         var matrix = new IntMatrix(lines);
 

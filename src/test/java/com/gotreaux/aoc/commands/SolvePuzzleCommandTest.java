@@ -11,6 +11,7 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2015.day1.ApartmentFloorPuzzle;
 import com.gotreaux.aoc.puzzles.year2015.day8.MatchsticksPuzzle;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -193,7 +194,7 @@ class SolvePuzzleCommandTest {
     }
 
     @Test
-    void fileInput() throws Exception {
+    void fileInput() throws IOException {
         var path = Files.createTempFile("input", ".txt");
 
         InputWriter inputWriter = new FileInputWriter(path.toAbsolutePath().toString());

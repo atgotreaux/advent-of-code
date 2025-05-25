@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class FireHazardPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideLightsLit")
-    void lightsLit(String input, int expectedLights) throws Exception {
+    void lightsLit(String input, int expectedLights) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new FireHazardPuzzle();
@@ -24,7 +24,7 @@ class FireHazardPuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideBrightnessLit")
-    void brightnessLit(String input, int expectedLights) throws Exception {
+    void brightnessLit(String input, int expectedLights) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new FireHazardPuzzle();

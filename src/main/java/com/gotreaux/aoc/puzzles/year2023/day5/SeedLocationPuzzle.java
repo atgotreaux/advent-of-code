@@ -17,7 +17,7 @@ public class SeedLocationPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) {
         Collection<Long> seeds = new ArrayList<>();
         Collection<SeedRange> seedRanges = new ArrayList<>();
 

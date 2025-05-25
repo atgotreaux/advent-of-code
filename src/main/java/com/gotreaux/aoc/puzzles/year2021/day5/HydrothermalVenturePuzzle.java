@@ -16,7 +16,7 @@ public class HydrothermalVenturePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) {
         Collection<Line> lines = inputReader.getInputStream().map(Line::of).toList();
 
         var overlappingOrthogonalPoints =

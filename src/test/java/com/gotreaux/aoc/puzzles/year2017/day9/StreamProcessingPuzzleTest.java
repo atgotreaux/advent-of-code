@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class StreamProcessingPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideTotalScore")
-    void totalScore(String input, int expectedScore) throws Exception {
+    void totalScore(String input, int expectedScore) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new StreamProcessingPuzzle();
@@ -24,7 +24,7 @@ class StreamProcessingPuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideGarbageCount")
-    void garbageCount(String input, int expectedCount) throws Exception {
+    void garbageCount(String input, int expectedCount) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new StreamProcessingPuzzle();

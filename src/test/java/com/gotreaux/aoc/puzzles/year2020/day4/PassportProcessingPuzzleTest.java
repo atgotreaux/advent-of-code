@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class PassportProcessingPuzzleTest {
     @Test
-    void requiredFieldPassports() throws Exception {
+    void requiredFieldPassports() {
         InputReader inputReader =
                 new ResourceInputReader<>(PassportProcessingPuzzle.class, "RequiredFields.txt");
 
@@ -25,7 +25,7 @@ class PassportProcessingPuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideValidPassports")
-    void validPassports(String fileName, int expected) throws Exception {
+    void validPassports(String fileName, int expected) {
         InputReader inputReader =
                 new ResourceInputReader<>(PassportProcessingPuzzle.class, fileName);
 

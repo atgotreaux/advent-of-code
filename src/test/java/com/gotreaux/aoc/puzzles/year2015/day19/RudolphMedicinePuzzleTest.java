@@ -13,7 +13,7 @@ class RudolphMedicinePuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideCalibrationMolecules")
-    void calibrationMolecules(String fileName, int expected) throws Exception {
+    void calibrationMolecules(String fileName, int expected) {
         InputReader inputReader = new ResourceInputReader<>(RudolphMedicinePuzzle.class, fileName);
 
         var puzzle = new RudolphMedicinePuzzle();
@@ -25,7 +25,7 @@ class RudolphMedicinePuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideStepsToFabricate")
-    void stepsToFabricate(String fileName, int expected) throws Exception {
+    void stepsToFabricate(String fileName, int expected) {
         InputReader inputReader = new ResourceInputReader<>(RudolphMedicinePuzzle.class, fileName);
 
         var puzzle = new RudolphMedicinePuzzle();

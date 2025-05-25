@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class SignalNoisePuzzleTest {
     @Test
-    void mostCommonCharMessage() throws Exception {
+    void mostCommonCharMessage() {
         InputReader inputReader = new ResourceInputReader<>(SignalNoisePuzzle.class);
 
         var puzzle = new SignalNoisePuzzle();
@@ -19,7 +19,7 @@ class SignalNoisePuzzleTest {
     }
 
     @Test
-    void leastCommonCharMessage() throws Exception {
+    void leastCommonCharMessage() {
         InputReader inputReader = new ResourceInputReader<>(SignalNoisePuzzle.class);
 
         var puzzle = new SignalNoisePuzzle();

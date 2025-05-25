@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class CalorieCountingPuzzleTest {
     @Test
-    void testMostCalories() throws Exception {
+    void testMostCalories() {
         InputReader inputReader = new ResourceInputReader<>(CalorieCountingPuzzle.class);
 
         var puzzle = new CalorieCountingPuzzle();
@@ -19,7 +19,7 @@ class CalorieCountingPuzzleTest {
     }
 
     @Test
-    void testHighestThreeCalories() throws Exception {
+    void testHighestThreeCalories() {
         InputReader inputReader = new ResourceInputReader<>(CalorieCountingPuzzle.class);
 
         var puzzle = new CalorieCountingPuzzle();

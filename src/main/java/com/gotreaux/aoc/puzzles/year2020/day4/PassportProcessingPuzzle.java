@@ -17,7 +17,7 @@ public class PassportProcessingPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var requiredFieldPassports = 0;
         var validPassports = 0;
 

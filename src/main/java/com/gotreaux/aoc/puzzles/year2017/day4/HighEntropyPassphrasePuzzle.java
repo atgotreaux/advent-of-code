@@ -13,7 +13,7 @@ public class HighEntropyPassphrasePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var validDuplicateWordPassphrases = 0;
         var validAnagramWordPassphrases = 0;
 

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class BattleTest {
 
     @Test
-    void isWin() throws Exception {
+    void isWin() {
         InputReader inputReader = new ResourceInputReader<>(RpgSimulator20xxPuzzle.class);
         var input = inputReader.getInputList();
 

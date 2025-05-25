@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.gotreaux.aoc.input.writer.DatabaseInputWriter;
+import com.gotreaux.aoc.input.writer.InputWriter;
 import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.List;
@@ -35,13 +36,13 @@ class DatabaseInputReaderTest {
 
     @Test
     @DirtiesContext
-    void inputAsString() throws Exception {
+    void inputAsString() {
         var generator = RandomGenerator.getDefault();
         var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
         var input = RandomString.make(10);
 
-        var inputWriter =
+        InputWriter inputWriter =
                 new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
         inputWriter.write(input);
 
@@ -53,13 +54,13 @@ class DatabaseInputReaderTest {
 
     @Test
     @DirtiesContext
-    void inputAsStream() throws Exception {
+    void inputAsStream() {
         var generator = RandomGenerator.getDefault();
         var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
         var input = RandomString.make(10);
 
-        var inputWriter =
+        InputWriter inputWriter =
                 new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
         inputWriter.write(input);
 
@@ -72,13 +73,13 @@ class DatabaseInputReaderTest {
 
     @Test
     @DirtiesContext
-    void puzzleInputAsList() throws Exception {
+    void puzzleInputAsList() {
         var generator = RandomGenerator.getDefault();
         var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
         var input = RandomString.make(10);
 
-        var inputWriter =
+        InputWriter inputWriter =
                 new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
         inputWriter.write(input);
 

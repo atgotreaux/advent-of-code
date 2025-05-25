@@ -22,7 +22,7 @@ public class RecursiveCircusPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<String, Integer> solve(InputReader inputReader) {
         Collection<String> input = inputReader.getInputList();
         Collection<Disc> discs = new ArrayList<>(input.size());
 

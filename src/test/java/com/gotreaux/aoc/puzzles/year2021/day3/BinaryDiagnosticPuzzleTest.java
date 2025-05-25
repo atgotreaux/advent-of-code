@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class BinaryDiagnosticPuzzleTest {
     @Test
-    void powerConsumption() throws Exception {
+    void powerConsumption() {
         InputReader inputReader = new ResourceInputReader<>(BinaryDiagnosticPuzzle.class);
 
         var puzzle = new BinaryDiagnosticPuzzle();
@@ -19,7 +19,7 @@ class BinaryDiagnosticPuzzleTest {
     }
 
     @Test
-    void lifeSupportRating() throws Exception {
+    void lifeSupportRating() {
         InputReader inputReader = new ResourceInputReader<>(BinaryDiagnosticPuzzle.class);
 
         var puzzle = new BinaryDiagnosticPuzzle();

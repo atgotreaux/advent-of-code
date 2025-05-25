@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class ScratchcardsPuzzleTest {
 
     @Test
-    void scratchcardPoints() throws Exception {
+    void scratchcardPoints() {
         InputReader inputReader = new ResourceInputReader<>(ScratchcardsPuzzle.class);
 
         var puzzle = new ScratchcardsPuzzle();
@@ -20,7 +20,7 @@ class ScratchcardsPuzzleTest {
     }
 
     @Test
-    void totalScratchcards() throws Exception {
+    void totalScratchcards() {
         InputReader inputReader = new ResourceInputReader<>(ScratchcardsPuzzle.class);
 
         var puzzle = new ScratchcardsPuzzle();

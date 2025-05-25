@@ -14,7 +14,7 @@ public class SecurityThroughObscurityPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         Collection<Room> rooms = inputReader.getInputStream().map(Room::of).toList();
 
         var sumOfRealRooms = rooms.stream().filter(Room::isValid).mapToInt(Room::sectorID).sum();

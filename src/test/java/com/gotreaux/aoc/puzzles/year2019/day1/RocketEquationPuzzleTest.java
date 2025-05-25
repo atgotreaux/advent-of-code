@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class RocketEquationPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideFuelRequirement")
-    void fuelRequirement(String input, int expectedFuelRequirement) throws Exception {
+    void fuelRequirement(String input, int expectedFuelRequirement) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new RocketEquationPuzzle();
@@ -24,7 +24,7 @@ class RocketEquationPuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideAdditionalFuelRequirement")
-    void additionalFuelRequirement(String input, int expectedFuelRequirement) throws Exception {
+    void additionalFuelRequirement(String input, int expectedFuelRequirement) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new RocketEquationPuzzle();

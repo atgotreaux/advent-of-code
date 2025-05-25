@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class PasswordPhilosophyPuzzleTest {
     @Test
-    void sumOfValidOccurrencesInRange() throws Exception {
+    void sumOfValidOccurrencesInRange() {
         InputReader inputReader = new ResourceInputReader<>(PasswordPhilosophyPuzzle.class);
 
         var puzzle = new PasswordPhilosophyPuzzle();
@@ -19,7 +19,7 @@ class PasswordPhilosophyPuzzleTest {
     }
 
     @Test
-    void sumOfValidPositions() throws Exception {
+    void sumOfValidPositions() {
         InputReader inputReader = new ResourceInputReader<>(PasswordPhilosophyPuzzle.class);
 
         var puzzle = new PasswordPhilosophyPuzzle();

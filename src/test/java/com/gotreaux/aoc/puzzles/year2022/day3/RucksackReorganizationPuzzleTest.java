@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class RucksackReorganizationPuzzleTest {
     @Test
-    void sumOfCompartmentPriorities() throws Exception {
+    void sumOfCompartmentPriorities() {
         InputReader inputReader = new ResourceInputReader<>(RucksackReorganizationPuzzle.class);
 
         var puzzle = new RucksackReorganizationPuzzle();
@@ -19,7 +19,7 @@ class RucksackReorganizationPuzzleTest {
     }
 
     @Test
-    void sumOfGroupPriorities() throws Exception {
+    void sumOfGroupPriorities() {
         InputReader inputReader = new ResourceInputReader<>(RucksackReorganizationPuzzle.class);
 
         var puzzle = new RucksackReorganizationPuzzle();

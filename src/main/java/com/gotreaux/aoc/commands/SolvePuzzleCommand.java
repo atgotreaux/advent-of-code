@@ -69,8 +69,7 @@ public class SolvePuzzleCommand {
                             label = "[database,resource,{filePath},{string}]",
                             arity = CommandRegistration.OptionArity.ZERO_OR_ONE,
                             defaultValue = InputReaderFactory.DATABASE_READER)
-                    String input)
-            throws Exception {
+                    String input) {
         logger.debug("Solving puzzle of year '{}' and day '{}' from input '{}'", year, day, input);
 
         var puzzle =

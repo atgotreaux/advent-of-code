@@ -23,8 +23,7 @@ class BFSTest {
             String fileName,
             Function<String, Edge> edgeFunction,
             String from,
-            int expectedDistances)
-            throws Exception {
+            int expectedDistances) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass, fileName);
 
         Collection<Edge> edges = inputReader.getInputList().stream().map(edgeFunction).toList();
@@ -44,8 +43,7 @@ class BFSTest {
             Function<String, Edge> edgeFunction,
             String from,
             String to,
-            int expectedDistance)
-            throws Exception {
+            int expectedDistance) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass, fileName);
 
         Collection<Edge> edges = inputReader.getInputList().stream().map(edgeFunction).toList();

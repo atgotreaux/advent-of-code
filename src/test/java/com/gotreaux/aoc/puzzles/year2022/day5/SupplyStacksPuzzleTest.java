@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class SupplyStacksPuzzleTest {
     @Test
-    void crateMover9000() throws Exception {
+    void crateMover9000() {
         InputReader inputReader = new ResourceInputReader<>(SupplyStacksPuzzle.class);
 
         var puzzle = new SupplyStacksPuzzle();
@@ -19,7 +19,7 @@ class SupplyStacksPuzzleTest {
     }
 
     @Test
-    void crateMover9001() throws Exception {
+    void crateMover9001() {
         InputReader inputReader = new ResourceInputReader<>(SupplyStacksPuzzle.class);
 
         var puzzle = new SupplyStacksPuzzle();

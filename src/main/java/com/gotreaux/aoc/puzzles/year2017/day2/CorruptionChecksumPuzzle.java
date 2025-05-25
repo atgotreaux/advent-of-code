@@ -16,7 +16,7 @@ public class CorruptionChecksumPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var sumOfLargestDifferences = 0;
         var sumOfLargestDivisibility = 0;
 

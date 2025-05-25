@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class BossTest {
 
     @Test
-    void of() throws Exception {
+    void of() {
         InputReader inputReader = new ResourceInputReader<>(RpgSimulator20xxPuzzle.class);
         var input = inputReader.getInputList();
 

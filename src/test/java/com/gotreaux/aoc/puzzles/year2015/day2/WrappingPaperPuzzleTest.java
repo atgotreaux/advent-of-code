@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class WrappingPaperPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideWrappingPaperOrderTotal")
-    void wrappingPaperOrderTotal(String input, int expectedOrderTotal) throws Exception {
+    void wrappingPaperOrderTotal(String input, int expectedOrderTotal) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new WrappingPaperPuzzle();
@@ -24,7 +24,7 @@ class WrappingPaperPuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideRibbonOrderTotal")
-    void ribbonOrderTotal(String input, int expectedOrderTotal) throws Exception {
+    void ribbonOrderTotal(String input, int expectedOrderTotal) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new WrappingPaperPuzzle();

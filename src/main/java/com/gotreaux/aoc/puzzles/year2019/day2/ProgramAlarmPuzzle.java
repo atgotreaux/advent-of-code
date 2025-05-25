@@ -15,7 +15,7 @@ public class ProgramAlarmPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var input = inputReader.getInputString();
 
         var program = Arrays.stream(input.split(",")).mapToInt(Integer::parseInt).toArray();

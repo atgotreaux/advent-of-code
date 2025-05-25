@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class BridgeRepairPuzzleTest {
 
     @Test
-    void totalCalibrationResult() throws Exception {
+    void totalCalibrationResult() {
         InputReader inputReader = new ResourceInputReader<>(BridgeRepairPuzzle.class);
 
         var puzzle = new BridgeRepairPuzzle();
@@ -20,7 +20,7 @@ class BridgeRepairPuzzleTest {
     }
 
     @Test
-    void totalCalibrationResultWithConcatenation() throws Exception {
+    void totalCalibrationResultWithConcatenation() {
         InputReader inputReader = new ResourceInputReader<>(BridgeRepairPuzzle.class);
 
         var puzzle = new BridgeRepairPuzzle();

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class RockPaperScissorsPuzzleTest {
     @Test
-    void encryptedStrategyScore() throws Exception {
+    void encryptedStrategyScore() {
         InputReader inputReader = new ResourceInputReader<>(RockPaperScissorsPuzzle.class);
 
         var puzzle = new RockPaperScissorsPuzzle();
@@ -19,7 +19,7 @@ class RockPaperScissorsPuzzleTest {
     }
 
     @Test
-    void outcomeStrategyScore() throws Exception {
+    void outcomeStrategyScore() {
         InputReader inputReader = new ResourceInputReader<>(RockPaperScissorsPuzzle.class);
 
         var puzzle = new RockPaperScissorsPuzzle();

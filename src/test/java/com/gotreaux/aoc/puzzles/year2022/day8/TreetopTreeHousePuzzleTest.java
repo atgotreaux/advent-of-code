@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class TreetopTreeHousePuzzleTest {
     @Test
-    void treesVisible() throws Exception {
+    void treesVisible() {
         InputReader inputReader = new ResourceInputReader<>(TreetopTreeHousePuzzle.class);
 
         var puzzle = new TreetopTreeHousePuzzle();
@@ -19,7 +19,7 @@ class TreetopTreeHousePuzzleTest {
     }
 
     @Test
-    void maxScenicScore() throws Exception {
+    void maxScenicScore() {
         InputReader inputReader = new ResourceInputReader<>(TreetopTreeHousePuzzle.class);
 
         var puzzle = new TreetopTreeHousePuzzle();

@@ -12,11 +12,13 @@ import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2015.day1.ApartmentFloorPuzzle;
 import java.io.File;
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.http.HttpClient;
 import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HexFormat;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -82,7 +84,7 @@ class SeedPuzzleCommandTest {
     }
 
     @Test
-    void invalidYear() throws Exception {
+    void invalidYear() throws NoSuchAlgorithmException {
         var generator = RandomGenerator.getDefault();
         var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
@@ -125,7 +127,7 @@ class SeedPuzzleCommandTest {
     }
 
     @Test
-    void invalidDay() throws Exception {
+    void invalidDay() throws NoSuchAlgorithmException {
         var generator = RandomGenerator.getDefault();
         var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
@@ -195,6 +197,80 @@ class SeedPuzzleCommandTest {
                         () ->
                                 ShellAssertions.assertThat(session.screen())
                                         .containsText("seed.session"));
+    }
+
+    @Test
+    void clientThrowsIOException() throws Exception {
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+
+        var sessionBytes = new byte[generator.nextInt(0, 10)];
+        generator.nextBytes(sessionBytes);
+
+        var md = MessageDigest.getInstance("SHA-512");
+        md.update(sessionBytes);
+        var sessionId = HexFormat.of().formatHex(md.digest());
+
+        Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
+                .thenThrow(new IOException("Mock IOException"));
+
+        var session =
+                client.nonInterative(
+                                SeedPuzzleCommand.COMMAND_NAME,
+                                "-Y",
+                                String.valueOf(puzzle.getYear()),
+                                "-D",
+                                String.valueOf(puzzle.getDay()),
+                                "-S",
+                                sessionId)
+                        .run();
+
+        await().atMost(2, TimeUnit.SECONDS)
+                .untilAsserted(
+                        () ->
+                                ShellAssertions.assertThat(session.screen())
+                                        .containsText("Unable to fetch puzzle input from URL"));
+
+        Mockito.verify(httpClient).send(ArgumentMatchers.any(), ArgumentMatchers.any());
+
+        assertEquals(0L, puzzleRepository.count());
+    }
+
+    @Test
+    void clientThrowsInterruptedException() throws Exception {
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+
+        var sessionBytes = new byte[generator.nextInt(0, 10)];
+        generator.nextBytes(sessionBytes);
+
+        var md = MessageDigest.getInstance("SHA-512");
+        md.update(sessionBytes);
+        var sessionId = HexFormat.of().formatHex(md.digest());
+
+        Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
+                .thenThrow(new InterruptedException("Mock InterruptedException"));
+
+        var session =
+                client.nonInterative(
+                                SeedPuzzleCommand.COMMAND_NAME,
+                                "-Y",
+                                String.valueOf(puzzle.getYear()),
+                                "-D",
+                                String.valueOf(puzzle.getDay()),
+                                "-S",
+                                sessionId)
+                        .run();
+
+        await().atMost(2, TimeUnit.SECONDS)
+                .untilAsserted(
+                        () ->
+                                ShellAssertions.assertThat(session.screen())
+                                        .containsText("HTTP request to URL"));
+
+        Mockito.verify(httpClient).send(ArgumentMatchers.any(), ArgumentMatchers.any());
+
+        assertEquals(0L, puzzleRepository.count());
     }
 
     @Test

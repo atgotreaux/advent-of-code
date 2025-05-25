@@ -23,7 +23,7 @@ public class ScratchcardsPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         Collection<String> input = inputReader.getInputList();
         var lineCount = input.size();
 

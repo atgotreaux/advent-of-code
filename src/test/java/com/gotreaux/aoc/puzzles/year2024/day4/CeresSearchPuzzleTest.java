@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class CeresSearchPuzzleTest {
 
     @Test
-    void xmasAppearances() throws Exception {
+    void xmasAppearances() {
         InputReader inputReader = new ResourceInputReader<>(CeresSearchPuzzle.class);
 
         var puzzle = new CeresSearchPuzzle();
@@ -20,7 +20,7 @@ class CeresSearchPuzzleTest {
     }
 
     @Test
-    void x_masAppearances() throws Exception {
+    void x_masAppearances() {
         InputReader inputReader = new ResourceInputReader<>(CeresSearchPuzzle.class);
 
         var puzzle = new CeresSearchPuzzle();

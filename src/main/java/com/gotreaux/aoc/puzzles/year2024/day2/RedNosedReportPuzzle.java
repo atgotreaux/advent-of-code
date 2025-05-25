@@ -13,7 +13,7 @@ public class RedNosedReportPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) {
         var reports = inputReader.getInputStream().map(Report::of).toList();
 
         var numOfSafeReports =

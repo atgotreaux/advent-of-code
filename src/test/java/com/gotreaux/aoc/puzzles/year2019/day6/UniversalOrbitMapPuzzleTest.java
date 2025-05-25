@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class UniversalOrbitMapPuzzleTest {
 
     @Test
-    void totalDirectAndIndirectOrbits() throws Exception {
+    void totalDirectAndIndirectOrbits() {
         InputReader inputReader =
                 new ResourceInputReader<>(UniversalOrbitMapPuzzle.class, "ExampleOne.txt");
 
@@ -21,7 +21,7 @@ class UniversalOrbitMapPuzzleTest {
     }
 
     @Test
-    void minimumTransfersRequired() throws Exception {
+    void minimumTransfersRequired() {
         InputReader inputReader =
                 new ResourceInputReader<>(UniversalOrbitMapPuzzle.class, "ExampleTwo.txt");
 

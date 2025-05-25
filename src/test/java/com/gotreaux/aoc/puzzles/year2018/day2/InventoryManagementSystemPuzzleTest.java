@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class InventoryManagementSystemPuzzleTest {
     @Test
-    void productOfTwoAndThreeLetterOccurrences() throws Exception {
+    void productOfTwoAndThreeLetterOccurrences() {
         InputReader inputReader =
                 new ResourceInputReader<>(InventoryManagementSystemPuzzle.class, "ExampleOne.txt");
 
@@ -20,7 +20,7 @@ class InventoryManagementSystemPuzzleTest {
     }
 
     @Test
-    void commonLettersOfCorrectBoxIds() throws Exception {
+    void commonLettersOfCorrectBoxIds() {
         InputReader inputReader =
                 new ResourceInputReader<>(InventoryManagementSystemPuzzle.class, "ExampleTwo.txt");
 

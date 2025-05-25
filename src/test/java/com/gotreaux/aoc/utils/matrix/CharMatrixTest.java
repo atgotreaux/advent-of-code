@@ -15,7 +15,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class CharMatrixTest {
     @ParameterizedTest
     @MethodSource("provideRowCount")
-    void rowCount(Class<Puzzle> puzzleClass, int expectedRowCount) throws Exception {
+    void rowCount(Class<Puzzle> puzzleClass, int expectedRowCount) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
         var input = inputReader.getInputList();
@@ -27,7 +27,7 @@ class CharMatrixTest {
 
     @ParameterizedTest
     @MethodSource("provideColCount")
-    void colCount(Class<Puzzle> puzzleClass, int expectedColCount) throws Exception {
+    void colCount(Class<Puzzle> puzzleClass, int expectedColCount) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
         var input = inputReader.getInputList();
@@ -39,7 +39,7 @@ class CharMatrixTest {
 
     @ParameterizedTest
     @MethodSource("provideGet")
-    void get(Class<Puzzle> puzzleClass, int row, int col, char expectedChar) throws Exception {
+    void get(Class<Puzzle> puzzleClass, int row, int col, char expectedChar) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
         var input = inputReader.getInputList();

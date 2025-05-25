@@ -18,8 +18,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class ResourceInputReaderTest {
     @ParameterizedTest
     @MethodSource("provideInputAsStream")
-    void inputAsStream(Class<Puzzle> puzzleClass, long expectedCount, String expectedFirstLine)
-            throws Exception {
+    void inputAsStream(Class<Puzzle> puzzleClass, long expectedCount, String expectedFirstLine) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
         assertEquals(expectedCount, inputReader.getInputStream().count());
@@ -28,8 +27,7 @@ class ResourceInputReaderTest {
 
     @ParameterizedTest
     @MethodSource("provideInputAsList")
-    void inputAsList(Class<Puzzle> puzzleClass, long expectedCount, String expectedFirstLine)
-            throws Exception {
+    void inputAsList(Class<Puzzle> puzzleClass, long expectedCount, String expectedFirstLine) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
         assertEquals(expectedCount, inputReader.getInputList().size());
@@ -42,8 +40,7 @@ class ResourceInputReaderTest {
             Class<Puzzle> puzzleClass,
             String fileName,
             long expectedCount,
-            String expectedFirstLine)
-            throws Exception {
+            String expectedFirstLine) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass, fileName);
 
         assertEquals(expectedCount, inputReader.getInputList().size());

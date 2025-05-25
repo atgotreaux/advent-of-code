@@ -28,5 +28,5 @@ public abstract class Puzzle {
         return day;
     }
 
-    public abstract PuzzleOutput<?, ?> solve(InputReader inputReader) throws Exception;
+    public abstract PuzzleOutput<?, ?> solve(InputReader inputReader);
 }

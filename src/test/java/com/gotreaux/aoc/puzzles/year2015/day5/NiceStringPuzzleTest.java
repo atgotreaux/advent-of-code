@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class NiceStringPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideNiceString")
-    void niceString(String input, int expectedCount) throws Exception {
+    void niceString(String input, int expectedCount) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new NiceStringPuzzle();
@@ -24,7 +24,7 @@ class NiceStringPuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideNiceStringBetterModel")
-    void niceStringBetterModel(String input, int expectedCount) throws Exception {
+    void niceStringBetterModel(String input, int expectedCount) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new NiceStringPuzzle();

@@ -18,7 +18,7 @@ public class SignalNoisePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, String> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<String, String> solve(InputReader inputReader) {
         var input = inputReader.getInputList();
         var length = input.getFirst().length();
 

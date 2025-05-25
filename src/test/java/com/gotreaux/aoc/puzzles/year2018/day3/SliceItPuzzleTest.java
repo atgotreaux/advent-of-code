@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class SliceItPuzzleTest {
     @Test
-    void overlapArea() throws Exception {
+    void overlapArea() {
         InputReader inputReader = new ResourceInputReader<>(SliceItPuzzle.class);
 
         var puzzle = new SliceItPuzzle();
@@ -19,7 +19,7 @@ class SliceItPuzzleTest {
     }
 
     @Test
-    void intactClaim() throws Exception {
+    void intactClaim() {
         InputReader inputReader = new ResourceInputReader<>(SliceItPuzzle.class);
 
         var puzzle = new SliceItPuzzle();

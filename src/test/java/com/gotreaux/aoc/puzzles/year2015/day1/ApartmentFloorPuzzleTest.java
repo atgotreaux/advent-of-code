@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class ApartmentFloorPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideFloorFromInstructions")
-    void floorFromInstructions(String input, int expectedFloor) throws Exception {
+    void floorFromInstructions(String input, int expectedFloor) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new ApartmentFloorPuzzle();
@@ -24,7 +24,7 @@ class ApartmentFloorPuzzleTest {
     }
 
     @Test
-    void positionBasementReached() throws Exception {
+    void positionBasementReached() {
         InputReader inputReader = new StringInputReader("()())");
 
         var puzzle = new ApartmentFloorPuzzle();

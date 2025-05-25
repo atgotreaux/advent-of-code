@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class CustomCustomsPuzzleTest {
     @Test
-    void sumOfAnyoneDeclared() throws Exception {
+    void sumOfAnyoneDeclared() {
         InputReader inputReader = new ResourceInputReader<>(CustomCustomsPuzzle.class);
 
         var puzzle = new CustomCustomsPuzzle();
@@ -19,7 +19,7 @@ class CustomCustomsPuzzleTest {
     }
 
     @Test
-    void sumOfEveryoneDeclared() throws Exception {
+    void sumOfEveryoneDeclared() {
         InputReader inputReader = new ResourceInputReader<>(CustomCustomsPuzzle.class);
 
         var puzzle = new CustomCustomsPuzzle();

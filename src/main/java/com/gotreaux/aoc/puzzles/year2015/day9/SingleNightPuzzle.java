@@ -18,7 +18,7 @@ public class SingleNightPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         Collection<Route> routes = inputReader.getInputStream().map(Route::of).toList();
 
         var locations =

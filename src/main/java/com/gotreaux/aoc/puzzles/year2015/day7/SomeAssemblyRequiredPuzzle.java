@@ -17,7 +17,7 @@ public class SomeAssemblyRequiredPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         Collection<Wire> wires = inputReader.getInputStream().map(Wire::of).toList();
         var firstCircuit = new Circuit(wires);
         var signalA = firstCircuit.evaluate("a");

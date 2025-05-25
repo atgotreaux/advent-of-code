@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class CorruptionChecksumPuzzleTest {
     @Test
-    void checksumDifference() throws Exception {
+    void checksumDifference() {
         InputReader inputReader =
                 new ResourceInputReader<>(CorruptionChecksumPuzzle.class, "ExampleOne.txt");
 
@@ -20,7 +20,7 @@ class CorruptionChecksumPuzzleTest {
     }
 
     @Test
-    void checksumDivisibility() throws Exception {
+    void checksumDivisibility() {
         InputReader inputReader =
                 new ResourceInputReader<>(CorruptionChecksumPuzzle.class, "ExampleTwo.txt");
 

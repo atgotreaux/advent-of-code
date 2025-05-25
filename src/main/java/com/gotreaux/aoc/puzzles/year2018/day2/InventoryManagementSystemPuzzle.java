@@ -17,7 +17,7 @@ public class InventoryManagementSystemPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, String> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, String> solve(InputReader inputReader) {
         var lines = inputReader.getInputList();
 
         var boxIdsWithTwoOfLetter = 0;

@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class TuningTroublePuzzleTest {
     @ParameterizedTest
     @MethodSource("provideStartOfPacketMarker")
-    void startOfPacketMarker(String input, int expected) throws Exception {
+    void startOfPacketMarker(String input, int expected) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new TuningTroublePuzzle();
@@ -24,7 +24,7 @@ class TuningTroublePuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideStartOfMessageMarker")
-    void startOfMessageMarker(String input, int expected) throws Exception {
+    void startOfMessageMarker(String input, int expected) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new TuningTroublePuzzle();

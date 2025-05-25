@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class AbacusFrameworkPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideSumOfNumbers")
-    void sumOfNumbers(String input, int expected) throws Exception {
+    void sumOfNumbers(String input, int expected) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new AbacusFrameworkPuzzle();
@@ -24,7 +24,7 @@ class AbacusFrameworkPuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideNoRedSumNumbers")
-    void noRedSumNumbers(String input, int expected) throws Exception {
+    void noRedSumNumbers(String input, int expected) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new AbacusFrameworkPuzzle();

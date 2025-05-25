@@ -21,7 +21,7 @@ public class TaxicabPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var direction = CardinalDirection.NORTH;
         var position = new Point();
         Point firstDupPosition = null;

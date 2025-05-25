@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class RegisterPuzzleTest {
     @Test
-    void largestRegisterValue() throws Exception {
+    void largestRegisterValue() {
         InputReader inputReader = new ResourceInputReader<>(RegisterPuzzle.class);
 
         var puzzle = new RegisterPuzzle();
@@ -19,7 +19,7 @@ class RegisterPuzzleTest {
     }
 
     @Test
-    void maxRegisterValue() throws Exception {
+    void maxRegisterValue() {
         InputReader inputReader = new ResourceInputReader<>(RegisterPuzzle.class);
 
         var puzzle = new RegisterPuzzle();

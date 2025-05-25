@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class HighEntropyPassphrasePuzzleTest {
     @ParameterizedTest
     @MethodSource("provideUniquePassphraseWords")
-    void uniquePassphraseWords(String input, int expectedCount) throws Exception {
+    void uniquePassphraseWords(String input, int expectedCount) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new HighEntropyPassphrasePuzzle();
@@ -24,7 +24,7 @@ class HighEntropyPassphrasePuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideNoPassphraseWordAnagrams")
-    void noPassphraseWordAnagrams(String input, int expectedCount) throws Exception {
+    void noPassphraseWordAnagrams(String input, int expectedCount) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new HighEntropyPassphrasePuzzle();

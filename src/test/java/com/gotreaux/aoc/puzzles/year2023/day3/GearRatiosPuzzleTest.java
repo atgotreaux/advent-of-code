@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class GearRatiosPuzzleTest {
     @Test
-    void sumOfParts() throws Exception {
+    void sumOfParts() {
         InputReader inputReader = new ResourceInputReader<>(GearRatiosPuzzle.class);
 
         var puzzle = new GearRatiosPuzzle();
@@ -19,7 +19,7 @@ class GearRatiosPuzzleTest {
     }
 
     @Test
-    void sumOfGearRatios() throws Exception {
+    void sumOfGearRatios() {
         InputReader inputReader = new ResourceInputReader<>(GearRatiosPuzzle.class);
 
         var puzzle = new GearRatiosPuzzle();

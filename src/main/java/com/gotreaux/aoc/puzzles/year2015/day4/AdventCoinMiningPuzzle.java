@@ -18,19 +18,23 @@ public class AdventCoinMiningPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var input = inputReader.getInputString();
 
-        var partOne = findHashMatchingCondition(input, s -> s.startsWith("00000"));
-        var partTwo = findHashMatchingCondition(input, s -> s.startsWith("000000"));
+        try {
+            var md = MessageDigest.getInstance("MD5");
 
-        return new PuzzleOutput<>(partOne, partTwo);
+            var partOne = findHashMatchingCondition(md, input, s -> s.startsWith("00000"));
+            var partTwo = findHashMatchingCondition(md, input, s -> s.startsWith("000000"));
+
+            return new PuzzleOutput<>(partOne, partTwo);
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalStateException("MD5 algorithm not found", e);
+        }
     }
 
-    private static int findHashMatchingCondition(String secretKey, Predicate<String> condition)
-            throws NoSuchAlgorithmException {
-        var md = MessageDigest.getInstance("MD5");
-
+    private static int findHashMatchingCondition(
+            MessageDigest md, String secretKey, Predicate<String> condition) {
         var number = 0;
         while (true) {
             var input = secretKey + number;

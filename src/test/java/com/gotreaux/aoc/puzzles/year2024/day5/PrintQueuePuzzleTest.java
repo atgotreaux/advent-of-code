@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class PrintQueuePuzzleTest {
 
     @Test
-    void sumOfCorrectOrders() throws Exception {
+    void sumOfCorrectOrders() {
         InputReader inputReader = new ResourceInputReader<>(PrintQueuePuzzle.class);
 
         var puzzle = new PrintQueuePuzzle();
@@ -20,7 +20,7 @@ class PrintQueuePuzzleTest {
     }
 
     @Test
-    void sumOfIncorrectOrders() throws Exception {
+    void sumOfIncorrectOrders() {
         InputReader inputReader = new ResourceInputReader<>(PrintQueuePuzzle.class);
 
         var puzzle = new PrintQueuePuzzle();

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class WaitForItPuzzleTest {
 
     @Test
-    void productOfPossibleWins() throws Exception {
+    void productOfPossibleWins() {
         InputReader inputReader = new ResourceInputReader<>(WaitForItPuzzle.class);
 
         var puzzle = new WaitForItPuzzle();
@@ -20,7 +20,7 @@ class WaitForItPuzzleTest {
     }
 
     @Test
-    void kerningRace() throws Exception {
+    void kerningRace() {
         InputReader inputReader = new ResourceInputReader<>(WaitForItPuzzle.class);
 
         var puzzle = new WaitForItPuzzle();

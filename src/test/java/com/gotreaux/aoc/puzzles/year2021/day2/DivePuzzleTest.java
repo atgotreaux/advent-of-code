@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class DivePuzzleTest {
     @Test
-    void productOfPosition() throws Exception {
+    void productOfPosition() {
         InputReader inputReader = new ResourceInputReader<>(DivePuzzle.class);
 
         var puzzle = new DivePuzzle();
@@ -19,7 +19,7 @@ class DivePuzzleTest {
     }
 
     @Test
-    void productOfPositionWithAim() throws Exception {
+    void productOfPositionWithAim() {
         InputReader inputReader = new ResourceInputReader<>(DivePuzzle.class);
 
         var puzzle = new DivePuzzle();

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class CamelCardsPuzzleTest {
     @Test
-    void jackHands() throws Exception {
+    void jackHands() {
         InputReader inputReader = new ResourceInputReader<>(CamelCardsPuzzle.class);
 
         var puzzle = new CamelCardsPuzzle();
@@ -19,7 +19,7 @@ class CamelCardsPuzzleTest {
     }
 
     @Test
-    void jokerHands() throws Exception {
+    void jokerHands() {
         InputReader inputReader = new ResourceInputReader<>(CamelCardsPuzzle.class);
 
         var puzzle = new CamelCardsPuzzle();

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class GiantSquidPuzzleTest {
     @Test
-    void firstWinningScore() throws Exception {
+    void firstWinningScore() {
         InputReader inputReader = new ResourceInputReader<>(GiantSquidPuzzle.class);
 
         var puzzle = new GiantSquidPuzzle();
@@ -19,7 +19,7 @@ class GiantSquidPuzzleTest {
     }
 
     @Test
-    void lastWinningScore() throws Exception {
+    void lastWinningScore() {
         InputReader inputReader = new ResourceInputReader<>(GiantSquidPuzzle.class);
 
         var puzzle = new GiantSquidPuzzle();

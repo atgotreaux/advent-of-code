@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class MatchsticksPuzzleTest {
     @Test
-    void differenceOfLiteralsAndValues() throws Exception {
+    void differenceOfLiteralsAndValues() {
         InputReader inputReader = new ResourceInputReader<>(MatchsticksPuzzle.class);
 
         var puzzle = new MatchsticksPuzzle();
@@ -19,7 +19,7 @@ class MatchsticksPuzzleTest {
     }
 
     @Test
-    void differenceOfEncodedAndLiterals() throws Exception {
+    void differenceOfEncodedAndLiterals() {
         InputReader inputReader = new ResourceInputReader<>(MatchsticksPuzzle.class);
 
         var puzzle = new MatchsticksPuzzle();

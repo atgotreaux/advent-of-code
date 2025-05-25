@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class SecurityThroughObscurityPuzzleTest {
     @Test
-    void sumOfRealRooms() throws Exception {
+    void sumOfRealRooms() {
         InputReader inputReader = new ResourceInputReader<>(SecurityThroughObscurityPuzzle.class);
 
         var puzzle = new SecurityThroughObscurityPuzzle();

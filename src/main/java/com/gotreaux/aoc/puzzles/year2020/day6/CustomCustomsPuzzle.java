@@ -15,7 +15,7 @@ public class CustomCustomsPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) {
         Collection<PassengerGroup> passengerGroups = new ArrayList<>();
 
         Collection<String> passengerDeclarations = new ArrayList<>();

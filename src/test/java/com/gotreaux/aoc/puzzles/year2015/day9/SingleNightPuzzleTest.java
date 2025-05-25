@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class SingleNightPuzzleTest {
     @Test
-    void shortestDistance() throws Exception {
+    void shortestDistance() {
         InputReader inputReader = new ResourceInputReader<>(SingleNightPuzzle.class);
 
         var puzzle = new SingleNightPuzzle();
@@ -19,7 +19,7 @@ class SingleNightPuzzleTest {
     }
 
     @Test
-    void longestDistance() throws Exception {
+    void longestDistance() {
         InputReader inputReader = new ResourceInputReader<>(SingleNightPuzzle.class);
 
         var puzzle = new SingleNightPuzzle();

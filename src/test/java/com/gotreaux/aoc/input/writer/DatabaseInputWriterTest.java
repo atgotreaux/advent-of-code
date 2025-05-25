@@ -23,7 +23,7 @@ class DatabaseInputWriterTest {
     @Autowired private PuzzleRepository puzzleRepository;
 
     @Test
-    void writesNewRowToTable() throws Exception {
+    void writesNewRowToTable() {
         var generator = RandomGenerator.getDefault();
         var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
@@ -41,7 +41,7 @@ class DatabaseInputWriterTest {
     }
 
     @Test
-    void updatesExistingRow() throws Exception {
+    void updatesExistingRow() {
         var generator = RandomGenerator.getDefault();
         var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 

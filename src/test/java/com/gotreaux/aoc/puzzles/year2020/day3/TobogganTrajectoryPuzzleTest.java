@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class TobogganTrajectoryPuzzleTest {
     @Test
-    void treesEncountered() throws Exception {
+    void treesEncountered() {
         InputReader inputReader = new ResourceInputReader<>(TobogganTrajectoryPuzzle.class);
 
         var puzzle = new TobogganTrajectoryPuzzle();
@@ -19,7 +19,7 @@ class TobogganTrajectoryPuzzleTest {
     }
 
     @Test
-    void productOfSlopeCandidates() throws Exception {
+    void productOfSlopeCandidates() {
         InputReader inputReader = new ResourceInputReader<>(TobogganTrajectoryPuzzle.class);
 
         var puzzle = new TobogganTrajectoryPuzzle();

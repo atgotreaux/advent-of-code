@@ -16,7 +16,7 @@ public class BathroomSecurityPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, String> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<String, String> solve(InputReader inputReader) {
         var imaginedKey = new Key("5", "2", "8", "4", "6");
         Collection<Key> imaginedKeys =
                 List.of(

@@ -16,7 +16,7 @@ public class CalorieCountingPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var elfIndex = 0;
         Map<Integer, Integer> elfCalorieCarriage = new HashMap<>();
 

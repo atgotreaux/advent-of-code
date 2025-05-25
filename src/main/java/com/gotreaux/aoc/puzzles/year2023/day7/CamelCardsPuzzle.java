@@ -19,7 +19,7 @@ public class CamelCardsPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         Collection<String> input = inputReader.getInputList();
 
         List<Hand> hands = new ArrayList<>(input.size());

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class RedNosedReportPuzzleTest {
 
     @Test
-    void numOfSafeReports() throws Exception {
+    void numOfSafeReports() {
         InputReader inputReader = new ResourceInputReader<>(RedNosedReportPuzzle.class);
 
         var puzzle = new RedNosedReportPuzzle();
@@ -20,7 +20,7 @@ class RedNosedReportPuzzleTest {
     }
 
     @Test
-    void numOfSafeReportsWithTolerance() throws Exception {
+    void numOfSafeReportsWithTolerance() {
         InputReader inputReader = new ResourceInputReader<>(RedNosedReportPuzzle.class);
 
         var puzzle = new RedNosedReportPuzzle();

@@ -14,7 +14,7 @@ public class CampCleanupPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var numberOfAssignmentsContained = 0;
         var numberOfAssignmentsOverlapping = 0;
 

@@ -14,7 +14,7 @@ public class SonarSweepPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) {
         var measurements = inputReader.getInputStream().map(Integer::parseInt).toList();
 
         var measurementIncreaseCount =

@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class SlopeTest {
     @ParameterizedTest
     @MethodSource("provideTreesEncountered")
-    void treesEncountered(int right, int down, int expectedTrees) throws Exception {
+    void treesEncountered(int right, int down, int expectedTrees) {
         InputReader inputReader = new ResourceInputReader<>(TobogganTrajectoryPuzzle.class);
 
         var input = inputReader.getInputList();

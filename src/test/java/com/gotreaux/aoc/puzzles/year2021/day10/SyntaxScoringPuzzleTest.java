@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class SyntaxScoringPuzzleTest {
     @Test
-    void totalSyntaxErrorScore() throws Exception {
+    void totalSyntaxErrorScore() {
         InputReader inputReader = new ResourceInputReader<>(SyntaxScoringPuzzle.class);
 
         var puzzle = new SyntaxScoringPuzzle();
@@ -19,7 +19,7 @@ class SyntaxScoringPuzzleTest {
     }
 
     @Test
-    void middleCompletionScore() throws Exception {
+    void middleCompletionScore() {
         InputReader inputReader = new ResourceInputReader<>(SyntaxScoringPuzzle.class);
 
         var puzzle = new SyntaxScoringPuzzle();

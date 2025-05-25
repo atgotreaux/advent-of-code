@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class BathroomSecurityPuzzleTest {
     @Test
-    void picturedKeypad() throws Exception {
+    void picturedKeypad() {
         InputReader inputReader = new ResourceInputReader<>(BathroomSecurityPuzzle.class);
 
         var puzzle = new BathroomSecurityPuzzle();
@@ -19,7 +19,7 @@ class BathroomSecurityPuzzleTest {
     }
 
     @Test
-    void actualBathroomKeypad() throws Exception {
+    void actualBathroomKeypad() {
         InputReader inputReader = new ResourceInputReader<>(BathroomSecurityPuzzle.class);
 
         var puzzle = new BathroomSecurityPuzzle();

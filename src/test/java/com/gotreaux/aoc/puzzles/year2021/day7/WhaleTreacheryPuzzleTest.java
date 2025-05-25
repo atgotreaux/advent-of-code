@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class WhaleTreacheryPuzzleTest {
     @Test
-    void linearAlignmentFuel() throws Exception {
+    void linearAlignmentFuel() {
         InputReader inputReader = new StringInputReader("16,1,2,0,4,2,7,1,2,14");
 
         var puzzle = new WhaleTreacheryPuzzle();
@@ -19,7 +19,7 @@ class WhaleTreacheryPuzzleTest {
     }
 
     @Test
-    void consecutiveAlignmentFuel() throws Exception {
+    void consecutiveAlignmentFuel() {
         InputReader inputReader = new StringInputReader("16,1,2,0,4,2,7,1,2,14");
 
         var puzzle = new WhaleTreacheryPuzzle();

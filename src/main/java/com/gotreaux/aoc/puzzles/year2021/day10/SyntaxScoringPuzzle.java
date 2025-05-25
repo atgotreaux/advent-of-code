@@ -18,7 +18,7 @@ public class SyntaxScoringPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Long> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Long> solve(InputReader inputReader) {
         var input = inputReader.getInputList();
 
         var totalSyntaxErrorScore = 0;

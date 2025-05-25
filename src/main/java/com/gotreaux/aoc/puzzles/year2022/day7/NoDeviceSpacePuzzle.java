@@ -14,7 +14,7 @@ public class NoDeviceSpacePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var directory = new Directory("/");
 
         for (var line : inputReader.getInputList()) {

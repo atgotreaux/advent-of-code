@@ -17,7 +17,7 @@ public class TrianglePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) {
         Collection<String> input = inputReader.getInputList();
         Collection<Triangle> rowTriangles = new ArrayList<>(input.size());
 

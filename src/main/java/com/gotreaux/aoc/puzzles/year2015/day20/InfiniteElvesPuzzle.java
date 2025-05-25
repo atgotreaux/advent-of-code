@@ -15,7 +15,7 @@ public class InfiniteElvesPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var presentTarget = Integer.parseInt(inputReader.getInputString());
         var maxHouseNumber = presentTarget / 10;
 

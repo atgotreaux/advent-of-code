@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class InverseCaptchaPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideSumOfNextDigitsMatching")
-    void sumOfNextDigitsMatching(String input, int expectedSum) throws Exception {
+    void sumOfNextDigitsMatching(String input, int expectedSum) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new InverseCaptchaPuzzle();
@@ -24,7 +24,7 @@ class InverseCaptchaPuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideSumOfHalfwayDigitsMatching")
-    void sumOfHalfwayDigitsMatching(String input, int expectedSum) throws Exception {
+    void sumOfHalfwayDigitsMatching(String input, int expectedSum) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new InverseCaptchaPuzzle();

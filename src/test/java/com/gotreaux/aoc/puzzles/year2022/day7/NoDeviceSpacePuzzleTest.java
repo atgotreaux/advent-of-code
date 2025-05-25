@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class NoDeviceSpacePuzzleTest {
     @Test
-    void sumOfSmallDirectories() throws Exception {
+    void sumOfSmallDirectories() {
         InputReader inputReader = new ResourceInputReader<>(NoDeviceSpacePuzzle.class);
 
         var puzzle = new NoDeviceSpacePuzzle();
@@ -19,7 +19,7 @@ class NoDeviceSpacePuzzleTest {
     }
 
     @Test
-    void smallestDirectoryToFree() throws Exception {
+    void smallestDirectoryToFree() {
         InputReader inputReader = new ResourceInputReader<>(NoDeviceSpacePuzzle.class);
 
         var puzzle = new NoDeviceSpacePuzzle();

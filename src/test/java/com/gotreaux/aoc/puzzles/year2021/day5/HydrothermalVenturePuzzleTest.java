@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class HydrothermalVenturePuzzleTest {
 
     @Test
-    void overlappingOrthogonalPoints() throws Exception {
+    void overlappingOrthogonalPoints() {
         InputReader inputReader = new ResourceInputReader<>(HydrothermalVenturePuzzle.class);
 
         var puzzle = new HydrothermalVenturePuzzle();
@@ -20,7 +20,7 @@ class HydrothermalVenturePuzzleTest {
     }
 
     @Test
-    void allOverlappingPoints() throws Exception {
+    void allOverlappingPoints() {
         InputReader inputReader = new ResourceInputReader<>(HydrothermalVenturePuzzle.class);
 
         var puzzle = new HydrothermalVenturePuzzle();

@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class SmokeBasinPuzzleTest {
     @Test
-    void sumOfRiskLevels() throws Exception {
+    void sumOfRiskLevels() {
         InputReader inputReader = new ResourceInputReader<>(SmokeBasinPuzzle.class);
 
         var puzzle = new SmokeBasinPuzzle();
@@ -24,7 +24,7 @@ class SmokeBasinPuzzleTest {
     }
 
     @Test
-    void productOfLargestBasins() throws Exception {
+    void productOfLargestBasins() {
         InputReader inputReader = new ResourceInputReader<>(SmokeBasinPuzzle.class);
 
         var puzzle = new SmokeBasinPuzzle();
@@ -36,7 +36,7 @@ class SmokeBasinPuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideBasinSize")
-    void basinSize(int row, int col, int expectedSize) throws Exception {
+    void basinSize(int row, int col, int expectedSize) {
         InputReader inputReader = new ResourceInputReader<>(SmokeBasinPuzzle.class);
 
         var input = inputReader.getInputList();

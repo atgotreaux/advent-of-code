@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class HauntedWastelandPuzzleTest {
     @Test
-    void noRepeatInstructions() throws Exception {
+    void noRepeatInstructions() {
         InputReader inputReader =
                 new ResourceInputReader<>(HauntedWastelandPuzzle.class, "NoRepeats.txt");
 
@@ -20,7 +20,7 @@ class HauntedWastelandPuzzleTest {
     }
 
     @Test
-    void repeatsInstructions() throws Exception {
+    void repeatsInstructions() {
         InputReader inputReader =
                 new ResourceInputReader<>(HauntedWastelandPuzzle.class, "Repeats.txt");
 
@@ -32,7 +32,7 @@ class HauntedWastelandPuzzleTest {
     }
 
     @Test
-    void ghostSteps() throws Exception {
+    void ghostSteps() {
         InputReader inputReader =
                 new ResourceInputReader<>(HauntedWastelandPuzzle.class, "Repeats.txt");
 

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class HistorianHysteriaPuzzleTest {
 
     @Test
-    void sumOfDistances() throws Exception {
+    void sumOfDistances() {
         InputReader inputReader = new ResourceInputReader<>(HistorianHysteriaPuzzle.class);
 
         var puzzle = new HistorianHysteriaPuzzle();
@@ -20,7 +20,7 @@ class HistorianHysteriaPuzzleTest {
     }
 
     @Test
-    void sumOfSimilarityScores() throws Exception {
+    void sumOfSimilarityScores() {
         InputReader inputReader = new ResourceInputReader<>(HistorianHysteriaPuzzle.class);
 
         var puzzle = new HistorianHysteriaPuzzle();

@@ -16,7 +16,7 @@ public class FireHazardPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) {
         var lightGrid = new boolean[GRID_DIMENSION][GRID_DIMENSION];
         var brightnessGrid = new int[GRID_DIMENSION][GRID_DIMENSION];
 

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class ReportRepairPuzzleTest {
     @Test
-    void productOfTargetSumWithTwoNumbers() throws Exception {
+    void productOfTargetSumWithTwoNumbers() {
         InputReader inputReader = new ResourceInputReader<>(ReportRepairPuzzle.class);
 
         var puzzle = new ReportRepairPuzzle();
@@ -19,7 +19,7 @@ class ReportRepairPuzzleTest {
     }
 
     @Test
-    void productOfTargetSumWithThreeNumbers() throws Exception {
+    void productOfTargetSumWithThreeNumbers() {
         InputReader inputReader = new ResourceInputReader<>(ReportRepairPuzzle.class);
 
         var puzzle = new ReportRepairPuzzle();

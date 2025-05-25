@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class ChronalCalibrationPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideResultingFrequency")
-    void resultingFrequency(String fileName, int expectedFrequency) throws Exception {
+    void resultingFrequency(String fileName, int expectedFrequency) {
         InputReader inputReader =
                 new ResourceInputReader<>(ChronalCalibrationPuzzle.class, fileName);
 
@@ -25,7 +25,7 @@ class ChronalCalibrationPuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideFirstDuplicateFrequency")
-    void firstDuplicateFrequency(String fileName, int expectedFrequency) throws Exception {
+    void firstDuplicateFrequency(String fileName, int expectedFrequency) {
         InputReader inputReader =
                 new ResourceInputReader<>(ChronalCalibrationPuzzle.class, fileName);
 

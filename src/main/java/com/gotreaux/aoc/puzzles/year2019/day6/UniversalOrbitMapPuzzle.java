@@ -16,7 +16,7 @@ public class UniversalOrbitMapPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         Function<String, Edge> mapOrbitEdge = new MapOrbitEdgeFunction();
         var orbits = inputReader.getInputStream().map(mapOrbitEdge).toList();
 

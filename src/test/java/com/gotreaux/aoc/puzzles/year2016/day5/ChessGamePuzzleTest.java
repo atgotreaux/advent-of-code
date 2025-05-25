@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class ChessGamePuzzleTest {
     @Test
-    void passwords() throws Exception {
+    void passwords() {
         InputReader inputReader = new StringInputReader("abc");
 
         var puzzle = new ChessGamePuzzle();

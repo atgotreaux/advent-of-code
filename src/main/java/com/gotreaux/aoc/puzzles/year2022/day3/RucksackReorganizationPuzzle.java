@@ -15,7 +15,7 @@ public class RucksackReorganizationPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var sumOfCompartmentPriorities = 0;
         var sumOfGroupPriorities = 0;
 

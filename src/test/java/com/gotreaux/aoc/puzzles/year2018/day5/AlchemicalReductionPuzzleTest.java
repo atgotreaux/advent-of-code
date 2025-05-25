@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class AlchemicalReductionPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideCollapsedPolymer")
-    void collapsedPolymer(String input, int expectedUnits) throws Exception {
+    void collapsedPolymer(String input, int expectedUnits) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new AlchemicalReductionPuzzle();
@@ -24,7 +24,7 @@ class AlchemicalReductionPuzzleTest {
     }
 
     @Test
-    void shortestCollapsedPolymer() throws Exception {
+    void shortestCollapsedPolymer() {
         InputReader inputReader = new StringInputReader("dabAcCaCBAcCcaDA");
 
         var puzzle = new AlchemicalReductionPuzzle();

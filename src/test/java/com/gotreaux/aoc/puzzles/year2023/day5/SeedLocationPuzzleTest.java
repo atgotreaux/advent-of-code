@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class SeedLocationPuzzleTest {
     @Test
-    void lowestLocationNumber() throws Exception {
+    void lowestLocationNumber() {
         InputReader inputReader = new ResourceInputReader<>(SeedLocationPuzzle.class);
 
         var puzzle = new SeedLocationPuzzle();
@@ -19,7 +19,7 @@ class SeedLocationPuzzleTest {
     }
 
     @Test
-    void lowestLocationNumberInRange() throws Exception {
+    void lowestLocationNumberInRange() {
         InputReader inputReader = new ResourceInputReader<>(SeedLocationPuzzle.class);
 
         var puzzle = new SeedLocationPuzzle();

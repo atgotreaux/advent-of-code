@@ -15,7 +15,7 @@ public class ReportRepairPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var productOfTwoMultiples = 0;
         var productOfThreeMultiples = 0;
 

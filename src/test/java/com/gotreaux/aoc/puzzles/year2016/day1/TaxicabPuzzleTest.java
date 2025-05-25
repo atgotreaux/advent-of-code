@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class TaxicabPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideShortestPath")
-    void shortestPath(String input, int expectedDistance) throws Exception {
+    void shortestPath(String input, int expectedDistance) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new TaxicabPuzzle();
@@ -24,7 +24,7 @@ class TaxicabPuzzleTest {
     }
 
     @Test
-    void firstDupPath() throws Exception {
+    void firstDupPath() {
         InputReader inputReader = new StringInputReader("R8, R4, R4, R8");
 
         var puzzle = new TaxicabPuzzle();

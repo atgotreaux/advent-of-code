@@ -23,7 +23,7 @@ class PageUpdateTest {
 
     @ParameterizedTest
     @MethodSource("provideIsCorrectOrder")
-    void isCorrectOrder(String line, boolean expected) throws Exception {
+    void isCorrectOrder(String line, boolean expected) {
         var pageUpdate = PageUpdate.of(line);
 
         InputReader inputReader = new ResourceInputReader<>(PrintQueuePuzzle.class, "rules.txt");
@@ -35,7 +35,7 @@ class PageUpdateTest {
 
     @ParameterizedTest
     @MethodSource("provideGetMiddlePage")
-    void getMiddlePage(String line, int expectedMiddlePage) throws Exception {
+    void getMiddlePage(String line, int expectedMiddlePage) {
         var pageUpdate = PageUpdate.of(line);
 
         InputReader inputReader = new ResourceInputReader<>(PrintQueuePuzzle.class, "rules.txt");

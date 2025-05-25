@@ -16,7 +16,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class IntMatrixTest {
     @ParameterizedTest
     @MethodSource("provideRowCount")
-    void rowCount(Class<Puzzle> puzzleClass, int expectedRowCount) throws Exception {
+    void rowCount(Class<Puzzle> puzzleClass, int expectedRowCount) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
         var input = inputReader.getInputList();
@@ -28,7 +28,7 @@ class IntMatrixTest {
 
     @ParameterizedTest
     @MethodSource("provideColCount")
-    void colCount(Class<Puzzle> puzzleClass, int expectedColCount) throws Exception {
+    void colCount(Class<Puzzle> puzzleClass, int expectedColCount) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
         var input = inputReader.getInputList();
@@ -40,7 +40,7 @@ class IntMatrixTest {
 
     @ParameterizedTest
     @MethodSource("provideGet")
-    void get(Class<Puzzle> puzzleClass, int row, int col, int expected) throws Exception {
+    void get(Class<Puzzle> puzzleClass, int row, int col, int expected) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
         var input = inputReader.getInputList();
@@ -52,7 +52,7 @@ class IntMatrixTest {
 
     @ParameterizedTest
     @MethodSource("provideUp")
-    void up(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) throws Exception {
+    void up(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
         var input = inputReader.getInputList();
@@ -64,7 +64,7 @@ class IntMatrixTest {
 
     @ParameterizedTest
     @MethodSource("provideDown")
-    void down(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) throws Exception {
+    void down(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
         var input = inputReader.getInputList();
@@ -76,7 +76,7 @@ class IntMatrixTest {
 
     @ParameterizedTest
     @MethodSource("provideLeft")
-    void left(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) throws Exception {
+    void left(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
         var input = inputReader.getInputList();
@@ -88,7 +88,7 @@ class IntMatrixTest {
 
     @ParameterizedTest
     @MethodSource("provideRight")
-    void right(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) throws Exception {
+    void right(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
         var input = inputReader.getInputList();
@@ -100,8 +100,7 @@ class IntMatrixTest {
 
     @ParameterizedTest
     @MethodSource("provideNeighbors")
-    void neighbors(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected)
-            throws Exception {
+    void neighbors(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
         var input = inputReader.getInputList();

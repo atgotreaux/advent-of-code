@@ -22,7 +22,7 @@ public class SupplyStacksPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, String> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<String, String> solve(InputReader inputReader) {
         Deque<RearrangeProcedure> procedures = new ArrayDeque<>();
         Map<Integer, Deque<Character>> stacks = new HashMap<>();
 

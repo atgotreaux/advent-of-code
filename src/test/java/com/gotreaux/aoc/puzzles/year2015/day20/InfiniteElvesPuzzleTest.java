@@ -13,7 +13,7 @@ class InfiniteElvesPuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideMinimumHouseNumber")
-    void minimumHouseNumber(int presentTarget, int expectedMinimumHouseNumber) throws Exception {
+    void minimumHouseNumber(int presentTarget, int expectedMinimumHouseNumber) {
         InputReader inputReader = new StringInputReader(String.valueOf(presentTarget));
 
         var puzzle = new InfiniteElvesPuzzle();

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class DinnerTablePuzzleTest {
 
     @Test
-    void guestTableOptimalArrangement() throws Exception {
+    void guestTableOptimalArrangement() {
         InputReader inputReader = new ResourceInputReader<>(DinnerTablePuzzle.class);
 
         var puzzle = new DinnerTablePuzzle();

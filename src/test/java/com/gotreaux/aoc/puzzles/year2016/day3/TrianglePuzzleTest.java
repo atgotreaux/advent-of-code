@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class TrianglePuzzleTest {
     @Test
-    void validTriangleRow() throws Exception {
+    void validTriangleRow() {
         InputReader inputReader = new StringInputReader("5 10 25");
 
         var puzzle = new TrianglePuzzle();
@@ -20,7 +20,7 @@ class TrianglePuzzleTest {
     }
 
     @Test
-    void validTriangleColumn() throws Exception {
+    void validTriangleColumn() {
         InputReader inputReader = new ResourceInputReader<>(TrianglePuzzle.class);
 
         var puzzle = new TrianglePuzzle();

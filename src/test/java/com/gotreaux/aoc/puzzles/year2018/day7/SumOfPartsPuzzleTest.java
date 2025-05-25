@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class SumOfPartsPuzzleTest {
     @Test
-    void stepOrder() throws Exception {
+    void stepOrder() {
         InputReader inputReader = new ResourceInputReader<>(SumOfPartsPuzzle.class);
 
         var puzzle = new SumOfPartsPuzzle();

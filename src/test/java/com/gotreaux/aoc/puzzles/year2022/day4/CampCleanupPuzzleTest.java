@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class CampCleanupPuzzleTest {
     @Test
-    void numberOfAssignmentsContained() throws Exception {
+    void numberOfAssignmentsContained() {
         InputReader inputReader = new ResourceInputReader<>(CampCleanupPuzzle.class);
 
         var puzzle = new CampCleanupPuzzle();
@@ -19,7 +19,7 @@ class CampCleanupPuzzleTest {
     }
 
     @Test
-    void numberOfAssignmentsOverlapping() throws Exception {
+    void numberOfAssignmentsOverlapping() {
         InputReader inputReader = new ResourceInputReader<>(CampCleanupPuzzle.class);
 
         var puzzle = new CampCleanupPuzzle();

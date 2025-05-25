@@ -2,6 +2,7 @@ package com.gotreaux.aoc.input.reader;
 
 import com.google.errorprone.annotations.MustBeClosed;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -15,18 +16,26 @@ public class FileInputReader implements InputReader {
     }
 
     @Override
-    public String getInputString() throws IOException {
-        return Files.readString(Path.of(inputPath));
+    public String getInputString() {
+        return readFile(Files::readString);
     }
 
     @Override
     @MustBeClosed
-    public Stream<String> getInputStream() throws IOException {
-        return Files.lines(Path.of(inputPath));
+    public Stream<String> getInputStream() {
+        return readFile(Files::lines);
     }
 
     @Override
-    public List<String> getInputList() throws IOException {
-        return Files.readAllLines(Path.of(inputPath));
+    public List<String> getInputList() {
+        return readFile(Files::readAllLines);
+    }
+
+    private <T> T readFile(PathReader<T> reader) {
+        try {
+            return reader.read(Path.of(inputPath));
+        } catch (IOException e) {
+            throw new UncheckedIOException("Failed to read file: %s".formatted(inputPath), e);
+        }
     }
 }

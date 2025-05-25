@@ -23,7 +23,7 @@ public class NiceStringPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) {
         var niceStringCount =
                 inputReader
                         .getInputStream()

@@ -18,7 +18,7 @@ public class WaitForItPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) {
         List<Long> times = new ArrayList<>();
         List<Long> recordDistances = new ArrayList<>();
 

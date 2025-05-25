@@ -18,7 +18,7 @@ public class PrintQueuePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         Collection<String> input = inputReader.getInputList();
 
         Collection<PageOrderingRule> rules =

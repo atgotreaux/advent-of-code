@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class InternetProtocolPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideSupportsTls")
-    void supportsTls(String input, int expected) throws Exception {
+    void supportsTls(String input, int expected) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new InternetProtocolPuzzle();
@@ -24,7 +24,7 @@ class InternetProtocolPuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideSupportsSsl")
-    void supportsSsl(String input, int expected) throws Exception {
+    void supportsSsl(String input, int expected) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new InternetProtocolPuzzle();

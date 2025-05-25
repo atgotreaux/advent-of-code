@@ -13,7 +13,7 @@ public class AlchemicalReductionPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var input = inputReader.getInputString();
 
         var collapsedPolymer = collapse(input);

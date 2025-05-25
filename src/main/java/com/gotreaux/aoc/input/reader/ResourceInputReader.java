@@ -1,53 +1,48 @@
 package com.gotreaux.aoc.input.reader;
 
 import com.google.errorprone.annotations.MustBeClosed;
+import com.gotreaux.aoc.input.ResourceLoader;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
-import java.net.URISyntaxException;
+import java.io.UncheckedIOException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class ResourceInputReader<T extends Puzzle> implements InputReader {
-    private static final Pattern SEPARATOR = Pattern.compile("\\.");
-    private final String inputPath;
+    private final ResourceLoader resourceLoader;
 
     public ResourceInputReader(Class<T> puzzleClass) {
         this(puzzleClass, "input.txt");
     }
 
     public ResourceInputReader(Class<T> puzzleClass, String fileName) {
-        inputPath =
-                SEPARATOR.matcher(puzzleClass.getPackage().getName()).replaceAll("/")
-                        + "/"
-                        + fileName;
+        resourceLoader =
+                new ResourceLoader(puzzleClass.getPackageName().replace(".", "/") + "/" + fileName);
     }
 
     @Override
-    public String getInputString() throws IOException, URISyntaxException {
-        return Files.readString(loadResource());
+    public String getInputString() {
+        return readResource(Files::readString);
     }
 
     @Override
     @MustBeClosed
-    public Stream<String> getInputStream() throws IOException, URISyntaxException {
-        return Files.lines(loadResource());
+    public Stream<String> getInputStream() {
+        return readResource(Files::lines);
     }
 
     @Override
-    public List<String> getInputList() throws IOException, URISyntaxException {
-        return Files.readAllLines(loadResource());
+    public List<String> getInputList() {
+        return readResource(Files::readAllLines);
     }
 
-    private Path loadResource() throws NoSuchFileException, URISyntaxException {
-        var resource = getClass().getClassLoader().getResource(inputPath);
-        if (resource == null) {
-            throw new NoSuchFileException(inputPath);
+    private <P> P readResource(PathReader<P> reader) {
+        try {
+            return reader.read(resourceLoader.load());
+        } catch (IOException e) {
+            throw new UncheckedIOException(
+                    "Failed to read resource: %s".formatted(resourceLoader.inputPath()), e);
         }
-
-        return Path.of(resource.toURI());
     }
 }

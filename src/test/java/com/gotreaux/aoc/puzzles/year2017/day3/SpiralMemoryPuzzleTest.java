@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class SpiralMemoryPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideDistanceToAccessPort")
-    void distanceToAccessPort(String input, int expectedSteps) throws Exception {
+    void distanceToAccessPort(String input, int expectedSteps) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new SpiralMemoryPuzzle();

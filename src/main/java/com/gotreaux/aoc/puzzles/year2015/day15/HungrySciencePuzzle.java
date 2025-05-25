@@ -16,7 +16,7 @@ public class HungrySciencePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var ingredients = inputReader.getInputStream().map(Ingredient::of).toList();
 
         var combinationsOfSum =

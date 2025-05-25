@@ -13,7 +13,7 @@ public class AuntSuePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<?, ?> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<?, ?> solve(InputReader inputReader) {
         var aunts = inputReader.getInputStream().map(Aunt::of).toList();
 
         var mfcsam = new MFCSAM(3, 7, 2, 3, 0, 0, 5, 3, 2, 1);

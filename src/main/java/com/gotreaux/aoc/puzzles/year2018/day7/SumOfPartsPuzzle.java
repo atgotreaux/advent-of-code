@@ -17,7 +17,7 @@ public class SumOfPartsPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<String, Integer> solve(InputReader inputReader) {
         var reqs = inputReader.getInputStream().map(Requirement::of).toList();
 
         var steps =

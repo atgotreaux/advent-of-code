@@ -15,7 +15,7 @@ public class TwistyTrampolinesPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var input = inputReader.getInputStream().mapToInt(Integer::parseInt).toArray();
 
         var incrementedSteps = getStepsToExit(input, i -> i + 1);

@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class CrossedWiresPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideClosestIntersectionDistance")
-    void closestIntersectionDistance(String fileName, int expected) throws Exception {
+    void closestIntersectionDistance(String fileName, int expected) {
         InputReader inputReader = new ResourceInputReader<>(CrossedWiresPuzzle.class, fileName);
 
         var puzzle = new CrossedWiresPuzzle();
@@ -24,7 +24,7 @@ class CrossedWiresPuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideClosestIntersectionSteps")
-    void closestIntersectionSteps(String fileName, int expected) throws Exception {
+    void closestIntersectionSteps(String fileName, int expected) {
         InputReader inputReader = new ResourceInputReader<>(CrossedWiresPuzzle.class, fileName);
 
         var puzzle = new CrossedWiresPuzzle();

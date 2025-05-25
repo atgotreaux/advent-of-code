@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class HungrySciencePuzzleTest {
     @Test
-    void highestScoringCookie() throws Exception {
+    void highestScoringCookie() {
         InputReader inputReader = new ResourceInputReader<>(HungrySciencePuzzle.class);
 
         var puzzle = new HungrySciencePuzzle();
@@ -19,7 +19,7 @@ class HungrySciencePuzzleTest {
     }
 
     @Test
-    void highestScoringCalorieCookie() throws Exception {
+    void highestScoringCalorieCookie() {
         InputReader inputReader = new ResourceInputReader<>(HungrySciencePuzzle.class);
 
         var puzzle = new HungrySciencePuzzle();

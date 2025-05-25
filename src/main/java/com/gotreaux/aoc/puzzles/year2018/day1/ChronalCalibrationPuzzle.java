@@ -3,7 +3,6 @@ package com.gotreaux.aoc.puzzles.year2018.day1;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.springframework.stereotype.Component;
@@ -16,12 +15,9 @@ public class ChronalCalibrationPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var resultingFrequency = Integer.MAX_VALUE;
         var firstDuplicateFrequency = Integer.MAX_VALUE;
-
-        var format = new DecimalFormat();
-        format.setPositivePrefix("+");
 
         var frequency = 0;
         Collection<Integer> reachedFrequencies = new ArrayList<>();
@@ -30,7 +26,7 @@ public class ChronalCalibrationPuzzle extends Puzzle {
         var frequencyPosition = 0;
         var frequencyChanges = inputReader.getInputList();
         while (firstDuplicateFrequency == Integer.MAX_VALUE) {
-            frequency += format.parse(frequencyChanges.get(frequencyPosition)).intValue();
+            frequency += Integer.parseInt(frequencyChanges.get(frequencyPosition));
 
             if (reachedFrequencies.contains(frequency)) {
                 firstDuplicateFrequency = frequency;

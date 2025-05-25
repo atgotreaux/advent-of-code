@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class MemoryReallocationPuzzleTest {
     @Test
-    void cyclesBeforeDuplicate() throws Exception {
+    void cyclesBeforeDuplicate() {
         InputReader inputReader = new StringInputReader("0 2 7 0");
 
         var puzzle = new MemoryReallocationPuzzle();
@@ -19,7 +19,7 @@ class MemoryReallocationPuzzleTest {
     }
 
     @Test
-    void cycleSize() throws Exception {
+    void cycleSize() {
         InputReader inputReader = new StringInputReader("0 2 7 0");
 
         var puzzle = new MemoryReallocationPuzzle();

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class SonarSweepPuzzleTest {
     @Test
-    void depthMeasurementIncreaseCount() throws Exception {
+    void depthMeasurementIncreaseCount() {
         InputReader inputReader = new ResourceInputReader<>(SonarSweepPuzzle.class);
 
         var puzzle = new SonarSweepPuzzle();
@@ -19,7 +19,7 @@ class SonarSweepPuzzleTest {
     }
 
     @Test
-    void depthMeasurementWindowIncreaseCount() throws Exception {
+    void depthMeasurementWindowIncreaseCount() {
         InputReader inputReader = new ResourceInputReader<>(SonarSweepPuzzle.class);
 
         var puzzle = new SonarSweepPuzzle();

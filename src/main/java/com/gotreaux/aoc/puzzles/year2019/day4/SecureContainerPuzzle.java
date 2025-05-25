@@ -20,7 +20,7 @@ public class SecureContainerPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var scanner = new Scanner(inputReader.getInputString());
         scanner.useDelimiter("-");
         var start = scanner.nextInt();

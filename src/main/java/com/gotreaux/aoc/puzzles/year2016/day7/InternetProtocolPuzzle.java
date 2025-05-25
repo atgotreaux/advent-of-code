@@ -16,7 +16,7 @@ public class InternetProtocolPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var supportsTlsCount = 0;
         var supportsSslCount = 0;
 

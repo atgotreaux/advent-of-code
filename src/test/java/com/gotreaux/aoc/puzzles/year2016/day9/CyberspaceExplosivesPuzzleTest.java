@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class CyberspaceExplosivesPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideDecompressedLength")
-    void decompressedLength(String input, long expected) throws Exception {
+    void decompressedLength(String input, long expected) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new CyberspaceExplosivesPuzzle();
@@ -24,7 +24,7 @@ class CyberspaceExplosivesPuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideDecompressedRecursiveLength")
-    void decompressedRecursiveLength(String input, long expected) throws Exception {
+    void decompressedRecursiveLength(String input, long expected) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new CyberspaceExplosivesPuzzle();

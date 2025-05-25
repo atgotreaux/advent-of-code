@@ -2,5 +2,5 @@ package com.gotreaux.aoc.input.writer;
 
 @FunctionalInterface
 public interface InputWriter {
-    void write(String input) throws Exception;
+    void write(String input);
 }

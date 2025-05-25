@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class TrebuchetPuzzleTest {
     @Test
-    void calibrationValue() throws Exception {
+    void calibrationValue() {
         InputReader inputReader =
                 new ResourceInputReader<>(TrebuchetPuzzle.class, "CalibrationDocument.txt");
 
@@ -20,7 +20,7 @@ class TrebuchetPuzzleTest {
     }
 
     @Test
-    void calibrationValueDigitLetters() throws Exception {
+    void calibrationValueDigitLetters() {
         InputReader inputReader =
                 new ResourceInputReader<>(
                         TrebuchetPuzzle.class, "CalibrationDigitsWithLetters.txt");

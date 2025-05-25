@@ -15,7 +15,7 @@ class LightGridMatrixTest {
 
     @ParameterizedTest
     @MethodSource("provideGetLightCount")
-    void getLightCount(int steps, int expected) throws Exception {
+    void getLightCount(int steps, int expected) {
         InputReader inputReader = new ResourceInputReader<>(LikeAGifForYourYardPuzzle.class);
 
         var input = inputReader.getInputList();
@@ -30,7 +30,7 @@ class LightGridMatrixTest {
 
     @ParameterizedTest
     @MethodSource("provideGetStuckLightCount")
-    void getStuckLightCount(int steps, int expected) throws Exception {
+    void getStuckLightCount(int steps, int expected) {
         InputReader inputReader = new ResourceInputReader<>(LikeAGifForYourYardPuzzle.class);
 
         var input = inputReader.getInputList();

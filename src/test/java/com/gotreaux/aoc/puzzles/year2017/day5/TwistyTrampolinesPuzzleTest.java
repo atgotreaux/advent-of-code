@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class TwistyTrampolinesPuzzleTest {
     @Test
-    void incrementedStepsToExit() throws Exception {
+    void incrementedStepsToExit() {
         InputReader inputReader = new ResourceInputReader<>(TwistyTrampolinesPuzzle.class);
 
         var puzzle = new TwistyTrampolinesPuzzle();
@@ -19,7 +19,7 @@ class TwistyTrampolinesPuzzleTest {
     }
 
     @Test
-    void strangerStepsToExit() throws Exception {
+    void strangerStepsToExit() {
         InputReader inputReader = new ResourceInputReader<>(TwistyTrampolinesPuzzle.class);
 
         var puzzle = new TwistyTrampolinesPuzzle();

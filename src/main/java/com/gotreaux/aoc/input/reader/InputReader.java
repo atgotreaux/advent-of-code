@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public interface InputReader {
-    String getInputString() throws Exception;
+    String getInputString();
 
-    Stream<String> getInputStream() throws Exception;
+    Stream<String> getInputStream();
 
-    List<String> getInputList() throws Exception;
+    List<String> getInputList();
 }

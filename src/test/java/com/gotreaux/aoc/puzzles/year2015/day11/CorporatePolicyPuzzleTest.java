@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class CorporatePolicyPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideNextPassword")
-    void nextPassword(String input, String expected) throws Exception {
+    void nextPassword(String input, String expected) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new CorporatePolicyPuzzle();

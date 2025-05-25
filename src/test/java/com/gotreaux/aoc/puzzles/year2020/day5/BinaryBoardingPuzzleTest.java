@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class BinaryBoardingPuzzleTest {
     @Test
-    void highestSeatID() throws Exception {
+    void highestSeatID() {
         InputReader inputReader = new ResourceInputReader<>(BinaryBoardingPuzzle.class);
 
         var puzzle = new BinaryBoardingPuzzle();

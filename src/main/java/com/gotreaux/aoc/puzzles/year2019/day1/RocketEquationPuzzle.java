@@ -13,7 +13,7 @@ public class RocketEquationPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var sumOfFuelRequirements = 0;
         var sumOfAdditionalFuelRequirements = 0;
 

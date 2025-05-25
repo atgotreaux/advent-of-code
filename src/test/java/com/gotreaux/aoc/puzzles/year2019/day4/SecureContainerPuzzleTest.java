@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class SecureContainerPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideValidPasswords")
-    void validPasswords(String input, int expected) throws Exception {
+    void validPasswords(String input, int expected) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new SecureContainerPuzzle();
@@ -24,7 +24,7 @@ class SecureContainerPuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideValidPasswordsNoLargerGroups")
-    void validPasswordsNoLargerGroups(String input, int expected) throws Exception {
+    void validPasswordsNoLargerGroups(String input, int expected) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new SecureContainerPuzzle();

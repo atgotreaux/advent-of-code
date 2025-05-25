@@ -5,8 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.gotreaux.aoc.input.writer.FileInputWriter;
 import com.gotreaux.aoc.input.writer.InputWriter;
+import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
 
@@ -15,11 +16,11 @@ class FileInputReaderTest {
     void throwsIfFileNotFound() {
         InputReader inputReader = new FileInputReader("input.txt");
 
-        assertThrows(NoSuchFileException.class, inputReader::getInputString);
+        assertThrows(UncheckedIOException.class, inputReader::getInputString);
     }
 
     @Test
-    void inputAsString() throws Exception {
+    void inputAsString() throws IOException {
         var input = RandomString.make(10);
 
         var path = Files.createTempFile("input", ".txt");
@@ -33,7 +34,7 @@ class FileInputReaderTest {
     }
 
     @Test
-    void inputAsStream() throws Exception {
+    void inputAsStream() throws IOException {
         var input = RandomString.make(10);
 
         var path = Files.createTempFile("input", ".txt");
@@ -48,7 +49,7 @@ class FileInputReaderTest {
     }
 
     @Test
-    void inputAsList() throws Exception {
+    void inputAsList() throws IOException {
         var input = RandomString.make(10);
 
         var path = Files.createTempFile("input", ".txt");

@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class AdventCoinMiningPuzzleTest {
     @ParameterizedTest
     @MethodSource("provideFiveLeadingZeroes")
-    void fiveLeadingZeroes(String input, int expectedKeyNumber) throws Exception {
+    void fiveLeadingZeroes(String input, int expectedKeyNumber) {
         InputReader inputReader = new StringInputReader(input);
 
         var puzzle = new AdventCoinMiningPuzzle();

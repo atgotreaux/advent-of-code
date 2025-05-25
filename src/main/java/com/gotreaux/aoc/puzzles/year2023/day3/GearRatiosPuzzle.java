@@ -21,7 +21,7 @@ public class GearRatiosPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var sumOfParts = 0;
 
         var lines = inputReader.getInputList();

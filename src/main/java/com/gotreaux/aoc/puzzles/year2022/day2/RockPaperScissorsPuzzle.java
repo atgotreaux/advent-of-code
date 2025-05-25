@@ -14,7 +14,7 @@ public class RockPaperScissorsPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var encryptedStrategyScore = 0;
         var outcomeStrategyScore = 0;
 

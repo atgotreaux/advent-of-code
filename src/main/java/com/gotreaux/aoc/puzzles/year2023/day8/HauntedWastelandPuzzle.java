@@ -21,7 +21,7 @@ public class HauntedWastelandPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) {
         List<RelativeDirection> directions = new ArrayList<>();
         List<Node> nodes = new ArrayList<>();
 

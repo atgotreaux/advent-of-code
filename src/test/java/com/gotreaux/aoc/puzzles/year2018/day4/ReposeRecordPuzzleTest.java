@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class ReposeRecordPuzzleTest {
 
     @Test
-    void guardMostMinutesAsleep() throws Exception {
+    void guardMostMinutesAsleep() {
         InputReader inputReader = new ResourceInputReader<>(ReposeRecordPuzzle.class);
 
         var puzzle = new ReposeRecordPuzzle();
@@ -20,7 +20,7 @@ class ReposeRecordPuzzleTest {
     }
 
     @Test
-    void guardMinuteMostFrequentlyAsleep() throws Exception {
+    void guardMinuteMostFrequentlyAsleep() {
         InputReader inputReader = new ResourceInputReader<>(ReposeRecordPuzzle.class);
 
         var puzzle = new ReposeRecordPuzzle();

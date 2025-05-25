@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class CathodeRayTubePuzzleTest {
     @Test
-    void sumOfSignalStrengths() throws Exception {
+    void sumOfSignalStrengths() {
         InputReader inputReader = new ResourceInputReader<>(CathodeRayTubePuzzle.class);
 
         var puzzle = new CathodeRayTubePuzzle();
@@ -24,7 +24,7 @@ class CathodeRayTubePuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideSignalStrength")
-    void signalStrength(int cycles, int expected) throws Exception {
+    void signalStrength(int cycles, int expected) {
         InputReader inputReader = new ResourceInputReader<>(CathodeRayTubePuzzle.class);
 
         var input = inputReader.getInputList();

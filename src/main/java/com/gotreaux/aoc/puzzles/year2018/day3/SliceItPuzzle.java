@@ -21,7 +21,7 @@ public class SliceItPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Long, Integer> solve(InputReader inputReader) {
         Map<Point, Collection<Integer>> fabricClaims = new HashMap<>();
         Collection<Integer> claimIds = new ArrayList<>();
 

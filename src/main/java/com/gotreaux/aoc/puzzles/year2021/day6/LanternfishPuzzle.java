@@ -21,7 +21,7 @@ public class LanternfishPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) {
         var lanternfish =
                 Arrays.stream(inputReader.getInputString().split(","))
                         .map(Integer::parseInt)

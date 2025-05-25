@@ -16,7 +16,7 @@ public class CeresSearchPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Long, Long> solve(InputReader inputReader) {
         var lines = inputReader.getInputList();
 
         long xmasAppearances = 0, xMasAppearances = 0;

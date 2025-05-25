@@ -13,7 +13,7 @@ public class LookSayPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var partOne = inputReader.getInputString();
 
         for (var i = 0; i < 40; i++) {

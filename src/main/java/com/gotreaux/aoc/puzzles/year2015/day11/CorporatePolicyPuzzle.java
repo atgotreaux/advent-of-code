@@ -18,7 +18,7 @@ public class CorporatePolicyPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<String, String> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<String, String> solve(InputReader inputReader) {
         var nextPassword = inputReader.getInputString();
 
         Function<String, String> incrementPassword = new IncrementPasswordFunction();

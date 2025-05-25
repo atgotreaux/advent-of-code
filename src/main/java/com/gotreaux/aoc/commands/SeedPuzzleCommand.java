@@ -6,6 +6,7 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -91,8 +92,7 @@ public class SeedPuzzleCommand {
                             label = "[database,resource,{filePath}]",
                             arity = CommandRegistration.OptionArity.ZERO_OR_MORE,
                             defaultValue = InputWriterFactory.DATABASE_WRITER)
-                    String[] targets)
-            throws Exception {
+                    String[] targets) {
         logger.debug(
                 "Seeding puzzle of year '{}' and day '{}' to targets '{}'",
                 year,
@@ -123,9 +123,20 @@ public class SeedPuzzleCommand {
                         .header("Cookie", "session=%s".formatted(session))
                         .build();
 
-        var response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
         var locale = Locale.getDefault();
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException e) {
+            logger.error("Failed to send HTTP request", e);
+            return messageSource.getMessage(
+                    "puzzle.command.seed.io-exception", new Object[] {url}, locale);
+        } catch (InterruptedException e) {
+            logger.error("HTTP request was interrupted", e);
+            return messageSource.getMessage(
+                    "puzzle.command.seed.interrupted-exception", new Object[] {url}, locale);
+        }
+
         if (response.statusCode() != HttpURLConnection.HTTP_OK) {
             return messageSource.getMessage(
                     "puzzle.command.seed.status-code",
@@ -145,7 +156,7 @@ public class SeedPuzzleCommand {
                 entry.getValue().write(input);
                 successfulTargets.add(entry.getKey());
                 logger.info("Input seeded to target '{}'", entry.getKey());
-            } catch (Exception e) {
+            } catch (RuntimeException e) {
                 logger.error("Failed to seed input to target '{}'", entry.getKey());
                 logger.error(e.getMessage());
             }

@@ -13,7 +13,7 @@ public class InverseCaptchaPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var sumOfNextDigitsMatching = 0;
         var sumOfHalfwayDigitsMatching = 0;
 

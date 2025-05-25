@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class CubeConundrumPuzzleTest {
     @Test
-    void possibleGames() throws Exception {
+    void possibleGames() {
         InputReader inputReader = new ResourceInputReader<>(CubeConundrumPuzzle.class);
 
         var puzzle = new CubeConundrumPuzzle();
@@ -19,7 +19,7 @@ class CubeConundrumPuzzleTest {
     }
 
     @Test
-    void powerOfFewestCubes() throws Exception {
+    void powerOfFewestCubes() {
         InputReader inputReader = new ResourceInputReader<>(CubeConundrumPuzzle.class);
 
         var puzzle = new CubeConundrumPuzzle();

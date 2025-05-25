@@ -3,7 +3,6 @@ package com.gotreaux.aoc.input.reader;
 import com.gotreaux.aoc.persistence.entity.PuzzleEntity;
 import com.gotreaux.aoc.persistence.entity.PuzzleEntityId;
 import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
-import java.io.IOException;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -25,14 +24,14 @@ public class DatabaseInputReader implements InputReader {
     }
 
     @Override
-    public Stream<String> getInputStream() throws IOException {
+    public Stream<String> getInputStream() {
         var puzzleInput = getInput();
 
         return Stream.of(puzzleInput.split("\n"));
     }
 
     @Override
-    public List<String> getInputList() throws IOException {
+    public List<String> getInputList() {
         var puzzleInput = getInput();
 
         return List.of(puzzleInput.split("\n"));

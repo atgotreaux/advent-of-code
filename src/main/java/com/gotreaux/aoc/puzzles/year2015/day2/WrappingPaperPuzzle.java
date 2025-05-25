@@ -14,7 +14,7 @@ public class WrappingPaperPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var wrappingPaperOrderTotal = 0;
         var ribbonOrderTotal = 0;
 

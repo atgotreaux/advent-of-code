@@ -1,6 +1,7 @@
 package com.gotreaux.aoc.input.writer;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -12,7 +13,11 @@ public class FileInputWriter implements InputWriter {
     }
 
     @Override
-    public void write(String input) throws IOException {
-        Files.writeString(Path.of(inputPath), input);
+    public void write(String input) {
+        try {
+            Files.writeString(Path.of(inputPath), input);
+        } catch (IOException e) {
+            throw new UncheckedIOException("Failed to write to file: %s".formatted(inputPath), e);
+        }
     }
 }

@@ -16,7 +16,7 @@ public class WhaleTreacheryPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var input = inputReader.getInputString();
 
         var positions = Arrays.stream(input.split(",")).map(Integer::parseInt).toList();

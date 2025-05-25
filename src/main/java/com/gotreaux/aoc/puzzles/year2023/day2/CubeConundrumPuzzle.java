@@ -25,7 +25,7 @@ public class CubeConundrumPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var possibleGames = 0;
         var powerOfFewestCubes = 0;
 

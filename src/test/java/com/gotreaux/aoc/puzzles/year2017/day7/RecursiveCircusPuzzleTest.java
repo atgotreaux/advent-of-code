@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class RecursiveCircusPuzzleTest {
     @Test
-    void nameOfBottomProgram() throws Exception {
+    void nameOfBottomProgram() {
         InputReader inputReader = new ResourceInputReader<>(RecursiveCircusPuzzle.class);
 
         var puzzle = new RecursiveCircusPuzzle();
@@ -19,7 +19,7 @@ class RecursiveCircusPuzzleTest {
     }
 
     @Test
-    void weightOfFixedChild() throws Exception {
+    void weightOfFixedChild() {
         InputReader inputReader = new ResourceInputReader<>(RecursiveCircusPuzzle.class);
 
         var puzzle = new RecursiveCircusPuzzle();

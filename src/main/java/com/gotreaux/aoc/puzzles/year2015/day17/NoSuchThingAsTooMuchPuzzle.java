@@ -17,7 +17,7 @@ public class NoSuchThingAsTooMuchPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Long> solve(InputReader inputReader) throws Exception {
+    public PuzzleOutput<Integer, Long> solve(InputReader inputReader) {
         var containers = inputReader.getInputStream().map(Integer::parseInt).toList();
 
         var combinationsOfSum =
