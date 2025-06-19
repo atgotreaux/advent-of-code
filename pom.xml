@@ -17,7 +17,7 @@
     <name>advent-of-code</name>
     <description>My solutions for Advent of Code, an Advent calendar of programming puzzles.</description>
     <properties>
-        <java.version>23</java.version>
+        <java.version>24</java.version>
     </properties>
 
     <dependencies>
@@ -84,8 +84,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.14.0</version>
                 <configuration>
-                    <source>23</source>
-                    <target>23</target>
+                    <source>24</source>
+                    <target>24</target>
                     <encoding>UTF-8</encoding>
                     <failOnWarning>true</failOnWarning>
                     <compilerArgs>
@@ -127,7 +127,7 @@
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
-                <version>12.1.2</version>
+                <version>12.1.3</version>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
