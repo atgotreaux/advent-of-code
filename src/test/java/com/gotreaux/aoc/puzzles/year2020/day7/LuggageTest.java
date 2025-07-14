@@ -1,14 +1,13 @@
 package com.gotreaux.aoc.puzzles.year2020.day7;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
+import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class LuggageTest {
 
@@ -26,9 +25,6 @@ class LuggageTest {
     }
 
     private static Stream<Arguments> provideGetBags() {
-        return Stream.of(
-                Arguments.of("ExampleOne.txt", 9),
-                Arguments.of("ExampleTwo.txt", 7)
-        );
+        return Stream.of(Arguments.of("ExampleOne.txt", 9), Arguments.of("ExampleTwo.txt", 7));
     }
 }

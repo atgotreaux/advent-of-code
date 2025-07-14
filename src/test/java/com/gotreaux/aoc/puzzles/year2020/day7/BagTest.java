@@ -1,21 +1,21 @@
 package com.gotreaux.aoc.puzzles.year2020.day7;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
+import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class BagTest {
 
     @ParameterizedTest
     @MethodSource("provideContains")
     void contains(String color, boolean expected) {
-        InputReader inputReader = new ResourceInputReader<>(HandyHaversacksPuzzle.class, "ExampleOne.txt");
+        InputReader inputReader =
+                new ResourceInputReader<>(HandyHaversacksPuzzle.class, "ExampleOne.txt");
 
         var input = inputReader.getInputList();
 
@@ -34,7 +34,8 @@ class BagTest {
     @ParameterizedTest
     @MethodSource("provideGetBagCount")
     void getBagCount(String color, long expectedCount) {
-        InputReader inputReader = new ResourceInputReader<>(HandyHaversacksPuzzle.class, "ExampleOne.txt");
+        InputReader inputReader =
+                new ResourceInputReader<>(HandyHaversacksPuzzle.class, "ExampleOne.txt");
 
         var input = inputReader.getInputList();
 
@@ -60,8 +61,7 @@ class BagTest {
                 Arguments.of("dark olive", false),
                 Arguments.of("vibrant plum", false),
                 Arguments.of("faded blue", false),
-                Arguments.of("dotted black", false)
-        );
+                Arguments.of("dotted black", false));
     }
 
     private static Stream<Arguments> provideGetBagCount() {
@@ -70,7 +70,6 @@ class BagTest {
                 Arguments.of("dark olive", 7),
                 Arguments.of("vibrant plum", 11),
                 Arguments.of("faded blue", 0),
-                Arguments.of("dotted black", 0)
-        );
+                Arguments.of("dotted black", 0));
     }
 }

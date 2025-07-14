@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2024.day9;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.StringInputReader;
