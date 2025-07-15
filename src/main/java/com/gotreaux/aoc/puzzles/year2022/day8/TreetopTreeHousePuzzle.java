@@ -5,6 +5,7 @@ import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.matrix.IntMatrix;
 import java.util.Arrays;
+import java.util.stream.IntStream;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,12 +16,12 @@ public class TreetopTreeHousePuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Long> solve(InputReader inputReader) {
+    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var lines = inputReader.getInputList();
         var matrix = new IntMatrix(lines);
 
         var treesVisible = 0;
-        long maxScenicScore = Integer.MIN_VALUE;
+        var maxScenicScore = Integer.MIN_VALUE;
         for (var row = 0; row < matrix.getRowCount(); row++) {
             for (var col = 0; col < matrix.getColCount(); col++) {
                 int tree = matrix.get(row, col);
@@ -53,16 +54,12 @@ public class TreetopTreeHousePuzzle extends Puzzle {
         return Arrays.stream(adjacentTrees).noneMatch(adjacentTree -> adjacentTree >= tree);
     }
 
-    private static long score(Integer[] adjacentTrees, int tree) {
-        var viewingDistance = 0;
-
-        for (var adjacentTree : adjacentTrees) {
-            viewingDistance++;
-            if (adjacentTree >= tree) {
-                break;
-            }
-        }
-
-        return viewingDistance;
+    private static int score(Integer[] adjacentTrees, int tree) {
+        return IntStream.range(0, adjacentTrees.length)
+                .boxed()
+                .filter(index -> adjacentTrees[index] >= tree)
+                .findFirst()
+                .map(index -> index + 1)
+                .orElse(adjacentTrees.length);
     }
 }

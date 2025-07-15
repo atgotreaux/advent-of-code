@@ -7,6 +7,7 @@ import com.gotreaux.aoc.input.reader.ResourceInputReader;
 import org.junit.jupiter.api.Test;
 
 class TreetopTreeHousePuzzleTest {
+
     @Test
     void treesVisible() {
         InputReader inputReader = new ResourceInputReader<>(TreetopTreeHousePuzzle.class);
@@ -26,6 +27,6 @@ class TreetopTreeHousePuzzleTest {
 
         var output = puzzle.solve(inputReader);
 
-        assertEquals(8L, output.partTwo());
+        assertEquals(8, output.partTwo());
     }
 }

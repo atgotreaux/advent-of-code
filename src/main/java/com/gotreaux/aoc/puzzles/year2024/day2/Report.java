@@ -49,9 +49,6 @@ record Report(List<Integer> levels) {
             if (difference > 0) {
                 increasing = false;
             }
-            if (!increasing && !decreasing) {
-                break;
-            }
         }
 
         return increasing || decreasing;
