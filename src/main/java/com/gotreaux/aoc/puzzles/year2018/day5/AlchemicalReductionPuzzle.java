@@ -39,7 +39,8 @@ public class AlchemicalReductionPuzzle extends Puzzle {
 
     private static String collapse(String input) {
         var result = new StringBuilder(input.length());
-        for (var i = 0; i < input.length(); i++) {
+        var i = 0;
+        while (i < input.length()) {
             var x = input.codePointAt(i);
             if (i < input.length() - 1
                     && x != input.codePointAt(i + 1)
@@ -49,6 +50,7 @@ public class AlchemicalReductionPuzzle extends Puzzle {
             } else {
                 result.appendCodePoint(x);
             }
+            i++;
         }
 
         if (result.length() == input.length()) {

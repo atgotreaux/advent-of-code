@@ -21,7 +21,8 @@ public class StreamProcessingPuzzle extends Puzzle {
         var garbageCount = 0;
         var inGarbage = false;
 
-        for (var i = 0; i < input.length(); i++) {
+        var i = 0;
+        while (i < input.length()) {
             var c = input.charAt(i);
 
             if (inGarbage) {
@@ -42,6 +43,7 @@ public class StreamProcessingPuzzle extends Puzzle {
                     inGarbage = true;
                 }
             }
+            i++;
         }
 
         return new PuzzleOutput<>(totalScore, garbageCount);
