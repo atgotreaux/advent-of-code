@@ -153,7 +153,7 @@ class SolvePuzzleCommandTest {
     void databaseInput() {
         var puzzle = new ApartmentFloorPuzzle();
 
-        var inputWriter =
+        InputWriter inputWriter =
                 new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
         inputWriter.write(")())())");
 
