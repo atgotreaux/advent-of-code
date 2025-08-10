@@ -112,7 +112,8 @@ class SeedPuzzleCommandTest {
                 .untilAsserted(
                         () ->
                                 ShellAssertions.assertThat(session.screen())
-                                        .containsText("seed.year"));
+                                        .containsText(
+                                                "--year: must be greater than or equal to 2015"));
     }
 
     @Test
@@ -155,7 +156,7 @@ class SeedPuzzleCommandTest {
                 .untilAsserted(
                         () ->
                                 ShellAssertions.assertThat(session.screen())
-                                        .containsText("seed.day"));
+                                        .containsText("--day: must be less than or equal to 25"));
     }
 
     @Test
@@ -196,7 +197,7 @@ class SeedPuzzleCommandTest {
                 .untilAsserted(
                         () ->
                                 ShellAssertions.assertThat(session.screen())
-                                        .containsText("seed.session"));
+                                        .containsText("--session: must match \"^[a-f0-9]{128}$\""));
     }
 
     @Test

@@ -91,7 +91,8 @@ class SolvePuzzleCommandTest {
                 .untilAsserted(
                         () ->
                                 ShellAssertions.assertThat(session.screen())
-                                        .containsText("solve.year"));
+                                        .containsText(
+                                                "--year: must be greater than or equal to 2015"));
     }
 
     @Test
@@ -125,7 +126,7 @@ class SolvePuzzleCommandTest {
                 .untilAsserted(
                         () ->
                                 ShellAssertions.assertThat(session.screen())
-                                        .containsText("solve.day"));
+                                        .containsText("--day: must be less than or equal to 25"));
     }
 
     @Test
