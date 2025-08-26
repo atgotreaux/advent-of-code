@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.4</version>
+        <version>3.5.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -122,7 +122,7 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>4.9.3.2</version>
+                <version>4.9.4.0</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
