@@ -11,6 +11,22 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class PresentTest {
+
+    @ParameterizedTest
+    @MethodSource("provideOf")
+    void of(String line, int expectedLength, int expectedWidth, int expectedHeight) {
+        var present = Present.of(line);
+
+        assertEquals(expectedLength, present.length());
+        assertEquals(expectedWidth, present.width());
+        assertEquals(expectedHeight, present.height());
+    }
+
+    @Test
+    void throwsIfIncorrectPartLength() {
+        assertThrows(IllegalArgumentException.class, () -> Present.of("2x3x4x5"));
+    }
+
     @Test
     void throwsIfNonPositiveDimension() {
         var generator = RandomGenerator.getDefault();
@@ -29,6 +45,10 @@ class PresentTest {
                         : Math.abs(generator.nextInt());
 
         assertThrows(IllegalArgumentException.class, () -> new Present(length, width, height));
+    }
+
+    private static Stream<Arguments> provideOf() {
+        return Stream.of(Arguments.of("2x3x4", 2, 3, 4), Arguments.of("1x1x10", 1, 1, 10));
     }
 
     @ParameterizedTest

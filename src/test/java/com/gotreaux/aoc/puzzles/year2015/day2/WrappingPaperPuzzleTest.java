@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class WrappingPaperPuzzleTest {
+
     @ParameterizedTest
     @MethodSource("provideWrappingPaperOrderTotal")
     void wrappingPaperOrderTotal(String input, int expectedOrderTotal) {

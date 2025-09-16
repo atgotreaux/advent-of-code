@@ -4,9 +4,23 @@ import java.util.Collections;
 import java.util.List;
 
 record Present(int length, int width, int height) {
+
+    static Present of(String line) {
+        var parts = line.split("x");
+        if (parts.length != 3) {
+            throw new IllegalArgumentException("Present dimensions must be 3 parts");
+        }
+
+        var length = Integer.parseInt(parts[0]);
+        var width = Integer.parseInt(parts[1]);
+        var height = Integer.parseInt(parts[2]);
+
+        return new Present(length, width, height);
+    }
+
     Present {
         if (length <= 0 || width <= 0 || height <= 0) {
-            throw new IllegalArgumentException("Present dimensions must be greater than 0!");
+            throw new IllegalArgumentException("Present dimensions must be greater than 0");
         }
     }
 

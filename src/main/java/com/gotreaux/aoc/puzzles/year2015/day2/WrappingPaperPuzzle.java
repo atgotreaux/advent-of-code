@@ -3,7 +3,6 @@ package com.gotreaux.aoc.puzzles.year2015.day2;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.util.Scanner;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,24 +14,19 @@ public class WrappingPaperPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
-        var wrappingPaperOrderTotal = 0;
-        var ribbonOrderTotal = 0;
+        var presents = inputReader.getInputStream().map(Present::of).toList();
 
-        for (var line : inputReader.getInputList()) {
-            var scanner = new Scanner(line);
-            scanner.useDelimiter("x");
+        var wrappingPaperOrderTotal =
+                presents.stream()
+                        .mapToInt(
+                                present ->
+                                        present.getSurfaceArea() + present.getAreaOfSmallestSide())
+                        .sum();
 
-            var length = scanner.nextInt();
-            var width = scanner.nextInt();
-            var height = scanner.nextInt();
-
-            scanner.close();
-
-            var present = new Present(length, width, height);
-
-            wrappingPaperOrderTotal += present.getSurfaceArea() + present.getAreaOfSmallestSide();
-            ribbonOrderTotal += present.getSmallestPerimeter() + present.getVolume();
-        }
+        var ribbonOrderTotal =
+                presents.stream()
+                        .mapToInt(present -> present.getSmallestPerimeter() + present.getVolume())
+                        .sum();
 
         return new PuzzleOutput<>(wrappingPaperOrderTotal, ribbonOrderTotal);
     }
