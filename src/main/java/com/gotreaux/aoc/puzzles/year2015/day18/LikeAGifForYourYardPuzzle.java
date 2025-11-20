@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2015.day18;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.utils.matrix.MatrixFactory;
 import java.awt.Point;
 import java.util.List;
 import org.springframework.stereotype.Component;
@@ -25,14 +26,16 @@ public class LikeAGifForYourYardPuzzle extends Puzzle {
                         new Point(input.size() - 1, 0),
                         new Point(input.size() - 1, input.getFirst().length() - 1));
 
-        var partOneMatrix = new LightGridMatrix(input);
-        var partTwoMatrix = new LightGridMatrix(input, stuckLights);
+        var matrix = MatrixFactory.ofChars(input);
+
+        var partOneGrid = new LightGrid(matrix);
+        var partTwoGrid = new LightGrid(matrix, stuckLights);
 
         for (var i = 0; i < 100; i++) {
-            partOneMatrix = partOneMatrix.animate();
-            partTwoMatrix = partTwoMatrix.animate();
+            partOneGrid = partOneGrid.animate();
+            partTwoGrid = partTwoGrid.animate();
         }
 
-        return new PuzzleOutput<>(partOneMatrix.getLightCount(), partTwoMatrix.getLightCount());
+        return new PuzzleOutput<>(partOneGrid.getLightCount(), partTwoGrid.getLightCount());
     }
 }

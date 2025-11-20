@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2021.day4;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.utils.matrix.MatrixFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -24,7 +25,8 @@ public class GiantSquidPuzzle extends Puzzle {
 
         Collection<Board> boards = new ArrayList<>();
         for (var i = 2; i < input.size(); i += 6) {
-            boards.add(new Board(input.subList(i, i + 5)));
+            var matrix = MatrixFactory.ofInts(input.subList(i, i + 5));
+            boards.add(new Board(matrix));
         }
 
         var firstWinningScore = 0;

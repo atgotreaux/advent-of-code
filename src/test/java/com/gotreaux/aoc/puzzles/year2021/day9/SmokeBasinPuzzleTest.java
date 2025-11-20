@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.utils.matrix.IntMatrix;
+import com.gotreaux.aoc.utils.matrix.MatrixFactory;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -41,7 +41,7 @@ class SmokeBasinPuzzleTest {
 
         var input = inputReader.getInputList();
 
-        var matrix = new IntMatrix(input);
+        var matrix = MatrixFactory.ofDigits(input);
 
         assertEquals(expectedSize, SmokeBasinPuzzle.getBasinSize(matrix, row, col));
     }

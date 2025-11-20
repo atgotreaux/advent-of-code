@@ -3,7 +3,8 @@ package com.gotreaux.aoc.puzzles.year2022.day8;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import com.gotreaux.aoc.utils.matrix.IntMatrix;
+import com.gotreaux.aoc.utils.matrix.Direction;
+import com.gotreaux.aoc.utils.matrix.MatrixFactory;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,7 @@ public class TreetopTreeHousePuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var lines = inputReader.getInputList();
-        var matrix = new IntMatrix(lines);
+        var matrix = MatrixFactory.ofDigits(lines);
 
         var treesVisible = 0;
         var maxScenicScore = Integer.MIN_VALUE;
@@ -26,10 +27,10 @@ public class TreetopTreeHousePuzzle extends Puzzle {
             for (var col = 0; col < matrix.getColCount(); col++) {
                 int tree = matrix.get(row, col);
 
-                var up = matrix.up(row, col);
-                var down = matrix.down(row, col);
-                var left = matrix.left(row, col);
-                var right = matrix.right(row, col);
+                var up = matrix.elementsInDirection(row, col, Direction.NORTH);
+                var down = matrix.elementsInDirection(row, col, Direction.SOUTH);
+                var left = matrix.elementsInDirection(row, col, Direction.WEST);
+                var right = matrix.elementsInDirection(row, col, Direction.EAST);
 
                 if (visible(up, tree)
                         || visible(down, tree)

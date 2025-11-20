@@ -3,7 +3,7 @@ package com.gotreaux.aoc.puzzles.year2023.day3;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import com.gotreaux.aoc.utils.matrix.CharMatrix;
+import com.gotreaux.aoc.utils.matrix.MatrixFactory;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,7 +25,7 @@ public class GearRatiosPuzzle extends Puzzle {
         var sumOfParts = 0;
 
         var lines = inputReader.getInputList();
-        var matrix = new CharMatrix(lines);
+        var matrix = MatrixFactory.ofChars(lines);
         var rowCount = matrix.getRowCount();
         var columnCount = matrix.getColCount();
 
@@ -41,7 +41,7 @@ public class GearRatiosPuzzle extends Puzzle {
                         for (var adjacentCol = -1; adjacentCol < 2; adjacentCol++) {
                             var row = adjacentLine + lineRow;
                             var col = adjacentCol + lineCol;
-                            if (row >= 0 && row < rowCount && col >= 0 && col < columnCount) {
+                            if (matrix.isValid(row, col)) {
                                 char adjacentChar = matrix.get(row, col);
                                 if (!Character.isDigit(adjacentChar) && adjacentChar != '.') {
                                     adjacentToPart = true;

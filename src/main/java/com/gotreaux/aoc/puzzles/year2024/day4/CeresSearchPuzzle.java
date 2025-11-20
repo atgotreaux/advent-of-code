@@ -3,6 +3,8 @@ package com.gotreaux.aoc.puzzles.year2024.day4;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.utils.matrix.Direction;
+import com.gotreaux.aoc.utils.matrix.MatrixFactory;
 import java.util.Arrays;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +23,7 @@ public class CeresSearchPuzzle extends Puzzle {
 
         long xmasAppearances = 0, xMasAppearances = 0;
 
-        var matrix = new WordSearchMatrix(lines);
+        var matrix = MatrixFactory.ofChars(lines);
         var rowCount = matrix.getRowCount();
         var columnCount = matrix.getColCount();
         for (var row = 0; row < rowCount; row++) {
@@ -29,7 +31,10 @@ public class CeresSearchPuzzle extends Puzzle {
                 char c = matrix.get(row, col);
                 if (c == 'X') {
                     xmasAppearances +=
-                            matrix.getWords(row, col, MAS.length).stream()
+                            matrix
+                                    .elementsinDirections(row, col, Direction.values(), MAS.length)
+                                    .values()
+                                    .stream()
                                     .filter(array -> Arrays.equals(array, MAS))
                                     .count();
                 } else if (c == 'A'

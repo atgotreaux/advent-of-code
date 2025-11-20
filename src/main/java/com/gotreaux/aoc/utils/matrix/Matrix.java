@@ -2,39 +2,46 @@ package com.gotreaux.aoc.utils.matrix;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.IntFunction;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-abstract class Matrix<T> {
+public class Matrix<T> {
+
     private final int rowCount;
     private final int colCount;
     private final T[][] matrix;
+    private final IntFunction<T[]> arrayGenerator;
     private final Collection<Point> visited;
 
-    Matrix(List<String> input) {
+    Matrix(
+            List<String> input,
+            IntFunction<T[]> arrayGenerator,
+            BiFunction<Integer, Integer, T[][]> matrixGenerator,
+            Function<String, T[]> rowMapper) {
         rowCount = input.size();
 
-        matrix = initialize();
-        for (var i = 0; i < rowCount; i++) {
-            matrix[i] = mapper(input.get(i));
-        }
+        colCount =
+                (rowCount > 0 && rowMapper.apply(input.getFirst()) != null)
+                        ? rowMapper.apply(input.getFirst()).length
+                        : 0;
 
-        colCount = matrix[0].length;
+        this.arrayGenerator = arrayGenerator;
+
+        matrix = matrixGenerator.apply(rowCount, colCount);
+        for (var i = 0; i < rowCount; i++) {
+            matrix[i] = rowMapper.apply(input.get(i));
+        }
 
         visited = new HashSet<>(rowCount * colCount);
     }
-
-    abstract T[][] initialize();
-
-    protected abstract T[] mapper(String row);
-
-    abstract IntFunction<T[]> generator();
 
     public int getRowCount() {
         return rowCount;
@@ -52,6 +59,10 @@ abstract class Matrix<T> {
         matrix[row][col] = value;
     }
 
+    public boolean isValid(int row, int col) {
+        return row >= 0 && row < rowCount && col >= 0 && col < colCount;
+    }
+
     public void visit(int row, int col) {
         visited.add(new Point(row, col));
     }
@@ -64,101 +75,50 @@ abstract class Matrix<T> {
         visited.clear();
     }
 
-    public T[] up(int row, int col) {
-        return direction(row, col, i -> i - 1, i -> i, new LimitPredicate());
+    public T[] elementsInDirection(int startRow, int startCol, Direction direction) {
+        return elementsInDirection(startRow, startCol, direction, new LimitPredicate());
     }
 
-    protected T[] up(int row, int col, int limit) {
-        return direction(row, col, i -> i - 1, i -> i, new LimitPredicate(limit));
-    }
-
-    public T[] down(int row, int col) {
-        return direction(row, col, i -> i + 1, i -> i, new LimitPredicate());
-    }
-
-    protected T[] down(int row, int col, int limit) {
-        return direction(row, col, i -> i + 1, i -> i, new LimitPredicate(limit));
-    }
-
-    public T[] left(int row, int col) {
-        return direction(row, col, i -> i, i -> i - 1, new LimitPredicate());
-    }
-
-    protected T[] left(int row, int col, int limit) {
-        return direction(row, col, i -> i, i -> i - 1, new LimitPredicate(limit));
-    }
-
-    public T[] right(int row, int col) {
-        return direction(row, col, i -> i, i -> i + 1, new LimitPredicate());
-    }
-
-    protected T[] right(int row, int col, int limit) {
-        return direction(row, col, i -> i, i -> i + 1, new LimitPredicate(limit));
-    }
-
-    protected T[] southeast(int row, int col, int limit) {
-        return direction(row, col, i -> i + 1, i -> i + 1, new LimitPredicate(limit));
-    }
-
-    protected T[] southwest(int row, int col, int limit) {
-        return direction(row, col, i -> i + 1, i -> i - 1, new LimitPredicate(limit));
-    }
-
-    protected T[] northeast(int row, int col, int limit) {
-        return direction(row, col, i -> i - 1, i -> i + 1, new LimitPredicate(limit));
-    }
-
-    protected T[] northwest(int row, int col, int limit) {
-        return direction(row, col, i -> i - 1, i -> i - 1, new LimitPredicate(limit));
-    }
-
-    private T[] direction(
-            int startRow,
-            int startCol,
-            Function<Integer, Integer> adjustRow,
-            Function<Integer, Integer> adjustCol,
-            Predicate<Integer> limitPredicate) {
+    private T[] elementsInDirection(
+            int startRow, int startCol, Direction direction, Predicate<Integer> limitPredicate) {
         Collection<T> elements = new ArrayList<>();
 
-        int row = adjustRow.apply(startRow);
-        int col = adjustCol.apply(startCol);
+        var row = direction.adjustRow(startRow);
+        var col = direction.adjustCol(startCol);
 
         while (isValid(row, col) && limitPredicate.test(elements.size())) {
             elements.add(get(row, col));
-            row = adjustRow.apply(row);
-            col = adjustCol.apply(col);
+            row = direction.adjustRow(row);
+            col = direction.adjustCol(col);
         }
 
-        return elements.toArray(generator());
+        return elements.toArray(arrayGenerator);
     }
 
-    public T[] neighbors(int row, int col) {
-        Stream<T> neighbors = Stream.of();
-
-        var up = up(row, col);
-        if (up.length > 0) {
-            neighbors = Stream.concat(neighbors, Arrays.stream(Arrays.copyOfRange(up, 0, 1)));
-        }
-
-        var down = down(row, col);
-        if (down.length > 0) {
-            neighbors = Stream.concat(neighbors, Arrays.stream(Arrays.copyOfRange(down, 0, 1)));
-        }
-
-        var left = left(row, col);
-        if (left.length > 0) {
-            neighbors = Stream.concat(neighbors, Arrays.stream(Arrays.copyOfRange(left, 0, 1)));
-        }
-
-        var right = right(row, col);
-        if (right.length > 0) {
-            neighbors = Stream.concat(neighbors, Arrays.stream(Arrays.copyOfRange(right, 0, 1)));
-        }
-
-        return neighbors.toArray(generator());
+    public Map<Direction, T[]> elementsinDirections(
+            int row, int col, Direction[] directions, int limit) {
+        return elementsinDirections(row, col, directions, new LimitPredicate(limit));
     }
 
-    private boolean isValid(int row, int col) {
-        return row >= 0 && row < rowCount && col >= 0 && col < colCount;
+    private Map<Direction, T[]> elementsinDirections(
+            int row, int col, Direction[] directions, Predicate<Integer> limitPredicate) {
+        return Stream.of(directions)
+                .collect(
+                        Collectors.toMap(
+                                Function.identity(),
+                                direction ->
+                                        elementsInDirection(row, col, direction, limitPredicate)));
+    }
+
+    public T[] neighbors(int row, int col, Direction[] directions) {
+        return neighbors(row, col, directions, new LimitPredicate(1));
+    }
+
+    private T[] neighbors(
+            int row, int col, Direction[] directions, Predicate<Integer> limitPredicate) {
+        return Stream.of(directions)
+                .map(direction -> elementsInDirection(row, col, direction, limitPredicate))
+                .flatMap(Stream::of)
+                .toArray(arrayGenerator);
     }
 }

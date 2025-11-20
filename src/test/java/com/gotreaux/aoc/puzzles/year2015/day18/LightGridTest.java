@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
+import com.gotreaux.aoc.utils.matrix.MatrixFactory;
 import java.awt.Point;
 import java.util.List;
 import java.util.stream.Stream;
@@ -11,7 +12,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class LightGridMatrixTest {
+class LightGridTest {
 
     @ParameterizedTest
     @MethodSource("provideGetLightCount")
@@ -20,12 +21,15 @@ class LightGridMatrixTest {
 
         var input = inputReader.getInputList();
 
-        var matrix = new LightGridMatrix(input);
+        var matrix = MatrixFactory.ofChars(input);
+
+        var lightGrid = new LightGrid(matrix);
+
         for (var step = 0; step < steps; step++) {
-            matrix = matrix.animate();
+            lightGrid = lightGrid.animate();
         }
 
-        assertEquals(expected, matrix.getLightCount());
+        assertEquals(expected, lightGrid.getLightCount());
     }
 
     @ParameterizedTest
@@ -42,12 +46,14 @@ class LightGridMatrixTest {
                         new Point(input.size() - 1, 0),
                         new Point(input.size() - 1, input.getFirst().length() - 1));
 
-        var matrix = new LightGridMatrix(input, stuckLights);
+        var matrix = MatrixFactory.ofChars(input);
+
+        var lightGrid = new LightGrid(matrix, stuckLights);
         for (var step = 0; step < steps; step++) {
-            matrix = matrix.animate();
+            lightGrid = lightGrid.animate();
         }
 
-        assertEquals(expected, matrix.getLightCount());
+        assertEquals(expected, lightGrid.getLightCount());
     }
 
     private static Stream<Arguments> provideGetLightCount() {

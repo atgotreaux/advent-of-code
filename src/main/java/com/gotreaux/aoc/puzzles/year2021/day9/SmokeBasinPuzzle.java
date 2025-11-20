@@ -3,7 +3,9 @@ package com.gotreaux.aoc.puzzles.year2021.day9;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import com.gotreaux.aoc.utils.matrix.IntMatrix;
+import com.gotreaux.aoc.utils.matrix.Direction;
+import com.gotreaux.aoc.utils.matrix.Matrix;
+import com.gotreaux.aoc.utils.matrix.MatrixFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,7 +22,7 @@ public class SmokeBasinPuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var lines = inputReader.getInputList();
-        var matrix = new IntMatrix(lines);
+        var matrix = MatrixFactory.ofDigits(lines);
 
         var sumOfRiskLevels = 0;
         Collection<Integer> basinSizes = new ArrayList<>();
@@ -28,7 +30,7 @@ public class SmokeBasinPuzzle extends Puzzle {
         for (var row = 0; row < matrix.getRowCount(); row++) {
             for (var col = 0; col < matrix.getColCount(); col++) {
                 int height = matrix.get(row, col);
-                var neighbors = matrix.neighbors(row, col);
+                var neighbors = matrix.neighbors(row, col, Direction.cardinalDirections());
 
                 if (Arrays.stream(neighbors).allMatch(i -> i > height)) {
                     sumOfRiskLevels += height + 1;
@@ -47,7 +49,7 @@ public class SmokeBasinPuzzle extends Puzzle {
         return new PuzzleOutput<>(sumOfRiskLevels, productOfLargestBasins);
     }
 
-    static int getBasinSize(IntMatrix matrix, int row, int col) {
+    static int getBasinSize(Matrix<Integer> matrix, int row, int col) {
         var size = 1;
         matrix.visit(row, col);
 

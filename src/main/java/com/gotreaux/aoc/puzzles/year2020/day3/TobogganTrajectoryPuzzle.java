@@ -3,7 +3,7 @@ package com.gotreaux.aoc.puzzles.year2020.day3;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import com.gotreaux.aoc.utils.matrix.CharMatrix;
+import com.gotreaux.aoc.utils.matrix.MatrixFactory;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +17,7 @@ public class TobogganTrajectoryPuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Integer, Long> solve(InputReader inputReader) {
         var lines = inputReader.getInputList();
-        var map = new CharMatrix(lines);
+        var map = MatrixFactory.ofChars(lines);
 
         var slope = new Slope(3, 1);
         var treesEncountered = slope.getTreesEncountered(map);

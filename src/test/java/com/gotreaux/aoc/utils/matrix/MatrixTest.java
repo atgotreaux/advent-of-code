@@ -13,7 +13,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class IntMatrixTest {
+class MatrixTest {
+
     @ParameterizedTest
     @MethodSource("provideRowCount")
     void rowCount(Class<Puzzle> puzzleClass, int expectedRowCount) {
@@ -21,7 +22,7 @@ class IntMatrixTest {
 
         var input = inputReader.getInputList();
 
-        var matrix = new IntMatrix(input);
+        var matrix = MatrixFactory.ofDigits(input);
 
         assertEquals(expectedRowCount, matrix.getRowCount());
     }
@@ -33,7 +34,7 @@ class IntMatrixTest {
 
         var input = inputReader.getInputList();
 
-        var matrix = new IntMatrix(input);
+        var matrix = MatrixFactory.ofDigits(input);
 
         assertEquals(expectedColCount, matrix.getColCount());
     }
@@ -45,57 +46,57 @@ class IntMatrixTest {
 
         var input = inputReader.getInputList();
 
-        var matrix = new IntMatrix(input);
+        var matrix = MatrixFactory.ofDigits(input);
 
         assertEquals(expected, matrix.get(row, col));
     }
 
     @ParameterizedTest
-    @MethodSource("provideUp")
-    void up(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) {
+    @MethodSource("provideNorth")
+    void north(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
         var input = inputReader.getInputList();
 
-        var matrix = new IntMatrix(input);
+        var matrix = MatrixFactory.ofDigits(input);
 
-        assertArrayEquals(expected, matrix.up(row, col));
+        assertArrayEquals(expected, matrix.elementsInDirection(row, col, Direction.NORTH));
     }
 
     @ParameterizedTest
-    @MethodSource("provideDown")
-    void down(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) {
+    @MethodSource("provideSouth")
+    void south(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
         var input = inputReader.getInputList();
 
-        var matrix = new IntMatrix(input);
+        var matrix = MatrixFactory.ofDigits(input);
 
-        assertArrayEquals(expected, matrix.down(row, col));
+        assertArrayEquals(expected, matrix.elementsInDirection(row, col, Direction.SOUTH));
     }
 
     @ParameterizedTest
-    @MethodSource("provideLeft")
-    void left(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) {
+    @MethodSource("provideWest")
+    void west(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
         var input = inputReader.getInputList();
 
-        var matrix = new IntMatrix(input);
+        var matrix = MatrixFactory.ofDigits(input);
 
-        assertArrayEquals(expected, matrix.left(row, col));
+        assertArrayEquals(expected, matrix.elementsInDirection(row, col, Direction.WEST));
     }
 
     @ParameterizedTest
-    @MethodSource("provideRight")
-    void right(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) {
+    @MethodSource("provideEast")
+    void east(Class<Puzzle> puzzleClass, int row, int col, Integer[] expected) {
         InputReader inputReader = new ResourceInputReader<>(puzzleClass);
 
         var input = inputReader.getInputList();
 
-        var matrix = new IntMatrix(input);
+        var matrix = MatrixFactory.ofDigits(input);
 
-        assertArrayEquals(expected, matrix.right(row, col));
+        assertArrayEquals(expected, matrix.elementsInDirection(row, col, Direction.EAST));
     }
 
     @ParameterizedTest
@@ -105,9 +106,9 @@ class IntMatrixTest {
 
         var input = inputReader.getInputList();
 
-        var matrix = new IntMatrix(input);
+        var matrix = MatrixFactory.ofDigits(input);
 
-        assertArrayEquals(expected, matrix.neighbors(row, col));
+        assertArrayEquals(expected, matrix.neighbors(row, col, Direction.cardinalDirections()));
     }
 
     private static Stream<Arguments> provideRowCount() {
@@ -125,28 +126,28 @@ class IntMatrixTest {
                 Arguments.of(TreetopTreeHousePuzzle.class, 4, 4, 0));
     }
 
-    private static Stream<Arguments> provideUp() {
+    private static Stream<Arguments> provideNorth() {
         return Stream.of(
                 Arguments.of(TreetopTreeHousePuzzle.class, 1, 1, new Integer[] {0}),
                 Arguments.of(TreetopTreeHousePuzzle.class, 1, 2, new Integer[] {3}),
                 Arguments.of(TreetopTreeHousePuzzle.class, 2, 2, new Integer[] {5, 3}));
     }
 
-    private static Stream<Arguments> provideDown() {
+    private static Stream<Arguments> provideSouth() {
         return Stream.of(
                 Arguments.of(TreetopTreeHousePuzzle.class, 1, 1, new Integer[] {5, 3, 5}),
                 Arguments.of(TreetopTreeHousePuzzle.class, 1, 2, new Integer[] {3, 5, 3}),
                 Arguments.of(TreetopTreeHousePuzzle.class, 2, 2, new Integer[] {5, 3}));
     }
 
-    private static Stream<Arguments> provideLeft() {
+    private static Stream<Arguments> provideWest() {
         return Stream.of(
                 Arguments.of(TreetopTreeHousePuzzle.class, 1, 1, new Integer[] {2}),
                 Arguments.of(TreetopTreeHousePuzzle.class, 1, 2, new Integer[] {5, 2}),
                 Arguments.of(TreetopTreeHousePuzzle.class, 2, 2, new Integer[] {5, 6}));
     }
 
-    private static Stream<Arguments> provideRight() {
+    private static Stream<Arguments> provideEast() {
         return Stream.of(
                 Arguments.of(TreetopTreeHousePuzzle.class, 1, 1, new Integer[] {5, 1, 2}),
                 Arguments.of(TreetopTreeHousePuzzle.class, 1, 2, new Integer[] {1, 2}),
