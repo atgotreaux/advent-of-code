@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
+import com.gotreaux.aoc.utils.Coordinate;
 import com.gotreaux.aoc.utils.matrix.MatrixFactory;
-import java.awt.Point;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -41,10 +41,10 @@ class LightGridTest {
 
         var stuckLights =
                 List.of(
-                        new Point(0, 0),
-                        new Point(0, input.getFirst().length() - 1),
-                        new Point(input.size() - 1, 0),
-                        new Point(input.size() - 1, input.getFirst().length() - 1));
+                        new Coordinate(0, 0),
+                        new Coordinate(0, input.getFirst().length() - 1),
+                        new Coordinate(input.size() - 1, 0),
+                        new Coordinate(input.size() - 1, input.getFirst().length() - 1));
 
         var matrix = MatrixFactory.ofChars(input);
 

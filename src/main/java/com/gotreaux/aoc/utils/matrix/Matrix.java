@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.utils.matrix;
 
-import java.awt.Point;
+import com.gotreaux.aoc.utils.Coordinate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -19,7 +19,7 @@ public class Matrix<T> {
     private final int colCount;
     private final T[][] matrix;
     private final IntFunction<T[]> arrayGenerator;
-    private final Collection<Point> visited;
+    private final Collection<Coordinate> visited;
 
     Matrix(
             List<String> input,
@@ -64,11 +64,11 @@ public class Matrix<T> {
     }
 
     public void visit(int row, int col) {
-        visited.add(new Point(row, col));
+        visited.add(new Coordinate(row, col));
     }
 
     public boolean isVisited(int row, int col) {
-        return visited.contains(new Point(row, col));
+        return visited.contains(new Coordinate(row, col));
     }
 
     public void clearVisited() {

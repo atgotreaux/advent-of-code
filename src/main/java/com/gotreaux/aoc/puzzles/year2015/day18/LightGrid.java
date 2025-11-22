@@ -1,9 +1,9 @@
 package com.gotreaux.aoc.puzzles.year2015.day18;
 
+import com.gotreaux.aoc.utils.Coordinate;
 import com.gotreaux.aoc.utils.matrix.Direction;
 import com.gotreaux.aoc.utils.matrix.Matrix;
 import com.gotreaux.aoc.utils.matrix.MatrixFactory;
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,19 +15,17 @@ class LightGrid {
     private static final char OFF = '.';
 
     private final Matrix<Character> matrix;
-    private final List<Point> stuckLights;
+    private final List<Coordinate> stuckLights;
 
     LightGrid(Matrix<Character> matrix) {
         this(matrix, new ArrayList<>(0));
     }
 
-    LightGrid(Matrix<Character> matrix, Collection<Point> stuckLights) {
+    LightGrid(Matrix<Character> matrix, Collection<Coordinate> stuckLights) {
         this.matrix = matrix;
         this.stuckLights = stuckLights.stream().toList();
 
-        for (var light : stuckLights) {
-            matrix.set(light.x, light.y, ON);
-        }
+        stuckLights.forEach(light -> matrix.set(light.x(), light.y(), ON));
     }
 
     LightGrid animate() {
@@ -45,7 +43,7 @@ class LightGrid {
     }
 
     private char getNextState(int row, int col) {
-        if (stuckLights.contains(new Point(row, col))) {
+        if (stuckLights.contains(new Coordinate(row, col))) {
             return ON;
         }
         var neighbors = getNeighboringLightCount(row, col);

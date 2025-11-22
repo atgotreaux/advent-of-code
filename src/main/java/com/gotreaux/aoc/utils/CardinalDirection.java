@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.utils;
 
-import java.awt.Point;
 import java.util.Arrays;
 
 public enum CardinalDirection {
@@ -24,15 +23,6 @@ public enum CardinalDirection {
                 .filter(direction -> direction.getLabel() == label)
                 .findFirst()
                 .orElseThrow();
-    }
-
-    public Point move(Point point, int units) {
-        return switch (this) {
-            case NORTH -> new Point(point.x, point.y + units);
-            case SOUTH -> new Point(point.x, point.y - units);
-            case EAST -> new Point(point.x + units, point.y);
-            case WEST -> new Point(point.x - units, point.y);
-        };
     }
 
     public CardinalDirection turn(RelativeDirection direction) {

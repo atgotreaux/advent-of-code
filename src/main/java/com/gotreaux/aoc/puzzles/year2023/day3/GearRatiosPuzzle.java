@@ -3,8 +3,8 @@ package com.gotreaux.aoc.puzzles.year2023.day3;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.utils.Coordinate;
 import com.gotreaux.aoc.utils.matrix.MatrixFactory;
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -29,11 +29,11 @@ public class GearRatiosPuzzle extends Puzzle {
         var rowCount = matrix.getRowCount();
         var columnCount = matrix.getColCount();
 
-        Map<Point, List<Integer>> gearRatios = new HashMap<>();
+        Map<Coordinate, List<Integer>> gearRatios = new HashMap<>();
         for (var lineRow = 0; lineRow < rowCount; lineRow++) {
             var number = 0;
             var adjacentToPart = false;
-            Collection<Point> gears = new HashSet<>();
+            Collection<Coordinate> gears = new HashSet<>();
             for (var lineCol = 0; lineCol < columnCount + 1; lineCol++) {
                 if (lineCol < columnCount && Character.isDigit(matrix.get(lineRow, lineCol))) {
                     number = number * 10 + Character.digit(matrix.get(lineRow, lineCol), 10);
@@ -47,7 +47,7 @@ public class GearRatiosPuzzle extends Puzzle {
                                     adjacentToPart = true;
                                 }
                                 if (adjacentChar == '*') {
-                                    gears.add(new Point(row, col));
+                                    gears.add(new Coordinate(row, col));
                                 }
                             }
                         }

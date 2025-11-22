@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.utils;
 
-import java.awt.Point;
 import java.util.Arrays;
 
 public enum RelativeDirection {
@@ -24,14 +23,5 @@ public enum RelativeDirection {
                 .filter(instruction -> instruction.getLabel() == label)
                 .findFirst()
                 .orElseThrow();
-    }
-
-    public Point move(Point point, int units) {
-        return switch (this) {
-            case UP -> new Point(point.x, point.y + units);
-            case DOWN -> new Point(point.x, point.y - units);
-            case LEFT -> new Point(point.x - units, point.y);
-            case RIGHT -> new Point(point.x + units, point.y);
-        };
     }
 }

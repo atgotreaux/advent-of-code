@@ -3,8 +3,8 @@ package com.gotreaux.aoc.puzzles.year2015.day18;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.utils.Coordinate;
 import com.gotreaux.aoc.utils.matrix.MatrixFactory;
-import java.awt.Point;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
@@ -21,10 +21,10 @@ public class LikeAGifForYourYardPuzzle extends Puzzle {
 
         var stuckLights =
                 List.of(
-                        new Point(0, 0),
-                        new Point(0, input.getFirst().length() - 1),
-                        new Point(input.size() - 1, 0),
-                        new Point(input.size() - 1, input.getFirst().length() - 1));
+                        new Coordinate(0, 0),
+                        new Coordinate(0, input.getFirst().length() - 1),
+                        new Coordinate(input.size() - 1, 0),
+                        new Coordinate(input.size() - 1, input.getFirst().length() - 1));
 
         var matrix = MatrixFactory.ofChars(input);
 

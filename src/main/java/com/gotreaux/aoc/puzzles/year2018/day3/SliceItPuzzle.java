@@ -3,7 +3,7 @@ package com.gotreaux.aoc.puzzles.year2018.day3;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import java.awt.Point;
+import com.gotreaux.aoc.utils.Coordinate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ public class SliceItPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Long, Integer> solve(InputReader inputReader) {
-        Map<Point, Collection<Integer>> fabricClaims = new HashMap<>();
+        Map<Coordinate, Collection<Integer>> fabricClaims = new HashMap<>();
         Collection<Integer> claimIds = new ArrayList<>();
 
         for (var line : inputReader.getInputList()) {
@@ -43,10 +43,10 @@ public class SliceItPuzzle extends Puzzle {
             var height = dimensionScanner.nextInt();
             dimensionScanner.close();
 
-            var position = new Point(startX, startY);
+            var position = new Coordinate(startX, startY);
             for (var x = 0; x < width; x++) {
                 for (var y = 0; y < height; y++) {
-                    var point = new Point(position.x + x, position.y + y);
+                    var point = new Coordinate(position.x() + x, position.y() + y);
                     fabricClaims.merge(
                             point,
                             List.of(claimID),

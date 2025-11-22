@@ -4,8 +4,8 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.CardinalDirection;
+import com.gotreaux.aoc.utils.Coordinate;
 import com.gotreaux.aoc.utils.RelativeDirection;
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.regex.Pattern;
@@ -23,10 +23,10 @@ public class TaxicabPuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var direction = CardinalDirection.NORTH;
-        var position = new Point();
-        Point firstDupPosition = null;
+        var position = new Coordinate(0, 0);
+        Coordinate firstDupPosition = null;
 
-        Collection<Point> visitedPositions = new ArrayList<>();
+        Collection<Coordinate> visitedPositions = new ArrayList<>();
         visitedPositions.add(position);
 
         var input = inputReader.getInputString();
@@ -36,7 +36,7 @@ public class TaxicabPuzzle extends Puzzle {
 
             var units = Integer.parseInt(step.substring(1));
             for (var i = 0; i < units; i++) {
-                position = direction.move(position, 1);
+                position = position.move(direction, 1);
                 if (firstDupPosition == null && visitedPositions.contains(position)) {
                     firstDupPosition = position;
                 }
@@ -44,11 +44,11 @@ public class TaxicabPuzzle extends Puzzle {
             }
         }
 
-        var shortestPath = Math.abs(position.x) + Math.abs(position.y);
+        var shortestPath = Math.abs(position.x()) + Math.abs(position.y());
 
         var firstDupPath = Integer.MAX_VALUE;
         if (firstDupPosition != null) {
-            firstDupPath = Math.abs(firstDupPosition.x) + Math.abs(firstDupPosition.y);
+            firstDupPath = Math.abs(firstDupPosition.x()) + Math.abs(firstDupPosition.y());
         }
 
         return new PuzzleOutput<>(shortestPath, firstDupPath);
