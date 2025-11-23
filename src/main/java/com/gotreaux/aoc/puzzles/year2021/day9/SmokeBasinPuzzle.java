@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2021.day9;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.utils.Coordinate;
 import com.gotreaux.aoc.utils.matrix.Direction;
 import com.gotreaux.aoc.utils.matrix.Matrix;
 import com.gotreaux.aoc.utils.matrix.MatrixFactory;
@@ -34,7 +35,6 @@ public class SmokeBasinPuzzle extends Puzzle {
 
                 if (Arrays.stream(neighbors).allMatch(i -> i > height)) {
                     sumOfRiskLevels += height + 1;
-                    matrix.clearVisited();
                     basinSizes.add(getBasinSize(matrix, row, col));
                 }
             }
@@ -50,24 +50,18 @@ public class SmokeBasinPuzzle extends Puzzle {
     }
 
     static int getBasinSize(Matrix<Integer> matrix, int row, int col) {
-        var size = 1;
-        matrix.visit(row, col);
+        return getBasinSize(matrix, row, col, new ArrayList<>());
+    }
 
-        if (row > 0 && matrix.get(row - 1, col) < 9 && !matrix.isVisited(row - 1, col)) {
-            size += getBasinSize(matrix, row - 1, col);
-        }
-        if (row < matrix.getRowCount() - 1
-                && matrix.get(row + 1, col) < 9
-                && !matrix.isVisited(row + 1, col)) {
-            size += getBasinSize(matrix, row + 1, col);
-        }
-        if (col > 0 && matrix.get(row, col - 1) < 9 && !matrix.isVisited(row, col - 1)) {
-            size += getBasinSize(matrix, row, col - 1);
-        }
-        if (col < matrix.getColCount() - 1
-                && matrix.get(row, col + 1) < 9
-                && !matrix.isVisited(row, col + 1)) {
-            size += getBasinSize(matrix, row, col + 1);
+    private static int getBasinSize(
+            Matrix<Integer> matrix, int row, int col, Collection<Coordinate> visited) {
+        var size = 1;
+        visited.add(new Coordinate(row, col));
+
+        for (var neighbor : matrix.neighborCoordinates(row, col, Direction.cardinalDirections())) {
+            if (matrix.get(neighbor.x(), neighbor.y()) < 9 && !visited.contains(neighbor)) {
+                size += getBasinSize(matrix, neighbor.x(), neighbor.y(), visited);
+            }
         }
 
         return size;

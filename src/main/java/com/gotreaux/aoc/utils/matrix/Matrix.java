@@ -3,7 +3,6 @@ package com.gotreaux.aoc.utils.matrix;
 import com.gotreaux.aoc.utils.Coordinate;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -19,7 +18,6 @@ public class Matrix<T> {
     private final int colCount;
     private final T[][] matrix;
     private final IntFunction<T[]> arrayGenerator;
-    private final Collection<Coordinate> visited;
 
     Matrix(
             List<String> input,
@@ -39,8 +37,6 @@ public class Matrix<T> {
         for (var i = 0; i < rowCount; i++) {
             matrix[i] = rowMapper.apply(input.get(i));
         }
-
-        visited = new HashSet<>(rowCount * colCount);
     }
 
     public int getRowCount() {
@@ -61,18 +57,6 @@ public class Matrix<T> {
 
     public boolean isValid(int row, int col) {
         return row >= 0 && row < rowCount && col >= 0 && col < colCount;
-    }
-
-    public void visit(int row, int col) {
-        visited.add(new Coordinate(row, col));
-    }
-
-    public boolean isVisited(int row, int col) {
-        return visited.contains(new Coordinate(row, col));
-    }
-
-    public void clearVisited() {
-        visited.clear();
     }
 
     public T[] elementsInDirection(int startRow, int startCol, Direction direction) {
@@ -120,5 +104,33 @@ public class Matrix<T> {
                 .map(direction -> elementsInDirection(row, col, direction, limitPredicate))
                 .flatMap(Stream::of)
                 .toArray(arrayGenerator);
+    }
+
+    private Collection<Coordinate> coordinatesInDirection(
+            int startRow, int startCol, Direction direction, Predicate<Integer> limitPredicate) {
+        Collection<Coordinate> elements = new ArrayList<>();
+
+        var row = direction.adjustRow(startRow);
+        var col = direction.adjustCol(startCol);
+
+        while (isValid(row, col) && limitPredicate.test(elements.size())) {
+            elements.add(new Coordinate(row, col));
+            row = direction.adjustRow(row);
+            col = direction.adjustCol(col);
+        }
+
+        return elements;
+    }
+
+    public Collection<Coordinate> neighborCoordinates(int row, int col, Direction[] directions) {
+        return neighborCoordinates(row, col, directions, new LimitPredicate(1));
+    }
+
+    private Collection<Coordinate> neighborCoordinates(
+            int row, int col, Direction[] directions, Predicate<Integer> limitPredicate) {
+        return Stream.of(directions)
+                .map(direction -> coordinatesInDirection(row, col, direction, limitPredicate))
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
     }
 }
