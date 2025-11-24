@@ -16,37 +16,29 @@ class Board {
     }
 
     void mark(Integer drawn) {
-        for (var row = 0; row < matrix.getRowCount(); row++) {
-            for (var col = 0; col < matrix.getColCount(); col++) {
-                if (drawn.equals(matrix.get(row, col))) {
-                    marked.add(new Coordinate(row, col));
-                }
-            }
-        }
+        marked.addAll(matrix.findAll(drawn));
     }
 
     boolean isWinner() {
-        var result =
-                IntStream.range(0, matrix.getRowCount())
-                        .anyMatch(
-                                row ->
-                                        IntStream.range(0, matrix.getColCount())
-                                                .allMatch(
-                                                        col ->
-                                                                marked.contains(
-                                                                        new Coordinate(row, col))));
+        return hasWinningRow() || hasWinningColumn();
+    }
 
-        result |=
-                IntStream.range(0, matrix.getColCount())
-                        .anyMatch(
-                                col ->
-                                        IntStream.range(0, matrix.getRowCount())
-                                                .allMatch(
-                                                        row ->
-                                                                marked.contains(
-                                                                        new Coordinate(row, col))));
+    private boolean hasWinningRow() {
+        return IntStream.range(0, matrix.getRowCount()).anyMatch(this::isRowComplete);
+    }
 
-        return result;
+    private boolean isRowComplete(int row) {
+        return IntStream.range(0, matrix.getColCount())
+                .allMatch(col -> marked.contains(new Coordinate(row, col)));
+    }
+
+    private boolean hasWinningColumn() {
+        return IntStream.range(0, matrix.getColCount()).anyMatch(this::isColumnComplete);
+    }
+
+    private boolean isColumnComplete(int col) {
+        return IntStream.range(0, matrix.getRowCount())
+                .allMatch(row -> marked.contains(new Coordinate(row, col)));
     }
 
     int getScore() {

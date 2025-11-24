@@ -60,16 +60,6 @@ class LightGrid {
     }
 
     int getLightCount() {
-        var count = 0;
-
-        for (var row = 0; row < matrix.getRowCount(); row++) {
-            for (var col = 0; col < matrix.getColCount(); col++) {
-                if (matrix.get(row, col) == ON) {
-                    count++;
-                }
-            }
-        }
-
-        return count;
+        return Math.toIntExact(matrix.count(ON));
     }
 }

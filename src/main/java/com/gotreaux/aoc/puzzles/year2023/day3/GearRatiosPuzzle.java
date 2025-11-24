@@ -4,6 +4,7 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.Coordinate;
+import com.gotreaux.aoc.utils.matrix.Direction;
 import com.gotreaux.aoc.utils.matrix.MatrixFactory;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,34 +23,25 @@ public class GearRatiosPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
-        var sumOfParts = 0;
-
         var lines = inputReader.getInputList();
         var matrix = MatrixFactory.ofChars(lines);
-        var rowCount = matrix.getRowCount();
-        var columnCount = matrix.getColCount();
 
+        var sumOfParts = 0;
         Map<Coordinate, List<Integer>> gearRatios = new HashMap<>();
-        for (var lineRow = 0; lineRow < rowCount; lineRow++) {
+        for (var row = 0; row < matrix.getRowCount(); row++) {
             var number = 0;
             var adjacentToPart = false;
             Collection<Coordinate> gears = new HashSet<>();
-            for (var lineCol = 0; lineCol < columnCount + 1; lineCol++) {
-                if (lineCol < columnCount && Character.isDigit(matrix.get(lineRow, lineCol))) {
-                    number = number * 10 + Character.digit(matrix.get(lineRow, lineCol), 10);
-                    for (var adjacentLine = -1; adjacentLine < 2; adjacentLine++) {
-                        for (var adjacentCol = -1; adjacentCol < 2; adjacentCol++) {
-                            var row = adjacentLine + lineRow;
-                            var col = adjacentCol + lineCol;
-                            if (matrix.isValid(row, col)) {
-                                char adjacentChar = matrix.get(row, col);
-                                if (!Character.isDigit(adjacentChar) && adjacentChar != '.') {
-                                    adjacentToPart = true;
-                                }
-                                if (adjacentChar == '*') {
-                                    gears.add(new Coordinate(row, col));
-                                }
-                            }
+            for (var col = 0; col < matrix.getColCount() + 1; col++) {
+                if (col < matrix.getColCount() && Character.isDigit(matrix.get(row, col))) {
+                    number = number * 10 + Character.digit(matrix.get(row, col), 10);
+                    for (var neighbor : matrix.neighborCoordinates(row, col, Direction.values())) {
+                        char adjacentChar = matrix.get(neighbor.x(), neighbor.y());
+                        if (!Character.isDigit(adjacentChar) && adjacentChar != '.') {
+                            adjacentToPart = true;
+                        }
+                        if (adjacentChar == '*') {
+                            gears.add(neighbor);
                         }
                     }
                 } else if (number > 0) {

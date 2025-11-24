@@ -51,11 +51,29 @@ public class Matrix<T> {
         return matrix[row][col];
     }
 
+    public long count(T target) {
+        return Stream.of(matrix).flatMap(Stream::of).filter(target::equals).count();
+    }
+
+    public List<Coordinate> findAll(T target) {
+        List<Coordinate> coordinates = new ArrayList<>();
+
+        for (var row = 0; row < rowCount; row++) {
+            for (var col = 0; col < colCount; col++) {
+                if (get(row, col).equals(target)) {
+                    coordinates.add(new Coordinate(row, col));
+                }
+            }
+        }
+
+        return coordinates;
+    }
+
     public void set(int row, int col, T value) {
         matrix[row][col] = value;
     }
 
-    public boolean isValid(int row, int col) {
+    private boolean isValid(int row, int col) {
         return row >= 0 && row < rowCount && col >= 0 && col < colCount;
     }
 
