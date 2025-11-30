@@ -13,7 +13,7 @@ This project is powered by [**Spring Boot**](https://spring.io/projects/spring-b
 ## Requirements
 
 * [**Maven 3.9.10+**](https://maven.apache.org/download.cgi)
-* [**Java 24**](https://jdk.java.net/24/)
+* [**Java 25**](https://jdk.java.net/25/)
 
 ## Installation
 
@@ -62,13 +62,13 @@ Example: `"C:\\Users\\atgotreaux\\Downloads\\input.txt"`.
 
 Currently, the project will verify database migrations against a configured `h2` database table on launch.
 
-Puzzle input is held in the `input` column of the `puzzle` table.
+Puzzle input is held in the `raw_input` column of the `puzzle` table.
 
 Example: The puzzle input for ApartmentFloorPuzzle would be represented as below.
 
-| Year | Day | Input   |
-|------|-----|---------|
-| 2015 | 1   | [input] |
+| puzzle_year | puzzle_day | raw_input |
+|-------------|------------|-----------|
+| 2015        | 1          | [input]   |
 
 ### Seeding Puzzle Input
 

@@ -8,7 +8,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>4.0.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <groupId>com.gotreaux</groupId>
@@ -17,7 +17,7 @@
     <name>advent-of-code</name>
     <description>My solutions for Advent of Code, an Advent calendar of programming puzzles.</description>
     <properties>
-        <java.version>24</java.version>
+        <java.version>25</java.version>
     </properties>
 
     <dependencies>
@@ -35,6 +35,10 @@
             <artifactId>spring-boot-starter-liquibase</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-jackson</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
@@ -43,15 +47,6 @@
             <groupId>com.google.errorprone</groupId>
             <artifactId>error_prone_annotations</artifactId>
             <version>2.45.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.spotbugs</groupId>
-            <artifactId>spotbugs-annotations</artifactId>
-            <version>4.9.8</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-jackson</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -98,8 +93,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.14.1</version>
                 <configuration>
-                    <source>24</source>
-                    <target>24</target>
+                    <source>25</source>
+                    <target>25</target>
                     <encoding>UTF-8</encoding>
                     <failOnWarning>true</failOnWarning>
                     <compilerArgs>

@@ -7,7 +7,7 @@ import org.springframework.shell.command.annotation.CommandScan;
 @SpringBootApplication
 @CommandScan(basePackages = "com.gotreaux.aoc.commands")
 public class Application {
-    public static void main(String[] args) {
+    static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 }
