@@ -12,7 +12,7 @@ class NoRedSumNumbersFunction implements Function<JsonNode, Integer> {
             case JsonNode node when node.isNumber() -> node.asInt();
             case JsonNode node when node.isObject() -> {
                 if (stream(node.spliterator(), false)
-                        .anyMatch(child -> child.isString() && child.asString().equals("red"))) {
+                        .anyMatch(child -> child.isString() && "red".equals(child.asString()))) {
                     yield 0;
                 }
                 yield stream(node.spliterator(), false).mapToInt(this::apply).sum();

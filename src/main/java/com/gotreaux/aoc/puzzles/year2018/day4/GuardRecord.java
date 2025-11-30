@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.regex.Pattern;
-import org.springframework.lang.Nullable;
+import org.jspecify.annotations.Nullable;
 
 record GuardRecord(LocalDateTime time, Status status, @Nullable Integer guardId) {
 

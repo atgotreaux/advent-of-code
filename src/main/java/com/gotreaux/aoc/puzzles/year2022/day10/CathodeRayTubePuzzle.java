@@ -31,7 +31,7 @@ public class CathodeRayTubePuzzle extends Puzzle {
 
         for (var cycleIndex = 1; cycleIndex < cycles; cycleIndex++) {
             var instruction = input.get(instructionIndex);
-            if (instruction.equals("noop")) {
+            if ("noop".equals(instruction)) {
                 instructionIndex++;
             } else if (instruction.startsWith("addx")) {
                 if (wait) {

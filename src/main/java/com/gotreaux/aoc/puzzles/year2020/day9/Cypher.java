@@ -35,12 +35,12 @@ record Cypher(List<Long> numbers, int preambleLength) {
 
     long findContiguousSetSummingTo(long target) {
         for (var i = 0; i < numbers.size() - 1; i++) {
-            var sum = numbers.get(i);
-            var min = numbers.get(i);
-            var max = numbers.get(i);
+            long sum = numbers.get(i);
+            long min = numbers.get(i);
+            long max = numbers.get(i);
 
             for (var j = i + 1; j < numbers.size(); j++) {
-                var currentNumber = numbers.get(j);
+                long currentNumber = numbers.get(j);
                 sum += currentNumber;
                 min = Math.min(min, currentNumber);
                 max = Math.max(max, currentNumber);

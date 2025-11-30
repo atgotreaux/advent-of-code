@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 @Command
 @Component
-public class SolvePuzzleCommand {
+class SolvePuzzleCommand {
 
     static final String COMMAND_NAME = "solve-puzzle";
     private static final Logger logger = LoggerFactory.getLogger(SolvePuzzleCommand.class);
@@ -27,7 +27,7 @@ public class SolvePuzzleCommand {
     private final MessageSource messageSource;
     private final InputReaderFactory inputReaderFactory;
 
-    public SolvePuzzleCommand(
+    SolvePuzzleCommand(
             Collection<Puzzle> puzzles,
             MessageSource messageSource,
             InputReaderFactory inputReaderFactory) {

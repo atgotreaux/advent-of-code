@@ -40,8 +40,8 @@ public class HauntedWastelandPuzzle extends Puzzle {
 
         var escapeWasteland =
                 network.getStepsForNodes(
-                        node -> node.position().equals("AAA"),
-                        node -> node.position().equals("ZZZ"));
+                        node -> "AAA".equals(node.position()),
+                        node -> "ZZZ".equals(node.position()));
 
         var ghostsEscapeWasteland =
                 network.getStepsForNodes(

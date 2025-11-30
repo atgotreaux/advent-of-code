@@ -46,15 +46,15 @@ public class CubeConundrumPuzzle extends Puzzle {
                     cubeScanner.close();
                     switch (color) {
                         case RED -> {
-                            possibleGame &= cubeCount <= TOTAL_RED_CUBES;
+                            possibleGame = possibleGame && cubeCount <= TOTAL_RED_CUBES;
                             cubeMap.merge(CubeColor.RED, cubeCount, Math::max);
                         }
                         case GREEN -> {
-                            possibleGame &= cubeCount <= TOTAL_GREEN_CUBES;
+                            possibleGame = possibleGame && cubeCount <= TOTAL_GREEN_CUBES;
                             cubeMap.merge(CubeColor.GREEN, cubeCount, Math::max);
                         }
                         case BLUE -> {
-                            possibleGame &= cubeCount <= TOTAL_BLUE_CUBES;
+                            possibleGame = possibleGame && cubeCount <= TOTAL_BLUE_CUBES;
                             cubeMap.merge(CubeColor.BLUE, cubeCount, Math::max);
                         }
                     }

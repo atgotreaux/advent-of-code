@@ -24,7 +24,7 @@ public class HandyHaversacksPuzzle extends Puzzle {
 
         var shinyGoldBag =
                 luggage.getBags().stream()
-                        .filter(bag -> bag.color().equals("shiny gold"))
+                        .filter(bag -> "shiny gold".equals(bag.color()))
                         .findFirst()
                         .orElseThrow();
 

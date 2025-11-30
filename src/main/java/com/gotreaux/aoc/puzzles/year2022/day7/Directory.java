@@ -3,7 +3,7 @@ package com.gotreaux.aoc.puzzles.year2022.day7;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Stream;
-import org.springframework.lang.Nullable;
+import org.jspecify.annotations.Nullable;
 
 class Directory {
     private final String name;

@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2019.day2;
 
-import org.springframework.lang.Nullable;
+import org.jspecify.annotations.Nullable;
 
 record IntcodeProgram(@Nullable Integer noun, @Nullable Integer verb) {
 

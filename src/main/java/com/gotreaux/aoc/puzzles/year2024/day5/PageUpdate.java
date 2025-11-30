@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class PageUpdate {
+final class PageUpdate {
 
     private final List<Integer> pages;
     private final Map<Integer, Integer> pageWeights;
@@ -17,7 +17,7 @@ class PageUpdate {
         return new PageUpdate(pages);
     }
 
-    PageUpdate(Collection<Integer> pages) {
+    private PageUpdate(Collection<Integer> pages) {
         this.pages = pages.stream().toList();
         pageWeights = new HashMap<>(pages.size());
     }

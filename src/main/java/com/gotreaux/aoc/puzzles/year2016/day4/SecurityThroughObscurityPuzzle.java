@@ -21,7 +21,7 @@ public class SecurityThroughObscurityPuzzle extends Puzzle {
 
         var northPoleSectorID =
                 rooms.stream()
-                        .filter(room -> room.decryptName().equals("northpoleobjectstorage"))
+                        .filter(room -> "northpoleobjectstorage".equals(room.decryptName()))
                         .mapToInt(Room::sectorID)
                         .findFirst()
                         .orElse(Integer.MAX_VALUE);

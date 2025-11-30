@@ -286,7 +286,7 @@ class SeedPuzzleCommandTest {
         md.update(sessionBytes);
         var sessionId = HexFormat.of().formatHex(md.digest());
 
-        HttpResponse<String> mockResponse = Mockito.mock(HttpResponse.class);
+        HttpResponse<String> mockResponse = Mockito.mock();
         Mockito.when(mockResponse.statusCode()).thenReturn(HttpURLConnection.HTTP_UNAUTHORIZED);
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenAnswer(_ -> mockResponse);
@@ -326,7 +326,7 @@ class SeedPuzzleCommandTest {
         md.update(sessionBytes);
         var sessionId = HexFormat.of().formatHex(md.digest());
 
-        HttpResponse<String> mockResponse = Mockito.mock(HttpResponse.class);
+        HttpResponse<String> mockResponse = Mockito.mock();
         Mockito.when(mockResponse.statusCode()).thenReturn(HttpURLConnection.HTTP_OK);
         Mockito.when(mockResponse.body()).thenReturn(null);
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
@@ -371,7 +371,7 @@ class SeedPuzzleCommandTest {
 
         var input = RandomString.make(10);
 
-        HttpResponse<String> mockResponse = Mockito.mock(HttpResponse.class);
+        HttpResponse<String> mockResponse = Mockito.mock();
         Mockito.when(mockResponse.statusCode()).thenReturn(HttpURLConnection.HTTP_OK);
         Mockito.when(mockResponse.body()).thenReturn(input);
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
@@ -429,7 +429,7 @@ class SeedPuzzleCommandTest {
                                 Pattern.quote(File.separator),
                                 Matcher.quoteReplacement(File.separator.repeat(2)));
 
-        HttpResponse<String> mockResponse = Mockito.mock(HttpResponse.class);
+        HttpResponse<String> mockResponse = Mockito.mock();
         Mockito.when(mockResponse.statusCode()).thenReturn(HttpURLConnection.HTTP_OK);
         Mockito.when(mockResponse.body()).thenReturn(input);
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
@@ -478,7 +478,7 @@ class SeedPuzzleCommandTest {
 
         var input = RandomString.make(10);
 
-        HttpResponse<String> mockResponse = Mockito.mock(HttpResponse.class);
+        HttpResponse<String> mockResponse = Mockito.mock();
         Mockito.when(mockResponse.statusCode()).thenReturn(HttpURLConnection.HTTP_OK);
         Mockito.when(mockResponse.body()).thenReturn(input);
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))

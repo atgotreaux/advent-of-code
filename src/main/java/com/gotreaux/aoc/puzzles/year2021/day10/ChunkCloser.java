@@ -1,7 +1,7 @@
 package com.gotreaux.aoc.puzzles.year2021.day10;
 
 import java.util.Arrays;
-import org.springframework.lang.Nullable;
+import org.jspecify.annotations.Nullable;
 
 enum ChunkCloser {
     PARENTHESIS(')', 3, 1),

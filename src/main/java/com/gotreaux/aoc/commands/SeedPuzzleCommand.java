@@ -29,7 +29,7 @@ import org.springframework.stereotype.Component;
 
 @Command
 @Component
-public class SeedPuzzleCommand {
+class SeedPuzzleCommand {
 
     static final String COMMAND_NAME = "seed-puzzle";
     private static final Logger logger = LoggerFactory.getLogger(SeedPuzzleCommand.class);
@@ -39,7 +39,7 @@ public class SeedPuzzleCommand {
     private final Collection<Puzzle> puzzles;
     private final InputWriterFactory inputWriterFactory;
 
-    public SeedPuzzleCommand(
+    SeedPuzzleCommand(
             MessageSource messageSource,
             HttpClient client,
             Collection<Puzzle> puzzles,

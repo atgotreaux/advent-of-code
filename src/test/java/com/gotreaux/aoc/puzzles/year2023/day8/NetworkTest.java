@@ -24,8 +24,8 @@ class NetworkTest {
 
         var network = new Network(directions, nodes);
 
-        Predicate<Node> startPosition = node -> node.position().equals("AAA");
-        Predicate<Node> endPosition = node -> node.position().equals("ZZZ");
+        Predicate<Node> startPosition = node -> "AAA".equals(node.position());
+        Predicate<Node> endPosition = node -> "ZZZ".equals(node.position());
 
         assertEquals(2L, network.getStepsForNodes(startPosition, endPosition));
     }
@@ -43,8 +43,8 @@ class NetworkTest {
 
         var network = new Network(directions, nodes);
 
-        Predicate<Node> startPosition = node -> node.position().equals("AAA");
-        Predicate<Node> endPosition = node -> node.position().equals("ZZZ");
+        Predicate<Node> startPosition = node -> "AAA".equals(node.position());
+        Predicate<Node> endPosition = node -> "ZZZ".equals(node.position());
 
         assertEquals(6L, network.getStepsForNodes(startPosition, endPosition));
     }

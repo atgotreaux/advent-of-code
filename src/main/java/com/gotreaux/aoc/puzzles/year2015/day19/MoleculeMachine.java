@@ -26,7 +26,7 @@ record MoleculeMachine(Collection<Edge> replacements, String molecule) {
     }
 
     int getStepCountToFabricate() {
-        if (replacements.stream().noneMatch(replacement -> replacement.from().equals("e"))) {
+        if (replacements.stream().noneMatch(replacement -> "e".equals(replacement.from()))) {
             return -1;
         }
 
@@ -35,7 +35,7 @@ record MoleculeMachine(Collection<Edge> replacements, String molecule) {
 
         var steps = 0;
         var currentMolecule = molecule;
-        while (!currentMolecule.equals("e")) {
+        while (!"e".equals(currentMolecule)) {
             for (var replacement : sortedReplacements) {
                 if (currentMolecule.contains(replacement.to())) {
                     currentMolecule =

@@ -24,7 +24,7 @@ public class SomeAssemblyRequiredPuzzle extends Puzzle {
 
         Function<Wire, Wire> remapWireB =
                 wire ->
-                        wire.getLabel().equals("b")
+                        "b".equals(wire.getLabel())
                                 ? new SignalWire("b", Integer.toString(signalA))
                                 : wire;
         wires = wires.stream().map(remapWireB).toList();

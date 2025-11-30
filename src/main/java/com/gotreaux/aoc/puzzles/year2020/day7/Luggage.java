@@ -25,7 +25,7 @@ class Luggage {
         var lineParts = BAGS_CONTAIN_PATTERN.split(line);
 
         var bag = getOrCreate(lineParts[0]);
-        if (lineParts[1].equals("no other bags.")) {
+        if ("no other bags.".equals(lineParts[1])) {
             return;
         }
 

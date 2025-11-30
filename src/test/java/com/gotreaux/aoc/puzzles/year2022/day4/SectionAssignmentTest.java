@@ -69,7 +69,7 @@ class SectionAssignmentTest {
     }
 
     @ParameterizedTest
-    @MethodSource("doesNotOverlapSection")
+    @MethodSource("provideDoesNotOverlapSection")
     void doesNotOverlapSection(
             int firstAssignmentFirstSection,
             int firstAssignmentLastSection,
@@ -109,7 +109,7 @@ class SectionAssignmentTest {
                 Arguments.of(4, 8, 2, 6));
     }
 
-    private static Stream<Arguments> doesNotOverlapSection() {
+    private static Stream<Arguments> provideDoesNotOverlapSection() {
         return Stream.of(
                 Arguments.of(2, 4, 6, 8),
                 Arguments.of(6, 8, 2, 4),

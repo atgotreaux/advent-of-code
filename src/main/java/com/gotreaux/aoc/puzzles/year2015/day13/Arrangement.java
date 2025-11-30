@@ -9,7 +9,7 @@ record Arrangement(String relative, String neighbor, int happiness) {
         var neighbor = parts[10].replace(".", "");
 
         var happiness = Integer.parseInt(parts[3]);
-        if (parts[2].equals("lose")) {
+        if ("lose".equals(parts[2])) {
             happiness = -happiness;
         }
 

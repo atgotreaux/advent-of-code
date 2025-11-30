@@ -3,7 +3,7 @@ package com.gotreaux.aoc.puzzles.year2017.day7;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import org.springframework.lang.Nullable;
+import org.jspecify.annotations.Nullable;
 
 class Disc {
     private final String program;
@@ -24,8 +24,7 @@ class Disc {
         return weight;
     }
 
-    @Nullable
-    Disc getParent() {
+    @Nullable Disc getParent() {
         return parent;
     }
 

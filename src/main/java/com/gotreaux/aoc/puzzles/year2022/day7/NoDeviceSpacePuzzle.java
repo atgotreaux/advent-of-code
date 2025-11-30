@@ -25,9 +25,9 @@ public class NoDeviceSpacePuzzle extends Puzzle {
             } else if (line.startsWith("dir")) {
                 directory.addDirectory(new Directory(line.substring(4), directory));
             } else if (line.startsWith("$ cd")) {
-                if (line.equals("$ cd ..")) {
+                if ("$ cd ..".equals(line)) {
                     directory = directory.getParent();
-                } else if (line.equals("$ cd /")) {
+                } else if ("$ cd /".equals(line)) {
                     directory = directory.getRoot();
                 } else {
                     directory = directory.getDirectory(line.substring(5));
