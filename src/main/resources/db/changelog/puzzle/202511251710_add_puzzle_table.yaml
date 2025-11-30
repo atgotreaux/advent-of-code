@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: 202511251710_add_puzzle_table
+      author: atgotreaux
+      changes:
+        - createTable:
+            tableName: puzzle
+            columns:
+              - column:
+                  name: puzzle_year
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: puzzle_day
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: raw_input
+                  type: CLOB
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            tableName: puzzle
+            columnNames: puzzle_year, puzzle_day
+            constraintName: pk_puzzle
+        - sql:
+            sql: ALTER TABLE puzzle ADD CONSTRAINT chk_puzzle_year CHECK (puzzle_year BETWEEN 2015 AND 2024)
+        - sql:
+            sql: ALTER TABLE puzzle ADD CONSTRAINT chk_puzzle_day CHECK (puzzle_day BETWEEN 1 AND 25)

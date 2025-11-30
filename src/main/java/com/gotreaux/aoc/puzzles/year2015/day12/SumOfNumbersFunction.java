@@ -1,8 +1,8 @@
 package com.gotreaux.aoc.puzzles.year2015.day12;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import java.util.function.Function;
 import java.util.stream.StreamSupport;
+import tools.jackson.databind.JsonNode;
 
 class SumOfNumbersFunction implements Function<JsonNode, Integer> {
     @Override

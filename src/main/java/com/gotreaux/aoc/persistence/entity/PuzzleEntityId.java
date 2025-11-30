@@ -10,13 +10,13 @@ import org.springframework.lang.Nullable;
 @Embeddable
 public class PuzzleEntityId {
 
-    @Column(nullable = false)
+    @Column(name = "puzzle_year", nullable = false)
     @Min(2015)
     @Max(2024)
     @Nullable
     private Integer year;
 
-    @Column(nullable = false)
+    @Column(name = "puzzle_day", nullable = false)
     @Min(1)
     @Max(25)
     @Nullable

@@ -1,12 +1,10 @@
 logging:
-  file:
-    path: logs
+  level:
+    root: OFF
 spring:
   main:
     banner-mode: off
     web-application-type: none
   shell:
     interactive:
-      enabled: true
-    script:
-      enabled: true
+      enabled: false

@@ -3,18 +3,22 @@ package com.gotreaux.aoc.persistence.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import java.util.Objects;
 import org.springframework.lang.Nullable;
 
 @Entity
-@Table(name = "puzzle", uniqueConstraints = @UniqueConstraint(columnNames = {"year", "day"}))
+@Table(
+        name = "puzzle",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"puzzle_year", "puzzle_day"}))
 public class PuzzleEntity {
 
     @EmbeddedId @Nullable private PuzzleEntityId id;
 
-    @Column(nullable = false, columnDefinition = "CLOB")
+    @Column(name = "raw_input", nullable = false)
+    @Lob
     @Nullable
     private String input;
 

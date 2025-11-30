@@ -2,8 +2,8 @@ package com.gotreaux.aoc.puzzles.year2015.day12;
 
 import static java.util.stream.StreamSupport.stream;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import java.util.function.Function;
+import tools.jackson.databind.JsonNode;
 
 class NoRedSumNumbersFunction implements Function<JsonNode, Integer> {
     @Override
@@ -12,7 +12,7 @@ class NoRedSumNumbersFunction implements Function<JsonNode, Integer> {
             case JsonNode node when node.isNumber() -> node.asInt();
             case JsonNode node when node.isObject() -> {
                 if (stream(node.spliterator(), false)
-                        .anyMatch(child -> child.isTextual() && child.asText().equals("red"))) {
+                        .anyMatch(child -> child.isString() && child.asString().equals("red"))) {
                     yield 0;
                 }
                 yield stream(node.spliterator(), false).mapToInt(this::apply).sum();

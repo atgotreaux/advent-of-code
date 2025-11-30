@@ -2,15 +2,15 @@ package com.gotreaux.aoc.puzzles.year2015.day12;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 
 class NoRedSumNumbersFunctionTest {
+
     @ParameterizedTest
     @MethodSource("provideApply")
     void apply(JsonNode jsonNode, int expected) {
@@ -19,7 +19,7 @@ class NoRedSumNumbersFunctionTest {
         assertEquals(expected, function.apply(jsonNode));
     }
 
-    private static Stream<Arguments> provideApply() throws JsonProcessingException {
+    private static Stream<Arguments> provideApply() {
         var mapper = new ObjectMapper();
 
         return Stream.of(
