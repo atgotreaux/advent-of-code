@@ -2,9 +2,11 @@ package com.gotreaux.aoc.utils.matrix;
 
 import com.gotreaux.aoc.utils.Coordinate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.IntFunction;
@@ -16,7 +18,7 @@ public class Matrix<T> {
 
     private final int rowCount;
     private final int colCount;
-    private final T[][] matrix;
+    private final T[][] grid;
     private final IntFunction<T[]> arrayGenerator;
 
     Matrix(
@@ -33,10 +35,20 @@ public class Matrix<T> {
 
         this.arrayGenerator = arrayGenerator;
 
-        matrix = matrixGenerator.apply(rowCount, colCount);
+        grid = matrixGenerator.apply(rowCount, colCount);
         for (var i = 0; i < rowCount; i++) {
-            matrix[i] = rowMapper.apply(input.get(i));
+            grid[i] = rowMapper.apply(input.get(i));
         }
+    }
+
+    Matrix(int rowCount, int colCount, T[][] grid, IntFunction<T[]> arrayGenerator) {
+        this.rowCount = rowCount;
+        this.colCount = colCount;
+        this.grid =
+                Arrays.stream(grid)
+                        .map(row -> Arrays.copyOf(row, row.length))
+                        .toArray(size -> Arrays.copyOf(grid, size));
+        this.arrayGenerator = arrayGenerator;
     }
 
     public int getRowCount() {
@@ -47,12 +59,20 @@ public class Matrix<T> {
         return colCount;
     }
 
+    T[][] getGrid() {
+        return grid;
+    }
+
+    IntFunction<T[]> getArrayGenerator() {
+        return arrayGenerator;
+    }
+
     public T get(int row, int col) {
-        return matrix[row][col];
+        return grid[row][col];
     }
 
     public long count(T target) {
-        return Stream.of(matrix).flatMap(Stream::of).filter(target::equals).count();
+        return Stream.of(grid).flatMap(Stream::of).filter(target::equals).count();
     }
 
     public List<Coordinate> findAll(T target) {
@@ -70,7 +90,7 @@ public class Matrix<T> {
     }
 
     public void set(int row, int col, T value) {
-        matrix[row][col] = value;
+        grid[row][col] = value;
     }
 
     private boolean isValid(int row, int col) {
@@ -150,5 +170,25 @@ public class Matrix<T> {
                 .map(direction -> coordinatesInDirection(row, col, direction, limitPredicate))
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Matrix<?> matrix)) {
+            return false;
+        }
+
+        return rowCount == matrix.getRowCount()
+                && colCount == matrix.getColCount()
+                && Arrays.deepEquals(grid, matrix.getGrid());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rowCount, colCount, Arrays.deepHashCode(grid));
     }
 }

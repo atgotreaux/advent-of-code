@@ -29,17 +29,15 @@ class LightGrid {
     }
 
     LightGrid animate() {
-        List<String> result = new ArrayList<>(matrix.getRowCount());
+        var result = MatrixFactory.ofMatrix(matrix);
 
         for (var row = 0; row < matrix.getRowCount(); row++) {
-            var resultRow = new StringBuilder(matrix.getColCount());
             for (var col = 0; col < matrix.getColCount(); col++) {
-                resultRow.append(getNextState(row, col));
+                result.set(row, col, getNextState(row, col));
             }
-            result.add(resultRow.toString());
         }
 
-        return new LightGrid(MatrixFactory.ofChars(result), stuckLights);
+        return new LightGrid(result, stuckLights);
     }
 
     private char getNextState(int row, int col) {

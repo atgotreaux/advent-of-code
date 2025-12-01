@@ -41,4 +41,12 @@ public final class MatrixFactory {
                                 .mapToObj(codePoint -> Character.toString(codePoint).charAt(0))
                                 .toArray(Character[]::new));
     }
+
+    public static <T> Matrix<T> ofMatrix(Matrix<T> matrix) {
+        return new Matrix<>(
+                matrix.getRowCount(),
+                matrix.getColCount(),
+                matrix.getGrid(),
+                matrix.getArrayGenerator());
+    }
 }
