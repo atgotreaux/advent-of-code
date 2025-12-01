@@ -26,6 +26,6 @@ databaseChangeLog:
             columnNames: puzzle_year, puzzle_day
             constraintName: pk_puzzle
         - sql:
-            sql: ALTER TABLE puzzle ADD CONSTRAINT chk_puzzle_year CHECK (puzzle_year BETWEEN 2015 AND 2024)
+            sql: ALTER TABLE puzzle ADD CONSTRAINT chk_puzzle_year CHECK (puzzle_year BETWEEN 2015 AND 2025)
         - sql:
             sql: ALTER TABLE puzzle ADD CONSTRAINT chk_puzzle_day CHECK (puzzle_day BETWEEN 1 AND 25)

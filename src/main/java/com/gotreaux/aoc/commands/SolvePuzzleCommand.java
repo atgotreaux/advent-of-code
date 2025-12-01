@@ -47,10 +47,10 @@ class SolvePuzzleCommand {
                             shortNames = 'Y',
                             required = true,
                             description = "Solve puzzle for advent calendar year",
-                            label = "Year between 2015-2024",
+                            label = "Year between 2015-2025",
                             arity = CommandRegistration.OptionArity.EXACTLY_ONE)
                     @Min(2015)
-                    @Max(2024)
+                    @Max(2025)
                     Integer year,
             @Option(
                             longNames = "day",

@@ -12,7 +12,7 @@ public class PuzzleEntityId {
 
     @Column(name = "puzzle_year", nullable = false)
     @Min(2015)
-    @Max(2024)
+    @Max(2025)
     @Nullable
     private Integer year;
 

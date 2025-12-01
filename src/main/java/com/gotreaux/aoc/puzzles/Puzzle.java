@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Min;
 public abstract class Puzzle {
 
     @Min(2015)
-    @Max(2024)
+    @Max(2025)
     private final int year;
 
     @Min(1)
