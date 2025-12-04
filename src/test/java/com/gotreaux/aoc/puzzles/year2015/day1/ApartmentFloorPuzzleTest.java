@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class ApartmentFloorPuzzleTest {
+
     @ParameterizedTest
     @MethodSource("provideFloorFromInstructions")
     void floorFromInstructions(String input, int expectedFloor) {
@@ -18,9 +19,7 @@ class ApartmentFloorPuzzleTest {
 
         var puzzle = new ApartmentFloorPuzzle();
 
-        var output = puzzle.solve(inputReader);
-
-        assertEquals(expectedFloor, output.partOne());
+        assertEquals(expectedFloor, puzzle.solvePartOne(inputReader));
     }
 
     @Test
@@ -29,9 +28,7 @@ class ApartmentFloorPuzzleTest {
 
         var puzzle = new ApartmentFloorPuzzle();
 
-        var output = puzzle.solve(inputReader);
-
-        assertEquals(5, output.partTwo());
+        assertEquals(5, puzzle.solvePartTwo(inputReader));
     }
 
     private static Stream<Arguments> provideFloorFromInstructions() {

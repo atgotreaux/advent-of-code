@@ -1,30 +1,36 @@
 package com.gotreaux.aoc.puzzles.year2015.day10;
 
 import com.gotreaux.aoc.input.reader.InputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LookSayPuzzle extends Puzzle {
+public class LookSayPuzzle extends Puzzle<Integer, Integer> {
 
     public LookSayPuzzle() {
         super(2015, 10);
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
-        var partOne = inputReader.getInputString();
+    public Integer solvePartOne(InputReader inputReader) {
+        var sequence = inputReader.getInputString();
 
         for (var i = 0; i < 40; i++) {
-            partOne = saySequence(partOne);
-        }
-        var partTwo = partOne;
-        for (var i = 0; i < 10; i++) {
-            partTwo = saySequence(partTwo);
+            sequence = saySequence(sequence);
         }
 
-        return new PuzzleOutput<>(partOne.length(), partTwo.length());
+        return sequence.length();
+    }
+
+    @Override
+    public Integer solvePartTwo(InputReader inputReader) {
+        var sequence = inputReader.getInputString();
+
+        for (var i = 0; i < 50; i++) {
+            sequence = saySequence(sequence);
+        }
+
+        return sequence.length();
     }
 
     static String saySequence(CharSequence sequence) {

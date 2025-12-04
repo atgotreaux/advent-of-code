@@ -1,13 +1,12 @@
 package com.gotreaux.aoc.puzzles.year2015.day5;
 
 import com.gotreaux.aoc.input.reader.InputReader;
-import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.util.regex.Pattern;
 import org.springframework.stereotype.Component;
 
 @Component
-public class NiceStringPuzzle extends Puzzle {
+public class NiceStringPuzzle extends Puzzle<Long, Long> {
 
     private static final Pattern THREE_VOWELS = Pattern.compile("[^aeiou]");
     private static final Pattern REPEATED_CHARACTER = Pattern.compile("[a-z]*([a-z])\\1[a-z]*");
@@ -23,22 +22,21 @@ public class NiceStringPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Long, Long> solve(InputReader inputReader) {
-        var niceStringCount =
-                inputReader
-                        .getInputStream()
-                        .filter(s -> THREE_VOWELS.matcher(s).replaceAll("").length() >= 3)
-                        .filter(s -> REPEATED_CHARACTER.matcher(s).matches())
-                        .filter(s -> !NO_FORBIDDEN_STRINGS.matcher(s).matches())
-                        .count();
+    public Long solvePartOne(InputReader inputReader) {
+        return inputReader
+                .getInputStream()
+                .filter(s -> THREE_VOWELS.matcher(s).replaceAll("").length() >= 3)
+                .filter(s -> REPEATED_CHARACTER.matcher(s).matches())
+                .filter(s -> !NO_FORBIDDEN_STRINGS.matcher(s).matches())
+                .count();
+    }
 
-        var niceStringBetterModelCount =
-                inputReader
-                        .getInputStream()
-                        .filter(s -> PAIR_REPEATED.matcher(s).matches())
-                        .filter(s -> REPEATED_WITH_SEPARATOR.matcher(s).matches())
-                        .count();
-
-        return new PuzzleOutput<>(niceStringCount, niceStringBetterModelCount);
+    @Override
+    public Long solvePartTwo(InputReader inputReader) {
+        return inputReader
+                .getInputStream()
+                .filter(s -> PAIR_REPEATED.matcher(s).matches())
+                .filter(s -> REPEATED_WITH_SEPARATOR.matcher(s).matches())
+                .count();
     }
 }

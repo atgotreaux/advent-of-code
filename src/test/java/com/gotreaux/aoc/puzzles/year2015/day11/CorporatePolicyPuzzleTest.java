@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class CorporatePolicyPuzzleTest {
+    
     @ParameterizedTest
     @MethodSource("provideNextPassword")
     void nextPassword(String input, String expected) {
@@ -17,9 +18,7 @@ class CorporatePolicyPuzzleTest {
 
         var puzzle = new CorporatePolicyPuzzle();
 
-        var output = puzzle.solve(inputReader);
-
-        assertEquals(expected, output.partOne());
+        assertEquals(expected, puzzle.solvePartOne(inputReader));
     }
 
     private static Stream<Arguments> provideNextPassword() {

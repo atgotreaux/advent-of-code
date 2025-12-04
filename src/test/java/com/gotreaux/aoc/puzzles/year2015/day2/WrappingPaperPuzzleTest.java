@@ -18,9 +18,7 @@ class WrappingPaperPuzzleTest {
 
         var puzzle = new WrappingPaperPuzzle();
 
-        var output = puzzle.solve(inputReader);
-
-        assertEquals(expectedOrderTotal, output.partOne());
+        assertEquals(expectedOrderTotal, puzzle.solvePartOne(inputReader));
     }
 
     @ParameterizedTest
@@ -30,9 +28,7 @@ class WrappingPaperPuzzleTest {
 
         var puzzle = new WrappingPaperPuzzle();
 
-        var output = puzzle.solve(inputReader);
-
-        assertEquals(expectedOrderTotal, output.partTwo());
+        assertEquals(expectedOrderTotal, puzzle.solvePartTwo(inputReader));
     }
 
     private static Stream<Arguments> provideWrappingPaperOrderTotal() {

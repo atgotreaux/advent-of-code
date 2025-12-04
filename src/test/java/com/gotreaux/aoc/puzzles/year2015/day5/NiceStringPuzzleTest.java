@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class NiceStringPuzzleTest {
+
     @ParameterizedTest
     @MethodSource("provideNiceString")
     void niceString(String input, int expectedCount) {
@@ -17,9 +18,7 @@ class NiceStringPuzzleTest {
 
         var puzzle = new NiceStringPuzzle();
 
-        var output = puzzle.solve(inputReader);
-
-        assertEquals(expectedCount, output.partOne());
+        assertEquals(expectedCount, puzzle.solvePartOne(inputReader));
     }
 
     @ParameterizedTest
@@ -29,9 +28,7 @@ class NiceStringPuzzleTest {
 
         var puzzle = new NiceStringPuzzle();
 
-        var output = puzzle.solve(inputReader);
-
-        assertEquals(expectedCount, output.partTwo());
+        assertEquals(expectedCount, puzzle.solvePartTwo(inputReader));
     }
 
     private static Stream<Arguments> provideNiceString() {

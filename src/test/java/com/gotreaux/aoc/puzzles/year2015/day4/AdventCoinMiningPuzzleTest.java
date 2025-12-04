@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class AdventCoinMiningPuzzleTest {
+
     @ParameterizedTest
     @MethodSource("provideFiveLeadingZeroes")
     void fiveLeadingZeroes(String input, int expectedKeyNumber) {
@@ -17,9 +18,7 @@ class AdventCoinMiningPuzzleTest {
 
         var puzzle = new AdventCoinMiningPuzzle();
 
-        var output = puzzle.solve(inputReader);
-
-        assertEquals(expectedKeyNumber, output.partOne());
+        assertEquals(expectedKeyNumber, puzzle.solvePartOne(inputReader));
     }
 
     private static Stream<Arguments> provideFiveLeadingZeroes() {

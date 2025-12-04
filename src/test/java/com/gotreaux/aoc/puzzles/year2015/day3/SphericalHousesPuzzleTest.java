@@ -10,16 +10,15 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class SphericalHousesPuzzleTest {
+
     @ParameterizedTest
     @MethodSource("provideHouseDeliveries")
     void houseDeliveries(String input, int expectedDeliveries) {
         InputReader inputReader = new StringInputReader(input);
 
-        var puzzle = new SphericalHousesPuzzle();
+        var puzzle = new SphericalHousesPuzzle();;
 
-        var output = puzzle.solve(inputReader);
-
-        assertEquals(expectedDeliveries, output.partOne());
+        assertEquals(expectedDeliveries, puzzle.solvePartOne(inputReader));
     }
 
     @ParameterizedTest
@@ -29,9 +28,7 @@ class SphericalHousesPuzzleTest {
 
         var puzzle = new SphericalHousesPuzzle();
 
-        var output = puzzle.solve(inputReader);
-
-        assertEquals(expectedDeliveries, output.partTwo());
+        assertEquals(expectedDeliveries, puzzle.solvePartTwo(inputReader));
     }
 
     private static Stream<Arguments> provideHouseDeliveries() {

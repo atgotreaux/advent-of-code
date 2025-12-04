@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class FireHazardPuzzleTest {
+
     @ParameterizedTest
     @MethodSource("provideLightsLit")
     void lightsLit(String input, int expectedLights) {
@@ -17,9 +18,7 @@ class FireHazardPuzzleTest {
 
         var puzzle = new FireHazardPuzzle();
 
-        var output = puzzle.solve(inputReader);
-
-        assertEquals(expectedLights, output.partOne());
+        assertEquals(expectedLights, puzzle.solvePartOne(inputReader));
     }
 
     @ParameterizedTest
@@ -29,9 +28,7 @@ class FireHazardPuzzleTest {
 
         var puzzle = new FireHazardPuzzle();
 
-        var output = puzzle.solve(inputReader);
-
-        assertEquals(expectedLights, output.partTwo());
+        assertEquals(expectedLights, puzzle.solvePartTwo(inputReader));
     }
 
     private static Stream<Arguments> provideLightsLit() {
