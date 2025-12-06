@@ -5,6 +5,7 @@ import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.Coordinate;
 import com.gotreaux.aoc.utils.RelativeDirection;
+import com.gotreaux.aoc.utils.enums.EnumUtils;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -52,7 +53,7 @@ public class CrossedWiresPuzzle extends Puzzle {
         positions.add(position);
 
         for (var instruction : instructions) {
-            var direction = RelativeDirection.of(instruction.charAt(0));
+            var direction = EnumUtils.of(RelativeDirection.class, instruction.charAt(0));
 
             var units = Integer.parseInt(instruction.substring(1));
             for (var i = 0; i < units; i++) {

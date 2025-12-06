@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2017.day8;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.utils.enums.EnumUtils;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
@@ -28,10 +29,10 @@ public class RegisterPuzzle extends Puzzle {
             var instructionParts = line.split(" ");
 
             var register = instructionParts[0];
-            var instruction = Instruction.of(instructionParts[1]);
+            var instruction = EnumUtils.of(Instruction.class, instructionParts[1]);
             var amount = Integer.parseInt(instructionParts[2]);
             var operandRegister = instructionParts[4];
-            var comparisonOperator = ComparisonOperator.of(instructionParts[5]);
+            var comparisonOperator = EnumUtils.of(ComparisonOperator.class, instructionParts[5]);
             var comparisonValue = Integer.parseInt(instructionParts[6]);
 
             var expressionResult =

@@ -1,12 +1,13 @@
 package com.gotreaux.aoc.puzzles.year2020.day11;
 
+import com.gotreaux.aoc.utils.enums.EnumUtils;
 import com.gotreaux.aoc.utils.matrix.Direction;
 import com.gotreaux.aoc.utils.matrix.Matrix;
 import com.gotreaux.aoc.utils.matrix.MatrixFactory;
 import java.util.Arrays;
 import java.util.function.Function;
 
-public class ModelArrivalFunction implements Function<Matrix<Character>, Matrix<Character>> {
+class ModelArrivalFunction implements Function<Matrix<Character>, Matrix<Character>> {
 
     @Override
     public Matrix<Character> apply(Matrix<Character> matrix) {
@@ -14,7 +15,7 @@ public class ModelArrivalFunction implements Function<Matrix<Character>, Matrix<
 
         for (var row = 0; row < matrix.getRowCount(); row++) {
             for (var col = 0; col < matrix.getColCount(); col++) {
-                var seat = Seat.of(matrix.get(row, col));
+                var seat = EnumUtils.of(Seat.class, matrix.get(row, col));
                 var next = getNextState(seat, matrix, row, col);
                 result.set(row, col, next.getLabel());
             }

@@ -4,6 +4,7 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.RelativeDirection;
+import com.gotreaux.aoc.utils.enums.EnumUtils;
 import java.util.Collection;
 import java.util.List;
 import org.springframework.stereotype.Component;
@@ -56,7 +57,7 @@ public class BathroomSecurityPuzzle extends Puzzle {
         for (var line : input) {
             for (var i = 0; i < line.length(); i++) {
                 var directionLabel = line.charAt(i);
-                var direction = RelativeDirection.of(directionLabel);
+                var direction = EnumUtils.of(RelativeDirection.class, directionLabel);
 
                 imaginedKey = imaginedKeypad.move(imaginedKey, direction);
                 actualKey = actualKeypad.move(actualKey, direction);

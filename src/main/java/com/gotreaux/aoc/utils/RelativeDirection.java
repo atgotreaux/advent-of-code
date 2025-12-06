@@ -1,8 +1,8 @@
 package com.gotreaux.aoc.utils;
 
-import java.util.Arrays;
+import com.gotreaux.aoc.utils.enums.LabeledEnum;
 
-public enum RelativeDirection {
+public enum RelativeDirection implements LabeledEnum<Character> {
     UP('U'),
     DOWN('D'),
     LEFT('L'),
@@ -14,14 +14,8 @@ public enum RelativeDirection {
         this.label = label;
     }
 
-    public char getLabel() {
+    @Override
+    public Character getLabel() {
         return label;
-    }
-
-    public static RelativeDirection of(char label) {
-        return Arrays.stream(values())
-                .filter(instruction -> instruction.getLabel() == label)
-                .findFirst()
-                .orElseThrow();
     }
 }

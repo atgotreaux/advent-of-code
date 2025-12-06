@@ -4,6 +4,7 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.RelativeDirection;
+import com.gotreaux.aoc.utils.enums.EnumUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -28,7 +29,7 @@ public class HauntedWastelandPuzzle extends Puzzle {
         for (var line : inputReader.getInputList()) {
             if (DIRECTION_LINE.matcher(line).matches()) {
                 for (var i = 0; i < line.length(); i++) {
-                    directions.add(RelativeDirection.of(line.charAt(i)));
+                    directions.add(EnumUtils.of(RelativeDirection.class, line.charAt(i)));
                 }
             } else if (NODE_LINE.matcher(line).matches()) {
                 var nodeParts = NODE_DELIM.split(line.replace(" = (", ", ").replace(")", ""));

@@ -5,6 +5,7 @@ import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.CardinalDirection;
 import com.gotreaux.aoc.utils.Coordinate;
+import com.gotreaux.aoc.utils.enums.EnumUtils;
 import java.util.HashSet;
 import java.util.Set;
 import org.springframework.stereotype.Component;
@@ -32,7 +33,7 @@ public class SphericalHousesPuzzle extends Puzzle {
         assistedHouseDeliveries.add(santaPosition);
 
         for (var i = 0; i < length; i++) {
-            var direction = CardinalDirection.of(input.charAt(i));
+            var direction = EnumUtils.of(CardinalDirection.class, input.charAt(i));
 
             position = position.move(direction, 1);
             houseDeliveries.add(position);

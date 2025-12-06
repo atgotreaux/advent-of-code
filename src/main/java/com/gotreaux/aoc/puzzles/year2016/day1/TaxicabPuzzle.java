@@ -6,6 +6,7 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.CardinalDirection;
 import com.gotreaux.aoc.utils.Coordinate;
 import com.gotreaux.aoc.utils.RelativeDirection;
+import com.gotreaux.aoc.utils.enums.EnumUtils;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.regex.Pattern;
@@ -31,7 +32,7 @@ public class TaxicabPuzzle extends Puzzle {
 
         var input = inputReader.getInputString();
         for (var step : INSTRUCTION_SEPARATOR.split(input)) {
-            var relativeDirection = RelativeDirection.of(step.charAt(0));
+            var relativeDirection = EnumUtils.of(RelativeDirection.class, step.charAt(0));
             direction = direction.turn(relativeDirection);
 
             var units = Integer.parseInt(step.substring(1));

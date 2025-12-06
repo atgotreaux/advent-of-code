@@ -1,9 +1,8 @@
 package com.gotreaux.aoc.puzzles.year2021.day10;
 
-import java.util.Arrays;
-import org.jspecify.annotations.Nullable;
+import com.gotreaux.aoc.utils.enums.LabeledEnum;
 
-enum ChunkCloser {
+enum ChunkCloser implements LabeledEnum<Character> {
     PARENTHESIS(')', 3, 1),
     SQUARE_BRACKET(']', 57, 2),
     BRACE('}', 1197, 3),
@@ -19,7 +18,8 @@ enum ChunkCloser {
         this.autoCompleteScore = autoCompleteScore;
     }
 
-    private char getLabel() {
+    @Override
+    public Character getLabel() {
         return label;
     }
 
@@ -29,12 +29,5 @@ enum ChunkCloser {
 
     int getAutoCompleteScore() {
         return autoCompleteScore;
-    }
-
-    static @Nullable ChunkCloser of(char label) {
-        return Arrays.stream(values())
-                .filter(chunkCloser -> chunkCloser.getLabel() == label)
-                .findFirst()
-                .orElse(null);
     }
 }

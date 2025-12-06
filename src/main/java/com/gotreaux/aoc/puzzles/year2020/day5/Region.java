@@ -1,8 +1,8 @@
 package com.gotreaux.aoc.puzzles.year2020.day5;
 
-import java.util.Arrays;
+import com.gotreaux.aoc.utils.enums.LabeledEnum;
 
-public enum Region {
+public enum Region implements LabeledEnum<Character> {
     FRONT('F'),
     BACK('B'),
     LEFT('L'),
@@ -14,14 +14,8 @@ public enum Region {
         this.label = label;
     }
 
-    private char getLabel() {
+    @Override
+    public Character getLabel() {
         return label;
-    }
-
-    static Region of(char label) {
-        return Arrays.stream(values())
-                .filter(region -> region.getLabel() == label)
-                .findFirst()
-                .orElseThrow();
     }
 }

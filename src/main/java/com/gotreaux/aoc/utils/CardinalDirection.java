@@ -1,8 +1,8 @@
 package com.gotreaux.aoc.utils;
 
-import java.util.Arrays;
+import com.gotreaux.aoc.utils.enums.LabeledEnum;
 
-public enum CardinalDirection {
+public enum CardinalDirection implements LabeledEnum<Character> {
     NORTH('^'),
     SOUTH('v'),
     EAST('>'),
@@ -14,15 +14,9 @@ public enum CardinalDirection {
         this.label = label;
     }
 
-    private char getLabel() {
+    @Override
+    public Character getLabel() {
         return label;
-    }
-
-    public static CardinalDirection of(char label) {
-        return Arrays.stream(values())
-                .filter(direction -> direction.getLabel() == label)
-                .findFirst()
-                .orElseThrow();
     }
 
     public CardinalDirection turn(RelativeDirection direction) {

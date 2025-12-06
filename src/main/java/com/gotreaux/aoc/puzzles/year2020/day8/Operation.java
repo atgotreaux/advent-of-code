@@ -1,8 +1,8 @@
 package com.gotreaux.aoc.puzzles.year2020.day8;
 
-import java.util.Arrays;
+import com.gotreaux.aoc.utils.enums.LabeledEnum;
 
-enum Operation {
+enum Operation implements LabeledEnum<String> {
     ACC("acc"),
     JMP("jmp"),
     NOP("nop");
@@ -13,14 +13,8 @@ enum Operation {
         this.label = label;
     }
 
-    private String getLabel() {
+    @Override
+    public String getLabel() {
         return label;
-    }
-
-    static Operation of(String label) {
-        return Arrays.stream(values())
-                .filter(operation -> operation.getLabel().equals(label))
-                .findFirst()
-                .orElseThrow();
     }
 }

@@ -1,8 +1,8 @@
 package com.gotreaux.aoc.puzzles.year2025.day4;
 
-import java.util.Arrays;
+import com.gotreaux.aoc.utils.enums.LabeledEnum;
 
-enum Location {
+enum Location implements LabeledEnum<Character> {
     PAPER_ROLL('@'),
     REMOVED_ROLL('x'),
     EMPTY('.');
@@ -13,14 +13,8 @@ enum Location {
         this.label = label;
     }
 
-    char getLabel() {
+    @Override
+    public Character getLabel() {
         return label;
-    }
-
-    static Location of(char label) {
-        return Arrays.stream(values())
-                .filter(location -> location.getLabel() == label)
-                .findFirst()
-                .orElseThrow();
     }
 }

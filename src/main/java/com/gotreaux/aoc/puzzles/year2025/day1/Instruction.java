@@ -1,9 +1,11 @@
 package com.gotreaux.aoc.puzzles.year2025.day1;
 
+import com.gotreaux.aoc.utils.enums.EnumUtils;
+
 record Instruction(Rotation rotation, int distance) {
 
     static Instruction of(String line) {
-        var rotation = Rotation.of(line.charAt(0));
+        var rotation = EnumUtils.of(Rotation.class, line.charAt(0));
         var distance = Integer.parseInt(line.substring(1));
 
         return new Instruction(rotation, distance);

@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2021.day10;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.utils.enums.EnumUtils;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,12 +29,12 @@ public class SyntaxScoringPuzzle extends Puzzle {
             for (var i = 0; i < line.length(); i++) {
                 var c = line.charAt(i);
 
-                var chunkOpener = ChunkOpener.of(c);
+                var chunkOpener = EnumUtils.ofNullable(ChunkOpener.class, c);
                 if (chunkOpener != null) {
                     chunkOpeners.push(chunkOpener);
                 }
 
-                var chunkCloser = ChunkCloser.of(c);
+                var chunkCloser = EnumUtils.ofNullable(ChunkCloser.class, c);
                 if (chunkCloser != null) {
                     chunkOpener = chunkOpeners.pop();
                     if (!chunkOpener.matches(chunkCloser)) {

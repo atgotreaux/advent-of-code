@@ -1,8 +1,8 @@
 package com.gotreaux.aoc.puzzles.year2020.day11;
 
-import java.util.Arrays;
+import com.gotreaux.aoc.utils.enums.LabeledEnum;
 
-enum Seat {
+enum Seat implements LabeledEnum<Character> {
     EMPTY('L'),
     OCCUPIED('#'),
     FLOOR('.');
@@ -13,14 +13,8 @@ enum Seat {
         this.label = label;
     }
 
-    char getLabel() {
+    @Override
+    public Character getLabel() {
         return label;
-    }
-
-    static Seat of(char label) {
-        return Arrays.stream(values())
-                .filter(seat -> seat.getLabel() == label)
-                .findFirst()
-                .orElseThrow();
     }
 }

@@ -1,5 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2025.day4;
 
+import com.gotreaux.aoc.utils.enums.EnumUtils;
 import com.gotreaux.aoc.utils.matrix.Direction;
 import com.gotreaux.aoc.utils.matrix.Matrix;
 import com.gotreaux.aoc.utils.matrix.MatrixFactory;
@@ -14,7 +15,7 @@ class RemoveRollsFunction implements Function<Matrix<Character>, Matrix<Characte
 
         for (var row = 0; row < matrix.getRowCount(); row++) {
             for (var col = 0; col < matrix.getColCount(); col++) {
-                var location = Location.of(matrix.get(row, col));
+                var location = EnumUtils.of(Location.class, matrix.get(row, col));
                 var next = getNextState(location, matrix, row, col);
                 result.set(row, col, next.getLabel());
             }
@@ -29,7 +30,7 @@ class RemoveRollsFunction implements Function<Matrix<Character>, Matrix<Characte
             var neighbors = matrix.neighbors(row, col, Direction.values());
             var neighboringRolls =
                     Arrays.stream(neighbors)
-                            .filter(c -> Location.PAPER_ROLL.getLabel() == c)
+                            .filter(c -> Location.PAPER_ROLL.getLabel().equals(c))
                             .count();
             if (neighboringRolls < 4L) {
                 return Location.REMOVED_ROLL;

@@ -1,11 +1,8 @@
 package com.gotreaux.aoc.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.NoSuchElementException;
 import java.util.stream.Stream;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -13,29 +10,10 @@ import org.junit.jupiter.params.provider.MethodSource;
 class CardinalDirectionTest {
 
     @ParameterizedTest
-    @MethodSource("provideParseDirection")
-    void parseDirection(char label, CardinalDirection expectedDirection) {
-        assertEquals(expectedDirection, CardinalDirection.of(label));
-    }
-
-    @Test
-    void throwsIfCannotParse() {
-        assertThrows(NoSuchElementException.class, () -> CardinalDirection.of('x'));
-    }
-
-    @ParameterizedTest
     @MethodSource("provideFacingOnTurn")
     void facingOnTurn(
             CardinalDirection starting, RelativeDirection instruction, CardinalDirection expected) {
         assertEquals(expected, starting.turn(instruction));
-    }
-
-    private static Stream<Arguments> provideParseDirection() {
-        return Stream.of(
-                Arguments.of('^', CardinalDirection.NORTH),
-                Arguments.of('v', CardinalDirection.SOUTH),
-                Arguments.of('>', CardinalDirection.EAST),
-                Arguments.of('<', CardinalDirection.WEST));
     }
 
     private static Stream<Arguments> provideFacingOnTurn() {

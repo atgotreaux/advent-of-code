@@ -1,8 +1,8 @@
 package com.gotreaux.aoc.puzzles.year2025.day1;
 
-import java.util.Arrays;
+import com.gotreaux.aoc.utils.enums.LabeledEnum;
 
-enum Rotation {
+enum Rotation implements LabeledEnum<Character> {
     LEFT('L'),
     RIGHT('R');
 
@@ -12,14 +12,8 @@ enum Rotation {
         this.label = label;
     }
 
-    private char getLabel() {
+    @Override
+    public Character getLabel() {
         return label;
-    }
-
-    static Rotation of(char label) {
-        return Arrays.stream(values())
-                .filter(rotation -> rotation.getLabel() == label)
-                .findFirst()
-                .orElseThrow();
     }
 }

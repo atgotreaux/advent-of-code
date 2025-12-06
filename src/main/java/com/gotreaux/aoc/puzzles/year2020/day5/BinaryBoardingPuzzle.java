@@ -3,6 +3,7 @@ package com.gotreaux.aoc.puzzles.year2020.day5;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.utils.enums.EnumUtils;
 import java.util.stream.IntStream;
 import org.springframework.stereotype.Component;
 
@@ -42,7 +43,7 @@ public class BinaryBoardingPuzzle extends Puzzle {
         var colLow = 0;
 
         for (var i = 0; i < sequence.length(); i++) {
-            var region = Region.of(sequence.charAt(i));
+            var region = EnumUtils.of(Region.class, sequence.charAt(i));
             switch (region) {
                 case FRONT -> rowHigh = (rowHigh + rowLow) / 2;
                 case BACK -> rowLow = (rowHigh + rowLow + 1) / 2;

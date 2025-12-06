@@ -1,8 +1,8 @@
 package com.gotreaux.aoc.puzzles.year2017.day8;
 
-import java.util.Arrays;
+import com.gotreaux.aoc.utils.enums.LabeledEnum;
 
-enum ComparisonOperator {
+enum ComparisonOperator implements LabeledEnum<String> {
     EQ("=="),
     NE("!="),
     LT("<"),
@@ -16,14 +16,8 @@ enum ComparisonOperator {
         this.label = label;
     }
 
-    private String getLabel() {
+    @Override
+    public String getLabel() {
         return label;
-    }
-
-    static ComparisonOperator of(String label) {
-        return Arrays.stream(values())
-                .filter(comparisonOperator -> comparisonOperator.getLabel().equals(label))
-                .findFirst()
-                .orElseThrow();
     }
 }

@@ -1,8 +1,8 @@
 package com.gotreaux.aoc.puzzles.year2017.day8;
 
-import java.util.Arrays;
+import com.gotreaux.aoc.utils.enums.LabeledEnum;
 
-enum Instruction {
+enum Instruction implements LabeledEnum<String> {
     INCREASE("inc"),
     DECREASE("dec");
 
@@ -12,14 +12,8 @@ enum Instruction {
         this.label = label;
     }
 
-    private String getLabel() {
+    @Override
+    public String getLabel() {
         return label;
-    }
-
-    static Instruction of(String label) {
-        return Arrays.stream(values())
-                .filter(instruction -> instruction.getLabel().equals(label))
-                .findFirst()
-                .orElseThrow();
     }
 }

@@ -1,9 +1,8 @@
 package com.gotreaux.aoc.puzzles.year2021.day10;
 
-import java.util.Arrays;
-import org.jspecify.annotations.Nullable;
+import com.gotreaux.aoc.utils.enums.LabeledEnum;
 
-enum ChunkOpener {
+enum ChunkOpener implements LabeledEnum<Character> {
     PARENTHESIS('(', ChunkCloser.PARENTHESIS),
     SQUARE_BRACKET('[', ChunkCloser.SQUARE_BRACKET),
     BRACE('{', ChunkCloser.BRACE),
@@ -17,19 +16,13 @@ enum ChunkOpener {
         this.closer = closer;
     }
 
-    private char getLabel() {
+    @Override
+    public Character getLabel() {
         return label;
     }
 
     ChunkCloser getCloser() {
         return closer;
-    }
-
-    static @Nullable ChunkOpener of(char label) {
-        return Arrays.stream(values())
-                .filter(chunkOpener -> chunkOpener.getLabel() == label)
-                .findFirst()
-                .orElse(null);
     }
 
     boolean matches(ChunkCloser closer) {
