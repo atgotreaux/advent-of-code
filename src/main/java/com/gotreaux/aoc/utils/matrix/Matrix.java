@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.IntFunction;
@@ -71,8 +72,24 @@ public class Matrix<T> {
         return grid[row][col];
     }
 
+    public T get(Coordinate coordinate) {
+        return get(coordinate.x(), coordinate.y());
+    }
+
     public long count(T target) {
         return Stream.of(grid).flatMap(Stream::of).filter(target::equals).count();
+    }
+
+    public Optional<Coordinate> find(T target) {
+        for (var row = 0; row < rowCount; row++) {
+            for (var col = 0; col < colCount; col++) {
+                if (get(row, col).equals(target)) {
+                    return Optional.of(new Coordinate(row, col));
+                }
+            }
+        }
+
+        return Optional.empty();
     }
 
     public List<Coordinate> findAll(T target) {
