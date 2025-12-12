@@ -1,37 +1,39 @@
 package com.gotreaux.aoc.utils.matrix;
 
-import java.util.function.Function;
+import java.util.EnumSet;
 
 public enum Direction {
-    NORTH(i -> i - 1, i -> i),
-    SOUTH(i -> i + 1, i -> i),
-    WEST(i -> i, i -> i - 1),
-    EAST(i -> i, i -> i + 1),
-    SOUTHEAST(i -> i + 1, i -> i + 1),
-    SOUTHWEST(i -> i + 1, i -> i - 1),
-    NORTHEAST(i -> i - 1, i -> i + 1),
-    NORTHWEST(i -> i - 1, i -> i - 1);
+    NORTH(-1, 0),
+    SOUTH(1, 0),
+    WEST(0, -1),
+    EAST(0, 1),
+    SOUTHEAST(1, 1),
+    SOUTHWEST(1, -1),
+    NORTHEAST(-1, 1),
+    NORTHWEST(-1, -1);
 
-    @SuppressWarnings("ImmutableEnumChecker")
-    private final Function<Integer, Integer> adjustRow;
+    private final int rowOffset;
 
-    @SuppressWarnings("ImmutableEnumChecker")
-    private final Function<Integer, Integer> adjustCol;
+    private final int colOffset;
 
-    Direction(Function<Integer, Integer> adjustRow, Function<Integer, Integer> adjustCol) {
-        this.adjustRow = adjustRow;
-        this.adjustCol = adjustCol;
+    Direction(int rowOffset, int colOffset) {
+        this.rowOffset = rowOffset;
+        this.colOffset = colOffset;
     }
 
-    public static Direction[] cardinalDirections() {
-        return new Direction[] {NORTH, SOUTH, WEST, EAST};
+    public static EnumSet<Direction> cardinal() {
+        return EnumSet.of(NORTH, SOUTH, EAST, WEST);
+    }
+
+    public static EnumSet<Direction> allOf() {
+        return EnumSet.allOf(Direction.class);
     }
 
     int adjustRow(int row) {
-        return adjustRow.apply(row);
+        return row + rowOffset;
     }
 
     int adjustCol(int col) {
-        return adjustCol.apply(col);
+        return col + colOffset;
     }
 }

@@ -7,8 +7,8 @@ import com.gotreaux.aoc.utils.Coordinate;
 import com.gotreaux.aoc.utils.matrix.Direction;
 import com.gotreaux.aoc.utils.matrix.Matrix;
 import com.gotreaux.aoc.utils.matrix.MatrixFactory;
+import com.gotreaux.aoc.utils.matrix.Neighbors;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import org.springframework.stereotype.Component;
@@ -31,9 +31,9 @@ public class SmokeBasinPuzzle extends Puzzle {
         for (var row = 0; row < matrix.getRowCount(); row++) {
             for (var col = 0; col < matrix.getColCount(); col++) {
                 int height = matrix.get(row, col);
-                var neighbors = matrix.neighbors(row, col, Direction.cardinalDirections());
+                var neighbors = Neighbors.collectElements(matrix, row, col, Direction.cardinal());
 
-                if (Arrays.stream(neighbors).allMatch(i -> i > height)) {
+                if (neighbors.stream().allMatch(i -> i > height)) {
                     sumOfRiskLevels += height + 1;
                     basinSizes.add(getBasinSize(matrix, row, col));
                 }
@@ -58,7 +58,7 @@ public class SmokeBasinPuzzle extends Puzzle {
         var size = 1;
         visited.add(new Coordinate(row, col));
 
-        for (var neighbor : matrix.neighborCoordinates(row, col, Direction.cardinalDirections())) {
+        for (var neighbor : Neighbors.collectCoordinates(matrix, row, col, Direction.cardinal())) {
             if (matrix.get(neighbor.x(), neighbor.y()) < 9 && !visited.contains(neighbor)) {
                 size += getBasinSize(matrix, neighbor.x(), neighbor.y(), visited);
             }

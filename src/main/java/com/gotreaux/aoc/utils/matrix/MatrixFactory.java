@@ -11,7 +11,6 @@ public final class MatrixFactory {
     public static Matrix<Integer> ofDigits(List<String> input) {
         return new Matrix<>(
                 input,
-                Integer[]::new,
                 (rowCount, colCount) -> new Integer[rowCount][colCount],
                 row ->
                         row.chars()
@@ -23,7 +22,6 @@ public final class MatrixFactory {
     public static Matrix<Integer> ofInts(List<String> input) {
         return new Matrix<>(
                 input,
-                Integer[]::new,
                 (rowCount, colCount) -> new Integer[rowCount][colCount],
                 row ->
                         Arrays.stream(PatternUtils.ANY_WHITESPACE.split(row.trim()))
@@ -34,19 +32,10 @@ public final class MatrixFactory {
     public static Matrix<Character> ofChars(List<String> input) {
         return new Matrix<>(
                 input,
-                Character[]::new,
                 (rowCount, colCount) -> new Character[rowCount][colCount],
                 row ->
                         row.chars()
                                 .mapToObj(codePoint -> Character.toString(codePoint).charAt(0))
                                 .toArray(Character[]::new));
-    }
-
-    public static <T> Matrix<T> ofMatrix(Matrix<T> matrix) {
-        return new Matrix<>(
-                matrix.getRowCount(),
-                matrix.getColCount(),
-                matrix.getGrid(),
-                matrix.getArrayGenerator());
     }
 }

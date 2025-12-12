@@ -1,35 +1,33 @@
 package com.gotreaux.aoc.puzzles.year2025.day4;
 
+import com.gotreaux.aoc.utils.Coordinate;
 import com.gotreaux.aoc.utils.enums.EnumUtils;
 import com.gotreaux.aoc.utils.matrix.Direction;
 import com.gotreaux.aoc.utils.matrix.Matrix;
-import com.gotreaux.aoc.utils.matrix.MatrixFactory;
-import java.util.Arrays;
+import com.gotreaux.aoc.utils.matrix.Neighbors;
 import java.util.function.Function;
 
 class RemoveRollsFunction implements Function<Matrix<Character>, Matrix<Character>> {
 
     @Override
     public Matrix<Character> apply(Matrix<Character> matrix) {
-        var result = MatrixFactory.ofMatrix(matrix);
+        var result = matrix.copy();
 
-        for (var row = 0; row < matrix.getRowCount(); row++) {
-            for (var col = 0; col < matrix.getColCount(); col++) {
-                var location = EnumUtils.of(Location.class, matrix.get(row, col));
-                var next = getNextState(location, matrix, row, col);
-                result.set(row, col, next.getLabel());
-            }
-        }
+        matrix.forEach(
+                coordinate -> {
+                    var next = getNextState(matrix, coordinate);
+                    result.set(coordinate, next.getLabel());
+                });
 
         return result;
     }
 
-    private static Location getNextState(
-            Location current, Matrix<Character> matrix, int row, int col) {
+    private static Location getNextState(Matrix<Character> matrix, Coordinate coordinate) {
+        var current = EnumUtils.of(Location.class, matrix.get(coordinate));
         if (current == Location.PAPER_ROLL) {
-            var neighbors = matrix.neighbors(row, col, Direction.values());
+            var neighbors = Neighbors.collectElements(matrix, coordinate, Direction.allOf());
             var neighboringRolls =
-                    Arrays.stream(neighbors)
+                    neighbors.stream()
                             .filter(c -> Location.PAPER_ROLL.getLabel().equals(c))
                             .count();
             if (neighboringRolls < 4L) {

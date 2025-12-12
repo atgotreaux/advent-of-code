@@ -6,7 +6,9 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.enums.EnumUtils;
 import com.gotreaux.aoc.utils.matrix.Direction;
 import com.gotreaux.aoc.utils.matrix.MatrixFactory;
+import com.gotreaux.aoc.utils.matrix.Neighbors;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Component;
 
@@ -36,8 +38,8 @@ public class LaboratoriesPuzzle extends Puzzle {
                 switch (space) {
                     case SPLITTER -> {
                         numberOfBeamSplits++;
-                        manifold.neighborCoordinates(
-                                        row, col, new Direction[] {Direction.WEST, Direction.EAST})
+                        Neighbors.collectCoordinates(
+                                        manifold, row, col, List.of(Direction.WEST, Direction.EAST))
                                 .forEach(
                                         neighbor ->
                                                 nextBeamCounts.merge(

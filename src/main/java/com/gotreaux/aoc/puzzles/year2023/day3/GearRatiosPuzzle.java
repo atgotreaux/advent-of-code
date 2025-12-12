@@ -6,6 +6,7 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.Coordinate;
 import com.gotreaux.aoc.utils.matrix.Direction;
 import com.gotreaux.aoc.utils.matrix.MatrixFactory;
+import com.gotreaux.aoc.utils.matrix.Neighbors;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -35,8 +36,10 @@ public class GearRatiosPuzzle extends Puzzle {
             for (var col = 0; col < matrix.getColCount() + 1; col++) {
                 if (col < matrix.getColCount() && Character.isDigit(matrix.get(row, col))) {
                     number = number * 10 + Character.digit(matrix.get(row, col), 10);
-                    for (var neighbor : matrix.neighborCoordinates(row, col, Direction.values())) {
-                        char adjacentChar = matrix.get(neighbor.x(), neighbor.y());
+                    var neighbors =
+                            Neighbors.collectCoordinates(matrix, row, col, Direction.allOf());
+                    for (var neighbor : neighbors) {
+                        char adjacentChar = matrix.get(neighbor);
                         if (!Character.isDigit(adjacentChar) && adjacentChar != '.') {
                             adjacentToPart = true;
                         }

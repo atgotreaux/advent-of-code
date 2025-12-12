@@ -3,9 +3,8 @@ package com.gotreaux.aoc.puzzles.year2015.day18;
 import com.gotreaux.aoc.utils.Coordinate;
 import com.gotreaux.aoc.utils.matrix.Direction;
 import com.gotreaux.aoc.utils.matrix.Matrix;
-import com.gotreaux.aoc.utils.matrix.MatrixFactory;
+import com.gotreaux.aoc.utils.matrix.Neighbors;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -25,34 +24,30 @@ class LightGrid {
         this.matrix = matrix;
         this.stuckLights = stuckLights.stream().toList();
 
-        stuckLights.forEach(light -> matrix.set(light.x(), light.y(), ON));
+        stuckLights.forEach(light -> matrix.set(light, ON));
     }
 
     LightGrid animate() {
-        var result = MatrixFactory.ofMatrix(matrix);
+        var result = matrix.copy();
 
-        for (var row = 0; row < matrix.getRowCount(); row++) {
-            for (var col = 0; col < matrix.getColCount(); col++) {
-                result.set(row, col, getNextState(row, col));
-            }
-        }
+        matrix.forEach(coordinate -> result.set(coordinate, getNextState(coordinate)));
 
         return new LightGrid(result, stuckLights);
     }
 
-    private char getNextState(int row, int col) {
-        if (stuckLights.contains(new Coordinate(row, col))) {
+    private char getNextState(Coordinate coordinate) {
+        if (stuckLights.contains(coordinate)) {
             return ON;
         }
-        var neighbors = getNeighboringLightCount(row, col);
-        if (matrix.get(row, col) == ON) {
+        var neighbors = getNeighboringLightCount(coordinate);
+        if (matrix.get(coordinate) == ON) {
             return (neighbors == 2L || neighbors == 3L) ? ON : OFF;
         }
         return neighbors == 3L ? ON : OFF;
     }
 
-    private long getNeighboringLightCount(int row, int col) {
-        return Arrays.stream(matrix.neighbors(row, col, Direction.values()))
+    private long getNeighboringLightCount(Coordinate coordinate) {
+        return Neighbors.collectElements(matrix, coordinate, Direction.allOf()).stream()
                 .filter(c -> c == ON)
                 .count();
     }

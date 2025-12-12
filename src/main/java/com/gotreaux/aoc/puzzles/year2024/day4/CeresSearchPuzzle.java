@@ -5,13 +5,12 @@ import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.matrix.Direction;
 import com.gotreaux.aoc.utils.matrix.MatrixFactory;
-import java.util.Arrays;
+import com.gotreaux.aoc.utils.matrix.Ray;
+import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CeresSearchPuzzle extends Puzzle {
-
-    private static final Character[] MAS = {'M', 'A', 'S'};
 
     protected CeresSearchPuzzle() {
         super(2024, 4);
@@ -21,6 +20,7 @@ public class CeresSearchPuzzle extends Puzzle {
     public PuzzleOutput<Long, Long> solve(InputReader inputReader) {
         var lines = inputReader.getInputList();
 
+        var mas = List.of('M', 'A', 'S');
         long xmasAppearances = 0, xMasAppearances = 0;
 
         var matrix = MatrixFactory.ofChars(lines);
@@ -31,11 +31,10 @@ public class CeresSearchPuzzle extends Puzzle {
                 char c = matrix.get(row, col);
                 if (c == 'X') {
                     xmasAppearances +=
-                            matrix
-                                    .elementsinDirections(row, col, Direction.values(), MAS.length)
+                            Ray.collectElements(matrix, row, col, Direction.allOf(), mas.size())
                                     .values()
                                     .stream()
-                                    .filter(array -> Arrays.equals(array, MAS))
+                                    .filter(list -> list.equals(mas))
                                     .count();
                 } else if (c == 'A'
                         && row > 0
