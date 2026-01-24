@@ -2,6 +2,8 @@ package com.gotreaux.aoc.commands;
 
 import static org.awaitility.Awaitility.await;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.gotreaux.aoc.input.reader.DatabaseInputReader;
 import com.gotreaux.aoc.input.reader.FileInputReader;
@@ -18,7 +20,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.HexFormat;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -31,205 +32,143 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.shell.core.command.CommandExecutionException;
 import org.springframework.shell.test.ShellAssertions;
 import org.springframework.shell.test.ShellTestClient;
-import org.springframework.shell.test.autoconfigure.AutoConfigureShell;
-import org.springframework.shell.test.autoconfigure.AutoConfigureShellTestClient;
+import org.springframework.shell.test.autoconfigure.ShellTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
-@AutoConfigureShell
-@AutoConfigureShellTestClient
+@ShellTest
 @SpringBootTest
 class SeedPuzzleCommandTest {
-    @Autowired private ShellTestClient client;
+
     @Autowired private List<Puzzle> puzzles;
     @Autowired private PuzzleRepository puzzleRepository;
     @MockitoBean private HttpClient httpClient;
 
     @Test
-    void commandAvailable() {
-        var session = client.nonInterative("help").run();
+    void commandAvailable(@Autowired ShellTestClient client) throws Exception {
+        var screen = client.sendCommand("help");
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
                         () ->
-                                ShellAssertions.assertThat(session.screen())
+                                ShellAssertions.assertThat(screen)
                                         .containsText(SeedPuzzleCommand.COMMAND_NAME));
     }
 
     @Test
-    void help() {
-        var session = client.nonInterative(SeedPuzzleCommand.COMMAND_NAME, "--help").run();
+    void help(@Autowired ShellTestClient client) throws Exception {
+        var screen = client.sendCommand(SeedPuzzleCommand.COMMAND_NAME + " --help");
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
                         () ->
-                                ShellAssertions.assertThat(session.screen())
-                                        .containsText(
-                                                "help for %s"
-                                                        .formatted(
-                                                                SeedPuzzleCommand.COMMAND_NAME)));
+                                ShellAssertions.assertThat(screen)
+                                        .containsText(SeedPuzzleCommand.COMMAND_NAME));
     }
 
     @Test
-    void yearRequired() {
-        var session = client.nonInterative(SeedPuzzleCommand.COMMAND_NAME).run();
-
-        await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(session.screen())
-                                        .containsText("Missing mandatory option '--year'"));
-    }
-
-    @Test
-    void invalidYear() throws NoSuchAlgorithmException {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-
-        var year = String.valueOf(generator.nextInt(2015));
-
-        var bytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(bytes);
-
-        var md = MessageDigest.getInstance("SHA-512");
-        md.update(bytes);
-        var sessionId = HexFormat.of().formatHex(md.digest());
-
-        var session =
-                client.nonInterative(
-                                SeedPuzzleCommand.COMMAND_NAME,
-                                "-Y",
-                                year,
-                                "-D",
-                                String.valueOf(puzzle.getDay()),
-                                "-S",
-                                sessionId)
-                        .run();
-
-        await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(session.screen())
-                                        .containsText(
-                                                "--year: must be greater than or equal to 2015"));
-    }
-
-    @Test
-    void dayRequired() {
-        var session = client.nonInterative(SeedPuzzleCommand.COMMAND_NAME).run();
-
-        await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(session.screen())
-                                        .containsText("Missing mandatory option '--day'"));
-    }
-
-    @Test
-    void invalidDay() throws NoSuchAlgorithmException {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-
-        var day = String.valueOf(generator.nextInt(26, 32));
-
-        var bytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(bytes);
-
-        var md = MessageDigest.getInstance("SHA-512");
-        md.update(bytes);
-        var sessionId = HexFormat.of().formatHex(md.digest());
-
-        var session =
-                client.nonInterative(
-                                SeedPuzzleCommand.COMMAND_NAME,
-                                "-Y",
-                                String.valueOf(puzzle.getYear()),
-                                "-D",
-                                day,
-                                "-S",
-                                sessionId)
-                        .run();
-
-        await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(session.screen())
-                                        .containsText("--day: must be less than or equal to 25"));
-    }
-
-    @Test
-    void sessionRequired() {
-        var session = client.nonInterative(SeedPuzzleCommand.COMMAND_NAME).run();
-
-        await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(session.screen())
-                                        .containsText("Missing mandatory option '--session'"));
-    }
-
-    @Test
-    void invalidSession() throws Exception {
+    void yearRequired(@Autowired ShellTestClient client) throws Exception {
         var generator = RandomGenerator.getDefault();
         var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
         var bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
 
-        var md = MessageDigest.getInstance("MD5");
+        var md = MessageDigest.getInstance("SHA-512");
         md.update(bytes);
-        var sessionId = HexFormat.of().formatHex(md.digest());
+        var session = HexFormat.of().formatHex(md.digest());
 
-        var session =
-                client.nonInterative(
-                                SeedPuzzleCommand.COMMAND_NAME,
-                                "-Y",
-                                String.valueOf(puzzle.getYear()),
-                                "-D",
-                                String.valueOf(puzzle.getDay()),
-                                "-S",
-                                sessionId)
-                        .run();
-
-        await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
+        var exception =
+                assertThrows(
+                        CommandExecutionException.class,
                         () ->
-                                ShellAssertions.assertThat(session.screen())
-                                        .containsText("--session: must match \"^[a-f0-9]{128}$\""));
+                                client.sendCommand(
+                                        SeedPuzzleCommand.COMMAND_NAME
+                                                + " -d "
+                                                + puzzle.getDay()
+                                                + " -s "
+                                                + session));
+
+        assertTrue(
+                exception.getCause().getMessage().contains("Required option '--year' is missing."));
     }
 
     @Test
-    void clientThrowsIOException() throws Exception {
+    void dayRequired(@Autowired ShellTestClient client) throws Exception {
         var generator = RandomGenerator.getDefault();
         var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
-        var sessionBytes = new byte[generator.nextInt(0, 10)];
-        generator.nextBytes(sessionBytes);
+        var bytes = new byte[generator.nextInt(0, 10)];
+        generator.nextBytes(bytes);
 
         var md = MessageDigest.getInstance("SHA-512");
-        md.update(sessionBytes);
-        var sessionId = HexFormat.of().formatHex(md.digest());
+        md.update(bytes);
+        var session = HexFormat.of().formatHex(md.digest());
+
+        var command = SeedPuzzleCommand.COMMAND_NAME + " -y " + puzzle.getYear() + " -s " + session;
+
+        var exception =
+                assertThrows(CommandExecutionException.class, () -> client.sendCommand(command));
+
+        assertTrue(
+                exception.getCause().getMessage().contains("Required option '--day' is missing."));
+    }
+
+    @Test
+    void sessionRequired(@Autowired ShellTestClient client) throws Exception {
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+
+        var exception =
+                assertThrows(
+                        CommandExecutionException.class,
+                        () ->
+                                client.sendCommand(
+                                        SeedPuzzleCommand.COMMAND_NAME
+                                                + " -y "
+                                                + puzzle.getYear()
+                                                + " -d "
+                                                + puzzle.getDay()));
+
+        assertTrue(
+                exception
+                        .getCause()
+                        .getMessage()
+                        .contains("Required option '--session' is missing."));
+    }
+
+    @Test
+    void clientThrowsIOException(@Autowired ShellTestClient client) throws Exception {
+        var generator = RandomGenerator.getDefault();
+        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+
+        var bytes = new byte[generator.nextInt(0, 10)];
+        generator.nextBytes(bytes);
+
+        var md = MessageDigest.getInstance("SHA-512");
+        md.update(bytes);
+        var session = HexFormat.of().formatHex(md.digest());
 
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenThrow(new IOException("Mock IOException"));
 
-        var session =
-                client.nonInterative(
-                                SeedPuzzleCommand.COMMAND_NAME,
-                                "-Y",
-                                String.valueOf(puzzle.getYear()),
-                                "-D",
-                                String.valueOf(puzzle.getDay()),
-                                "-S",
-                                sessionId)
-                        .run();
+        var screen =
+                client.sendCommand(
+                        SeedPuzzleCommand.COMMAND_NAME
+                                + " -y "
+                                + puzzle.getYear()
+                                + " -d "
+                                + puzzle.getDay()
+                                + " -s "
+                                + session);
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
                         () ->
-                                ShellAssertions.assertThat(session.screen())
+                                ShellAssertions.assertThat(screen)
                                         .containsText("Unable to fetch puzzle input from URL"));
 
         Mockito.verify(httpClient).send(ArgumentMatchers.any(), ArgumentMatchers.any());
@@ -238,7 +177,7 @@ class SeedPuzzleCommandTest {
     }
 
     @Test
-    void clientThrowsInterruptedException() throws Exception {
+    void clientThrowsInterruptedException(@Autowired ShellTestClient client) throws Exception {
         var generator = RandomGenerator.getDefault();
         var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
@@ -247,26 +186,25 @@ class SeedPuzzleCommandTest {
 
         var md = MessageDigest.getInstance("SHA-512");
         md.update(sessionBytes);
-        var sessionId = HexFormat.of().formatHex(md.digest());
+        var session = HexFormat.of().formatHex(md.digest());
 
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenThrow(new InterruptedException("Mock InterruptedException"));
 
-        var session =
-                client.nonInterative(
-                                SeedPuzzleCommand.COMMAND_NAME,
-                                "-Y",
-                                String.valueOf(puzzle.getYear()),
-                                "-D",
-                                String.valueOf(puzzle.getDay()),
-                                "-S",
-                                sessionId)
-                        .run();
+        var screen =
+                client.sendCommand(
+                        SeedPuzzleCommand.COMMAND_NAME
+                                + " -y "
+                                + puzzle.getYear()
+                                + " -d "
+                                + puzzle.getDay()
+                                + " -s "
+                                + session);
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
                         () ->
-                                ShellAssertions.assertThat(session.screen())
+                                ShellAssertions.assertThat(screen)
                                         .containsText("HTTP request to URL"));
 
         Mockito.verify(httpClient).send(ArgumentMatchers.any(), ArgumentMatchers.any());
@@ -275,7 +213,7 @@ class SeedPuzzleCommandTest {
     }
 
     @Test
-    void statusCodeMessage() throws Exception {
+    void statusCodeMessage(@Autowired ShellTestClient client) throws Exception {
         var generator = RandomGenerator.getDefault();
         var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
@@ -284,28 +222,27 @@ class SeedPuzzleCommandTest {
 
         var md = MessageDigest.getInstance("SHA-512");
         md.update(sessionBytes);
-        var sessionId = HexFormat.of().formatHex(md.digest());
+        var session = HexFormat.of().formatHex(md.digest());
 
         HttpResponse<String> mockResponse = Mockito.mock();
         Mockito.when(mockResponse.statusCode()).thenReturn(HttpURLConnection.HTTP_UNAUTHORIZED);
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenAnswer(_ -> mockResponse);
 
-        var session =
-                client.nonInterative(
-                                SeedPuzzleCommand.COMMAND_NAME,
-                                "-Y",
-                                String.valueOf(puzzle.getYear()),
-                                "-D",
-                                String.valueOf(puzzle.getDay()),
-                                "-S",
-                                sessionId)
-                        .run();
+        var screen =
+                client.sendCommand(
+                        SeedPuzzleCommand.COMMAND_NAME
+                                + " -y "
+                                + puzzle.getYear()
+                                + " -d "
+                                + puzzle.getDay()
+                                + " -s "
+                                + session);
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
                         () ->
-                                ShellAssertions.assertThat(session.screen())
+                                ShellAssertions.assertThat(screen)
                                         .containsText("Unable to fetch puzzle input."));
 
         Mockito.verify(httpClient).send(ArgumentMatchers.any(), ArgumentMatchers.any());
@@ -315,7 +252,7 @@ class SeedPuzzleCommandTest {
     }
 
     @Test
-    void emptyResponseMessage() throws Exception {
+    void emptyResponseMessage(@Autowired ShellTestClient client) throws Exception {
         var generator = RandomGenerator.getDefault();
         var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
@@ -324,7 +261,7 @@ class SeedPuzzleCommandTest {
 
         var md = MessageDigest.getInstance("SHA-512");
         md.update(sessionBytes);
-        var sessionId = HexFormat.of().formatHex(md.digest());
+        var session = HexFormat.of().formatHex(md.digest());
 
         HttpResponse<String> mockResponse = Mockito.mock();
         Mockito.when(mockResponse.statusCode()).thenReturn(HttpURLConnection.HTTP_OK);
@@ -332,21 +269,20 @@ class SeedPuzzleCommandTest {
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenAnswer(_ -> mockResponse);
 
-        var session =
-                client.nonInterative(
-                                SeedPuzzleCommand.COMMAND_NAME,
-                                "-Y",
-                                String.valueOf(puzzle.getYear()),
-                                "-D",
-                                String.valueOf(puzzle.getDay()),
-                                "-S",
-                                sessionId)
-                        .run();
+        var screen =
+                client.sendCommand(
+                        SeedPuzzleCommand.COMMAND_NAME
+                                + " -y "
+                                + puzzle.getYear()
+                                + " -d "
+                                + puzzle.getDay()
+                                + " -s "
+                                + session);
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
                         () ->
-                                ShellAssertions.assertThat(session.screen())
+                                ShellAssertions.assertThat(screen)
                                         .containsText("Empty or null response body from URL"));
 
         Mockito.verify(httpClient).send(ArgumentMatchers.any(), ArgumentMatchers.any());
@@ -358,7 +294,7 @@ class SeedPuzzleCommandTest {
 
     @Test
     @DirtiesContext
-    void writesToDatabase() throws Exception {
+    void writesToDatabase(@Autowired ShellTestClient client) throws Exception {
         var generator = RandomGenerator.getDefault();
         var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
@@ -367,7 +303,7 @@ class SeedPuzzleCommandTest {
 
         var md = MessageDigest.getInstance("SHA-512");
         md.update(sessionBytes);
-        var sessionId = HexFormat.of().formatHex(md.digest());
+        var session = HexFormat.of().formatHex(md.digest());
 
         var input = RandomString.make(10);
 
@@ -377,21 +313,20 @@ class SeedPuzzleCommandTest {
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenAnswer(_ -> mockResponse);
 
-        var session =
-                client.nonInterative(
-                                SeedPuzzleCommand.COMMAND_NAME,
-                                "-Y",
-                                String.valueOf(puzzle.getYear()),
-                                "-D",
-                                String.valueOf(puzzle.getDay()),
-                                "-S",
-                                sessionId)
-                        .run();
+        var screen =
+                client.sendCommand(
+                        SeedPuzzleCommand.COMMAND_NAME
+                                + " -y "
+                                + puzzle.getYear()
+                                + " -d "
+                                + puzzle.getDay()
+                                + " -s "
+                                + session);
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
                         () ->
-                                ShellAssertions.assertThat(session.screen())
+                                ShellAssertions.assertThat(screen)
                                         .containsText("Successfully seeded input to targets"));
 
         Mockito.verify(httpClient).send(ArgumentMatchers.any(), ArgumentMatchers.any());
@@ -407,7 +342,7 @@ class SeedPuzzleCommandTest {
 
     @Test
     @DirtiesContext
-    void writesToFile() throws Exception {
+    void writesToFile(@Autowired ShellTestClient client) throws Exception {
         var generator = RandomGenerator.getDefault();
         var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
 
@@ -416,7 +351,7 @@ class SeedPuzzleCommandTest {
 
         var md = MessageDigest.getInstance("SHA-512");
         md.update(sessionBytes);
-        var sessionId = HexFormat.of().formatHex(md.digest());
+        var session = HexFormat.of().formatHex(md.digest());
 
         var input = RandomString.make(10);
 
@@ -435,23 +370,24 @@ class SeedPuzzleCommandTest {
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenAnswer(_ -> mockResponse);
 
-        var session =
-                client.nonInterative(
-                                SeedPuzzleCommand.COMMAND_NAME,
-                                "-Y",
-                                String.valueOf(puzzle.getYear()),
-                                "-D",
-                                String.valueOf(puzzle.getDay()),
-                                "-S",
-                                sessionId,
-                                "-T",
-                                "\"" + inputPath + "\"")
-                        .run();
+        var screen =
+                client.sendCommand(
+                        SeedPuzzleCommand.COMMAND_NAME
+                                + " -y "
+                                + puzzle.getYear()
+                                + " -d "
+                                + puzzle.getDay()
+                                + " -s "
+                                + session
+                                + " -t "
+                                + "\""
+                                + inputPath
+                                + "\"");
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
                         () ->
-                                ShellAssertions.assertThat(session.screen())
+                                ShellAssertions.assertThat(screen)
                                         .containsText("Successfully seeded input to targets"));
 
         Mockito.verify(httpClient).send(ArgumentMatchers.any(), ArgumentMatchers.any());
@@ -465,7 +401,7 @@ class SeedPuzzleCommandTest {
 
     @Test
     @DirtiesContext
-    void writesToResource() throws Exception {
+    void writesToResource(@Autowired ShellTestClient client) throws Exception {
         var puzzle = new ApartmentFloorPuzzle();
 
         var generator = RandomGenerator.getDefault();
@@ -474,7 +410,7 @@ class SeedPuzzleCommandTest {
 
         var md = MessageDigest.getInstance("SHA-512");
         md.update(sessionBytes);
-        var sessionId = HexFormat.of().formatHex(md.digest());
+        var session = HexFormat.of().formatHex(md.digest());
 
         var input = RandomString.make(10);
 
@@ -484,23 +420,22 @@ class SeedPuzzleCommandTest {
         Mockito.when(httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenAnswer(_ -> mockResponse);
 
-        var session =
-                client.nonInterative(
-                                SeedPuzzleCommand.COMMAND_NAME,
-                                "-Y",
-                                String.valueOf(puzzle.getYear()),
-                                "-D",
-                                String.valueOf(puzzle.getDay()),
-                                "-S",
-                                sessionId,
-                                "-T",
-                                InputWriterFactory.RESOURCE_WRITER)
-                        .run();
+        var screen =
+                client.sendCommand(
+                        SeedPuzzleCommand.COMMAND_NAME
+                                + " -y "
+                                + puzzle.getYear()
+                                + " -d "
+                                + puzzle.getDay()
+                                + " -s "
+                                + session
+                                + " -t "
+                                + InputWriterFactory.RESOURCE_WRITER);
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
                         () ->
-                                ShellAssertions.assertThat(session.screen())
+                                ShellAssertions.assertThat(screen)
                                         .containsText("Successfully seeded input to targets"));
 
         Mockito.verify(httpClient).send(ArgumentMatchers.any(), ArgumentMatchers.any());

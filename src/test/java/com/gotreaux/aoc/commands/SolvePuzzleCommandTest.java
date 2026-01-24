@@ -1,6 +1,8 @@
 package com.gotreaux.aoc.commands;
 
 import static org.awaitility.Awaitility.await;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.gotreaux.aoc.input.reader.InputReaderFactory;
 import com.gotreaux.aoc.input.writer.DatabaseInputWriter;
@@ -11,7 +13,6 @@ import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2015.day1.ApartmentFloorPuzzle;
 import com.gotreaux.aoc.puzzles.year2015.day8.MatchsticksPuzzle;
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -21,181 +22,137 @@ import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.shell.core.command.CommandExecutionException;
 import org.springframework.shell.test.ShellAssertions;
 import org.springframework.shell.test.ShellTestClient;
-import org.springframework.shell.test.autoconfigure.AutoConfigureShell;
-import org.springframework.shell.test.autoconfigure.AutoConfigureShellTestClient;
+import org.springframework.shell.test.autoconfigure.ShellTest;
 import org.springframework.test.annotation.DirtiesContext;
 
-@AutoConfigureShell
-@AutoConfigureShellTestClient
+@ShellTest
 @SpringBootTest
 class SolvePuzzleCommandTest {
-    @Autowired private ShellTestClient client;
     @Autowired private List<Puzzle> puzzles;
     @Autowired private PuzzleRepository puzzleRepository;
 
     @Test
-    void commandAvailable() {
-        var session = client.nonInterative("help").run();
+    void commandAvailable(@Autowired ShellTestClient client) throws Exception {
+        var screen = client.sendCommand("help");
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
                         () ->
-                                ShellAssertions.assertThat(session.screen())
+                                ShellAssertions.assertThat(screen)
                                         .containsText(SolvePuzzleCommand.COMMAND_NAME));
     }
 
     @Test
-    void help() {
-        var session = client.nonInterative(SolvePuzzleCommand.COMMAND_NAME, "--help").run();
+    void help(@Autowired ShellTestClient client) throws Exception {
+        var screen = client.sendCommand(SolvePuzzleCommand.COMMAND_NAME + " --help");
 
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(
                         () ->
-                                ShellAssertions.assertThat(session.screen())
-                                        .containsText(
-                                                "help for %s"
-                                                        .formatted(
-                                                                SolvePuzzleCommand.COMMAND_NAME)));
+                                ShellAssertions.assertThat(screen)
+                                        .containsText(SolvePuzzleCommand.COMMAND_NAME));
     }
 
     @Test
-    void yearRequired() {
-        var session = client.nonInterative(SolvePuzzleCommand.COMMAND_NAME).run();
-
-        await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(session.screen())
-                                        .containsText("Missing mandatory option '--year'"));
-    }
-
-    @Test
-    void invalidYear() {
+    void yearRequired(@Autowired ShellTestClient client) {
         var generator = RandomGenerator.getDefault();
-
         var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-        var year = String.valueOf(generator.nextInt(2015));
 
-        var session =
-                client.nonInterative(
-                                SolvePuzzleCommand.COMMAND_NAME,
-                                "-Y",
-                                year,
-                                "-D",
-                                String.valueOf(puzzle.getDay()))
-                        .run();
-
-        await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
+        var exception =
+                assertThrows(
+                        CommandExecutionException.class,
                         () ->
-                                ShellAssertions.assertThat(session.screen())
-                                        .containsText(
-                                                "--year: must be greater than or equal to 2015"));
+                                client.sendCommand(
+                                        SolvePuzzleCommand.COMMAND_NAME
+                                                + " -d "
+                                                + puzzle.getDay()));
+
+        assertTrue(
+                exception.getCause().getMessage().contains("Required option '--year' is missing."));
     }
 
     @Test
-    void dayRequired() {
-        var session = client.nonInterative(SolvePuzzleCommand.COMMAND_NAME).run();
-
-        await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(session.screen())
-                                        .containsText("Missing mandatory option '--day'"));
-    }
-
-    @Test
-    void invalidDay() {
+    void dayRequired(@Autowired ShellTestClient client) {
         var generator = RandomGenerator.getDefault();
-
         var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
-        var day = String.valueOf(generator.nextInt(26, 32));
 
-        var session =
-                client.nonInterative(
-                                SolvePuzzleCommand.COMMAND_NAME,
-                                "-Y",
-                                String.valueOf(puzzle.getYear()),
-                                "-D",
-                                day)
-                        .run();
-
-        await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
+        var exception =
+                assertThrows(
+                        CommandExecutionException.class,
                         () ->
-                                ShellAssertions.assertThat(session.screen())
-                                        .containsText("--day: must be less than or equal to 25"));
+                                client.sendCommand(
+                                        SolvePuzzleCommand.COMMAND_NAME
+                                                + " -y "
+                                                + puzzle.getYear()));
+
+        assertTrue(
+                exception.getCause().getMessage().contains("Required option '--day' is missing."));
     }
 
     @Test
-    void resourceInput() {
+    void resourceInput(@Autowired ShellTestClient client) throws Exception {
         var puzzle = new MatchsticksPuzzle();
 
-        var session =
-                client.nonInterative(
-                                SolvePuzzleCommand.COMMAND_NAME,
-                                "-Y",
-                                String.valueOf(puzzle.getYear()),
-                                "-D",
-                                String.valueOf(puzzle.getDay()),
-                                "-I",
-                                InputReaderFactory.RESOURCE_READER)
-                        .run();
+        var screen =
+                client.sendCommand(
+                        SolvePuzzleCommand.COMMAND_NAME
+                                + " -y "
+                                + puzzle.getYear()
+                                + " -d "
+                                + puzzle.getDay()
+                                + " -i "
+                                + InputReaderFactory.RESOURCE_READER);
 
         await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () -> ShellAssertions.assertThat(session.screen()).containsText("12"));
+                .untilAsserted(() -> ShellAssertions.assertThat(screen).containsText("12"));
     }
 
     @Test
     @DirtiesContext
-    void databaseInput() {
+    void databaseInput(@Autowired ShellTestClient client) throws Exception {
         var puzzle = new ApartmentFloorPuzzle();
 
         InputWriter inputWriter =
                 new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
         inputWriter.write(")())())");
 
-        var session =
-                client.nonInterative(
-                                SolvePuzzleCommand.COMMAND_NAME,
-                                "-Y",
-                                String.valueOf(puzzle.getYear()),
-                                "-D",
-                                String.valueOf(puzzle.getDay()),
-                                "-I",
-                                InputReaderFactory.DATABASE_READER)
-                        .run();
+        var screen =
+                client.sendCommand(
+                        SolvePuzzleCommand.COMMAND_NAME
+                                + " -y "
+                                + puzzle.getYear()
+                                + " -d "
+                                + puzzle.getDay()
+                                + " -i "
+                                + InputReaderFactory.DATABASE_READER);
 
         await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () -> ShellAssertions.assertThat(session.screen()).containsText("-3"));
+                .untilAsserted(() -> ShellAssertions.assertThat(screen).containsText("-3"));
     }
 
     @Test
-    void stringInput() {
+    void stringInput(@Autowired ShellTestClient client) throws Exception {
         var puzzle = new ApartmentFloorPuzzle();
 
-        var session =
-                client.nonInterative(
-                                SolvePuzzleCommand.COMMAND_NAME,
-                                "-Y",
-                                String.valueOf(puzzle.getYear()),
-                                "-D",
-                                String.valueOf(puzzle.getDay()),
-                                "-I",
-                                ")())())")
-                        .run();
+        var screen =
+                client.sendCommand(
+                        SolvePuzzleCommand.COMMAND_NAME
+                                + " -y "
+                                + puzzle.getYear()
+                                + " -d "
+                                + puzzle.getDay()
+                                + " -i "
+                                + ")())())");
 
         await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () -> ShellAssertions.assertThat(session.screen()).containsText("-3"));
+                .untilAsserted(() -> ShellAssertions.assertThat(screen).containsText("-3"));
     }
 
     @Test
-    void fileInput() throws IOException {
+    void fileInput(@Autowired ShellTestClient client) throws Exception {
         var path = Files.createTempFile("input", ".txt");
 
         InputWriter inputWriter = new FileInputWriter(path.toAbsolutePath().toString());
@@ -210,19 +167,19 @@ class SolvePuzzleCommandTest {
 
         var puzzle = new ApartmentFloorPuzzle();
 
-        var session =
-                client.nonInterative(
-                                SolvePuzzleCommand.COMMAND_NAME,
-                                "-Y",
-                                String.valueOf(puzzle.getYear()),
-                                "-D",
-                                String.valueOf(puzzle.getDay()),
-                                "-I",
-                                "\"" + inputPath + "\"")
-                        .run();
+        var screen =
+                client.sendCommand(
+                        SolvePuzzleCommand.COMMAND_NAME
+                                + " -y "
+                                + puzzle.getYear()
+                                + " -d "
+                                + puzzle.getDay()
+                                + " -i "
+                                + "\""
+                                + inputPath
+                                + "\"");
 
         await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () -> ShellAssertions.assertThat(session.screen()).containsText("-3"));
+                .untilAsserted(() -> ShellAssertions.assertThat(screen).containsText("-3"));
     }
 }

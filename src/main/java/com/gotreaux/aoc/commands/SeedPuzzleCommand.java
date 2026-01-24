@@ -21,13 +21,10 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
-import org.springframework.shell.command.CommandRegistration;
-import org.springframework.shell.command.annotation.Command;
-import org.springframework.shell.command.annotation.Option;
-import org.springframework.shell.context.InteractionMode;
+import org.springframework.shell.core.command.annotation.Command;
+import org.springframework.shell.core.command.annotation.Option;
 import org.springframework.stereotype.Component;
 
-@Command
 @Component
 class SeedPuzzleCommand {
 
@@ -51,46 +48,51 @@ class SeedPuzzleCommand {
     }
 
     @Command(
-            command = COMMAND_NAME,
+            name = COMMAND_NAME,
             description = "Seed puzzle input for specified advent calendar year and day",
-            group = "Puzzle Commands",
-            interactionMode = InteractionMode.ALL)
+            help =
+                    """
+                    Usage: seed-puzzle [OPTIONS]
+
+                    Seed puzzle input for specified advent calendar year and day
+
+                    Options:
+                      -y, --year    INTEGER    Seed puzzle for advent calendar year between 2015-2025 (required)
+                      -d, --day     INTEGER    Seed puzzle for advent calendar day between 1-25 (required)
+                      -s, --session STRING     Session ID extracted from cookie header to authenticate (required)
+                      -t, --target  STRING...  Target destination(s) for puzzle input for seeding
+                                               [database,resource,{filePath}] (default: database)
+                    """,
+            group = "Puzzle Commands")
     public String seed(
             @Option(
-                            longNames = "year",
-                            shortNames = 'Y',
+                            longName = "year",
+                            shortName = 'y',
                             required = true,
-                            description = "Seed puzzle for advent calendar year",
-                            label = "Year between 2015-2025",
-                            arity = CommandRegistration.OptionArity.EXACTLY_ONE)
+                            description = "Seed puzzle for advent calendar year between 2015-2025")
                     @Min(2015)
                     @Max(2025)
                     Integer year,
             @Option(
-                            longNames = "day",
-                            shortNames = 'D',
+                            longName = "day",
+                            shortName = 'd',
                             required = true,
-                            description = "Seed puzzle for advent calendar day",
-                            label = "Day between 1-25",
-                            arity = CommandRegistration.OptionArity.EXACTLY_ONE)
+                            description = "Seed puzzle for advent calendar day between 1-25")
                     @Min(1)
                     @Max(25)
                     Integer day,
             @Option(
-                            longNames = "session",
-                            shortNames = 'S',
+                            longName = "session",
+                            shortName = 's',
                             required = true,
-                            description = "Session ID extracted from cookie header to authenticate",
-                            label = "SHA-512 hash session ID",
-                            arity = CommandRegistration.OptionArity.EXACTLY_ONE)
+                            description = "Session ID extracted from cookie header to authenticate")
                     @Pattern(regexp = "^[a-f0-9]{128}$")
                     String session,
             @Option(
-                            longNames = "target",
-                            shortNames = 'T',
-                            description = "Target destination(s) for puzzle input for seeding",
-                            label = "[database,resource,{filePath}]",
-                            arity = CommandRegistration.OptionArity.ZERO_OR_MORE,
+                            longName = "target",
+                            shortName = 't',
+                            description =
+                                    "Target destination(s) for puzzle input for seeding [database,resource,{filePath}]",
                             defaultValue = InputWriterFactory.DATABASE_WRITER)
                     String[] targets) {
         logger.debug(

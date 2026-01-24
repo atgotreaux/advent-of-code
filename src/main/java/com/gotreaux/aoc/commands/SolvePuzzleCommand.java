@@ -10,13 +10,10 @@ import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
-import org.springframework.shell.command.CommandRegistration;
-import org.springframework.shell.command.annotation.Command;
-import org.springframework.shell.command.annotation.Option;
-import org.springframework.shell.context.InteractionMode;
+import org.springframework.shell.core.command.annotation.Command;
+import org.springframework.shell.core.command.annotation.Option;
 import org.springframework.stereotype.Component;
 
-@Command
 @Component
 class SolvePuzzleCommand {
 
@@ -37,37 +34,43 @@ class SolvePuzzleCommand {
     }
 
     @Command(
-            command = COMMAND_NAME,
+            name = COMMAND_NAME,
             description = "Solve puzzle for specified advent calendar year and day",
-            group = "Puzzle Commands",
-            interactionMode = InteractionMode.ALL)
+            help =
+                    """
+                    Usage: solve-puzzle [OPTIONS]
+
+                    Solve puzzle for specified advent calendar year and day
+
+                    Options:
+                      -y, --year    INTEGER    Seed puzzle for advent calendar year between 2015-2025 (required)
+                      -d, --day     INTEGER    Seed puzzle for advent calendar day between 1-25 (required)
+                      -i, --input   STRING     Source of puzzle input to solve
+                                               [database,resource,{filePath},{string}] (default: database)
+                    """,
+            group = "Puzzle Commands")
     public String solve(
             @Option(
-                            longNames = "year",
-                            shortNames = 'Y',
+                            longName = "year",
+                            shortName = 'y',
                             required = true,
-                            description = "Solve puzzle for advent calendar year",
-                            label = "Year between 2015-2025",
-                            arity = CommandRegistration.OptionArity.EXACTLY_ONE)
+                            description = "Solve puzzle for advent calendar year between 2015-2025")
                     @Min(2015)
                     @Max(2025)
                     Integer year,
             @Option(
-                            longNames = "day",
-                            shortNames = 'D',
+                            longName = "day",
+                            shortName = 'd',
                             required = true,
-                            description = "Solve puzzle for advent calendar day",
-                            label = "Day between 1-25",
-                            arity = CommandRegistration.OptionArity.EXACTLY_ONE)
+                            description = "Solve puzzle for advent calendar day between 1-25")
                     @Min(1)
                     @Max(25)
                     Integer day,
             @Option(
-                            longNames = "input",
-                            shortNames = 'I',
-                            description = "Source of puzzle input",
-                            label = "[database,resource,{filePath},{string}]",
-                            arity = CommandRegistration.OptionArity.ZERO_OR_ONE,
+                            longName = "input",
+                            shortName = 'i',
+                            description =
+                                    "Source of puzzle input [database,resource,{filePath},{string}]",
                             defaultValue = InputReaderFactory.DATABASE_READER)
                     String input) {
         logger.debug("Solving puzzle of year '{}' and day '{}' from input '{}'", year, day, input);
