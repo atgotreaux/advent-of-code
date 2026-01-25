@@ -1,4 +1,4 @@
-package com.gotreaux.aoc.utils;
+package com.gotreaux.aoc.utils.cartesian;
 
 import com.gotreaux.aoc.utils.enums.LabeledEnum;
 

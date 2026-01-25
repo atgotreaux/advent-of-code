@@ -1,4 +1,4 @@
-package com.gotreaux.aoc.utils.number;
+package com.gotreaux.aoc.utils.math;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

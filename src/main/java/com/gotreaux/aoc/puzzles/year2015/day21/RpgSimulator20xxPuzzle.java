@@ -3,7 +3,7 @@ package com.gotreaux.aoc.puzzles.year2015.day21;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import com.gotreaux.aoc.utils.CollectionUtils;
+import com.gotreaux.aoc.utils.collection.CollectionUtils;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.springframework.stereotype.Component;

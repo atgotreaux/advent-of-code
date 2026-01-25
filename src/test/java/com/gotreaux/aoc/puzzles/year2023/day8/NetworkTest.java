@@ -2,7 +2,7 @@ package com.gotreaux.aoc.puzzles.year2023.day8;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.utils.RelativeDirection;
+import com.gotreaux.aoc.utils.cartesian.RelativeDirection;
 import java.util.List;
 import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;

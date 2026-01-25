@@ -1,9 +1,11 @@
 package com.gotreaux.aoc.puzzles.year2025.day6;
 
 import com.gotreaux.aoc.utils.enums.EnumUtils;
+import com.gotreaux.aoc.utils.matrix.Cell;
 import com.gotreaux.aoc.utils.matrix.Direction;
-import com.gotreaux.aoc.utils.matrix.MatrixFactory;
-import com.gotreaux.aoc.utils.matrix.Ray;
+import com.gotreaux.aoc.utils.matrix.Matrix;
+import com.gotreaux.aoc.utils.matrix.navigator.RayNavigator;
+import com.gotreaux.aoc.utils.matrix.provider.CharMatrixProvider;
 import com.gotreaux.aoc.utils.regex.PatternUtils;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,10 +22,11 @@ final class RtlVerticalWorksheet extends Worksheet {
                         .reversed();
 
         List<List<Long>> operandLists = new ArrayList<>();
-        List<Long> operandCol = new ArrayList<>();
-        var matrix = MatrixFactory.ofChars(input.subList(0, input.size() - 1));
+        List<Long> operandList = new ArrayList<>();
+        var matrix = new Matrix<>(input.subList(0, input.size() - 1), new CharMatrixProvider());
         for (var col = matrix.getColCount() - 1; col >= -1; col--) {
-            var colElements = Ray.collectElements(matrix, -1, col, Direction.SOUTH);
+            var navigator = new RayNavigator<>(matrix, new Cell(-1, col));
+            var colElements = navigator.collectElements(Direction.SOUTH);
             var colString =
                     colElements.stream()
                             .collect(
@@ -33,10 +36,10 @@ final class RtlVerticalWorksheet extends Worksheet {
                             .toString()
                             .trim();
             if (colString.isEmpty()) {
-                operandLists.add(operandCol);
-                operandCol = new ArrayList<>();
+                operandLists.add(operandList);
+                operandList = new ArrayList<>();
             } else {
-                operandCol.add(Long.parseLong(colString));
+                operandList.add(Long.parseLong(colString));
             }
         }
 

@@ -3,9 +3,11 @@ package com.gotreaux.aoc.puzzles.year2022.day8;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.utils.matrix.Cell;
 import com.gotreaux.aoc.utils.matrix.Direction;
-import com.gotreaux.aoc.utils.matrix.MatrixFactory;
-import com.gotreaux.aoc.utils.matrix.Ray;
+import com.gotreaux.aoc.utils.matrix.Matrix;
+import com.gotreaux.aoc.utils.matrix.navigator.RayNavigator;
+import com.gotreaux.aoc.utils.matrix.provider.DigitMatrixProvider;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -21,7 +23,7 @@ public class TreetopTreeHousePuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var lines = inputReader.getInputList();
-        var matrix = MatrixFactory.ofDigits(lines);
+        var matrix = new Matrix<>(lines, new DigitMatrixProvider());
 
         var treesVisible = 0;
         var maxScenicScore = Integer.MIN_VALUE;
@@ -29,7 +31,8 @@ public class TreetopTreeHousePuzzle extends Puzzle {
             for (var col = 0; col < matrix.getColCount(); col++) {
                 int tree = matrix.get(row, col);
 
-                var neighboringTrees = Ray.collectElements(matrix, row, col, Direction.cardinal());
+                var navigator = new RayNavigator<>(matrix, new Cell(row, col));
+                var neighboringTrees = navigator.collectElements(Direction.cardinal());
                 if (neighboringTrees.values().stream()
                         .anyMatch(adjacentTrees -> visible(adjacentTrees, tree))) {
                     treesVisible++;
@@ -38,7 +41,7 @@ public class TreetopTreeHousePuzzle extends Puzzle {
                 var scenicScore =
                         neighboringTrees.values().stream()
                                 .mapToInt(adjacentTrees -> score(adjacentTrees, tree))
-                                .reduce(1, (x, y) -> x * y);
+                                .reduce(1, Math::multiplyExact);
 
                 maxScenicScore = Math.max(maxScenicScore, scenicScore);
             }

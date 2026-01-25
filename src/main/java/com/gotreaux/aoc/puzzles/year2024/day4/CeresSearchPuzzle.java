@@ -3,9 +3,11 @@ package com.gotreaux.aoc.puzzles.year2024.day4;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.utils.matrix.Cell;
 import com.gotreaux.aoc.utils.matrix.Direction;
-import com.gotreaux.aoc.utils.matrix.MatrixFactory;
-import com.gotreaux.aoc.utils.matrix.Ray;
+import com.gotreaux.aoc.utils.matrix.Matrix;
+import com.gotreaux.aoc.utils.matrix.navigator.RayNavigator;
+import com.gotreaux.aoc.utils.matrix.provider.CharMatrixProvider;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
@@ -23,15 +25,17 @@ public class CeresSearchPuzzle extends Puzzle {
         var mas = List.of('M', 'A', 'S');
         long xmasAppearances = 0, xMasAppearances = 0;
 
-        var matrix = MatrixFactory.ofChars(lines);
+        var matrix = new Matrix<>(lines, new CharMatrixProvider());
         var rowCount = matrix.getRowCount();
         var columnCount = matrix.getColCount();
         for (var row = 0; row < rowCount; row++) {
             for (var col = 0; col < columnCount; col++) {
                 char c = matrix.get(row, col);
                 if (c == 'X') {
+                    var navigator = new RayNavigator<>(matrix, new Cell(row, col));
                     xmasAppearances +=
-                            Ray.collectElements(matrix, row, col, Direction.allOf(), mas.size())
+                            navigator
+                                    .collectElements(Direction.allOf(), mas.size())
                                     .values()
                                     .stream()
                                     .filter(list -> list.equals(mas))

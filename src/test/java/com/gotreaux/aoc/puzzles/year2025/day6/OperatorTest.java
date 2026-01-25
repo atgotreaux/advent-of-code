@@ -12,12 +12,12 @@ import org.junit.jupiter.params.provider.MethodSource;
 class OperatorTest {
 
     @ParameterizedTest
-    @MethodSource("provideSolve")
-    void solve(Operator operator, Collection<Long> operands, long expected) {
-        assertEquals(expected, operator.solve(operands));
+    @MethodSource("provideOperate")
+    void operate(Operator operator, Collection<Long> operands, long expected) {
+        assertEquals(expected, operator.operate(operands));
     }
 
-    private static Stream<Arguments> provideSolve() {
+    private static Stream<Arguments> provideOperate() {
         return Stream.of(
                 Arguments.of(Operator.MULTIPLICATION, List.of(123L, 45L, 6L), 33210L),
                 Arguments.of(Operator.ADDITION, List.of(328L, 64L, 98L), 490L),

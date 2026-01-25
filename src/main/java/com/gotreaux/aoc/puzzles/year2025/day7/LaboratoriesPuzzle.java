@@ -4,9 +4,12 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.enums.EnumUtils;
+import com.gotreaux.aoc.utils.matrix.Cell;
+import com.gotreaux.aoc.utils.matrix.CellValue;
 import com.gotreaux.aoc.utils.matrix.Direction;
-import com.gotreaux.aoc.utils.matrix.MatrixFactory;
-import com.gotreaux.aoc.utils.matrix.Neighbors;
+import com.gotreaux.aoc.utils.matrix.Matrix;
+import com.gotreaux.aoc.utils.matrix.navigator.NeighborsNavigator;
+import com.gotreaux.aoc.utils.matrix.provider.CharMatrixProvider;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,29 +24,36 @@ public class LaboratoriesPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Long> solve(InputReader inputReader) {
-        var manifold = MatrixFactory.ofChars(inputReader.getInputList());
+        var input = inputReader.getInputList();
+        var matrix = new Matrix<>(input, new CharMatrixProvider());
 
         Map<Integer, Long> beamCounts = new HashMap<>();
-        var entrance = manifold.find(Space.ENTRANCE.getLabel()).orElseThrow();
-        beamCounts.put(entrance.y(), 1L);
+        var entrance =
+                matrix.stream()
+                        .filter(cv -> Space.ENTRANCE.getLabel().equals(cv.value()))
+                        .map(CellValue::cell)
+                        .findFirst()
+                        .orElseThrow();
+        beamCounts.put(entrance.col(), 1L);
 
         var numberOfBeamSplits = 0;
-        for (var row = 1; row < manifold.getRowCount(); row++) {
+        for (var row = 1; row < matrix.getRowCount(); row++) {
             Map<Integer, Long> nextBeamCounts = new HashMap<>();
             for (var beamCount : beamCounts.entrySet()) {
                 int col = beamCount.getKey();
                 long count = beamCount.getValue();
 
-                var space = EnumUtils.of(Space.class, manifold.get(row, col));
+                var space = EnumUtils.of(Space.class, matrix.get(row, col));
                 switch (space) {
                     case SPLITTER -> {
                         numberOfBeamSplits++;
-                        Neighbors.collectCoordinates(
-                                        manifold, row, col, List.of(Direction.WEST, Direction.EAST))
+                        var navigator = new NeighborsNavigator<>(matrix, new Cell(row, col));
+                        navigator
+                                .collectCells(List.of(Direction.WEST, Direction.EAST))
                                 .forEach(
                                         neighbor ->
                                                 nextBeamCounts.merge(
-                                                        neighbor.y(), count, Long::sum));
+                                                        neighbor.col(), count, Long::sum));
                     }
                     case EMPTY -> nextBeamCounts.merge(col, count, Long::sum);
                     default -> throw new IllegalStateException("Unexpected space: " + space);

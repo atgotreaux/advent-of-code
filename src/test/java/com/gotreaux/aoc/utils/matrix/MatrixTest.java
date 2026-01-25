@@ -6,6 +6,7 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2022.day8.TreetopTreeHousePuzzle;
+import com.gotreaux.aoc.utils.matrix.provider.DigitMatrixProvider;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -20,7 +21,7 @@ class MatrixTest {
 
         var input = inputReader.getInputList();
 
-        var matrix = MatrixFactory.ofDigits(input);
+        var matrix = new Matrix<>(input, new DigitMatrixProvider());
 
         assertEquals(expectedRowCount, matrix.getRowCount());
     }
@@ -32,7 +33,7 @@ class MatrixTest {
 
         var input = inputReader.getInputList();
 
-        var matrix = MatrixFactory.ofDigits(input);
+        var matrix = new Matrix<>(input, new DigitMatrixProvider());
 
         assertEquals(expectedColCount, matrix.getColCount());
     }
@@ -44,7 +45,7 @@ class MatrixTest {
 
         var input = inputReader.getInputList();
 
-        var matrix = MatrixFactory.ofDigits(input);
+        var matrix = new Matrix<>(input, new DigitMatrixProvider());
 
         assertEquals(expected, matrix.get(row, col));
     }

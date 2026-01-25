@@ -24,7 +24,7 @@ abstract class Worksheet {
 
     long getSumOfAnswers() {
         return IntStream.range(0, operators.size())
-                .mapToLong(i -> operators.get(i).solve(getOperands(i)))
+                .mapToLong(i -> operators.get(i).operate(getOperands(i)))
                 .sum();
     }
 

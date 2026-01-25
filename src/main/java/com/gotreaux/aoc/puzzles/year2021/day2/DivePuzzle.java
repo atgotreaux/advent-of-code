@@ -3,7 +3,7 @@ package com.gotreaux.aoc.puzzles.year2021.day2;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import com.gotreaux.aoc.utils.Coordinate;
+import com.gotreaux.aoc.utils.cartesian.Point;
 import java.util.Locale;
 import java.util.Scanner;
 import org.springframework.stereotype.Component;
@@ -17,10 +17,10 @@ public class DivePuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
-        var position = new Coordinate(0, 0);
+        var position = new Point(0, 0);
 
         var aim = 0;
-        var positionWithAim = new Coordinate(0, 0);
+        var positionWithAim = new Point(0, 0);
 
         for (var line : inputReader.getInputList()) {
             var scanner = new Scanner(line);

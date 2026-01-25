@@ -16,6 +16,6 @@ class SeatingSystemPuzzleTest {
 
         var output = puzzle.solve(inputReader);
 
-        assertEquals(37, output.partOne());
+        assertEquals(37L, output.partOne());
     }
 }

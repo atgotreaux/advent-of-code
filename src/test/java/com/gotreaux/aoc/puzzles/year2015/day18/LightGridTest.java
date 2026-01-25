@@ -4,8 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.utils.Coordinate;
-import com.gotreaux.aoc.utils.matrix.MatrixFactory;
+import com.gotreaux.aoc.utils.matrix.Cell;
+import com.gotreaux.aoc.utils.matrix.Matrix;
+import com.gotreaux.aoc.utils.matrix.provider.CharMatrixProvider;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,7 +22,7 @@ class LightGridTest {
 
         var input = inputReader.getInputList();
 
-        var matrix = MatrixFactory.ofChars(input);
+        var matrix = new Matrix<>(input, new CharMatrixProvider());
 
         var lightGrid = new LightGrid(matrix);
 
@@ -41,12 +42,13 @@ class LightGridTest {
 
         var stuckLights =
                 List.of(
-                        new Coordinate(0, 0),
-                        new Coordinate(0, input.getFirst().length() - 1),
-                        new Coordinate(input.size() - 1, 0),
-                        new Coordinate(input.size() - 1, input.getFirst().length() - 1));
+                        new Cell(0, 0),
+                        new Cell(0, input.getFirst().length() - 1),
+                        new Cell(input.size() - 1, 0),
+                        new Cell(input.size() - 1, input.getFirst().length() - 1));
 
-        var matrix = MatrixFactory.ofChars(input);
+        var matrix = new Matrix<>(input, new CharMatrixProvider());
+        stuckLights.forEach(light -> matrix.set(light, Light.ON.getLabel()));
 
         var lightGrid = new LightGrid(matrix, stuckLights);
         for (var step = 0; step < steps; step++) {

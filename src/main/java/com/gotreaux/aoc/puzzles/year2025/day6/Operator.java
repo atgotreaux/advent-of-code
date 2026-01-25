@@ -18,10 +18,10 @@ enum Operator implements LabeledEnum<Character> {
         return label;
     }
 
-    long solve(Collection<Long> operands) {
+    long operate(Collection<Long> operands) {
         return switch (this) {
             case ADDITION -> operands.stream().mapToLong(Long::longValue).sum();
-            case MULTIPLICATION -> operands.stream().reduce(1L, (a, y) -> a * y);
+            case MULTIPLICATION -> operands.stream().reduce(1L, Math::multiplyExact);
         };
     }
 }

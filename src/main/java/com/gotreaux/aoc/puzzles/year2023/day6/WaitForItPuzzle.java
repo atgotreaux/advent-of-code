@@ -3,7 +3,7 @@ package com.gotreaux.aoc.puzzles.year2023.day6;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import com.gotreaux.aoc.utils.number.NumberUtils;
+import com.gotreaux.aoc.utils.math.NumberUtils;
 import com.gotreaux.aoc.utils.regex.PatternUtils;
 import java.util.stream.IntStream;
 import org.springframework.stereotype.Component;

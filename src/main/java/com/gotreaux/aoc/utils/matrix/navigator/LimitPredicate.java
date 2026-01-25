@@ -1,8 +1,9 @@
-package com.gotreaux.aoc.utils.matrix;
+package com.gotreaux.aoc.utils.matrix.navigator;
 
 import java.util.function.Predicate;
 
 class LimitPredicate implements Predicate<Integer> {
+
     private final int limit;
 
     LimitPredicate() {

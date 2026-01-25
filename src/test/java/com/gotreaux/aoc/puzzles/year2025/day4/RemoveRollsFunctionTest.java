@@ -4,7 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.utils.matrix.MatrixFactory;
+import com.gotreaux.aoc.utils.matrix.Matrix;
+import com.gotreaux.aoc.utils.matrix.provider.CharMatrixProvider;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -17,7 +18,7 @@ class RemoveRollsFunctionTest {
     void apply(int rounds, String expectedGridFile) {
         InputReader inputReader = new ResourceInputReader<>(PrintingDepartmentPuzzle.class);
         var input = inputReader.getInputList();
-        var grid = MatrixFactory.ofChars(input);
+        var grid = new Matrix<>(input, new CharMatrixProvider());
 
         var removeRolls = new RemoveRollsFunction();
         for (var round = 0; round < rounds; round++) {
@@ -27,7 +28,7 @@ class RemoveRollsFunctionTest {
         InputReader expectedOutputReader =
                 new ResourceInputReader<>(PrintingDepartmentPuzzle.class, expectedGridFile);
         var expectedOutput = expectedOutputReader.getInputList();
-        var expectedGrid = MatrixFactory.ofChars(expectedOutput);
+        var expectedGrid = new Matrix<>(expectedOutput, new CharMatrixProvider());
 
         assertEquals(expectedGrid, grid);
     }

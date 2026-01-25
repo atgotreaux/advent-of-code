@@ -3,9 +3,9 @@ package com.gotreaux.aoc.puzzles.year2016.day1;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import com.gotreaux.aoc.utils.CardinalDirection;
-import com.gotreaux.aoc.utils.Coordinate;
-import com.gotreaux.aoc.utils.RelativeDirection;
+import com.gotreaux.aoc.utils.cartesian.CardinalDirection;
+import com.gotreaux.aoc.utils.cartesian.Point;
+import com.gotreaux.aoc.utils.cartesian.RelativeDirection;
 import com.gotreaux.aoc.utils.enums.EnumUtils;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,10 +24,10 @@ public class TaxicabPuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var direction = CardinalDirection.NORTH;
-        var position = new Coordinate(0, 0);
-        Coordinate firstDupPosition = null;
+        var position = new Point(0, 0);
+        Point firstDupPosition = null;
 
-        Collection<Coordinate> visitedPositions = new ArrayList<>();
+        Collection<Point> visitedPositions = new ArrayList<>();
         visitedPositions.add(position);
 
         var input = inputReader.getInputString();

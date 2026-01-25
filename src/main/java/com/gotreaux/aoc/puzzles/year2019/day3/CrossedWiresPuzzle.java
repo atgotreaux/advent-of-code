@@ -3,8 +3,8 @@ package com.gotreaux.aoc.puzzles.year2019.day3;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import com.gotreaux.aoc.utils.Coordinate;
-import com.gotreaux.aoc.utils.RelativeDirection;
+import com.gotreaux.aoc.utils.cartesian.Point;
+import com.gotreaux.aoc.utils.cartesian.RelativeDirection;
 import com.gotreaux.aoc.utils.enums.EnumUtils;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,7 +25,7 @@ public class CrossedWiresPuzzle extends Puzzle {
         var firstWirePositions = getWirePositions(input.getFirst());
         var lastWirePositions = getWirePositions(input.getLast());
 
-        Collection<Coordinate> intersections =
+        Collection<Point> intersections =
                 firstWirePositions.stream().filter(lastWirePositions::contains).toList();
 
         var closestIntersectionDistance =
@@ -45,11 +45,11 @@ public class CrossedWiresPuzzle extends Puzzle {
         return new PuzzleOutput<>(closestIntersectionDistance, closestIntersectionSteps);
     }
 
-    private static List<Coordinate> getWirePositions(String line) {
+    private static List<Point> getWirePositions(String line) {
         var instructions = line.split(",");
 
-        List<Coordinate> positions = new ArrayList<>(instructions.length);
-        var position = new Coordinate(0, 0);
+        List<Point> positions = new ArrayList<>(instructions.length);
+        var position = new Point(0, 0);
         positions.add(position);
 
         for (var instruction : instructions) {

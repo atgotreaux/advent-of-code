@@ -1,4 +1,4 @@
-package com.gotreaux.aoc.utils;
+package com.gotreaux.aoc.utils.cartesian;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

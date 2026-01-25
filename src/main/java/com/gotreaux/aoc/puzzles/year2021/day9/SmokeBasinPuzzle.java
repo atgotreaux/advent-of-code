@@ -3,11 +3,11 @@ package com.gotreaux.aoc.puzzles.year2021.day9;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import com.gotreaux.aoc.utils.Coordinate;
+import com.gotreaux.aoc.utils.matrix.Cell;
 import com.gotreaux.aoc.utils.matrix.Direction;
 import com.gotreaux.aoc.utils.matrix.Matrix;
-import com.gotreaux.aoc.utils.matrix.MatrixFactory;
-import com.gotreaux.aoc.utils.matrix.Neighbors;
+import com.gotreaux.aoc.utils.matrix.navigator.NeighborsNavigator;
+import com.gotreaux.aoc.utils.matrix.provider.DigitMatrixProvider;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -23,25 +23,19 @@ public class SmokeBasinPuzzle extends Puzzle {
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
         var lines = inputReader.getInputList();
-        var matrix = MatrixFactory.ofDigits(lines);
+        var matrix = new Matrix<>(lines, new DigitMatrixProvider());
 
-        var sumOfRiskLevels = 0;
-        Collection<Integer> basinSizes = new ArrayList<>();
+        var sumOfRiskLevels = matrix.stream().mapToInt(cv -> getRiskLevel(matrix, cv.cell())).sum();
 
-        for (var row = 0; row < matrix.getRowCount(); row++) {
-            for (var col = 0; col < matrix.getColCount(); col++) {
-                int height = matrix.get(row, col);
-                var neighbors = Neighbors.collectElements(matrix, row, col, Direction.cardinal());
-
-                if (neighbors.stream().allMatch(i -> i > height)) {
-                    sumOfRiskLevels += height + 1;
-                    basinSizes.add(getBasinSize(matrix, row, col));
-                }
-            }
-        }
-
-        int productOfLargestBasins =
-                basinSizes.stream()
+        var productOfLargestBasins =
+                matrix.stream()
+                        .filter(
+                                cv -> {
+                                    var navigator = new NeighborsNavigator<>(matrix, cv.cell());
+                                    var neighbors = navigator.collectElements(Direction.cardinal());
+                                    return neighbors.stream().allMatch(i -> i > cv.value());
+                                })
+                        .map(cv -> getBasinSize(matrix, cv.cell()))
                         .sorted(Comparator.reverseOrder())
                         .limit(3)
                         .reduce(1, Math::multiplyExact);
@@ -49,18 +43,28 @@ public class SmokeBasinPuzzle extends Puzzle {
         return new PuzzleOutput<>(sumOfRiskLevels, productOfLargestBasins);
     }
 
-    static int getBasinSize(Matrix<Integer> matrix, int row, int col) {
-        return getBasinSize(matrix, row, col, new ArrayList<>());
+    private static int getRiskLevel(Matrix<Integer> matrix, Cell cell) {
+        var element = matrix.get(cell);
+        var navigator = new NeighborsNavigator<>(matrix, cell);
+        var neighbors = navigator.collectElements(Direction.cardinal());
+        if (neighbors.stream().allMatch(i -> i > element)) {
+            return element + 1;
+        }
+        return 0;
     }
 
-    private static int getBasinSize(
-            Matrix<Integer> matrix, int row, int col, Collection<Coordinate> visited) {
-        var size = 1;
-        visited.add(new Coordinate(row, col));
+    static int getBasinSize(Matrix<Integer> matrix, Cell cell) {
+        return getBasinSize(matrix, cell, new ArrayList<>());
+    }
 
-        for (var neighbor : Neighbors.collectCoordinates(matrix, row, col, Direction.cardinal())) {
-            if (matrix.get(neighbor.x(), neighbor.y()) < 9 && !visited.contains(neighbor)) {
-                size += getBasinSize(matrix, neighbor.x(), neighbor.y(), visited);
+    private static int getBasinSize(Matrix<Integer> matrix, Cell cell, Collection<Cell> visited) {
+        var size = 1;
+        visited.add(cell);
+
+        var navigator = new NeighborsNavigator<>(matrix, cell);
+        for (var neighbor : navigator.collectCells(Direction.cardinal())) {
+            if (matrix.get(neighbor) < 9 && !visited.contains(neighbor)) {
+                size += getBasinSize(matrix, neighbor, visited);
             }
         }
 

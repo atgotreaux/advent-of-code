@@ -1,6 +1,6 @@
 package com.gotreaux.aoc.puzzles.year2015.day13;
 
-import com.gotreaux.aoc.utils.CollectionUtils;
+import com.gotreaux.aoc.utils.collection.CollectionUtils;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.IntStream;

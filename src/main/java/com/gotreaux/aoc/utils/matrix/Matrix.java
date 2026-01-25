@@ -1,37 +1,25 @@
 package com.gotreaux.aoc.utils.matrix;
 
-import com.gotreaux.aoc.utils.Coordinate;
-import java.util.ArrayList;
+import com.gotreaux.aoc.utils.matrix.provider.MatrixProvider;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import java.util.function.BiFunction;
-import java.util.function.Consumer;
-import java.util.function.Function;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
-public class Matrix<T> {
+public class Matrix<T> implements Iterable<CellValue<T>> {
 
     private final int rowCount;
     private final int colCount;
     private final T[][] grid;
 
-    Matrix(
-            List<String> input,
-            BiFunction<Integer, Integer, T[][]> matrixGenerator,
-            Function<String, T[]> rowMapper) {
+    public Matrix(List<String> input, MatrixProvider<T> provider) {
         rowCount = input.size();
-
-        colCount =
-                (rowCount > 0 && rowMapper.apply(input.getFirst()) != null)
-                        ? rowMapper.apply(input.getFirst()).length
-                        : 0;
-
-        grid = matrixGenerator.apply(rowCount, colCount);
-        for (var i = 0; i < rowCount; i++) {
-            grid[i] = rowMapper.apply(input.get(i));
-        }
+        colCount = (rowCount > 0) ? provider.mapRow(input.getFirst()).length : 0;
+        grid = provider.initialize(rowCount, colCount);
+        IntStream.range(0, rowCount).forEach(i -> grid[i] = provider.mapRow(input.get(i)));
     }
 
     private Matrix(int rowCount, int colCount, T[][] grid) {
@@ -63,58 +51,33 @@ public class Matrix<T> {
         return grid[row][col];
     }
 
-    public T get(Coordinate coordinate) {
-        return get(coordinate.x(), coordinate.y());
+    public T get(Cell cell) {
+        return get(cell.row(), cell.col());
     }
 
-    public void set(int row, int col, T value) {
-        grid[row][col] = value;
+    public void set(Cell cell, T value) {
+        grid[cell.row()][cell.col()] = value;
     }
 
-    public void set(Coordinate coordinate, T value) {
-        set(coordinate.x(), coordinate.y(), value);
-    }
-
-    boolean isValid(int row, int col) {
+    public boolean isWithinBounds(Cell cell) {
+        var row = cell.row();
+        var col = cell.col();
         return row >= 0 && row < rowCount && col >= 0 && col < colCount;
     }
 
-    public long count(T target) {
-        return Stream.of(grid).flatMap(Stream::of).filter(target::equals).count();
+    @Override
+    public Iterator<CellValue<T>> iterator() {
+        return IntStream.range(0, rowCount)
+                .boxed()
+                .flatMap(
+                        row ->
+                                IntStream.range(0, colCount)
+                                        .mapToObj(col -> CellValue.of(row, col, this)))
+                .iterator();
     }
 
-    public Optional<Coordinate> find(T target) {
-        for (var row = 0; row < rowCount; row++) {
-            for (var col = 0; col < colCount; col++) {
-                if (get(row, col).equals(target)) {
-                    return Optional.of(new Coordinate(row, col));
-                }
-            }
-        }
-
-        return Optional.empty();
-    }
-
-    public List<Coordinate> findAll(T target) {
-        List<Coordinate> coordinates = new ArrayList<>();
-
-        for (var row = 0; row < rowCount; row++) {
-            for (var col = 0; col < colCount; col++) {
-                if (get(row, col).equals(target)) {
-                    coordinates.add(new Coordinate(row, col));
-                }
-            }
-        }
-
-        return coordinates;
-    }
-
-    public void forEach(Consumer<Coordinate> action) {
-        for (var row = 0; row < rowCount; row++) {
-            for (var col = 0; col < colCount; col++) {
-                action.accept(new Coordinate(row, col));
-            }
-        }
+    public Stream<CellValue<T>> stream() {
+        return StreamSupport.stream(spliterator(), false);
     }
 
     @Override

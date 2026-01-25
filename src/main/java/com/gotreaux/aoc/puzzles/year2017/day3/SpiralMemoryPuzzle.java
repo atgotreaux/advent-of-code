@@ -3,9 +3,9 @@ package com.gotreaux.aoc.puzzles.year2017.day3;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import com.gotreaux.aoc.utils.CardinalDirection;
-import com.gotreaux.aoc.utils.Coordinate;
-import com.gotreaux.aoc.utils.RelativeDirection;
+import com.gotreaux.aoc.utils.cartesian.CardinalDirection;
+import com.gotreaux.aoc.utils.cartesian.Point;
+import com.gotreaux.aoc.utils.cartesian.RelativeDirection;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.stereotype.Component;
@@ -22,8 +22,8 @@ public class SpiralMemoryPuzzle extends Puzzle {
         var input = inputReader.getInputString();
         var squares = Integer.parseInt(input);
 
-        Map<Coordinate, Integer> positions = new HashMap<>(squares);
-        var position = new Coordinate(0, 0);
+        Map<Point, Integer> positions = new HashMap<>(squares);
+        var position = new Point(0, 0);
         positions.put(position, 1);
 
         var firstValueGreaterThanInput = Integer.MIN_VALUE;
@@ -51,13 +51,13 @@ public class SpiralMemoryPuzzle extends Puzzle {
         return new PuzzleOutput<>(manhattanDistance, firstValueGreaterThanInput);
     }
 
-    private static int getSumOfNeighbors(Map<Coordinate, Integer> positions, Coordinate position) {
+    private static int getSumOfNeighbors(Map<Point, Integer> positions, Point position) {
         var sum = 0;
 
         for (var x = -1; x < 2; x++) {
             for (var y = -1; y < 2; y++) {
                 if (x != 0 || y != 0) {
-                    var neighbor = new Coordinate(position.x() + x, position.y() + y);
+                    var neighbor = new Point(position.x() + x, position.y() + y);
                     if (positions.containsKey(neighbor)) {
                         sum += positions.get(neighbor);
                     }

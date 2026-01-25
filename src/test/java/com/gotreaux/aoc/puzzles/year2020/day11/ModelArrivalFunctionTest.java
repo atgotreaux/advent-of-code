@@ -4,7 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.utils.matrix.MatrixFactory;
+import com.gotreaux.aoc.utils.matrix.Matrix;
+import com.gotreaux.aoc.utils.matrix.provider.CharMatrixProvider;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -17,7 +18,7 @@ class ModelArrivalFunctionTest {
     void apply(int rounds, String expectedLayoutFile) {
         InputReader inputReader = new ResourceInputReader<>(SeatingSystemPuzzle.class);
         var input = inputReader.getInputList();
-        var matrix = MatrixFactory.ofChars(input);
+        var matrix = new Matrix<>(input, new CharMatrixProvider());
 
         var modelArrivalFunction = new ModelArrivalFunction();
         for (var round = 0; round < rounds; round++) {
@@ -27,7 +28,7 @@ class ModelArrivalFunctionTest {
         InputReader expectedOutputReader =
                 new ResourceInputReader<>(SeatingSystemPuzzle.class, expectedLayoutFile);
         var expectedOutput = expectedOutputReader.getInputList();
-        var expectedMatrix = MatrixFactory.ofChars(expectedOutput);
+        var expectedMatrix = new Matrix<>(expectedOutput, new CharMatrixProvider());
 
         assertEquals(expectedMatrix, matrix);
     }

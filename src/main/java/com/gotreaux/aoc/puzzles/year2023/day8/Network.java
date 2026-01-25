@@ -1,7 +1,7 @@
 package com.gotreaux.aoc.puzzles.year2023.day8;
 
-import com.gotreaux.aoc.utils.MathUtils;
-import com.gotreaux.aoc.utils.RelativeDirection;
+import com.gotreaux.aoc.utils.cartesian.RelativeDirection;
+import com.gotreaux.aoc.utils.math.MathUtils;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;

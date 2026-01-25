@@ -1,4 +1,4 @@
-package com.gotreaux.aoc.utils.number;
+package com.gotreaux.aoc.utils.math;
 
 import java.util.Arrays;
 import java.util.Collection;

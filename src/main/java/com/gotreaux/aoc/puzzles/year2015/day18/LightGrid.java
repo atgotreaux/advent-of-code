@@ -1,58 +1,62 @@
 package com.gotreaux.aoc.puzzles.year2015.day18;
 
-import com.gotreaux.aoc.utils.Coordinate;
+import com.gotreaux.aoc.utils.enums.EnumUtils;
+import com.gotreaux.aoc.utils.matrix.Cell;
+import com.gotreaux.aoc.utils.matrix.CellValue;
 import com.gotreaux.aoc.utils.matrix.Direction;
 import com.gotreaux.aoc.utils.matrix.Matrix;
-import com.gotreaux.aoc.utils.matrix.Neighbors;
+import com.gotreaux.aoc.utils.matrix.navigator.NeighborsNavigator;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 class LightGrid {
 
-    private static final char ON = '#';
-    private static final char OFF = '.';
-
     private final Matrix<Character> matrix;
-    private final List<Coordinate> stuckLights;
+    private final List<Cell> stuckLights;
 
     LightGrid(Matrix<Character> matrix) {
         this(matrix, new ArrayList<>(0));
     }
 
-    LightGrid(Matrix<Character> matrix, Collection<Coordinate> stuckLights) {
-        this.matrix = matrix;
+    LightGrid(Matrix<Character> matrix, Collection<Cell> stuckLights) {
+        this.matrix = matrix.copy();
         this.stuckLights = stuckLights.stream().toList();
-
-        stuckLights.forEach(light -> matrix.set(light, ON));
     }
 
     LightGrid animate() {
         var result = matrix.copy();
 
-        matrix.forEach(coordinate -> result.set(coordinate, getNextState(coordinate)));
+        matrix.forEach(
+                cv -> {
+                    var next = getNextState(matrix, cv);
+                    result.set(cv.cell(), next.getLabel());
+                });
 
         return new LightGrid(result, stuckLights);
     }
 
-    private char getNextState(Coordinate coordinate) {
-        if (stuckLights.contains(coordinate)) {
-            return ON;
+    private Light getNextState(Matrix<Character> matrix, CellValue<Character> cv) {
+        if (stuckLights.contains(cv.cell())) {
+            return Light.ON;
         }
-        var neighbors = getNeighboringLightCount(coordinate);
-        if (matrix.get(coordinate) == ON) {
-            return (neighbors == 2L || neighbors == 3L) ? ON : OFF;
+
+        var current = EnumUtils.of(Light.class, cv.value());
+        var navigator = new NeighborsNavigator<>(matrix, cv.cell());
+        var neighbors = navigator.collectElements(Direction.allOf());
+        var neighborOnCount = neighbors.stream().filter(c -> Light.ON.getLabel().equals(c)).count();
+
+        if (current == Light.ON && neighborOnCount != 2L && neighborOnCount != 3L) {
+            return Light.OFF;
         }
-        return neighbors == 3L ? ON : OFF;
+        if (current == Light.OFF && neighborOnCount == 3L) {
+            return Light.ON;
+        }
+
+        return current;
     }
 
-    private long getNeighboringLightCount(Coordinate coordinate) {
-        return Neighbors.collectElements(matrix, coordinate, Direction.allOf()).stream()
-                .filter(c -> c == ON)
-                .count();
-    }
-
-    int getLightCount() {
-        return Math.toIntExact(matrix.count(ON));
+    long getLightCount() {
+        return matrix.stream().filter(cv -> Light.ON.getLabel().equals(cv.value())).count();
     }
 }

@@ -1,4 +1,4 @@
-package com.gotreaux.aoc.utils;
+package com.gotreaux.aoc.utils.collection;
 
 import java.util.ArrayList;
 import java.util.Collection;

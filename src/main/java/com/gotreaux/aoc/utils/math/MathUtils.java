@@ -1,4 +1,4 @@
-package com.gotreaux.aoc.utils;
+package com.gotreaux.aoc.utils.math;
 
 public final class MathUtils {
 

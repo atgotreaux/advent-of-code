@@ -1,7 +1,9 @@
-package com.gotreaux.aoc.utils;
+package com.gotreaux.aoc.utils.collection;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.gotreaux.aoc.utils.cartesian.CardinalDirection;
+import com.gotreaux.aoc.utils.cartesian.RelativeDirection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;

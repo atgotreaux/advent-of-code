@@ -6,13 +6,15 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2022.day8.TreetopTreeHousePuzzle;
+import com.gotreaux.aoc.utils.matrix.navigator.RayNavigator;
+import com.gotreaux.aoc.utils.matrix.provider.DigitMatrixProvider;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class RayTest {
+class RayNavigatorTest {
 
     @ParameterizedTest
     @MethodSource("provideNorth")
@@ -21,9 +23,11 @@ class RayTest {
 
         var input = inputReader.getInputList();
 
-        var matrix = MatrixFactory.ofDigits(input);
+        var matrix = new Matrix<>(input, new DigitMatrixProvider());
 
-        assertEquals(expected, Ray.collectElements(matrix, row, col, Direction.NORTH));
+        var navigator = new RayNavigator<>(matrix, new Cell(row, col));
+
+        assertEquals(expected, navigator.collectElements(Direction.NORTH));
     }
 
     @ParameterizedTest
@@ -33,9 +37,11 @@ class RayTest {
 
         var input = inputReader.getInputList();
 
-        var matrix = MatrixFactory.ofDigits(input);
+        var matrix = new Matrix<>(input, new DigitMatrixProvider());
 
-        assertEquals(expected, Ray.collectElements(matrix, row, col, Direction.SOUTH));
+        var navigator = new RayNavigator<>(matrix, new Cell(row, col));
+
+        assertEquals(expected, navigator.collectElements(Direction.SOUTH));
     }
 
     @ParameterizedTest
@@ -45,9 +51,11 @@ class RayTest {
 
         var input = inputReader.getInputList();
 
-        var matrix = MatrixFactory.ofDigits(input);
+        var matrix = new Matrix<>(input, new DigitMatrixProvider());
 
-        assertEquals(expected, Ray.collectElements(matrix, row, col, Direction.WEST));
+        var navigator = new RayNavigator<>(matrix, new Cell(row, col));
+
+        assertEquals(expected, navigator.collectElements(Direction.WEST));
     }
 
     @ParameterizedTest
@@ -57,9 +65,11 @@ class RayTest {
 
         var input = inputReader.getInputList();
 
-        var matrix = MatrixFactory.ofDigits(input);
+        var matrix = new Matrix<>(input, new DigitMatrixProvider());
 
-        assertEquals(expected, Ray.collectElements(matrix, row, col, Direction.EAST));
+        var navigator = new RayNavigator<>(matrix, new Cell(row, col));
+
+        assertEquals(expected, navigator.collectElements(Direction.EAST));
     }
 
     private static Stream<Arguments> provideNorth() {

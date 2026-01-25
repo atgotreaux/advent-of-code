@@ -3,7 +3,7 @@ package com.gotreaux.aoc.puzzles.year2024.day7;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import com.gotreaux.aoc.utils.CollectionUtils;
+import com.gotreaux.aoc.utils.collection.CollectionUtils;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

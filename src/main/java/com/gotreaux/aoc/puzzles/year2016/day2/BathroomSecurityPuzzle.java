@@ -3,7 +3,7 @@ package com.gotreaux.aoc.puzzles.year2016.day2;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import com.gotreaux.aoc.utils.RelativeDirection;
+import com.gotreaux.aoc.utils.cartesian.RelativeDirection;
 import com.gotreaux.aoc.utils.enums.EnumUtils;
 import java.util.Collection;
 import java.util.List;

@@ -3,7 +3,8 @@ package com.gotreaux.aoc.puzzles.year2020.day11;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
-import com.gotreaux.aoc.utils.matrix.MatrixFactory;
+import com.gotreaux.aoc.utils.matrix.Matrix;
+import com.gotreaux.aoc.utils.matrix.provider.CharMatrixProvider;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,11 +15,11 @@ public class SeatingSystemPuzzle extends Puzzle {
     }
 
     @Override
-    public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
+    public PuzzleOutput<Long, Integer> solve(InputReader inputReader) {
         var input = inputReader.getInputList();
         var modelArrivalFunction = new ModelArrivalFunction();
 
-        var current = MatrixFactory.ofChars(input);
+        var current = new Matrix<>(input, new CharMatrixProvider());
         var next = modelArrivalFunction.apply(current);
 
         while (!current.equals(next)) {
@@ -26,7 +27,8 @@ public class SeatingSystemPuzzle extends Puzzle {
             next = modelArrivalFunction.apply(next);
         }
 
-        var numberOfOccupiedSeats = Math.toIntExact(current.count(Seat.OCCUPIED.getLabel()));
+        var numberOfOccupiedSeats =
+                current.stream().filter(cv -> Seat.OCCUPIED.getLabel().equals(cv.value())).count();
 
         return new PuzzleOutput<>(numberOfOccupiedSeats, 0);
     }

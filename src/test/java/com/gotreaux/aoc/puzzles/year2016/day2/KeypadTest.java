@@ -3,7 +3,7 @@ package com.gotreaux.aoc.puzzles.year2016.day2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import com.gotreaux.aoc.utils.RelativeDirection;
+import com.gotreaux.aoc.utils.cartesian.RelativeDirection;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;

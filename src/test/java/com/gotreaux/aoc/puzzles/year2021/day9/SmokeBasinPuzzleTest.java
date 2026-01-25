@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.utils.matrix.MatrixFactory;
+import com.gotreaux.aoc.utils.matrix.Cell;
+import com.gotreaux.aoc.utils.matrix.Matrix;
+import com.gotreaux.aoc.utils.matrix.provider.DigitMatrixProvider;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -36,21 +38,21 @@ class SmokeBasinPuzzleTest {
 
     @ParameterizedTest
     @MethodSource("provideBasinSize")
-    void basinSize(int row, int col, int expectedSize) {
+    void basinSize(Cell cell, int expectedSize) {
         InputReader inputReader = new ResourceInputReader<>(SmokeBasinPuzzle.class);
 
         var input = inputReader.getInputList();
 
-        var matrix = MatrixFactory.ofDigits(input);
+        var matrix = new Matrix<>(input, new DigitMatrixProvider());
 
-        assertEquals(expectedSize, SmokeBasinPuzzle.getBasinSize(matrix, row, col));
+        assertEquals(expectedSize, SmokeBasinPuzzle.getBasinSize(matrix, cell));
     }
 
     private static Stream<Arguments> provideBasinSize() {
         return Stream.of(
-                Arguments.of(0, 1, 3),
-                Arguments.of(0, 9, 9),
-                Arguments.of(2, 2, 14),
-                Arguments.of(4, 6, 9));
+                Arguments.of(new Cell(0, 1), 3),
+                Arguments.of(new Cell(0, 9), 9),
+                Arguments.of(new Cell(2, 2), 14),
+                Arguments.of(new Cell(4, 6), 9));
     }
 }
