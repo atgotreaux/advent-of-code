@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
-import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -43,23 +42,5 @@ class EnumUtilsTest {
                 Arguments.of('B', TestEnum.SECOND),
                 Arguments.of('C', TestEnum.THIRD),
                 Arguments.of('X', null));
-    }
-
-    @NullMarked
-    private enum TestEnum implements LabeledEnum<Character> {
-        FIRST('A'),
-        SECOND('B'),
-        THIRD('C');
-
-        private final Character label;
-
-        TestEnum(Character label) {
-            this.label = label;
-        }
-
-        @Override
-        public Character getLabel() {
-            return label;
-        }
     }
 }
