@@ -6,10 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.gotreaux.aoc.input.writer.DatabaseInputWriter;
 import com.gotreaux.aoc.input.writer.InputWriter;
 import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
-import com.gotreaux.aoc.puzzles.Puzzle;
-import java.util.List;
+import com.gotreaux.aoc.service.PuzzleService;
 import java.util.NoSuchElementException;
-import java.util.random.RandomGenerator;
 import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +17,13 @@ import org.springframework.test.annotation.DirtiesContext;
 @SpringBootTest
 class DatabaseInputReaderTest {
 
-    @Autowired private List<Puzzle> puzzles;
+    @Autowired private PuzzleService puzzleService;
 
     @Autowired private PuzzleRepository puzzleRepository;
 
     @Test
     void throwsIfNotFound() {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         InputReader inputReader =
                 new DatabaseInputReader(puzzleRepository, puzzle.getYear(), puzzle.getDay());
@@ -37,8 +34,7 @@ class DatabaseInputReaderTest {
     @Test
     @DirtiesContext
     void inputAsString() {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var input = RandomString.make(10);
 
@@ -55,8 +51,7 @@ class DatabaseInputReaderTest {
     @Test
     @DirtiesContext
     void inputAsStream() {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var input = RandomString.make(10);
 
@@ -74,8 +69,7 @@ class DatabaseInputReaderTest {
     @Test
     @DirtiesContext
     void puzzleInputAsList() {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var input = RandomString.make(10);
 

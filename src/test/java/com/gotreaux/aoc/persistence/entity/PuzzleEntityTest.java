@@ -5,8 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
-import com.gotreaux.aoc.puzzles.Puzzle;
-import java.util.List;
+import com.gotreaux.aoc.service.PuzzleService;
 import java.util.random.RandomGenerator;
 import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
@@ -17,7 +16,7 @@ import org.springframework.test.annotation.DirtiesContext;
 
 @SpringBootTest
 class PuzzleEntityTest {
-    @Autowired private List<Puzzle> puzzles;
+    @Autowired private PuzzleService puzzleService;
 
     @Autowired private PuzzleRepository puzzleRepository;
 
@@ -30,8 +29,7 @@ class PuzzleEntityTest {
 
     @Test
     void throwsIfEmptyYear() {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var input = RandomString.make(10);
 
@@ -42,8 +40,7 @@ class PuzzleEntityTest {
 
     @Test
     void throwsIfEmptyDay() {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var input = RandomString.make(10);
 
@@ -54,8 +51,7 @@ class PuzzleEntityTest {
 
     @Test
     void throwsIfEmptyInput() {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var puzzleEntity = new PuzzleEntity(puzzle.getYear(), puzzle.getDay(), null);
 
@@ -64,8 +60,7 @@ class PuzzleEntityTest {
 
     @Test
     void throwsIfInvalidYear() {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var input = RandomString.make(10);
 
@@ -79,7 +74,7 @@ class PuzzleEntityTest {
     @Test
     void throwsIfInvalidDay() {
         var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var input = RandomString.make(10);
 
@@ -91,8 +86,7 @@ class PuzzleEntityTest {
     @Test
     @DirtiesContext
     void doesNotInsertIfDuplicate() {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var input = RandomString.make(10);
 
@@ -108,8 +102,7 @@ class PuzzleEntityTest {
     @Test
     @DirtiesContext
     void doesNotThrowIfValid() {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var input = RandomString.make(10);
 

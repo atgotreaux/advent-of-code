@@ -1,11 +1,9 @@
 package com.gotreaux.aoc.commands;
 
-import com.gotreaux.aoc.exceptions.NoSuchPuzzleException;
 import com.gotreaux.aoc.input.reader.InputReaderFactory;
-import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.service.PuzzleService;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import java.util.Collection;
 import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,15 +18,15 @@ class SolvePuzzleCommand {
     static final String COMMAND_NAME = "solve-puzzle";
     private static final Logger logger = LoggerFactory.getLogger(SolvePuzzleCommand.class);
 
-    private final Collection<Puzzle> puzzles;
+    private final PuzzleService puzzleService;
     private final MessageSource messageSource;
     private final InputReaderFactory inputReaderFactory;
 
     SolvePuzzleCommand(
-            Collection<Puzzle> puzzles,
+            PuzzleService puzzleService,
             MessageSource messageSource,
             InputReaderFactory inputReaderFactory) {
-        this.puzzles = puzzles.stream().toList();
+        this.puzzleService = puzzleService;
         this.messageSource = messageSource;
         this.inputReaderFactory = inputReaderFactory;
     }
@@ -75,12 +73,7 @@ class SolvePuzzleCommand {
                     String input) {
         logger.debug("Solving puzzle of year '{}' and day '{}' from input '{}'", year, day, input);
 
-        var puzzle =
-                puzzles.stream()
-                        .filter(p -> p.getYear() == year)
-                        .filter(p -> p.getDay() == day)
-                        .findFirst()
-                        .orElseThrow(() -> new NoSuchPuzzleException(year, day));
+        var puzzle = puzzleService.getPuzzle(year, day);
 
         logger.debug("Found puzzle class '{}'", puzzle.getClass().getSimpleName());
 

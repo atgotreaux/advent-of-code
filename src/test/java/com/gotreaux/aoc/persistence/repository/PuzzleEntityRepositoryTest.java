@@ -4,9 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.gotreaux.aoc.persistence.entity.PuzzleEntity;
 import com.gotreaux.aoc.persistence.entity.PuzzleEntityId;
-import com.gotreaux.aoc.puzzles.Puzzle;
-import java.util.List;
-import java.util.random.RandomGenerator;
+import com.gotreaux.aoc.service.PuzzleService;
 import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +13,14 @@ import org.springframework.test.annotation.DirtiesContext;
 
 @SpringBootTest
 class PuzzleEntityRepositoryTest {
-    @Autowired private List<Puzzle> puzzles;
+    @Autowired private PuzzleService puzzleService;
 
     @Autowired private PuzzleRepository puzzleRepository;
 
     @Test
     void emptyIfNotFound() {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
+
         var puzzleEntityId = new PuzzleEntityId(puzzle.getYear(), puzzle.getDay());
 
         assertTrue(puzzleRepository.findById(puzzleEntityId).isEmpty());
@@ -31,8 +29,7 @@ class PuzzleEntityRepositoryTest {
     @Test
     @DirtiesContext
     void testPresentIfFound() {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
         var puzzleEntityId = new PuzzleEntityId(puzzle.getYear(), puzzle.getDay());
 
         var puzzleEntity = new PuzzleEntity();

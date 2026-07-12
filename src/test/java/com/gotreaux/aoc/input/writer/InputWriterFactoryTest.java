@@ -3,11 +3,9 @@ package com.gotreaux.aoc.input.writer;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.service.PuzzleService;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.List;
-import java.util.random.RandomGenerator;
 import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +13,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class InputWriterFactoryTest {
-    @Autowired private List<Puzzle> puzzles;
+    @Autowired private PuzzleService puzzleService;
     @Autowired private InputWriterFactory factory;
 
     @Test
     void createsDatabaseWriter() {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         assertInstanceOf(
                 DatabaseInputWriter.class,
@@ -30,8 +27,7 @@ class InputWriterFactoryTest {
 
     @Test
     void createsResourceWriter() {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         assertInstanceOf(
                 ResourceInputWriter.class,
@@ -40,8 +36,7 @@ class InputWriterFactoryTest {
 
     @Test
     void createsFileWriter() throws IOException {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var path = Files.createTempFile("input", ".txt");
 
@@ -51,8 +46,7 @@ class InputWriterFactoryTest {
 
     @Test
     void failsToCreateFileWriterIfFileDoesNotExist() throws IOException {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var path = Files.createTempFile("input", ".txt");
 
@@ -63,8 +57,7 @@ class InputWriterFactoryTest {
 
     @Test
     void failsToCreateWriterIfString() {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var target = RandomString.make(10);
 

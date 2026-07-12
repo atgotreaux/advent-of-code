@@ -9,14 +9,12 @@ import com.gotreaux.aoc.input.writer.DatabaseInputWriter;
 import com.gotreaux.aoc.input.writer.FileInputWriter;
 import com.gotreaux.aoc.input.writer.InputWriter;
 import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
-import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2015.day1.ApartmentFloorPuzzle;
 import com.gotreaux.aoc.puzzles.year2015.day8.MatchsticksPuzzle;
+import com.gotreaux.aoc.service.PuzzleService;
 import java.io.File;
 import java.nio.file.Files;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.random.RandomGenerator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
@@ -31,7 +29,7 @@ import org.springframework.test.annotation.DirtiesContext;
 @ShellTest
 @SpringBootTest
 class SolvePuzzleCommandTest {
-    @Autowired private List<Puzzle> puzzles;
+    @Autowired private PuzzleService puzzleService;
     @Autowired private PuzzleRepository puzzleRepository;
 
     @Test
@@ -58,8 +56,7 @@ class SolvePuzzleCommandTest {
 
     @Test
     void yearRequired(@Autowired ShellTestClient client) {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var exception =
                 assertThrows(
@@ -76,8 +73,7 @@ class SolvePuzzleCommandTest {
 
     @Test
     void dayRequired(@Autowired ShellTestClient client) {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var exception =
                 assertThrows(

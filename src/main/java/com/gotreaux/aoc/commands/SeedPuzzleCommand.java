@@ -1,8 +1,7 @@
 package com.gotreaux.aoc.commands;
 
-import com.gotreaux.aoc.exceptions.NoSuchPuzzleException;
 import com.gotreaux.aoc.input.writer.InputWriterFactory;
-import com.gotreaux.aoc.puzzles.Puzzle;
+import com.gotreaux.aoc.service.PuzzleService;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
@@ -33,17 +32,17 @@ class SeedPuzzleCommand {
 
     private final MessageSource messageSource;
     private final HttpClient client;
-    private final Collection<Puzzle> puzzles;
+    private final PuzzleService puzzleService;
     private final InputWriterFactory inputWriterFactory;
 
     SeedPuzzleCommand(
             MessageSource messageSource,
             HttpClient client,
-            Collection<Puzzle> puzzles,
+            PuzzleService puzzleService,
             InputWriterFactory inputWriterFactory) {
         this.messageSource = messageSource;
         this.client = client;
-        this.puzzles = puzzles.stream().toList();
+        this.puzzleService = puzzleService;
         this.inputWriterFactory = inputWriterFactory;
     }
 
@@ -101,12 +100,7 @@ class SeedPuzzleCommand {
                 day,
                 String.join(", ", targets));
 
-        var puzzle =
-                puzzles.stream()
-                        .filter(p -> p.getYear() == year)
-                        .filter(p -> p.getDay() == day)
-                        .findFirst()
-                        .orElseThrow(() -> new NoSuchPuzzleException(year, day));
+        var puzzle = puzzleService.getPuzzle(year, day);
 
         logger.debug("Found puzzle class '{}'", puzzle.getClass().getSimpleName());
 

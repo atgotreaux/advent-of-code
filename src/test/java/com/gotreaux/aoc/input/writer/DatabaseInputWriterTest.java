@@ -5,9 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.gotreaux.aoc.input.reader.DatabaseInputReader;
 import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
-import com.gotreaux.aoc.puzzles.Puzzle;
-import java.util.List;
-import java.util.random.RandomGenerator;
+import com.gotreaux.aoc.service.PuzzleService;
 import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +16,13 @@ import org.springframework.test.annotation.DirtiesContext;
 @SpringBootTest
 class DatabaseInputWriterTest {
 
-    @Autowired private List<Puzzle> puzzles;
+    @Autowired private PuzzleService puzzleService;
 
     @Autowired private PuzzleRepository puzzleRepository;
 
     @Test
     void writesNewRowToTable() {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         InputWriter inputWriter =
                 new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());
@@ -42,8 +39,7 @@ class DatabaseInputWriterTest {
 
     @Test
     void updatesExistingRow() {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         InputWriter inputWriter =
                 new DatabaseInputWriter(puzzleRepository, puzzle.getYear(), puzzle.getDay());

@@ -11,8 +11,8 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.input.reader.ResourceInputReader;
 import com.gotreaux.aoc.input.writer.InputWriterFactory;
 import com.gotreaux.aoc.persistence.repository.PuzzleRepository;
-import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.puzzles.year2015.day1.ApartmentFloorPuzzle;
+import com.gotreaux.aoc.service.PuzzleService;
 import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -21,7 +21,6 @@ import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.util.HexFormat;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.random.RandomGenerator;
 import java.util.regex.Matcher;
@@ -43,7 +42,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 @SpringBootTest
 class SeedPuzzleCommandTest {
 
-    @Autowired private List<Puzzle> puzzles;
+    @Autowired private PuzzleService puzzleService;
     @Autowired private PuzzleRepository puzzleRepository;
     @MockitoBean private HttpClient httpClient;
 
@@ -72,7 +71,7 @@ class SeedPuzzleCommandTest {
     @Test
     void yearRequired(@Autowired ShellTestClient client) throws Exception {
         var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
@@ -99,7 +98,7 @@ class SeedPuzzleCommandTest {
     @Test
     void dayRequired(@Autowired ShellTestClient client) throws Exception {
         var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
@@ -118,9 +117,8 @@ class SeedPuzzleCommandTest {
     }
 
     @Test
-    void sessionRequired(@Autowired ShellTestClient client) throws Exception {
-        var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+    void sessionRequired(@Autowired ShellTestClient client) {
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var exception =
                 assertThrows(
@@ -143,7 +141,7 @@ class SeedPuzzleCommandTest {
     @Test
     void clientThrowsIOException(@Autowired ShellTestClient client) throws Exception {
         var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var bytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(bytes);
@@ -179,7 +177,7 @@ class SeedPuzzleCommandTest {
     @Test
     void clientThrowsInterruptedException(@Autowired ShellTestClient client) throws Exception {
         var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var sessionBytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(sessionBytes);
@@ -215,7 +213,7 @@ class SeedPuzzleCommandTest {
     @Test
     void statusCodeMessage(@Autowired ShellTestClient client) throws Exception {
         var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var sessionBytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(sessionBytes);
@@ -254,7 +252,7 @@ class SeedPuzzleCommandTest {
     @Test
     void emptyResponseMessage(@Autowired ShellTestClient client) throws Exception {
         var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var sessionBytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(sessionBytes);
@@ -296,7 +294,7 @@ class SeedPuzzleCommandTest {
     @DirtiesContext
     void writesToDatabase(@Autowired ShellTestClient client) throws Exception {
         var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var sessionBytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(sessionBytes);
@@ -344,7 +342,7 @@ class SeedPuzzleCommandTest {
     @DirtiesContext
     void writesToFile(@Autowired ShellTestClient client) throws Exception {
         var generator = RandomGenerator.getDefault();
-        var puzzle = puzzles.get(generator.nextInt(puzzles.size()));
+        var puzzle = puzzleService.getRandomPuzzle();
 
         var sessionBytes = new byte[generator.nextInt(0, 10)];
         generator.nextBytes(sessionBytes);
