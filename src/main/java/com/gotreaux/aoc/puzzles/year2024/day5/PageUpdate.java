@@ -18,7 +18,7 @@ final class PageUpdate {
     }
 
     private PageUpdate(Collection<Integer> pages) {
-        this.pages = pages.stream().toList();
+        this.pages = List.copyOf(pages);
         pageWeights = new HashMap<>(pages.size());
     }
 

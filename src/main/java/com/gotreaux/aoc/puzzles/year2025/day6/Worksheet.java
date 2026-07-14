@@ -10,8 +10,8 @@ abstract class Worksheet {
     private final List<Operator> operators;
 
     Worksheet(Collection<List<Long>> operandLists, Collection<Operator> operators) {
-        this.operandLists = operandLists.stream().toList();
-        this.operators = operators.stream().toList();
+        this.operandLists = List.copyOf(operandLists);
+        this.operators = List.copyOf(operators);
     }
 
     List<List<Long>> getOperandLists() {

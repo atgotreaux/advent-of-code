@@ -21,7 +21,7 @@ class LightGrid {
 
     LightGrid(Matrix<Character> matrix, Collection<Cell> stuckLights) {
         this.matrix = matrix.copy();
-        this.stuckLights = stuckLights.stream().toList();
+        this.stuckLights = List.copyOf(stuckLights);
     }
 
     LightGrid animate() {
