@@ -65,6 +65,10 @@ public class Matrix<T> implements Iterable<CellValue<T>> {
         return row >= 0 && row < rowCount && col >= 0 && col < colCount;
     }
 
+    public long count(T value) {
+        return stream().filter(cv -> cv.value().equals(value)).count();
+    }
+
     @Override
     public Iterator<CellValue<T>> iterator() {
         return IntStream.range(0, rowCount)
