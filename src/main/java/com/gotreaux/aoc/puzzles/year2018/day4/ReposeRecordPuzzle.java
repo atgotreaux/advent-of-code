@@ -30,17 +30,22 @@ public class ReposeRecordPuzzle extends Puzzle {
         GuardRecord asleepRecord = null;
         for (var record : records) {
             switch (record.status()) {
-                case BEGINS_SHIFT ->
-                        currentGuard =
-                                guards.stream()
-                                        .filter(guard -> guard.getId() == record.guardId())
-                                        .findFirst()
-                                        .orElseGet(
-                                                () -> {
-                                                    var guard = new Guard(record.guardId());
-                                                    guards.add(guard);
-                                                    return guard;
-                                                });
+                case BEGINS_SHIFT -> {
+                    var guardId = record.guardId();
+                    if (guardId == null) {
+                        throw new IllegalArgumentException("null guard ID cannot begin shift");
+                    }
+                    currentGuard =
+                            guards.stream()
+                                    .filter(guard -> guard.getId() == guardId)
+                                    .findFirst()
+                                    .orElseGet(
+                                            () -> {
+                                                var guard = new Guard(guardId);
+                                                guards.add(guard);
+                                                return guard;
+                                            });
+                }
                 case FALLS_ASLEEP -> asleepRecord = record;
                 case WAKES_UP -> {
                     if (currentGuard != null && asleepRecord != null) {
