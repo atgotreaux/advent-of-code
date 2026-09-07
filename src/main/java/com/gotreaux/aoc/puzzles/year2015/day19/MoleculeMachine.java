@@ -1,12 +1,11 @@
 package com.gotreaux.aoc.puzzles.year2015.day19;
 
-import com.gotreaux.aoc.utils.graph.Edge;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
-record MoleculeMachine(Collection<Edge> replacements, String molecule) {
+record MoleculeMachine(Collection<Replacement> replacements, String molecule) {
 
     Collection<String> getCalibrationMolecules() {
         Collection<String> molecules = new HashSet<>();
@@ -30,7 +29,7 @@ record MoleculeMachine(Collection<Edge> replacements, String molecule) {
             return -1;
         }
 
-        List<Edge> sortedReplacements = new ArrayList<>(replacements);
+        List<Replacement> sortedReplacements = new ArrayList<>(replacements);
         sortedReplacements.sort((r1, r2) -> Integer.compare(r2.to().length(), r1.to().length()));
 
         var steps = 0;

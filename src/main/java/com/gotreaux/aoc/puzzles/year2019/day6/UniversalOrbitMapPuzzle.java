@@ -4,8 +4,7 @@ import com.gotreaux.aoc.input.reader.InputReader;
 import com.gotreaux.aoc.output.PuzzleOutput;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import com.gotreaux.aoc.utils.graph.BFS;
-import com.gotreaux.aoc.utils.graph.Edge;
-import java.util.function.Function;
+import com.gotreaux.aoc.utils.graph.Graph;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,10 +16,12 @@ public class UniversalOrbitMapPuzzle extends Puzzle {
 
     @Override
     public PuzzleOutput<Integer, Integer> solve(InputReader inputReader) {
-        Function<String, Edge> mapOrbitEdge = new MapOrbitEdgeFunction();
-        var orbits = inputReader.getInputStream().map(mapOrbitEdge).toList();
+        var orbits = inputReader.getInputStream().map(Orbit::of).toList();
 
-        var bfs = new BFS(orbits);
+        var orbitGraph = new Graph<String>();
+        orbits.forEach(orbit -> orbitGraph.addUndirectedEdge(orbit.primary(), orbit.satellite()));
+
+        var bfs = new BFS<>(orbitGraph);
 
         var totalDirectAndIndirectOrbits =
                 bfs.getDistances("COM").values().stream().mapToInt(Integer::intValue).sum();

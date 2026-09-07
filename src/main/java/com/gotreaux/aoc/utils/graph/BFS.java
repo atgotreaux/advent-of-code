@@ -1,38 +1,33 @@
 package com.gotreaux.aoc.utils.graph;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import org.jspecify.annotations.Nullable;
 
-public class BFS {
+public class BFS<T> {
 
-    private final Map<String, List<String>> adjacencyList = new HashMap<>();
+    private final Graph<T> graph;
 
-    public BFS(Iterable<Edge> edges) {
-        for (var edge : edges) {
-            adjacencyList.computeIfAbsent(edge.from(), _ -> new ArrayList<>()).add(edge.to());
-            adjacencyList.computeIfAbsent(edge.to(), _ -> new ArrayList<>()).add(edge.from());
-        }
+    public BFS(Graph<T> graph) {
+        this.graph = Graph.of(graph);
     }
 
-    public Map<String, Integer> getDistances(String from) {
+    public Map<T, Integer> getDistances(T from) {
         return search(from, null);
     }
 
-    public int getDistance(String from, String to) {
+    public int getDistance(T from, T to) {
         return search(from, to).getOrDefault(to, -1);
     }
 
-    private Map<String, Integer> search(String from, @Nullable String to) {
-        Deque<String> queue = new ArrayDeque<>();
-        Collection<String> visited = new HashSet<>();
-        Map<String, Integer> distances = new HashMap<>();
+    private Map<T, Integer> search(T from, @Nullable T to) {
+        Deque<T> queue = new ArrayDeque<>();
+        Collection<T> visited = new HashSet<>();
+        Map<T, Integer> distances = new HashMap<>();
 
         queue.push(from);
         visited.add(from);
@@ -42,7 +37,7 @@ public class BFS {
             var current = queue.poll();
             int currentDistance = distances.get(current);
 
-            for (var neighbor : adjacencyList.getOrDefault(current, new ArrayList<>())) {
+            for (var neighbor : graph.getNeighbors(current)) {
                 if (visited.add(neighbor)) {
                     distances.put(neighbor, currentDistance + 1);
                     if (neighbor.equals(to)) {

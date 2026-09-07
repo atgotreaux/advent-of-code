@@ -2,77 +2,60 @@ package com.gotreaux.aoc.utils.graph;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.gotreaux.aoc.input.reader.InputReader;
-import com.gotreaux.aoc.input.reader.ResourceInputReader;
-import com.gotreaux.aoc.puzzles.Puzzle;
-import com.gotreaux.aoc.puzzles.year2019.day6.MapOrbitEdgeFunction;
-import com.gotreaux.aoc.puzzles.year2019.day6.UniversalOrbitMapPuzzle;
-import java.util.Collection;
-import java.util.function.Function;
-import java.util.stream.Stream;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.api.Test;
 
 class BFSTest {
 
-    @ParameterizedTest
-    @MethodSource("provideGetDistances")
-    void getDistances(
-            Class<Puzzle> puzzleClass,
-            String fileName,
-            Function<String, Edge> edgeFunction,
-            String from,
-            int expectedDistances) {
-        InputReader inputReader = new ResourceInputReader<>(puzzleClass, fileName);
+    @Test
+    void getDistance() {
+        var graph = new Graph<String>();
+        graph.addDirectedEdge("A", "B");
+        graph.addDirectedEdge("B", "C");
 
-        Collection<Edge> edges = inputReader.getInputList().stream().map(edgeFunction).toList();
+        var bfs = new BFS<>(graph);
 
-        var bfs = new BFS(edges);
-
-        var distances = bfs.getDistances(from).values().stream().mapToInt(Integer::intValue).sum();
-
-        assertEquals(expectedDistances, distances);
+        assertEquals(2, bfs.getDistance("A", "C"));
+        assertEquals(1, bfs.getDistance("A", "B"));
+        assertEquals(0, bfs.getDistance("A", "A"));
     }
 
-    @ParameterizedTest
-    @MethodSource("provideGetDistance")
-    void getDistance(
-            Class<Puzzle> puzzleClass,
-            String fileName,
-            Function<String, Edge> edgeFunction,
-            String from,
-            String to,
-            int expectedDistance) {
-        InputReader inputReader = new ResourceInputReader<>(puzzleClass, fileName);
+    @Test
+    void getDistanceShortestPath() {
+        var graph = new Graph<String>();
+        graph.addUndirectedEdge("A", "B");
+        graph.addUndirectedEdge("B", "C");
+        graph.addUndirectedEdge("C", "A");
 
-        Collection<Edge> edges = inputReader.getInputList().stream().map(edgeFunction).toList();
+        var bfs = new BFS<>(graph);
 
-        var bfs = new BFS(edges);
-
-        var distance = bfs.getDistance(from, to);
-
-        assertEquals(expectedDistance, distance);
+        assertEquals(1, bfs.getDistance("A", "C"));
     }
 
-    private static Stream<Arguments> provideGetDistances() {
-        return Stream.of(
-                Arguments.of(
-                        UniversalOrbitMapPuzzle.class,
-                        "ExampleOne.txt",
-                        new MapOrbitEdgeFunction(),
-                        "COM",
-                        42));
+    @Test
+    void getDistanceNotFound() {
+        var graph = new Graph<String>();
+        graph.addDirectedEdge("A", "B");
+        graph.addDirectedEdge("C", "C");
+
+        var bfs = new BFS<>(graph);
+
+        assertEquals(-1, bfs.getDistance("A", "C"));
     }
 
-    private static Stream<Arguments> provideGetDistance() {
-        return Stream.of(
-                Arguments.of(
-                        UniversalOrbitMapPuzzle.class,
-                        "ExampleTwo.txt",
-                        new MapOrbitEdgeFunction(),
-                        "YOU",
-                        "SAN",
-                        6));
+    @Test
+    void getDistances() {
+        var graph = new Graph<String>();
+        graph.addDirectedEdge("A", "B");
+        graph.addDirectedEdge("A", "C");
+        graph.addDirectedEdge("B", "D");
+
+        var bfs = new BFS<>(graph);
+        var distances = bfs.getDistances("A");
+
+        assertEquals(0, distances.get("A"));
+        assertEquals(1, distances.get("B"));
+        assertEquals(1, distances.get("C"));
+        assertEquals(2, distances.get("D"));
+        assertEquals(4, distances.size());
     }
 }
