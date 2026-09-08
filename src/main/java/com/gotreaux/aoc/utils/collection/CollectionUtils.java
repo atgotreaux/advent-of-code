@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public final class CollectionUtils {
@@ -66,5 +67,19 @@ public final class CollectionUtils {
             optionalValues.add(Optional.of(value));
         }
         return optionalValues;
+    }
+
+    public static <T> Collection<Pair<T, T>> pairs(List<T> elements) {
+        return IntStream.range(0, elements.size())
+                .boxed()
+                .flatMap(
+                        first ->
+                                IntStream.range(first + 1, elements.size())
+                                        .mapToObj(
+                                                second ->
+                                                        new Pair<>(
+                                                                elements.get(first),
+                                                                elements.get(second))))
+                .toList();
     }
 }

@@ -56,6 +56,14 @@ class CollectionUtilsTest {
                 optionalValues.stream().filter(Optional::isPresent).distinct().count());
     }
 
+    @ParameterizedTest
+    @MethodSource("providePairs")
+    void pairs(List<String> elements, List<Pair<String, String>> expectedPairs) {
+        var pairs = CollectionUtils.pairs(elements);
+
+        assertEquals(expectedPairs, pairs.stream().toList());
+    }
+
     private static Stream<Arguments> providePermutations() {
         return Stream.of(
                 Arguments.of(List.of(1), 1),
@@ -82,5 +90,25 @@ class CollectionUtilsTest {
         return Stream.of(
                 Arguments.of((Object) CardinalDirection.values()),
                 Arguments.of((Object) RelativeDirection.values()));
+    }
+
+    private static Stream<Arguments> providePairs() {
+        return Stream.of(
+                Arguments.of(List.of(), List.of()),
+                Arguments.of(List.of("a"), List.of()),
+                Arguments.of(List.of("a", "b"), List.of(new Pair<>("a", "b"))),
+                Arguments.of(
+                        List.of("a", "b", "c"),
+                        List.of(new Pair<>("a", "b"), new Pair<>("a", "c"), new Pair<>("b", "c"))),
+                Arguments.of(
+                        List.of("a", "b", "c", "d"),
+                        List.of(
+                                new Pair<>("a", "b"),
+                                new Pair<>("a", "c"),
+                                new Pair<>("a", "d"),
+                                new Pair<>("b", "c"),
+                                new Pair<>("b", "d"),
+                                new Pair<>("c", "d"))),
+                Arguments.of(List.of("a", "a"), List.of(new Pair<>("a", "a"))));
     }
 }
