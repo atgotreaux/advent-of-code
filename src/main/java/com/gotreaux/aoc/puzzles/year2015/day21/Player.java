@@ -10,6 +10,12 @@ record Player(
         Optional<Ring> leftRing,
         Optional<Ring> rightRing) {
 
+    Player {
+        if (hitPoints <= 0) {
+            throw new IllegalArgumentException("Hit points must be positive");
+        }
+    }
+
     int calculateDamage() {
         return Stream.of(
                         Optional.of(weapon.getDamage()),
@@ -28,6 +34,13 @@ record Player(
                         rightRing.map(Ring::getArmor))
                 .flatMap(Optional::stream)
                 .reduce(0, Integer::sum);
+    }
+
+    boolean wins(Boss boss) {
+        var playerDamage = Math.max(1, calculateDamage() - boss.armor());
+        var bossDamage = Math.max(1, boss.damage() - calculateArmor());
+
+        return Math.ceilDiv(boss.hitPoints(), playerDamage) <= Math.ceilDiv(hitPoints, bossDamage);
     }
 
     int calculateCost() {

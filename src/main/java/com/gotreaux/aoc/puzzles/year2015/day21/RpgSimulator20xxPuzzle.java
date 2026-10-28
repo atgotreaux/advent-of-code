@@ -37,8 +37,7 @@ public class RpgSimulator20xxPuzzle extends Puzzle {
         Collection<Integer> winCosts = new ArrayList<>();
         Collection<Integer> loseCosts = new ArrayList<>();
         for (var player : players) {
-            var battle = new Battle(player, boss);
-            if (battle.isWin()) {
+            if (player.wins(boss)) {
                 winCosts.add(player.calculateCost());
             } else {
                 loseCosts.add(player.calculateCost());

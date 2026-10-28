@@ -25,4 +25,16 @@ record Boss(int hitPoints, int damage, int armor) {
 
         return new Boss(hitPoints, damage, armor);
     }
+
+    Boss {
+        if (hitPoints <= 0) {
+            throw new IllegalArgumentException("Hit points must be positive");
+        }
+        if (damage <= 0) {
+            throw new IllegalArgumentException("Damage must be positive");
+        }
+        if (armor < 0) {
+            throw new IllegalArgumentException("Armor must be positive");
+        }
+    }
 }
