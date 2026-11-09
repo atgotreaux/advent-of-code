@@ -26,17 +26,15 @@ public class GiftShopPuzzle extends Puzzle {
 
         var sumOfIdsRepeatingTwice =
                 productRanges.stream()
-                        .flatMap(
-                                productRange ->
-                                        productRange.findInvalidIds(repeatsExactlyTwice).stream())
+                        .flatMap(productRange ->
+                                productRange.findInvalidIds(repeatsExactlyTwice).stream())
                         .mapToLong(Long::longValue)
                         .sum();
 
         var sumOfIdsRepeatingAtLeastTwice =
                 productRanges.stream()
-                        .flatMap(
-                                productRange ->
-                                        productRange.findInvalidIds(repeatsAtLeastTwice).stream())
+                        .flatMap(productRange ->
+                                productRange.findInvalidIds(repeatsAtLeastTwice).stream())
                         .mapToLong(Long::longValue)
                         .sum();
 

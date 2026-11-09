@@ -54,10 +54,8 @@ class Directory {
 
     Collection<Directory> getDirectories() {
         return directories.stream()
-                .flatMap(
-                        directory ->
-                                Stream.concat(
-                                        Stream.of(directory), directory.getDirectories().stream()))
+                .flatMap(directory ->
+                        Stream.concat(Stream.of(directory), directory.getDirectories().stream()))
                 .toList();
     }
 

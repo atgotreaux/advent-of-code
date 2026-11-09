@@ -72,14 +72,10 @@ public final class CollectionUtils {
     public static <T> Collection<Pair<T, T>> pairs(List<T> elements) {
         return IntStream.range(0, elements.size())
                 .boxed()
-                .flatMap(
-                        first ->
-                                IntStream.range(first + 1, elements.size())
-                                        .mapToObj(
-                                                second ->
-                                                        new Pair<>(
-                                                                elements.get(first),
-                                                                elements.get(second))))
+                .flatMap(first ->
+                        IntStream.range(first + 1, elements.size())
+                                .mapToObj(second ->
+                                        new Pair<>(elements.get(first), elements.get(second))))
                 .toList();
     }
 }

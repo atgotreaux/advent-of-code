@@ -33,14 +33,10 @@ public class SumOfPartsPuzzle extends Puzzle {
                     steps.stream()
                             .filter(step -> stepOrder.indexOf(step) == -1)
                             .filter(step -> !availableSteps.contains(step))
-                            .filter(
-                                    step ->
-                                            reqs.stream()
-                                                    .filter(req -> req.step().equals(step))
-                                                    .allMatch(
-                                                            req ->
-                                                                    stepOrder.indexOf(req.prereq())
-                                                                            >= 0))
+                            .filter(step ->
+                                    reqs.stream()
+                                            .filter(req -> req.step().equals(step))
+                                            .allMatch(req -> stepOrder.indexOf(req.prereq()) >= 0))
                             .toList();
 
             availableSteps.addAll(prereqsCompleteSteps);

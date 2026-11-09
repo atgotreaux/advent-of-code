@@ -39,7 +39,7 @@ public class BridgeRepairPuzzle extends Puzzle {
             var combinations =
                     combinationMap.computeIfAbsent(
                             equation.operands().size() - 1,
-                            (key) -> CollectionUtils.combinations(operators, key));
+                            key -> CollectionUtils.combinations(operators, key));
             for (var calibrationOperators : combinations) {
                 var result = equation.evaluate(calibrationOperators);
                 if (result == equation.result()) {

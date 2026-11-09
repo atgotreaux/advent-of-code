@@ -18,9 +18,8 @@ public class WrappingPaperPuzzle extends Puzzle {
 
         var wrappingPaperOrderTotal =
                 presents.stream()
-                        .mapToInt(
-                                present ->
-                                        present.getSurfaceArea() + present.getAreaOfSmallestSide())
+                        .mapToInt(present ->
+                                present.getSurfaceArea() + present.getAreaOfSmallestSide())
                         .sum();
 
         var ribbonOrderTotal =

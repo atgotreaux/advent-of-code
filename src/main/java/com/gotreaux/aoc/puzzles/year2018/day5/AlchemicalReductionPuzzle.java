@@ -22,13 +22,9 @@ public class AlchemicalReductionPuzzle extends Puzzle {
                 input.chars()
                         .map(Character::toLowerCase)
                         .distinct()
-                        .mapToObj(
-                                i ->
-                                        input.replace(Character.toString(i), "")
-                                                .replace(
-                                                        Character.toString(
-                                                                Character.toUpperCase(i)),
-                                                        ""))
+                        .mapToObj(i ->
+                                input.replace(Character.toString(i), "")
+                                        .replace(Character.toString(Character.toUpperCase(i)), ""))
                         .map(AlchemicalReductionPuzzle::collapse)
                         .map(String::length)
                         .min(Integer::compareTo)

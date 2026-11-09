@@ -13,11 +13,10 @@ class ModelArrivalFunction implements Function<Matrix<Character>, Matrix<Charact
     public Matrix<Character> apply(Matrix<Character> matrix) {
         var result = matrix.copy();
 
-        matrix.forEach(
-                cv -> {
-                    var next = getNextState(matrix, cv);
-                    result.set(cv.cell(), next.getLabel());
-                });
+        matrix.forEach(cv -> {
+            var next = getNextState(matrix, cv);
+            result.set(cv.cell(), next.getLabel());
+        });
 
         return result;
     }

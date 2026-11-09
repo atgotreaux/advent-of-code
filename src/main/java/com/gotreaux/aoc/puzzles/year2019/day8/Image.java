@@ -23,20 +23,13 @@ record Image(List<Matrix<Integer>> layers, int width, int height) {
 
         var layers =
                 IntStream.iterate(0, i -> i < input.length(), i -> i + width * height)
-                        .mapToObj(
-                                i -> {
-                                    var layerInput =
-                                            IntStream.iterate(
-                                                            0,
-                                                            j -> j < width * height,
-                                                            j -> j + width)
-                                                    .mapToObj(
-                                                            j ->
-                                                                    input.substring(
-                                                                            i + j, i + j + width))
-                                                    .toList();
-                                    return new Matrix<>(layerInput, new DigitMatrixProvider());
-                                })
+                        .mapToObj(i -> {
+                            var layerInput =
+                                    IntStream.iterate(0, j -> j < width * height, j -> j + width)
+                                            .mapToObj(j -> input.substring(i + j, i + j + width))
+                                            .toList();
+                            return new Matrix<>(layerInput, new DigitMatrixProvider());
+                        })
                         .toList();
 
         return new Image(layers, width, height);

@@ -32,14 +32,11 @@ public class WhaleTreacheryPuzzle extends Puzzle {
 
         var consecutiveAlignmentFuel =
                 IntStream.rangeClosed(minPosition, maxPosition)
-                        .map(
-                                i ->
-                                        positions.stream()
-                                                .mapToInt(
-                                                        pos ->
-                                                                MathUtils.consecutiveSum(
-                                                                        Math.abs(pos - i)))
-                                                .sum())
+                        .map(i ->
+                                positions.stream()
+                                        .mapToInt(
+                                                pos -> MathUtils.consecutiveSum(Math.abs(pos - i)))
+                                        .sum())
                         .min()
                         .orElseThrow();
 

@@ -16,13 +16,12 @@ final class HorizontalWorksheet extends Worksheet {
 
         var operandLists =
                 input.subList(0, input.size() - 1).stream()
-                        .map(
-                                line ->
-                                        PatternUtils.ANY_WHITESPACE
-                                                .splitAsStream(line.trim())
-                                                .mapToLong(Long::parseLong)
-                                                .boxed()
-                                                .toList())
+                        .map(line ->
+                                PatternUtils.ANY_WHITESPACE
+                                        .splitAsStream(line.trim())
+                                        .mapToLong(Long::parseLong)
+                                        .boxed()
+                                        .toList())
                         .toList();
 
         return new HorizontalWorksheet(operandLists, operators);

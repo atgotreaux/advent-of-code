@@ -73,10 +73,8 @@ public class Matrix<T> implements Iterable<CellValue<T>> {
     public Iterator<CellValue<T>> iterator() {
         return IntStream.range(0, rowCount)
                 .boxed()
-                .flatMap(
-                        row ->
-                                IntStream.range(0, colCount)
-                                        .mapToObj(col -> CellValue.of(row, col, this)))
+                .flatMap(row ->
+                        IntStream.range(0, colCount).mapToObj(col -> CellValue.of(row, col, this)))
                 .iterator();
     }
 

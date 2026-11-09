@@ -39,12 +39,11 @@ public class ReposeRecordPuzzle extends Puzzle {
                             guards.stream()
                                     .filter(guard -> guard.getId() == guardId)
                                     .findFirst()
-                                    .orElseGet(
-                                            () -> {
-                                                var guard = new Guard(guardId);
-                                                guards.add(guard);
-                                                return guard;
-                                            });
+                                    .orElseGet(() -> {
+                                        var guard = new Guard(guardId);
+                                        guards.add(guard);
+                                        return guard;
+                                    });
                 }
                 case FALLS_ASLEEP -> asleepRecord = record;
                 case WAKES_UP -> {

@@ -25,12 +25,9 @@ public class PlaygroundPuzzle extends Puzzle {
 
         var connections =
                 CollectionUtils.pairs(junctionBoxes).stream()
-                        .map(
-                                pair ->
-                                        WeightedEdge.of(
-                                                pair.first(),
-                                                pair.second(),
-                                                JunctionBox::distanceTo))
+                        .map(pair ->
+                                WeightedEdge.of(
+                                        pair.first(), pair.second(), JunctionBox::distanceTo))
                         .sorted()
                         .toList();
 

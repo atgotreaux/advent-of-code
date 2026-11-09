@@ -51,10 +51,9 @@ class SeedPuzzleCommandTest {
         var screen = client.sendCommand("help");
 
         await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(screen)
-                                        .containsText(SeedPuzzleCommand.COMMAND_NAME));
+                .untilAsserted(() ->
+                        ShellAssertions.assertThat(screen)
+                                .containsText(SeedPuzzleCommand.COMMAND_NAME));
     }
 
     @Test
@@ -62,10 +61,9 @@ class SeedPuzzleCommandTest {
         var screen = client.sendCommand(SeedPuzzleCommand.COMMAND_NAME + " --help");
 
         await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(screen)
-                                        .containsText(SeedPuzzleCommand.COMMAND_NAME));
+                .untilAsserted(() ->
+                        ShellAssertions.assertThat(screen)
+                                .containsText(SeedPuzzleCommand.COMMAND_NAME));
     }
 
     @Test
@@ -164,10 +162,9 @@ class SeedPuzzleCommandTest {
                                 + session);
 
         await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(screen)
-                                        .containsText("Unable to fetch puzzle input from URL"));
+                .untilAsserted(() ->
+                        ShellAssertions.assertThat(screen)
+                                .containsText("Unable to fetch puzzle input from URL"));
 
         Mockito.verify(httpClient).send(ArgumentMatchers.any(), ArgumentMatchers.any());
 
@@ -200,10 +197,8 @@ class SeedPuzzleCommandTest {
                                 + session);
 
         await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(screen)
-                                        .containsText("HTTP request to URL"));
+                .untilAsserted(() ->
+                        ShellAssertions.assertThat(screen).containsText("HTTP request to URL"));
 
         Mockito.verify(httpClient).send(ArgumentMatchers.any(), ArgumentMatchers.any());
 
@@ -238,10 +233,9 @@ class SeedPuzzleCommandTest {
                                 + session);
 
         await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(screen)
-                                        .containsText("Unable to fetch puzzle input."));
+                .untilAsserted(() ->
+                        ShellAssertions.assertThat(screen)
+                                .containsText("Unable to fetch puzzle input."));
 
         Mockito.verify(httpClient).send(ArgumentMatchers.any(), ArgumentMatchers.any());
         Mockito.verify(mockResponse, Mockito.times(2)).statusCode();
@@ -278,10 +272,9 @@ class SeedPuzzleCommandTest {
                                 + session);
 
         await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(screen)
-                                        .containsText("Empty or null response body from URL"));
+                .untilAsserted(() ->
+                        ShellAssertions.assertThat(screen)
+                                .containsText("Empty or null response body from URL"));
 
         Mockito.verify(httpClient).send(ArgumentMatchers.any(), ArgumentMatchers.any());
         Mockito.verify(mockResponse).statusCode();
@@ -322,10 +315,9 @@ class SeedPuzzleCommandTest {
                                 + session);
 
         await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(screen)
-                                        .containsText("Successfully seeded input to targets"));
+                .untilAsserted(() ->
+                        ShellAssertions.assertThat(screen)
+                                .containsText("Successfully seeded input to targets"));
 
         Mockito.verify(httpClient).send(ArgumentMatchers.any(), ArgumentMatchers.any());
         Mockito.verify(mockResponse).statusCode();
@@ -383,10 +375,9 @@ class SeedPuzzleCommandTest {
                                 + "\"");
 
         await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(screen)
-                                        .containsText("Successfully seeded input to targets"));
+                .untilAsserted(() ->
+                        ShellAssertions.assertThat(screen)
+                                .containsText("Successfully seeded input to targets"));
 
         Mockito.verify(httpClient).send(ArgumentMatchers.any(), ArgumentMatchers.any());
         Mockito.verify(mockResponse).statusCode();
@@ -431,10 +422,9 @@ class SeedPuzzleCommandTest {
                                 + InputWriterFactory.RESOURCE_WRITER);
 
         await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(screen)
-                                        .containsText("Successfully seeded input to targets"));
+                .untilAsserted(() ->
+                        ShellAssertions.assertThat(screen)
+                                .containsText("Successfully seeded input to targets"));
 
         Mockito.verify(httpClient).send(ArgumentMatchers.any(), ArgumentMatchers.any());
         Mockito.verify(mockResponse).statusCode();

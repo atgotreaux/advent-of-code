@@ -24,12 +24,11 @@ record Report(List<Integer> levels) {
         }
 
         return IntStream.range(-1, levels.size())
-                .mapToObj(
-                        i ->
-                                IntStream.range(0, levels.size())
-                                        .filter(index -> index != i)
-                                        .mapToObj(levels::get)
-                                        .toList())
+                .mapToObj(i ->
+                        IntStream.range(0, levels.size())
+                                .filter(index -> index != i)
+                                .mapToObj(levels::get)
+                                .toList())
                 .map(Report::new)
                 .toList();
     }

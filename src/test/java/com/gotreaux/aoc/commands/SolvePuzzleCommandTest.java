@@ -37,10 +37,9 @@ class SolvePuzzleCommandTest {
         var screen = client.sendCommand("help");
 
         await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(screen)
-                                        .containsText(SolvePuzzleCommand.COMMAND_NAME));
+                .untilAsserted(() ->
+                        ShellAssertions.assertThat(screen)
+                                .containsText(SolvePuzzleCommand.COMMAND_NAME));
     }
 
     @Test
@@ -48,10 +47,9 @@ class SolvePuzzleCommandTest {
         var screen = client.sendCommand(SolvePuzzleCommand.COMMAND_NAME + " --help");
 
         await().atMost(2, TimeUnit.SECONDS)
-                .untilAsserted(
-                        () ->
-                                ShellAssertions.assertThat(screen)
-                                        .containsText(SolvePuzzleCommand.COMMAND_NAME));
+                .untilAsserted(() ->
+                        ShellAssertions.assertThat(screen)
+                                .containsText(SolvePuzzleCommand.COMMAND_NAME));
     }
 
     @Test

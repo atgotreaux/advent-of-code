@@ -50,10 +50,8 @@ public class LaboratoriesPuzzle extends Puzzle {
                         var navigator = new NeighborsNavigator<>(matrix, new Cell(row, col));
                         navigator
                                 .collectCells(List.of(Direction.WEST, Direction.EAST))
-                                .forEach(
-                                        neighbor ->
-                                                nextBeamCounts.merge(
-                                                        neighbor.col(), count, Long::sum));
+                                .forEach(neighbor ->
+                                        nextBeamCounts.merge(neighbor.col(), count, Long::sum));
                     }
                     case EMPTY -> nextBeamCounts.merge(col, count, Long::sum);
                     default -> throw new IllegalStateException("Unexpected space: " + space);

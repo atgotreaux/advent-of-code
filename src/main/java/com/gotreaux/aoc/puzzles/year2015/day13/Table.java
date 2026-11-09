@@ -22,23 +22,19 @@ record Table(Collection<Arrangement> arrangements) {
     private int getHappiness(List<String> permutation) {
         var clockwiseHappiness =
                 IntStream.range(0, permutation.size())
-                        .mapToObj(
-                                i ->
-                                        findArrangement(
-                                                permutation.get(i),
-                                                permutation.get(
-                                                        i + 1 == permutation.size() ? 0 : i + 1)))
+                        .mapToObj(i ->
+                                findArrangement(
+                                        permutation.get(i),
+                                        permutation.get(i + 1 == permutation.size() ? 0 : i + 1)))
                         .mapToInt(Arrangement::happiness)
                         .sum();
 
         var counterClockwiseHappiness =
                 IntStream.range(0, permutation.size())
-                        .mapToObj(
-                                i ->
-                                        findArrangement(
-                                                permutation.get(i),
-                                                permutation.get(
-                                                        i == 0 ? permutation.size() - 1 : i - 1)))
+                        .mapToObj(i ->
+                                findArrangement(
+                                        permutation.get(i),
+                                        permutation.get(i == 0 ? permutation.size() - 1 : i - 1)))
                         .mapToInt(Arrangement::happiness)
                         .sum();
 

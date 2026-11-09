@@ -29,12 +29,11 @@ public class SmokeBasinPuzzle extends Puzzle {
 
         var productOfLargestBasins =
                 matrix.stream()
-                        .filter(
-                                cv -> {
-                                    var navigator = new NeighborsNavigator<>(matrix, cv.cell());
-                                    var neighbors = navigator.collectElements(Direction.cardinal());
-                                    return neighbors.stream().allMatch(i -> i > cv.value());
-                                })
+                        .filter(cv -> {
+                            var navigator = new NeighborsNavigator<>(matrix, cv.cell());
+                            var neighbors = navigator.collectElements(Direction.cardinal());
+                            return neighbors.stream().allMatch(i -> i > cv.value());
+                        })
                         .map(cv -> getBasinSize(matrix, cv.cell()))
                         .sorted(Comparator.reverseOrder())
                         .limit(3)

@@ -27,11 +27,10 @@ class LightGrid {
     LightGrid animate() {
         var result = matrix.copy();
 
-        matrix.forEach(
-                cv -> {
-                    var next = getNextState(matrix, cv);
-                    result.set(cv.cell(), next.getLabel());
-                });
+        matrix.forEach(cv -> {
+            var next = getNextState(matrix, cv);
+            result.set(cv.cell(), next.getLabel());
+        });
 
         return new LightGrid(result, stuckLights);
     }

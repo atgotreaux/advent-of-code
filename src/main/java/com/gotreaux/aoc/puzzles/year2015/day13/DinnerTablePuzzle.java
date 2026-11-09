@@ -23,11 +23,10 @@ public class DinnerTablePuzzle extends Puzzle {
 
         Collection<Arrangement> myArrangements =
                 guestTable.getRelatives().stream()
-                        .flatMap(
-                                relative ->
-                                        Stream.of(
-                                                new Arrangement("Me", relative, 0),
-                                                new Arrangement(relative, "Me", 0)))
+                        .flatMap(relative ->
+                                Stream.of(
+                                        new Arrangement("Me", relative, 0),
+                                        new Arrangement(relative, "Me", 0)))
                         .toList();
 
         var myTable =
