@@ -8,13 +8,14 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class InstructionTest {
+
     @ParameterizedTest
-    @MethodSource("provideParseLine")
-    void parseLine(String line, Instruction expected) {
+    @MethodSource("provideOf")
+    void of(String line, Instruction expected) {
         assertEquals(expected, Instruction.of(line));
     }
 
-    private static Stream<Arguments> provideParseLine() {
+    private static Stream<Arguments> provideOf() {
         return Stream.of(
                 Arguments.of("turn on 0,0 through 999,999", Instruction.ON),
                 Arguments.of("toggle 0,0 through 999,0", Instruction.TOGGLE),

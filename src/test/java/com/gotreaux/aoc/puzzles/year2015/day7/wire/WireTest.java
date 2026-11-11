@@ -10,12 +10,12 @@ import org.junit.jupiter.params.provider.MethodSource;
 class WireTest {
 
     @ParameterizedTest
-    @MethodSource("provideParseWire")
-    void parseWire(String input, Class<? extends Wire> wireClass) {
+    @MethodSource("provideOf")
+    void of(String input, Class<? extends Wire> wireClass) {
         assertInstanceOf(wireClass, Wire.of(input));
     }
 
-    private static Stream<Arguments> provideParseWire() {
+    private static Stream<Arguments> provideOf() {
         return Stream.of(
                 Arguments.of("123 -> x", SignalWire.class),
                 Arguments.of("456 -> y", SignalWire.class),

@@ -9,15 +9,16 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class HandTypeTest {
+
     @ParameterizedTest
-    @MethodSource("provideParseType")
-    void parseType(Card v, Card w, Card x, Card y, Card z, HandType expectedType) {
+    @MethodSource("provideOf")
+    void of(Card v, Card w, Card x, Card y, Card z, HandType expectedType) {
         var cards = List.of(v, w, x, y, z);
 
         assertEquals(expectedType, HandType.of(cards));
     }
 
-    private static Stream<Arguments> provideParseType() {
+    private static Stream<Arguments> provideOf() {
         return Stream.of(
                 Arguments.of(
                         Card.THREE, Card.TWO, Card.TEN, Card.THREE, Card.KING, HandType.ONE_PAIR),

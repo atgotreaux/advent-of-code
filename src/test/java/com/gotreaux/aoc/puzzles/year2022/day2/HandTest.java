@@ -15,9 +15,10 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class HandTest {
+
     @ParameterizedTest
-    @MethodSource("provideParseOpponentHand")
-    void parseOpponentHand(char label, Hand expectedHand) {
+    @MethodSource("provideOfOpponentHand")
+    void ofOpponentHand(char label, Hand expectedHand) {
         assertEquals(expectedHand, Hand.ofOpponentLabel(label));
     }
 
@@ -27,8 +28,8 @@ class HandTest {
     }
 
     @ParameterizedTest
-    @MethodSource("provideParseStrategyHand")
-    void parseStrategyHand(char label, Hand expectedHand) {
+    @MethodSource("provideOfStrategyHand")
+    void ofStrategyHand(char label, Hand expectedHand) {
         assertEquals(expectedHand, Hand.ofEncryptedStrategyLabel(label));
     }
 
@@ -38,8 +39,8 @@ class HandTest {
     }
 
     @ParameterizedTest
-    @MethodSource("provideParseOutcomeLabel")
-    void parseOutcomeLabel(char label, Hand opponentHand, Hand expectedHand) {
+    @MethodSource("provideOfStrategyOutcomeLabel")
+    void ofStrategyOutcomeLabel(char label, Hand opponentHand, Hand expectedHand) {
         assertEquals(expectedHand, Hand.ofStrategyOutcomeLabel(opponentHand, label));
     }
 
@@ -65,21 +66,21 @@ class HandTest {
         assertThrows(NoSuchElementException.class, () -> Hand.ofStrategyOutcomeLabel(hand, 'W'));
     }
 
-    private static Stream<Arguments> provideParseOpponentHand() {
+    private static Stream<Arguments> provideOfOpponentHand() {
         return Stream.of(
                 Arguments.of('A', Hand.ROCK),
                 Arguments.of('B', Hand.PAPER),
                 Arguments.of('C', Hand.SCISSORS));
     }
 
-    private static Stream<Arguments> provideParseStrategyHand() {
+    private static Stream<Arguments> provideOfStrategyHand() {
         return Stream.of(
                 Arguments.of('X', Hand.ROCK),
                 Arguments.of('Y', Hand.PAPER),
                 Arguments.of('Z', Hand.SCISSORS));
     }
 
-    private static Stream<Arguments> provideParseOutcomeLabel() {
+    private static Stream<Arguments> provideOfStrategyOutcomeLabel() {
         return Stream.of(
                 Arguments.of('X', Hand.ROCK, Hand.SCISSORS),
                 Arguments.of('X', Hand.PAPER, Hand.ROCK),

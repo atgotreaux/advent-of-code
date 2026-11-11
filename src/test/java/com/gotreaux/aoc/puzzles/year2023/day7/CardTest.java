@@ -11,19 +11,20 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class CardTest {
+
     @ParameterizedTest
-    @MethodSource("provideParseCard")
-    void parseCard(char label, Card expectedCard) {
+    @MethodSource("provideOf")
+    void of(char label, Card expectedCard) {
         assertEquals(expectedCard, Card.of(label));
     }
 
     @Test
-    void parseJoker() {
+    void ofJoker() {
         assertEquals(Card.JOKER, Card.of('J', Card.JACK));
     }
 
     @Test
-    void parseJack() {
+    void ofJack() {
         assertEquals(Card.JACK, Card.of('J', Card.JOKER));
     }
 
@@ -32,7 +33,7 @@ class CardTest {
         assertThrows(NoSuchElementException.class, () -> Card.of('X'));
     }
 
-    private static Stream<Arguments> provideParseCard() {
+    private static Stream<Arguments> provideOf() {
         return Stream.of(
                 Arguments.of('2', Card.TWO),
                 Arguments.of('3', Card.THREE),
