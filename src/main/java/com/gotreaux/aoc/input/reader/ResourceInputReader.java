@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.input.reader;
 
-import com.google.errorprone.annotations.MustBeClosed;
 import com.gotreaux.aoc.input.ResourceLoader;
 import com.gotreaux.aoc.puzzles.Puzzle;
 import java.io.IOException;
@@ -27,9 +26,8 @@ public class ResourceInputReader<T extends Puzzle> implements InputReader {
     }
 
     @Override
-    @MustBeClosed
     public Stream<String> getInputStream() {
-        return readResource(Files::lines);
+        return getInputList().stream();
     }
 
     @Override

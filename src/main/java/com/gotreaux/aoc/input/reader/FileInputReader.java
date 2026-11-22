@@ -1,6 +1,5 @@
 package com.gotreaux.aoc.input.reader;
 
-import com.google.errorprone.annotations.MustBeClosed;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
@@ -21,9 +20,8 @@ public class FileInputReader implements InputReader {
     }
 
     @Override
-    @MustBeClosed
     public Stream<String> getInputStream() {
-        return readFile(Files::lines);
+        return getInputList().stream();
     }
 
     @Override
