@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class PrintQueuePuzzle extends Puzzle {
 
     private static final Pattern RULE_PATTERN = Pattern.compile("^\\d+\\|\\d+$");
-    private static final Pattern UPDATE_PATTERN = Pattern.compile("^\\d+(?:,\\d+)*$");
+    private static final Pattern UPDATE_PATTERN = Pattern.compile("\\d[\\d,]*+");
 
     protected PrintQueuePuzzle() {
         super(2024, 5);
