@@ -18,18 +18,31 @@
     <description>My solutions for Advent of Code, an Advent calendar of programming puzzles.</description>
     <properties>
         <java.version>25</java.version>
+        <argLine/>
+        <spring-shell.version>4.0.4</spring-shell.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.shell</groupId>
+                <artifactId>spring-shell-dependencies</artifactId>
+                <version>${spring-shell.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.shell</groupId>
             <artifactId>spring-shell-starter</artifactId>
-            <version>4.0.4</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.shell</groupId>
             <artifactId>spring-shell-jline</artifactId>
-            <version>4.0.4</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -60,12 +73,6 @@
         <dependency>
             <groupId>org.springframework.shell</groupId>
             <artifactId>spring-shell-starter-test</artifactId>
-            <version>4.0.4</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-liquibase-test</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -86,20 +93,26 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>properties</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.6.1</version>
                 <configuration>
-                    <argLine>-javaagent:${settings.localRepository}/org/mockito/mockito-core/${mockito.version}/mockito-core-${mockito.version}.jar</argLine>
+                    <argLine>@{argLine} -javaagent:${org.mockito:mockito-core:jar} --enable-native-access=ALL-UNNAMED</argLine>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.16.0</version>
                 <configuration>
-                    <source>25</source>
-                    <target>25</target>
-                    <encoding>UTF-8</encoding>
                     <failOnWarning>true</failOnWarning>
                     <compilerArgs>
                         <arg>-XDcompilePolicy=simple</arg>
@@ -141,6 +154,10 @@
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
                 <version>13.0.0</version>
+                <configuration>
+                    <failBuildOnCVSS>7</failBuildOnCVSS>
+                    <nvdApiKeyEnvironmentVariable>NVD_API_KEY</nvdApiKeyEnvironmentVariable>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
