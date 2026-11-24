@@ -16,7 +16,7 @@ public class ScratchcardsPuzzle extends Puzzle {
 
     private static final Pattern CARD_LINE = Pattern.compile(": ");
     private static final Pattern ANY_WHITESPACE = Pattern.compile("\\s+");
-    private static final Pattern WINNERS_NUMBER_DELIM = Pattern.compile("\\s+\\|\\s+");
+    private static final Pattern WINNERS_NUMBER_DELIM = Pattern.compile("\\|");
 
     public ScratchcardsPuzzle() {
         super(2023, 4);
@@ -38,8 +38,8 @@ public class ScratchcardsPuzzle extends Puzzle {
             totalScratchcardMapping.merge(number, 1, Integer::sum);
 
             var winnersAndNumbers = WINNERS_NUMBER_DELIM.split(cardLine[1]);
-            var winners = winnersAndNumbers[0];
-            var numbers = winnersAndNumbers[1];
+            var winners = winnersAndNumbers[0].strip();
+            var numbers = winnersAndNumbers[1].strip();
 
             Collection<String> winnerList = List.of(ANY_WHITESPACE.split(winners));
             Collection<String> numberList =

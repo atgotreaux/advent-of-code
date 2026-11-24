@@ -11,10 +11,8 @@ public class NiceStringPuzzle extends Puzzle {
 
     private static final Pattern THREE_VOWELS = Pattern.compile("[^aeiou]");
     private static final Pattern REPEATED_CHARACTER = Pattern.compile("[a-z]*([a-z])\\1[a-z]*");
-    private static final Pattern NO_FORBIDDEN_STRINGS =
-            Pattern.compile("[a-z]*(ab|cd|pq|xy)[a-z]*");
-    private static final Pattern PAIR_REPEATED =
-            Pattern.compile("[a-z]*([a-z][a-z])[a-z]*\\1[a-z]*");
+    private static final Pattern NO_FORBIDDEN_STRINGS = Pattern.compile("ab|cd|pq|xy");
+    private static final Pattern PAIR_REPEATED = Pattern.compile("([a-z]{2}).*\\1");
     private static final Pattern REPEATED_WITH_SEPARATOR =
             Pattern.compile("[a-z]*([a-z])[a-z]\\1[a-z]*");
 
@@ -29,13 +27,13 @@ public class NiceStringPuzzle extends Puzzle {
                         .getInputStream()
                         .filter(s -> THREE_VOWELS.matcher(s).replaceAll("").length() >= 3)
                         .filter(s -> REPEATED_CHARACTER.matcher(s).matches())
-                        .filter(s -> !NO_FORBIDDEN_STRINGS.matcher(s).matches())
+                        .filter(s -> !NO_FORBIDDEN_STRINGS.matcher(s).find())
                         .count();
 
         var niceStringBetterModelCount =
                 inputReader
                         .getInputStream()
-                        .filter(s -> PAIR_REPEATED.matcher(s).matches())
+                        .filter(s -> PAIR_REPEATED.matcher(s).find())
                         .filter(s -> REPEATED_WITH_SEPARATOR.matcher(s).matches())
                         .count();
 

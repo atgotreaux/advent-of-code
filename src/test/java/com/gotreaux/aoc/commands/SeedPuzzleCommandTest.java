@@ -196,6 +196,8 @@ class SeedPuzzleCommandTest {
                                 + " -s "
                                 + session);
 
+        assertTrue(Thread.interrupted());
+
         await().atMost(2, TimeUnit.SECONDS)
                 .untilAsserted(() ->
                         ShellAssertions.assertThat(screen).containsText("HTTP request to URL"));

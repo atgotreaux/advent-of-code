@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SupplyStacksPuzzle extends Puzzle {
 
-    private static final Pattern STACK_PATTERN = Pattern.compile("^(\\s+\\d\\s*)+$");
-    private static final Pattern CRATE_PATTERN = Pattern.compile("^(\\s*\\[[A-Z]]\\s*)+$");
+    private static final Pattern STACK_PATTERN = Pattern.compile("\\s*+\\d[\\d\\s]*+");
+    private static final Pattern CRATE_PATTERN = Pattern.compile("\\s*+\\[[A-Z\\[\\]\\s]*+");
 
     public SupplyStacksPuzzle() {
         super(2022, 5);

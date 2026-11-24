@@ -129,6 +129,7 @@ class SeedPuzzleCommand {
                     "puzzle.command.seed.io-exception", new Object[] {url}, locale);
         } catch (InterruptedException e) {
             logger.error("HTTP request was interrupted", e);
+            Thread.currentThread().interrupt();
             return messageSource.getMessage(
                     "puzzle.command.seed.interrupted-exception", new Object[] {url}, locale);
         }
